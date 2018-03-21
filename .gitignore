@@ -32,9 +32,6 @@
 *.iws
 .idea/
 
-# Project Stuff
-/src/main/resources/mcMMO
-
 # Other Libraries
 *.jar
 
