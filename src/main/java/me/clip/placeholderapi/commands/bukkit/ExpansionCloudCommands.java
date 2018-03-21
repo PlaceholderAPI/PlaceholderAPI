@@ -20,19 +20,18 @@
  */
 package me.clip.placeholderapi.commands.bukkit;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.Msg;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class ExpansionCloudCommands implements CommandExecutor {
 

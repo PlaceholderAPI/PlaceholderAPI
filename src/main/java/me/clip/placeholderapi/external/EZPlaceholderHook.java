@@ -21,10 +21,9 @@
 package me.clip.placeholderapi.external;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderHook;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
-
-import me.clip.placeholderapi.PlaceholderHook;
 
 @Deprecated
 public abstract class EZPlaceholderHook extends PlaceholderHook {

@@ -21,7 +21,6 @@
 package me.clip.placeholderapi.events;
 
 import me.clip.placeholderapi.PlaceholderHook;
-
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 

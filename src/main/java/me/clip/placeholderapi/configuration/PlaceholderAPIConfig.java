@@ -22,8 +22,6 @@ package me.clip.placeholderapi.configuration;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 
-import org.bukkit.configuration.file.FileConfiguration;
-
 public class PlaceholderAPIConfig {
 
 	private PlaceholderAPIPlugin plugin;
@@ -33,32 +31,7 @@ public class PlaceholderAPIConfig {
 	}
 	
 	public void loadDefConfig() {
-		
-		FileConfiguration c = plugin.getConfig();
-		
-		c.options().header("PlaceholderAPI version "+plugin.getDescription().getVersion()+""
-				+ "\nCreated by extended_clip"
-				+ "\n"
-				+ "\nNo placeholders are provided with this plugin."
-				+ "\nDownload placeholders with /papi ecloud"
-				+ "\nExample:"
-				+ "\n/papi ecloud refresh"
-				+ "\n/papi ecloud list all"
-				+ "\n/papi ecloud list all 2"
-				+ "\n/papi ecloud download Player"
-				+ "\n/papi ecloud download Vault"
-				+ "\n/papi reload");
-		
-		c.set("auto_install_expansions", null);
-		c.set("cloud_enable_unverified_expansions", null);
-		c.addDefault("check_updates", true);
-		c.addDefault("cloud_enabled", true);	
-		c.addDefault("cloud_allow_unverified_expansions", false);
-		c.addDefault("boolean.true", "yes");
-		c.addDefault("boolean.false", "no");
-		c.addDefault("date_format", "MM/dd/yy HH:mm:ss");
-		c.options().copyDefaults(true);
-		plugin.saveConfig();
+		plugin.saveDefaultConfig();
 		plugin.reloadConfig();
 	}
 	
@@ -76,7 +49,6 @@ public class PlaceholderAPIConfig {
 	
 	public void setCloudEnabled(boolean b) {
 		plugin.getConfig().set("cloud_enabled", b);
-		plugin.saveConfig();
 		plugin.reloadConfig();
 	}
 	
