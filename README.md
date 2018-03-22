@@ -1,6 +1,6 @@
-![PlaceholderAPI Logo](https://i.imgur.com/Ea4PURv.png) 
+[![PlaceholderAPI Logo](https://i.imgur.com/Ea4PURv.png)][spigot]
 
-[![Build Status](http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI)](http://ci.extendedclip.com/job/PlaceholderAPI/)
+[![Build Status](http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI)][ci]
 
 # Information 
 [PlaceholderAPI][spigot] is a plugin for Spigot servers that allows server owners to display information from various plugins with a uniform format. 
