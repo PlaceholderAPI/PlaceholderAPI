@@ -20,12 +20,6 @@
  */
 package me.clip.placeholderapi;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
-
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -33,12 +27,16 @@ import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.clip.placeholderapi.util.TimeUtil;
-import me.clip.placeholderapi.metrics.Metrics;
-
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -109,7 +107,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 		expansionManager.clean();
 		PlaceholderAPI.unregisterAllExpansions();
 		reloadConfig();
-		saveConfig();
 		setupOptions();
 		expansionManager.registerAllExpansions();
 		if (!config.isCloudEnabled()) {

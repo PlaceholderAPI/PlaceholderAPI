@@ -20,15 +20,14 @@
  */
 package me.clip.placeholderapi.expansion;
 
-import java.util.List;
-
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.List;
 
 public abstract class PlaceholderExpansion extends PlaceholderHook {
 	

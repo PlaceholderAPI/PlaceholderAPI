@@ -1,8 +1,8 @@
-name: PlaceholderAPI
+name: ${project.name}
 main: me.clip.placeholderapi.PlaceholderAPIPlugin
-version: ${pom.version}
+version: ${project.version}
 author: [extended_clip]
-description: A placeholder provider
+description: ${project.description}
 permissions:
     placeholderapi.*:
         description: ability to use all commands

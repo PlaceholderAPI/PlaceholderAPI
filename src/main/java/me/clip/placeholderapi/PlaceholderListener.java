@@ -20,18 +20,10 @@
  */
 package me.clip.placeholderapi;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import me.clip.placeholderapi.events.PlaceholderHookUnloadEvent;
-import me.clip.placeholderapi.expansion.Cacheable;
-import me.clip.placeholderapi.expansion.Cleanable;
-import me.clip.placeholderapi.expansion.ExpansionManager;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Taskable;
+import me.clip.placeholderapi.expansion.*;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,6 +32,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 @SuppressWarnings("deprecation")
 public class PlaceholderListener implements Listener {

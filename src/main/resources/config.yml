@@ -1,0 +1,18 @@
+# PlaceholderAPI version ${project.version}
+# Created by extended_clip
+# No placeholders are provided with this plugin.
+# Download placeholders with /papi ecloud
+# Example:
+# /papi ecloud refresh
+# /papi ecloud list all
+# /papi ecloud list all 2
+# /papi ecloud download Player
+# /papi ecloud download Vault
+# /papi reload
+check_updates: true
+cloud_enabled: true
+cloud_allow_unverified_expansions: false
+boolean:
+  'true': 'yes'
+  'false': 'no'
+date_format: MM/dd/yy HH:mm:ss

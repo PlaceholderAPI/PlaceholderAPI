@@ -20,6 +20,8 @@
  */
 package me.clip.placeholderapi.util;
 
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
@@ -28,8 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 
 public class FileUtil {
 
