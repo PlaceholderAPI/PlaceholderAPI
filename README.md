@@ -1,18 +1,37 @@
-# PlaceholderAPI
+[![PlaceholderAPI Logo](https://i.imgur.com/Ea4PURv.png)][spigot]
 
-PlaceholderAPI is a library that allows servers to use placeholders from a wide range of your favorite plugins, such as 
-Essentials, Factions, LuckPerms, Vault, AutoSell, GriefPrevention, and many more!
-You can display information from your favorite plugins in any plugin that supports PlaceholderAPI. 
-Through the use of the Expansion cloud, PAPI effectively and efficiently allows you to pick and choose which placeholders you want to install. 
-The Expansion cloud allows you to receive new placeholders, updates to existing placeholder expansions, and much more directly from your server 
-without updating the actual plugin. With over 100,000 downloads, PlaceholderAPI is a must have for a server of any type or scale.
+[![Build Status](http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI)][ci]
 
-[![Build Status](http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI)](http://ci.extendedclip.com/job/PlaceholderAPI/)
+# Information 
+[PlaceholderAPI][spigot] is a plugin for Spigot servers that allows server owners to display information from various plugins with a uniform format. 
 
-<!--
-It'd be cool to include more information here 
-in the future, such as how to contribute, how
-to build, documentation? (wikis aren't enabled
-as of writing this), etc. I know there are people
-with brighter imaginations than me here
---->
+Support for specific plugins are provided either by the plugin itself or through expansions. The expansions may be downloaded in-game through the PAPI Expansion Cloud. There are currently over 100 expansions that support a wide variety of plugins, such as Essentials, Factions, LuckPerms, and Vault. 
+
+PlaceholderAPI has been downloaded over 100,000 times and has been used concurrently on over 10,000 servers, which makes it a must-have for a server of any type or scale.
+
+<!-- TODO: Add contributing section -->
+<!-- TODO: Add expansion creation section (possibly add to a wiki?) -->
+
+## Support
+- [Issue Tracker][issues]
+- [Discord Support][discord]
+
+## Quick Links
+- [CI Server][ci]
+- [Expansions Website][expansions]
+- [Placeholder List][placeholder-list]
+- [Spigot Page][spigot]
+- [Plugin Statistics][statistics]
+
+## License
+PlaceholderAPI is licensed under the __GNU GPLv3__ license. Refer to the [LICENSE](LICENSE) file for more information.
+
+<!-- Page Links - Placed here to be easier to change later on. -->
+
+[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+[discord]: https://discord.gg/7sndK3q
+[spigot]: https://www.spigotmc.org/resources/placeholderapi.6245/
+[ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
+[expansions]: https://api.extendedclip.com/all/
+[placeholder-list]: https://www.spigotmc.org/wiki/placeholderapi-placeholders/
+[statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
