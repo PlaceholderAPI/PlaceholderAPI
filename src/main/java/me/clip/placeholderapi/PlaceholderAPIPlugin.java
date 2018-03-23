@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi;
 
+import me.clip.placeholderapi.commands.PlaceholderAPICommands;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -118,11 +119,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 	}
 
 	private void setupCommands() {
-		if (serverVersion != null && serverVersion.isSpigot()) {
-			getCommand("placeholderapi").setExecutor(new me.clip.placeholderapi.commands.spigot.PlaceholderAPICommands(this));
-		} else {
-			getCommand("placeholderapi").setExecutor(new me.clip.placeholderapi.commands.bukkit.PlaceholderAPICommands(this));
-		}
+		getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this, (serverVersion != null && serverVersion.isSpigot())));
 	}
 
 	private void setupOptions() {

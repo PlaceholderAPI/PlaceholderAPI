@@ -18,10 +18,11 @@
  *
  *
  */
-package me.clip.placeholderapi.commands.spigot;
+package me.clip.placeholderapi.commands;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.commands.spigot.ExpansionCloudCommands;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
@@ -37,11 +38,15 @@ public class PlaceholderAPICommands implements CommandExecutor {
 
 	private PlaceholderAPIPlugin plugin;
 	
-	private ExpansionCloudCommands eCloud;
+	private CommandExecutor eCloud;
 	
-	public PlaceholderAPICommands(PlaceholderAPIPlugin i) {
+	public PlaceholderAPICommands(PlaceholderAPIPlugin i, boolean spigot) {
 		plugin = i;
-		eCloud = new ExpansionCloudCommands(i);
+		if (spigot) {
+			eCloud = new me.clip.placeholderapi.commands.spigot.ExpansionCloudCommands(i);
+		} else {
+			eCloud = new me.clip.placeholderapi.commands.bukkit.ExpansionCloudCommands(i);
+		}
 	}
 	
 	@Override
@@ -70,8 +75,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 				Msg.msg(s, "&fReload the config settings");
 				
 				boolean enabled = plugin.getExpansionCloud() != null;
-				
-				
+
 				if (s.isOp()) {
 					if (!enabled) {
 						Msg.msg(s, "&b/papi enablecloud");
