@@ -50,20 +50,20 @@ public class ExpansionCloudCommands implements CommandExecutor {
 	public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
 		
 		if (args.length == 1) {
-			Msg.msg(s, "&bExpansion cloud commands");
-			Msg.msg(s, " ");
-			Msg.msg(s, "&b/papi ecloud status");
-			Msg.msg(s, "&fView status of the cloud");
-			Msg.msg(s, "&b/papi ecloud list <all/author> (page)");
-			Msg.msg(s, "&fList all/author specific available expansions");
-			Msg.msg(s, "&b/papi ecloud info <expansion name>");
-			Msg.msg(s, "&fView information about a specific expansion available on the cloud");
-			Msg.msg(s, "&b/papi ecloud download <expansion name>");
-			Msg.msg(s, "&fDownload a specific expansion from the cloud");
-			Msg.msg(s, "&b/papi ecloud refresh");
-			Msg.msg(s, "&fFetch the most up to date list of expansions available.");
-			Msg.msg(s, "&b/papi ecloud clear");
-			Msg.msg(s, "&fClear the expansion cloud cache.");
+			Msg.msg(s, "&bExpansion cloud commands",
+			" ",
+			"&b/papi ecloud status",
+			"&fView status of the cloud",
+			"&b/papi ecloud list <all/author> (page)",
+			"&fList all/author specific available expansions",
+			"&b/papi ecloud info <expansion name>",
+			"&fView information about a specific expansion available on the cloud",
+			"&b/papi ecloud download <expansion name>",
+			"&fDownload a specific expansion from the cloud",
+			"&b/papi ecloud refresh",
+			"&fFetch the most up to date list of expansions available.",
+			"&b/papi ecloud clear",
+			"&fClear the expansion cloud cache.");
 			return true;
 		}
 		
@@ -87,9 +87,8 @@ public class ExpansionCloudCommands implements CommandExecutor {
 		
 		if (args[1].equalsIgnoreCase("status")) {
 			
-			Msg.msg(s, "&bThere are &f" + plugin.getExpansionCloud().getCloudExpansions().size() + " &bexpansions available on the cloud.");
-			Msg.msg(s, "&7A total of &f" + plugin.getExpansionCloud().getCloudAuthorCount() 
-						+ " &7authors have contributed to the expansion cloud.");
+			Msg.msg(s, "&bThere are &f" + plugin.getExpansionCloud().getCloudExpansions().size() + " &bexpansions available on the cloud.",
+			"&7A total of &f" + plugin.getExpansionCloud().getCloudAuthorCount() + " &7authors have contributed to the expansion cloud.");
 			if (plugin.getExpansionCloud().getToUpdateCount() > 0) {
 				Msg.msg(s, "&eYou have &f" + plugin.getExpansionCloud().getToUpdateCount() 
 						+ " &eexpansions installed that have updates available.");
@@ -306,13 +305,13 @@ public class ExpansionCloudCommands implements CommandExecutor {
 		return true;
 	}
 	
-	private void sms(Player p, String text, String hover, String link) {
+	private void sms(Player p, String text, String hover, String name) {
 		TextComponent message = new TextComponent( ChatColor.translateAlternateColorCodes('&', text) );
 		if (hover != null) {
 			message.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', hover)).create() ) );
 		}
-		if (link != null) {
-			message.setClickEvent( new ClickEvent( ClickEvent.Action.SUGGEST_COMMAND, "/papi ecloud download " + link) );	
+		if (name != null) {
+			message.setClickEvent( new ClickEvent( ClickEvent.Action.SUGGEST_COMMAND, "/papi ecloud download " + name) );
 		}
 		p.spigot().sendMessage( message );
 	}
