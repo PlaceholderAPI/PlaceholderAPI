@@ -106,7 +106,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 	public void reloadConf(CommandSender s) {
 		boolean cloudEnabled = this.expansionCloud != null;
 		expansionManager.clean();
-		PlaceholderAPI.unregisterAllExpansions();
+		PlaceholderAPI.unregisterAllProvidedExpansions();
 		reloadConfig();
 		setupOptions();
 		expansionManager.registerAllExpansions();
