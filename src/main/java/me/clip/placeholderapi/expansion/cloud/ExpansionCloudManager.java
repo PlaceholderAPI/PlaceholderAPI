@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi.expansion.cloud;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
@@ -35,92 +36,60 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ExpansionCloudManager {
-	
-	private final File dir;
-	
+
 	private PlaceholderAPIPlugin plugin;
-	
+	private final String API = "http://api.extendedclip.com/";
+	private final File dir;
 	private final TreeMap<Integer, CloudExpansion> remote = new TreeMap<>();
-	
 	private final List<String> downloading = new ArrayList<>();
-	
-	private int toUpdate = 0;
-    
+
 	public ExpansionCloudManager(PlaceholderAPIPlugin instance) {
-		
 		plugin = instance;
 		dir = new File(instance.getDataFolder() + File.separator + "expansions");
-
 		if (!dir.exists()) {
 			try {
 				dir.mkdirs();
 			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+            ex.printStackTrace();
+        }
 		}
 	}
 	
 	public void clean() {
 		remote.clear();
-		toUpdate = 0;
 		downloading.clear();
 	}
 	
 	public boolean isDownloading(String expansion) {
-		return downloading.contains(expansion);
+	    return downloading.contains(expansion);
 	}
 	
 	public Map<Integer, CloudExpansion> getCloudExpansions() {
-		return remote;
+	    return remote;
 	}
 	
 	public CloudExpansion getCloudExpansion(String name) {
-		
-		for (CloudExpansion ex : remote.values()) {
-			if (ex.getName().equalsIgnoreCase(name)) {
-				return ex;
-			}
-		}
-		return null;
+		return remote.values().stream().filter(ex -> ex.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
 	}
 	
 	public int getCloudAuthorCount() {
-		
-		if (remote == null) {
-			return 0;
-		}
-		
-		List<String> temp = new ArrayList<>();
-		
-		for (CloudExpansion ex : remote.values()) {
-			if (!temp.contains(ex.getAuthor())) {
-				temp.add(ex.getAuthor());
-			}
-		}
-		return temp.size();
+        return remote.values().stream().collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting())).size();
 	}
 	
-	public int getToUpdateCount() {
-		return toUpdate;
-	}
-	
-	public void decrementToUpdateCount() {
-		if (toUpdate > 0) {
-			toUpdate--;
-		}
-	}
-	
+	public long getToUpdateCount() {
+        return PlaceholderAPI.getExpansions().stream().filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate()).count();
+    }
+
 	public Map<Integer, CloudExpansion> getAllByAuthor(String author) {
-		
 		if (remote.isEmpty()) {
 			return null;
 		}
-		
 		TreeMap<Integer, CloudExpansion> byAuthor = new TreeMap<>();
 		boolean first = true;
-		
 		for (CloudExpansion ex : remote.values()) {
 			if (ex.getAuthor().equalsIgnoreCase(author)) {
 				if (first) {
@@ -139,20 +108,16 @@ public class ExpansionCloudManager {
 	}
 	
 	public Map<Integer, CloudExpansion> getAllInstalled() {
-		
 		if (remote.isEmpty()) {
 			return null;
 		}
-		
 		TreeMap<Integer, CloudExpansion> has = new TreeMap<>();
-		
 		boolean first = true;
-		
 		for (CloudExpansion ex : remote.values()) {
 			if (ex.hasExpansion()) {
 				if (first) {
 					first = false;
-					has.put(0, ex);
+					has.put(1, ex);
 				} else {
 					has.put(has.lastKey()+1, ex);
 				}
@@ -166,64 +131,37 @@ public class ExpansionCloudManager {
 	}
 	
 	public int getPagesAvailable(Map<Integer, CloudExpansion> map, int amount) {
-		
 		if (map == null) { 
 			return 0;
 		}
-		
 		int pages = map.size() > 0 ? 1 : 0;
-		
 		if (pages == 0) {
 			return pages;
 		}
-		
 		if (map.size() > amount) {
-			
 			pages = map.size()/amount;
-			
 			if (map.size() % amount > 0) {
-				pages = pages+1;
+				pages++;
 			}
 		}
 		return pages;
 	}
 	
-	public Map<Integer, CloudExpansion> getPage(Map<Integer, CloudExpansion> map, int page) {
-		
-		if (map == null || map.size() == 0) {
+	public Map<Integer, CloudExpansion> getPage(Map<Integer, CloudExpansion> map, int page, int size) {
+		if (map == null || map.size() == 0 || page > getPagesAvailable(map, size)) {
 			return null;
 		}
-		
-		if (page > getPagesAvailable(map, 10)) {
-			return null;
-		}
-		
-		int end = 10*page;
-		
-		int start = end-10;
-		
-		end = end-1;
-		
-		int size = map.size();
-		
-		if (end > size) {
-			end = size-1;
-		}
-		
+		int end = size*page;
+		int start = end-size;
 		TreeMap<Integer, CloudExpansion> ex = new TreeMap<>();
-		
-		for (int i = start ; i <= end ; i++) {
-			ex.put(i, map.get(i));
-		}
-		return ex.isEmpty() ? null : ex;
+        IntStream.range(start, end).forEach(n -> ex.put(n, map.get(n)));
+		return ex;
 	}
 	
 	public void fetch() {
 		
-		plugin.getLogger().info("Fetching available expansion list...");
-		
-		toUpdate = 0;
-		
+		plugin.getLogger().info("Fetching available expansion information...");
+
 		new BukkitRunnable() {
 			
 				@Override
@@ -233,9 +171,9 @@ public class ExpansionCloudManager {
 
 					try {
 
-						URL api = new URL("http://api.extendedclip.com/");
+						URL site = new URL(API);
 						
-						HttpURLConnection connection = (HttpURLConnection) api.openConnection();
+						HttpURLConnection connection = (HttpURLConnection) site.openConnection();
 						
 						connection.setRequestMethod("GET");
 						
@@ -314,7 +252,6 @@ public class ExpansionCloudManager {
                                 ce.setHasExpansion(true);
                                 if (!ex.getVersion().equals(version)) {
                                     ce.setShouldUpdate(true);
-                                    toUpdate++;
                                 }
                             }
 
@@ -331,7 +268,12 @@ public class ExpansionCloudManager {
                         }
 
                         plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
-                        plugin.getLogger().info(toUpdate + " expansions you use have updates.");
+
+                        long updates = getToUpdateCount();
+
+                        if (updates > 0) {
+                            plugin.getLogger().info(updates + " installed expansions have updates available.");
+                        }
                     }
 				}
 		}.runTaskAsynchronously(plugin);
@@ -351,7 +293,7 @@ public class ExpansionCloudManager {
 	        
 	        fos = new FileOutputStream(dir.getAbsolutePath() + File.separator + "Expansion-" + name + ".jar");
 
-	        byte[] buffer = new byte[1024];
+	        byte[] buffer = new byte[is.available()];
 	        
 	        int l;
 
