@@ -216,7 +216,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 			
 			Msg.msg(s, "&bExpansion cloud for &f" + (author != null ? author : "all available")+ " &8&m-- &r&bamount&7: &f" + ex.size() + " &bpage&7: &f" + page + "&7/&f" + avail);
 			
-			ex = plugin.getExpansionCloud().getPage(ex, page);
+			ex = plugin.getExpansionCloud().getPage(ex, page, 10);
 			
 			for (Entry<Integer, CloudExpansion> expansion : ex.entrySet()) {
 				Msg.msg(s, "&b" + (expansion.getKey()+1) + "&7: &f" + expansion.getValue().getName() + " &8&m-- &r" + expansion.getValue().getLink());

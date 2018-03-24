@@ -210,7 +210,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 			
 			Msg.msg(s, "&bShowing expansions for&7: &f" + (author != null ? author : (installed ? "all installed" : "all available"))+ " &8&m--&r &bamount&7: &f" + ex.size() + " &bpage&7: &f" + page + "&7/&f" + avail);
 			
-			ex = plugin.getExpansionCloud().getPage(ex, page);
+			ex = plugin.getExpansionCloud().getPage(ex, page, 10);
 			
 			if (ex == null) {
 				Msg.msg(s, "&cThere was a problem getting the requested page...");
