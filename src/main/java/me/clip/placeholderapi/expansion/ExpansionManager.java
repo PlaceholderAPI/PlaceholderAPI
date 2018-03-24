@@ -132,16 +132,13 @@ public final class ExpansionManager {
 		if (c instanceof Listener) {
 			Listener l = (Listener) c;
 			Bukkit.getPluginManager().registerEvents(l, plugin);
-			plugin.getLogger().info("Registered event listener for expansion: " + c.getIdentifier());
 		}
 
 		plugin.getLogger().info("Successfully registered expansion: " + c.getIdentifier());
 
 		if (c instanceof Taskable) {
 			((Taskable) c).start();
-			plugin.getLogger().info("Started scheduled task for expansion: " + c.getIdentifier());
 		}
-
 		return true;
 	}
 
