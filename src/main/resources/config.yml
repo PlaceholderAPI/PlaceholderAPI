@@ -1,14 +1,13 @@
-# PlaceholderAPI version ${project.version}
-# Created by extended_clip
-# No placeholders are provided with this plugin.
-# Download placeholders with /papi ecloud
-# Example:
-# /papi ecloud refresh
-# /papi ecloud list all
-# /papi ecloud list all 2
-# /papi ecloud download Player
-# /papi ecloud download Vault
-# /papi reload
+# PlaceholderAPI
+# Version: ${project.version}
+# Created by: extended_clip
+# Contributors: https://github.com/PlaceholderAPI/PlaceholderAPI/graphs/contributors
+# Issues: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+# Expansions: https://api.extendedclip.com/all/
+# Wiki: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+# Discord: https://discordapp.com/invite/7sndK3q
+# No placeholders are provided with this plugin by default.
+# Download placeholders: /papi ecloud
 check_updates: true
 cloud_enabled: true
 cloud_allow_unverified_expansions: false
