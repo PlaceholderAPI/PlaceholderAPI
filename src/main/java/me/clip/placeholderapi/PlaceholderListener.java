@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi;
 
+import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.PlaceholderHookUnloadEvent;
 import me.clip.placeholderapi.expansion.*;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -36,7 +37,7 @@ import org.bukkit.event.server.PluginEnableEvent;
 import java.util.Map;
 import java.util.Map.Entry;
 
-@SuppressWarnings("deprecation")
+
 public class PlaceholderListener implements Listener {
 	
 	private PlaceholderAPIPlugin plugin;
@@ -47,25 +48,23 @@ public class PlaceholderListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onInternalUnload(PlaceholderHookUnloadEvent event) {
+	public void onExpansionUnregister(ExpansionUnregisterEvent event) {
 		
-		if (event.getHook() instanceof Listener) {
-			HandlerList.unregisterAll((Listener)event.getHook());	
-			plugin.getLogger().info("Unregistered event listener for placeholder expansion: " + event.getHookName());
+		if (event.getExpansion() instanceof Listener) {
+			HandlerList.unregisterAll((Listener)event.getExpansion());
 		}
 		
-		if (event.getHook() instanceof Taskable) {
-			plugin.getLogger().info("Cancelling scheduled task for placeholder expansion: " + event.getHookName());
-			((Taskable) event.getHook()).stop();
+		if (event.getExpansion() instanceof Taskable) {
+			((Taskable) event.getExpansion()).stop();
 		}
 		
-		if (event.getHook() instanceof Cacheable) {
-			((Cacheable) event.getHook()).clear();
+		if (event.getExpansion() instanceof Cacheable) {
+			((Cacheable) event.getExpansion()).clear();
 		}
 		
 		if (plugin.getExpansionCloud() != null) {
 			
-			CloudExpansion ex = plugin.getExpansionCloud().getCloudExpansion(event.getHookName());
+			CloudExpansion ex = plugin.getExpansionCloud().getCloudExpansion(event.getExpansion().getName());
 			
 			if (ex != null) {
 				ex.setHasExpansion(false);
