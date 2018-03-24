@@ -36,6 +36,7 @@ import org.bukkit.event.server.PluginEnableEvent;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 
 public class PlaceholderListener implements Listener {
@@ -126,7 +127,7 @@ public class PlaceholderListener implements Listener {
 				}
 				
 				if (ex.getPlugin().equalsIgnoreCase(n)) {
-					if (PlaceholderAPI.unregisterPlaceholderHook(hook.getKey())) {
+					if (PlaceholderAPI.unregisterExpansion(ex)) {
 						plugin.getLogger().info("Unregistered placeholder expansion: " + ex.getIdentifier());
 					}
 				}
@@ -136,16 +137,16 @@ public class PlaceholderListener implements Listener {
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
-		
-		Map<String, PlaceholderHook> placeholders = PlaceholderAPI.getPlaceholders();
-		
-		if (placeholders.isEmpty()) {
+
+	    Set<PlaceholderExpansion> expansions = PlaceholderAPI.getExpansions();
+
+		if (expansions.isEmpty()) {
 			return;
 		}
 		
-		for (PlaceholderHook hooks : placeholders.values()) {
-			if (hooks instanceof Cleanable) {
-				((Cleanable) hooks).cleanup(e.getPlayer());
+		for (PlaceholderExpansion ex : expansions) {
+			if (ex instanceof Cleanable) {
+				((Cleanable) ex).cleanup(e.getPlayer());
 			}
 		}
 	}
