@@ -32,6 +32,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class PlaceholderAPI {
 	
@@ -42,27 +43,6 @@ public class PlaceholderAPI {
 	private final static Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
 	private final static Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
 	private final static Map<String, PlaceholderHook> placeholders = new HashMap<>();
-	
-	/**
-	 * unregister ALL placeholder hooks that are currently registered
-	 */
-	protected static void unregisterAll() {
-		unregisterAllExpansions();
-		placeholders.clear();
-	}
-	
-	/**
-	 * unregister all expansions
-	 */
-	public static void unregisterAllExpansions() {
-		if (placeholders.isEmpty()) return;
-		getPlaceholders().forEach((key, value) -> {
-			if (value instanceof PlaceholderExpansion) {
-				Bukkit.getPluginManager().callEvent(new PlaceholderHookUnloadEvent(key, value));
-				unregisterPlaceholderHook(key);
-			}
-		});
-	}
 	
 	/**
 	 * check if a specific placeholder identifier is currently registered
@@ -84,7 +64,6 @@ public class PlaceholderAPI {
 		Validate.notNull(identifier, "Identifier can not be null");
 		Validate.notNull(placeholderHook, "Placeholderhook can not be null");
 		if (isRegistered(identifier)) return false;
-		//test
 		placeholders.put(identifier.toLowerCase(), placeholderHook);
 		return true;
 	}
@@ -115,7 +94,11 @@ public class PlaceholderAPI {
 	public static Map<String, PlaceholderHook> getPlaceholders() {
 		return new HashMap<>(placeholders);
 	}
-	
+
+	public static Set<PlaceholderExpansion> getExpansions() {
+		return getPlaceholders().values().stream().filter(PlaceholderExpansion.class::isInstance).map(PlaceholderExpansion.class::cast).collect(Collectors.toCollection(HashSet::new));
+    }
+
 	/**
 	 * check if a String contains any PlaceholderAPI placeholders
 	 * @param text String to check 
@@ -220,7 +203,7 @@ public class PlaceholderAPI {
 				}
 			}
 		}
-		return ChatColor.translateAlternateColorCodes('&', text);
+		return colorize(text);
 	}
 	
 	/**
@@ -259,23 +242,43 @@ public class PlaceholderAPI {
 		    if (index <= 0 || index >= format.length()) continue;
 		    String identifier = format.substring(0, index).toLowerCase();
 		    String params = format.substring(index+1);
-		    
 		    if (hooks.containsKey(identifier)) {
-		    	
 		    	if (!(hooks.get(identifier) instanceof Relational)) {
 		    		continue;
 		    	}
-		    	
 		    	Relational rel = (Relational) hooks.get(identifier);
 		    	String value = rel.onPlaceholderRequest(one, two, params);
-				
 				if (value != null) {
 					text = text.replaceAll(m.group(), Matcher.quoteReplacement(value));
 				}
 		    }
 		}
-		return ChatColor.translateAlternateColorCodes('&', text);
+		return colorize(text);
 	}
+
+    /**
+     * unregister ALL placeholder hooks that are currently registered
+     */
+    protected static void unregisterAll() {
+        unregisterAllProvidedExpansions();
+        placeholders.clear();
+    }
+
+    /**
+     * unregister all expansions provided by PlaceholderAPI
+     */
+    public static void unregisterAllProvidedExpansions() {
+        if (placeholders.isEmpty()) return;
+        getPlaceholders().forEach((key, value) -> {
+            if (value instanceof PlaceholderExpansion) {
+            	PlaceholderExpansion ex = (PlaceholderExpansion) value;
+            	if (!ex.persist()) {
+            		Bukkit.getPluginManager().callEvent(new PlaceholderHookUnloadEvent(key, value));
+            		unregisterPlaceholderHook(key);
+				}
+            }
+        });
+    }
 	
 	public static Pattern getPlaceholderPattern() {
 		return PLACEHOLDER_PATTERN;
