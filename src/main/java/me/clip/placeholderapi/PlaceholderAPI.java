@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi;
 
+import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.PlaceholderHookUnloadEvent;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
@@ -273,7 +274,7 @@ public class PlaceholderAPI {
             if (value instanceof PlaceholderExpansion) {
             	PlaceholderExpansion ex = (PlaceholderExpansion) value;
             	if (!ex.persist()) {
-            		Bukkit.getPluginManager().callEvent(new PlaceholderHookUnloadEvent(key, value));
+            		Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(ex));
             		unregisterPlaceholderHook(key);
 				}
             }
