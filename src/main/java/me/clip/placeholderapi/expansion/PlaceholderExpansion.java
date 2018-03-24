@@ -40,7 +40,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	}
 
 	/**
-	 * Expansions that do not use the ecloud and instead register from the dependency should set this to false
+	 * Expansions that do not use the ecloud and instead register from the dependency should set this to true
 	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
 	 * @return if the expansion should persist through reloads
 	 */
