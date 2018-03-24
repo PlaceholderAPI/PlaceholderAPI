@@ -273,12 +273,19 @@ public class PlaceholderAPI {
         getPlaceholders().forEach((key, value) -> {
             if (value instanceof PlaceholderExpansion) {
             	PlaceholderExpansion ex = (PlaceholderExpansion) value;
-            	if (!ex.persist()) {
-            		Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(ex));
-            		unregisterPlaceholderHook(key);
-				}
+                if (!ex.persist()) {
+                    unregisterExpansion(ex);
+                }
             }
         });
+    }
+
+    public static boolean unregisterExpansion(PlaceholderExpansion ex) {
+        if (unregisterPlaceholderHook(ex.getIdentifier())) {
+            Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(ex));
+            return true;
+        }
+        return false;
     }
 	
 	public static Pattern getPlaceholderPattern() {
