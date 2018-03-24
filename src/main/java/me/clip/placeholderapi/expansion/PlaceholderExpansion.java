@@ -38,6 +38,16 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	public String getName() {
 		return getIdentifier();
 	}
+
+	/**
+	 * Expansions that do not use the ecloud and instead register from the dependency should set this to false
+	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
+	 * @return if the expansion should persist through reloads
+	 */
+	public boolean persist() {
+		return false;
+	}
+
 	/**
 	 * Get the identifier that this placeholder expansion uses to be passed placeholder requests
 	 * @return placeholder identifier that is associated with this class
@@ -91,8 +101,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 		Validate.notNull(getIdentifier(), "Placeholder identifier can not be null!");
 		return PlaceholderAPI.registerPlaceholderHook(getIdentifier(), this);
 	}
-	
-	
 	
 	/**
 	 * Quick getter for the {@link PlaceholderAPIPlugin} instance
