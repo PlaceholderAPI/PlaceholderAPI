@@ -200,7 +200,7 @@ public class PlaceholderAPI {
 			if (hooks.containsKey(identifier)) {
 				String value = hooks.get(identifier).onPlaceholderRequest(player, params);
 				if (value != null) {
-					text = text.replaceAll(m.group(), Matcher.quoteReplacement(value));
+					text = text.replaceAll(Pattern.quote(m.group()), Matcher.quoteReplacement(value));
 				}
 			}
 		}
@@ -250,7 +250,7 @@ public class PlaceholderAPI {
 		    	Relational rel = (Relational) hooks.get(identifier);
 		    	String value = rel.onPlaceholderRequest(one, two, params);
 				if (value != null) {
-					text = text.replaceAll(m.group(), Matcher.quoteReplacement(value));
+					text = text.replaceAll(Pattern.quote(m.group()), Matcher.quoteReplacement(value));
 				}
 		    }
 		}
