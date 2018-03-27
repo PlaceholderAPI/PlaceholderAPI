@@ -74,7 +74,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 				"&b/papi reload",
 				"&fReload the config settings");
 
-				if (s.isOp()) {
+				if (s.hasPermission("placeholderapi.ecloud")) {
 					if (plugin.getExpansionCloud() == null) {
 						Msg.msg(s, "&b/papi enablecloud",
 						"&fEnable the expansion cloud");
@@ -97,7 +97,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 				return true;
 				
 			} else if (args[0].equalsIgnoreCase("ecloud")) {
-				if (!s.isOp()) {
+				if (!s.hasPermission("placeholderapi.ecloud")) {
 					Msg.msg(s, "&cYou don't have permission to do that!");
 					return true;
 				}
@@ -110,7 +110,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 				return eCloud.onCommand(s, c, label, args);
 				
 			} else if (args[0].equalsIgnoreCase("enablecloud")) {
-				if (!s.isOp()) {
+				if (!s.hasPermission("placeholderapi.ecloud")) {
 					Msg.msg(s, "&cYou don't have permission to do that!");
 					return true;
 				}
@@ -127,7 +127,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 				
 			} else if (args[0].equalsIgnoreCase("disablecloud")) {
 				
-				if (!s.isOp()) {
+				if (!s.hasPermission("placeholderapi.ecloud")) {
 					Msg.msg(s, "&cYou don't have permission to do that!");
 					return true;
 				}

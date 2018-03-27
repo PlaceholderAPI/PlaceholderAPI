@@ -46,7 +46,7 @@ public class UpdateChecker implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent e) {
-    	if (e.getPlayer().isOp()) {
+    	if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
     		e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getLatestVersion() + "&e)"));
     		e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + resourceId + "/"));
     	}
