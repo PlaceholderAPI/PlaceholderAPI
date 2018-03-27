@@ -28,8 +28,7 @@ import java.util.Arrays;
 public class Msg {
 
 	public static void msg(CommandSender s, String... msg) {
-		Arrays.stream(msg).forEach(text  ->
-		s.sendMessage(ChatColor.translateAlternateColorCodes('&', text)));
+		Arrays.stream(msg).forEach(text  -> s.sendMessage(ChatColor.translateAlternateColorCodes('&', text)));
 	}
 
 }

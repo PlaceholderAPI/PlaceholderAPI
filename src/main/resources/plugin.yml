@@ -13,10 +13,12 @@ permissions:
         children:
             placeholderapi.list: true
             placeholderapi.reload: true
+            placeholderapi.ecloud: true
             placeholderapi.parse: true
             placeholderapi.injector.chat.bypass: true
             placeholderapi.injector.signs.bypass: true
             placeholderapi.injector.anvil.bypass: true
+            placeholderapi.updatenotify: true
     placeholderapi.list:
         description: ability to use the list command
         default: op
@@ -25,6 +27,12 @@ permissions:
         default: op
     placeholderapi.parse:
         description: ability to use parse command
+        default: op
+    placeholderapi.ecloud:
+        description: allows the usage of ecloud commands
+        default: op
+    placeholderapi.updatenotify:
+        description: notifies you when there is a PAPI update
         default: op
 commands:
    placeholderapi:
