@@ -46,7 +46,7 @@ public class UpdateChecker implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent e) {
-        if (plugin.getConfig().getBoolean("warn_admin_update")) {
+        if (plugin.getPlaceholderAPIConfig().warnUpdateToAdmin()) {
             if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
                 e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getLatestVersion() + "&e)"));
                 e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + resourceId + "/"));
@@ -97,9 +97,7 @@ public class UpdateChecker implements Listener {
     private String toReadable(String version) {
         String[] split = Pattern.compile(".", Pattern.LITERAL).split(version.replace("v", ""));
         version = "";
-        for (String s : split) {
-            version += String.format("%4s", s);
-        }
+        for (String s : split) version += String.format("%4s", s);
         return version;
     }
 
