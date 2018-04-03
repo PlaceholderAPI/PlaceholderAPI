@@ -8,10 +8,18 @@
 # Discord: https://discordapp.com/invite/7sndK3q
 # No placeholders are provided with this plugin by default.
 # Download placeholders: /papi ecloud
+
+# Check if plugin is up to date
 check_updates: true
+# Warn the admin if the plugin is out of date
+warn_admin_update: true
+# PlaceHolder cloud enabled
 cloud_enabled: true
+#  Allow unverified Expansions
 cloud_allow_unverified_expansions: false
+# Alternative meaning for true and false
 boolean:
   'true': 'yes'
   'false': 'no'
+# How you want to date formatted
 date_format: MM/dd/yy HH:mm:ss

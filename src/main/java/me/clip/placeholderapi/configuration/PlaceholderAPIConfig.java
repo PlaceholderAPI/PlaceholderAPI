@@ -42,6 +42,7 @@ public class PlaceholderAPIConfig {
 	public boolean cloudAllowUnverifiedExpansions() {
 		return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
 	}
+	public boolean warnUpdateToAdmin(){return  plugin.getConfig().getBoolean("warn_admin_update");}
 	
 	public boolean isCloudEnabled() {
 		return plugin.getConfig().getBoolean("cloud_enabled");

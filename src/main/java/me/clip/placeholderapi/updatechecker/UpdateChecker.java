@@ -19,17 +19,17 @@ import java.util.regex.Pattern;
  */
 public class UpdateChecker implements Listener {
 
-	private PlaceholderAPIPlugin plugin;
-	
+    private PlaceholderAPIPlugin plugin;
+
     private final int resourceId = 6245;
-    
+
     private static String latestVersion = "";
-    
+
     private static boolean updateAvailable = false;
 
     public UpdateChecker(PlaceholderAPIPlugin i) {
-    	plugin = i;
-    	Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        plugin = i;
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             if (checkForUpdate()) {
                 Bukkit.getScheduler().runTask(plugin, () -> {
                     plugin.getLogger().info("An update for PlaceholderAPI (v" + getLatestVersion() + ") is available at:");
@@ -39,17 +39,19 @@ public class UpdateChecker implements Listener {
             }
         });
     }
-    
+
     private void register() {
-    	Bukkit.getPluginManager().registerEvents(this, plugin);
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
-    
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent e) {
-    	if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
-    		e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getLatestVersion() + "&e)"));
-    		e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + resourceId + "/"));
-    	}
+        if (plugin.getPlaceholderAPIConfig().warnUpdateToAdmin()) {
+            if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getLatestVersion() + "&e)"));
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + resourceId + "/"));
+            }
+        }
     }
 
     private String getSpigotVersion() {
@@ -95,11 +97,9 @@ public class UpdateChecker implements Listener {
     private String toReadable(String version) {
         String[] split = Pattern.compile(".", Pattern.LITERAL).split(version.replace("v", ""));
         version = "";
-        for (String s : split) {
-        	version += String.format("%4s", s);
-        } 
+        for (String s : split) version += String.format("%4s", s);
         return version;
     }
-	 
+
 
 }
