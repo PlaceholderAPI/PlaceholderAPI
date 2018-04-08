@@ -22,6 +22,10 @@
             <id>bstats-repo</id>
             <url>http://repo.bstats.org/content/repositories/releases/</url>
         </repository>
+        <repository>
+            <id>rayzr-repo</id>
+            <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -35,6 +39,12 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>1.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.rayzr522</groupId>
+            <artifactId>jsonmessage</artifactId>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -77,6 +87,10 @@
                                 <relocation>
                                     <pattern>org.bstats</pattern>
                                     <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>me.rayzr522</pattern>
+                                    <shadedPattern>me.clip.placeholderapi.util</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
