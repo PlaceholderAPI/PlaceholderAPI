@@ -22,7 +22,6 @@ package me.clip.placeholderapi.commands;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.spigot.ExpansionCloudCommands;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
@@ -40,13 +39,9 @@ public class PlaceholderAPICommands implements CommandExecutor {
 	
 	private CommandExecutor eCloud;
 	
-	public PlaceholderAPICommands(PlaceholderAPIPlugin i, boolean spigot) {
+	public PlaceholderAPICommands(PlaceholderAPIPlugin i) {
 		plugin = i;
-		if (spigot) {
-			eCloud = new me.clip.placeholderapi.commands.spigot.ExpansionCloudCommands(i);
-		} else {
-			eCloud = new me.clip.placeholderapi.commands.bukkit.ExpansionCloudCommands(i);
-		}
+		eCloud = new ExpansionCloudCommands(i);
 	}
 	
 	@Override
@@ -82,15 +77,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 						Msg.msg(s, "&b/papi disablecloud",
 						"&fDisable the expansion cloud",
 						"&b/papi ecloud",
-						"&fView information about the PlaceholderAPI expansion cloud",
-						"&b/papi ecloud status",
-						"&fView status of the PlaceholderAPI expansion cloud",
-						"&b/papi ecloud list <all/author> <page>",
-						"&fList all available expansions",
-						"&b/papi ecloud info <expansion name>",
-						"&fView information about a specific expansion on the cloud",
-						"&b/papi ecloud download <expansion name>",
-						"&fDownload a specific expansion from the cloud");
+						"&fView ecloud command usage");
 					}	
 				}
 				
@@ -156,7 +143,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 					return true;
 				}
 				
-				Msg.msg(s, "&7Placeholder expansion info for: &f%" + ex.getIdentifier() + "_<identifier>%");
+				Msg.msg(s, "&7Placeholder expansion info for: &f" + ex.getName());
 				
 				Msg.msg(s, "&7Status: " + (ex.isRegistered() ? "&aRegistered" : "&cNot registered"));
 
