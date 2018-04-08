@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi.expansion.cloud;
 
+import com.google.gson.Gson;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -42,13 +43,15 @@ import java.util.stream.IntStream;
 public class ExpansionCloudManager {
 
 	private PlaceholderAPIPlugin plugin;
-	private final String API = "http://api.extendedclip.com/";
+	private final String API = "http://api.extendedclip.com/v2/";
 	private final File dir;
 	private final TreeMap<Integer, CloudExpansion> remote = new TreeMap<>();
 	private final List<String> downloading = new ArrayList<>();
+	private Gson gson;
 
 	public ExpansionCloudManager(PlaceholderAPIPlugin instance) {
 		plugin = instance;
+		gson = new Gson();
 		dir = new File(instance.getDataFolder() + File.separator + "expansions");
 		if (!dir.exists()) {
 			try {
@@ -62,6 +65,7 @@ public class ExpansionCloudManager {
 	public void clean() {
 		remote.clear();
 		downloading.clear();
+		gson = null;
 	}
 	
 	public boolean isDownloading(String expansion) {
@@ -157,7 +161,7 @@ public class ExpansionCloudManager {
         IntStream.range(start, end).forEach(n -> ex.put(n, map.get(n)));
 		return ex;
 	}
-	
+
 	public void fetch() {
 		
 		plugin.getLogger().info("Fetching available expansion information...");
@@ -218,39 +222,21 @@ public class ExpansionCloudManager {
 
                         for (Object o : jo.keySet()) {
 
-                            JSONObject sub = (JSONObject) jo.get(o);
-                            String name = o.toString();
-                            String author = (String) sub.get("author");
-                            String version = (String) sub.get("version");
-                            String link = (String) sub.get("link");
-                            String description = (String) sub.get("description");
-                            String notes = "";
-                            long update = -1;
+							JSONObject sub = (JSONObject) jo.get(o);
 
-                            if (sub.get("release_notes") != null) {
-                                notes = (String) sub.get("release_notes");
+                        	CloudExpansion ce = gson.fromJson(sub.toJSONString(), CloudExpansion.class);
+
+                        	if (ce.getLatestVersion() == null || ce.getVersion(ce.getLatestVersion()) == null) {
+                        	    continue;
                             }
 
-                            if (sub.get("last_update") != null) {
+                        	ce.setName(o.toString());
 
-                                Object u = sub.get("last_update");
-
-                                if (u instanceof Long) {
-                                    update = (long) sub.get("last_update");
-                                }
-                            }
-
-                            CloudExpansion ce = new CloudExpansion(name, author, version, description, link);
-
-                            ce.setReleaseNotes(notes);
-
-                            ce.setLastUpdate(update);
-
-                            PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(name);
+                            PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(ce.getName());
 
                             if (ex != null && ex.isRegistered()) {
                                 ce.setHasExpansion(true);
-                                if (!ex.getVersion().equals(version)) {
+                                if (!ex.getVersion().equals(ce.getLatestVersion())) {
                                     ce.setShouldUpdate(true);
                                 }
                             }
@@ -312,32 +298,43 @@ public class ExpansionCloudManager {
 	        }
 	    }
 	}
-	
+
 	public void downloadExpansion(final String player, final CloudExpansion ex) {
+	    downloadExpansion(player, ex, ex.getLatestVersion());
+    }
+	
+	public void downloadExpansion(final String player, final CloudExpansion ex, final String version) {
 		
 		if (downloading.contains(ex.getName())) {
 			return;
 		}
+
+		final CloudExpansion.Version ver = ex.getVersions()
+				.stream()
+				.filter(v -> v.getVersion().equals(version))
+				.findFirst()
+				.orElse(null);
+
 		
-		if (ex.getLink() == null) {
+		if (ver == null) {
 			return;
 		}
 		
 		downloading.add(ex.getName());
 		
-		plugin.getLogger().info("Attempting download of expansion: " + ex.getName() + (player != null ? " by user: " + player : "") + " from url: " + ex.getLink());
+		plugin.getLogger().info("Attempting download of expansion: " + ex.getName() + (player != null ? " by user: " + player : "") + " from url: " + ver.getUrl());
 
 		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
             try {
 
-                download(new URL(ex.getLink()), ex.getName());
+                download(new URL(ver.getUrl()), ex.getName());
 
                 plugin.getLogger().info("Download of expansion: " + ex.getName() + " complete!");
 
             } catch (Exception e) {
 
-                plugin.getLogger().warning("Failed to download expansion: " + ex.getName() + " from: " + ex.getLink());
+                plugin.getLogger().warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
 
                 Bukkit.getScheduler().runTask(plugin, () -> {
 
