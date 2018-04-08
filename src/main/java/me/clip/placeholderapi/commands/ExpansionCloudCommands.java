@@ -217,7 +217,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
             if (!(s instanceof Player) || plugin.getExpansionManager().getRegisteredExpansion(expansion.getName()) == null) {
                 msg(s, "&bPlaceholders: &f" + placeholders.size(),
-                        String.join("&a, &f"));
+                        String.join("&a, &f", placeholders));
                 return true;
             }
 
