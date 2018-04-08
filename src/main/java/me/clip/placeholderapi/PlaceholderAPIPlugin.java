@@ -79,7 +79,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 	public void onEnable() {
 		config.loadDefConfig();
 		setupOptions();
-		setupCommands();
+		getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
 		new PlaceholderListener(this);
 		getLogger().info("Placeholder expansion registration initializing...");
 		expansionManager.registerAllExpansions();
@@ -116,10 +116,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 			enableCloud();
 		}
 		s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.getRegisteredIdentifiers().size() + " &aplaceholder hooks successfully registered!"));
-	}
-
-	private void setupCommands() {
-		getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this, (serverVersion != null && serverVersion.isSpigot())));
 	}
 
 	private void setupOptions() {
