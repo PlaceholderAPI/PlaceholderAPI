@@ -40,15 +40,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	}
 
 	/**
-	 * Expansions that do not use the ecloud and instead register from the dependency should set this to true
-	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
-	 * @return if the expansion should persist through reloads
-	 */
-	public boolean persist() {
-		return false;
-	}
-
-	/**
 	 * Get the identifier that this placeholder expansion uses to be passed placeholder requests
 	 * @return placeholder identifier that is associated with this class
 	 */
@@ -75,6 +66,23 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	 * @return current version of this expansion
 	 */
 	public abstract String getVersion();
+
+	public String getDescription() { return null; }
+
+	public String getLink() { return null; }
+
+	public List<String> getPlaceholders() {
+		return null;
+	}
+
+	/**
+	 * Expansions that do not use the ecloud and instead register from the dependency should set this to true
+	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
+	 * @return if the expansion should persist through reloads
+	 */
+	public boolean persist() {
+		return false;
+	}
 	
 	/**
 	 * Check if a placeholder has already been registered with this identifier
@@ -108,30 +116,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	 */
 	public PlaceholderAPIPlugin getPlaceholderAPI() {
 		return PlaceholderAPIPlugin.getInstance();
-	}
-	
-	/**
-	 * A short description of this expansion
-	 * @return null if no description
-	 */
-	public String getDescription() {
-		return null;
-	}
-	
-	/**
-	 * The url link to this expansion page
-	 * @return null if no link
-	 */
-	public String getLink() {
-		return null;
-	}
-	
-	/**
-	 * A list of all valid placeholders
-	 * @return null if you dont care
-	 */
-	public List<String> getPlaceholders() {
-		return null;
 	}
 	
 	public String getString(String path, String def) {
