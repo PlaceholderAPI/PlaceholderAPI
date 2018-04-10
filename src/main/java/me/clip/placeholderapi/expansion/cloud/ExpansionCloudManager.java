@@ -65,7 +65,7 @@ public class ExpansionCloudManager {
 	public void clean() {
 		remote.clear();
 		downloading.clear();
-		gson = null;
+	
 	}
 	
 	public boolean isDownloading(String expansion) {
