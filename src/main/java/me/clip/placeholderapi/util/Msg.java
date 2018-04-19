@@ -28,7 +28,7 @@ import java.util.Arrays;
 public class Msg {
 
 	public static void msg(CommandSender s, String... msg) {
-		Arrays.stream(msg).forEach(text  -> s.sendMessage(color(text)));
+		Arrays.stream(msg).map(Msg::color).forEach(s::sendMessage);
 	}
 
 	public static String color(String text) {
