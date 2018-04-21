@@ -35,15 +35,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static me.clip.placeholderapi.util.Msg.color;
+
 public class PlaceholderAPI {
 	
 	private PlaceholderAPI() {
 	}
 	
-	private final static Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
-	private final static Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
-	private final static Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
-	private final static Map<String, PlaceholderHook> placeholders = new HashMap<>();
+	private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
+	private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
+	private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
+	private static final Map<String, PlaceholderHook> placeholders = new HashMap<>();
 	
 	/**
 	 * check if a specific placeholder identifier is currently registered
@@ -188,7 +190,7 @@ public class PlaceholderAPI {
      */
 	public static String setPlaceholders(Player player, String text, Pattern placeholderPattern) {
 		if (text == null) return null;
-		if (placeholders.isEmpty()) return colorize(text);
+		if (placeholders.isEmpty()) return color(text);
 		Matcher m = placeholderPattern.matcher(text);
 		Map<String, PlaceholderHook> hooks = getPlaceholders();
 		while (m.find()) {
@@ -204,7 +206,7 @@ public class PlaceholderAPI {
 				}
 			}
 		}
-		return colorize(text);
+		return color(text);
 	}
 	
 	/**
@@ -234,7 +236,7 @@ public class PlaceholderAPI {
 	 */
 	public static String setRelationalPlaceholders(Player one, Player two, String text) {
 		if (text == null) return null;
-		if (placeholders.isEmpty()) return colorize(text);
+		if (placeholders.isEmpty()) return color(text);
 		Matcher m = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
 		Map<String, PlaceholderHook> hooks = getPlaceholders();
 		while (m.find()) {
@@ -254,7 +256,7 @@ public class PlaceholderAPI {
 				}
 		    }
 		}
-		return colorize(text);
+		return color(text);
 	}
 
     /**
@@ -299,11 +301,7 @@ public class PlaceholderAPI {
 	public static Pattern getRelationalPlaceholderPattern() {
 		return RELATIONAL_PLACEHOLDER_PATTERN;
 	}
-	
-	public static String colorize(String text) {
-		return ChatColor.translateAlternateColorCodes('&', text);
-	}
-	
+
 	@Deprecated
 	public static Set<String> getRegisteredPlaceholderPlugins() {
 		return getRegisteredIdentifiers();
