@@ -84,7 +84,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 		getLogger().info("Placeholder expansion registration initializing...");
 		expansionManager.registerAllExpansions();
 		if (config.checkUpdates()) {
-			new UpdateChecker(this);
+			new UpdateChecker(this).fetch();
 		}
 		if (config.isCloudEnabled()) {
 			enableCloud();
