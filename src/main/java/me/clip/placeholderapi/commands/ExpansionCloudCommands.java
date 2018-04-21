@@ -79,7 +79,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 		if (args[1].equalsIgnoreCase("refresh") || args[1].equalsIgnoreCase("update") || args[1].equalsIgnoreCase("fetch")) {
 			msg(s, "&aRefresh task started. Use &f/papi ecloud list all &ain a few!!");
 			plugin.getExpansionCloud().clean();
-			plugin.getExpansionCloud().fetch();
+			plugin.getExpansionCloud().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
 			return true;
 		}
 
