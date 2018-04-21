@@ -180,10 +180,10 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 	public void enableCloud() {
 		if (expansionCloud == null) {
 			expansionCloud = new ExpansionCloudManager(this);
-			expansionCloud.fetch();
+			expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
 		} else {
 			expansionCloud.clean();
-			expansionCloud.fetch();
+			expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
 		}
 	}
 
