@@ -14,4 +14,9 @@ cloud_allow_unverified_expansions: false
 boolean:
   'true': 'yes'
   'false': 'no'
+time:
+  days: 'd'
+  hours: 'h'
+  minutes: 'm'
+  seconds: 's'
 date_format: MM/dd/yy HH:mm:ss
