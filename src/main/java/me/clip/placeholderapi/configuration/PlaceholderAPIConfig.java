@@ -67,10 +67,10 @@ public class PlaceholderAPIConfig {
 		return plugin.getConfig().getString("date_format");
 	}	
 	
-	public String getTime(TimeFormat timeFormat) {
+	public String getTime(TimeFormat type) {
 		final FileConfiguration config = plugin.getConfig();
 		
-		switch (timeFormat) {
+		switch (type) {
 		case DAYS : return config.getString("time.days");
 		case HOURS : return config.getString("time.hours");
 		case MINUTES : return config.getString("time.minutes");
