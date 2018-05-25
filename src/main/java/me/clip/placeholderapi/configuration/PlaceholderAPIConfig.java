@@ -20,7 +20,10 @@
  */
 package me.clip.placeholderapi.configuration;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.util.TimeFormat;
 
 public class PlaceholderAPIConfig {
 
@@ -63,4 +66,16 @@ public class PlaceholderAPIConfig {
 	public String dateFormat() {
 		return plugin.getConfig().getString("date_format");
 	}	
+	
+	public String getTime(TimeFormat timeFormat) {
+		final FileConfiguration config = plugin.getConfig();
+		
+		switch (timeFormat) {
+		case DAYS : return config.getString("time.days");
+		case HOURS : return config.getString("time.hours");
+		case MINUTES : return config.getString("time.minutes");
+		case SECONDS : return config.getString("time.seconds");
+		default : return null;
+		}
+	}
 }
