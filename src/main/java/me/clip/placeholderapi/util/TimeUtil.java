@@ -48,11 +48,10 @@ public class TimeUtil {
 	public static final String getTime(int seconds) {
 		final PlaceholderAPIPlugin plugin = (PlaceholderAPIPlugin) JavaPlugin.getProvidingPlugin(PlaceholderAPIPlugin.class);
 		final PlaceholderAPIConfig config = plugin.getPlaceholderAPIConfig();
-		final String time = config.getTime(type);
-		final String timeDays = getTime(TimeFormat.DAYS);
-		final String timeHours = getTime(TimeFormat.HOURS);
-		final String timeMinutes = getTime(TimeFormat.MINUTES);
-		final String timeSeconds = getTime(TimeFormat.SECONDS);
+		final String timeDays = config.getTime(TimeFormat.DAYS);
+		final String timeHours = config.getTime(TimeFormat.HOURS);
+		final String timeMinutes = config.getTime(TimeFormat.MINUTES);
+		final String timeSeconds = config.getTime(TimeFormat.SECONDS);
 		final StringBuilder timeBuilder = new StringBuilder();
 		final int days = seconds / 86400; seconds = seconds - (days * 86400);
 		final int hours = seconds / 3600; seconds = seconds - (hours * 3600);
