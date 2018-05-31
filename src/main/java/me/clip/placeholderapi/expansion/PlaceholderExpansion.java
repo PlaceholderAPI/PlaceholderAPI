@@ -58,7 +58,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	public abstract String getVersion();
 
   /**
-   * The name plugin that this expansion hooks into.
+   * The name of the plugin that this expansion hooks into.
    * by default will return the deprecated {@link #getPlugin()} method
    * @return plugin name that this expansion requires to function
    */
@@ -67,8 +67,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   /**
-   * The placeholders for this expansion
-   * @return placeholders that this expansion provides
+   * The placeholders associated with this expansion
+   * @return placeholder list that this expansion provides
    */
   public List<String> getPlaceholders() {
     return null;
@@ -77,15 +77,15 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	/**
 	 * Expansions that do not use the ecloud and instead register from the dependency should set this to true
 	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
-	 * @return if the expansion should persist through placeholder reloads
+	 * @return if this expansion should persist through placeholder reloads
 	 */
 	public boolean persist() {
 		return false;
 	}
 	
 	/**
-	 * Check if a placeholder has already been registered with this identifier
-	 * @return true if the identifier for this expansion has already been registered
+	 * Check if this placeholder identfier has already been registered
+	 * @return true if the identifier for this expansion is already registered
 	 */
 	public boolean isRegistered() {
 		Validate.notNull(getIdentifier(), "Placeholder identifier can not be null!");
@@ -93,7 +93,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	}
 	
 	/**
-	 * If any requirements are required to be checked before this hook can register, add them here
+	 * If any requirements need to be checked before this expansion should register,
+   * you can check them here
 	 * @return true if this hook meets all the requirements to register
 	 */
 	public boolean canRegister() {
@@ -101,8 +102,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	}
 	
 	/**
-	 * Attempt to register this PlaceholderExpansion with PlaceholderAPI
-	 * @return true if this class and identifier have been successfully registered with PlaceholderAPI
+	 * Attempt to register this PlaceholderExpansion
+	 * @return true if this expansion is now registered with PlaceholderAPI
 	 */
 	public boolean register() {
 		Validate.notNull(getIdentifier(), "Placeholder identifier can not be null!");
