@@ -31,7 +31,7 @@ public abstract class PlaceholderHook {
    * @param params String passed to the hook to determine what value to return
    * @return value for the requested player and params
    */
-	public String onPlaceholderRequest(OfflinePlayer p, String params) {
+	public Object onPlaceholderRequest(OfflinePlayer p, String params) {
 		if (p != null && p.isOnline()) {
 			return onPlaceholderRequest((Player) p, params);
 		}
