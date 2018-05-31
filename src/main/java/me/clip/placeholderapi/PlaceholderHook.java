@@ -20,15 +20,29 @@
  */
 package me.clip.placeholderapi;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public abstract class PlaceholderHook {
 
-	/**
-	 * called when a placeholder is requested from this PlaceholderHook
-	 * @param p Player requesting the placeholder value for, null if not needed for a player
-	 * @param params String passed for the placeholder hook to determine what value to return
-	 * @return value for the requested player and params
-	 */
-	public abstract String onPlaceholderRequest(Player p, String params);
+  /**
+   * called when a placeholder is requested from this hook
+   * @param p {@link OfflinePlayer} to request the placeholder value for, null if not needed for a player
+   * @param params String passed to the hook to determine what value to return
+   * @return value for the requested player and params
+   */
+	public String onPlaceholderRequest(OfflinePlayer p, String params) {
+		if (p != null && p.isOnline()) {
+			return onPlaceholderRequest((Player) p, params);
+		}
+		return onPlaceholderRequest(null, params);
+	}
+
+  /**
+   * @deprecated  As of versions greater than 2.8.7, use {@link #onPlaceholderRequest(OfflinePlayer p, String params)}
+   */
+  @Deprecated
+	public String onPlaceholderRequest(Player p, String params) {
+		return null;
+	}
 }

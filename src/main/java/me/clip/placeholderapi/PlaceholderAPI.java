@@ -28,6 +28,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -135,7 +136,7 @@ public class PlaceholderAPI {
      * @param text text to set the placeholder values in
      * @return modified list with all placeholders set to the corresponding values
      */
-    public static List<String> setBracketPlaceholders(Player p, List<String> text) {
+    public static List<String> setBracketPlaceholders(OfflinePlayer p, List<String> text) {
         return setPlaceholders(p, text, BRACKET_PLACEHOLDER_PATTERN);
     }
 
@@ -147,7 +148,7 @@ public class PlaceholderAPI {
      * @param text text to parse the placeholder values in
      * @return modified list with all placeholders set to the corresponding values
      */
-    public static List<String> setPlaceholders(Player p, List<String> text) {
+    public static List<String> setPlaceholders(OfflinePlayer p, List<String> text) {
         return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
     }
 
@@ -159,7 +160,7 @@ public class PlaceholderAPI {
      * @param text text to parse the placeholder values in
      * @return modified list with all placeholders set to the corresponding values
      */
-    public static List<String> setPlaceholders(Player p, List<String> text, Pattern pattern) {
+    public static List<String> setPlaceholders(OfflinePlayer p, List<String> text, Pattern pattern) {
         if (text == null) return null;
         return text.stream().map(line -> setPlaceholders(p, line, pattern)).collect(Collectors.toList());
     }
@@ -172,7 +173,7 @@ public class PlaceholderAPI {
      * @param text   text to parse the placeholder values to
      * @return modified text with all placeholders set to the corresponding values
      */
-    public static String setBracketPlaceholders(Player player, String text) {
+    public static String setBracketPlaceholders(OfflinePlayer player, String text) {
         return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN);
     }
 
@@ -184,7 +185,7 @@ public class PlaceholderAPI {
      * @param text   text to parse the placeholder values to
      * @return text with all placeholders set to the corresponding values
      */
-    public static String setPlaceholders(Player player, String text) {
+    public static String setPlaceholders(OfflinePlayer player, String text) {
         return setPlaceholders(player, text, PLACEHOLDER_PATTERN);
     }
 
@@ -197,7 +198,7 @@ public class PlaceholderAPI {
      * @param placeholderPattern the pattern to match placeholders to. Capture group 1 must contain an underscore separating the identifier from the params
      * @return text with all placeholders set to the corresponding values
      */
-    public static String setPlaceholders(Player player, String text, Pattern placeholderPattern) {
+    public static String setPlaceholders(OfflinePlayer player, String text, Pattern placeholderPattern) {
         if (text == null) return null;
         if (placeholders.isEmpty()) return color(text);
         Matcher m = placeholderPattern.matcher(text);
