@@ -80,7 +80,7 @@ public class PlaceholderListener implements Listener {
 		PlaceholderExpansion e = m.getCachedExpansion(event.getPlugin().getName().toLowerCase());
 		if (e != null && e.canRegister()) {
 			if (e.isRegistered() || m.registerExpansion(e)) {
-				m.removeCachedExpansion(e.getPlugin());
+				m.removeCachedExpansion(e.getRequiredPlugin());
 			}
 		}
 	}
@@ -122,11 +122,11 @@ public class PlaceholderListener implements Listener {
 				
 				PlaceholderExpansion ex = (PlaceholderExpansion) i;
 				
-				if (ex.getPlugin() == null) {
+				if (ex.getRequiredPlugin() == null) {
 					continue;
 				}
 				
-				if (ex.getPlugin().equalsIgnoreCase(n)) {
+				if (ex.getRequiredPlugin().equalsIgnoreCase(n)) {
 					if (PlaceholderAPI.unregisterExpansion(ex)) {
 						plugin.getLogger().info("Unregistered placeholder expansion: " + ex.getIdentifier());
 					}

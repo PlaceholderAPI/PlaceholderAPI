@@ -33,52 +33,51 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	
 	/**
 	 * The name of this expansion
-	 * @return identifier used for expansion if no name present
+	 * @return {@link #getIdentifier()} by default, name of this expansion if specified
 	 */
 	public String getName() {
 		return getIdentifier();
 	}
 
 	/**
-	 * Get the identifier that this placeholder expansion uses to be passed placeholder requests
-	 * @return placeholder identifier that is associated with this class
+	 * The placeholder identifier of this expanion
+	 * @return placeholder identifier that is associated with this expansion
 	 */
 	public abstract String getIdentifier();
 	
 	/**
-	 * Get the plugin that this expansion hooks into. 
-	 * This will ensure the expansion is added to a cache if canRegister() returns false
-	 * get. 
-	 * The expansion will be removed from the cache
-	 * once a plugin loads with the name that is here and the expansion is registered
-	 * @return placeholder identifier that is associated with this class
-	 */
-	public abstract String getPlugin();
-	
-	/**
-	 * Get the author of this PlaceholderExpansion
+	 * The author of this expansion
 	 * @return name of the author for this expansion
 	 */
 	public abstract String getAuthor();
 	
 	/**
-	 * Get the version of this PlaceholderExpansion
+	 * The version of this expansion
 	 * @return current version of this expansion
 	 */
 	public abstract String getVersion();
 
-	public String getDescription() { return null; }
+  /**
+   * The name plugin that this expansion hooks into.
+   * by default will return the deprecated {@link #getPlugin()} method
+   * @return plugin name that this expansion requires to function
+   */
+  public String getRequiredPlugin() {
+    return getPlugin();
+  }
 
-	public String getLink() { return null; }
-
-	public List<String> getPlaceholders() {
-		return null;
-	}
+  /**
+   * The placeholders for this expansion
+   * @return placeholders that this expansion provides
+   */
+  public List<String> getPlaceholders() {
+    return null;
+  }
 
 	/**
 	 * Expansions that do not use the ecloud and instead register from the dependency should set this to true
 	 * to ensure that your placeholder expansion is not unregistered when the papi reload command is used
-	 * @return if the expansion should persist through reloads
+	 * @return if the expansion should persist through placeholder reloads
 	 */
 	public boolean persist() {
 		return false;
@@ -98,7 +97,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	 * @return true if this hook meets all the requirements to register
 	 */
 	public boolean canRegister() {
-		return getPlugin() == null || Bukkit.getPluginManager().getPlugin(getPlugin()) != null;
+		return getRequiredPlugin() == null || Bukkit.getPluginManager().getPlugin(getRequiredPlugin()) != null;
 	}
 	
 	/**
@@ -153,4 +152,25 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 	public boolean configurationContains(String path) {
 		return getPlaceholderAPI().getConfig().contains("expansions." + getIdentifier() + "." + path); 
 	}
+
+
+  /**
+   * @deprecated  As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
+   */
+  @Deprecated
+  public String getPlugin() {
+    return null;
+  }
+
+  /**
+   * @deprecated  As of versions greater than 2.8.7, use the expansion cloud to show a description
+   */
+  @Deprecated
+  public String getDescription() { return null; }
+
+  /**
+   * @deprecated  As of versions greater than 2.8.7, use the expansion cloud to display a link
+   */
+  @Deprecated
+  public String getLink() { return null; }
 }

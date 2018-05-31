@@ -149,8 +149,8 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
                 for (PlaceholderHook hook : p.values()) {
                     if (hook instanceof PlaceholderExpansion) {
                         PlaceholderExpansion ex = (PlaceholderExpansion) hook;
-                        map.put(ex.getPlugin() == null ? ex.getIdentifier()
-                                : ex.getPlugin(), 1);
+                        map.put(ex.getRequiredPlugin() == null ? ex.getIdentifier()
+                                : ex.getRequiredPlugin(), 1);
                     }
                 }
             }

@@ -155,16 +155,8 @@ public class PlaceholderAPICommands implements CommandExecutor {
 					Msg.msg(s, "&7Version: &f" + ex.getVersion());
 				}
 				
-				if (ex.getDescription() != null) {
-					Msg.msg(s, ex.getDescription());
-				}
-				
-				if (ex.getLink() != null) {
-					Msg.msg(s, "&7Link: &f" + ex.getLink());
-				}
-				
-				if (ex.getPlugin() != null) {
-					Msg.msg(s, "&7Requires plugin: &f" + ex.getPlugin());
+				if (ex.getRequiredPlugin() != null) {
+					Msg.msg(s, "&7Requires plugin: &f" + ex.getRequiredPlugin());
 				}
 
 				if (ex.getPlaceholders() != null) {

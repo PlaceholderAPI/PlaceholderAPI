@@ -116,16 +116,13 @@ public final class ExpansionManager {
 		}
 
 		if (!c.canRegister()) {
-			if (c.getPlugin() != null) {
-				cache.put(c.getPlugin().toLowerCase(), c);
+			if (c.getRequiredPlugin() != null) {
+				cache.put(c.getRequiredPlugin().toLowerCase(), c);
 			}
 			return false;
 		}
 
 		if (!c.register()) {
-			if (c.getPlugin() != null) {
-				cache.put(c.getPlugin().toLowerCase(), c);
-			}
 			return false;
 		}
 
