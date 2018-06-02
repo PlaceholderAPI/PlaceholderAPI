@@ -232,9 +232,9 @@ public class PlaceholderAPI {
       String identifier = format.substring(0, index).toLowerCase();
       String params = format.substring(index + 1);
       if (hooks.containsKey(identifier)) {
-        Object value = hooks.get(identifier).onPlaceholderRequest(player, params);
+        String value = hooks.get(identifier).onPlaceholderRequest(player, params);
         if (value != null) {
-          text = text.replaceAll(Pattern.quote(m.group()), Matcher.quoteReplacement(String.valueOf(value)));
+          text = text.replaceAll(Pattern.quote(m.group()), Matcher.quoteReplacement(value));
         }
       }
     }
