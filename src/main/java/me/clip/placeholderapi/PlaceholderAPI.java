@@ -163,6 +163,7 @@ public class PlaceholderAPI {
     return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
   }
 
+
   /**
    * set placeholders in the list<String> text provided placeholders are matched with the pattern
    * %(identifier)_(params)>% when set with this method
@@ -369,5 +370,25 @@ public class PlaceholderAPI {
   @Deprecated
   public static boolean unregisterPlaceholderHook(Plugin plugin) {
     return plugin != null && unregisterPlaceholderHook(plugin.getName());
+  }
+
+  @Deprecated
+  public static String setPlaceholders(Player p, String text) {
+    return setPlaceholders((OfflinePlayer)p, text, PLACEHOLDER_PATTERN);
+  }
+
+  @Deprecated
+  public static List<String> setPlaceholders(Player p, List<String> text) {
+    return setPlaceholders((OfflinePlayer)p, text, PLACEHOLDER_PATTERN);
+  }
+
+  @Deprecated
+  public static String setBracketPlaceholders(Player p, String text) {
+    return setPlaceholders((OfflinePlayer)p, text, BRACKET_PLACEHOLDER_PATTERN);
+  }
+
+  @Deprecated
+  public static List<String> setBracketPlaceholders(Player p, List<String> text) {
+    return setPlaceholders((OfflinePlayer)p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 }
