@@ -20,238 +20,246 @@
  */
 package me.clip.placeholderapi.commands;
 
+import java.util.Set;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Set;
-
 public class PlaceholderAPICommands implements CommandExecutor {
 
-	private PlaceholderAPIPlugin plugin;
-	
-	private CommandExecutor eCloud;
-	
-	public PlaceholderAPICommands(PlaceholderAPIPlugin i) {
-		plugin = i;
-		eCloud = new ExpansionCloudCommands(i);
-	}
-	
-	@Override
-	public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
+  private PlaceholderAPIPlugin plugin;
 
-		if (args.length == 0) {
-			Msg.msg(s, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
-			"&fCreated by&7: &bextended_clip");
-			return true;
-			
-		} else {
+  private CommandExecutor eCloud;
 
-			if (args[0].equalsIgnoreCase("help")) {
-				Msg.msg(s, "PlaceholderAPI &aHelp &e(&f" + plugin.getDescription().getVersion() + "&e)",
-				"&b/papi",
-				"&fView plugin info/version info",
-				"&b/papi list",
-				"&fList all placeholder expansions that are currently active",
-				"&b/papi info <placeholder name>",
-				"&fView information for a specific expansion",
-				"&b/papi parse <...args>",
-				"&fParse a String with placeholders",
-				"&b/papi parserel <player one> <player two> <...args>",
-				"&fParse a String with relational placeholders",
-				"&b/papi reload",
-				"&fReload the config settings");
+  public PlaceholderAPICommands(PlaceholderAPIPlugin i) {
+    plugin = i;
+    eCloud = new ExpansionCloudCommands(i);
+  }
 
-				if (s.hasPermission("placeholderapi.ecloud")) {
-					if (plugin.getExpansionCloud() == null) {
-						Msg.msg(s, "&b/papi enablecloud",
-						"&fEnable the expansion cloud");
-					} else {
-						Msg.msg(s, "&b/papi disablecloud",
-						"&fDisable the expansion cloud",
-						"&b/papi ecloud",
-						"&fView ecloud command usage");
-					}	
-				}
-				
-				return true;
-				
-			} else if (args[0].equalsIgnoreCase("ecloud")) {
-				if (!s.hasPermission("placeholderapi.ecloud")) {
-					Msg.msg(s, "&cYou don't have permission to do that!");
-					return true;
-				}
-				
-				if (plugin.getExpansionCloud() == null) {
-					Msg.msg(s, "&7The expansion cloud is not enabled!");
-					return true;
-				}
-				
-				return eCloud.onCommand(s, c, label, args);
-				
-			} else if (args[0].equalsIgnoreCase("enablecloud")) {
-				if (!s.hasPermission("placeholderapi.ecloud")) {
-					Msg.msg(s, "&cYou don't have permission to do that!");
-					return true;
-				}
-				
-				if (plugin.getExpansionCloud() != null) {
-					Msg.msg(s, "&7The cloud is already enabled!");
-					return true;
-				}
-				
-				plugin.enableCloud();
-				plugin.getPlaceholderAPIConfig().setCloudEnabled(true);
-				Msg.msg(s, "&aThe cloud has been enabled!");
-				return true;
-				
-			} else if (args[0].equalsIgnoreCase("disablecloud")) {
-				
-				if (!s.hasPermission("placeholderapi.ecloud")) {
-					Msg.msg(s, "&cYou don't have permission to do that!");
-					return true;
-				}
-				
-				if (plugin.getExpansionCloud() == null) {
-					Msg.msg(s, "&7The cloud is already disabled!");
-					return true;
-				}
-				
-				plugin.disableCloud();
-				plugin.getPlaceholderAPIConfig().setCloudEnabled(false);
-				Msg.msg(s, "&aThe cloud has been disabled!");
-				return true;
-				
-			} else if (args.length > 1 && args[0].equalsIgnoreCase("info")) {
+  @Override
+  public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
 
-				if (!s.hasPermission("placeholderapi.info")) {
-					Msg.msg(s, "&cYou don't have permission to do that!");
-					return true;
-				}
-				
-				PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[1]);
-				
-				if (ex == null) {
-					Msg.msg(s, "&cThere is no expansion loaded with the identifier: &f" + args[1]);
-					return true;
-				}
-				
-				Msg.msg(s, "&7Placeholder expansion info for: &f" + ex.getName());
-				
-				Msg.msg(s, "&7Status: " + (ex.isRegistered() ? "&aRegistered" : "&cNot registered"));
+    if (args.length == 0) {
+      Msg.msg(s, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
+          "&fCreated by&7: &bextended_clip");
+      return true;
 
-				if (ex.getAuthor() != null) {
-					Msg.msg(s, "&7Created by: &f" + ex.getAuthor());
-				}
-				
-				if (ex.getVersion() != null) {
-					Msg.msg(s, "&7Version: &f" + ex.getVersion());
-				}
-				
-				if (ex.getRequiredPlugin() != null) {
-					Msg.msg(s, "&7Requires plugin: &f" + ex.getRequiredPlugin());
-				}
+    } else {
 
-				if (ex.getPlaceholders() != null) {
-					Msg.msg(s, "&8&m-- &r&7Placeholders &8&m--");
-					for (String placeholder : ex.getPlaceholders()) {
-						Msg.msg(s, placeholder);
-					}
-				}
-				
-				return true;
-			} else if (args.length > 1 && args[0].equalsIgnoreCase("parse")) {
+      if (args[0].equalsIgnoreCase("help")) {
+        Msg.msg(s, "PlaceholderAPI &aHelp &e(&f" + plugin.getDescription().getVersion() + "&e)",
+            "&b/papi",
+            "&fView plugin info/version info",
+            "&b/papi list",
+            "&fList all placeholder expansions that are currently active",
+            "&b/papi info <placeholder name>",
+            "&fView information for a specific expansion",
+            "&b/papi parse <(playername)/me> <...args>",
+            "&fParse a String with placeholders",
+            "&b/papi parserel <player one> <player two> <...args>",
+            "&fParse a String with relational placeholders",
+            "&b/papi reload",
+            "&fReload the config settings");
 
-				if (!(s instanceof Player)) {
-					Msg.msg(s, "&cThis command can only be used in game!");
-					return true;
-				} else {
-					if (!s.hasPermission("placeholderapi.parse")) {
-						Msg.msg(s, "&cYou don't have permission to do that!");
-						return true;
-					}
-				}
-				
-				Player p = (Player) s;
-				
-				String parse = StringUtils.join(args, " ", 1, args.length);
-				
-				Msg.msg(s, "&r" + PlaceholderAPI.setPlaceholders(p, parse));
-				
-				return true;
-			} else if (args.length > 3 && args[0].equalsIgnoreCase("parserel")) {
+        if (s.hasPermission("placeholderapi.ecloud")) {
+          if (plugin.getExpansionCloud() == null) {
+            Msg.msg(s, "&b/papi enablecloud",
+                "&fEnable the expansion cloud");
+          } else {
+            Msg.msg(s, "&b/papi disablecloud",
+                "&fDisable the expansion cloud",
+                "&b/papi ecloud",
+                "&fView ecloud command usage");
+          }
+        }
 
-				if (!(s instanceof Player)) {
-					Msg.msg(s, "&cThis command can only be used in game!");
-					return true;
-				} else {
-					if (!s.hasPermission("placeholderapi.parse")) {
-						Msg.msg(s, "&cYou don't have permission to do that!");
-						return true;
-					}
-				}
-				
-				Player one = Bukkit.getPlayer(args[1]);
-				if (one == null) {
-					Msg.msg(s, args[1] + " &cis not online!");
-					return true;
-				}
-				
-				Player two = Bukkit.getPlayer(args[2]);
-				
-				if (two == null) {
-					Msg.msg(s, args[2] + " &cis not online!");
-					return true;
-				}
-				
-				String parse = StringUtils.join(args, " ", 3, args.length);
-				
-				Msg.msg(s, "&r" + PlaceholderAPI.setRelationalPlaceholders(one, two, parse));
-				
-				return true;
-			} else if (args[0].equalsIgnoreCase("reload")) {
+        return true;
 
-				if (s instanceof Player) {
-					if (!s.hasPermission("placeholderapi.reload")) {
-						Msg.msg(s, "&cYou don't have permission to do that!");
-						return true;
-					}
-				}
-				
-				Msg.msg(s, "&fPlaceholder&7API &bconfiguration reloaded!");
-				
-				plugin.reloadConf(s);
+      } else if (args[0].equalsIgnoreCase("ecloud")) {
+        if (!s.hasPermission("placeholderapi.ecloud")) {
+          Msg.msg(s, "&cYou don't have permission to do that!");
+          return true;
+        }
 
-			} else if (args[0].equalsIgnoreCase("list")) {
-				
-				if (s instanceof Player) {
-					if (!s.hasPermission("placeholderapi.list")) {
-						Msg.msg(s, "&cYou don't have permission to do that!");
-						return true;
-					}
-				}
-				
-				Set<String> registered = PlaceholderAPI.getRegisteredIdentifiers();
-				
-				if (registered.isEmpty()) {
-					Msg.msg(s, "&7There are no placeholder hooks currently registered!");
-					return true;
-				}
-				Msg.msg(s, registered.size()+" &7Placeholder hooks registered:");
-				Msg.msg(s, registered.toString());
-			} else {
-				Msg.msg(s, "&cIncorrect usage! &7/papi help");
-			}
-		}
+        if (plugin.getExpansionCloud() == null) {
+          Msg.msg(s, "&7The expansion cloud is not enabled!");
+          return true;
+        }
 
-		return true;
-	}
+        return eCloud.onCommand(s, c, label, args);
+
+      } else if (args[0].equalsIgnoreCase("enablecloud")) {
+        if (!s.hasPermission("placeholderapi.ecloud")) {
+          Msg.msg(s, "&cYou don't have permission to do that!");
+          return true;
+        }
+
+        if (plugin.getExpansionCloud() != null) {
+          Msg.msg(s, "&7The cloud is already enabled!");
+          return true;
+        }
+
+        plugin.enableCloud();
+        plugin.getPlaceholderAPIConfig().setCloudEnabled(true);
+        Msg.msg(s, "&aThe cloud has been enabled!");
+        return true;
+
+      } else if (args[0].equalsIgnoreCase("disablecloud")) {
+
+        if (!s.hasPermission("placeholderapi.ecloud")) {
+          Msg.msg(s, "&cYou don't have permission to do that!");
+          return true;
+        }
+
+        if (plugin.getExpansionCloud() == null) {
+          Msg.msg(s, "&7The cloud is already disabled!");
+          return true;
+        }
+
+        plugin.disableCloud();
+        plugin.getPlaceholderAPIConfig().setCloudEnabled(false);
+        Msg.msg(s, "&aThe cloud has been disabled!");
+        return true;
+
+      } else if (args.length > 1 && args[0].equalsIgnoreCase("info")) {
+
+        if (!s.hasPermission("placeholderapi.info")) {
+          Msg.msg(s, "&cYou don't have permission to do that!");
+          return true;
+        }
+
+        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[1]);
+
+        if (ex == null) {
+          Msg.msg(s, "&cThere is no expansion loaded with the identifier: &f" + args[1]);
+          return true;
+        }
+
+        Msg.msg(s, "&7Placeholder expansion info for: &f" + ex.getName());
+
+        Msg.msg(s, "&7Status: " + (ex.isRegistered() ? "&aRegistered" : "&cNot registered"));
+
+        if (ex.getAuthor() != null) {
+          Msg.msg(s, "&7Created by: &f" + ex.getAuthor());
+        }
+
+        if (ex.getVersion() != null) {
+          Msg.msg(s, "&7Version: &f" + ex.getVersion());
+        }
+
+        if (ex.getRequiredPlugin() != null) {
+          Msg.msg(s, "&7Requires plugin: &f" + ex.getRequiredPlugin());
+        }
+
+        if (ex.getPlaceholders() != null) {
+          Msg.msg(s, "&8&m-- &r&7Placeholders &8&m--");
+          for (String placeholder : ex.getPlaceholders()) {
+            Msg.msg(s, placeholder);
+          }
+        }
+
+        return true;
+      } else if (args.length > 2 && args[0].equalsIgnoreCase("parse")) {
+
+        if (!(s instanceof Player)) {
+          Msg.msg(s, "&cThis command can only be used in game!");
+          return true;
+        } else {
+          if (!s.hasPermission("placeholderapi.parse")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        OfflinePlayer pl = null;
+
+        if (args[1].equalsIgnoreCase("me")) {
+          pl = ((Player) s).getPlayer();
+        } else {
+          pl = Bukkit.getOfflinePlayer(args[1]);
+        }
+
+        if (pl == null || !pl.hasPlayedBefore()) {
+          Msg.msg(s, "&cFailed to find player: &f" + args[1]);
+          return true;
+        }
+        String parse = StringUtils.join(args, " ", 2, args.length);
+        Msg.msg(s, "&r" + PlaceholderAPI.setPlaceholders(pl, parse));
+        return true;
+      } else if (args.length > 3 && args[0].equalsIgnoreCase("parserel")) {
+
+        if (!(s instanceof Player)) {
+          Msg.msg(s, "&cThis command can only be used in game!");
+          return true;
+        } else {
+          if (!s.hasPermission("placeholderapi.parse")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        Player one = Bukkit.getPlayer(args[1]);
+        if (one == null) {
+          Msg.msg(s, args[1] + " &cis not online!");
+          return true;
+        }
+
+        Player two = Bukkit.getPlayer(args[2]);
+
+        if (two == null) {
+          Msg.msg(s, args[2] + " &cis not online!");
+          return true;
+        }
+
+        String parse = StringUtils.join(args, " ", 3, args.length);
+
+        Msg.msg(s, "&r" + PlaceholderAPI.setRelationalPlaceholders(one, two, parse));
+
+        return true;
+      } else if (args[0].equalsIgnoreCase("reload")) {
+
+        if (s instanceof Player) {
+          if (!s.hasPermission("placeholderapi.reload")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        Msg.msg(s, "&fPlaceholder&7API &bconfiguration reloaded!");
+
+        plugin.reloadConf(s);
+
+      } else if (args[0].equalsIgnoreCase("list")) {
+
+        if (s instanceof Player) {
+          if (!s.hasPermission("placeholderapi.list")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        Set<String> registered = PlaceholderAPI.getRegisteredIdentifiers();
+
+        if (registered.isEmpty()) {
+          Msg.msg(s, "&7There are no placeholder hooks currently registered!");
+          return true;
+        }
+        Msg.msg(s, registered.size() + " &7Placeholder hooks registered:");
+        Msg.msg(s, registered.toString());
+      } else {
+        Msg.msg(s, "&cIncorrect usage! &7/papi help");
+      }
+    }
+
+    return true;
+  }
 
 }
