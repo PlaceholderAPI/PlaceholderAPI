@@ -20,18 +20,22 @@
  */
 package me.clip.placeholderapi.util;
 
+import java.util.Arrays;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-
 public class Msg {
 
-	public static void msg(CommandSender s, String... msg) {
-		Arrays.stream(msg).map(Msg::color).forEach(s::sendMessage);
-	}
+  public static void msg(CommandSender s, String... msg) {
+    Arrays.stream(msg).map(Msg::color).forEach(s::sendMessage);
+  }
 
-	public static String color(String text) {
-		return ChatColor.translateAlternateColorCodes('&', text);
-	}
+  public static void broadcast(String... msg) {
+    Arrays.stream(msg).map(Msg::color).forEach(Bukkit::broadcastMessage);
+  }
+
+  public static String color(String text) {
+    return ChatColor.translateAlternateColorCodes('&', text);
+  }
 }
