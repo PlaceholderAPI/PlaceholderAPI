@@ -2,6 +2,7 @@ name: ${project.name}
 main: me.clip.placeholderapi.PlaceholderAPIPlugin
 version: ${project.version}
 author: [extended_clip]
+loadbefore: [TAB]
 description: ${project.description}
 permissions:
     placeholderapi.*:
