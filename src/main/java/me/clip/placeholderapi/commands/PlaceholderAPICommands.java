@@ -67,6 +67,10 @@ public class PlaceholderAPICommands implements CommandExecutor {
             "&fParse a String with placeholders and broadcast the message",
             "&b/papi parserel <player one> <player two> <...args>",
             "&fParse a String with relational placeholders",
+            "&b/papi register <fileName>",
+            "&fRegister an expansion by the name of the file",
+            "&b/papi unregister <Expansion name>",
+            "&fUnregister an expansion by name",
             "&b/papi reload",
             "&fReload the config settings");
         if (s.hasPermission("placeholderapi.ecloud")) {
@@ -232,6 +236,46 @@ public class PlaceholderAPICommands implements CommandExecutor {
         }
         Msg.msg(s, registered.size() + " &7Placeholder hooks registered:");
         Msg.msg(s, registered.toString());
+      } else if (args.length > 1 && args[0].equalsIgnoreCase("register")) {
+
+        if (s instanceof Player) {
+          if (!s.hasPermission("placeholderapi.register")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        String fileName = args[1].replace(".jar", "");
+        PlaceholderExpansion ex = plugin.getExpansionManager().registerExpansion(fileName);
+
+        if (ex == null) {
+          Msg.msg(s, "&cFailed to register expansion from " + fileName);
+          return true;
+        }
+
+        Msg.msg(s, "&aSuccessfully registered expansion: &f" + ex.getName());
+      } else if (args.length > 1 && args[0].equalsIgnoreCase("unregister")) {
+
+        if (s instanceof Player) {
+          if (!s.hasPermission("placeholderapi.register")) {
+            Msg.msg(s, "&cYou don't have permission to do that!");
+            return true;
+          }
+        }
+
+        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[1]);
+
+        if (ex == null) {
+          Msg.msg(s, "&cFailed to find expansion: &f" + args[1]);
+          return true;
+        }
+
+        if (PlaceholderAPI.unregisterExpansion(ex)) {
+          Msg.msg(s, "&aSuccessfully unregistered expansion: &f" + ex.getName());
+        } else {
+          Msg.msg(s, "&cFailed to unregister expansion: &f" + ex.getName());
+        }
+
       } else {
         Msg.msg(s, "&cIncorrect usage! &7/papi help");
       }
