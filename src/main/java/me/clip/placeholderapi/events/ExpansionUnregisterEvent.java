@@ -20,30 +20,29 @@
  */
 package me.clip.placeholderapi.events;
 
-import me.clip.placeholderapi.PlaceholderHook;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class ExpansionUnregisterEvent extends Event {
 
-	private static final HandlerList HANDLERS = new HandlerList();
-	private PlaceholderExpansion expansion;
+  private static final HandlerList HANDLERS = new HandlerList();
+  private PlaceholderExpansion expansion;
 
-	public ExpansionUnregisterEvent(PlaceholderExpansion expansion) {
-		this.expansion = expansion;
-	}
+  public ExpansionUnregisterEvent(PlaceholderExpansion expansion) {
+    this.expansion = expansion;
+  }
 
-	@Override
-	public HandlerList getHandlers() {
-		return HANDLERS;
-	}
+  public static HandlerList getHandlerList() {
+    return HANDLERS;
+  }
 
-	public static HandlerList getHandlerList() {
-		return HANDLERS;
-	}
-	
-	public PlaceholderExpansion getExpansion() {
-		return expansion;
-	}
+  @Override
+  public HandlerList getHandlers() {
+    return HANDLERS;
+  }
+
+  public PlaceholderExpansion getExpansion() {
+    return expansion;
+  }
 }
