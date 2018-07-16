@@ -37,8 +37,8 @@ import org.bukkit.event.Listener;
 
 public final class ExpansionManager {
 
-  private PlaceholderAPIPlugin plugin;
   private final Map<String, PlaceholderExpansion> cache = new HashMap<>();
+  private PlaceholderAPIPlugin plugin;
 
   public ExpansionManager(PlaceholderAPIPlugin instance) {
     plugin = instance;
@@ -108,8 +108,9 @@ public final class ExpansionManager {
       VersionSpecific nms = (VersionSpecific) expansion;
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
         plugin.getLogger()
-            .info("Your server version is not compatible with expansion: " + expansion.getIdentifier()
-                + " version: " + expansion.getVersion());
+            .info(
+                "Your server version is not compatible with expansion: " + expansion.getIdentifier()
+                    + " version: " + expansion.getVersion());
         return false;
       }
     }
@@ -178,7 +179,7 @@ public final class ExpansionManager {
       return null;
     }
     PlaceholderExpansion ex = null;
-    if (!klass.isAssignableFrom(PlaceholderExpansion.class)) {
+    if (!PlaceholderExpansion.class.isAssignableFrom(klass)) {
       return null;
     }
     try {
@@ -194,7 +195,8 @@ public final class ExpansionManager {
         }
       }
     } catch (Throwable t) {
-      plugin.getLogger().severe("Failed to init placeholder expansion from class: " + klass.getName());
+      plugin.getLogger()
+          .severe("Failed to init placeholder expansion from class: " + klass.getName());
       plugin.getLogger().severe(t.getMessage());
     }
     return ex;
