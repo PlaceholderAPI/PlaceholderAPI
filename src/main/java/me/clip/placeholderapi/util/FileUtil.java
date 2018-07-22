@@ -67,9 +67,7 @@ public class FileUtil {
     if (list == null) {
       list = new ArrayList<>();
     }
-    try {
-      URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
-      JarInputStream jis = new JarInputStream(jar.openStream());
+    try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader()); JarInputStream jis = new JarInputStream(jar.openStream())) {
       while (true) {
         JarEntry j = jis.getNextJarEntry();
         if (j == null) {
@@ -88,8 +86,6 @@ public class FileUtil {
           }
         }
       }
-      cl.close();
-      jis.close();
     } catch (Throwable t) {
     }
     return list;
