@@ -34,7 +34,8 @@ public enum NMSVersion {
   SPIGOT_1_9_R2("v1_9_R2"),
   SPIGOT_1_10_R1("v1_10_R1"),
   SPIGOT_1_11_R1("v1_11_R1"),
-  SPIGOT_1_12_R1("v1_12_R1");
+  SPIGOT_1_12_R1("v1_12_R1"),
+  SPIGOT_1_13_R1("v1_13_R1");
 
   private String version;
 
