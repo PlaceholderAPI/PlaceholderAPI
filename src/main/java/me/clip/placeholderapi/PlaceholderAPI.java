@@ -46,8 +46,7 @@ public class PlaceholderAPI {
 
   private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
   private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
-  private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern
-      .compile("[%](rel_)([^%]+)[%]");
+  private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
   private static final Map<String, PlaceholderHook> placeholders = new HashMap<>();
 
   private PlaceholderAPI() {
@@ -374,22 +373,18 @@ public class PlaceholderAPI {
     return plugin != null && unregisterPlaceholderHook(plugin.getName());
   }
 
-  @Deprecated
   public static String setPlaceholders(Player p, String text) {
     return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
   }
 
-  @Deprecated
   public static List<String> setPlaceholders(Player p, List<String> text) {
     return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
   }
 
-  @Deprecated
   public static String setBracketPlaceholders(Player p, String text) {
     return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 
-  @Deprecated
   public static List<String> setBracketPlaceholders(Player p, List<String> text) {
     return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
