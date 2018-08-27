@@ -34,9 +34,14 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.13-R0.1-SNAPSHOT</version>
+      <version>1.13.1-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.5</version>
+  </dependency>
     <dependency>
       <groupId>org.bstats</groupId>
       <artifactId>bstats-bukkit</artifactId>
@@ -93,6 +98,10 @@
                 <relocation>
                   <pattern>me.rayzr522</pattern>
                   <shadedPattern>me.clip.placeholderapi.util</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.google.code.gson</pattern>
+                  <shadedPattern>me.clip.placeholderapi.libs.gson</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>
