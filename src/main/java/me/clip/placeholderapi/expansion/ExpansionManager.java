@@ -44,10 +44,7 @@ public final class ExpansionManager {
     plugin = instance;
     File f = new File(PlaceholderAPIPlugin.getInstance().getDataFolder(), "expansions");
     if (!f.exists()) {
-      if (!f.mkdir()) {
-        PlaceholderAPIPlugin.getInstance().getLogger()
-            .severe("Failed to create expansions folder!");
-      }
+      f.mkdirs();
     }
   }
 
