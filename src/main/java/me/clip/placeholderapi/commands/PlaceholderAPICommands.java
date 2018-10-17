@@ -48,7 +48,9 @@ public class PlaceholderAPICommands implements CommandExecutor {
     if (args.length == 0) {
 
       Msg.msg(s, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
-          "&fCreated by&7: &bextended_clip");
+          "&fCreated by&7: &bextended_clip",
+              "&fPapi commands: &b/papi help",
+              "&fEcloud commands: &b/papi ecloud");
       return true;
     } else {
 
