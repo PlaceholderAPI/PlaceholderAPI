@@ -365,7 +365,12 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
         JSONMessage line = JSONMessage.create(msg);
         line.tooltip(hover);
-        line.suggestCommand("/papi ecloud info " + expansion.getValue().getName());
+        if (expansion.getValue().shouldUpdate()) {
+          line.suggestCommand("/papi ecloud download " + expansion.getValue().getName());
+        }
+        else {
+          line.suggestCommand("/papi ecloud info " + expansion.getValue().getName());
+        }
         line.send(p);
       }
 
