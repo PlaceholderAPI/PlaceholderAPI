@@ -73,8 +73,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
         .equalsIgnoreCase("fetch")) {
       msg(s, "&aRefresh task started. Use &f/papi ecloud list all &ain a few!!");
       plugin.getExpansionCloud().clean();
-      plugin.getExpansionCloud()
-          .fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
+      plugin.getExpansionCloud().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
       return true;
     }
 
@@ -413,6 +412,8 @@ public class ExpansionCloudCommands implements CommandExecutor {
           + version);
       String player = ((s instanceof Player) ? s.getName() : null);
       plugin.getExpansionCloud().downloadExpansion(player, expansion, version);
+      plugin.getExpansionCloud().clean();
+      plugin.getExpansionCloud().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
       return true;
     }
 
