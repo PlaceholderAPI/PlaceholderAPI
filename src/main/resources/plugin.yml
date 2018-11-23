@@ -36,7 +36,11 @@ permissions:
     placeholderapi.updatenotify:
         description: notifies you when there is a PAPI update
         default: op
+    placeholderapi.help:
+        description: grants access to the main placeholderapi commands
+        default: op
 commands:
    placeholderapi:
      description: PlaceholderAPI command
+     permission: placeholderapi.help
      aliases: [clipsplaceholderapi, papi, daddy]
