@@ -4,6 +4,7 @@ version: ${project.version}
 author: [extended_clip]
 description: ${project.description}
 api-version: 1.13
+load: STARTUP
 permissions:
     placeholderapi.*:
         description: ability to use all commands
