@@ -18,8 +18,8 @@ PlaceholderAPI has been downloaded over 100,000 times and has been used concurre
 
 ## Quick Links
 - [CI Server][ci]
-- [Expansions Website][expansions]
-- [Placeholder List][placeholder-list]
+- [Expansions cloud]
+- [Placeholder List]
 - [Spigot Page][spigot]
 - [Plugin Statistics][statistics]
 
@@ -29,9 +29,9 @@ PlaceholderAPI is licensed under the __GNU GPLv3__ license. Refer to the [LICENS
 <!-- Page Links - Placed here to be easier to change later on. -->
 
 [issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
-[discord]: https://discord.gg/7sndK3q
-[spigot]: https://www.spigotmc.org/resources/placeholderapi.6245/
+[discord]: https://helpch.at/discord
+[spigot]: https://www.spigotmc.org/resources/6245/
 [ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
-[expansions]: https://api.extendedclip.com/all/
-[placeholder-list]: https://www.spigotmc.org/wiki/placeholderapi-placeholders/
+[Expansions cloud]: https://api.extendedclip.com/all/
+[placeholder list]: https://helpch.at/placeholders
 [statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
