@@ -20,17 +20,14 @@ Also make sure, that you use the latest version of PlaceholderAPI from either th
 <!-- Please type below this like -->
 
 
-
 ### Expected behaviour
 > What should PlaceholderAPI do?
 <!-- Please type below this like -->
 
 
-
 ### Actual behaviour
 > What does PlaceholderAPI actually do?
 <!-- Please type below this like -->
-
 
 
 ### How to reproduce
