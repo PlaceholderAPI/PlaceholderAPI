@@ -1,6 +1,26 @@
-[![PlaceholderAPI Logo](https://i.imgur.com/Ea4PURv.png)][spigot]
+[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+[licenseImg]: https://img.shields.io/github/license/PlaceholderAPI/PlaceholderAPI.svg
+[license]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/LICENSE
 
-[![Build Status](http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI)][ci]
+[releaseImg]: https://img.shields.io/github/release/PlaceholderAPI/PlaceholderAPI.svg?label=github%20release
+[release]: https://github.com/PlaceholderAPI/PlaceholderAPI/releases/latest
+
+[discord]: https://helpch.at/discord
+[spigot]: https://www.spigotmc.org/resources/6245/
+[Expansions cloud]: https://api.extendedclip.com/home
+[placeholder list]: https://helpch.at/placeholders
+[statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
+
+[ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
+[ciImg]: http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI
+
+[APIversionImg]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
+[logo]: https://i.imgur.com/Ea4PURv.png
+<!-- The stuff above isn't visible in the readme -->
+
+[![logo]][spigot]
+
+[![ciImg]][ci] [![releaseImg]][release] ![APIversionImg] [![licenseImg]][license]
 
 # Information 
 [PlaceholderAPI][spigot] is a plugin for Spigot servers that allows server owners to display information from various plugins with a uniform format. 
@@ -18,20 +38,7 @@ PlaceholderAPI has been downloaded over 100,000 times and has been used concurre
 
 ## Quick Links
 - [CI Server][ci]
-- [Expansions Website][expansions]
-- [Placeholder List][placeholder-list]
+- [Expansions cloud]
+- [Placeholder List]
 - [Spigot Page][spigot]
 - [Plugin Statistics][statistics]
-
-## License
-PlaceholderAPI is licensed under the __GNU GPLv3__ license. Refer to the [LICENSE](LICENSE) file for more information.
-
-<!-- Page Links - Placed here to be easier to change later on. -->
-
-[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
-[discord]: https://discord.gg/7sndK3q
-[spigot]: https://www.spigotmc.org/resources/placeholderapi.6245/
-[ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
-[expansions]: https://api.extendedclip.com/all/
-[placeholder-list]: https://www.spigotmc.org/wiki/placeholderapi-placeholders/
-[statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
