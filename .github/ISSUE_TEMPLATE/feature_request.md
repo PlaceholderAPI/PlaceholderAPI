@@ -11,7 +11,7 @@ about: Do you have a plugin that supports and/or adds placeholders from/to Place
 
 ### Notes
 This template is for **requesting additions for the wiki** and not for reporting bugs or requesting changes for the wiki!  
-If you want changes being made to the wiki, use the [Request change] template.  
+If you want changes to be made to the wiki, use the [Request change] template.  
 For bug reports, use the [Bug report] template.
 
 Also make sure, that your requested placeholders/plugin isn't already added in the [wiki] or listed in the [issues] page.
