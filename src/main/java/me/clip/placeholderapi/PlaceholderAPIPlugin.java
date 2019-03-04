@@ -145,6 +145,12 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onDisable() {
+    if (instance == null) {
+      Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',
+        "&cProblem occurs when disabling the plugin! Instance not found...");
+      setEnabled(false);
+      return;
+    }
     disableCloud();
     PlaceholderAPI.unregisterAll();
     expansionManager.clean();
@@ -180,9 +186,9 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     if (booleanFalse == null) {
       booleanFalse = "false";
     }
-    try {
+    if (config.dateFormat() != null && !config.dateFormat().equals("")) {
       dateFormat = new SimpleDateFormat(config.dateFormat());
-    } catch (Exception e) {
+    } else {
       dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
     }
   }
