@@ -39,7 +39,7 @@ public class UpdateChecker implements Listener {
             "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
         con.setRequestMethod("GET");
         spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
-      } catch (Exception ex) {
+      } catch (Throwable t) {
         plugin.getLogger().info("Failed to check for updates on spigot.");
         return;
       }
