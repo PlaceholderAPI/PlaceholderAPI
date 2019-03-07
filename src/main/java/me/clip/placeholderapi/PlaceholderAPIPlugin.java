@@ -112,7 +112,18 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   public static String booleanFalse() {
     return booleanFalse != null ? booleanFalse : "false";
   }
-
+  
+  /**
+   * Returns {@link #booleanTrue() booleanTrue()} or {@link #booleanFalse() booleanFalse()} depending 
+   * on what the provided boolean is
+   *
+   * @param bol The boolean that determines which String is returned
+   *
+   * @return String value of true or false 
+   */
+  public static String getBoolean(boolean bol){
+    return bol ? booleanTrue() : booleanFalse();
+  
   public static Version getServerVersion() {
     return serverVersion != null ? serverVersion : getVersion();
   }
