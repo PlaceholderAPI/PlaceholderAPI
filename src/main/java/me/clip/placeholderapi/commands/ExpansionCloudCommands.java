@@ -26,6 +26,7 @@ import static me.clip.placeholderapi.util.Msg.msg;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -319,7 +320,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
       if (!(s instanceof Player)) {
 
-        for (Entry<Integer, CloudExpansion> expansion : ex.entrySet()) {
+        for (Entry<Integer, CloudExpansion> expansion : ex.entrySet().stream().sorted().collect(Collectors.toList())) {
             if (expansion == null || expansion.getValue() == null) {
                 continue;
             }

@@ -21,6 +21,7 @@
 package me.clip.placeholderapi.commands;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -237,7 +238,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
           return true;
         }
         Msg.msg(s, registered.size() + " &7Placeholder hooks registered:");
-        Msg.msg(s, registered.toString());
+        Msg.msg(s, registered.stream().sorted().collect(Collectors.joining(", ")));
       } else if (args.length > 1 && args[0].equalsIgnoreCase("register")) {
 
         if (s instanceof Player) {
