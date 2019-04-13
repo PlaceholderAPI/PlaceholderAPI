@@ -123,6 +123,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
    */
   public static String getBoolean(boolean bol){
     return bol ? booleanTrue() : booleanFalse();
+  }
   
   public static Version getServerVersion() {
     return serverVersion != null ? serverVersion : getVersion();
