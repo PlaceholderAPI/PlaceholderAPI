@@ -40,4 +40,4 @@ permissions:
 commands:
    placeholderapi:
      description: PlaceholderAPI command
-     aliases: [clipsplaceholderapi, papi, daddy]
+     aliases: [clipsplaceholderapi, papi]
