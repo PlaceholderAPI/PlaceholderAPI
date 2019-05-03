@@ -54,9 +54,9 @@ public class PlaceholderAPIConfig {
 		c.addDefault("check_updates", true);
 		c.addDefault("cloud_enabled", true);	
 		c.addDefault("cloud_allow_unverified_expansions", false);
-		c.addDefault("boolean.true", "yes");
-		c.addDefault("boolean.false", "no");
-		c.addDefault("date_format", "MM/dd/yy HH:mm:ss");
+		c.addDefault("defaults.boolean_true", "true");
+		c.addDefault("defaults.boolean_false", "false");
+		c.addDefault("defaults.date_format", "MM/dd/yy HH:mm:ss");
 		c.options().copyDefaults(true);
 		plugin.saveConfig();
 		plugin.reloadConfig();
@@ -81,14 +81,14 @@ public class PlaceholderAPIConfig {
 	}
 	
 	public String booleanTrue() {
-		return plugin.getConfig().getString("boolean.true");
+		return plugin.getConfig().getString("defaults.boolean_true");
 	}
 	
 	public String booleanFalse() {
-		return plugin.getConfig().getString("boolean.false");
+		return plugin.getConfig().getString("defaults.boolean_false");
 	}
 	
 	public String dateFormat() {
-		return plugin.getConfig().getString("date_format");
+		return plugin.getConfig().getString("defaults.date_format");
 	}	
 }
