@@ -1,0 +1,26 @@
+# PlaceholderAPI
+# Version: ${project.version}
+# Created by: extended_clip
+# Contributors: https://github.com/PlaceholderAPI/PlaceholderAPI/graphs/contributors
+#
+# GitHub: https://github.com/PlaceholderAPI
+# Issues: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+#
+# Expansions: https://api.extendedclip.com/all/
+# Wiki: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+#
+# Discord: https://helpch.at/discord
+#
+# You have to download expansions manually!
+#
+# Allow the plugin to check for new versions?
+check_updates: true
+# Keeping the cloud enabled allows you to download expansions with the /papi ecloud command
+cloud_enabled: true
+# Allow download of expansions that aren't verified?
+cloud_allow_unverified_expansions: false
+# Those are default values that can be used by placeholders.
+defaults:
+  boolean_true: 'true'
+  boolean_false: 'false'
+  date_format: 'MM/dd/yy HH:mm:ss'
