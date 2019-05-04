@@ -39,6 +39,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.event.server.ServerLoadEvent;
 
 
 public class PlaceholderListener implements Listener {
@@ -48,6 +49,12 @@ public class PlaceholderListener implements Listener {
   public PlaceholderListener(PlaceholderAPIPlugin instance) {
     plugin = instance;
     Bukkit.getPluginManager().registerEvents(this, instance);
+  }
+
+  @EventHandler
+  public void onServerLoad(ServerLoadEvent e) {
+    plugin.getLogger().info("Placeholder expansion registration initializing...");
+    plugin.getExpansionManager().registerAllExpansions();
   }
 
   @EventHandler

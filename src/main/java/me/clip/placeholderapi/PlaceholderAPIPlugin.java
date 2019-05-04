@@ -132,8 +132,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     setupOptions();
     getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
     new PlaceholderListener(this);
-    getLogger().info("Placeholder expansion registration initializing...");
-    expansionManager.registerAllExpansions();
     if (config.checkUpdates()) {
       new UpdateChecker(this).fetch();
     }
