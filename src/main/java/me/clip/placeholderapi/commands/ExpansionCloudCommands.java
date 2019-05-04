@@ -23,9 +23,11 @@ package me.clip.placeholderapi.commands;
 import static me.clip.placeholderapi.util.Msg.color;
 import static me.clip.placeholderapi.util.Msg.msg;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -319,15 +321,25 @@ public class ExpansionCloudCommands implements CommandExecutor {
       msg(s, "&6Gold = Expansions which need updated");
 
       if (!(s instanceof Player)) {
-
-        for (Entry<Integer, CloudExpansion> expansion : ex.entrySet().stream().sorted().collect(Collectors.toList())) {
-            if (expansion == null || expansion.getValue() == null) {
-                continue;
-            }
+        Map<String, CloudExpansion> expansions = new HashMap<>();
+        for (CloudExpansion exp : ex.values()) {
+          if (exp == null || exp.getName() == null) {
+            continue;
+          }
+          expansions.put(exp.getName(), exp);
+        }
+        List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+        int i = 1;
+        for (String name : ce) {
+          if (expansions.get(name) == null) {
+            continue;
+          }
+          CloudExpansion expansion = expansions.get(name);
           msg(s,
-              "&b" + (expansion.getKey() + 1) + "&7: " + (expansion.getValue().shouldUpdate() ? "&6"
-                  : (expansion.getValue().hasExpansion() ? "&a" : "&7")) + expansion.getValue()
-                  .getName() + " &8&m-- &r" + expansion.getValue().getVersion().getUrl());
+              "&b" + i + "&7: " + (expansion.shouldUpdate() ? "&6"
+                  : (expansion.hasExpansion() ? "&a" : "&7")) + expansion
+                  .getName() + " &8&m-- &r" + expansion.getVersion().getUrl());
+          i++;
         }
 
         return true;
@@ -335,45 +347,52 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
       Player p = (Player) s;
 
-      for (Entry<Integer, CloudExpansion> expansion : ex.entrySet()) {
-
-        if (expansion == null || expansion.getValue() == null) {
+      Map<String, CloudExpansion> expansions = new HashMap<>();
+      for (CloudExpansion exp : ex.values()) {
+        if (exp == null || exp.getName() == null) {
           continue;
         }
-
+        expansions.put(exp.getName(), exp);
+      }
+      List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+      int i = 1;
+      for (String name : ce) {
+        if (expansions.get(name) == null) {
+          continue;
+        }
+        CloudExpansion expansion = expansions.get(name);
         StringBuilder sb = new StringBuilder();
-        if (expansion.getValue().shouldUpdate()) {
+        if (expansion.shouldUpdate()) {
           sb.append("&6Click to update to the latest version of this expansion\n\n");
-        } else if (!expansion.getValue().hasExpansion()) {
+        } else if (!expansion.hasExpansion()) {
           sb.append("&bClick to download this expansion\n\n");
         } else {
           sb.append("&aYou have the latest version of this expansion\n\n");
         }
-        sb.append("&bAuthor&7: &f" + expansion.getValue().getAuthor() + "\n");
-        sb.append("&bVerified&7: &f" + expansion.getValue().isVerified() + "\n");
-        sb.append("&bLatest version&7: &f" + expansion.getValue().getVersion().getVersion() + "\n");
+        sb.append("&bAuthor&7: &f" + expansion.getAuthor() + "\n");
+        sb.append("&bVerified&7: &f" + expansion.isVerified() + "\n");
+        sb.append("&bLatest version&7: &f" + expansion.getVersion().getVersion() + "\n");
         sb.append(
-            "&bLast updated&7: &f" + expansion.getValue().getTimeSinceLastUpdate() + " ago\n");
-        sb.append("\n" + expansion.getValue().getDescription());
+            "&bLast updated&7: &f" + expansion.getTimeSinceLastUpdate() + " ago\n");
+        sb.append("\n" + expansion.getDescription());
 
         String msg = color(
-            "&b" + (expansion.getKey() + 1) + "&7: " + (expansion.getValue().shouldUpdate() ? "&6"
-                : (expansion.getValue().hasExpansion() ? "&a" : "")) + expansion.getValue()
-                .getName());
+            "&b" + (i + 1) + "&7: " + (expansion.shouldUpdate() ? "&6"
+                : (expansion.hasExpansion() ? "&a" : "")) + expansion.getName());
 
         String hover = color(sb.toString());
 
         JSONMessage line = JSONMessage.create(msg);
         line.tooltip(hover);
-        if (expansion.getValue().shouldUpdate()) {
-          line.suggestCommand("/papi ecloud download " + expansion.getValue().getName());
+        if (expansion.shouldUpdate()) {
+          line.suggestCommand("/papi ecloud download " + expansion.getName());
         }
         else {
-          line.suggestCommand("/papi ecloud info " + expansion.getValue().getName());
+          line.suggestCommand("/papi ecloud info " + expansion.getName());
         }
         line.send(p);
+        i++;
       }
-
       return true;
     }
 
