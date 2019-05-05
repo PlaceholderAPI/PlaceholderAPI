@@ -145,7 +145,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   public void onDisable() {
     disableCloud();
     PlaceholderAPI.unregisterAll();
-    expansionManager.clean();
     expansionManager = null;
     Bukkit.getScheduler().cancelTasks(this);
     serverVersion = null;
@@ -154,7 +153,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
   public void reloadConf(CommandSender s) {
     boolean cloudEnabled = this.expansionCloud != null;
-    expansionManager.clean();
     PlaceholderAPI.unregisterAllProvidedExpansions();
     reloadConfig();
     setupOptions();
