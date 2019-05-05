@@ -132,6 +132,18 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     setupOptions();
     getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
     new PlaceholderListener(this);
+    try {
+      Class.forName("org.bukkit.event.server.ServerLoadEvent");
+      new ServerLoadEventListener(this);
+    } catch (ExceptionInInitializerError | ClassNotFoundException exception) {
+      Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+        @Override
+        public void run() {
+          getLogger().info("Placeholder expansion registration initializing...");
+          getExpansionManager().registerAllExpansions();
+        }
+      }, 20*15);
+    }
     if (config.checkUpdates()) {
       new UpdateChecker(this).fetch();
     }
