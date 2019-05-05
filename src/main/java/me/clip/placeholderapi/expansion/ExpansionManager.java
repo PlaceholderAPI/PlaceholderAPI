@@ -22,7 +22,6 @@ package me.clip.placeholderapi.expansion;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -36,8 +35,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
 public final class ExpansionManager {
-
-  private final Map<String, PlaceholderExpansion> cache = new HashMap<>();
   private PlaceholderAPIPlugin plugin;
 
   public ExpansionManager(PlaceholderAPIPlugin instance) {
@@ -46,18 +43,6 @@ public final class ExpansionManager {
     if (!f.exists()) {
       f.mkdirs();
     }
-  }
-
-  public void clean() {
-    cache.clear();
-  }
-
-  public PlaceholderExpansion getCachedExpansion(String plugin) {
-    return cache.getOrDefault(plugin, null);
-  }
-
-  public boolean removeCachedExpansion(String identifier) {
-    return cache.remove(identifier) != null;
   }
 
   public PlaceholderExpansion getRegisteredExpansion(String name) {
@@ -112,9 +97,6 @@ public final class ExpansionManager {
       }
     }
     if (!expansion.canRegister()) {
-      if (expansion.getRequiredPlugin() != null) {
-        cache.put(expansion.getRequiredPlugin().toLowerCase(), expansion);
-      }
       return false;
     }
     if (!expansion.register()) {
