@@ -140,7 +140,14 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         @Override
         public void run() {
           getLogger().info("Placeholder expansion registration initializing...");
+          //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
+          final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
           getExpansionManager().registerAllExpansions();
+          if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
+            alreadyRegistered.entrySet().stream().forEach(hook -> {
+              PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue());
+            });
+          }
         }
       }, 20*15);
     }

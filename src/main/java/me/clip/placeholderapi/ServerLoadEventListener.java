@@ -1,5 +1,6 @@
 package me.clip.placeholderapi;
 
+import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,12 @@ public class ServerLoadEventListener implements Listener {
   @EventHandler
   public void onServerLoad(ServerLoadEvent e) {
     plugin.getLogger().info("Placeholder expansion registration initializing...");
+    final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
     plugin.getExpansionManager().registerAllExpansions();
+    if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
+      alreadyRegistered.entrySet().stream().forEach(hook -> {
+        PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue());
+      });
+    }
   }
 }
