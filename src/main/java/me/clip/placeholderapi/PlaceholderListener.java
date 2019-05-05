@@ -26,7 +26,6 @@ import java.util.Set;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
-import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -38,7 +37,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
-import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.event.server.ServerLoadEvent;
 
 
@@ -80,17 +78,6 @@ public class PlaceholderListener implements Listener {
       if (ex != null) {
         ex.setHasExpansion(false);
         ex.setShouldUpdate(false);
-      }
-    }
-  }
-
-  @EventHandler
-  public void onEnable(PluginEnableEvent event) {
-    ExpansionManager m = plugin.getExpansionManager();
-    PlaceholderExpansion e = m.getCachedExpansion(event.getPlugin().getName().toLowerCase());
-    if (e != null && e.canRegister()) {
-      if (e.isRegistered() || m.registerExpansion(e)) {
-        m.removeCachedExpansion(e.getRequiredPlugin());
       }
     }
   }
