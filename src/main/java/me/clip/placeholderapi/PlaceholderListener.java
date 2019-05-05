@@ -29,7 +29,6 @@ import me.clip.placeholderapi.expansion.Cleanable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.external.EZPlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -37,7 +36,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
-import org.bukkit.event.server.ServerLoadEvent;
 
 
 public class PlaceholderListener implements Listener {
@@ -47,12 +45,6 @@ public class PlaceholderListener implements Listener {
   public PlaceholderListener(PlaceholderAPIPlugin instance) {
     plugin = instance;
     Bukkit.getPluginManager().registerEvents(this, instance);
-  }
-
-  @EventHandler
-  public void onServerLoad(ServerLoadEvent e) {
-    plugin.getLogger().info("Placeholder expansion registration initializing...");
-    plugin.getExpansionManager().registerAllExpansions();
   }
 
   @EventHandler
@@ -101,22 +93,7 @@ public class PlaceholderListener implements Listener {
 
       PlaceholderHook i = hook.getValue();
 
-      if (i instanceof EZPlaceholderHook) {
-
-        EZPlaceholderHook h = (EZPlaceholderHook) i;
-
-        if (h.getPluginName() == null) {
-          continue;
-        }
-
-        if (h.getPluginName().equalsIgnoreCase(n)) {
-          if (PlaceholderAPI.unregisterPlaceholderHook(hook.getKey())) {
-            plugin.getLogger()
-                .info("Unregistered placeholder hook for placeholder: " + h.getPlaceholderName());
-            break;
-          }
-        }
-      } else if (i instanceof PlaceholderExpansion) {
+      if (i instanceof PlaceholderExpansion) {
 
         PlaceholderExpansion ex = (PlaceholderExpansion) i;
 
