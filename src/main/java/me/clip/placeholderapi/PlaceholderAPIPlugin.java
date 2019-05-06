@@ -145,9 +145,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
           final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
           getExpansionManager().registerAllExpansions();
           if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
-            alreadyRegistered.entrySet().stream().forEach(hook -> {
-              PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue());
-            });
+            alreadyRegistered.entrySet().stream().forEach(hook -> PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue()));
           }
         }
       }, 20*15);
