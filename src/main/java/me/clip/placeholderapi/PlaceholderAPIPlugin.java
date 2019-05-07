@@ -30,6 +30,7 @@ import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
+import me.clip.placeholderapi.external.EZPlaceholderHook;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.clip.placeholderapi.util.TimeUtil;
 import org.bstats.bukkit.Metrics;
@@ -144,9 +145,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
           final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
           getExpansionManager().registerAllExpansions();
           if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
-            alreadyRegistered.entrySet().stream().forEach(hook -> {
-              PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue());
-            });
+            alreadyRegistered.entrySet().stream().forEach(hook -> PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue()));
           }
         }
       }, 20*15);
@@ -158,6 +157,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       enableCloud();
     }
     setupMetrics();
+    getServer().getScheduler().runTaskLater(this, this::checkHook, 20 * 30);
   }
 
   @Override
@@ -184,6 +184,22 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     s.sendMessage(ChatColor.translateAlternateColorCodes('&',
         PlaceholderAPI.getRegisteredIdentifiers().size()
             + " &aplaceholder hooks successfully registered!"));
+  }
+
+  private void checkHook() {
+    Map<String, PlaceholderHook> loaded = PlaceholderAPI.getPlaceholders();
+    loaded.values().forEach(h -> {
+    if (h instanceof EZPlaceholderHook) {
+      String author;
+      try {
+        author = Bukkit.getPluginManager().getPlugin(((EZPlaceholderHook) h).getPluginName()).getDescription().getAuthors().toString();
+      } catch (Exception ex) {
+        author = "the author of the hook's plugin";
+      }
+      getLogger().warning(((EZPlaceholderHook) h).getPluginName() + " is currently using a deprecated method to hook into PlaceholderAPI. This will be disabled after the next update. " +
+              "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
+    }
+    });
   }
 
   private void setupOptions() {
