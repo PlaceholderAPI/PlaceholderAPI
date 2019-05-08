@@ -137,18 +137,15 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (ExceptionInInitializerError | ClassNotFoundException exception) {
-      Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-        @Override
-        public void run() {
-          getLogger().info("Placeholder expansion registration initializing...");
-          //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
-          final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
-          getExpansionManager().registerAllExpansions();
-          if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
-            alreadyRegistered.entrySet().stream().forEach(hook -> PlaceholderAPI.registerPlaceholderHook(hook.getKey(), hook.getValue()));
-          }
+      Bukkit.getScheduler().runTaskLater(this, () -> {
+        getLogger().info("Placeholder expansion registration initializing...");
+        //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
+        final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+        getExpansionManager().registerAllExpansions();
+        if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
+          alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
         }
-      }, 20*15);
+      }, 1);
     }
     if (config.checkUpdates()) {
       new UpdateChecker(this).fetch();
