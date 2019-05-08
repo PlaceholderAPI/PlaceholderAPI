@@ -154,7 +154,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       enableCloud();
     }
     setupMetrics();
-    getServer().getScheduler().runTaskLater(this, this::checkHook, 20 * 30);
+    getServer().getScheduler().runTaskLater(this, this::checkHook, 40);
   }
 
   @Override
@@ -193,8 +193,10 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       } catch (Exception ex) {
         author = "the author of the hook's plugin";
       }
-      getLogger().warning(((EZPlaceholderHook) h).getPluginName() + " is currently using a deprecated method to hook into PlaceholderAPI. This will be disabled after the next update. " +
+      getLogger().severe(((EZPlaceholderHook) h).getPluginName() + " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
               "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
+      // disable the hook on startup
+      PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());
     }
     });
   }
