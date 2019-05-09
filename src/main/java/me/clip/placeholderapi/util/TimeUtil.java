@@ -27,9 +27,7 @@ public class TimeUtil {
     if (seconds < 60) {
       switch (type) {
         case DAYS:
-          return "0";
         case HOURS:
-          return "0";
         case MINUTES:
           return "0";
         case SECONDS:
@@ -44,7 +42,6 @@ public class TimeUtil {
     if (minutes < 60) {
       switch (type) {
         case DAYS:
-          return "0";
         case HOURS:
           return "0";
         case MINUTES:
@@ -118,9 +115,9 @@ public class TimeUtil {
     int secondsLeft = seconds - s;
     if (minutes < 60) {
       if (secondsLeft > 0) {
-        return String.valueOf(minutes + "m " + secondsLeft + "s");
+        return minutes + "m " + secondsLeft + "s";
       } else {
-        return String.valueOf(minutes + "m");
+        return minutes + "m";
       }
     }
     if (minutes < 1440) {
