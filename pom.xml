@@ -6,7 +6,7 @@
   <groupId>me.clip</groupId>
   <artifactId>placeholderapi</artifactId>
 
-  <version>2.10.1-DEV-${BUILD_NUMBER}</version>
+  <version>2.10.2</version>
   <name>PlaceholderAPI</name>
   <description>An awesome placeholder provider!</description>
   <url>http://extendedclip.com</url>
