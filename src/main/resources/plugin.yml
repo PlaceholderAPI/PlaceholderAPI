@@ -3,7 +3,6 @@ main: me.clip.placeholderapi.PlaceholderAPIPlugin
 version: ${project.version}
 authors: [extended_clip, Glare]
 description: ${project.description}
-api-version: 1.14
 permissions:
     placeholderapi.*:
         description: ability to use all commands
