@@ -39,4 +39,4 @@ permissions:
 commands:
    placeholderapi:
      description: PlaceholderAPI command
-     aliases: [clipsplaceholderapi, papi]
+     aliases: [papi]
