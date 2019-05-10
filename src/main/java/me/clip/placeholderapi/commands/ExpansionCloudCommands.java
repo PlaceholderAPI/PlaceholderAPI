@@ -20,13 +20,6 @@
  */
 package me.clip.placeholderapi.commands;
 
-import static me.clip.placeholderapi.util.Msg.color;
-import static me.clip.placeholderapi.util.Msg.msg;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -36,6 +29,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static me.clip.placeholderapi.util.Msg.color;
+import static me.clip.placeholderapi.util.Msg.msg;
 
 public class ExpansionCloudCommands implements CommandExecutor {
 
@@ -327,7 +328,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
           expansions.put(exp.getName(), exp);
         }
         List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
-        int i = 1;
+        int i = (int) ex.keySet().toArray()[0]+1;
         for (String name : ce) {
           if (expansions.get(name) == null) {
             continue;
