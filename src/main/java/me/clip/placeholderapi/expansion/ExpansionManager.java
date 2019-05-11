@@ -20,11 +20,6 @@
  */
 package me.clip.placeholderapi.expansion;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
@@ -33,6 +28,12 @@ import me.clip.placeholderapi.util.FileUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
+
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public final class ExpansionManager {
   private PlaceholderAPIPlugin plugin;
@@ -65,19 +66,21 @@ public final class ExpansionManager {
       String pre = "expansions." + expansion.getIdentifier() + ".";
       FileConfiguration cfg = plugin.getConfig();
       boolean save = false;
-      for (Entry<String, Object> entries : defaults.entrySet()) {
-        if (entries.getKey() == null || entries.getKey().isEmpty()) {
-          continue;
-        }
-        if (entries.getValue() == null) {
-          if (cfg.contains(pre + entries.getKey())) {
-            save = true;
-            cfg.set(pre + entries.getKey(), null);
+      if (defaults != null) {
+        for (Entry<String, Object> entries : defaults.entrySet()) {
+          if (entries.getKey() == null || entries.getKey().isEmpty()) {
+            continue;
           }
-        } else {
-          if (!cfg.contains(pre + entries.getKey())) {
-            save = true;
-            cfg.set(pre + entries.getKey(), entries.getValue());
+          if (entries.getValue() == null) {
+            if (cfg.contains(pre + entries.getKey())) {
+              save = true;
+              cfg.set(pre + entries.getKey(), null);
+            }
+          } else {
+            if (!cfg.contains(pre + entries.getKey())) {
+              save = true;
+              cfg.set(pre + entries.getKey(), entries.getValue());
+            }
           }
         }
       }
