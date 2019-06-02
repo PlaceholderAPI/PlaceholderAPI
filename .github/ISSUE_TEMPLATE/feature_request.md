@@ -8,28 +8,28 @@ about: Do you have a plugin that supports and/or adds placeholders from/to Place
 [Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
 [issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
 [wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+[FAQ]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/FAQ
 
-### Notes
-This template is for **requesting additions for the wiki** and not for reporting bugs or requesting changes for the wiki!  
-If you want changes to be made to the wiki, use the [Request change] template.  
-For bug reports, use the [Bug report] template.
+### Please read
+Please use this template for Feature requests only!  
+This doesn't include changes to already existing things like wiki-entries or code. Use the [Request change] template for those types of issues.  
+For bug reports regarding PlaceholderAPI use the [Bug report] template.
 
-Also make sure, that your requested placeholders/plugin isn't already added in the [wiki] or listed in the [issues] page.
+Also make sure that you have read the [wiki], the [FAQ] and that you checked the [issues] page for any similar topic.
 
 ### Type
 > What kind of request is this? (Multiple selections possible)
-<!-- Select the right option by replacing [ ] with [x] -->
-<!-- For an update of an already listed plugin, use the "Request change" template -->
+<!--
+    Please select the right options by replacing the [ ] with a [x]
+-->
 
-- [ ] New expansion providing placeholders.
-- [ ] New plugin providing placeholders.
+- [ ] New plugin or expansion that provides placeholders.
 - [ ] New plugin supporting PlaceholderAPI.
+- [ ] New PlaceholderAPI feature.
+- [ ] Other: __________
 
-### Plugin
-> What is the name of the plugin/expansion?
-> Provide also a link to it.
-<!-- Please type below this line -->
-
-### Placeholders/others
-> What are the new placeholders/Any additional info?
+### New information
+> What should be added?
+> Please provide as much information like why it should be added.  
+> Also make sure to add links to it if possible.
 <!-- Please type below this line -->
