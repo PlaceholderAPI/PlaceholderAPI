@@ -14,6 +14,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 1. Update the README.md with details of changes if it is affected by those changes.
 2. Try to prevent any breaking changes affecting the end-user (Developers using the API).  
 Mention any breaking changes that could affect the end-user.
+3. Document any public methods that the end-user might use.
 
 ## Code of Conduct
 
