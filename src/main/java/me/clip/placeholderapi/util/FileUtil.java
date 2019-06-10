@@ -75,7 +75,9 @@ public class FileUtil {
       list = new ArrayList<>();
     }
 
-    try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader()); JarInputStream jis = new JarInputStream(jar.openStream())) {
+    try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
+         JarInputStream jis = new JarInputStream(jar.openStream())) {
+
       while (true) {
         JarEntry j = jis.getNextJarEntry();
         if (j == null) {
