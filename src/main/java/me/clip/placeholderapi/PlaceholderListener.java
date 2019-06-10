@@ -49,7 +49,6 @@ public class PlaceholderListener implements Listener {
 
   @EventHandler
   public void onExpansionUnregister(ExpansionUnregisterEvent event) {
-
     if (event.getExpansion() instanceof Listener) {
       HandlerList.unregisterAll((Listener) event.getExpansion());
     }
@@ -76,7 +75,6 @@ public class PlaceholderListener implements Listener {
 
   @EventHandler(priority = EventPriority.HIGH)
   public void onPluginUnload(PluginDisableEvent e) {
-
     String n = e.getPlugin().getName();
 
     if (n == null) {
@@ -90,11 +88,9 @@ public class PlaceholderListener implements Listener {
     Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
 
     for (Entry<String, PlaceholderHook> hook : hooks.entrySet()) {
-
       PlaceholderHook i = hook.getValue();
 
       if (i instanceof PlaceholderExpansion) {
-
         PlaceholderExpansion ex = (PlaceholderExpansion) i;
 
         if (ex.getRequiredPlugin() == null) {
@@ -112,7 +108,6 @@ public class PlaceholderListener implements Listener {
 
   @EventHandler
   public void onQuit(PlayerQuitEvent e) {
-
     Set<PlaceholderExpansion> expansions = PlaceholderAPI.getExpansions();
 
     if (expansions.isEmpty()) {

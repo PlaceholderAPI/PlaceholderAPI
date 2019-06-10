@@ -40,6 +40,7 @@ public final class ExpansionManager {
 
   public ExpansionManager(PlaceholderAPIPlugin instance) {
     plugin = instance;
+
     File f = new File(PlaceholderAPIPlugin.getInstance().getDataFolder(), "expansions");
     if (!f.exists()) {
       f.mkdirs();
@@ -54,6 +55,7 @@ public final class ExpansionManager {
         }
       }
     }
+
     return null;
   }
 
@@ -61,16 +63,19 @@ public final class ExpansionManager {
     if (expansion == null || expansion.getIdentifier() == null) {
       return false;
     }
+
     if (expansion instanceof Configurable) {
       Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
       String pre = "expansions." + expansion.getIdentifier() + ".";
       FileConfiguration cfg = plugin.getConfig();
       boolean save = false;
+
       if (defaults != null) {
         for (Entry<String, Object> entries : defaults.entrySet()) {
           if (entries.getKey() == null || entries.getKey().isEmpty()) {
             continue;
           }
+
           if (entries.getValue() == null) {
             if (cfg.contains(pre + entries.getKey())) {
               save = true;
@@ -84,11 +89,13 @@ public final class ExpansionManager {
           }
         }
       }
+
       if (save) {
         plugin.saveConfig();
         plugin.reloadConfig();
       }
     }
+
     if (expansion instanceof VersionSpecific) {
       VersionSpecific nms = (VersionSpecific) expansion;
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
@@ -99,22 +106,29 @@ public final class ExpansionManager {
         return false;
       }
     }
+
     if (!expansion.canRegister()) {
       return false;
     }
+
     if (!expansion.register()) {
       return false;
     }
+
     if (expansion instanceof Listener) {
       Listener l = (Listener) expansion;
       Bukkit.getPluginManager().registerEvents(l, plugin);
     }
+
     plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier());
+
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
     }
+
     if (plugin.getExpansionCloud() != null) {
       CloudExpansion ce = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier());
+
       if (ce != null) {
         ce.setHasExpansion(true);
         if (!ce.getLatestVersion().equals(expansion.getVersion())) {
@@ -122,6 +136,7 @@ public final class ExpansionManager {
         }
       }
     }
+
     return true;
   }
 
@@ -131,12 +146,14 @@ public final class ExpansionManager {
     if (subs == null || subs.isEmpty()) {
       return null;
     }
+
     // only register the first instance found as an expansion jar should only have 1 class
     // extending PlaceholderExpansion
     PlaceholderExpansion ex = createInstance(subs.get(0));
     if (registerExpansion(ex)) {
       return ex;
     }
+
     return null;
   }
 
@@ -144,10 +161,12 @@ public final class ExpansionManager {
     if (plugin == null) {
       return;
     }
+
     List<Class<?>> subs = FileUtil.getClasses("expansions", null, PlaceholderExpansion.class);
     if (subs == null || subs.isEmpty()) {
       return;
     }
+
     for (Class<?> klass : subs) {
       PlaceholderExpansion ex = createInstance(klass);
       if (ex != null) {
@@ -160,10 +179,12 @@ public final class ExpansionManager {
     if (klass == null) {
       return null;
     }
+
     PlaceholderExpansion ex = null;
     if (!PlaceholderExpansion.class.isAssignableFrom(klass)) {
       return null;
     }
+
     try {
       Constructor<?>[] c = klass.getConstructors();
       if (c.length == 0) {
@@ -181,6 +202,7 @@ public final class ExpansionManager {
           .severe("Failed to init placeholder expansion from class: " + klass.getName());
       plugin.getLogger().severe(t.getMessage());
     }
+
     return ex;
   }
 }

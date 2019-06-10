@@ -60,17 +60,20 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   private static Version getVersion() {
     String v = "unknown";
     boolean spigot = false;
+
     try {
       v = Bukkit.getServer().getClass().getPackage().getName()
           .split("\\.")[3];
     } catch (ArrayIndexOutOfBoundsException ex) {
     }
+
     try {
       Class.forName("org.spigotmc.SpigotConfig");
       Class.forName("net.md_5.bungee.api.chat.BaseComponent");
       spigot = true;
     } catch (ExceptionInInitializerError | ClassNotFoundException exception) {
     }
+
     return new Version(v, spigot);
   }
 
@@ -131,28 +134,35 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   public void onEnable() {
     config.loadDefConfig();
     setupOptions();
+
     getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
     new PlaceholderListener(this);
+
     try {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (ExceptionInInitializerError | ClassNotFoundException exception) {
       Bukkit.getScheduler().runTaskLater(this, () -> {
         getLogger().info("Placeholder expansion registration initializing...");
+
         //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
         final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         getExpansionManager().registerAllExpansions();
+
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
           alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
         }
       }, 1);
     }
+
     if (config.checkUpdates()) {
       new UpdateChecker(this).fetch();
     }
+
     if (config.isCloudEnabled()) {
       enableCloud();
     }
+
     setupMetrics();
     getServer().getScheduler().runTaskLater(this, this::checkHook, 40);
   }
@@ -173,11 +183,13 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     reloadConfig();
     setupOptions();
     expansionManager.registerAllExpansions();
+
     if (!config.isCloudEnabled()) {
       disableCloud();
     } else if (!cloudEnabled) {
       enableCloud();
     }
+
     s.sendMessage(ChatColor.translateAlternateColorCodes('&',
         PlaceholderAPI.getRegisteredIdentifiers().size()
             + " &aplaceholder hooks successfully registered!"));
@@ -185,31 +197,40 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
   private void checkHook() {
     Map<String, PlaceholderHook> loaded = PlaceholderAPI.getPlaceholders();
+
     loaded.values().forEach(h -> {
-    if (h instanceof EZPlaceholderHook) {
-      String author;
-      try {
-        author = Bukkit.getPluginManager().getPlugin(((EZPlaceholderHook) h).getPluginName()).getDescription().getAuthors().toString();
-      } catch (Exception ex) {
-        author = "the author of the hook's plugin";
+      if (h instanceof EZPlaceholderHook) {
+        String author;
+
+        try {
+          author = Bukkit.getPluginManager().getPlugin(((EZPlaceholderHook) h).getPluginName()).getDescription().getAuthors().toString();
+        } catch (Exception ex) {
+          author = "the author of the hook's plugin";
+        }
+
+        getLogger().severe(((EZPlaceholderHook) h).getPluginName() +
+                " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
+                "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
+
+        // disable the hook on startup
+        PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());
       }
-      getLogger().severe(((EZPlaceholderHook) h).getPluginName() + " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
-              "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
-      // disable the hook on startup
-      PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());
-    }
     });
   }
 
   private void setupOptions() {
     booleanTrue = config.booleanTrue();
+
     if (booleanTrue == null) {
       booleanTrue = "true";
     }
+
     booleanFalse = config.booleanFalse();
+
     if (booleanFalse == null) {
       booleanFalse = "false";
     }
+
     try {
       dateFormat = new SimpleDateFormat(config.dateFormat());
     } catch (Exception e) {

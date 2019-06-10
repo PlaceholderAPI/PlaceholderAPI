@@ -30,6 +30,7 @@ public class ServerLoadEventListener implements Listener {
         plugin.getLogger().info("Placeholder expansion registration initializing...");
         final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         plugin.getExpansionManager().registerAllExpansions();
+
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
             alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
         }

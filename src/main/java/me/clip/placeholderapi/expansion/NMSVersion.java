@@ -51,6 +51,7 @@ public enum NMSVersion {
         return v;
       }
     }
+
     return NMSVersion.UNKNOWN;
   }
 

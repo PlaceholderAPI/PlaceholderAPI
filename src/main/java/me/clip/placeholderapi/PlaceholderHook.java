@@ -37,6 +37,7 @@ public abstract class PlaceholderHook {
     if (p != null && p.isOnline()) {
       return onPlaceholderRequest((Player) p, params);
     }
+
     return onPlaceholderRequest(null, params);
   }
 

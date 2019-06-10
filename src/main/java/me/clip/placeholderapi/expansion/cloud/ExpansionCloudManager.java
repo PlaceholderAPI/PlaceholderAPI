@@ -135,16 +135,19 @@ public class ExpansionCloudManager {
         if (map == null) {
             return 0;
         }
+
         int pages = map.size() > 0 ? 1 : 0;
         if (pages == 0) {
             return pages;
         }
+
         if (map.size() > amount) {
             pages = map.size() / amount;
             if (map.size() % amount > 0) {
                 pages++;
             }
         }
+
         return pages;
     }
 
@@ -164,7 +167,6 @@ public class ExpansionCloudManager {
 
 
     public void fetch(boolean allowUnverified) {
-
         plugin.getLogger().info("Fetching available expansion information...");
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
@@ -176,7 +178,6 @@ public class ExpansionCloudManager {
             final List<CloudExpansion> unsorted = new ArrayList<>();
 
             data.forEach((name, cexp) -> {
-
                 if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null) {
                     cexp.setName(name);
 
@@ -207,7 +208,6 @@ public class ExpansionCloudManager {
             if (updates > 0) {
                 plugin.getLogger().info(updates + " installed expansions have updates available.");
             }
-
         });
     }
 
@@ -217,13 +217,11 @@ public class ExpansionCloudManager {
     }
 
     private void download(URL url, String name) throws IOException {
-
         InputStream is = null;
 
         FileOutputStream fos = null;
 
         try {
-
             URLConnection urlConn = url.openConnection();
 
             is = urlConn.getInputStream();
@@ -257,7 +255,6 @@ public class ExpansionCloudManager {
     }
 
     public void downloadExpansion(final String player, final CloudExpansion ex, final String version) {
-
         if (downloading.contains(ex.getName())) {
             return;
         }
@@ -279,13 +276,11 @@ public class ExpansionCloudManager {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
             try {
-
                 download(new URL(ver.getUrl()), ex.getName());
 
                 plugin.getLogger().info("Download of expansion: " + ex.getName() + " complete!");
 
             } catch (Exception e) {
-
                 plugin.getLogger()
                       .warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
 
@@ -306,11 +301,9 @@ public class ExpansionCloudManager {
             }
 
             Bukkit.getScheduler().runTask(plugin, () -> {
-
                 downloading.remove(ex.getName());
 
                 if (player != null) {
-
                     Player p = Bukkit.getPlayer(player);
 
                     if (p != null) {
@@ -324,16 +317,15 @@ public class ExpansionCloudManager {
 
 
     private static class URLReader {
-
         static String read(String url) {
             StringBuilder builder = new StringBuilder();
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
-
                 String inputLine;
                 while ((inputLine = reader.readLine()) != null) {
                     builder.append(inputLine);
                 }
+
             } catch (Exception ex) {
                 builder.setLength(0);
             }
