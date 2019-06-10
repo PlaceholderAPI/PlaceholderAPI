@@ -398,18 +398,18 @@ public class PlaceholderAPI {
   }
 
   public static String setPlaceholders(Player p, String text) {
-    return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
   }
 
   public static List<String> setPlaceholders(Player p, List<String> text) {
-    return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
   }
 
   public static String setBracketPlaceholders(Player p, String text) {
-    return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 
   public static List<String> setBracketPlaceholders(Player p, List<String> text) {
-    return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 }
