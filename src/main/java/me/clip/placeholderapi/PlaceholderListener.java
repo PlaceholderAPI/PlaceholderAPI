@@ -40,7 +40,7 @@ import org.bukkit.event.server.PluginDisableEvent;
 
 public class PlaceholderListener implements Listener {
 
-  private PlaceholderAPIPlugin plugin;
+  private final PlaceholderAPIPlugin plugin;
 
   public PlaceholderListener(PlaceholderAPIPlugin instance) {
     plugin = instance;

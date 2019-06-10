@@ -15,8 +15,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class UpdateChecker implements Listener {
 
   private final int RESOURCE_ID = 6245;
-  private PlaceholderAPIPlugin plugin;
-  private String spigotVersion, pluginVersion;
+  private final PlaceholderAPIPlugin plugin;
+  private String spigotVersion;
+  private final String pluginVersion;
   private boolean updateAvailable;
 
   public UpdateChecker(PlaceholderAPIPlugin i) {

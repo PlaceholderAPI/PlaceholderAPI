@@ -28,9 +28,8 @@ import org.bukkit.plugin.Plugin;
 @Deprecated
 public abstract class EZPlaceholderHook extends PlaceholderHook {
 
-  private String identifier;
-
-  private String plugin;
+  private final String identifier;
+  private final String plugin;
 
   public EZPlaceholderHook(Plugin plugin, String identifier) {
     Validate.notNull(plugin, "Plugin can not be null!");

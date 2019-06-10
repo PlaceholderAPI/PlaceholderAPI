@@ -24,7 +24,7 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 
 public class PlaceholderAPIConfig {
 
-  private PlaceholderAPIPlugin plugin;
+  private final PlaceholderAPIPlugin plugin;
 
   public PlaceholderAPIConfig(PlaceholderAPIPlugin i) {
     plugin = i;

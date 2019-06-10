@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public final class ExpansionManager {
-  private PlaceholderAPIPlugin plugin;
+  private final PlaceholderAPIPlugin plugin;
 
   public ExpansionManager(PlaceholderAPIPlugin instance) {
     plugin = instance;

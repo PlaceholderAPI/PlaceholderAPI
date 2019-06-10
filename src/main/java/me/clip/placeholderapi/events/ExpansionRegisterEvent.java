@@ -27,7 +27,7 @@ import org.bukkit.event.HandlerList;
 public class ExpansionRegisterEvent extends Event {
 
   private static final HandlerList HANDLERS = new HandlerList();
-  private PlaceholderExpansion expansion;
+  private final PlaceholderExpansion expansion;
 
   public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
     this.expansion = expansion;

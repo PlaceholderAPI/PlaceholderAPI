@@ -36,8 +36,8 @@ import org.bukkit.entity.Player;
 
 public class PlaceholderAPICommands implements CommandExecutor {
 
-  private PlaceholderAPIPlugin plugin;
-  private CommandExecutor eCloud;
+  private final PlaceholderAPIPlugin plugin;
+  private final CommandExecutor eCloud;
 
   public PlaceholderAPICommands(PlaceholderAPIPlugin i) {
     plugin = i;

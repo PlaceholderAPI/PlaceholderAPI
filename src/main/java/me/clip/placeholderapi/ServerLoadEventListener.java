@@ -9,7 +9,7 @@ import org.bukkit.event.server.ServerLoadEvent;
 
 public class ServerLoadEventListener implements Listener {
 
-    private PlaceholderAPIPlugin plugin;
+    private final PlaceholderAPIPlugin plugin;
 
     public ServerLoadEventListener(PlaceholderAPIPlugin instance) {
         plugin = instance;

@@ -22,9 +22,8 @@ package me.clip.placeholderapi.expansion;
 
 public final class Version {
 
-  private boolean isSpigot;
-
-  private String version;
+  private final boolean isSpigot;
+  private final String version;
 
   public Version(String version, boolean isSpigot) {
     this.version = version;
