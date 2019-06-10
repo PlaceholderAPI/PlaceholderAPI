@@ -40,7 +40,7 @@ import static me.clip.placeholderapi.util.Msg.msg;
 
 public class ExpansionCloudCommands implements CommandExecutor {
 
-  private PlaceholderAPIPlugin plugin;
+  private final PlaceholderAPIPlugin plugin;
 
   public ExpansionCloudCommands(PlaceholderAPIPlugin instance) {
     plugin = instance;
@@ -387,11 +387,11 @@ public class ExpansionCloudCommands implements CommandExecutor {
           sb.append("&aYou have the latest version of this expansion\n\n");
         }
 
-        sb.append("&bAuthor&7: &f" + expansion.getAuthor() + "\n");
-        sb.append("&bVerified&7: &f" + expansion.isVerified() + "\n");
-        sb.append("&bLatest version&7: &f" + expansion.getVersion().getVersion() + "\n");
-        sb.append("&bLast updated&7: &f" + expansion.getTimeSinceLastUpdate() + " ago\n");
-        sb.append("\n" + expansion.getDescription());
+        sb.append("&bAuthor&7: &f").append(expansion.getAuthor()).append("\n");
+        sb.append("&bVerified&7: &f").append(expansion.isVerified()).append("\n");
+        sb.append("&bLatest version&7: &f").append(expansion.getVersion().getVersion()).append("\n");
+        sb.append("&bLast updated&7: &f").append(expansion.getTimeSinceLastUpdate()).append(" ago\n");
+        sb.append("\n").append(expansion.getDescription());
 
         String msg = color(
             "&b" + (i + 1) + "&7: " + (expansion.shouldUpdate() ? "&6"
