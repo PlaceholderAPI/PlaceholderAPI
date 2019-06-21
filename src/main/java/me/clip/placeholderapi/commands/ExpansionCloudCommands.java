@@ -354,7 +354,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
         expansions.put(exp.getName(), exp);
       }
       List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
-      int i = 0;
+      int i = page > 1 ? page * 10 : 0;
       for (String name : ce) {
         if (expansions.get(name) == null) {
           continue;
