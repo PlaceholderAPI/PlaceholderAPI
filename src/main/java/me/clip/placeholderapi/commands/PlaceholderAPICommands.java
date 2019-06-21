@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,6 @@
  */
 package me.clip.placeholderapi.commands;
 
-import java.util.Set;
-import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -33,6 +31,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PlaceholderAPICommands implements CommandExecutor {
 

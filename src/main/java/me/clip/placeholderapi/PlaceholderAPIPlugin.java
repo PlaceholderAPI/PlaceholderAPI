@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,6 @@
  */
 package me.clip.placeholderapi;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import me.clip.placeholderapi.commands.PlaceholderAPICommands;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
@@ -38,6 +34,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**

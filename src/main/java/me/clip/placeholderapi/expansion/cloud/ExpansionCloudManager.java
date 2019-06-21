@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,19 +21,6 @@
 package me.clip.placeholderapi.expansion.cloud;
 
 import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import com.google.gson.reflect.TypeToken;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -41,6 +28,13 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ExpansionCloudManager {
 
