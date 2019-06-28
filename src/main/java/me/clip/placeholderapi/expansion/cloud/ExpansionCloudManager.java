@@ -309,6 +309,7 @@ public class ExpansionCloudManager {
 
                     if (p != null) {
                         Msg.msg(p, "&aExpansion &f" + ex.getName() + " &adownload complete!");
+                        Msg.msg(p, "&aMake sure to run &f/papi reload &ato enable it!");
                     }
                 }
             });
