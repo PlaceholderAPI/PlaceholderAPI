@@ -383,7 +383,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
         JSONMessage line = JSONMessage.create(msg);
         line.tooltip(hover);
-        if (expansion.shouldUpdate()) {
+        if (expansion.shouldUpdate() || !expansion.hasExpansion()) {
           line.suggestCommand("/papi ecloud download " + expansion.getName());
         }
         else {
