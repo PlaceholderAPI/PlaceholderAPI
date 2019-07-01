@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
  */
 package me.clip.placeholderapi.util;
 
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.URL;
@@ -28,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 
 public class FileUtil {
 

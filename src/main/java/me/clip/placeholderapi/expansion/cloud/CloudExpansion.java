@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,11 @@
  */
 package me.clip.placeholderapi.expansion.cloud;
 
+import me.clip.placeholderapi.util.TimeUtil;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-import me.clip.placeholderapi.util.TimeUtil;
 
 
 public class CloudExpansion {

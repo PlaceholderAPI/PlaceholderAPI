@@ -1,21 +1,23 @@
 ---
 name: Bug Report  
-about: Found a bug with PlaceholderAPI? Report it through this form!
+about: Report bugs of PlaceholderAPI with this template
 
 ---
 
-[New placeholders/plugin]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md
-[Request change]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request.md
-[Spigot page]: https://www.spigotmc.org/resources/6245/
-[Jenkins page]: http://ci.extendedclip.com/job/PlaceholderAPI/
+[Request change (Wiki)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md
+[Request change (PlaceholderAPI)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
+[Spigot]: https://www.spigotmc.org/resources/6245/
+[Jenkins]: http://ci.extendedclip.com/job/PlaceholderAPI/
 [issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
 
-### Notes
-This template is for **reporting a bug** and not for requesting changes to the wiki!  
-If you want your placeholders added or updated, use the [New placeholders/plugin] or [Request change] template.
+## Please read
+This template is only for reporting bugs of PlaceholderAPI!  
+If you want to request changes to the code of PlaceholderAPI, use the [Request change (PlaceholderAPI)] template.  
+For changes to the wiki use the [Request change (Wiki)] template.
 
-Also make sure, that you use the latest version of PlaceholderAPI from either the [Spigot page] or the [Jenkins page] and that your 
-issue isn't already listed in the [issue] page.
+Please also make sure that you use the [latest release][Spigot] or the latest [developement build][Jenkins] and that your bug isn't already reported on the [issues] page.
+
+**Please report issues with expansions/placeholders to the corresponding issue tracker! Only report it here if you can't find any place to report it!**
 
 ### Issue
 > What is the issue? Describe it like you would tell a friend.

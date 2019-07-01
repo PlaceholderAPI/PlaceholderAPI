@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -337,7 +337,8 @@ public class ExpansionCloudCommands implements CommandExecutor {
         }
 
         List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
-        int i = (int) ex.keySet().toArray()[0]+1;
+
+        int i = (int) ex.keySet().toArray()[0];
 
         for (String name : ce) {
           if (expansions.get(name) == null) {
@@ -369,7 +370,8 @@ public class ExpansionCloudCommands implements CommandExecutor {
       }
 
       List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
-      int i = 1;
+
+      int i = page > 1 ? page * 10 : 0;
 
       for (String name : ce) {
         if (expansions.get(name) == null) {
@@ -402,7 +404,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
         JSONMessage line = JSONMessage.create(msg);
         line.tooltip(hover);
 
-        if (expansion.shouldUpdate()) {
+        if (expansion.shouldUpdate() || !expansion.hasExpansion()) {
           line.suggestCommand("/papi ecloud download " + expansion.getName());
         } else {
           line.suggestCommand("/papi ecloud info " + expansion.getName());

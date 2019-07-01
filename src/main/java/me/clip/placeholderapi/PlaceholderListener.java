@@ -1,7 +1,7 @@
 /*
  *
  * PlaceholderAPI
- * Copyright (C) 2018 Ryan McCarthy
+ * Copyright (C) 2019 Ryan McCarthy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,6 @@
  */
 package me.clip.placeholderapi;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
@@ -36,6 +33,10 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
+
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 
 public class PlaceholderListener implements Listener {
