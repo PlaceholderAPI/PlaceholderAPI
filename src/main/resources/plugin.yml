@@ -1,6 +1,7 @@
 name: ${project.name}
 main: me.clip.placeholderapi.PlaceholderAPIPlugin
 version: ${project.version}
+api-version: 1.13
 authors: [extended_clip, Glare]
 description: ${project.description}
 permissions:
