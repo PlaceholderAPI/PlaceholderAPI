@@ -8,7 +8,7 @@ about: Report bugs of PlaceholderAPI with this template
 [Request change (PlaceholderAPI)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
 [Spigot]: https://www.spigotmc.org/resources/6245/
 [Jenkins]: http://ci.extendedclip.com/job/PlaceholderAPI/
-[issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
 
 ## Please read
 This template is only for reporting bugs of PlaceholderAPI!  
