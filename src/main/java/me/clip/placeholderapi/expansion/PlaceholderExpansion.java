@@ -98,7 +98,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    */
   public boolean isRegistered() {
     Validate.notNull(getIdentifier(), "Placeholder identifier can not be null!");
-    return PlaceholderAPI.getRegisteredIdentifiers().contains(getIdentifier());
+    return PlaceholderAPI.isRegistered(getIdentifier());
   }
 
   /**
