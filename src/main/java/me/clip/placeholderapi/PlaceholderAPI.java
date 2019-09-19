@@ -323,11 +323,12 @@ public class PlaceholderAPI {
   }
 
   public static boolean registerExpansion(PlaceholderExpansion ex) {
-    if (registerPlaceholderHook(ex.getIdentifier(), ex)) {
-      Bukkit.getPluginManager().callEvent(new ExpansionRegisterEvent(ex));
-      return true;
+    ExpansionRegisterEvent ev = new ExpansionRegisterEvent(ex);
+    Bukkit.getPluginManager().callEvent(ev);
+    if (ev.isCancelled()) {
+      return false;
     }
-    return false;
+    return registerPlaceholderHook(ex.getIdentifier(), ex);
   }
 
   public static boolean unregisterExpansion(PlaceholderExpansion ex) {
