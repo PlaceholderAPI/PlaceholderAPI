@@ -13,7 +13,7 @@
     <artifactId>placeholderapi-nukkit</artifactId>
     <version>2.10.5-DEV-${BUILD_NUMBER}</version>
     <description>An awesome placeholder provider!</description>
-    <name>PlaceholderAPI-Nukkit</name>
+    <name>PlaceholderAPI Nukkit</name>
     <url>https://extendedclip.com</url>
 
     <properties>
