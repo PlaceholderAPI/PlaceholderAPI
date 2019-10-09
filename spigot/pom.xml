@@ -13,7 +13,7 @@
     <artifactId>placeholderapi-spigot</artifactId>
     <version>2.10.5-DEV-${BUILD_NUMBER}</version>
     <description>An awesome placeholder provider!</description>
-    <name>PlaceholderAPI</name>
+    <name>PlaceholderAPI Spigot</name>
     <url>https://extendedclip.com</url>
 
     <properties>
@@ -54,9 +54,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
-                <configuration>
-                    <finalName>${project.name}-${project.version}</finalName>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

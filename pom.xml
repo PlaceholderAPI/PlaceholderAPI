@@ -17,6 +17,7 @@
     <modules>
         <module>nukkit</module>
         <module>spigot</module>
+        <!-- <module>assembly</module> Cannot be used until main version --> 
     </modules>
 
     <repositories>

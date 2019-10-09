@@ -10,10 +10,10 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>placeholderapi-nukkit</artifactId>
+    <artifactId>placeholderapi</artifactId>
     <version>2.10.5-DEV-${BUILD_NUMBER}</version>
     <description>An awesome placeholder provider!</description>
-    <name>PlaceholderAPI-Nukkit</name>
+    <name>PlaceholderAPI</name>
     <url>https://extendedclip.com</url>
 
     <properties>
@@ -28,6 +28,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
+                <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -52,25 +55,19 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
 
     <dependencies>
     	<dependency>
-            <groupId>cn.nukkit</groupId>
-            <artifactId>nukkit</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>placeholderapi-nukkit</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.9</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>placeholderapi-spigot</artifactId>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

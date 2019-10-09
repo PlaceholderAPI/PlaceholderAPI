@@ -1,5 +1,5 @@
 name: ${project.name}
-main: me.clip.placeholderapi.PlaceholderAPIPlugin
+main: me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin
 version: ${project.version}
 api: [1.0.0, 2.0.0]
 authors: [extended_clip, Glare, GMatrixGames]
