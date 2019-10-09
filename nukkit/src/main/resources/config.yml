@@ -1,0 +1,17 @@
+# PlaceholderAPI
+# Version: ${project.version}
+# Created by: extended_clip
+# Contributors: https://github.com/PlaceholderAPI/PlaceholderAPI/graphs/contributors
+# Issues: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+# Expansions: https://api.extendedclip.com/all/
+# Wiki: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+# Discord: https://helpch.at/discord
+# No placeholders are provided with this plugin by default.
+# Download placeholders: /papi ecloud
+check_updates: true
+cloud_enabled: false # Disabled by default until backend allows for Nukkit expansions
+cloud_allow_unverified_expansions: true # Enabled by default as it's the only way to get expansions
+boolean:
+    'true': 'yes'
+    'false': 'no'
+date_format: MM/dd/yy HH:mm:ss
