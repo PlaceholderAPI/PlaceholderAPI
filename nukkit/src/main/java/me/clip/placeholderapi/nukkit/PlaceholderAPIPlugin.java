@@ -195,5 +195,4 @@ public class PlaceholderAPIPlugin extends PluginBase {
     public long getUptimeMillis() {
         return (System.currentTimeMillis() - startTime);
     }
-
 }
