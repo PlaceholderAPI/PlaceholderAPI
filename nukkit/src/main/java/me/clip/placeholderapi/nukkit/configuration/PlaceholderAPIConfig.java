@@ -18,9 +18,9 @@
  *
  *
  */
-package me.clip.placeholderapi.configuration;
+package me.clip.placeholderapi.nukkit.configuration;
 
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
 
 public class PlaceholderAPIConfig {
     private PlaceholderAPIPlugin plugin;

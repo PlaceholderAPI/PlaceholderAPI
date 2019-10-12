@@ -18,9 +18,9 @@
  *
  *
  */
-package me.clip.placeholderapi.util;
+package me.clip.placeholderapi.nukkit.util;
 
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
 
 import java.io.File;
 import java.io.FilenameFilter;

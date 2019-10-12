@@ -18,13 +18,13 @@
  *
  *
  */
-package me.clip.placeholderapi.expansion;
+package me.clip.placeholderapi.nukkit.expansion;
 
 import cn.nukkit.Server;
 import cn.nukkit.utils.ConfigSection;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.nukkit.PlaceholderAPI;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.PlaceholderHook;
 import org.apache.commons.lang3.Validate;
 
 import java.util.List;

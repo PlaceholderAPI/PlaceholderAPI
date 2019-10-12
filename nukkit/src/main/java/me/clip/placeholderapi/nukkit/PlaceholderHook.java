@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.nukkit;
 
 import cn.nukkit.IPlayer;
 import cn.nukkit.OfflinePlayer;

@@ -18,9 +18,9 @@
  *
  *
  */
-package me.clip.placeholderapi.expansion.cloud;
+package me.clip.placeholderapi.nukkit.expansion.cloud;
 
-import me.clip.placeholderapi.util.TimeUtil;
+import me.clip.placeholderapi.nukkit.util.TimeUtil;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

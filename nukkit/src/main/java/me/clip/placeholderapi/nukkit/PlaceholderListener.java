@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.nukkit;
 
 import cn.nukkit.Server;
 import cn.nukkit.event.EventHandler;
@@ -27,12 +27,12 @@ import cn.nukkit.event.HandlerList;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.plugin.PluginDisableEvent;
-import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.event.ExpansionUnregisterEvent;
-import me.clip.placeholderapi.expansion.Cacheable;
-import me.clip.placeholderapi.expansion.Cleanable;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Taskable;
+import me.clip.placeholderapi.nukkit.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.nukkit.event.ExpansionUnregisterEvent;
+import me.clip.placeholderapi.nukkit.expansion.Cacheable;
+import me.clip.placeholderapi.nukkit.expansion.Cleanable;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.expansion.Taskable;
 
 import java.util.Map;
 import java.util.Set;

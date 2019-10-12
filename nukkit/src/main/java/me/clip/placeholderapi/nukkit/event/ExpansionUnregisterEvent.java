@@ -18,11 +18,11 @@
  *
  *
  */
-package me.clip.placeholderapi.event;
+package me.clip.placeholderapi.nukkit.event;
 
 import cn.nukkit.event.Event;
 import cn.nukkit.event.HandlerList;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
 
 public class ExpansionUnregisterEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();

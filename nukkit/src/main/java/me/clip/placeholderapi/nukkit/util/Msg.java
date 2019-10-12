@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi.util;
+package me.clip.placeholderapi.nukkit.util;
 
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;

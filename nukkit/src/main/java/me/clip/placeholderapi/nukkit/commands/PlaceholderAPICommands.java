@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi.commands;
+package me.clip.placeholderapi.nukkit.commands;
 
 import cn.nukkit.IPlayer;
 import cn.nukkit.Player;
@@ -26,10 +26,10 @@ import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandExecutor;
 import cn.nukkit.command.CommandSender;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.util.Msg;
+import me.clip.placeholderapi.nukkit.PlaceholderAPI;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.util.Msg;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Set;

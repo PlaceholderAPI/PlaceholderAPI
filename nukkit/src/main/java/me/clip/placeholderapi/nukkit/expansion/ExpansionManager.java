@@ -18,16 +18,16 @@
  *
  *
  */
-package me.clip.placeholderapi.expansion;
+package me.clip.placeholderapi.nukkit.expansion;
 
 import cn.nukkit.Server;
 import cn.nukkit.event.Listener;
 import cn.nukkit.utils.Config;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.PlaceholderHook;
-import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.util.FileUtil;
+import me.clip.placeholderapi.nukkit.PlaceholderAPI;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.PlaceholderHook;
+import me.clip.placeholderapi.nukkit.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.nukkit.util.FileUtil;
 
 import java.io.File;
 import java.lang.reflect.Constructor;

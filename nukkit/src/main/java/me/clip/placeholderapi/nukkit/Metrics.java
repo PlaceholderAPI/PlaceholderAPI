@@ -1,4 +1,4 @@
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.nukkit;
 
 import cn.nukkit.Server;
 import cn.nukkit.plugin.Plugin;

@@ -18,24 +18,24 @@
  *
  *
  */
-package me.clip.placeholderapi.commands;
+package me.clip.placeholderapi.nukkit.commands;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandExecutor;
 import cn.nukkit.command.CommandSender;
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.nukkit.PlaceholderAPI;
+import me.clip.placeholderapi.nukkit.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.expansion.cloud.CloudExpansion;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static me.clip.placeholderapi.util.Msg.color;
-import static me.clip.placeholderapi.util.Msg.msg;
+import static me.clip.placeholderapi.nukkit.util.Msg.color;
+import static me.clip.placeholderapi.nukkit.util.Msg.msg;
 
 public class ExpansionCloudCommands implements CommandExecutor {
     private PlaceholderAPIPlugin plugin;

@@ -18,19 +18,19 @@
  *
  *
  */
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.nukkit;
 
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.PluginCommand;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
-import me.clip.placeholderapi.commands.PlaceholderAPICommands;
-import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
-import me.clip.placeholderapi.util.TimeUtil;
-import me.clip.placeholderapi.expansion.ExpansionManager;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
+import me.clip.placeholderapi.nukkit.commands.PlaceholderAPICommands;
+import me.clip.placeholderapi.nukkit.configuration.PlaceholderAPIConfig;
+import me.clip.placeholderapi.nukkit.util.TimeUtil;
+import me.clip.placeholderapi.nukkit.expansion.ExpansionManager;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.expansion.cloud.ExpansionCloudManager;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;

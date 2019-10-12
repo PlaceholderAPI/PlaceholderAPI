@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi.util;
+package me.clip.placeholderapi.nukkit.util;
 
 public enum TimeFormat {
     DAYS,

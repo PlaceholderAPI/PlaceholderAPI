@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi.util;
+package me.clip.placeholderapi.nukkit.util;
 
 public class TimeUtil {
     public static String getRemaining(int seconds, TimeFormat type) {

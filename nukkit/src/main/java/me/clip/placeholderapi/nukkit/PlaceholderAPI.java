@@ -18,16 +18,16 @@
  *
  *
  */
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.nukkit;
 
 import cn.nukkit.IPlayer;
 import cn.nukkit.OfflinePlayer;
 import cn.nukkit.Server;
 import com.google.common.collect.ImmutableSet;
-import me.clip.placeholderapi.event.ExpansionRegisterEvent;
-import me.clip.placeholderapi.event.ExpansionUnregisterEvent;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Relational;
+import me.clip.placeholderapi.nukkit.event.ExpansionRegisterEvent;
+import me.clip.placeholderapi.nukkit.event.ExpansionUnregisterEvent;
+import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.nukkit.expansion.Relational;
 import org.apache.commons.lang3.Validate;
 
 import java.util.*;

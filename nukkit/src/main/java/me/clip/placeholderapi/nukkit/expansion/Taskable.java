@@ -18,7 +18,7 @@
  *
  *
  */
-package me.clip.placeholderapi.expansion;
+package me.clip.placeholderapi.nukkit.expansion;
 
 public interface Taskable {
     void start();
