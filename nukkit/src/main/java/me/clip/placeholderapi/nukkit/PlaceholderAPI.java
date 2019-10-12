@@ -35,7 +35,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static me.clip.placeholderapi.util.Msg.color;
+import static me.clip.placeholderapi.nukkit.util.Msg.color;
 
 public class PlaceholderAPI {
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
