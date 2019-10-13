@@ -24,6 +24,7 @@ import cn.nukkit.IPlayer;
 import cn.nukkit.OfflinePlayer;
 import cn.nukkit.Server;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.nukkit.event.ExpansionRegisterEvent;
 import me.clip.placeholderapi.nukkit.event.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.nukkit.expansion.PlaceholderExpansion;
@@ -71,7 +72,7 @@ public class PlaceholderAPI {
     }
 
     public static Map<String, PlaceholderHook> getPlaceholders() {
-        return placeholders;
+        return ImmutableMap.copyOf(placeholders);
     }
 
     public static Set<PlaceholderExpansion> getExpansions() {
