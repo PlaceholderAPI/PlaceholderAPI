@@ -36,8 +36,9 @@ import java.net.URL;
 public class UpdateChecker implements Listener {
 
   private final int RESOURCE_ID = 6245;
-  private PlaceholderAPIPlugin plugin;
-  private String spigotVersion, pluginVersion;
+  private final PlaceholderAPIPlugin plugin;
+  private String spigotVersion;
+  private final String pluginVersion;
   private boolean updateAvailable;
 
   public UpdateChecker(PlaceholderAPIPlugin i) {
@@ -86,9 +87,10 @@ public class UpdateChecker implements Listener {
   }
 
   private boolean spigotIsNewer() {
-      if (spigotVersion == null || spigotVersion.isEmpty()) {
-          return false;
-      }
+    if (spigotVersion == null || spigotVersion.isEmpty()) {
+        return false;
+    }
+
     String plV = toReadable(pluginVersion);
     String spV = toReadable(spigotVersion);
     return plV.compareTo(spV) < 0;
@@ -98,6 +100,7 @@ public class UpdateChecker implements Listener {
     if (version.contains("-DEV-")) {
       version = version.split("-DEV-")[0];
     }
+
     return version.replaceAll("\\.", "");
   }
 

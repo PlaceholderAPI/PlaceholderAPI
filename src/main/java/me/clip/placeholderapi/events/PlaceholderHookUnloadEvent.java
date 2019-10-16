@@ -28,8 +28,8 @@ import org.bukkit.event.HandlerList;
 public class PlaceholderHookUnloadEvent extends Event {
 
   private static final HandlerList HANDLERS = new HandlerList();
-  private String plugin;
-  private PlaceholderHook hook;
+  private final String plugin;
+  private final PlaceholderHook hook;
 
   public PlaceholderHookUnloadEvent(String plugin, PlaceholderHook placeholderHook) {
     this.plugin = plugin;

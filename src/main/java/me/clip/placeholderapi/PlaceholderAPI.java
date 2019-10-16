@@ -69,14 +69,16 @@ public class PlaceholderAPI {
    * @return true if the hook was successfully registered, false if there is already a hook
    * registered for the specified identifier
    */
-  public static boolean registerPlaceholderHook(String identifier,
-      PlaceholderHook placeholderHook) {
+  public static boolean registerPlaceholderHook(String identifier, PlaceholderHook placeholderHook) {
     Validate.notNull(identifier, "Identifier can not be null");
     Validate.notNull(placeholderHook, "Placeholderhook can not be null");
+
     if (isRegistered(identifier)) {
       return false;
     }
+
     placeholders.put(identifier.toLowerCase(), placeholderHook);
+
     return true;
   }
 
@@ -114,6 +116,7 @@ public class PlaceholderAPI {
     Set<PlaceholderExpansion> set = getPlaceholders().values().stream()
         .filter(PlaceholderExpansion.class::isInstance).map(PlaceholderExpansion.class::cast)
         .collect(Collectors.toCollection(HashSet::new));
+
     return ImmutableSet.copyOf(set);
   }
 
@@ -174,6 +177,7 @@ public class PlaceholderAPI {
     if (text == null) {
       return null;
     }
+
     return text.stream().map(line -> setPlaceholders(p, line, pattern))
         .collect(Collectors.toList());
   }
@@ -212,24 +216,29 @@ public class PlaceholderAPI {
    * underscore separating the identifier from the params
    * @return text with all placeholders set to the corresponding values
    */
-  public static String setPlaceholders(OfflinePlayer player, String text,
-      Pattern placeholderPattern) {
+  public static String setPlaceholders(OfflinePlayer player, String text, Pattern placeholderPattern) {
     if (text == null) {
       return null;
     }
+
     if (placeholders.isEmpty()) {
       return color(text);
     }
+
     Matcher m = placeholderPattern.matcher(text);
     Map<String, PlaceholderHook> hooks = getPlaceholders();
+
     while (m.find()) {
       String format = m.group(1);
       int index = format.indexOf("_");
+
       if (index <= 0 || index >= format.length()) {
         continue;
       }
+
       String identifier = format.substring(0, index).toLowerCase();
       String params = format.substring(index + 1);
+
       if (hooks.containsKey(identifier)) {
         String value = hooks.get(identifier).onRequest(player, params);
         if (value != null) {
@@ -237,6 +246,7 @@ public class PlaceholderAPI {
         }
       }
     }
+
     return color(text);
   }
 
@@ -253,6 +263,7 @@ public class PlaceholderAPI {
     if (text == null) {
       return null;
     }
+
     return text.stream().map(line -> setRelationalPlaceholders(one, two, line))
         .collect(Collectors.toList());
   }
@@ -270,30 +281,39 @@ public class PlaceholderAPI {
     if (text == null) {
       return null;
     }
+
     if (placeholders.isEmpty()) {
       return color(text);
     }
+
     Matcher m = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
     Map<String, PlaceholderHook> hooks = getPlaceholders();
+
     while (m.find()) {
       String format = m.group(2);
       int index = format.indexOf("_");
+
       if (index <= 0 || index >= format.length()) {
         continue;
       }
+
       String identifier = format.substring(0, index).toLowerCase();
       String params = format.substring(index + 1);
+
       if (hooks.containsKey(identifier)) {
         if (!(hooks.get(identifier) instanceof Relational)) {
           continue;
         }
+
         Relational rel = (Relational) hooks.get(identifier);
         String value = rel.onPlaceholderRequest(one, two, params);
+
         if (value != null) {
           text = text.replaceAll(Pattern.quote(m.group()), Matcher.quoteReplacement(value));
         }
       }
     }
+
     return color(text);
   }
 
@@ -312,9 +332,11 @@ public class PlaceholderAPI {
     if (placeholders.isEmpty()) {
       return;
     }
+
     getPlaceholders().forEach((key, value) -> {
       if (value instanceof PlaceholderExpansion) {
         PlaceholderExpansion ex = (PlaceholderExpansion) value;
+
         if (!ex.persist()) {
           unregisterExpansion(ex);
         }
@@ -328,6 +350,7 @@ public class PlaceholderAPI {
     if (ev.isCancelled()) {
       return false;
     }
+    
     return registerPlaceholderHook(ex.getIdentifier(), ex);
   }
 
@@ -336,6 +359,7 @@ public class PlaceholderAPI {
       Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(ex));
       return true;
     }
+
     return false;
   }
 
@@ -372,18 +396,18 @@ public class PlaceholderAPI {
   }
 
   public static String setPlaceholders(Player p, String text) {
-    return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
   }
 
   public static List<String> setPlaceholders(Player p, List<String> text) {
-    return setPlaceholders((OfflinePlayer) p, text, PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, PLACEHOLDER_PATTERN);
   }
 
   public static String setBracketPlaceholders(Player p, String text) {
-    return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 
   public static List<String> setBracketPlaceholders(Player p, List<String> text) {
-    return setPlaceholders((OfflinePlayer) p, text, BRACKET_PLACEHOLDER_PATTERN);
+    return setPlaceholders(p, text, BRACKET_PLACEHOLDER_PATTERN);
   }
 }

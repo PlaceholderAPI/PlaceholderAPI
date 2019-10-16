@@ -28,8 +28,9 @@ import org.bukkit.event.HandlerList;
 public class ExpansionRegisterEvent extends Event implements Cancellable {
 
   private static final HandlerList HANDLERS = new HandlerList();
-  private PlaceholderExpansion expansion;
+  private final PlaceholderExpansion expansion;
   private boolean isCancelled;
+
 
   public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
     this.expansion = expansion;

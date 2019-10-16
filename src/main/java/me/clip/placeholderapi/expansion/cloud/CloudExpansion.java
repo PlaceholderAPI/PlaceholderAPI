@@ -173,7 +173,6 @@ public class CloudExpansion {
   }
 
   public class Version {
-
     private String url, version, release_notes;
 
     public String getUrl() {

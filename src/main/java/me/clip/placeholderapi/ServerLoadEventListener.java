@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class ServerLoadEventListener implements Listener {
 
-    private PlaceholderAPIPlugin plugin;
+    private final PlaceholderAPIPlugin plugin;
 
     public ServerLoadEventListener(PlaceholderAPIPlugin instance) {
         plugin = instance;
@@ -50,6 +50,7 @@ public class ServerLoadEventListener implements Listener {
         plugin.getLogger().info("Placeholder expansion registration initializing...");
         final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         plugin.getExpansionManager().registerAllExpansions();
+
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
             alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
         }
