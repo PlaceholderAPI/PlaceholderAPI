@@ -21,13 +21,16 @@
 package me.clip.placeholderapi.events;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class ExpansionRegisterEvent extends Event {
+public class ExpansionRegisterEvent extends Event implements Cancellable {
 
   private static final HandlerList HANDLERS = new HandlerList();
   private final PlaceholderExpansion expansion;
+  private boolean isCancelled;
+
 
   public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
     this.expansion = expansion;
@@ -44,5 +47,15 @@ public class ExpansionRegisterEvent extends Event {
 
   public PlaceholderExpansion getExpansion() {
     return expansion;
+  }
+
+  @Override
+  public boolean isCancelled() {
+    return isCancelled;
+  }
+
+  @Override
+  public void setCancelled(boolean b) {
+    this.isCancelled = b;
   }
 }
