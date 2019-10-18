@@ -238,7 +238,11 @@ public class ExpansionCloudCommands implements CommandExecutor {
         } else {
           message.then(color(placeholders.get(i) + "&b, &f"));
         }
-        message.tooltip(PlaceholderAPI.setPlaceholders(p, placeholders.get(i)));
+        try {
+          message.tooltip(PlaceholderAPI.setPlaceholders(p, placeholders.get(i)));
+        } catch (Exception e) {
+
+        }
       }
 
       message.send(p);
