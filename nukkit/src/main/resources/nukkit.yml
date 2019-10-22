@@ -1,0 +1,43 @@
+name: ${project.name}
+main: me.clip.placeholderapi.nukkit.PlaceholderAPINukkitPlugin
+version: ${project.version}
+api: [1.0.0, 2.0.0]
+authors: [extended_clip, Glare, GMatrixGames]
+description: ${project.description}
+
+permissions:
+    placeholderapi.*:
+        description: ability to use all commands
+        children:
+            placeholderapi.admin: true
+    placeholderapi.admin:
+        description: ability to use all commands
+        children:
+            placeholderapi.list: true
+            placeholderapi.reload: true
+            placeholderapi.ecloud: true
+            placeholderapi.parse: true
+            placeholderapi.register: true
+            placeholderapi.updatenotify: true
+    placeholderapi.list:
+        description: ability to use the list command
+        default: op
+    placeholderapi.reload:
+        description: ability to use the reload command
+        default: op
+    placeholderapi.parse:
+        description: ability to use parse command
+        default: op
+    placeholderapi.register:
+        description: ability to register or unregister placeholder expansions
+        default: op
+    placeholderapi.ecloud:
+        description: allows the usage of ecloud commands
+        default: op
+    placeholderapi.updatenotify:
+        description: notifies you when there is a PAPI update
+        default: op
+commands:
+    placeholderapi:
+        description: PlaceholderAPI command
+        aliases: [papi]
