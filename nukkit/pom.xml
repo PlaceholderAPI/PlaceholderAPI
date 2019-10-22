@@ -48,12 +48,6 @@
                         <configuration>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>
-                                </relocation>
-                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
@@ -80,11 +74,11 @@
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency> Removed until actual artifact gets deployed
             <groupId>org.bstats</groupId>
             <artifactId>bstats-nukkit</artifactId>
             <version>1.5</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency> -->
     </dependencies>
 </project>
