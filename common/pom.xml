@@ -14,9 +14,9 @@
     <artifactId>common</artifactId>
     <version>2.10.5-DEV-${BUILD_NUMBER}</version>
 
-	<properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <defaultGoal>clean package</defaultGoal>

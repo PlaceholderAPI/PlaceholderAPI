@@ -27,7 +27,7 @@ public interface OfflinePAPIPlayer {
      *
      * @return true if online; false if not
      */
-    boolean isOnline();
+    boolean isPlayerOnline();
 
     /**
      * This method returns the player object that represents a player
@@ -43,15 +43,15 @@ public interface OfflinePAPIPlayer {
      *
      * @return name The name of the player
      */
-    String getName();
+    String getPlayerName();
 
     /**
      * This method returns the uuid of the player on a per-platform basis
-     * This method is much more reliable than {@link #getName()} for data
+     * This method is much more reliable than {@link #getPlayerName()} for data
      *
      * @return uuid The unique id of the player
      */
-    UUID getUniqueId();
+    UUID getUUID();
 
     /**
      * This method returns the platform on which this player object is on.

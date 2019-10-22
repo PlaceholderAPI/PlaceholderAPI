@@ -15,38 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit.commands;
+package me.clip.placeholderapi.bukkit.commands;
 
-import cn.nukkit.IPlayer;
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.command.Command;
-import cn.nukkit.command.CommandExecutor;
-import cn.nukkit.command.CommandSender;
+import me.clip.placeholderapi.bukkit.BukkitPAPIPlayer;
+import me.clip.placeholderapi.bukkit.PlaceholderAPIBukkitPlugin;
 import me.clip.placeholderapi.common.OfflinePAPIPlayer;
 import me.clip.placeholderapi.common.PAPIPlayer;
 import me.clip.placeholderapi.common.PlaceholderAPI;
 import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.common.util.Msg;
-import me.clip.placeholderapi.nukkit.NukkitPAPIPlayer;
-import me.clip.placeholderapi.nukkit.PlaceholderAPINukkitPlugin;
 import org.apache.commons.lang3.StringUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PlaceholderAPICommands implements CommandExecutor {
-    private PlaceholderAPINukkitPlugin plugin;
+    private PlaceholderAPIBukkitPlugin plugin;
     private CommandExecutor eCloud;
 
-    public PlaceholderAPICommands(PlaceholderAPINukkitPlugin plugin) {
+    public PlaceholderAPICommands(PlaceholderAPIBukkitPlugin plugin) {
         this.plugin = plugin;
         this.eCloud = new ExpansionCloudCommands(plugin);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        NukkitPAPIPlayer s = (NukkitPAPIPlayer) sender;
+        BukkitPAPIPlayer s = (BukkitPAPIPlayer) sender;
         if (args.length == 0) {
             Msg.msg(s, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
                     "&fCreated by&7: &b" + plugin.getDescription().getAuthors(),
@@ -171,20 +170,20 @@ public class PlaceholderAPICommands implements CommandExecutor {
                     return true;
                 }
 
-                IPlayer pl;
+                Player pl;
 
                 if (args[1].equalsIgnoreCase("me")) {
                     if (s instanceof Player) {
-                        pl = (Player) s;
+                        pl = s;
                     } else {
                         Msg.msg(s, "&cThis command must target a player when used by console");
                         return true;
                     }
                 } else {
-                    if (Server.getInstance().getPlayer(args[1]) != null) {
-                        pl = Server.getInstance().getPlayer(args[1]);
+                    if (Bukkit.getPlayer(args[1]) != null) {
+                        pl = Bukkit.getPlayer(args[1]);
                     } else {
-                        pl = Server.getInstance().getOfflinePlayer(args[1]);
+                        pl = (Player) Bukkit.getOfflinePlayer(args[1]);
                     }
                 }
 
@@ -203,7 +202,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 
                 return true;
             } else if (args.length > 3 && args[0].equalsIgnoreCase("parserel")) {
-                if (!(s instanceof NukkitPAPIPlayer)) {
+                if (!(s instanceof BukkitPAPIPlayer)) {
                     Msg.msg(s, "&cThis command can only be used in game!");
                     return true;
                 } else {
@@ -213,14 +212,14 @@ public class PlaceholderAPICommands implements CommandExecutor {
                     }
                 }
 
-                PAPIPlayer one = (PAPIPlayer) Server.getInstance().getPlayer(args[1]);
+                PAPIPlayer one = (PAPIPlayer) Bukkit.getPlayer(args[1]);
 
                 if (one == null) {
                     Msg.msg(s, args[1] + " &cis not online!");
                     return true;
                 }
 
-                PAPIPlayer two = (PAPIPlayer) Server.getInstance().getPlayer(args[2]);
+                PAPIPlayer two = (PAPIPlayer) Bukkit.getPlayer(args[2]);
 
                 if (two == null) {
                     Msg.msg(s, args[2] + " &cis not online!");
@@ -231,7 +230,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
                 Msg.msg(s, "&r" + PlaceholderAPI.setRelationalPlaceholders(one, two, parse));
                 return true;
             } else if (args[0].equalsIgnoreCase("reload")) {
-                if (s instanceof NukkitPAPIPlayer) {
+                if (s instanceof BukkitPAPIPlayer) {
                     if (!s.hasPermission("placeholderapi.reload")) {
                         Msg.msg(s, "&cYou don't have permission to do that!");
                         return true;
@@ -241,7 +240,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
                 Msg.msg(s, "&fPlaceholder&7API &bconfiguration reloaded!");
                 plugin.reloadConf(s);
             } else if (args[0].equalsIgnoreCase("list")) {
-                if (s instanceof NukkitPAPIPlayer) {
+                if (s instanceof BukkitPAPIPlayer) {
                     if (!s.hasPermission("placeholderapi.list")) {
                         Msg.msg(s, "&cYou don't have permission to do that!");
                         return true;
@@ -258,7 +257,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
                 Msg.msg(s, registered.size() + " &7Placeholder hooks registered:");
                 Msg.msg(s, registered.stream().sorted().collect(Collectors.joining(", ")));
             } else if (args.length > 1 && args[0].equalsIgnoreCase("register")) {
-                if (s instanceof NukkitPAPIPlayer) {
+                if (s instanceof BukkitPAPIPlayer) {
                     if (!s.hasPermission("placeholderapi.register")) {
                         Msg.msg(s, "&cYou don't have permission to do that!");
                         return true;
@@ -275,7 +274,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
 
                 Msg.msg(s, "&aSuccessfully registered expansion: &f" + ex.getName());
             } else if (args.length > 1 && args[0].equalsIgnoreCase("unregister")) {
-                if (s instanceof NukkitPAPIPlayer) {
+                if (s instanceof BukkitPAPIPlayer) {
                     if (!s.hasPermission("placeholderapi.register")) {
                         Msg.msg(s, "&cYou don't have permission to do that!");
                         return true;

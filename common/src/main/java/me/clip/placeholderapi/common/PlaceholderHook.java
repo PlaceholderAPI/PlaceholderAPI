@@ -27,7 +27,7 @@ public abstract class PlaceholderHook {
      * @return value for the requested player and params
      */
     public String onRequest(OfflinePAPIPlayer p, String params) {
-        if (p != null && p.isOnline()) {
+        if (p != null && p.isPlayerOnline()) {
             return onPlaceholderRequest((PAPIPlayer) p, params);
         }
 

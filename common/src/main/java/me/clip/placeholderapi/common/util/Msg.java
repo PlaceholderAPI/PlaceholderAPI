@@ -23,7 +23,7 @@ import java.util.Arrays;
 
 public class Msg {
     public static void msg(PAPIPlayer sender, String... msg) {
-        Arrays.stream(msg).map(Msg::color).forEach(sender::sendMessage);
+        Arrays.stream(msg).map(Msg::color).forEach(sender::sendPlayerMessage);
     }
 
     public static String color(String msg) {

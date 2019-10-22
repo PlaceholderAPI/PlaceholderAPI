@@ -31,6 +31,10 @@ import java.util.jar.JarInputStream;
 public class FileUtil {
     private static PlaceholderAPIPlugin plugin;
 
+    private FileUtil(PlaceholderAPIPlugin papiplugin) {
+        plugin = papiplugin;
+    }
+
     public static List<Class<?>> getClasses(String folder, String fileName, Class<?> type) {
         List<Class<?>> list = new ArrayList<>();
 
@@ -98,9 +102,5 @@ public class FileUtil {
         }
 
         return list;
-    }
-
-    private FileUtil(PlaceholderAPIPlugin papiplugin) {
-        plugin = papiplugin;
     }
 }

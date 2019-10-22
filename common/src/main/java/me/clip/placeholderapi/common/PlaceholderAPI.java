@@ -31,11 +31,11 @@ import java.util.stream.Collectors;
 import static me.clip.placeholderapi.common.util.Msg.color;
 
 public class PlaceholderAPI {
-    private static PlaceholderAPIPlugin plugin;
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
     private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
     private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
     private static final Map<String, PlaceholderHook> placeholders = new HashMap<>();
+    private static PlaceholderAPIPlugin plugin;
 
     private PlaceholderAPI(PlaceholderAPIPlugin papiPlugin) {
         plugin = papiPlugin;

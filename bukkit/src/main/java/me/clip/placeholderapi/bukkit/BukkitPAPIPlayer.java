@@ -15,20 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit;
+package me.clip.placeholderapi.bukkit;
 
-import cn.nukkit.OfflinePlayer;
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import me.clip.placeholderapi.common.OfflinePAPIPlayer;
 import me.clip.placeholderapi.common.PAPIPlayer;
 import me.clip.placeholderapi.common.util.PlatformUtil;
+import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class OfflineNukkitPAPIPlayer extends OfflinePlayer implements OfflinePAPIPlayer {
-    public OfflineNukkitPAPIPlayer(Server server, UUID uuid) {
-        super(server, uuid);
+public abstract class BukkitPAPIPlayer implements Player, PAPIPlayer {
+    private static BukkitPAPIPlayer instance;
+
+    public static BukkitPAPIPlayer getInstance() {
+        return instance;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class OfflineNukkitPAPIPlayer extends OfflinePlayer implements OfflinePAP
 
     @Override
     public PAPIPlayer getPAPIPlayer() {
-        return (PAPIPlayer) this;
+        return this;
     }
 
     @Override
@@ -52,12 +51,12 @@ public class OfflineNukkitPAPIPlayer extends OfflinePlayer implements OfflinePAP
     }
 
     @Override
-    public PlatformUtil.Platform getPlayerPlatform() {
-        return PlatformUtil.Platform.NUKKIT;
+    public void sendPlayerMessage(String message) {
+        sendMessage(message);
     }
 
     @Override
-    public Player getPlayer() {
-        return NukkitPAPIPlayer.getInstance();
+    public PlatformUtil.Platform getPlayerPlatform() {
+        return PlatformUtil.Platform.BUKKIT;
     }
 }

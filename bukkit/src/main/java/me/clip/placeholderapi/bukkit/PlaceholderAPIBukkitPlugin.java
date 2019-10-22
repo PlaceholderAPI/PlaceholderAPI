@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit;
+package me.clip.placeholderapi.bukkit;
 
-import cn.nukkit.Server;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.command.PluginCommand;
-import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.utils.TextFormat;
+import me.clip.placeholderapi.bukkit.commands.PlaceholderAPICommands;
+import me.clip.placeholderapi.bukkit.events.ExpansionRegisterEvent;
+import me.clip.placeholderapi.bukkit.events.ExpansionUnregisterEvent;
+import me.clip.placeholderapi.bukkit.expansion.BukkitExpansionManager;
+import me.clip.placeholderapi.bukkit.expansion.cloud.BukkitExpansionCloudManager;
+import me.clip.placeholderapi.bukkit.updater.UpdateChecker;
 import me.clip.placeholderapi.common.PlaceholderAPI;
 import me.clip.placeholderapi.common.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.common.PlaceholderHook;
@@ -29,13 +30,13 @@ import me.clip.placeholderapi.common.config.PlaceholderAPIConfig;
 import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.common.util.PlatformUtil;
 import me.clip.placeholderapi.common.util.TimeUtil;
-import me.clip.placeholderapi.nukkit.commands.PlaceholderAPICommands;
-import me.clip.placeholderapi.nukkit.event.ExpansionRegisterEvent;
-import me.clip.placeholderapi.nukkit.event.ExpansionUnregisterEvent;
-import me.clip.placeholderapi.nukkit.expansion.NukkitExpansionManager;
-import me.clip.placeholderapi.nukkit.expansion.cloud.NukkitExpansionCloudManager;
-import me.clip.placeholderapi.nukkit.util.logger.NukkitLogger;
-import org.bstats.nukkit.Metrics;
+import me.clip.placeholderapi.common.util.logging.LoggerBase;
+import me.clip.placeholderapi.common.util.logging.PlaceholderAPILogger;
+import org.bstats.bukkit.Metrics;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.simpleyaml.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -44,16 +45,36 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class PlaceholderAPINukkitPlugin extends PluginBase implements PlaceholderAPIPlugin {
-    private static PlaceholderAPINukkitPlugin instance;
+public class PlaceholderAPIBukkitPlugin extends JavaPlugin implements PlaceholderAPIPlugin {
+    private static PlaceholderAPIBukkitPlugin instance;
     private static SimpleDateFormat dateFormat;
-    private static String booleanTrue, booleanFalse;
+    private static String booleanTrue, booleanFalse, platform;
     private PlaceholderAPIConfig config;
-    private NukkitExpansionManager expansionManager;
-    private NukkitExpansionCloudManager expansionCloud;
+    private BukkitExpansionManager expansionManager;
+    private BukkitExpansionCloudManager expansionCloud;
     private Long startTime;
 
-    public static PlaceholderAPINukkitPlugin getClassInstance() {
+    private static String getVersion() {
+        String platform = "Bukkit";
+        String platformVersion = "unknown";
+        boolean spigot = false;
+
+        try {
+            platformVersion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        if (PlatformUtil.isSpigotCompat()) {
+            spigot = true;
+            platform = "Spigot/Paper";
+        } else {
+            return "Bukkit";
+        }
+
+        return platform + " v" + platformVersion + ". Spigot: " + spigot;
+    }
+
+    public static PlaceholderAPIBukkitPlugin getClassInstance() {
         return instance;
     }
 
@@ -71,12 +92,12 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
 
     @Override
     public PlatformUtil.Platform getPlatform() {
-        return PlatformUtil.Platform.NUKKIT;
+        return PlatformUtil.Platform.BUKKIT;
     }
 
     @Override
-    public NukkitLogger getMainLogger() {
-        return new NukkitLogger(getLogger());
+    public LoggerBase getMainLogger() {
+        return new PlaceholderAPILogger(getLogger());
     }
 
     @Override
@@ -84,8 +105,30 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
         return getDataFolder();
     }
 
-    public PlaceholderAPINukkitPlugin getInstance() {
+    @Override
+    public PlaceholderAPIBukkitPlugin getInstance() {
         return instance;
+    }
+
+    @Override
+    public boolean registerExpansion(PlaceholderExpansion expansion) {
+        ExpansionRegisterEvent ev = new ExpansionRegisterEvent(expansion);
+        getServer().getPluginManager().callEvent(ev);
+        if (ev.isCancelled()) {
+            return false;
+        }
+
+        return PlaceholderAPI.registerPlaceholderHook(expansion.getIdentifier(), expansion);
+    }
+
+    @Override
+    public Boolean unregisterExpansion(PlaceholderExpansion expansion) {
+        if (PlaceholderAPI.unregisterPlaceholderHook(expansion.getIdentifier())) {
+            getServer().getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -98,24 +141,41 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
         startTime = System.currentTimeMillis();
         instance = this;
         config = new PlaceholderAPIConfig(this);
-        expansionManager = new NukkitExpansionManager(this);
+        expansionManager = new BukkitExpansionManager(this);
     }
 
     @Override
     public void onEnable() {
         config.loadDefConfig();
         setupOptions();
-        PluginCommand<PlaceholderAPINukkitPlugin> cs = (PluginCommand<PlaceholderAPINukkitPlugin>) getServer().getPluginCommand("placeholderapi");
-        cs.setExecutor(new PlaceholderAPICommands(this));
+
+        getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
         new PlaceholderListener(this);
-        getServer().getScheduler().scheduleDelayedTask(this, () -> {
-            getLogger().info("Placeholder expansion registration initializing...");
-            final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
-            getExpansionManager().registerAllExpansions();
-            if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
-                alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
+
+        try {
+            if (PlatformUtil.isServerLoadAvailable()) {
+                new ServerLoadEventListener(this);
+            } else {
+                Bukkit.getScheduler().runTaskLater(this, () -> {
+                    getLogger().info("Placeholder expansion registration initializing...");
+
+                    // Fetch any hooks that may have registered externally onEnable first otherwise they will be lost
+                    final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+                    getExpansionManager().registerAllExpansions();
+
+                    if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
+                        alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
+                    }
+                }, 1);
             }
-        }, 1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (config.checkUpdates()) {
+            new UpdateChecker(this).fetch();
+        }
+
         if (config.isCloudEnabled()) {
             enableCloud();
         }
@@ -128,7 +188,7 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
         disableCloud();
         PlaceholderAPI.unregisterAll();
         expansionManager = null;
-        Server.getInstance().getScheduler().cancelTask(this);
+        Bukkit.getScheduler().cancelTasks(this);
         instance = null;
     }
 
@@ -138,13 +198,14 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
         reloadConfig();
         setupOptions();
         expansionManager.registerAllExpansions();
+
         if (!config.isCloudEnabled()) {
             disableCloud();
         } else if (!cloudEnabled) {
             enableCloud();
         }
 
-        s.sendMessage(TextFormat.colorize(PlaceholderAPI.getRegisteredIdentifiers().size() + " &aplaceholder hooks successfully registered!"));
+        s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.getRegisteredIdentifiers().size() + " &aplaceholder hooks successfully registered!"));
     }
 
     private void setupOptions() {
@@ -168,7 +229,7 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
     private void setupMetrics() {
         Metrics m = new Metrics(this);
         m.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getExpansionCloud() != null ? "yes" : "no"));
-
+        m.addCustomChart(new Metrics.SimplePie("using_spigot", () -> PlatformUtil.isSpigotCompat() ? "yes" : "no"));
         m.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
             Map<String, Integer> map = new HashMap<>();
             Map<String, PlaceholderHook> p = PlaceholderAPI.getPlaceholders();
@@ -188,10 +249,11 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
 
     public void enableCloud() {
         if (expansionCloud == null) {
-            expansionCloud = new NukkitExpansionCloudManager(this);
+            expansionCloud = new BukkitExpansionCloudManager(this);
         } else {
             expansionCloud.clean();
         }
+
         expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
     }
 
@@ -202,15 +264,20 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
         }
     }
 
+    /**
+     * Obtain the configuration class for PlaceholderAPI.
+     *
+     * @return PlaceholderAPIConfig instance
+     */
     public PlaceholderAPIConfig getPlaceholderAPIConfig() {
         return config;
     }
 
-    public NukkitExpansionManager getExpansionManager() {
+    public BukkitExpansionManager getExpansionManager() {
         return expansionManager;
     }
 
-    public NukkitExpansionCloudManager getExpansionCloud() {
+    public BukkitExpansionCloudManager getExpansionCloud() {
         return expansionCloud;
     }
 
@@ -220,26 +287,5 @@ public class PlaceholderAPINukkitPlugin extends PluginBase implements Placeholde
 
     public long getUptimeMillis() {
         return (System.currentTimeMillis() - startTime);
-    }
-
-    @Override
-    public boolean registerExpansion(PlaceholderExpansion expansion) {
-        ExpansionRegisterEvent ev = new ExpansionRegisterEvent(expansion);
-        getServer().getPluginManager().callEvent(ev);
-        if (ev.isCancelled()) {
-            return false;
-        }
-
-        return PlaceholderAPI.registerPlaceholderHook(expansion.getIdentifier(), expansion);
-    }
-
-    @Override
-    public Boolean unregisterExpansion(PlaceholderExpansion expansion) {
-        if (PlaceholderAPI.unregisterPlaceholderHook(expansion.getIdentifier())) {
-            getServer().getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
-            return true;
-        }
-
-        return false;
     }
 }

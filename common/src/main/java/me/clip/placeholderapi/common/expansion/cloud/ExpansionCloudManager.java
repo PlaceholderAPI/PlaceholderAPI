@@ -31,10 +31,10 @@ import java.util.stream.IntStream;
 public class ExpansionCloudManager {
     public static final String API_URL = "http://api.extendedclip.com/v2/";
     public static final Gson GSON = new Gson();
+    public static final Map<Integer, CloudExpansion> remote = new TreeMap<>();
+    public final List<String> downloading = new ArrayList<>();
     private final PlaceholderAPIPlugin plugin;
     private final File expansionsDir;
-    public final List<String> downloading = new ArrayList<>();
-    public static final Map<Integer, CloudExpansion> remote = new TreeMap<>();
 
     public ExpansionCloudManager(PlaceholderAPIPlugin plugin) {
         this.plugin = plugin;
@@ -47,6 +47,14 @@ public class ExpansionCloudManager {
         }
     }
 
+    public static CloudExpansion getCloudExpansion(String name) {
+        return remote.values().stream().filter(ex -> ex.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+
+    public static int getToUpdateCount() {
+        return ((int) PlaceholderAPI.getExpansions().stream().filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate()).count());
+    }
+
     public void clean() {
         remote.clear();
         downloading.clear();
@@ -56,16 +64,8 @@ public class ExpansionCloudManager {
         return remote;
     }
 
-    public static CloudExpansion getCloudExpansion(String name) {
-        return remote.values().stream().filter(ex -> ex.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
-    }
-
     public int getCloudAuthorCount() {
         return remote.values().stream().collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting())).size();
-    }
-
-    public static int getToUpdateCount() {
-        return ((int) PlaceholderAPI.getExpansions().stream().filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate()).count());
     }
 
     public Map<Integer, CloudExpansion> getAllByAuthor(String author) {

@@ -15,11 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit.expansion;
+package me.clip.placeholderapi.bukkit.expansion;
 
-import cn.nukkit.Server;
-import cn.nukkit.event.Listener;
-import cn.nukkit.utils.Config;
+import me.clip.placeholderapi.bukkit.PlaceholderAPIBukkitPlugin;
 import me.clip.placeholderapi.common.PlaceholderAPI;
 import me.clip.placeholderapi.common.PlaceholderHook;
 import me.clip.placeholderapi.common.expansion.Configurable;
@@ -27,20 +25,22 @@ import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.common.expansion.PlatformSpecific;
 import me.clip.placeholderapi.common.expansion.Taskable;
 import me.clip.placeholderapi.common.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.common.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.common.util.FileUtil;
-import me.clip.placeholderapi.nukkit.PlaceholderAPINukkitPlugin;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
 
-public final class NukkitExpansionManager {
-    private PlaceholderAPINukkitPlugin plugin;
+public final class BukkitExpansionManager {
+    private final PlaceholderAPIBukkitPlugin plugin;
 
-    public NukkitExpansionManager(PlaceholderAPINukkitPlugin plugin) {
+    public BukkitExpansionManager(PlaceholderAPIBukkitPlugin plugin) {
         this.plugin = plugin;
+
         File f = new File(plugin.getDataFolder(), "expansions");
         if (!f.exists()) {
             f.mkdirs();
@@ -67,8 +67,9 @@ public final class NukkitExpansionManager {
         if (expansion instanceof Configurable) {
             Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
             String pre = "expansions." + expansion.getIdentifier() + ".";
-            Config cfg = plugin.getConfig();
+            FileConfiguration cfg = plugin.getConfig();
             boolean save = false;
+
             if (defaults != null) {
                 for (Map.Entry<String, Object> entries : defaults.entrySet()) {
                     if (entries.getKey() == null || entries.getKey().isEmpty()) {
@@ -76,12 +77,12 @@ public final class NukkitExpansionManager {
                     }
 
                     if (entries.getValue() == null) {
-                        if (cfg.exists(pre + entries.getKey())) {
+                        if (cfg.contains(pre + entries.getKey())) {
                             save = true;
                             cfg.set(pre + entries.getKey(), null);
                         }
                     } else {
-                        if (!cfg.exists(pre + entries.getKey())) {
+                        if (!cfg.contains(pre + entries.getKey())) {
                             save = true;
                             cfg.set(pre + entries.getKey(), entries.getValue());
                         }
@@ -97,7 +98,7 @@ public final class NukkitExpansionManager {
 
         if (expansion instanceof PlatformSpecific) {
             PlatformSpecific platform = (PlatformSpecific) expansion;
-            if (!platform.isCompatibleWith(PlaceholderAPINukkitPlugin.getClassInstance().getPlatform())) {
+            if (!platform.isCompatibleWith(PlaceholderAPIBukkitPlugin.getClassInstance().getPlatform())) {
                 plugin.getLogger().info("Your server type is not compatible with expansion: " + expansion.getIdentifier() + " version: " + expansion.getVersion());
                 return false;
             }
@@ -113,7 +114,7 @@ public final class NukkitExpansionManager {
 
         if (expansion instanceof Listener) {
             Listener l = (Listener) expansion;
-            Server.getInstance().getPluginManager().registerEvents(l, plugin);
+            Bukkit.getPluginManager().registerEvents(l, plugin);
         }
 
         plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier());
@@ -123,7 +124,8 @@ public final class NukkitExpansionManager {
         }
 
         if (plugin.getExpansionCloud() != null) {
-            CloudExpansion ce = ExpansionCloudManager.getCloudExpansion(expansion.getIdentifier());
+            CloudExpansion ce = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier());
+
             if (ce != null) {
                 ce.setHasExpansion(true);
                 if (!ce.getLatestVersion().equals(expansion.getVersion())) {
@@ -141,6 +143,8 @@ public final class NukkitExpansionManager {
             return null;
         }
 
+        // only register the first instance found as an expansion jar should only have 1 class
+        // extending PlaceholderExpansion
         PlaceholderExpansion ex = createInstance(subs.get(0));
         if (registerExpansion(ex)) {
             return ex;
@@ -155,7 +159,6 @@ public final class NukkitExpansionManager {
         }
 
         List<Class<?>> subs = FileUtil.getClasses("expansions", null, PlaceholderExpansion.class);
-
         if (subs == null || subs.isEmpty()) {
             return;
         }
@@ -174,7 +177,6 @@ public final class NukkitExpansionManager {
         }
 
         PlaceholderExpansion ex = null;
-
         if (!PlaceholderExpansion.class.isAssignableFrom(klass)) {
             return null;
         }
@@ -192,8 +194,8 @@ public final class NukkitExpansionManager {
                 }
             }
         } catch (Throwable t) {
-            plugin.getLogger().error("Failed to init placeholder expansion from class: " + klass.getName());
-            plugin.getLogger().error(t.getMessage());
+            plugin.getLogger().severe("Failed to init placeholder expansion from class: " + klass.getName());
+            plugin.getLogger().severe(t.getMessage());
         }
 
         return ex;

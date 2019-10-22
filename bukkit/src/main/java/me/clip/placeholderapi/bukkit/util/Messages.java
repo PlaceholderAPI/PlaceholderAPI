@@ -15,11 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.common;
+package me.clip.placeholderapi.bukkit.util;
 
-public interface PAPIPlayer extends OfflinePAPIPlayer {
-    /**
-     * This is called when you need to send a message to a player.
-     */
-    void sendPlayerMessage(String message);
+import me.clip.placeholderapi.common.util.Msg;
+import org.bukkit.Bukkit;
+
+import java.util.Arrays;
+
+public class Messages {
+    public void broadcast(String... message) {
+        Arrays.stream(message).map(Msg::color).forEach(Bukkit::broadcastMessage);
+    }
 }

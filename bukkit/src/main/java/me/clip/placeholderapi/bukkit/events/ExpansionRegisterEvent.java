@@ -15,23 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit.event;
+package me.clip.placeholderapi.bukkit.events;
 
-import cn.nukkit.event.Cancellable;
-import cn.nukkit.event.Event;
-import cn.nukkit.event.HandlerList;
 import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+
+import javax.annotation.Nonnull;
 
 public class ExpansionRegisterEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS = new HandlerList();
-    private PlaceholderExpansion expansion;
-    private boolean cancelled;
+    private final PlaceholderExpansion expansion;
+    private boolean isCancelled;
 
     public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
         this.expansion = expansion;
     }
 
-    public static HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
+
+    @Override
+    @Nonnull
+    public HandlerList getHandlers() {
         return HANDLERS;
     }
 
@@ -41,11 +49,11 @@ public class ExpansionRegisterEvent extends Event implements Cancellable {
 
     @Override
     public boolean isCancelled() {
-        return cancelled;
+        return isCancelled;
     }
 
     @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public void setCancelled(boolean b) {
+        this.isCancelled = b;
     }
 }

@@ -15,27 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package me.clip.placeholderapi.nukkit.expansion.cloud;
+package me.clip.placeholderapi.bukkit.expansion.cloud;
 
-import cn.nukkit.Server;
+import com.google.common.collect.Lists;
 import com.google.gson.reflect.TypeToken;
+import me.clip.placeholderapi.bukkit.PlaceholderAPIBukkitPlugin;
+import me.clip.placeholderapi.common.PAPIPlayer;
 import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.common.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.common.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.common.util.Msg;
-import me.clip.placeholderapi.nukkit.NukkitPAPIPlayer;
-import me.clip.placeholderapi.nukkit.PlaceholderAPINukkitPlugin;
+import org.bukkit.Bukkit;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class NukkitExpansionCloudManager extends ExpansionCloudManager {
-    private final PlaceholderAPINukkitPlugin plugin;
+public class BukkitExpansionCloudManager extends ExpansionCloudManager {
+    private final PlaceholderAPIBukkitPlugin plugin;
 
-    public NukkitExpansionCloudManager(PlaceholderAPINukkitPlugin plugin) {
+    public BukkitExpansionCloudManager(PlaceholderAPIBukkitPlugin plugin) {
         super(plugin);
         this.plugin = plugin;
     }
@@ -43,11 +43,11 @@ public class NukkitExpansionCloudManager extends ExpansionCloudManager {
     public void fetch(boolean allowUnverified) {
         plugin.getLogger().info("Fetching available expansion information...");
 
-        plugin.getServer().getScheduler().scheduleTask(plugin, () -> {
+        plugin.getServer().getScheduler().runTask(plugin, () -> {
             final String readJson = URLReader.read(API_URL);
             final Map<String, CloudExpansion> data = GSON.fromJson(readJson, new TypeToken<Map<String, CloudExpansion>>() {
             }.getType());
-            final List<CloudExpansion> unsorted = new ArrayList<>();
+            final List<CloudExpansion> unsorted = Lists.newArrayList();
 
             data.forEach((name, cexp) -> {
                 if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null) {
@@ -74,7 +74,6 @@ public class NukkitExpansionCloudManager extends ExpansionCloudManager {
             }
 
             plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
-
             long updates = getToUpdateCount();
 
             if (updates > 0) {
@@ -101,18 +100,18 @@ public class NukkitExpansionCloudManager extends ExpansionCloudManager {
         downloading.add(ex.getName());
         plugin.getLogger().info("Attempting download of expansion: " + ex.getName() + (player != null ? " by user: " + player : "") + " from url: " + ver.getUrl());
 
-        Server.getInstance().getScheduler().scheduleTask(plugin, () -> {
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
                 download(new URL(ver.getUrl()), ex.getName());
                 plugin.getLogger().info("Download of expansion: " + ex.getName() + " complete!");
             } catch (Exception e) {
                 plugin.getLogger().warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
 
-                Server.getInstance().getScheduler().scheduleTask(plugin, () -> {
+                Bukkit.getScheduler().runTask(plugin, () -> {
                     downloading.remove(ex.getName());
 
                     if (player != null) {
-                        NukkitPAPIPlayer p = (NukkitPAPIPlayer) Server.getInstance().getPlayer(player);
+                        PAPIPlayer p = (PAPIPlayer) Bukkit.getPlayer(player);
 
                         if (p != null) {
                             Msg.msg(p, "&cThere was a problem downloading expansion: &f" + ex.getName());
@@ -123,11 +122,11 @@ public class NukkitExpansionCloudManager extends ExpansionCloudManager {
                 return;
             }
 
-            Server.getInstance().getScheduler().scheduleTask(plugin, () -> {
+            Bukkit.getScheduler().runTask(plugin, () -> {
                 downloading.remove(ex.getName());
 
                 if (player != null) {
-                    NukkitPAPIPlayer p = (NukkitPAPIPlayer) Server.getInstance().getPlayer(player);
+                    PAPIPlayer p = (PAPIPlayer) Bukkit.getPlayer(player);
 
                     if (p != null) {
                         Msg.msg(p, "&aExpansion &f" + ex.getName() + " &adownload complete!");
@@ -135,6 +134,6 @@ public class NukkitExpansionCloudManager extends ExpansionCloudManager {
                     }
                 }
             });
-        }, true);
+        });
     }
 }

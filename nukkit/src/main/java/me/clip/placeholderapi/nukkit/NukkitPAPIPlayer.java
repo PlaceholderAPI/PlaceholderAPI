@@ -29,6 +29,11 @@ public class NukkitPAPIPlayer extends Player implements PAPIPlayer {
 
     public NukkitPAPIPlayer(SourceInterface interfaz, Long clientID, String ip, int port) {
         super(interfaz, clientID, ip, port);
+        instance = this;
+    }
+
+    public static NukkitPAPIPlayer getInstance() {
+        return instance;
     }
 
     @Override
@@ -37,31 +42,27 @@ public class NukkitPAPIPlayer extends Player implements PAPIPlayer {
     }
 
     @Override
+    public boolean isPlayerOnline() {
+        return isOnline();
+    }
+
+    @Override
     public PAPIPlayer getPAPIPlayer() {
         return this;
     }
 
     @Override
-    public boolean isOnline() {
-        return super.isOnline();
+    public String getPlayerName() {
+        return getName();
     }
 
     @Override
-    public String getName() {
-        return super.getName();
+    public UUID getUUID() {
+        return getUniqueId();
     }
 
     @Override
-    public UUID getUniqueId() {
-        return super.getUniqueId();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        super.sendMessage(message);
-    }
-
-    public static NukkitPAPIPlayer getInstance() {
-        return instance;
+    public void sendPlayerMessage(String message) {
+        sendMessage(message);
     }
 }

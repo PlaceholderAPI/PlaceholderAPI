@@ -20,44 +20,108 @@ package me.clip.placeholderapi.common.util;
 public class PlatformUtil {
     private static Platform platform;
     private static String version;
+    private static Platform.BukkitType bukkitType;
 
-    public PlatformUtil(Platform serverPlatform) {
+    public PlatformUtil(Platform serverPlatform, String serverVersion) {
         platform = serverPlatform;
+        version = serverVersion;
     }
 
     public static Platform getPlatform() {
         return platform;
     }
 
-    public void setPlatform(Platform serverPlatform) {
-        platform = serverPlatform;
+    public static Platform valueOf(String string) {
+        return Platform.valueOf(string);
+    }
+
+    public static String getVersion() {
+        return version;
+    }
+
+    public static Platform.BukkitType getBukkitType() {
+        return bukkitType;
+    }
+
+    public static void setBukkitType(Platform.BukkitType bukkitType) {
+        PlatformUtil.bukkitType = bukkitType;
+    }
+
+    public static boolean isSpigotCompat() {
+        return bukkitType.isSpigotCompat();
+    }
+
+    public static boolean isServerLoadAvailable() throws ClassNotFoundException {
+        return bukkitType.isServerLoadAvailable();
     }
 
     public enum Platform {
         BUKKIT,
-        NUKKIT;
+        NUKKIT,
         // SPONGE,
         // Add more as needed
+        UNKNOWN;
 
         public static Platform[] getPlatforms() {
             return values();
         }
 
-        public Boolean isPaper() {
+        public static BukkitType isPaper() {
             try {
-                Class.forName("com.destroystokyo.paper.PaperConfig");
-                return true;
+                if (isPaperServer()) {
+                    return BukkitType.Paper;
+                } else if (isSpigotServer()) {
+                    return BukkitType.Spigot;
+                } else {
+                    return BukkitType.Bukkit;
+                }
             } catch (ClassNotFoundException e) {
-                return false;
+                e.printStackTrace();
             }
+
+            return BukkitType.Unsupported;
         }
 
-        public Boolean isSpigot() {
+        public static BukkitType isSpigot() {
             try {
-                Class.forName("org.spigotmc.SpigotConfig");
-                return true;
+                if (isSpigotServer()) {
+                    return BukkitType.Spigot;
+                } else {
+                    return BukkitType.Bukkit;
+                }
             } catch (ClassNotFoundException e) {
-                return false;
+                e.printStackTrace();
+            }
+
+            return BukkitType.Unsupported;
+        }
+
+        private static boolean isPaperServer() throws ClassNotFoundException {
+            return Class.forName("com.destroystokyo.paper.PaperConfig") != null;
+        }
+
+        private static Boolean isSpigotServer() throws ClassNotFoundException {
+            return Class.forName("org.spigotmc.SpigotConfig") != null;
+        }
+
+        public enum BukkitType {
+            Bukkit(false),
+            Spigot(true),
+            Paper(true),
+            Unsupported(false);
+
+            boolean spigotCompat;
+
+            BukkitType(boolean spigotCompatible) {
+                spigotCompat = spigotCompatible;
+            }
+
+            public boolean isSpigotCompat() {
+                return this.spigotCompat;
+            }
+
+            public boolean isServerLoadAvailable() throws ClassNotFoundException {
+                return Class.forName("org.bukkit.event.server.ServerLoadEvent") != null;
             }
         }
     }
