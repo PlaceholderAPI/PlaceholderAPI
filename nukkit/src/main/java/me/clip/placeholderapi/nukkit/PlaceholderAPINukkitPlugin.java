@@ -29,13 +29,13 @@ import me.clip.placeholderapi.common.config.PlaceholderAPIConfig;
 import me.clip.placeholderapi.common.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.common.util.PlatformUtil;
 import me.clip.placeholderapi.common.util.TimeUtil;
+import me.clip.placeholderapi.metrics.Metrics;
 import me.clip.placeholderapi.nukkit.commands.PlaceholderAPICommands;
 import me.clip.placeholderapi.nukkit.event.ExpansionRegisterEvent;
 import me.clip.placeholderapi.nukkit.event.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.nukkit.expansion.NukkitExpansionManager;
 import me.clip.placeholderapi.nukkit.expansion.cloud.NukkitExpansionCloudManager;
 import me.clip.placeholderapi.nukkit.util.logger.NukkitLogger;
-import org.bstats.nukkit.Metrics;
 import org.simpleyaml.configuration.file.YamlConfiguration;
 
 import java.io.File;
