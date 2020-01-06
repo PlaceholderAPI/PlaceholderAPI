@@ -217,12 +217,27 @@ public class PlaceholderAPI {
    * @return text with all placeholders set to the corresponding values
    */
   public static String setPlaceholders(OfflinePlayer player, String text, Pattern placeholderPattern) {
+    return setPlaceholders(player, text, placeholderPattern, true);
+  }
+
+  /**
+   * set placeholders in the text specified placeholders are matched with the pattern
+   * %<(identifier)_(params)>% when set with this method
+   *
+   * @param player Player to parse the placeholders for
+   * @param text text to parse the placeholder values to
+   * @param placeholderPattern the pattern to match placeholders to. Capture group 1 must contain an
+   * @param colorize true/false if color codes should be translated within the output text
+   * underscore separating the identifier from the params
+   * @return text with all placeholders set to the corresponding values
+   */
+  public static String setPlaceholders(OfflinePlayer player, String text, Pattern placeholderPattern, boolean colorize) {
     if (text == null) {
       return null;
     }
 
     if (placeholders.isEmpty()) {
-      return color(text);
+      return colorize ? color(text) : text;
     }
 
     Matcher m = placeholderPattern.matcher(text);
@@ -247,7 +262,7 @@ public class PlaceholderAPI {
       }
     }
 
-    return color(text);
+    return colorize ? color(text) : text;
   }
 
   /**
@@ -278,12 +293,26 @@ public class PlaceholderAPI {
    * @return text with all relational placeholders set to the corresponding values
    */
   public static String setRelationalPlaceholders(Player one, Player two, String text) {
+    return setRelationalPlaceholders(one,two, text, true);
+  }
+
+  /**
+   * set relational placeholders in the text specified placeholders are matched with the pattern
+   * %<rel_(identifier)_(params)>% when set with this method
+   *
+   * @param one Player to compare
+   * @param two Player to compare
+   * @param text text to parse the placeholder values to
+   * @param colorize true/false if color codes should be translated within the output text
+   * @return text with all relational placeholders set to the corresponding values
+   */
+  public static String setRelationalPlaceholders(Player one, Player two, String text, boolean colorize) {
     if (text == null) {
       return null;
     }
 
     if (placeholders.isEmpty()) {
-      return color(text);
+      return colorize ? color(text) : text;
     }
 
     Matcher m = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
@@ -314,7 +343,7 @@ public class PlaceholderAPI {
       }
     }
 
-    return color(text);
+    return colorize ? color(text) : text;
   }
 
   /**
@@ -350,7 +379,7 @@ public class PlaceholderAPI {
     if (ev.isCancelled()) {
       return false;
     }
-    
+
     return registerPlaceholderHook(ex.getIdentifier(), ex);
   }
 
