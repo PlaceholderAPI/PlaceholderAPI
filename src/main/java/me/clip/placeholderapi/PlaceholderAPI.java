@@ -228,7 +228,6 @@ public class PlaceholderAPI {
    * @param text text to parse the placeholder values to
    * @param placeholderPattern the pattern to match placeholders to. Capture group 1 must contain an
    * @param colorize true/false if color codes should be translated within the output text
-   * underscore separating the identifier from the params
    * @return text with all placeholders set to the corresponding values
    */
   public static String setPlaceholders(OfflinePlayer player, String text, Pattern placeholderPattern, boolean colorize) {
