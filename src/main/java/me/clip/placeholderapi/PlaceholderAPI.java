@@ -142,7 +142,7 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>%}}.
+   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
@@ -154,7 +154,7 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>%}}.
+   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
@@ -179,7 +179,7 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>%}}.
+   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
@@ -238,7 +238,7 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>%}}
+   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}
    *
    * @param player Player to parse the placeholders against
    * @param text Text to set the placeholder values in
