@@ -18,6 +18,7 @@ permissions:
             placeholderapi.parse: true
             placeholderapi.register: true
             placeholderapi.updatenotify: true
+            placeholderapi.help: true
     placeholderapi.list:
         description: ability to use the list command
         default: op
@@ -35,6 +36,9 @@ permissions:
         default: op
     placeholderapi.updatenotify:
         description: notifies you when there is a PAPI update
+        default: op
+    placeholderapi.help:
+        description: ability to use the help command
         default: op
 commands:
    placeholderapi:
