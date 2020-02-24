@@ -48,7 +48,10 @@ public class PlaceholderAPICommands implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
     if (args.length == 0) {
-
+      if (!s.hasPermission("placeholderapi.help")) {
+        Msg.msg(s, "&cYou don't have permission to do that!");
+        return true;
+      }
       Msg.msg(s, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
           "&fCreated by&7: &b" + plugin.getDescription().getAuthors(),
               "&fPapi commands: &b/papi help",
@@ -57,7 +60,10 @@ public class PlaceholderAPICommands implements CommandExecutor {
       return true;
     } else {
       if (args[0].equalsIgnoreCase("help")) {
-
+        if (!s.hasPermission("placeholderapi.help")) {
+          Msg.msg(s, "&cYou don't have permission to do that!");
+          return true;
+        }
         Msg.msg(s, "PlaceholderAPI &aHelp &e(&f" + plugin.getDescription().getVersion() + "&e)",
             "&b/papi",
             "&fView plugin info/version info",
