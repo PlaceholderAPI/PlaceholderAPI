@@ -40,3 +40,4 @@ commands:
    placeholderapi:
      description: PlaceholderAPI command
      aliases: [papi]
+     permission: placeholderapi.help
