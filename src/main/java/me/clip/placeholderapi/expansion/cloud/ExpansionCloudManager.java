@@ -169,7 +169,12 @@ public class ExpansionCloudManager {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
                 data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {}.getType()));
             } catch (Exception ex) {
-                ex.printStackTrace();
+                if (plugin.getPlaceholderAPIConfig().isDebugMode()) {
+                    ex.printStackTrace();
+                }
+                else {
+                    plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
+                }
             }
 
             final List<CloudExpansion> unsorted = new ArrayList<>();

@@ -47,6 +47,10 @@ public class PlaceholderAPIConfig {
     return plugin.getConfig().getBoolean("cloud_enabled");
   }
 
+  public boolean isDebugMode() {
+    return plugin.getConfig().getBoolean("debug", false);
+  }
+
   public void setCloudEnabled(boolean b) {
     plugin.getConfig().set("cloud_enabled", b);
     plugin.reloadConfig();
