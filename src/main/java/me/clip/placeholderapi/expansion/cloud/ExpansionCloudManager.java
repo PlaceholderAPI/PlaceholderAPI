@@ -164,10 +164,13 @@ public class ExpansionCloudManager {
         plugin.getLogger().info("Fetching available expansion information...");
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+            final Map<String, CloudExpansion> data = new HashMap<>();;
 
-            final String readJson = URLReader.read(API_URL);
-            final Map<String, CloudExpansion> data = GSON.fromJson(readJson, new TypeToken<Map<String, CloudExpansion>>() {
-            }.getType());
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
+                data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {}.getType()));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
             final List<CloudExpansion> unsorted = new ArrayList<>();
 
@@ -309,24 +312,4 @@ public class ExpansionCloudManager {
 
         });
     }
-
-
-    private static class URLReader {
-        static String read(String url) {
-            StringBuilder builder = new StringBuilder();
-
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
-                String inputLine;
-                while ((inputLine = reader.readLine()) != null) {
-                    builder.append(inputLine);
-                }
-
-            } catch (Exception ex) {
-                builder.setLength(0);
-            }
-
-            return builder.toString();
-        }
-    }
-
 }
