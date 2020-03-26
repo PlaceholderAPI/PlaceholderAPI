@@ -164,10 +164,10 @@ public class ExpansionCloudManager {
         plugin.getLogger().info("Fetching available expansion information...");
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
-            final Map<String, CloudExpansion> data;
+            final Map<String, CloudExpansion> data = new HashMap<>();;
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
-                data = GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {}.getType());
+                data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {}.getType()));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
