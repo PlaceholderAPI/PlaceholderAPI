@@ -79,15 +79,13 @@ public class PlaceholderAPICommands implements CommandExecutor {
             "&fReload the config settings");
 
         if (s.hasPermission("placeholderapi.ecloud")) {
-          if (plugin.getExpansionCloud() == null) {
-            Msg.msg(s, "&b/papi enablecloud",
-                "&fEnable the expansion cloud");
-          } else {
             Msg.msg(s, "&b/papi disablecloud",
                 "&fDisable the expansion cloud",
                 "&b/papi ecloud",
                 "&fView ecloud command usage");
-          }
+
+          Msg.msg(s, "&b/papi enablecloud",
+                  "&fEnable the expansion cloud");
         }
 
         return true;

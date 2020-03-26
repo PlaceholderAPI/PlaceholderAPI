@@ -72,7 +72,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.spigotmc.SpigotConfig");
       Class.forName("net.md_5.bungee.api.chat.BaseComponent");
       spigot = true;
-    } catch (ExceptionInInitializerError | ClassNotFoundException exception) {
+    } catch (ExceptionInInitializerError | ClassNotFoundException ignored) {
     }
 
     return new Version(v, spigot);
@@ -270,11 +270,10 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   public void enableCloud() {
     if (expansionCloud == null) {
       expansionCloud = new ExpansionCloudManager(this);
-      expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
     } else {
       expansionCloud.clean();
-      expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
     }
+    expansionCloud.fetch(config.cloudAllowUnverifiedExpansions());
   }
 
   public void disableCloud() {
