@@ -31,4 +31,4 @@ An already listed expansion/plugin has new placeholders or old ones have changed
 ### Info
 > Please provide any information that is useful including links and images.  
 > For plugins/expansion providing new placeholders or updating old ones, provide the placeholders (that have changed)
-<!-- Please type below this line -->
+<!-- Please write below this line to prevent formatting issues -->
