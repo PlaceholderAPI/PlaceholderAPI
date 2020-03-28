@@ -21,20 +21,20 @@ Please also make sure that you use the [latest release][Spigot] or the latest [d
 
 ### Issue
 > What is the issue? Describe it like you would tell a friend.
-<!-- Please type below this like -->
+<!-- Please write below this line to prevent formatting issues -->
 
 
 ### Expected behaviour
 > What should PlaceholderAPI do?
-<!-- Please type below this like -->
+<!-- Please write below this line to prevent formatting issues -->
 
 
 ### Actual behaviour
 > What does PlaceholderAPI actually do?
-<!-- Please type below this like -->
+<!-- Please write below this line to prevent formatting issues -->
 
 
 ### How to reproduce
 > What steps did you made, to get this bug?
-<!-- Please type below this like -->
+<!-- Please write below this line to prevent formatting issues -->
 1. 
