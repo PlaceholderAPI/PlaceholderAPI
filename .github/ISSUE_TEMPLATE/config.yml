@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: HelpChat Discord
+    url: https://discord.gg/helpchat
+  - name: Wiki
+    url: https://wiki.helpch.at/
+  - name: Paste for errors and config files
+    url: https://paste.helpch.at
