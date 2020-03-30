@@ -4,8 +4,8 @@ contact_links:
     url: https://discord.gg/helpchat
     about: Please join our Discord for faster support.
   - name: Wiki
-    url: https://wiki.helpch.at/
-    about: Check out our wiki about various plugins including PlaceholderAPI.
+    url: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+    about: The Wiki of PlaceholderAPI.
   - name: Hastebin
     url: https://paste.helpch.at
     about: Use our Hastebin-site for sharing errors and configuration files.
