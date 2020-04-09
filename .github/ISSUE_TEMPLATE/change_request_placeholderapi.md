@@ -35,4 +35,4 @@ Changes to code that will affect the end-user (breaks stuff).
 ### Info
 > What is the change?  
 > Please provide as much information (including links, images and code-snippeds) as possible.
-<!-- Please type below this line -->
+<!-- Please write below this line to prevent formatting issues -->
