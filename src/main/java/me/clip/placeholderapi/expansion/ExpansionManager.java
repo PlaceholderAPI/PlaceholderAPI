@@ -170,7 +170,12 @@ public final class ExpansionManager {
     for (Class<?> klass : subs) {
       PlaceholderExpansion ex = createInstance(klass);
       if (ex != null) {
-        registerExpansion(ex);
+        try {
+          registerExpansion(ex);
+        } catch (Exception e) {
+          plugin.getLogger().info("Couldn't register " + ex.getIdentifier() + " expansion");
+          e.printStackTrace();
+        }
       }
     }
   }
