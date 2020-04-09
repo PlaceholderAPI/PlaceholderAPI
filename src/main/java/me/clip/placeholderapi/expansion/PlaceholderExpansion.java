@@ -41,7 +41,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   /**
-   * The placeholder identifier of this expanion
+   * The placeholder identifier of this expansion
    *
    * @return placeholder identifier that is associated with this expansion
    */
@@ -92,7 +92,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   /**
-   * Check if this placeholder identfier has already been registered
+   * Check if this placeholder identifier has already been registered
    *
    * @return true if the identifier for this expansion is already registered
    */
