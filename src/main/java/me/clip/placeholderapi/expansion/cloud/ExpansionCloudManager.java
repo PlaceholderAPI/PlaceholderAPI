@@ -74,25 +74,25 @@ public class ExpansionCloudManager {
 
     public CloudExpansion getCloudExpansion(String name) {
         return remote.values()
-                     .stream()
-                     .filter(ex -> ex.getName().equalsIgnoreCase(name))
-                     .findFirst()
-                     .orElse(null);
+                .stream()
+                .filter(ex -> ex.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
 
     public int getCloudAuthorCount() {
         return remote.values()
-                     .stream()
-                     .collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting()))
-                     .size();
+                .stream()
+                .collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting()))
+                .size();
     }
 
     public int getToUpdateCount() {
         return ((int) PlaceholderAPI.getExpansions()
-                                    .stream()
-                                    .filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate())
-                                    .count());
+                .stream()
+                .filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate())
+                .count());
     }
 
 
@@ -167,12 +167,12 @@ public class ExpansionCloudManager {
             final Map<String, CloudExpansion> data = new HashMap<>();
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
-                data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {}.getType()));
+                data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {
+                }.getType()));
             } catch (Exception ex) {
                 if (plugin.getPlaceholderAPIConfig().isDebugMode()) {
                     ex.printStackTrace();
-                }
-                else {
+                } else {
                     plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
                 }
             }
@@ -262,10 +262,10 @@ public class ExpansionCloudManager {
         }
 
         final CloudExpansion.Version ver = ex.getVersions()
-                                             .stream()
-                                             .filter(v -> v.getVersion().equals(version))
-                                             .findFirst()
-                                             .orElse(null);
+                .stream()
+                .filter(v -> v.getVersion().equals(version))
+                .findFirst()
+                .orElse(null);
 
         if (ver == null) {
             return;
@@ -284,7 +284,7 @@ public class ExpansionCloudManager {
 
             } catch (Exception e) {
                 plugin.getLogger()
-                      .warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
+                        .warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
 
                 Bukkit.getScheduler().runTask(plugin, () -> {
 

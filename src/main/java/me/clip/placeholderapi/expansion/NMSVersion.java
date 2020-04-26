@@ -22,41 +22,41 @@ package me.clip.placeholderapi.expansion;
 
 public enum NMSVersion {
 
-  UNKNOWN("unknown"),
-  SPIGOT_1_7_R1("v1_7_R1"),
-  SPIGOT_1_7_R2("v1_7_R2"),
-  SPIGOT_1_7_R3("v1_7_R3"),
-  SPIGOT_1_7_R4("v1_7_R4"),
-  SPIGOT_1_8_R1("v1_8_R1"),
-  SPIGOT_1_8_R2("v1_8_R2"),
-  SPIGOT_1_8_R3("v1_8_R3"),
-  SPIGOT_1_9_R1("v1_9_R1"),
-  SPIGOT_1_9_R2("v1_9_R2"),
-  SPIGOT_1_10_R1("v1_10_R1"),
-  SPIGOT_1_11_R1("v1_11_R1"),
-  SPIGOT_1_12_R1("v1_12_R1"),
-  SPIGOT_1_13_R1("v1_13_R1"),
-  SPIGOT_1_13_R2("v1_13_R2"),
-  SPIGOT_1_14_R1("v1_14_R1");
+    UNKNOWN("unknown"),
+    SPIGOT_1_7_R1("v1_7_R1"),
+    SPIGOT_1_7_R2("v1_7_R2"),
+    SPIGOT_1_7_R3("v1_7_R3"),
+    SPIGOT_1_7_R4("v1_7_R4"),
+    SPIGOT_1_8_R1("v1_8_R1"),
+    SPIGOT_1_8_R2("v1_8_R2"),
+    SPIGOT_1_8_R3("v1_8_R3"),
+    SPIGOT_1_9_R1("v1_9_R1"),
+    SPIGOT_1_9_R2("v1_9_R2"),
+    SPIGOT_1_10_R1("v1_10_R1"),
+    SPIGOT_1_11_R1("v1_11_R1"),
+    SPIGOT_1_12_R1("v1_12_R1"),
+    SPIGOT_1_13_R1("v1_13_R1"),
+    SPIGOT_1_13_R2("v1_13_R2"),
+    SPIGOT_1_14_R1("v1_14_R1");
 
-  private final String version;
+    private final String version;
 
-  NMSVersion(String version) {
-    this.version = version;
-  }
-
-  public static NMSVersion getVersion(String version) {
-    for (NMSVersion v : values()) {
-      if (v.getVersion().equalsIgnoreCase(version)) {
-        return v;
-      }
+    NMSVersion(String version) {
+        this.version = version;
     }
 
-    return NMSVersion.UNKNOWN;
-  }
+    public static NMSVersion getVersion(String version) {
+        for (NMSVersion v : values()) {
+            if (v.getVersion().equalsIgnoreCase(version)) {
+                return v;
+            }
+        }
 
-  public String getVersion() {
-    return version;
-  }
+        return NMSVersion.UNKNOWN;
+    }
+
+    public String getVersion() {
+        return version;
+    }
 
 }

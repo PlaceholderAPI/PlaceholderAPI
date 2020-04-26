@@ -29,8 +29,8 @@ package me.clip.placeholderapi.expansion;
  */
 public interface Cacheable {
 
-  /**
-   * Called when the implementing class is unregistered from PlaceholderAPI
-   */
-  void clear();
+    /**
+     * Called when the implementing class is unregistered from PlaceholderAPI
+     */
+    void clear();
 }

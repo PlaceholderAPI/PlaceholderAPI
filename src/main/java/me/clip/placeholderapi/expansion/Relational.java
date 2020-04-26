@@ -24,5 +24,5 @@ import org.bukkit.entity.Player;
 
 public interface Relational {
 
-  String onPlaceholderRequest(Player one, Player two, String identifier);
+    String onPlaceholderRequest(Player one, Player two, String identifier);
 }
