@@ -204,7 +204,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
           }
         }
 
-        if (pl == null || !pl.hasPlayedBefore()) {
+        if (pl == null || (!pl.hasPlayedBefore() && !pl.isOnline())) {
           Msg.msg(s, "&cFailed to find player: &f" + args[1]);
           return true;
         }
