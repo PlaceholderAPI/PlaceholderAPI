@@ -41,7 +41,7 @@ import static me.clip.placeholderapi.util.Msg.color;
 
 public class PlaceholderAPI {
   
-  private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
+  private static final Pattern PERCENT_SIGN_PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
   private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
   private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
   private static final Map<String, PlaceholderHook> placeholders = new HashMap<>();
@@ -121,13 +121,23 @@ public class PlaceholderAPI {
   }
   
   /**
-   * Check if a String contains any PlaceholderAPI placeholders ({@literal %<identifier>_<params>%}).
+   * Check if a String contains any PlaceholderAPI default placeholders ({@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}).
    *
    * @param text String to check
    * @return true if String contains any registered placeholder identifiers, false otherwise
    */
   public static boolean containsPlaceholders(String text) {
-    return text != null && PLACEHOLDER_PATTERN.matcher(text).find();
+    return text != null && PlaceholderAPIPlugin.getDefaultPlaceholderPattern().matcher(text).find();
+  }
+
+  /**
+   * Check if a String contains any PlaceholderAPI percent sign placeholders ({@literal %<identifier>_<params>%}).
+   *
+   * @param text String to check
+   * @return true if String contains any registered placeholder identifiers, false otherwise
+   */
+  public static boolean containsPercentSignPlaceholders(String text) {
+    return text != null && PERCENT_SIGN_PLACEHOLDER_PATTERN.matcher(text).find();
   }
   
   /**
@@ -167,19 +177,19 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   * <br>The pattern of a valid placeholder is {@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
    * @return String containing all translated placeholders
    */
   public static List<String> setPlaceholders(OfflinePlayer player, List<String> text) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), true);
   }
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   * <br>The pattern of a valid placeholder is {@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
@@ -187,7 +197,7 @@ public class PlaceholderAPI {
    * @return String containing all translated placeholders
    */
   public static List<String> setPlaceholders(OfflinePlayer player, List<String> text, boolean colorize) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), colorize);
   }
   
   /**
@@ -251,19 +261,19 @@ public class PlaceholderAPI {
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   * <br>The pattern of a valid placeholder is {@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}.
    *
    * @param player Player to parse the placeholders against
    * @param text Text to set the placeholder values in
    * @return String containing all translated placeholders
    */
   public static String setPlaceholders(OfflinePlayer player, String text) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern());
   }
   
   /**
    * Translates all placeholders into their corresponding values.
-   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   * <br>The pattern of a valid placeholder is {@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}.
    *
    * @param player Player to parse the placeholder against
    * @param text Text to parse the placeholders in
@@ -271,7 +281,7 @@ public class PlaceholderAPI {
    * @return The text containing the parsed placeholders
    */
   public static String setPlaceholders(OfflinePlayer player, String text, boolean colorize) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), colorize);
   }
   
   /**
@@ -477,12 +487,21 @@ public class PlaceholderAPI {
   /**
    * Gets the placeholder pattern for the default placeholders.
    *
-   * @return The pattern for {@literal %<identifier>_<params>%}
+   * @return The pattern for {@link PlaceholderAPIPlugin#getDefaultPlaceholderPattern}
    */
   public static Pattern getPlaceholderPattern() {
-    return PLACEHOLDER_PATTERN;
+    return PlaceholderAPIPlugin.getDefaultPlaceholderPattern();
   }
-  
+
+  /**
+   * Gets the placeholder pattern for the default placeholders.
+   *
+   * @return The pattern for {@literal %<identifier>_<params>%}
+   */
+  public static Pattern getPercentSignPlaceholderPattern() {
+    return PERCENT_SIGN_PLACEHOLDER_PATTERN;
+  }
+
   /**
    * Gets the placeholder pattern for the bracket placeholders.
    *
@@ -522,19 +541,19 @@ public class PlaceholderAPI {
   }
   
   public static String setPlaceholders(Player player, String text) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), true);
   }
   
   public static String setPlaceholders(Player player, String text, boolean colorize) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), colorize);
   }
   
   public static List<String> setPlaceholders(Player player, List<String> text) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), true);
   }
   
   public static List<String> setPlaceholders(Player player, List<String> text, boolean colorize) {
-    return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+    return setPlaceholders(player, text, PlaceholderAPIPlugin.getDefaultPlaceholderPattern(), colorize);
   }
   
   public static String setBracketPlaceholders(Player player, String text) {
@@ -551,5 +570,71 @@ public class PlaceholderAPI {
   
   public static List<String> setBracketPlaceholders(Player player, List<String> text, boolean colorize) {
     return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
+  }
+
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text List of Strings to set the placeholder values in
+   * @return String containing all translated placeholders
+   */
+  public static List<String> setPercentSignPlaceholders(OfflinePlayer player, List<String> text) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, true);
+  }
+
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text List of Strings to set the placeholder values in
+   * @param colorize If color codes (&[0-1a-fk-o]) should be translated
+   * @return String containing all translated placeholders
+   */
+  public static List<String> setPercentSignPlaceholders(OfflinePlayer player, List<String> text, boolean colorize) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, colorize);
+  }
+
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text Text to set the placeholder values in
+   * @return String containing all translated placeholders
+   */
+  public static String setPercentSignPlaceholders(OfflinePlayer player, String text) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN);
+  }
+
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+   *
+   * @param player Player to parse the placeholder against
+   * @param text Text to parse the placeholders in
+   * @param colorize If color codes (&[0-1a-fk-o]) should be translated
+   * @return The text containing the parsed placeholders
+   */
+  public static String setPercentSignPlaceholders(OfflinePlayer player, String text, boolean colorize) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, colorize);
+  }
+
+  public static String setPercentSignPlaceholders(Player player, String text) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, true);
+  }
+
+  public static String setPercentSignPlaceholders(Player player, String text, boolean colorize) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, colorize);
+  }
+
+  public static List<String> setPercentSignPlaceholders(Player player, List<String> text) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, true);
+  }
+
+  public static List<String> setPercentSignPlaceholders(Player player, List<String> text, boolean colorize) {
+    return setPlaceholders(player, text, PERCENT_SIGN_PLACEHOLDER_PATTERN, colorize);
   }
 }

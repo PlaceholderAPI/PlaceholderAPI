@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 
 /**
@@ -53,6 +54,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   private static String booleanTrue;
   private static String booleanFalse;
   private static Version serverVersion;
+  private static Pattern defaultPlaceholderPattern;
   private PlaceholderAPIConfig config;
   private ExpansionManager expansionManager;
   private ExpansionCloudManager expansionCloud;
@@ -96,8 +98,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
    * @return date format
    */
   public static SimpleDateFormat getDateFormat() {
-    return dateFormat != null ? dateFormat : new SimpleDateFormat(
-        "MM/dd/yy HH:mm:ss");
+    return dateFormat != null ? dateFormat : new SimpleDateFormat("MM/dd/yy HH:mm:ss");
   }
 
   /**
@@ -120,6 +121,17 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
   public static Version getServerVersion() {
     return serverVersion != null ? serverVersion : getVersion();
+  }
+
+  /**
+   * Get the configurable {@link Pattern} object that is used to parse placeholders when using {@link PlaceholderAPI#setPlaceholders}
+   *
+   * @return string value of false
+   */
+  public static Pattern getDefaultPlaceholderPattern() {
+    if (defaultPlaceholderPattern != null) return defaultPlaceholderPattern;
+    defaultPlaceholderPattern = Pattern.compile("[%]([^%]+)[%]");
+    return defaultPlaceholderPattern;
   }
 
   @Override
@@ -236,6 +248,12 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       dateFormat = new SimpleDateFormat(config.dateFormat());
     } catch (Exception e) {
       dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+    }
+
+    try {
+      defaultPlaceholderPattern = Pattern.compile(config.defaultPlaceholderPattern());
+    } catch (Exception e) {
+      defaultPlaceholderPattern = Pattern.compile("[%]([^%]+)[%]");
     }
   }
 

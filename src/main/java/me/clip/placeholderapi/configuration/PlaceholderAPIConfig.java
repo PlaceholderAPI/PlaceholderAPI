@@ -67,4 +67,6 @@ public class PlaceholderAPIConfig {
   public String dateFormat() {
     return plugin.getConfig().getString("date_format");
   }
+
+  public String defaultPlaceholderPattern() { return plugin.getConfig().getString("default_placeholder_pattern"); }
 }
