@@ -1,0 +1,83 @@
+package me.clip.placeholderapi.commands.papi.ecloud;
+
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.commands.Command;
+import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.rayzr522.jsonmessage.JSONMessage;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+
+import static me.clip.placeholderapi.util.Msg.color;
+import static me.clip.placeholderapi.util.Msg.msg;
+
+public class InfoCommand extends Command {
+
+    @NotNull
+    private final PlaceholderAPIPlugin plugin;
+
+    public InfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+        super("ecloud info");
+        options.permissions("placeholderapi.ecloud");
+
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean execute(@NotNull CommandSender sender, String[] args) {
+        if (args.length < 3) {
+            msg(sender, "&cAn expansion name must be specified!");
+
+            return true;
+        }
+
+        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[2]);
+
+        if (expansion == null) {
+            msg(sender, "&cNo expansion found by the name: &f" + args[2]);
+
+            return true;
+        }
+
+        if (!(sender instanceof Player)) {
+            msg(sender,
+                    (expansion.shouldUpdate() ? "&e" : "") + expansion.getName() + " &8&m-- &r" + expansion
+                            .getVersion().getUrl());
+
+            return true;
+        }
+
+        Player p = (Player) sender;
+
+        msg(sender, "&bExpansion&7: &f" + expansion.getName(),
+                "&bAuthor: &f" + expansion.getAuthor(),
+                "&bVerified: &f" + expansion.isVerified()
+        );
+
+        // latest version
+        JSONMessage latestVersion = JSONMessage
+                .create(color("&bLatest version: &f" + expansion.getLatestVersion()));
+        latestVersion.tooltip(color("&bReleased: &f" + expansion.getTimeSinceLastUpdate()
+                + "\n&bUpdate information: &f" + expansion.getVersion().getReleaseNotes()
+        ));
+        latestVersion.send(p);
+
+        // versions
+        JSONMessage versions = JSONMessage
+                .create(color("&bVersions available: &f" + expansion.getVersions().size()));
+        versions.tooltip(color(String.join("&b, &f", expansion.getAvailableVersions())));
+        versions.suggestCommand(
+                "/papi ecloud versioninfo " + expansion.getName() + " " + expansion.getLatestVersion());
+        versions.send(p);
+
+        // placeholders
+        if (expansion.getPlaceholders() != null) {
+            JSONMessage placeholders = JSONMessage
+                    .create(color("&bPlaceholders: &f" + expansion.getPlaceholders().size()));
+            placeholders.tooltip(color(String.join("&b, &f", expansion.getPlaceholders())));
+            placeholders.suggestCommand("/papi ecloud placeholders " + expansion.getName());
+            placeholders.send(p);
+        }
+        return true;
+    }
+}
