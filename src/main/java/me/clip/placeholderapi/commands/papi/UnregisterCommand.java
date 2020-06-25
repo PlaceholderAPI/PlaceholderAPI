@@ -14,17 +14,17 @@ public class UnregisterCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public UnregisterCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("unregister");
-        options.permissions("placeholderapi.register").requiredArgs(1);
+        super("unregister", 1);
+        options.permissions("placeholderapi.register");
 
         this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[1]);
+        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[0]);
         if (ex == null) {
-            Msg.msg(sender, "&cFailed to find expansion: &f" + args[1]);
+            Msg.msg(sender, "&cFailed to find expansion: &f" + args[0]);
 
             return true;
         }

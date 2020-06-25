@@ -13,7 +13,7 @@ public class StatusCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public StatusCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud status");
+        super("ecloud status", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

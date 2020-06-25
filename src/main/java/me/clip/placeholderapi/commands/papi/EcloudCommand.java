@@ -14,7 +14,7 @@ public class EcloudCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public EcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud");
+        super("ecloud", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;
@@ -22,7 +22,7 @@ public class EcloudCommand extends Command {
 
     @Override
     public boolean execute(final @NotNull CommandSender sender, final String[] args) {
-        if (args.length == 1) {
+        if (args.length == 0) {
             msg(sender, "&bExpansion cloud commands",
                     " ",
                     "&b/papi ecloud status",

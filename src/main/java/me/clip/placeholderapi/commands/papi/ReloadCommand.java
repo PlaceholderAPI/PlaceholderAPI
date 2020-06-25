@@ -12,7 +12,7 @@ public class ReloadCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public ReloadCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("reload");
+        super("reload", 0);
         options.permissions("placeholderapi.reload");
 
         this.plugin = plugin;

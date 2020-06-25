@@ -12,8 +12,8 @@ public class VersionCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public VersionCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("version");
-        options.def(true);
+        super("version", 0);
+        options.def(true).permissions();
 
         this.plugin = plugin;
     }

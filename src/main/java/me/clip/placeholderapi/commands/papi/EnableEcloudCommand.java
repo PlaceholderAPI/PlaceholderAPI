@@ -12,7 +12,7 @@ public class EnableEcloudCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public EnableEcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("enablecloud");
+        super("enablecloud", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

@@ -17,7 +17,7 @@ public class InfoCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public InfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud info");
+        super("ecloud info", 1);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;
@@ -25,16 +25,17 @@ public class InfoCommand extends Command {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        if (args.length < 3) {
+        if (args.length < 2) {
             msg(sender, "&cAn expansion name must be specified!");
 
             return true;
         }
 
-        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[2]);
+        final String input = args[1];
+        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
 
         if (expansion == null) {
-            msg(sender, "&cNo expansion found by the name: &f" + args[2]);
+            msg(sender, "&cNo expansion found by the name: &f" + input);
 
             return true;
         }

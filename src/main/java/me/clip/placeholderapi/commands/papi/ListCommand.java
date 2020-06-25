@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ListCommand extends Command {
 
     public ListCommand() {
-        super("list");
+        super("list", 0);
         options.permissions("placeholderapi.list");
     }
 

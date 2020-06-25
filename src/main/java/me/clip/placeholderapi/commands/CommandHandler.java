@@ -23,21 +23,45 @@ public class CommandHandler implements CommandExecutor {
     private final Command defaultCommand;
 
     public CommandHandler(final PlaceholderAPIPlugin plugin) {
-        this.commands = Stream.of(new VersionCommand(plugin), new UnregisterCommand(plugin), new RegisterCommand(plugin), new ReloadCommand(plugin), new ParseRelCommand(), new ParseCommand(), new ListCommand(), new InfoCommand(plugin), new HelpCommand(plugin), new EnableEcloudCommand(plugin), new EcloudCommand(plugin), new DisableEcloudCommand(plugin), new VersionInfoCommand(plugin), new StatusCommand(plugin), new RefreshCommand(plugin), new PlaceholdersCommand(plugin), new me.clip.placeholderapi.commands.papi.ecloud.ListCommand(plugin), new me.clip.placeholderapi.commands.papi.ecloud.InfoCommand(plugin), new DownloadCommand(plugin), new ClearCommand(plugin)).collect(Collectors.toSet());
+        this.commands = Stream.of(
+                new VersionCommand(plugin),
+                new UnregisterCommand(plugin),
+                new RegisterCommand(plugin),
+                new ReloadCommand(plugin),
+                new ParseRelCommand(),
+                new ParseCommand(),
+                new BcParseCommand(),
+                new ListCommand(),
+                new InfoCommand(plugin),
+                new HelpCommand(plugin),
+                new EnableEcloudCommand(plugin),
+                new EcloudCommand(plugin),
+                new DisableEcloudCommand(plugin),
+                new VersionInfoCommand(plugin),
+                new StatusCommand(plugin),
+                new RefreshCommand(plugin),
+                new PlaceholdersCommand(plugin),
+                new me.clip.placeholderapi.commands.papi.ecloud.ListCommand(plugin),
+                new me.clip.placeholderapi.commands.papi.ecloud.InfoCommand(plugin),
+                new DownloadCommand(plugin),
+                new ClearCommand(plugin))
+                .collect(Collectors.toSet());
+
         defaultCommand = commands.stream()
                 .filter(Command::isDefault)
                 .findAny().orElseThrow(() -> new NoDefaultCommandException("There is no default command present in the plugin."));
     }
 
     @Override
-    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bc,
                              @NotNull final String label, @NotNull final String[] args) {
         if (args.length == 0) {
             defaultCommand.execute(sender, args);
             return true;
         }
 
-        final Optional<Command> optionalCommand = commands.stream().filter(cmd -> cmd.getCommand().equalsIgnoreCase(args[0])).findAny();
+        System.out.println(String.join(" ", args));
+        final Optional<Command> optionalCommand = commands.stream().filter(cmd -> String.join(" ", args).contains(cmd.getCommand())).findAny();
 
         if (!optionalCommand.isPresent()) {
             sender.sendMessage("Unknown Command.");
@@ -46,6 +70,7 @@ public class CommandHandler implements CommandExecutor {
 
         final Command command = optionalCommand.get();
 
+        System.out.println(command.getCommand());
         if (command.isPlayerOnly() && !(sender instanceof Player)) {
             sender.sendMessage("This command can only be used by a player!");
             return true;

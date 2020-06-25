@@ -11,7 +11,7 @@ public class HelpCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public HelpCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("help");
+        super("help", 0);
         options.def(true).permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

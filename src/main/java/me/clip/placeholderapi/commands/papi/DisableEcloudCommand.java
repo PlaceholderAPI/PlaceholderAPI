@@ -12,7 +12,7 @@ public class DisableEcloudCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public DisableEcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("disablecloud");
+        super("disablecloud", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

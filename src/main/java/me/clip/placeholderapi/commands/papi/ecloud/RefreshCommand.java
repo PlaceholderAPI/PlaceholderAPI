@@ -13,7 +13,7 @@ public class RefreshCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public RefreshCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud refresh");
+        super("ecloud refresh", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

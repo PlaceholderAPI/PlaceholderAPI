@@ -17,7 +17,7 @@ public class DownloadCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public DownloadCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud download");
+        super("ecloud download", 1);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;
@@ -25,26 +25,27 @@ public class DownloadCommand extends Command {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        if (args.length < 3) {
+        if (args.length < 2) {
             msg(sender, "&cAn expansion name must be specified!");
             return true;
         }
 
-        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[2]);
+        final String input = args[1];
+        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {
-            msg(sender, "&cNo expansion found with the name: &f" + args[2]);
+            msg(sender, "&cNo expansion found with the name: &f" + input);
             return true;
         }
 
-        PlaceholderExpansion loaded = plugin.getExpansionManager().getRegisteredExpansion(args[2]);
+        PlaceholderExpansion loaded = plugin.getExpansionManager().getRegisteredExpansion(input);
         if (loaded != null && loaded.isRegistered()) {
             PlaceholderAPI.unregisterPlaceholderHook(loaded.getIdentifier());
         }
 
         String version = expansion.getLatestVersion();
 
-        if (args.length == 4) {
-            version = args[3];
+        if (args.length == 3) {
+            version = args[2];
             if (expansion.getVersion(version) == null) {
                 msg(sender, "&cThe version you specified does not exist for &f" + expansion.getName());
                 msg(sender, "&7Available versions: &f" + expansion.getVersions().size());

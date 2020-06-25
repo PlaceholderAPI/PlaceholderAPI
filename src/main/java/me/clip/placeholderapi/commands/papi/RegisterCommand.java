@@ -13,15 +13,15 @@ public class RegisterCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public RegisterCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("register");
-        options.permissions("placeholderapi.register").requiredArgs(1);
+        super("register", 1);
+        options.permissions("placeholderapi.register");
 
         this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        String fileName = args[1].replace(".jar", "");
+        String fileName = args[0].replace(".jar", "");
         PlaceholderExpansion ex = plugin.getExpansionManager().registerExpansion(fileName);
 
         if (ex == null) {

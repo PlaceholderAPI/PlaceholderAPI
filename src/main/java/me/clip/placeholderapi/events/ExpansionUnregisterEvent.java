@@ -26,23 +26,23 @@ import org.bukkit.event.HandlerList;
 
 public class ExpansionUnregisterEvent extends Event {
 
-  private static final HandlerList HANDLERS = new HandlerList();
-  private final PlaceholderExpansion expansion;
+    private static final HandlerList HANDLERS = new HandlerList();
+    private final PlaceholderExpansion expansion;
 
-  public ExpansionUnregisterEvent(PlaceholderExpansion expansion) {
-    this.expansion = expansion;
-  }
+    public ExpansionUnregisterEvent(PlaceholderExpansion expansion) {
+        this.expansion = expansion;
+    }
 
-  public static HandlerList getHandlerList() {
-    return HANDLERS;
-  }
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
 
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLERS;
-  }
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLERS;
+    }
 
-  public PlaceholderExpansion getExpansion() {
-    return expansion;
-  }
+    public PlaceholderExpansion getExpansion() {
+        return expansion;
+    }
 }

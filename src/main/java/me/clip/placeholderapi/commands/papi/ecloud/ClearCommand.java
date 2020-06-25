@@ -13,7 +13,7 @@ public class ClearCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public ClearCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud clear");
+        super("ecloud clear", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;

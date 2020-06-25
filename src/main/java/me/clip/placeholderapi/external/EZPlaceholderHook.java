@@ -25,32 +25,35 @@ import me.clip.placeholderapi.PlaceholderHook;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 
+/**
+ * Use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} instead
+ */
 @Deprecated
 public abstract class EZPlaceholderHook extends PlaceholderHook {
 
-  private final String identifier;
-  private final String plugin;
+    private final String identifier;
+    private final String plugin;
 
-  public EZPlaceholderHook(Plugin plugin, String identifier) {
-    Validate.notNull(plugin, "Plugin can not be null!");
-    Validate.notNull(identifier, "Placeholder name can not be null!");
-    this.identifier = identifier;
-    this.plugin = plugin.getName();
-  }
+    public EZPlaceholderHook(Plugin plugin, String identifier) {
+        Validate.notNull(plugin, "Plugin can not be null!");
+        Validate.notNull(identifier, "Placeholder name can not be null!");
+        this.identifier = identifier;
+        this.plugin = plugin.getName();
+    }
 
-  public boolean isHooked() {
-    return PlaceholderAPI.getRegisteredPlaceholderPlugins().contains(identifier);
-  }
+    public boolean isHooked() {
+        return PlaceholderAPI.getRegisteredPlaceholderPlugins().contains(identifier);
+    }
 
-  public boolean hook() {
-    return PlaceholderAPI.registerPlaceholderHook(identifier, this);
-  }
+    public boolean hook() {
+        return PlaceholderAPI.registerPlaceholderHook(identifier, this);
+    }
 
-  public String getPlaceholderName() {
-    return identifier;
-  }
+    public String getPlaceholderName() {
+        return identifier;
+    }
 
-  public String getPluginName() {
-    return plugin;
-  }
+    public String getPluginName() {
+        return plugin;
+    }
 }

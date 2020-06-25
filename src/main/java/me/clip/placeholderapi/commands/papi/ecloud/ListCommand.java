@@ -22,7 +22,7 @@ public class ListCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public ListCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud list");
+        super("ecloud list", 1);
         options.permissions("placeholdera.ecloud");
 
         this.plugin = plugin;
@@ -35,12 +35,12 @@ public class ListCommand extends Command {
         String author;
         boolean installed = false;
 
-        if (args.length < 3) {
+        if (args.length < 2) {
             msg(sender, "&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)");
             return true;
         }
 
-        author = args[2];
+        author = args[1];
 
         if (author.equalsIgnoreCase("all")) {
             author = null;

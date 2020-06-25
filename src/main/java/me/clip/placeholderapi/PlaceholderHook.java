@@ -25,30 +25,30 @@ import org.bukkit.entity.Player;
 
 public abstract class PlaceholderHook {
 
-  /**
-   * called when a placeholder value is requested from this hook
-   *
-   * @param p {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
-   * player
-   * @param params String passed to the hook to determine what value to return
-   * @return value for the requested player and params
-   */
-  public String onRequest(OfflinePlayer p, String params) {
-    if (p != null && p.isOnline()) {
-      return onPlaceholderRequest((Player) p, params);
+    /**
+     * called when a placeholder value is requested from this hook
+     *
+     * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
+     *               player
+     * @param params String passed to the hook to determine what value to return
+     * @return value for the requested player and params
+     */
+    public String onRequest(OfflinePlayer player, String params) {
+        if (player != null && player.isOnline()) {
+            return onPlaceholderRequest((Player) player, params);
+        }
+
+        return onPlaceholderRequest(null, params);
     }
 
-    return onPlaceholderRequest(null, params);
-  }
-
-  /**
-   * called when a placeholder is requested from this hook
-   *
-   * @param p {@link Player} to request the placeholder value for, null if not needed for a player
-   * @param params String passed to the hook to determine what value to return
-   * @return value for the requested player and params
-   */
-  public String onPlaceholderRequest(Player p, String params) {
-    return null;
-  }
+    /**
+     * called when a placeholder is requested from this hook
+     *
+     * @param player {@link Player} to request the placeholder value for, null if not needed for a player
+     * @param params String passed to the hook to determine what value to return
+     * @return value for the requested player and params
+     */
+    public String onPlaceholderRequest(Player player, String params) {
+        return null;
+    }
 }

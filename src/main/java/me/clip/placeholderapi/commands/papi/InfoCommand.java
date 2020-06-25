@@ -13,17 +13,22 @@ public class InfoCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public InfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("info");
-        options.permissions("placeholderapi.info").requiredArgs(1);
+        super("info", 1);
+        options.permissions("placeholderapi.info");
 
         this.plugin = plugin;
     }
 
     @Override
     public boolean execute(final @NotNull CommandSender sender, final String[] args) {
-        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[1]);
+        if (args.length < 1) {
+            Msg.msg(sender, "&cIncorrect usage! &7/papi info <expansion>");
+            return true;
+        }
+
+        PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(args[0]);
         if (ex == null) {
-            Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + args[1]);
+            Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + args[0]);
 
             return true;
         }

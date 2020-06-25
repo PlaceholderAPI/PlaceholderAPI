@@ -7,16 +7,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class Command {
+
     protected final Options options = new Options();
+
     private final String command;
+    private final int requiredArgs;
+
     private List<String> permissions;
     private String usage;
-    private int requiredArgs = 0;
     private boolean def = false;
     private boolean playerOnly = false;
 
-    protected Command(@NotNull final String command) {
+    protected Command(@NotNull final String command, @NotNull final Integer requiredArgs) {
         this.command = command;
+        this.requiredArgs = requiredArgs;
     }
 
     @NotNull
@@ -70,12 +74,6 @@ public abstract class Command {
         @NotNull
         public Options playerOnly(final boolean value) {
             playerOnly = value;
-            return this;
-        }
-
-        @NotNull
-        public Options requiredArgs(final int value) {
-            requiredArgs = value;
             return this;
         }
     }

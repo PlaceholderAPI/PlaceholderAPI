@@ -17,7 +17,7 @@ public class VersionInfoCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public VersionInfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud versioninfo");
+        super("ecloud versioninfo", 0);
         options.permissions("placeholderapi.ecloud");
 
         this.plugin = plugin;
@@ -30,13 +30,13 @@ public class VersionInfoCommand extends Command {
             return true;
         }
 
-        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[2]);
+        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[3]);
         if (expansion == null) {
-            msg(sender, "&cNo expansion found by the name: &f" + args[2]);
+            msg(sender, "&cNo expansion found by the name: &f" + args[3]);
             return true;
         }
 
-        CloudExpansion.Version version = expansion.getVersion(args[3]);
+        CloudExpansion.Version version = expansion.getVersion(args[4]);
         if (version == null) {
             msg(sender, "&cThe version specified does not exist for expansion: &f" + expansion.getName());
             return true;

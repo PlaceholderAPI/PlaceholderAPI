@@ -10,10 +10,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ParseCommand extends Command {
+public class BcParseCommand extends Command {
 
-    public ParseCommand() {
-        super("parse", 1);
+    public BcParseCommand() {
+        super("bcparse", 1);
         options.permissions("placeholderapi.parse");
     }
 
@@ -43,9 +43,7 @@ public class ParseCommand extends Command {
         }
 
         String parse = StringUtils.join(args, " ", 1, args.length);
-
-        Msg.msg(sender, "&r" + PlaceholderAPI.setPlaceholders(player, parse));
+        Msg.broadcast("&r" + PlaceholderAPI.setPlaceholders(player, parse));
         return true;
     }
-
 }
