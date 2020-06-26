@@ -12,18 +12,24 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class CommandHandler implements CommandExecutor {
 
-    private final Set<Command> commands;
+    private final List<Command> commands;
     private final Command defaultCommand;
 
     public CommandHandler(final PlaceholderAPIPlugin plugin) {
-        this.commands = Stream.of(
+        this.commands = Arrays.asList(
+                new VersionInfoCommand(plugin),
+                new StatusCommand(plugin),
+                new RefreshCommand(plugin),
+                new PlaceholdersCommand(plugin),
+                new me.clip.placeholderapi.commands.papi.ecloud.ListCommand(plugin),
+                new me.clip.placeholderapi.commands.papi.ecloud.InfoCommand(plugin),
+                new DownloadCommand(plugin),
+                new ClearCommand(plugin),
                 new VersionCommand(plugin),
                 new UnregisterCommand(plugin),
                 new RegisterCommand(plugin),
@@ -36,16 +42,8 @@ public class CommandHandler implements CommandExecutor {
                 new HelpCommand(plugin),
                 new EnableEcloudCommand(plugin),
                 new EcloudCommand(plugin),
-                new DisableEcloudCommand(plugin),
-                new VersionInfoCommand(plugin),
-                new StatusCommand(plugin),
-                new RefreshCommand(plugin),
-                new PlaceholdersCommand(plugin),
-                new me.clip.placeholderapi.commands.papi.ecloud.ListCommand(plugin),
-                new me.clip.placeholderapi.commands.papi.ecloud.InfoCommand(plugin),
-                new DownloadCommand(plugin),
-                new ClearCommand(plugin))
-                .collect(Collectors.toSet());
+                new DisableEcloudCommand(plugin)
+        );
 
         defaultCommand = commands.stream()
                 .filter(Command::isDefault)
@@ -60,8 +58,9 @@ public class CommandHandler implements CommandExecutor {
             return true;
         }
 
-        System.out.println(String.join(" ", args));
-        final Optional<Command> optionalCommand = commands.stream().filter(cmd -> String.join(" ", args).contains(cmd.getCommand())).findAny();
+        final String joinedArguments = String.join(" ", args).toLowerCase();
+        final Optional<Command> optionalCommand = commands.stream()
+                .filter(command -> joinedArguments.startsWith(command.getCommand())).findAny();
 
         if (!optionalCommand.isPresent()) {
             sender.sendMessage("Unknown Command.");
@@ -70,7 +69,6 @@ public class CommandHandler implements CommandExecutor {
 
         final Command command = optionalCommand.get();
 
-        System.out.println(command.getCommand());
         if (command.isPlayerOnly() && !(sender instanceof Player)) {
             sender.sendMessage("This command can only be used by a player!");
             return true;

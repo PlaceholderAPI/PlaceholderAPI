@@ -25,18 +25,19 @@ public class VersionInfoCommand extends Command {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        if (args.length < 4) {
+        if (args.length < 3) {
             msg(sender, "&cAn expansion name and version must be specified!");
             return true;
         }
 
-        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(args[3]);
+        final String input = args[1];
+        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {
-            msg(sender, "&cNo expansion found by the name: &f" + args[3]);
+            msg(sender, "&cNo expansion found by the name: &f" + input);
             return true;
         }
 
-        CloudExpansion.Version version = expansion.getVersion(args[4]);
+        CloudExpansion.Version version = expansion.getVersion(args[2]);
         if (version == null) {
             msg(sender, "&cThe version specified does not exist for expansion: &f" + expansion.getName());
             return true;

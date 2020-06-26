@@ -28,7 +28,7 @@ public class PlaceholdersCommand extends Command {
 
     @Override
     public boolean execute(@NotNull CommandSender sender, String[] args) {
-        if (args.length < 1) {
+        if (args.length < 2) {
             msg(sender, "&cAn expansion name must be specified!");
 
             return true;

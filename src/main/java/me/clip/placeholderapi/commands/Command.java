@@ -18,7 +18,7 @@ public abstract class Command {
     private boolean def = false;
     private boolean playerOnly = false;
 
-    protected Command(@NotNull final String command, @NotNull final Integer requiredArgs) {
+    protected Command(@NotNull final String command, final int requiredArgs) {
         this.command = command;
         this.requiredArgs = requiredArgs;
     }
