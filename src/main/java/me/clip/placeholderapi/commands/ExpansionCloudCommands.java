@@ -24,7 +24,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.rayzr522.jsonmessage.JSONMessage;
+import me.clip.placeholderapi.util.JSONMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

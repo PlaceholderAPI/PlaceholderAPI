@@ -24,10 +24,6 @@
       <id>CodeMC</id>
       <url>https://repo.codemc.org/repository/maven-public</url>
     </repository>
-    <repository>
-      <id>rayzr-repo</id>
-      <url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
-    </repository>
   </repositories>
 
   <dependencies>
@@ -46,12 +42,6 @@
       <groupId>org.bstats</groupId>
       <artifactId>bstats-bukkit</artifactId>
       <version>1.5</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>me.rayzr522</groupId>
-      <artifactId>jsonmessage</artifactId>
-      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
