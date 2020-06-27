@@ -1,12 +1,15 @@
-package me.clip.placeholderapi.commands.papi;
+package me.clip.placeholderapi.commands.command;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
-import static me.clip.placeholderapi.util.Msg.msg;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EcloudCommand extends Command {
 
@@ -14,16 +17,16 @@ public class EcloudCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public EcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud", 0);
-        options.permissions("placeholderapi.ecloud");
+        super("ecloud", 1, 0);
 
+        permissions().add("placeholderapi.ecloud");
         this.plugin = plugin;
     }
 
     @Override
-    public boolean execute(final @NotNull CommandSender sender, final String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         if (args.length == 0) {
-            msg(sender, "&bExpansion cloud commands",
+            Msg.msg(sender, "&bExpansion cloud commands",
                     " ",
                     "&b/papi ecloud status",
                     "&fView status of the ecloud",
@@ -51,9 +54,33 @@ public class EcloudCommand extends Command {
         }
 
         if (plugin.getExpansionCloud().getCloudExpansions().isEmpty()) {
-            msg(sender, "&7No cloud expansions are available at this time.");
+            Msg.msg(sender, "&7No cloud expansions are available at this time.");
         }
         return true;
     }
 
+    @Override
+    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
+        return false;
+    }
+
+    @Override
+    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+        final List<String> completions = new ArrayList<>(Arrays.asList(
+                "clear",
+                "download",
+                "info",
+                "list",
+                "placeholders",
+                "refresh",
+                "status",
+                "versioninfo"
+        ));
+
+        if (args.length == 2) {
+            return StringUtil.copyPartialMatches(args[args.length - 1], completions, new ArrayList<>(completions.size()));
+        }
+
+        return null;
+    }
 }

@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.papi;
+package me.clip.placeholderapi.commands.command;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
@@ -6,19 +6,23 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public class HelpCommand extends Command {
+
     @NotNull
     private final PlaceholderAPIPlugin plugin;
 
     public HelpCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("help", 0);
-        options.def(true).permissions("placeholderapi.ecloud");
+        super("help", 1, 0);
 
+        permissions().add("placeholderapi.ecloud");
         this.plugin = plugin;
     }
 
     @Override
-    public boolean execute(final @NotNull CommandSender sender, final String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + plugin.getDescription().getVersion() + "&e)",
                 "&b/papi",
                 "&fView plugin info/version info",
@@ -52,4 +56,13 @@ public class HelpCommand extends Command {
         return true;
     }
 
+    @Override
+    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
+        return false;
+    }
+
+    @Override
+    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+        return Collections.emptyList();
+    }
 }

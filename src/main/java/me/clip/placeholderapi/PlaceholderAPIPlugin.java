@@ -40,6 +40,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
@@ -138,7 +139,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         config.loadDefConfig();
         setupOptions();
 
-        getCommand("placeholderapi").setExecutor(new CommandHandler(this));
+        Objects.requireNonNull(getCommand("placeholderapi")).setExecutor(new CommandHandler(this));
         new PlaceholderListener(this);
 
         try {

@@ -1,20 +1,19 @@
-package me.clip.placeholderapi.commands.papi.ecloud;
+package me.clip.placeholderapi.commands.command.ecloud;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static me.clip.placeholderapi.util.Msg.color;
-import static me.clip.placeholderapi.util.Msg.msg;
 
 public class ListCommand extends Command {
 
@@ -22,25 +21,22 @@ public class ListCommand extends Command {
     private final PlaceholderAPIPlugin plugin;
 
     public ListCommand(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("ecloud list", 1);
-        options.permissions("placeholdera.ecloud");
+        super("ecloud list", 2, 1);
 
+        permissions().add("placeholderapi.ecloud");
         this.plugin = plugin;
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return true;
+
         int page = 1;
 
         String author;
         boolean installed = false;
 
-        if (args.length < 2) {
-            msg(sender, "&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)");
-            return true;
-        }
-
-        author = args[1];
+        author = args[2];
 
         if (author.equalsIgnoreCase("all")) {
             author = null;
@@ -53,14 +49,14 @@ public class ListCommand extends Command {
             try {
                 page = Integer.parseInt(args[3]);
             } catch (NumberFormatException ex) {
-                msg(sender, "&cPage number must be an integer!");
+                Msg.msg(sender, "&cPage number must be an integer!");
 
                 return true;
             }
         }
 
         if (page < 1) {
-            msg(sender, "&cPage must be greater than or equal to 1!");
+            Msg.msg(sender, "&cPage must be greater than or equal to 1!");
 
             return true;
         }
@@ -77,36 +73,36 @@ public class ListCommand extends Command {
         }
 
         if (ex == null || ex.isEmpty()) {
-            msg(sender, "&cNo expansions available" + (author != null ? " for author &f" + author : ""));
+            Msg.msg(sender, "&cNo expansions available" + (author != null ? " for author &f" + author : ""));
 
             return true;
         }
 
         avail = plugin.getExpansionCloud().getPagesAvailable(ex, 10);
         if (page > avail) {
-            msg(sender, "&cThere " + ((avail == 1) ? " is only &f" + avail + " &cpage available!"
+            Msg.msg(sender, "&cThere " + ((avail == 1) ? " is only &f" + avail + " &cpage available!"
                     : "are only &f" + avail + " &cpages available!"));
 
             return true;
         }
 
-        msg(sender, "&bShowing expansions for&7: &f" + (author != null ? author
+        Msg.msg(sender, "&bShowing expansions for&7: &f" + (author != null ? author
                 : (installed ? "all installed" : "all available")) + " &8&m--&r &bamount&7: &f" + ex
                 .size() + " &bpage&7: &f" + page + "&7/&f" + avail);
 
         ex = plugin.getExpansionCloud().getPage(ex, page, 10);
 
         if (ex == null) {
-            msg(sender, "&cThere was a problem getting the requested page...");
+            Msg.msg(sender, "&cThere was a problem getting the requested page...");
 
             return true;
         }
 
-        msg(sender, "&aGreen = Expansions you have");
-        msg(sender, "&6Gold = Expansions which need updated");
+        Msg.msg(sender, "&aGreen = Expansions you have");
+        Msg.msg(sender, "&6Gold = Expansions which need updated");
 
         if (!(sender instanceof Player)) {
-            Map<String, CloudExpansion> expansions = new HashMap<>();
+            final Map<String, CloudExpansion> expansions = new HashMap<>();
 
             for (CloudExpansion exp : ex.values()) {
                 if (exp == null || exp.getName() == null) {
@@ -116,7 +112,7 @@ public class ListCommand extends Command {
                 expansions.put(exp.getName(), exp);
             }
 
-            List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+            final List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
 
             int i = (int) ex.keySet().toArray()[0];
 
@@ -125,9 +121,9 @@ public class ListCommand extends Command {
                     continue;
                 }
 
-                CloudExpansion expansion = expansions.get(name);
+                final CloudExpansion expansion = expansions.get(name);
 
-                msg(sender,
+                Msg.msg(sender,
                         "&b" + i + "&7: " + (expansion.shouldUpdate() ? "&6"
                                 : (expansion.hasExpansion() ? "&a" : "&7")) + expansion
                                 .getName() + " &8&m-- &r" + expansion.getVersion().getUrl());
@@ -137,11 +133,11 @@ public class ListCommand extends Command {
             return true;
         }
 
-        Player p = (Player) sender;
+        final Player p = (Player) sender;
 
-        Map<String, CloudExpansion> expansions = new HashMap<>();
+        final Map<String, CloudExpansion> expansions = new HashMap<>();
 
-        for (CloudExpansion exp : ex.values()) {
+        for (final CloudExpansion exp : ex.values()) {
             if (exp == null || exp.getName() == null) {
                 continue;
             }
@@ -149,7 +145,7 @@ public class ListCommand extends Command {
             expansions.put(exp.getName(), exp);
         }
 
-        List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+        final List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
 
         int i = page > 1 ? page * 10 : 0;
 
@@ -158,8 +154,8 @@ public class ListCommand extends Command {
                 continue;
             }
 
-            CloudExpansion expansion = expansions.get(name);
-            StringBuilder sb = new StringBuilder();
+            final CloudExpansion expansion = expansions.get(name);
+            final StringBuilder sb = new StringBuilder();
 
             if (expansion.shouldUpdate()) {
                 sb.append("&6Click to update to the latest version of this expansion\n\n");
@@ -175,13 +171,13 @@ public class ListCommand extends Command {
             sb.append("&bLast updated&7: &f").append(expansion.getTimeSinceLastUpdate()).append(" ago\n");
             sb.append("\n").append(expansion.getDescription());
 
-            String msg = color(
+            final String msg = color(
                     "&b" + (i + 1) + "&7: " + (expansion.shouldUpdate() ? "&6"
                             : (expansion.hasExpansion() ? "&a" : "")) + expansion.getName());
 
-            String hover = color(sb.toString());
+            final String hover = color(sb.toString());
 
-            JSONMessage line = JSONMessage.create(msg);
+            final JSONMessage line = JSONMessage.create(msg);
             line.tooltip(hover);
 
             if (expansion.shouldUpdate() || !expansion.hasExpansion()) {
@@ -195,5 +191,35 @@ public class ListCommand extends Command {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
+        final int given = args.length - super.getLength();
+
+        if (given < super.getMin()) {
+            Msg.msg(sender, "&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)");
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+        final int required = super.getMin() + super.getLength();
+        if (args.length == required) {
+            final List<String> completions = new ArrayList<>(Arrays.asList(
+                    "all",
+                    "author",
+                    "installed"
+            ));
+
+            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
+        }
+        if (args.length == required + 1) {
+            return Arrays.asList("Pages");
+        }
+
+        return Collections.emptyList();
     }
 }

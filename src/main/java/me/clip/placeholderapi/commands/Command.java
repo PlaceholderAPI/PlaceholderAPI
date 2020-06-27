@@ -3,79 +3,55 @@ package me.clip.placeholderapi.commands;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Command {
 
-    protected final Options options = new Options();
-
     private final String command;
-    private final int requiredArgs;
+    private final int length;
+    private final int min;
+    private final Permissions permissions = new Permissions();
 
-    private List<String> permissions;
-    private String usage;
-    private boolean def = false;
-    private boolean playerOnly = false;
-
-    protected Command(@NotNull final String command, final int requiredArgs) {
+    protected Command(@NotNull final String command, final int length, final int min) {
         this.command = command;
-        this.requiredArgs = requiredArgs;
+        this.length = length;
+        this.min = min;
     }
 
-    @NotNull
+    public Permissions permissions() {
+        return permissions;
+    }
+
     public String getCommand() {
-        return this.command;
+        return command;
     }
 
-    @NotNull
-    public String getUsage() {
-        return this.usage;
+    public int getMin() {
+        return min;
     }
 
-    @NotNull
-    public List<String> getPermissions() {
-        return this.permissions;
-    }
-
-    public int getRequiredArgs() {
-        return this.requiredArgs;
-    }
-
-    public boolean isDefault() {
-        return this.def;
-    }
-
-    public boolean isPlayerOnly() {
-        return this.playerOnly;
+    public int getLength() {
+        return length;
     }
 
     public abstract boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args);
 
-    protected final class Options {
-        @NotNull
-        public Options permissions(@NotNull final String... values) {
-            permissions = Arrays.asList(values);
-            return this;
+    public abstract boolean handleUsage(@NotNull final CommandSender sender, @NotNull final String[] args);
+
+    public abstract List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args);
+
+    protected static class Permissions {
+
+        private List<String> permissions = new ArrayList<>();
+
+        public List<String> getPermissions() {
+            return permissions;
         }
 
-        @NotNull
-        public Options usage(@NotNull final String value) {
-            usage = value;
-            return this;
-        }
-
-        @NotNull
-        public Options def(final boolean value) {
-            def = value;
-            return this;
-        }
-
-        @NotNull
-        public Options playerOnly(final boolean value) {
-            playerOnly = value;
-            return this;
+        public void add(final String... permissions) {
+            this.permissions.addAll(Arrays.asList(permissions));
         }
     }
 }
-
