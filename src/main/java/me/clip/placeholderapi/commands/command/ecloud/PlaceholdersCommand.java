@@ -25,8 +25,8 @@ public class PlaceholdersCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
 
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         final String input = args[2];
@@ -34,7 +34,7 @@ public class PlaceholdersCommand extends Command {
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
 
-            return true;
+            return;
         }
 
         final List<String> placeholders = expansion.getPlaceholders();
@@ -43,7 +43,7 @@ public class PlaceholdersCommand extends Command {
                             + " &cdoes not have any placeholders listed.",
                     "&7You should contact &f" + expansion.getAuthor() + " &7and ask for them to be added.");
 
-            return true;
+            return;
         }
 
         if (!(sender instanceof Player)
@@ -51,7 +51,7 @@ public class PlaceholdersCommand extends Command {
             Msg.msg(sender, "&bPlaceholders: &f" + placeholders.size(),
                     String.join("&a, &f", placeholders));
 
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -59,27 +59,22 @@ public class PlaceholdersCommand extends Command {
         message.then("\n");
 
         for (int i = 0; i < placeholders.size(); i++) {
-            if (i == placeholders.size() - 1) {
-                message.then(placeholders.get(i));
-            } else {
-                message.then(Msg.color(placeholders.get(i) + "&b, &f"));
-            }
+            message.then(i == placeholders.size() - 1 ? placeholders.get(i) : Msg.color(placeholders.get(i) + "&b, &f"));
             try {
                 message.tooltip(PlaceholderAPI.setPlaceholders(p, placeholders.get(i)));
-            } catch (Exception e) {
-                // Why you catching pokemon, and then ignoring them :C
+            } catch (final Exception ignored) {
+                // Ignored exception
             }
         }
 
         message.send(p);
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cAn expansion name must be specified!");
             return true;
         }
@@ -88,7 +83,7 @@ public class PlaceholdersCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required) {
             final List<String> completions = new ArrayList<>(Arrays.asList(

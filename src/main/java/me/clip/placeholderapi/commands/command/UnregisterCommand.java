@@ -23,8 +23,8 @@ public class UnregisterCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
 
         final String input = args[1];
@@ -32,7 +32,7 @@ public class UnregisterCommand extends Command {
         if (ex == null) {
             Msg.msg(sender, "&cFailed to find expansion: &f" + input);
 
-            return true;
+            return;
         }
 
         if (PlaceholderAPI.unregisterExpansion(ex)) {
@@ -40,14 +40,13 @@ public class UnregisterCommand extends Command {
         } else {
             Msg.msg(sender, "&cFailed to unregister expansion: &f" + ex.getName());
         }
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cAn expansion name must be specified!");
             return true;
         }
@@ -56,7 +55,7 @@ public class UnregisterCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
         if (args.length == required) {
             final List<String> completions = new ArrayList<>(Arrays.asList(
                     "some completion"

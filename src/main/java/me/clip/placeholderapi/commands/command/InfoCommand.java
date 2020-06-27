@@ -22,15 +22,15 @@ public class InfoCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
 
         final String input = args[1];
         final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().getRegisteredExpansion(input);
         if (ex == null) {
             Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + input);
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&7Placeholder expansion info for: &f" + ex.getName());
@@ -55,15 +55,13 @@ public class InfoCommand extends Command {
                 Msg.msg(sender, placeholder);
             }
         }
-
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cIncorrect usage! &7/papi info <expansion>");
             return true;
         }
@@ -73,7 +71,7 @@ public class InfoCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required) {
             final List<String> completions = new ArrayList<>(Arrays.asList(

@@ -22,8 +22,8 @@ public class BcParseCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
 
         OfflinePlayer player;
 
@@ -34,7 +34,7 @@ public class BcParseCommand extends Command {
             } else {
                 Msg.msg(sender, "&cThis command must target a player when used by console");
 
-                return true;
+                return;
             }
         } else {
             if (Bukkit.getPlayer(input) != null) {
@@ -46,19 +46,18 @@ public class BcParseCommand extends Command {
 
         if (player == null || !player.hasPlayedBefore()) {
             Msg.msg(sender, "&cFailed to find player: &f" + input);
-            return true;
+            return;
         }
 
         final String parse = StringUtils.join(args, " ", 2, args.length);
         Msg.broadcast("&r" + PlaceholderAPI.setPlaceholders(player, parse));
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cYou must specify a player.");
             return true;
         }
@@ -67,7 +66,7 @@ public class BcParseCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
         if (args.length == required) {
             return null;
         }

@@ -20,7 +20,8 @@ public class CompletionHandler implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command cmd, @NotNull String name, @NotNull String[] args) {
         final String joined = String.join(" ", args).toLowerCase();
-        final Optional<Command> optional = commands.stream().filter(command -> joined.startsWith(command.getCommand()) && args.length >= command.getLength()).findAny();
+        final Optional<Command> optional = commands.stream().filter(command ->
+                joined.startsWith(command.getCommand()) && args.length >= command.getCommandLength()).findAny();
 
         if (optional.isPresent()) {
             final Command command = optional.get();

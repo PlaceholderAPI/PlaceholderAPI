@@ -6,9 +6,6 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-
 public class DisableEcloudCommand extends Command {
 
     public DisableEcloudCommand() {
@@ -18,28 +15,17 @@ public class DisableEcloudCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The cloud is already disabled!");
 
-            return true;
+            return;
         }
 
         plugin.disableCloud();
         plugin.getPlaceholderAPIConfig().setCloudEnabled(false);
         Msg.msg(sender, "&aThe cloud has been disabled!");
-
-        return true;
     }
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
-    }
-
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        return Collections.emptyList();
-    }
 }

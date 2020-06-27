@@ -6,9 +6,6 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-
 public class ClearCommand extends Command {
 
     public ClearCommand() {
@@ -18,19 +15,9 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        Msg.msg(sender, "&aThe cache has been cleared!!");
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         PlaceholderAPIPlugin.getInstance().getExpansionCloud().clean();
-        return true;
+        Msg.msg(sender, "&aThe cache has been cleared!!");
     }
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
-    }
-
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        return Collections.emptyList();
-    }
 }

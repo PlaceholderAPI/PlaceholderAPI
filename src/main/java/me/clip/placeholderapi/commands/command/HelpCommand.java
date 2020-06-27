@@ -6,9 +6,6 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-
 public class HelpCommand extends Command {
 
     public HelpCommand() {
@@ -18,7 +15,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + PlaceholderAPIPlugin.getInstance().getDescription().getVersion() + "&e)",
                 "&b/papi",
                 "&fView plugin info/version info",
@@ -48,17 +45,5 @@ public class HelpCommand extends Command {
                     "&fEnable the expansion cloud");
 
         }
-
-        return true;
-    }
-
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
-    }
-
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        return Collections.emptyList();
     }
 }

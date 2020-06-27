@@ -6,9 +6,6 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-
 public class ReloadCommand extends Command {
 
     public ReloadCommand() {
@@ -18,19 +15,9 @@ public class ReloadCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         Msg.msg(sender, "&fPlaceholder&7API &bconfiguration reloaded!");
         PlaceholderAPIPlugin.getInstance().reloadConf(sender);
-        return true;
     }
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
-    }
-
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        return Collections.emptyList();
-    }
 }

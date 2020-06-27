@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Command {
@@ -20,7 +21,7 @@ public abstract class Command {
         this.min = min;
     }
 
-    public Permissions permissions() {
+    protected Permissions permissions() {
         return permissions;
     }
 
@@ -28,19 +29,23 @@ public abstract class Command {
         return command;
     }
 
-    public int getMin() {
+    public int getMinArguments() {
         return min;
     }
 
-    public int getLength() {
+    public int getCommandLength() {
         return length;
     }
 
-    public abstract boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args);
+    public abstract void execute(@NotNull final CommandSender sender, @NotNull final String[] args);
 
-    public abstract boolean handleUsage(@NotNull final CommandSender sender, @NotNull final String[] args);
+    public boolean handleUsage(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        return false;
+    }
 
-    public abstract List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args);
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        return Collections.emptyList();
+    }
 
     protected static class Permissions {
 

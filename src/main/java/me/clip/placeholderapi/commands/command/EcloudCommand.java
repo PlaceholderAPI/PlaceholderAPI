@@ -20,7 +20,7 @@ public class EcloudCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (args.length == 0) {
             Msg.msg(sender, "&bExpansion cloud commands",
@@ -41,24 +41,18 @@ public class EcloudCommand extends Command {
                     "&fFetch the most up to date list of expansions available.",
                     "&b/papi ecloud clear",
                     "&fClear the expansion cloud cache.");
-            return true;
+            return;
         }
 
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The expansion cloud is not enabled!");
 
-            return true;
+            return;
         }
 
         if (plugin.getExpansionCloud().getCloudExpansions().isEmpty()) {
             Msg.msg(sender, "&7No cloud expansions are available at this time.");
         }
-        return true;
-    }
-
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
     }
 
     @Override

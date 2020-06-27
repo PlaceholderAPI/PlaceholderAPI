@@ -14,25 +14,18 @@ import java.util.List;
 
 public class VersionCommand extends Command {
 
-
     public VersionCommand() {
         super("", 0, 0);
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
 
         Msg.msg(sender, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
                 "&fCreated by&7: &b" + plugin.getDescription().getAuthors(),
                 "&fPapi commands: &b/papi help",
                 "&fEcloud commands: &b/papi ecloud");
-        return true;
-    }
-
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        return false;
     }
 
     @Override

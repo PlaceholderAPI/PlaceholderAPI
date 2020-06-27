@@ -24,8 +24,8 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
 
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         int page = 1;
@@ -48,14 +48,14 @@ public class ListCommand extends Command {
             } catch (NumberFormatException ex) {
                 Msg.msg(sender, "&cPage number must be an integer!");
 
-                return true;
+                return;
             }
         }
 
         if (page < 1) {
             Msg.msg(sender, "&cPage must be greater than or equal to 1!");
 
-            return true;
+            return;
         }
 
         int avail;
@@ -72,7 +72,7 @@ public class ListCommand extends Command {
         if (ex == null || ex.isEmpty()) {
             Msg.msg(sender, "&cNo expansions available" + (author != null ? " for author &f" + author : ""));
 
-            return true;
+            return;
         }
 
         avail = plugin.getExpansionCloud().getPagesAvailable(ex, 10);
@@ -80,7 +80,7 @@ public class ListCommand extends Command {
             Msg.msg(sender, "&cThere " + ((avail == 1) ? " is only &f" + avail + " &cpage available!"
                     : "are only &f" + avail + " &cpages available!"));
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&bShowing expansions for&7: &f" + (author != null ? author
@@ -92,7 +92,7 @@ public class ListCommand extends Command {
         if (ex == null) {
             Msg.msg(sender, "&cThere was a problem getting the requested page...");
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&aGreen = Expansions you have");
@@ -127,7 +127,7 @@ public class ListCommand extends Command {
                 i++;
             }
 
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -186,15 +186,13 @@ public class ListCommand extends Command {
             line.send(p);
             i++;
         }
-
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)");
             return true;
         }
@@ -203,7 +201,7 @@ public class ListCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
         if (args.length == required) {
             final List<String> completions = new ArrayList<>(Arrays.asList(
                     "all",

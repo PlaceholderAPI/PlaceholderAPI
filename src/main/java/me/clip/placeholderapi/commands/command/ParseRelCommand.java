@@ -21,34 +21,32 @@ public class ParseRelCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return true;
+    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        if (handleUsage(sender, args)) return;
 
         final Player one = Bukkit.getPlayer(args[0]);
         if (one == null) {
             Msg.msg(sender, args[0] + " &cis not online!");
 
-            return true;
+            return;
         }
 
         final Player two = Bukkit.getPlayer(args[1]);
         if (two == null) {
             Msg.msg(sender, args[1] + " &cis not online!");
 
-            return true;
+            return;
         }
 
         final String parse = StringUtils.join(args, " ", 2, args.length);
         Msg.msg(sender, "&r" + PlaceholderAPI.setRelationalPlaceholders(one, two, parse));
-
-        return true;
     }
 
     @Override
     public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getLength();
+        final int given = args.length - super.getCommandLength();
 
-        if (given < super.getMin()) {
+        if (given < super.getMinArguments()) {
             Msg.msg(sender, "&cYou must specify at least two players.");
             return true;
         }
@@ -57,7 +55,7 @@ public class ParseRelCommand extends Command {
 
     @Override
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMin() + super.getLength();
+        final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required || args.length == required + 1) {
             return null;
