@@ -11,20 +11,16 @@ import java.util.List;
 
 public class ClearCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public ClearCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public ClearCommand() {
         super("ecloud clear", 2, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         Msg.msg(sender, "&aThe cache has been cleared!!");
-        plugin.getExpansionCloud().clean();
+        PlaceholderAPIPlugin.getInstance().getExpansionCloud().clean();
         return true;
     }
 

@@ -17,14 +17,10 @@ import java.util.List;
 
 public class VersionInfoCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public VersionInfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public VersionInfoCommand() {
         super("ecloud versioninfo", 2, 2);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
@@ -32,7 +28,7 @@ public class VersionInfoCommand extends Command {
         if (handleUsage(sender, args)) return true;
 
         final String input = args[2];
-        final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
+        final CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
             return true;

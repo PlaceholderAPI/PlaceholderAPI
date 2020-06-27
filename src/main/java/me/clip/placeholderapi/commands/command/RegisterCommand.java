@@ -15,14 +15,10 @@ import java.util.List;
 
 public class RegisterCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public RegisterCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public RegisterCommand() {
         super("register", 1, 1);
 
         permissions().add("placeholderapi.register");
-        this.plugin = plugin;
     }
 
     @Override
@@ -30,7 +26,7 @@ public class RegisterCommand extends Command {
         if (handleUsage(sender, args)) return true;
 
         final String fileName = args[1].replace(".jar", "");
-        final PlaceholderExpansion ex = plugin.getExpansionManager().registerExpansion(fileName);
+        final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().registerExpansion(fileName);
 
         if (ex == null) {
             Msg.msg(sender, "&cFailed to register expansion from " + fileName);

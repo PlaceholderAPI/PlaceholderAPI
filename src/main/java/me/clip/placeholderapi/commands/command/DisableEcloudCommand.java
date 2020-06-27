@@ -11,18 +11,15 @@ import java.util.List;
 
 public class DisableEcloudCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public DisableEcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public DisableEcloudCommand() {
         super("disablecloud", 1, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The cloud is already disabled!");
 

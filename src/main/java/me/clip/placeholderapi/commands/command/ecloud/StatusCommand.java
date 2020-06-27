@@ -11,18 +11,15 @@ import java.util.List;
 
 public class StatusCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public StatusCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public StatusCommand() {
         super("ecloud status", 2, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         Msg.msg(sender, "&bThere are &f" + plugin.getExpansionCloud().getCloudExpansions().size()
                         + " &bexpansions available on the cloud.",
                 "&7A total of &f" + plugin.getExpansionCloud().getCloudAuthorCount()

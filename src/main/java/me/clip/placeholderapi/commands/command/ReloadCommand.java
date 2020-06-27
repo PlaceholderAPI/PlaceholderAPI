@@ -11,20 +11,16 @@ import java.util.List;
 
 public class ReloadCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public ReloadCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public ReloadCommand() {
         super("reload", 1, 0);
 
         permissions().add("placeholderapi.reload");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         Msg.msg(sender, "&fPlaceholder&7API &bconfiguration reloaded!");
-        plugin.reloadConf(sender);
+        PlaceholderAPIPlugin.getInstance().reloadConf(sender);
         return true;
     }
 

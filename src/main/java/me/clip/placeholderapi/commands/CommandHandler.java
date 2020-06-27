@@ -22,27 +22,27 @@ public class CommandHandler implements CommandExecutor {
 
     public CommandHandler(final PlaceholderAPIPlugin plugin) {
         this.commands = Arrays.asList(
-                new ClearCommand(plugin),
-                new DownloadCommand(plugin),
-                new InfoCommand(plugin),
-                new ListCommand(plugin),
-                new PlaceholdersCommand(plugin),
-                new RefreshCommand(plugin),
-                new StatusCommand(plugin),
-                new VersionInfoCommand(plugin),
-                new EcloudCommand(plugin),
+                new ClearCommand(),
+                new DownloadCommand(),
+                new InfoCommand(),
+                new ListCommand(),
+                new PlaceholdersCommand(),
+                new RefreshCommand(),
+                new StatusCommand(),
+                new VersionInfoCommand(),
+                new EcloudCommand(),
                 new BcParseCommand(),
                 new ParseCommand(),
                 new ParseRelCommand(),
-                new DisableEcloudCommand(plugin),
-                new EnableCloudCommand(plugin),
-                new HelpCommand(plugin),
-                new me.clip.placeholderapi.commands.command.InfoCommand(plugin),
+                new DisableEcloudCommand(),
+                new EnableCloudCommand(),
+                new HelpCommand(),
+                new me.clip.placeholderapi.commands.command.InfoCommand(),
                 new me.clip.placeholderapi.commands.command.ListCommand(),
-                new RegisterCommand(plugin),
-                new ReloadCommand(plugin),
-                new VersionCommand(plugin),
-                new UnregisterCommand(plugin)
+                new RegisterCommand(),
+                new ReloadCommand(),
+                new VersionCommand(),
+                new UnregisterCommand()
         );
 
         this.def = commands.stream().filter(command -> command.getCommand().length() == 0)

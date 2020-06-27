@@ -11,18 +11,15 @@ import java.util.List;
 
 public class EnableCloudCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public EnableCloudCommand(@NotNull PlaceholderAPIPlugin plugin) {
+    public EnableCloudCommand() {
         super("enablecloud", 1, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() != null) {
             Msg.msg(sender, "&7The cloud is already enabled!");
 

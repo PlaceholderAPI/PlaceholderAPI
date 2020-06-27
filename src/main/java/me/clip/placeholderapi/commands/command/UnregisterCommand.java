@@ -16,19 +16,16 @@ import java.util.List;
 
 public class UnregisterCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public UnregisterCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public UnregisterCommand() {
         super("unregister", 1, 1);
 
         permissions().add("placeholderapi.register");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         if (handleUsage(sender, args)) return true;
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
 
         final String input = args[1];
         final PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(input);

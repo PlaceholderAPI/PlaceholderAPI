@@ -18,20 +18,17 @@ import java.util.List;
 
 public class DownloadCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public DownloadCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public DownloadCommand() {
         super("ecloud download", 2, 1);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         if (handleUsage(sender, args)) return true;
 
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         final String input = args[2];
         final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {

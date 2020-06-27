@@ -11,19 +11,15 @@ import java.util.List;
 
 public class HelpCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public HelpCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public HelpCommand() {
         super("help", 1, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + plugin.getDescription().getVersion() + "&e)",
+        Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + PlaceholderAPIPlugin.getInstance().getDescription().getVersion() + "&e)",
                 "&b/papi",
                 "&fView plugin info/version info",
                 "&b/papi list",

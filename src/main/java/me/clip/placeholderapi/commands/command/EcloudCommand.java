@@ -13,18 +13,15 @@ import java.util.List;
 
 public class EcloudCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public EcloudCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public EcloudCommand() {
         super("ecloud", 1, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (args.length == 0) {
             Msg.msg(sender, "&bExpansion cloud commands",
                     " ",

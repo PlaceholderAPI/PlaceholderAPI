@@ -14,17 +14,15 @@ import java.util.List;
 
 public class VersionCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
 
-    public VersionCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public VersionCommand() {
         super("", 0, 0);
-
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+
         Msg.msg(sender, "PlaceholderAPI &7version &b&o" + plugin.getDescription().getVersion(),
                 "&fCreated by&7: &b" + plugin.getDescription().getAuthors(),
                 "&fPapi commands: &b/papi help",

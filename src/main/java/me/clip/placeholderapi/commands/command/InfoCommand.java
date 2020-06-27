@@ -15,14 +15,10 @@ import java.util.List;
 
 public class InfoCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public InfoCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public InfoCommand() {
         super("info", 1, 1);
 
         permissions().add("placeholderapi.info");
-        this.plugin = plugin;
     }
 
     @Override
@@ -30,7 +26,7 @@ public class InfoCommand extends Command {
         if (handleUsage(sender, args)) return true;
 
         final String input = args[1];
-        final PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(input);
+        final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().getRegisteredExpansion(input);
         if (ex == null) {
             Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + input);
 

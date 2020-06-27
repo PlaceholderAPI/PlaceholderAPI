@@ -17,20 +17,17 @@ import static me.clip.placeholderapi.util.Msg.color;
 
 public class ListCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public ListCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public ListCommand() {
         super("ecloud list", 2, 1);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
         if (handleUsage(sender, args)) return true;
 
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         int page = 1;
 
         String author;

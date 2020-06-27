@@ -11,18 +11,15 @@ import java.util.List;
 
 public class RefreshCommand extends Command {
 
-    @NotNull
-    private final PlaceholderAPIPlugin plugin;
-
-    public RefreshCommand(@NotNull final PlaceholderAPIPlugin plugin) {
+    public RefreshCommand() {
         super("ecloud refresh", 2, 0);
 
         permissions().add("placeholderapi.ecloud");
-        this.plugin = plugin;
     }
 
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         Msg.msg(sender, "&aRefresh task started. Use &f/papi ecloud list all &ain a few!!");
         plugin.getExpansionCloud().clean();
         plugin.getExpansionCloud().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
