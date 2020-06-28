@@ -11,6 +11,7 @@ import me.clip.placeholderapi.commands.command.ParseRelCommand;
 import me.clip.placeholderapi.commands.command.RegisterCommand;
 import me.clip.placeholderapi.commands.command.ReloadCommand;
 import me.clip.placeholderapi.commands.command.UnregisterCommand;
+import me.clip.placeholderapi.commands.command.VersionCommand;
 import me.clip.placeholderapi.commands.command.ecloud.ClearCommand;
 import me.clip.placeholderapi.commands.command.ecloud.DownloadCommand;
 import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
@@ -55,6 +56,7 @@ public class CommandHandler implements CommandExecutor {
                 new me.clip.placeholderapi.commands.command.ListCommand(),
                 new RegisterCommand(),
                 new ReloadCommand(),
+                new VersionCommand(),
                 new UnregisterCommand()
         );
 
