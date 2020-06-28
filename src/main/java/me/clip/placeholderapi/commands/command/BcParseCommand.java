@@ -68,7 +68,7 @@ public class BcParseCommand extends Command {
     public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final int required = super.getMinArguments() + super.getCommandLength();
         if (args.length == required) {
-            return null;
+            return Collections.emptyList();
         }
 
         return Collections.emptyList();

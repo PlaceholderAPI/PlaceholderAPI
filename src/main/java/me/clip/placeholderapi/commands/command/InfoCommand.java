@@ -1,5 +1,6 @@
 package me.clip.placeholderapi.commands.command;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -9,9 +10,9 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class InfoCommand extends Command {
 
@@ -74,9 +75,7 @@ public class InfoCommand extends Command {
         final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required) {
-            final List<String> completions = new ArrayList<>(Arrays.asList(
-                    "expansions.."
-            ));
+            final Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
 
             return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
         }

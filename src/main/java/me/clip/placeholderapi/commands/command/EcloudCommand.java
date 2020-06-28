@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class EcloudCommand extends Command {
@@ -72,6 +73,6 @@ public class EcloudCommand extends Command {
             return StringUtil.copyPartialMatches(args[args.length - 1], completions, new ArrayList<>(completions.size()));
         }
 
-        return null;
+        return Collections.emptyList();
     }
 }

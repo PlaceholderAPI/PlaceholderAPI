@@ -8,12 +8,8 @@ import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class PlaceholdersCommand extends Command {
@@ -81,18 +77,4 @@ public class PlaceholdersCommand extends Command {
         return false;
     }
 
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-
-        if (args.length == required) {
-            final List<String> completions = new ArrayList<>(Arrays.asList(
-                    "expansions.."
-            ));
-
-            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
-        }
-
-        return Collections.emptyList();
-    }
 }

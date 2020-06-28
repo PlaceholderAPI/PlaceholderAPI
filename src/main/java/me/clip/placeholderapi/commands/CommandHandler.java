@@ -1,10 +1,24 @@
 package me.clip.placeholderapi.commands;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.command.*;
+import me.clip.placeholderapi.commands.command.BcParseCommand;
+import me.clip.placeholderapi.commands.command.DisableEcloudCommand;
+import me.clip.placeholderapi.commands.command.EcloudCommand;
+import me.clip.placeholderapi.commands.command.EnableCloudCommand;
+import me.clip.placeholderapi.commands.command.HelpCommand;
+import me.clip.placeholderapi.commands.command.ParseCommand;
+import me.clip.placeholderapi.commands.command.ParseRelCommand;
+import me.clip.placeholderapi.commands.command.RegisterCommand;
+import me.clip.placeholderapi.commands.command.ReloadCommand;
+import me.clip.placeholderapi.commands.command.UnregisterCommand;
+import me.clip.placeholderapi.commands.command.ecloud.ClearCommand;
+import me.clip.placeholderapi.commands.command.ecloud.DownloadCommand;
 import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
 import me.clip.placeholderapi.commands.command.ecloud.ListCommand;
-import me.clip.placeholderapi.commands.command.ecloud.*;
+import me.clip.placeholderapi.commands.command.ecloud.PlaceholdersCommand;
+import me.clip.placeholderapi.commands.command.ecloud.RefreshCommand;
+import me.clip.placeholderapi.commands.command.ecloud.StatusCommand;
+import me.clip.placeholderapi.commands.command.ecloud.VersionInfoCommand;
 import me.clip.placeholderapi.exceptions.NoDefaultCommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -41,7 +55,6 @@ public class CommandHandler implements CommandExecutor {
                 new me.clip.placeholderapi.commands.command.ListCommand(),
                 new RegisterCommand(),
                 new ReloadCommand(),
-                new VersionCommand(),
                 new UnregisterCommand()
         );
 

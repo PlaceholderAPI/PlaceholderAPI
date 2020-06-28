@@ -48,17 +48,4 @@ public class RegisterCommand extends Command {
         return false;
     }
 
-    @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-        if (args.length == required) {
-            final List<String> completions = new ArrayList<>(Arrays.asList(
-                    "some completion"
-            ));
-
-            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
-        }
-
-        return Collections.emptyList();
-    }
 }
