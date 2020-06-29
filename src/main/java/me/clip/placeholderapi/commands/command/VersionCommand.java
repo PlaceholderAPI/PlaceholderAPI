@@ -14,6 +14,7 @@ import java.util.List;
 
 public class VersionCommand extends Command {
 
+
     public VersionCommand() {
         super("", 0, 0);
     }
@@ -29,7 +30,7 @@ public class VersionCommand extends Command {
     }
 
     @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final List<String> completions = new ArrayList<>(Arrays.asList(
                 "unregister",
                 "reload",

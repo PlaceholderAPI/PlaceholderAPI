@@ -65,7 +65,7 @@ public class ParseCommand extends Command {
     }
 
     @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final int required = super.getMinArguments() + super.getCommandLength();
         if (args.length == required) {
             return null;

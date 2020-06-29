@@ -11,7 +11,7 @@ public class ReloadCommand extends Command {
     public ReloadCommand() {
         super("reload", 1, 0);
 
-        permissions().add("placeholderapi.reload");
+        permissions("placeholderapi.reload");
     }
 
     @Override

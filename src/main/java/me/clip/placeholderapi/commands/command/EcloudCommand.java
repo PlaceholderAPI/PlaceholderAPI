@@ -57,7 +57,7 @@ public class EcloudCommand extends Command {
     }
 
     @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final List<String> completions = new ArrayList<>(Arrays.asList(
                 "clear",
                 "download",

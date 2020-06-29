@@ -19,7 +19,7 @@ public class InfoCommand extends Command {
     public InfoCommand() {
         super("info", 1, 1);
 
-        permissions().add("placeholderapi.info");
+        permissions("placeholderapi.info");
     }
 
     @Override
@@ -71,7 +71,7 @@ public class InfoCommand extends Command {
     }
 
     @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required) {

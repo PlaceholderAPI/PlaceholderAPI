@@ -8,27 +8,23 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class CompletionHandler implements TabCompleter {
+    private final Set<Command> commands;
 
-    private final List<Command> commands;
-
-    CompletionHandler(@NotNull final List<Command> cmds) {
-        this.commands = cmds;
+    CompletionHandler(@NotNull final Set<Command> commands) {
+        this.commands = commands;
     }
 
+    @Nullable
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command cmd, @NotNull String name, @NotNull String[] args) {
+    public List<String> onTabComplete(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
+                                      @NotNull final String name, @NotNull final String[] args) {
         final String joined = String.join(" ", args).toLowerCase();
         final Optional<Command> optional = commands.stream().filter(command ->
                 joined.startsWith(command.getCommand()) && args.length >= command.getCommandLength()).findAny();
 
-        if (optional.isPresent()) {
-            final Command command = optional.get();
-
-            return command.handleCompletion(sender, args);
-        }
-
-        return Collections.emptyList();
+        return optional.map(command -> command.handleCompletion(sender, args)).orElse(Collections.emptyList());
     }
 }

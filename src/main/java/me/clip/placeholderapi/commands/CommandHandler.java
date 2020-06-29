@@ -1,5 +1,6 @@
 package me.clip.placeholderapi.commands;
 
+import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.command.BcParseCommand;
 import me.clip.placeholderapi.commands.command.DisableEcloudCommand;
@@ -25,56 +26,56 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CommandHandler implements CommandExecutor {
+    private static final Set<Command> COMMANDS = Sets.newHashSet(
+            new ClearCommand(),
+            new DownloadCommand(),
+            new InfoCommand(),
+            new ListCommand(),
+            new PlaceholdersCommand(),
+            new RefreshCommand(),
+            new StatusCommand(),
+            new VersionInfoCommand(),
+            new EcloudCommand(),
+            new BcParseCommand(),
+            new ParseCommand(),
+            new ParseRelCommand(),
+            new DisableEcloudCommand(),
+            new EnableCloudCommand(),
+            new HelpCommand(),
+            new me.clip.placeholderapi.commands.command.InfoCommand(),
+            new me.clip.placeholderapi.commands.command.ListCommand(),
+            new RegisterCommand(),
+            new ReloadCommand(),
+            new VersionCommand(),
+            new UnregisterCommand()
+    );
 
-    private final List<Command> commands;
-    private final Command def;
+    private static final Command DEFAULT = COMMANDS.stream()
+            .filter(command -> command.getCommand().isEmpty())
+            .findAny().orElseThrow(() -> new NoDefaultCommandException("There is no default command present in the plugin."));
 
-    public CommandHandler(final PlaceholderAPIPlugin plugin) {
-        this.commands = Arrays.asList(
-                new ClearCommand(),
-                new DownloadCommand(),
-                new InfoCommand(),
-                new ListCommand(),
-                new PlaceholdersCommand(),
-                new RefreshCommand(),
-                new StatusCommand(),
-                new VersionInfoCommand(),
-                new EcloudCommand(),
-                new BcParseCommand(),
-                new ParseCommand(),
-                new ParseRelCommand(),
-                new DisableEcloudCommand(),
-                new EnableCloudCommand(),
-                new HelpCommand(),
-                new me.clip.placeholderapi.commands.command.InfoCommand(),
-                new me.clip.placeholderapi.commands.command.ListCommand(),
-                new RegisterCommand(),
-                new ReloadCommand(),
-                new VersionCommand(),
-                new UnregisterCommand()
-        );
-
-        this.def = commands.stream().filter(command -> command.getCommand().length() == 0)
-                .findAny().orElseThrow(() -> new NoDefaultCommandException("There is no default command present in the plugin."));
-
-        Objects.requireNonNull(plugin.getCommand("placeholderapi")).setTabCompleter(new CompletionHandler(commands));
+    static {
+        Objects.requireNonNull(PlaceholderAPIPlugin.getInstance().getCommand("placeholderapi"))
+                .setTabCompleter(new CompletionHandler(COMMANDS));
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command cmd, @NotNull String name, @NotNull String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
+                             @NotNull final String name, @NotNull final String[] args) {
         if (args.length == 0) {
-            def.execute(sender, args);
+            DEFAULT.execute(sender, args);
             return true;
         }
 
         final String joined = String.join(" ", args).toLowerCase();
-        final Optional<Command> optional = commands.stream().filter(command -> joined.startsWith(command.getCommand())).findAny();
+        final Optional<Command> optional = COMMANDS.stream()
+                .filter(command -> joined.startsWith(command.getCommand()))
+                .findAny();
 
         if (!optional.isPresent()) {
             sender.sendMessage("Specified command is not valid.");
@@ -82,16 +83,13 @@ public class CommandHandler implements CommandExecutor {
         }
 
         final Command command = optional.get();
-        if (!checkPermissions(command, sender)) {
+
+        if (!command.getPermissions().isEmpty() && command.getPermissions().stream().anyMatch(sender::hasPermission)) {
             sender.sendMessage("You do not have the permission to execute specified command.");
             return true;
         }
 
         command.execute(sender, args);
         return true;
-    }
-
-    private boolean checkPermissions(Command command, CommandSender sender) {
-        return command.permissions().getPermissions().stream().anyMatch(sender::hasPermission);
     }
 }

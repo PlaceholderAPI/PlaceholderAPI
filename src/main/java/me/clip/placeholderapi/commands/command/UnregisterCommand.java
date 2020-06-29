@@ -19,7 +19,7 @@ public class UnregisterCommand extends Command {
     public UnregisterCommand() {
         super("unregister", 1, 1);
 
-        permissions().add("placeholderapi.register");
+        permissions("placeholderapi.register");
     }
 
     @Override
@@ -50,11 +50,12 @@ public class UnregisterCommand extends Command {
             Msg.msg(sender, "&cAn expansion name must be specified!");
             return true;
         }
+
         return false;
     }
 
     @Override
-    public List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
+    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
         final int required = super.getMinArguments() + super.getCommandLength();
 
         if (args.length == required) {

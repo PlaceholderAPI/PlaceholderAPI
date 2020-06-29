@@ -3,38 +3,37 @@ package me.clip.placeholderapi.commands;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class Command {
-
     private final String command;
-    private final int length;
-    private final int min;
-    private final Permissions permissions = new Permissions();
+    private final Set<String> permissions = new HashSet<>();
+    private String usage;
 
-    protected Command(@NotNull final String command, final int length, final int min) {
+    protected Command(@NotNull final String command) {
         this.command = command;
         this.length = length;
         this.min = min;
+        usage = ""
     }
 
-    protected Permissions permissions() {
-        return permissions;
+    protected void permissions(@NotNull final String... permissions) {
+        this.permissions.addAll(Arrays.asList(permissions));
     }
 
+    @NotNull
     public String getCommand() {
         return command;
     }
 
-    public int getMinArguments() {
-        return min;
+    @NotNull
+    public Set<String> getPermissions() {
+        return permissions;
     }
 
-    public int getCommandLength() {
-        return length;
+    @NotNull
+    public String getUsage() {
+        return usage;
     }
 
     public abstract void execute(@NotNull final CommandSender sender, @NotNull final String[] args);
@@ -43,20 +42,8 @@ public abstract class Command {
         return false;
     }
 
+    @NotNull
     public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
         return Collections.emptyList();
-    }
-
-    protected static class Permissions {
-
-        private List<String> permissions = new ArrayList<>();
-
-        public List<String> getPermissions() {
-            return permissions;
-        }
-
-        public void add(final String... permissions) {
-            this.permissions.addAll(Arrays.asList(permissions));
-        }
     }
 }
