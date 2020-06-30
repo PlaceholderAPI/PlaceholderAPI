@@ -5,47 +5,31 @@ import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
-import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class RegisterCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public RegisterCommand() {
-        super("register", 1, 1);
-
-        permissions().add("placeholderapi.register");
+        super("register", options("&cAn expansion file name must be specified!", "placeholderapi.register"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
-        final String fileName = args[1].replace(".jar", "");
-        final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().registerExpansion(fileName);
+        final String fileName = args[0].replace(".jar", "");
+        final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionManager().registerExpansion(fileName);
 
-        if (ex == null) {
+        if (expansion == null) {
             Msg.msg(sender, "&cFailed to register expansion from " + fileName);
 
-            return;
-        }
-
-        Msg.msg(sender, "&aSuccessfully registered expansion: &f" + ex.getName());
-    }
-
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cAn expansion file name must be specified!");
             return true;
         }
-        return false;
-    }
 
+        Msg.msg(sender, "&aSuccessfully registered expansion: &f" + expansion.getName());
+        return true;
+    }
 }

@@ -7,17 +7,14 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class ReloadCommand extends Command {
-
     public ReloadCommand() {
-        super("reload", 1, 0);
-
-        permissions("placeholderapi.reload");
+        super("reload", permissions("placeholderapi.reload"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         Msg.msg(sender, "&fPlaceholder&7API &bconfiguration reloaded!");
         PlaceholderAPIPlugin.getInstance().reloadConf(sender);
+        return true;
     }
-
 }

@@ -2,33 +2,19 @@ package me.clip.placeholderapi.commands;
 
 import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.command.BcParseCommand;
-import me.clip.placeholderapi.commands.command.DisableEcloudCommand;
-import me.clip.placeholderapi.commands.command.EcloudCommand;
-import me.clip.placeholderapi.commands.command.EnableCloudCommand;
-import me.clip.placeholderapi.commands.command.HelpCommand;
-import me.clip.placeholderapi.commands.command.ParseCommand;
-import me.clip.placeholderapi.commands.command.ParseRelCommand;
-import me.clip.placeholderapi.commands.command.RegisterCommand;
-import me.clip.placeholderapi.commands.command.ReloadCommand;
-import me.clip.placeholderapi.commands.command.UnregisterCommand;
-import me.clip.placeholderapi.commands.command.VersionCommand;
-import me.clip.placeholderapi.commands.command.ecloud.ClearCommand;
-import me.clip.placeholderapi.commands.command.ecloud.DownloadCommand;
+import me.clip.placeholderapi.commands.command.*;
 import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
 import me.clip.placeholderapi.commands.command.ecloud.ListCommand;
-import me.clip.placeholderapi.commands.command.ecloud.PlaceholdersCommand;
-import me.clip.placeholderapi.commands.command.ecloud.RefreshCommand;
-import me.clip.placeholderapi.commands.command.ecloud.StatusCommand;
-import me.clip.placeholderapi.commands.command.ecloud.VersionInfoCommand;
+import me.clip.placeholderapi.commands.command.ecloud.*;
 import me.clip.placeholderapi.exceptions.NoDefaultCommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public class CommandHandler implements CommandExecutor {
     private static final Set<Command> COMMANDS = Sets.newHashSet(
@@ -56,8 +42,10 @@ public class CommandHandler implements CommandExecutor {
     );
 
     private static final Command DEFAULT = COMMANDS.stream()
-            .filter(command -> command.getCommand().isEmpty())
+            .filter(command -> command.getMatch().isEmpty())
             .findAny().orElseThrow(() -> new NoDefaultCommandException("There is no default command present in the plugin."));
+
+    private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
     static {
         Objects.requireNonNull(PlaceholderAPIPlugin.getInstance().getCommand("placeholderapi"))
@@ -74,7 +62,7 @@ public class CommandHandler implements CommandExecutor {
 
         final String joined = String.join(" ", args).toLowerCase();
         final Optional<Command> optional = COMMANDS.stream()
-                .filter(command -> joined.startsWith(command.getCommand()))
+                .filter(command -> joined.startsWith(command.getMatch()))
                 .findAny();
 
         if (!optional.isPresent()) {
@@ -89,7 +77,17 @@ public class CommandHandler implements CommandExecutor {
             return true;
         }
 
-        command.execute(sender, args);
+        command.execute(sender, shiftArguments(args, command.getMatch()));
         return true;
+    }
+
+    static String[] shiftArguments(@NotNull final String[] arguments, final String command) {
+        final int shift = SPACE_PATTERN.split(command).length + 1;
+        final int newSize = arguments.length - shift;
+        final String[] result = new String[newSize];
+
+        if (newSize >= 0) System.arraycopy(arguments, shift, result, 0, newSize);
+
+        return result;
     }
 }

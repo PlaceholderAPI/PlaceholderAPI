@@ -10,60 +10,50 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 public class UnregisterCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public UnregisterCommand() {
-        super("unregister", 1, 1);
-
-        permissions("placeholderapi.register");
+        super("unregister", options("&cAn expansion name must be specified!", "placeholderapi.register"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
-        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
-
-        final String input = args[1];
-        final PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(input);
-        if (ex == null) {
-            Msg.msg(sender, "&cFailed to find expansion: &f" + input);
-
-            return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
         }
 
-        if (PlaceholderAPI.unregisterExpansion(ex)) {
-            Msg.msg(sender, "&aSuccessfully unregistered expansion: &f" + ex.getName());
-        } else {
-            Msg.msg(sender, "&cFailed to unregister expansion: &f" + ex.getName());
-        }
-    }
+        final String requestedExpansion = args[0];
+        final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionManager()
+                .getRegisteredExpansion(requestedExpansion);
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
+        if (expansion == null) {
+            Msg.msg(sender, "&cFailed to find expansion: &f" + requestedExpansion);
 
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cAn expansion name must be specified!");
             return true;
         }
 
-        return false;
-    }
-
-    @Override
-    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-
-        if (args.length == required) {
-            final Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
-
-            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
+        if (PlaceholderAPI.unregisterExpansion(expansion)) {
+            Msg.msg(sender, "&aSuccessfully unregistered expansion: &f" + expansion.getName());
+        } else {
+            Msg.msg(sender, "&cFailed to unregister expansion: &f" + expansion.getName());
         }
 
-        return Collections.emptyList();
+        return true;
+    }
+
+    @NotNull
+    @Override
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length == MINIMUM_ARGUMENTS) {
+            final Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
+
+            return StringUtil.copyPartialMatches(args[0], completions, new ArrayList<>(completions.size()));
+        }
+
+        return super.handleCompletion(sender, args);
     }
 }

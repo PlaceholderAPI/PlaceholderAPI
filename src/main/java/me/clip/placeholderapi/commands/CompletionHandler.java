@@ -17,14 +17,18 @@ public class CompletionHandler implements TabCompleter {
         this.commands = commands;
     }
 
+    // it makes me physically cringe trying to understand why bukkit uses a list instead of a set for this
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
                                       @NotNull final String name, @NotNull final String[] args) {
         final String joined = String.join(" ", args).toLowerCase();
-        final Optional<Command> optional = commands.stream().filter(command ->
-                joined.startsWith(command.getCommand()) && args.length >= command.getCommandLength()).findAny();
+        final Optional<Command> optional = commands.stream()
+                .filter(command -> joined.startsWith(command.getMatch()))
+                .findAny();
 
-        return optional.map(command -> command.handleCompletion(sender, args)).orElse(Collections.emptyList());
+        return optional
+                .map(command -> command.handleCompletion(sender, CommandHandler.shiftArguments(args, command.getMatch())))
+                .orElse(Collections.emptyList());
     }
 }

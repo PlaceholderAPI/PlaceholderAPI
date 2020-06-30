@@ -10,31 +10,29 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
-
 public class BcParseCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public BcParseCommand() {
-        super("bcparse", 1, 1);
-
-        permissions().add("placeholderapi.parse");
+        super("bcparse", options("&cYou must specify a player.", "placeholderapi.parse"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
-        OfflinePlayer player;
+        final OfflinePlayer player;
+        final String input = args[0];
 
-        final String input = args[1];
         if (input.equalsIgnoreCase("me")) {
             if (sender instanceof Player) {
                 player = (Player) sender;
             } else {
                 Msg.msg(sender, "&cThis command must target a player when used by console");
 
-                return;
+                return true;
             }
         } else {
             if (Bukkit.getPlayer(input) != null) {
@@ -46,31 +44,12 @@ public class BcParseCommand extends Command {
 
         if (player == null || !player.hasPlayedBefore()) {
             Msg.msg(sender, "&cFailed to find player: &f" + input);
-            return;
+            return true;
         }
 
         final String parse = StringUtils.join(args, " ", 2, args.length);
         Msg.broadcast("&r" + PlaceholderAPI.setPlaceholders(player, parse));
-    }
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cYou must specify a player.");
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-        if (args.length == required) {
-            return Collections.emptyList();
-        }
-
-        return Collections.emptyList();
+        return true;
     }
 }

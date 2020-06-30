@@ -1,5 +1,6 @@
 package me.clip.placeholderapi.commands.command.ecloud;
 
+import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -16,16 +17,22 @@ import java.util.stream.Collectors;
 import static me.clip.placeholderapi.util.Msg.color;
 
 public class ListCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
+    private static final Set<String> COMPLETIONS = Sets.newHashSet(
+            "all",
+            "author",
+            "installed"
+    );
 
     public ListCommand() {
-        super("ecloud list", 2, 1);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)", "placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         int page = 1;
@@ -33,7 +40,7 @@ public class ListCommand extends Command {
         String author;
         boolean installed = false;
 
-        author = args[2];
+        author = args[1];
 
         if (author.equalsIgnoreCase("all")) {
             author = null;
@@ -44,18 +51,18 @@ public class ListCommand extends Command {
 
         if (args.length >= 4) {
             try {
-                page = Integer.parseInt(args[3]);
+                page = Integer.parseInt(args[2]);
             } catch (NumberFormatException ex) {
                 Msg.msg(sender, "&cPage number must be an integer!");
 
-                return;
+                return true;
             }
         }
 
         if (page < 1) {
             Msg.msg(sender, "&cPage must be greater than or equal to 1!");
 
-            return;
+            return true;
         }
 
         int avail;
@@ -72,7 +79,7 @@ public class ListCommand extends Command {
         if (ex == null || ex.isEmpty()) {
             Msg.msg(sender, "&cNo expansions available" + (author != null ? " for author &f" + author : ""));
 
-            return;
+            return true;
         }
 
         avail = plugin.getExpansionCloud().getPagesAvailable(ex, 10);
@@ -80,7 +87,7 @@ public class ListCommand extends Command {
             Msg.msg(sender, "&cThere " + ((avail == 1) ? " is only &f" + avail + " &cpage available!"
                     : "are only &f" + avail + " &cpages available!"));
 
-            return;
+            return true;
         }
 
         Msg.msg(sender, "&bShowing expansions for&7: &f" + (author != null ? author
@@ -92,7 +99,7 @@ public class ListCommand extends Command {
         if (ex == null) {
             Msg.msg(sender, "&cThere was a problem getting the requested page...");
 
-            return;
+            return true;
         }
 
         Msg.msg(sender, "&aGreen = Expansions you have");
@@ -127,7 +134,7 @@ public class ListCommand extends Command {
                 i++;
             }
 
-            return;
+            return true;
         }
 
         final Player p = (Player) sender;
@@ -186,35 +193,21 @@ public class ListCommand extends Command {
             line.send(p);
             i++;
         }
+
+        return true;
     }
 
+    @NotNull
     @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)");
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-        if (args.length == required) {
-            final List<String> completions = new ArrayList<>(Arrays.asList(
-                    "all",
-                    "author",
-                    "installed"
-            ));
-
-            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
-        }
-        if (args.length == required + 1) {
-            return Arrays.asList("Pages");
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length == MINIMUM_ARGUMENTS) {
+            return StringUtil.copyPartialMatches(args[0], COMPLETIONS, new ArrayList<>(COMPLETIONS.size()));
         }
 
-        return Collections.emptyList();
+        if (args.length == MINIMUM_ARGUMENTS + 1) {
+            return Collections.singletonList("Pages");
+        }
+
+        return super.handleCompletion(sender, args);
     }
 }

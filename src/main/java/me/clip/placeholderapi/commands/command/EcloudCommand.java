@@ -1,5 +1,6 @@
 package me.clip.placeholderapi.commands.command;
 
+import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
@@ -8,21 +9,30 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class EcloudCommand extends Command {
+    private static final int MAXIMUM_ARGUMENTS = 1;
+    private static final Set<String> COMPLETIONS = Sets.newHashSet(
+            "clear",
+            "download",
+            "info",
+            "list",
+            "placeholders",
+            "refresh",
+            "status",
+            "versioninfo"
+    );
 
     public EcloudCommand() {
-        super("ecloud", 1, 0);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+
         if (args.length == 0) {
             Msg.msg(sender, "&bExpansion cloud commands",
                     " ",
@@ -42,37 +52,29 @@ public class EcloudCommand extends Command {
                     "&fFetch the most up to date list of expansions available.",
                     "&b/papi ecloud clear",
                     "&fClear the expansion cloud cache.");
-            return;
+            return true;
         }
 
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The expansion cloud is not enabled!");
 
-            return;
+            return true;
         }
 
         if (plugin.getExpansionCloud().getCloudExpansions().isEmpty()) {
             Msg.msg(sender, "&7No cloud expansions are available at this time.");
         }
+
+        return true;
     }
 
+    @NotNull
     @Override
-    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final List<String> completions = new ArrayList<>(Arrays.asList(
-                "clear",
-                "download",
-                "info",
-                "list",
-                "placeholders",
-                "refresh",
-                "status",
-                "versioninfo"
-        ));
-
-        if (args.length == 2) {
-            return StringUtil.copyPartialMatches(args[args.length - 1], completions, new ArrayList<>(completions.size()));
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length == MAXIMUM_ARGUMENTS) {
+            return StringUtil.copyPartialMatches(args[0], COMPLETIONS, new ArrayList<>(COMPLETIONS.size()));
         }
 
-        return Collections.emptyList();
+        return super.handleCompletion(sender, args);
     }
 }

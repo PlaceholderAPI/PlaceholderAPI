@@ -9,13 +9,11 @@ import org.jetbrains.annotations.NotNull;
 public class HelpCommand extends Command {
 
     public HelpCommand() {
-        super("help", 1, 0);
-
-        permissions().add("placeholderapi.ecloud");
+        super("help", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + PlaceholderAPIPlugin.getInstance().getDescription().getVersion() + "&e)",
                 "&b/papi",
                 "&fView plugin info/version info",
@@ -45,5 +43,7 @@ public class HelpCommand extends Command {
                     "&fEnable the expansion cloud");
 
         }
+
+        return true;
     }
 }

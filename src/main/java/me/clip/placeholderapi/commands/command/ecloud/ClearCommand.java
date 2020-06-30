@@ -9,15 +9,14 @@ import org.jetbrains.annotations.NotNull;
 public class ClearCommand extends Command {
 
     public ClearCommand() {
-        super("ecloud clear", 2, 0);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud clear", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         PlaceholderAPIPlugin.getInstance().getExpansionCloud().clean();
         Msg.msg(sender, "&aThe cache has been cleared!!");
-    }
 
+        return true;
+    }
 }

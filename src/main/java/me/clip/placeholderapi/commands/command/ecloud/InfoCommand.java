@@ -12,24 +12,25 @@ import org.jetbrains.annotations.NotNull;
 import static me.clip.placeholderapi.util.Msg.color;
 
 public class InfoCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public InfoCommand() {
-        super("ecloud info", 2, 1);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud info", options("&cAn expansion name must be specified!", "placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
-        final String input = args[2];
+        final String input = args[0];
         final CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
 
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
 
-            return;
+            return true;
         }
 
         if (!(sender instanceof Player)) {
@@ -37,7 +38,7 @@ public class InfoCommand extends Command {
                     (expansion.shouldUpdate() ? "&e" : "") + expansion.getName() + " &8&m-- &r" + expansion
                             .getVersion().getUrl());
 
-            return;
+            return true;
         }
 
         final Player p = (Player) sender;
@@ -71,18 +72,7 @@ public class InfoCommand extends Command {
             placeholders.suggestCommand("/papi ecloud placeholders " + expansion.getName());
             placeholders.send(p);
         }
+
+        return true;
     }
-
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cAn expansion name must be specified!");
-            return true;
-        }
-
-        return false;
-    }
-
 }

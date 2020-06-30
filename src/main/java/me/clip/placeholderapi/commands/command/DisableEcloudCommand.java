@@ -7,25 +7,23 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class DisableEcloudCommand extends Command {
-
     public DisableEcloudCommand() {
-        super("disablecloud", 1, 0);
-
-        permissions().add("placeholderapi.ecloud");
+        super("disablecloud", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The cloud is already disabled!");
 
-            return;
+            return true;
         }
 
         plugin.disableCloud();
         plugin.getPlaceholderAPIConfig().setCloudEnabled(false);
         Msg.msg(sender, "&aThe cloud has been disabled!");
-    }
 
+        return true;
+    }
 }

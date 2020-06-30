@@ -12,23 +12,25 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class DownloadCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public DownloadCommand() {
-        super("ecloud download", 2, 1);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud download", options("&cAn expansion name must be specified!", "placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
-        final String input = args[2];
+        final String input = args[1];
         final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
+
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found with the name: &f" + input);
-            return;
+            return true;
         }
 
         final PlaceholderExpansion loaded = plugin.getExpansionManager().getRegisteredExpansion(input);
@@ -38,14 +40,14 @@ public class DownloadCommand extends Command {
 
         String version = expansion.getLatestVersion();
 
-        if (args.length - super.getCommandLength() == 2) {
-            version = args[3];
+        if (args.length == 3) {
+            version = args[2];
             if (expansion.getVersion(version) == null) {
                 Msg.msg(sender, "&cThe version you specified does not exist for &f" + expansion.getName());
                 Msg.msg(sender, "&7Available versions: &f" + expansion.getVersions().size());
                 Msg.msg(sender, String.join("&a, &f", expansion.getAvailableVersions()));
 
-                return;
+                return true;
             }
         }
 
@@ -55,17 +57,7 @@ public class DownloadCommand extends Command {
         cloud.downloadExpansion(player, expansion, version);
         cloud.clean();
         cloud.fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
-    }
 
-    @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cAn expansion name must be specified!");
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }

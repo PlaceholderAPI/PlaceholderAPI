@@ -15,23 +15,24 @@ import java.util.List;
 import java.util.Set;
 
 public class InfoCommand extends Command {
+    private static final int MINIMUM_ARGUMENTS = 1;
 
     public InfoCommand() {
-        super("info", 1, 1);
-
-        permissions("placeholderapi.info");
+        super("info", options("&cIncorrect usage! &7/papi info <expansion>", "placeholderapi.info"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
-        if (handleUsage(sender, args)) return;
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length < MINIMUM_ARGUMENTS) {
+            return false;
+        }
 
-        final String input = args[1];
-        final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().getRegisteredExpansion(input);
+        final String requestedExpansion = args[0];
+        final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().getRegisteredExpansion(requestedExpansion);
         if (ex == null) {
-            Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + input);
+            Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + requestedExpansion);
 
-            return;
+            return true;
         }
 
         Msg.msg(sender, "&7Placeholder expansion info for: &f" + ex.getName());
@@ -56,28 +57,17 @@ public class InfoCommand extends Command {
                 Msg.msg(sender, placeholder);
             }
         }
+
+        return true;
     }
 
+    @NotNull
     @Override
-    public boolean handleUsage(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int given = args.length - super.getCommandLength();
-
-        if (given < super.getMinArguments()) {
-            Msg.msg(sender, "&cIncorrect usage! &7/papi info <expansion>");
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public @NotNull List<String> handleCompletion(@NotNull CommandSender sender, @NotNull String[] args) {
-        final int required = super.getMinArguments() + super.getCommandLength();
-
-        if (args.length == required) {
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        if (args.length == MINIMUM_ARGUMENTS) {
             final Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
 
-            return StringUtil.copyPartialMatches(args[required - 1], completions, new ArrayList<>(completions.size()));
+            return StringUtil.copyPartialMatches(args[0], completions, new ArrayList<>(completions.size()));
         }
 
         return Collections.emptyList();

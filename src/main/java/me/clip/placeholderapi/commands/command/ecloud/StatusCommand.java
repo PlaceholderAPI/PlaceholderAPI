@@ -7,15 +7,12 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class StatusCommand extends Command {
-
     public StatusCommand() {
-        super("ecloud status", 2, 0);
-
-        permissions().add("placeholderapi.ecloud");
+        super("ecloud status", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(@NotNull CommandSender sender, @NotNull String[] args) {
+    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         Msg.msg(sender, "&bThere are &f" + plugin.getExpansionCloud().getCloudExpansions().size()
                         + " &bexpansions available on the cloud.",
@@ -25,6 +22,7 @@ public class StatusCommand extends Command {
             Msg.msg(sender, "&eYou have &f" + plugin.getExpansionCloud().getToUpdateCount()
                     + " &eexpansions installed that have updates available.");
         }
-    }
 
+        return true;
+    }
 }
