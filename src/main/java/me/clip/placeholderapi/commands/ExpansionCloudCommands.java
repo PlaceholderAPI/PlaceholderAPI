@@ -48,7 +48,6 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
   @Override
   public boolean onCommand(CommandSender s, Command c, String label, String[] args) {
-
     if (args.length == 1) {
       msg(s, "&bExpansion cloud commands",
           " ",
@@ -149,7 +148,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
           .create(color("&bVersions available: &f" + expansion.getVersions().size()));
       versions.tooltip(color(String.join("&b, &f", expansion.getAvailableVersions())));
       versions.suggestCommand(
-          "/papi ecloud versioninfo " + expansion.getName() + " " + expansion.getLatestVersion());
+          "/papi ecloud versioninfo " + expansion.getName() + ' ' + expansion.getLatestVersion());
       versions.send(p);
 
       // placeholders
@@ -194,7 +193,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
       JSONMessage download = JSONMessage.create(color("&7Click to download this version"));
       download.suggestCommand(
-          "/papi ecloud download " + expansion.getName() + " " + version.getVersion());
+          "/papi ecloud download " + expansion.getName() + ' ' + version.getVersion());
       download.send(p);
 
       return true;
@@ -243,8 +242,7 @@ public class ExpansionCloudCommands implements CommandExecutor {
         }
         try {
           message.tooltip(PlaceholderAPI.setPlaceholders(p, placeholders.get(i)));
-        } catch (Exception e) {
-
+        } catch (Exception ignored) {
         }
       }
 
@@ -393,11 +391,11 @@ public class ExpansionCloudCommands implements CommandExecutor {
           sb.append("&aYou have the latest version of this expansion\n\n");
         }
 
-        sb.append("&bAuthor&7: &f").append(expansion.getAuthor()).append("\n");
-        sb.append("&bVerified&7: &f").append(expansion.isVerified()).append("\n");
-        sb.append("&bLatest version&7: &f").append(expansion.getVersion().getVersion()).append("\n");
+        sb.append("&bAuthor&7: &f").append(expansion.getAuthor()).append('\n');
+        sb.append("&bVerified&7: &f").append(expansion.isVerified()).append('\n');
+        sb.append("&bLatest version&7: &f").append(expansion.getVersion().getVersion()).append('\n');
         sb.append("&bLast updated&7: &f").append(expansion.getTimeSinceLastUpdate()).append(" ago\n");
-        sb.append("\n").append(expansion.getDescription());
+        sb.append('\n').append(expansion.getDescription());
 
         String msg = color(
             "&b" + (i + 1) + "&7: " + (expansion.shouldUpdate() ? "&6"
@@ -464,6 +462,4 @@ public class ExpansionCloudCommands implements CommandExecutor {
 
     return true;
   }
-
-
 }

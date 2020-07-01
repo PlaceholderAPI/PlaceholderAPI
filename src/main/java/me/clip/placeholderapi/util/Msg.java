@@ -28,12 +28,19 @@ import java.util.Arrays;
 
 public class Msg {
 
-  public static void msg(CommandSender s, String... msg) {
-    Arrays.stream(msg).map(Msg::color).forEach(s::sendMessage);
+  public static void msg(CommandSender sender, String... messages) {
+    for (String message : messages) {
+      String msg = color(message);
+      sender.sendMessage(msg);
+    }
   }
 
-  public static void broadcast(String... msg) {
-    Arrays.stream(msg).map(Msg::color).forEach(Bukkit::broadcastMessage);
+  public static void broadcast(String... messages) {
+    CommandSender sender = Bukkit.getConsoleSender();
+    for (String message : messages) {
+      String msg = color(message);
+      sender.sendMessage(msg);
+    }
   }
 
   public static String color(String text) {

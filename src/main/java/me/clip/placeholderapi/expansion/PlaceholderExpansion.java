@@ -133,36 +133,36 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   public String getString(String path, String def) {
     return getPlaceholderAPI().getConfig()
-        .getString("expansions." + getIdentifier() + "." + path, def);
+        .getString("expansions." + getIdentifier() + '.' + path, def);
   }
 
   public int getInt(String path, int def) {
     return getPlaceholderAPI().getConfig()
-        .getInt("expansions." + getIdentifier() + "." + path, def);
+        .getInt("expansions." + getIdentifier() + '.' + path, def);
   }
 
   public long getLong(String path, long def) {
     return getPlaceholderAPI().getConfig()
-        .getLong("expansions." + getIdentifier() + "." + path, def);
+        .getLong("expansions." + getIdentifier() + '.' + path, def);
   }
 
   public double getDouble(String path, double def) {
     return getPlaceholderAPI().getConfig()
-        .getDouble("expansions." + getIdentifier() + "." + path, def);
+        .getDouble("expansions." + getIdentifier() + '.' + path, def);
   }
 
   public List<String> getStringList(String path) {
     return getPlaceholderAPI().getConfig()
-        .getStringList("expansions." + getIdentifier() + "." + path);
+        .getStringList("expansions." + getIdentifier() + '.' + path);
   }
 
   public Object get(String path, Object def) {
-    return getPlaceholderAPI().getConfig().get("expansions." + getIdentifier() + "." + path, def);
+    return getPlaceholderAPI().getConfig().get("expansions." + getIdentifier() + '.' + path, def);
   }
 
   public ConfigurationSection getConfigSection(String path) {
     return getPlaceholderAPI().getConfig()
-        .getConfigurationSection("expansions." + getIdentifier() + "." + path);
+        .getConfigurationSection("expansions." + getIdentifier() + '.' + path);
   }
 
   public ConfigurationSection getConfigSection() {
@@ -170,7 +170,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   public boolean configurationContains(String path) {
-    return getPlaceholderAPI().getConfig().contains("expansions." + getIdentifier() + "." + path);
+    return getPlaceholderAPI().getConfig().contains("expansions." + getIdentifier() + '.' + path);
   }
 
 

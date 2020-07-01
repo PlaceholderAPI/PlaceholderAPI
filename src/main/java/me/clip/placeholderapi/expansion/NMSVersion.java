@@ -48,7 +48,7 @@ public enum NMSVersion {
 
   public static NMSVersion getVersion(String version) {
     for (NMSVersion v : values()) {
-      if (v.getVersion().equalsIgnoreCase(version)) {
+      if (v.getVersion().equals(version)) {
         return v;
       }
     }

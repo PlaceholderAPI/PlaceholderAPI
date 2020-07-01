@@ -22,6 +22,7 @@ package me.clip.placeholderapi.updatechecker;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.util.Msg;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -34,8 +35,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class UpdateChecker implements Listener {
-
-  private final int RESOURCE_ID = 6245;
+  private static final int RESOURCE_ID = 6245;
   private final PlaceholderAPIPlugin plugin;
   private String spigotVersion;
   private final String pluginVersion;
@@ -59,7 +59,12 @@ public class UpdateChecker implements Listener {
       try {
         HttpsURLConnection con = (HttpsURLConnection) new URL(
             "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
+
+        // Prevents the server from freezing with bad internet connection.
         con.setRequestMethod("GET");
+        con.setConnectTimeout(2000);
+        con.setReadTimeout(2000);
+
         spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
       } catch (Exception ex) {
         plugin.getLogger().info("Failed to check for updates on spigot.");
@@ -97,11 +102,8 @@ public class UpdateChecker implements Listener {
   }
 
   private String toReadable(String version) {
-    if (version.contains("-DEV-")) {
-      version = version.split("-DEV-")[0];
-    }
-
-    return version.replaceAll("\\.", "");
+    if (version.contains("-DEV-")) version = StringUtils.split("-DEV-")[0];
+    return StringUtils.remove(version, '.');
   }
 
   @EventHandler(priority = EventPriority.MONITOR)

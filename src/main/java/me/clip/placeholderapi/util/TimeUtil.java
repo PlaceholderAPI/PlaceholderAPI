@@ -123,7 +123,7 @@ public class TimeUtil {
 
     if (minutes < 60) {
       if (secondsLeft > 0) {
-        return minutes + "m " + secondsLeft + "s";
+        return minutes + "m " + secondsLeft + 's';
       } else {
         return minutes + "m";
       }
@@ -137,11 +137,11 @@ public class TimeUtil {
       int leftOver = minutes - inMins;
 
       if (leftOver >= 1) {
-        time = time + " " + leftOver + "m";
+        time = time + ' ' + leftOver + 'm';
       }
 
       if (secondsLeft > 0) {
-        time = time + " " + secondsLeft + "s";
+        time = time + ' ' + secondsLeft + 's';
       }
 
       return time;
@@ -155,19 +155,19 @@ public class TimeUtil {
 
     if (leftOver >= 1) {
       if (leftOver < 60) {
-        time = time + " " + leftOver + "m";
+        time = time + ' ' + leftOver + 'm';
       } else {
         int hours = leftOver / 60;
-        time = time + " " + hours + "h";
+        time = time + ' ' + hours + 'h';
 
         int hoursInMins = 60 * hours;
         int minsLeft = leftOver - hoursInMins;
-        time = time + " " + minsLeft + "m";
+        time = time + ' ' + minsLeft + 'm';
       }
     }
 
     if (secondsLeft > 0) {
-      time = time + " " + secondsLeft + "s";
+      time = time + ' ' + secondsLeft + 's';
     }
 
     return time;

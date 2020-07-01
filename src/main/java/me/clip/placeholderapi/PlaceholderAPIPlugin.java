@@ -52,30 +52,25 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   private static SimpleDateFormat dateFormat;
   private static String booleanTrue;
   private static String booleanFalse;
-  private static Version serverVersion;
+  private static final Version serverVersion;
   private PlaceholderAPIConfig config;
   private ExpansionManager expansionManager;
   private ExpansionCloudManager expansionCloud;
   private long startTime;
 
-  private static Version getVersion() {
-    String v = "unknown";
-    boolean spigot = false;
-
-    try {
-      v = Bukkit.getServer().getClass().getPackage().getName()
-          .split("\\.")[3];
-    } catch (ArrayIndexOutOfBoundsException ex) {
-    }
+  static {
+    // It's not possible to be null or throw an index exception unless it's a bug.
+    String nmsVersion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+    boolean spigot;
 
     try {
       Class.forName("org.spigotmc.SpigotConfig");
-      Class.forName("net.md_5.bungee.api.chat.BaseComponent");
       spigot = true;
     } catch (ExceptionInInitializerError | ClassNotFoundException ignored) {
+      spigot = false;
     }
 
-    return new Version(v, spigot);
+    serverVersion = new Version(nmsVersion, spigot);
   }
 
   /**
@@ -119,14 +114,13 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   public static Version getServerVersion() {
-    return serverVersion != null ? serverVersion : getVersion();
+    return serverVersion;
   }
 
   @Override
   public void onLoad() {
     startTime = System.currentTimeMillis();
     instance = this;
-    serverVersion = getVersion();
     config = new PlaceholderAPIConfig(this);
     expansionManager = new ExpansionManager(this);
   }
@@ -172,9 +166,9 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   public void onDisable() {
     disableCloud();
     PlaceholderAPI.unregisterAll();
-    expansionManager = null;
     Bukkit.getScheduler().cancelTasks(this);
-    serverVersion = null;
+
+    expansionManager = null;
     instance = null;
   }
 
@@ -191,11 +185,10 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       enableCloud();
     }
 
-    s.sendMessage(ChatColor.translateAlternateColorCodes('&',
-        PlaceholderAPI.getRegisteredIdentifiers().size()
-            + " &aplaceholder hooks successfully registered!"));
+    s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.placeholders.size() + " &aplaceholder hooks successfully registered!"));
   }
 
+  @SuppressWarnings("deprecation")
   private void checkHook() {
     Map<String, PlaceholderHook> loaded = PlaceholderAPI.getPlaceholders();
 
@@ -211,7 +204,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
         getLogger().severe(((EZPlaceholderHook) h).getPluginName() +
                 " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
-                "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
+                "Please consult " + author + " and urge them to update it ASAP.");
 
         // disable the hook on startup
         PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());

@@ -48,8 +48,8 @@ public class FileUtil {
 
       FilenameFilter fileNameFilter = (dir, name) -> {
         if (fileName != null) {
-          return name.endsWith(".jar") && name.replace(".jar", "")
-              .equalsIgnoreCase(fileName.replace(".jar", ""));
+          return name.endsWith(".jar") && name.substring(0, 4)
+                  .equalsIgnoreCase(fileName.substring(0, 4));
         }
 
         return name.endsWith(".jar");
@@ -65,7 +65,7 @@ public class FileUtil {
       }
 
       return list;
-    } catch (Throwable t) {
+    } catch (Throwable ignored) {
     }
 
     return null;
@@ -91,7 +91,7 @@ public class FileUtil {
         }
 
         if (name.endsWith(".class")) {
-          name = name.replace("/", ".");
+          name = name.replace('/', '.');
           String cname = name.substring(0, name.lastIndexOf(".class"));
 
           Class<?> c = cl.loadClass(cname);
@@ -100,7 +100,7 @@ public class FileUtil {
           }
         }
       }
-    } catch (Throwable t) {
+    } catch (Throwable ignored) {
     }
 
     return list;

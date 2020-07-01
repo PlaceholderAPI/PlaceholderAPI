@@ -25,6 +25,7 @@ import me.clip.placeholderapi.PlaceholderHook;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 
+@SuppressWarnings("DeprecatedIsStillUsed")
 @Deprecated
 public abstract class EZPlaceholderHook extends PlaceholderHook {
 
