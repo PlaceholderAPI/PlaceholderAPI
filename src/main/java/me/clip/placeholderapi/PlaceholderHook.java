@@ -21,6 +21,7 @@
 package me.clip.placeholderapi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.Relational;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -58,6 +59,6 @@ public abstract class PlaceholderHook {
   }
 
   public boolean isRelational() {
-    return this instanceof PlaceholderExpansion;
+    return this instanceof Relational;
   }
 }

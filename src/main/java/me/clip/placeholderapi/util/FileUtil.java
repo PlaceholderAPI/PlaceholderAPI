@@ -42,17 +42,16 @@ public class FileUtil {
 
     try {
       File f = new File(PlaceholderAPIPlugin.getInstance().getDataFolder(), folder);
-      if (!f.exists()) {
-        return list;
-      }
+      if (!f.exists()) return list;
 
       FilenameFilter fileNameFilter = (dir, name) -> {
+        boolean isJar = name.endsWith(".jar");
         if (fileName != null) {
-          return name.endsWith(".jar") && name.substring(0, 4)
-                  .equalsIgnoreCase(fileName.substring(0, 4));
+          return isJar && name.substring(0, name.length() - 4)
+                  .equalsIgnoreCase(fileName.substring(0, fileName.length() - 4));
         }
 
-        return name.endsWith(".jar");
+        return isJar;
       };
 
       File[] jars = f.listFiles(fileNameFilter);
@@ -79,16 +78,10 @@ public class FileUtil {
     try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
          JarInputStream jis = new JarInputStream(jar.openStream())) {
 
-      while (true) {
-        JarEntry j = jis.getNextJarEntry();
-        if (j == null) {
-          break;
-        }
-
-        String name = j.getName();
-        if (name == null || name.isEmpty()) {
-          continue;
-        }
+      JarEntry entry;
+      while ((entry = jis.getNextJarEntry()) != null) {
+        String name = entry.getName();
+        if (name == null || name.isEmpty()) continue;
 
         if (name.endsWith(".class")) {
           name = name.replace('/', '.');

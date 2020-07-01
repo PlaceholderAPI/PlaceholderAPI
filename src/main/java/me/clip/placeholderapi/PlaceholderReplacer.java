@@ -10,9 +10,22 @@ import java.util.Set;
  * This is certainly hard to understand, but it's fully optimized.
  */
 public class PlaceholderReplacer {
+    /**
+     * Cached available color codes. Technically the uppercase of each letter can be used too, but no one really uses the uppercase ones.
+     */
     private static final Set<Character> COLOR_CODES = ImmutableSet.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'a', 'b', 'c', 'd', 'e', 'f', 'k', 'l', 'm', 'o', 'r');
 
+    /**
+     * Translates placeholders for a string using pure character loops.
+     * Might cause problems in really rare conditions.
+     *
+     * @param player   the player to translate the string for.
+     * @param str      the string to translate.
+     * @param closure  the type of the placeholder closing points.
+     * @param colorize if this message should be colorized as well.
+     * @return a translated string.
+     */
     public static String evaluatePlaceholders(OfflinePlayer player, String str, Closure closure, boolean colorize) {
         StringBuilder builder = new StringBuilder(str.length());
         StringBuilder identifier = null;

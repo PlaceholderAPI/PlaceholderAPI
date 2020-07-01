@@ -286,7 +286,7 @@ public class PlaceholderAPICommands implements CommandExecutor {
           }
         }
 
-        String fileName = args[1].replace(".jar", "");
+        String fileName = StringUtils.remove(args[1], ".jar");
         PlaceholderExpansion ex = plugin.getExpansionManager().registerExpansion(fileName);
 
         if (ex == null) {

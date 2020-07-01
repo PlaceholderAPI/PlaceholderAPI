@@ -141,7 +141,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         getLogger().info("Placeholder expansion registration initializing...");
 
         //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
-        final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         getExpansionManager().registerAllExpansions();
 
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
@@ -173,7 +173,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   public void reloadConf(CommandSender s) {
-    boolean cloudEnabled = this.expansionCloud != null;
     PlaceholderAPI.unregisterAllProvidedExpansions();
     reloadConfig();
     setupOptions();
@@ -181,11 +180,11 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
     if (!config.isCloudEnabled()) {
       disableCloud();
-    } else if (!cloudEnabled) {
+    } else if (this.expansionCloud != null) {
       enableCloud();
     }
 
-    s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.placeholders.size() + " &aplaceholder hooks successfully registered!"));
+    s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.PLACEHOLDERS.size() + " &aplaceholder hooks successfully registered!"));
   }
 
   @SuppressWarnings("deprecation")
@@ -247,7 +246,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
       if (!p.isEmpty()) {
 
         for (PlaceholderHook hook : p.values()) {
-          if (hook instanceof PlaceholderExpansion) {
+          if (hook.isExpansion()) {
             PlaceholderExpansion ex = (PlaceholderExpansion) hook;
             map.put(ex.getRequiredPlugin() == null ? ex.getIdentifier()
                 : ex.getRequiredPlugin(), 1);

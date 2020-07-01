@@ -37,18 +37,18 @@ public class ServerLoadEventListener implements Listener {
     }
 
     /**
-     * This method will be called when the server is first loaded
+     * This method will be called when the server is first loaded.
      *
      * The goal of the method is to register all the expansions as soon as possible
-     * especially before players can join
+     * especially before players can join.
      *
      * This will ensure no issues with expanions and hooks.
-     * @param e the server load event
+     * @param event the server load event.
      */
     @EventHandler
-    public void onServerLoad(ServerLoadEvent e) {
+    public void onServerLoad(ServerLoadEvent event) {
         plugin.getLogger().info("Placeholder expansion registration initializing...");
-        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.PLACEHOLDERS;
         plugin.getExpansionManager().registerAllExpansions();
 
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {

@@ -110,8 +110,8 @@ public class PlaceholderAPI {
 
     public static Set<PlaceholderExpansion> getExpansions() {
         Set<PlaceholderExpansion> expansions = new HashSet<>();
-        for (PlaceholderHook expansion : getPlaceholders().values()) {
-            if (expansion instanceof PlaceholderExpansion) expansions.add((PlaceholderExpansion) expansion);
+        for (PlaceholderHook expansion : PLACEHOLDERS.values()) {
+            if (expansion.isExpansion()) expansions.add((PlaceholderExpansion) expansion);
         }
 
         return ImmutableSet.copyOf(expansions);
@@ -411,7 +411,7 @@ public class PlaceholderAPI {
             String identifier = format.substring(0, index).toLowerCase(Locale.ENGLISH);
             PlaceholderHook handler = PLACEHOLDERS.get(identifier);
 
-            if (handler instanceof Relational) {
+            if (handler.isRelational()) {
                 Relational relational = (Relational) handler;
                 String params = format.substring(index + 1);
                 String value = relational.onPlaceholderRequest(one, two, params);
@@ -440,7 +440,7 @@ public class PlaceholderAPI {
         if (PLACEHOLDERS.isEmpty()) return;
 
         for (PlaceholderHook handler : PLACEHOLDERS.values()) {
-            if (handler instanceof PlaceholderExpansion) {
+            if (handler.isExpansion()) {
                 PlaceholderExpansion expansion = (PlaceholderExpansion) handler;
                 if (!expansion.persist()) unregisterExpansion(expansion);
             }

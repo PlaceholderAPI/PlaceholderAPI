@@ -24,6 +24,7 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -33,9 +34,11 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class UpdateChecker implements Listener {
   private static final int RESOURCE_ID = 6245;
+  private static final String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID;
   private final PlaceholderAPIPlugin plugin;
   private String spigotVersion;
   private final String pluginVersion;
@@ -57,44 +60,35 @@ public class UpdateChecker implements Listener {
   public void fetch() {
     Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
       try {
-        HttpsURLConnection con = (HttpsURLConnection) new URL(
-            "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
+        HttpsURLConnection con = (HttpsURLConnection) new URL(SPIGOT_API).openConnection();
 
         // Prevents the server from freezing with bad internet connection.
         con.setRequestMethod("GET");
         con.setConnectTimeout(2000);
         con.setReadTimeout(2000);
 
-        spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
+        spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8)).readLine();
       } catch (Exception ex) {
         plugin.getLogger().info("Failed to check for updates on spigot.");
         return;
       }
 
-      if (spigotVersion == null || spigotVersion.isEmpty()) {
-        return;
-      }
-
+      if (spigotVersion == null || spigotVersion.isEmpty()) return;
       updateAvailable = spigotIsNewer();
-
-      if (!updateAvailable) {
-        return;
-      }
+      if (!updateAvailable) return;
 
       Bukkit.getScheduler().runTask(plugin, () -> {
         plugin.getLogger()
-            .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
+            .info("An update for PlaceholderAPI (v" + spigotVersion + ") is available at:");
         plugin.getLogger()
-            .info("https://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID + "/");
+            .info("https://www.spigotmc.org/resources/" + RESOURCE_ID + '/');
         Bukkit.getPluginManager().registerEvents(this, plugin);
       });
     });
   }
 
   private boolean spigotIsNewer() {
-    if (spigotVersion == null || spigotVersion.isEmpty()) {
-        return false;
-    }
+    if (spigotVersion == null || spigotVersion.isEmpty()) return false;
 
     String plV = toReadable(pluginVersion);
     String spV = toReadable(spigotVersion);
@@ -102,18 +96,17 @@ public class UpdateChecker implements Listener {
   }
 
   private String toReadable(String version) {
-    if (version.contains("-DEV-")) version = StringUtils.split("-DEV-")[0];
+    if (version.contains("-DEV-")) version = StringUtils.split(version, "-DEV-")[0];
     return StringUtils.remove(version, '.');
   }
 
   @EventHandler(priority = EventPriority.MONITOR)
-  public void onJoin(PlayerJoinEvent e) {
-    if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
-      Msg.msg(e.getPlayer(),
-          "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getSpigotVersion()
-              + "&e)"
-          , "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID
-              + "/");
+  public void onJoin(PlayerJoinEvent event) {
+    Player player = event.getPlayer();
+    if (player.hasPermission("placeholderapi.updatenotify")) {
+      Msg.msg(player,
+          "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getSpigotVersion() + "&e)",
+              "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID + '/');
     }
   }
 }

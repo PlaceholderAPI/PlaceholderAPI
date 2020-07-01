@@ -34,7 +34,7 @@ public interface Cleanable {
   /**
    * Called when a player leaves the server
    *
-   * @param p (@link Player} who left the server
+   * @param player (@link Player} who left the server
    */
-  void cleanup(Player p);
+  void cleanup(Player player);
 }

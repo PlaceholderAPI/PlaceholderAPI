@@ -20,8 +20,11 @@
  */
 package me.clip.placeholderapi.expansion;
 
-public enum NMSVersion {
+import com.google.common.base.Enums;
 
+import java.util.Optional;
+
+public enum NMSVersion {
   UNKNOWN("unknown"),
   SPIGOT_1_7_R1("v1_7_R1"),
   SPIGOT_1_7_R2("v1_7_R2"),
@@ -47,17 +50,12 @@ public enum NMSVersion {
   }
 
   public static NMSVersion getVersion(String version) {
-    for (NMSVersion v : values()) {
-      if (v.getVersion().equals(version)) {
-        return v;
-      }
-    }
-
-    return NMSVersion.UNKNOWN;
+    // Guava caches values() as well.
+    Optional<NMSVersion> opt = Enums.getIfPresent(NMSVersion.class, version).toJavaUtil();
+    return opt.orElse(NMSVersion.UNKNOWN);
   }
 
   public String getVersion() {
     return version;
   }
-
 }

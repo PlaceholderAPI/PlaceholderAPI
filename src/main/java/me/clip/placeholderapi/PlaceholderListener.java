@@ -34,6 +34,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -50,22 +51,23 @@ public class PlaceholderListener implements Listener {
 
   @EventHandler
   public void onExpansionUnregister(ExpansionUnregisterEvent event) {
-    if (event.getExpansion() instanceof Listener) {
-      HandlerList.unregisterAll((Listener) event.getExpansion());
+    PlaceholderExpansion expansion = event.getExpansion();
+    if (expansion instanceof Listener) {
+      HandlerList.unregisterAll((Listener) expansion);
     }
 
-    if (event.getExpansion() instanceof Taskable) {
-      ((Taskable) event.getExpansion()).stop();
+    if (expansion instanceof Taskable) {
+      ((Taskable) expansion).stop();
     }
 
-    if (event.getExpansion() instanceof Cacheable) {
-      ((Cacheable) event.getExpansion()).clear();
+    if (expansion instanceof Cacheable) {
+      ((Cacheable) expansion).clear();
     }
 
     if (plugin.getExpansionCloud() != null) {
 
       CloudExpansion ex = plugin.getExpansionCloud()
-          .getCloudExpansion(event.getExpansion().getName());
+          .getCloudExpansion(expansion.getName());
 
       if (ex != null) {
         ex.setHasExpansion(false);
@@ -75,30 +77,18 @@ public class PlaceholderListener implements Listener {
   }
 
   @EventHandler(priority = EventPriority.HIGH)
-  public void onPluginUnload(PluginDisableEvent e) {
-    String n = e.getPlugin().getName();
+  public void onPluginUnload(PluginDisableEvent event) {
+    // A plugin name cannot be null.
+    String name = event.getPlugin().getName();
+    if (name.equals(plugin.getName())) return;
 
-    if (n == null) {
-      return;
-    }
+    for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
+      if (hook.isExpansion()) {
+        PlaceholderExpansion ex = (PlaceholderExpansion) hook;
 
-    if (n.equals(plugin.getName())) {
-      return;
-    }
+        if (ex.getRequiredPlugin() == null) continue;
 
-    Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
-
-    for (Entry<String, PlaceholderHook> hook : hooks.entrySet()) {
-      PlaceholderHook i = hook.getValue();
-
-      if (i instanceof PlaceholderExpansion) {
-        PlaceholderExpansion ex = (PlaceholderExpansion) i;
-
-        if (ex.getRequiredPlugin() == null) {
-          continue;
-        }
-
-        if (ex.getRequiredPlugin().equalsIgnoreCase(n)) {
+        if (ex.getRequiredPlugin().equalsIgnoreCase(name)) {
           if (PlaceholderAPI.unregisterExpansion(ex)) {
             plugin.getLogger().info("Unregistered placeholder expansion: " + ex.getIdentifier());
           }
@@ -108,16 +98,10 @@ public class PlaceholderListener implements Listener {
   }
 
   @EventHandler
-  public void onQuit(PlayerQuitEvent e) {
-    Set<PlaceholderExpansion> expansions = PlaceholderAPI.getExpansions();
-
-    if (expansions.isEmpty()) {
-      return;
-    }
-
-    for (PlaceholderExpansion ex : expansions) {
-      if (ex instanceof Cleanable) {
-        ((Cleanable) ex).cleanup(e.getPlayer());
+  public void onQuit(PlayerQuitEvent event) {
+    for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
+      if (hook instanceof Cleanable) {
+        ((Cleanable) hook).cleanup(event.getPlayer());
       }
     }
   }

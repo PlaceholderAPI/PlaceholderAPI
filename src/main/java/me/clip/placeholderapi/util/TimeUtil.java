@@ -20,9 +20,11 @@
  */
 package me.clip.placeholderapi.util;
 
+import java.util.concurrent.TimeUnit;
+
 public class TimeUtil {
 
-  public static String getRemaining(int seconds, TimeFormat type) {
+  public static String getRemaining(int seconds, TimeUnit type) {
     if (seconds < 60) {
       switch (type) {
         case DAYS:
