@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
-public class ListCommand extends Command {
+public final class ListCommand extends Command {
     private static final int MINIMUM_ARGUMENTS = 1;
     private static final Set<String> COMPLETIONS = Sets.newHashSet(
             "all",
@@ -25,22 +25,19 @@ public class ListCommand extends Command {
     );
 
     public ListCommand() {
-        super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)", "placeholderapi.ecloud"));
+        super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)",
+                MINIMUM_ARGUMENTS, "placeholderapi.ecloud"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         int page = 1;
 
         String author;
         boolean installed = false;
 
-        author = args[1];
+        author = args[0];
 
         if (author.equalsIgnoreCase("all")) {
             author = null;
@@ -49,20 +46,20 @@ public class ListCommand extends Command {
             installed = true;
         }
 
-        if (args.length >= 4) {
+        if (args.length >= 2) {
             try {
-                page = Integer.parseInt(args[2]);
+                page = Integer.parseInt(args[1]);
             } catch (NumberFormatException ex) {
                 Msg.msg(sender, "&cPage number must be an integer!");
 
-                return true;
+                return;
             }
         }
 
         if (page < 1) {
             Msg.msg(sender, "&cPage must be greater than or equal to 1!");
 
-            return true;
+            return;
         }
 
         int avail;
@@ -79,7 +76,7 @@ public class ListCommand extends Command {
         if (ex == null || ex.isEmpty()) {
             Msg.msg(sender, "&cNo expansions available" + (author != null ? " for author &f" + author : ""));
 
-            return true;
+            return;
         }
 
         avail = plugin.getExpansionCloud().getPagesAvailable(ex, 10);
@@ -87,7 +84,7 @@ public class ListCommand extends Command {
             Msg.msg(sender, "&cThere " + ((avail == 1) ? " is only &f" + avail + " &cpage available!"
                     : "are only &f" + avail + " &cpages available!"));
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&bShowing expansions for&7: &f" + (author != null ? author
@@ -99,7 +96,7 @@ public class ListCommand extends Command {
         if (ex == null) {
             Msg.msg(sender, "&cThere was a problem getting the requested page...");
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&aGreen = Expansions you have");
@@ -134,7 +131,7 @@ public class ListCommand extends Command {
                 i++;
             }
 
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -193,8 +190,6 @@ public class ListCommand extends Command {
             line.send(p);
             i++;
         }
-
-        return true;
     }
 
     @NotNull

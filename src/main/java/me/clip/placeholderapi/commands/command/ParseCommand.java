@@ -10,19 +10,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ParseCommand extends Command {
-    private static final int MINIMUM_ARGUMENTS = 1;
-
+public final class ParseCommand extends Command {
     public ParseCommand() {
-        super("parse", options("&cYou must specify a player.", "placeholderapi.parse"));
+        super("parse", options("&cYou must specify a player.", 1, "placeholderapi.parse"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final OfflinePlayer player;
         final String input = args[0];
 
@@ -32,7 +26,7 @@ public class ParseCommand extends Command {
             } else {
                 Msg.msg(sender, "&cThis command must target a player when used by console");
 
-                return true;
+                return;
             }
         } else {
             if (Bukkit.getPlayer(input) != null) {
@@ -44,12 +38,12 @@ public class ParseCommand extends Command {
 
         if (player == null || !player.hasPlayedBefore()) {
             Msg.msg(sender, "&cFailed to find player: &f" + input);
-            return true;
+            return;
         }
 
         final String parse = StringUtils.join(args, " ", 2, args.length);
         Msg.msg(sender, "&r" + PlaceholderAPI.setPlaceholders(player, parse));
 
-        return true;
+        return;
     }
 }

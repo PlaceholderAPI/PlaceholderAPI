@@ -12,26 +12,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PlaceholdersCommand extends Command {
-    private static final int MINIMUM_ARGUMENTS = 1;
-
+public final class PlaceholdersCommand extends Command {
     public PlaceholdersCommand() {
-        super("ecloud placeholders", options("&cAn expansion name must be specified!", "placeholderapi.ecloud"));
+        super("ecloud placeholders", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
-        final String input = args[1];
+        final String input = args[0];
         final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
 
-            return true;
+            return;
         }
 
         final List<String> placeholders = expansion.getPlaceholders();
@@ -40,7 +34,7 @@ public class PlaceholdersCommand extends Command {
                             + " &cdoes not have any placeholders listed.",
                     "&7You should contact &f" + expansion.getAuthor() + " &7and ask for them to be added.");
 
-            return true;
+            return;
         }
 
         if (!(sender instanceof Player)
@@ -48,7 +42,7 @@ public class PlaceholdersCommand extends Command {
             Msg.msg(sender, "&bPlaceholders: &f" + placeholders.size(),
                     String.join("&a, &f", placeholders));
 
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -65,7 +59,5 @@ public class PlaceholdersCommand extends Command {
         }
 
         message.send(p);
-
-        return true;
     }
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class EcloudCommand extends Command {
+public final class EcloudCommand extends Command {
     private static final int MAXIMUM_ARGUMENTS = 1;
     private static final Set<String> COMPLETIONS = Sets.newHashSet(
             "clear",
@@ -30,7 +30,7 @@ public class EcloudCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
 
         if (args.length == 0) {
@@ -52,20 +52,20 @@ public class EcloudCommand extends Command {
                     "&fFetch the most up to date list of expansions available.",
                     "&b/papi ecloud clear",
                     "&fClear the expansion cloud cache.");
-            return true;
+            return;
         }
 
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The expansion cloud is not enabled!");
 
-            return true;
+            return;
         }
 
         if (plugin.getExpansionCloud().getCloudExpansions().isEmpty()) {
             Msg.msg(sender, "&7No cloud expansions are available at this time.");
         }
 
-        return true;
+        return;
     }
 
     @NotNull

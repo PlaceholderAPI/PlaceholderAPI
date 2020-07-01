@@ -7,19 +7,17 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public class RefreshCommand extends Command {
+public final class RefreshCommand extends Command {
     public RefreshCommand() {
         super("ecloud refresh", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         final ExpansionCloudManager cloud = plugin.getExpansionCloud();
         Msg.msg(sender, "&aRefresh task started. Use &f/papi ecloud list all &ain a few!!");
         cloud.clean();
         cloud.fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
-
-        return true;
     }
 }

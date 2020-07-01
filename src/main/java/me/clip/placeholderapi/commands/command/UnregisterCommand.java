@@ -13,19 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class UnregisterCommand extends Command {
+public final class UnregisterCommand extends Command {
     private static final int MINIMUM_ARGUMENTS = 1;
 
     public UnregisterCommand() {
-        super("unregister", options("&cAn expansion name must be specified!", "placeholderapi.register"));
+        super("unregister", options("&cAn expansion name must be specified!", MINIMUM_ARGUMENTS, "placeholderapi.register"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final String requestedExpansion = args[0];
         final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionManager()
                 .getRegisteredExpansion(requestedExpansion);
@@ -33,7 +29,7 @@ public class UnregisterCommand extends Command {
         if (expansion == null) {
             Msg.msg(sender, "&cFailed to find expansion: &f" + requestedExpansion);
 
-            return true;
+            return;
         }
 
         if (PlaceholderAPI.unregisterExpansion(expansion)) {
@@ -41,8 +37,6 @@ public class UnregisterCommand extends Command {
         } else {
             Msg.msg(sender, "&cFailed to unregister expansion: &f" + expansion.getName());
         }
-
-        return true;
     }
 
     @NotNull

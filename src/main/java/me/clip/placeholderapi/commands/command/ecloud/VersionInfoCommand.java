@@ -9,30 +9,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class VersionInfoCommand extends Command {
-    private static final int MINIMUM_ARGUMENTS = 2;
-
+public final class VersionInfoCommand extends Command {
     public VersionInfoCommand() {
-        super("ecloud versioninfo", options("placeholderapi.ecloud"));
+        super("ecloud versioninfo", options("&cIncorrect usage! &7/papi ecloud versioninfo <name> <version>",
+                2, "placeholderapi.ecloud"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final String input = args[0];
         final CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
-            return true;
+            return;
         }
 
         final CloudExpansion.Version version = expansion.getVersion(args[1]);
         if (version == null) {
             Msg.msg(sender, "&cThe version specified does not exist for expansion: &f" + expansion.getName());
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&bExpansion: " + (expansion.shouldUpdate() ? "&e" : "&f") + expansion.getName(),
@@ -41,7 +36,7 @@ public class VersionInfoCommand extends Command {
 
         if (!(sender instanceof Player)) {
             Msg.msg(sender, "&bDownload url: " + version.getUrl());
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -49,7 +44,5 @@ public class VersionInfoCommand extends Command {
         download.suggestCommand(
                 "/papi ecloud download " + expansion.getName() + " " + version.getVersion());
         download.send(p);
-
-        return true;
     }
 }

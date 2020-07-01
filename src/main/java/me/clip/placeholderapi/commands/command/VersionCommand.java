@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class VersionCommand extends Command {
+public final class VersionCommand extends Command {
     private static final Set<String> COMPLETIONS = Sets.newHashSet(
             "unregister",
             "reload",
@@ -34,15 +34,13 @@ public class VersionCommand extends Command {
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final PluginDescriptionFile description = PlaceholderAPIPlugin.getInstance().getDescription();
 
         Msg.msg(sender, "PlaceholderAPI &7version &b&o" + description.getVersion(),
                 "&fCreated by&7: &b" + description.getAuthors(),
                 "&fPapi commands: &b/papi help",
                 "&fEcloud commands: &b/papi ecloud");
-
-        return true;
     }
 
     @NotNull

@@ -11,26 +11,20 @@ import org.jetbrains.annotations.NotNull;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
-public class InfoCommand extends Command {
-    private static final int MINIMUM_ARGUMENTS = 1;
-
+public final class InfoCommand extends Command {
     public InfoCommand() {
-        super("ecloud info", options("&cAn expansion name must be specified!", "placeholderapi.ecloud"));
+        super("ecloud info", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final String input = args[0];
         final CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
 
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
 
-            return true;
+            return;
         }
 
         if (!(sender instanceof Player)) {
@@ -38,7 +32,7 @@ public class InfoCommand extends Command {
                     (expansion.shouldUpdate() ? "&e" : "") + expansion.getName() + " &8&m-- &r" + expansion
                             .getVersion().getUrl());
 
-            return true;
+            return;
         }
 
         final Player p = (Player) sender;
@@ -72,7 +66,5 @@ public class InfoCommand extends Command {
             placeholders.suggestCommand("/papi ecloud placeholders " + expansion.getName());
             placeholders.send(p);
         }
-
-        return true;
     }
 }

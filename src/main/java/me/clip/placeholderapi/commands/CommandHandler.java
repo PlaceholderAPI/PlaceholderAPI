@@ -7,6 +7,7 @@ import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
 import me.clip.placeholderapi.commands.command.ecloud.ListCommand;
 import me.clip.placeholderapi.commands.command.ecloud.*;
 import me.clip.placeholderapi.exceptions.NoDefaultCommandException;
+import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +55,7 @@ public class CommandHandler implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
-                             @NotNull final String name, @NotNull final String[] args) {
+                             @NotNull final String name, @NotNull String[] args) {
         if (args.length == 0) {
             DEFAULT.execute(sender, args);
             return true;
@@ -77,7 +78,15 @@ public class CommandHandler implements CommandExecutor {
             return true;
         }
 
-        command.execute(sender, shiftArguments(args, command.getMatch()));
+        args = shiftArguments(args, command.getMatch());
+
+        if (args.length < command.getMinimumArguments()) {
+            Msg.msg(sender, command.getUsage());
+            return true;
+        }
+
+        command.execute(sender, args);
+
         return true;
     }
 

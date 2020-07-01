@@ -10,29 +10,24 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class InfoCommand extends Command {
+public final class InfoCommand extends Command {
     private static final int MINIMUM_ARGUMENTS = 1;
 
     public InfoCommand() {
-        super("info", options("&cIncorrect usage! &7/papi info <expansion>", "placeholderapi.info"));
+        super("info", options("&cIncorrect usage! &7/papi info <expansion>", MINIMUM_ARGUMENTS, "placeholderapi.info"));
     }
 
     @Override
-    public boolean execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length < MINIMUM_ARGUMENTS) {
-            return false;
-        }
-
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         final String requestedExpansion = args[0];
         final PlaceholderExpansion ex = PlaceholderAPIPlugin.getInstance().getExpansionManager().getRegisteredExpansion(requestedExpansion);
         if (ex == null) {
             Msg.msg(sender, "&cThere is no expansion loaded with the identifier: &f" + requestedExpansion);
 
-            return true;
+            return;
         }
 
         Msg.msg(sender, "&7Placeholder expansion info for: &f" + ex.getName());
@@ -57,8 +52,6 @@ public class InfoCommand extends Command {
                 Msg.msg(sender, placeholder);
             }
         }
-
-        return true;
     }
 
     @NotNull
@@ -70,6 +63,6 @@ public class InfoCommand extends Command {
             return StringUtil.copyPartialMatches(args[0], completions, new ArrayList<>(completions.size()));
         }
 
-        return Collections.emptyList();
+        return super.handleCompletion(sender, args);
     }
 }
