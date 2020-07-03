@@ -43,7 +43,7 @@ public class ExpansionCloudManager {
     private final PlaceholderAPIPlugin plugin;
     private final File expansionsDir;
 
-    private final List<String> downloading = new ArrayList<>();
+    private final Set<String> downloading = new HashSet<>();
     private final Map<Integer, CloudExpansion> remote = new TreeMap<>();
 
     public ExpansionCloudManager(PlaceholderAPIPlugin plugin) {

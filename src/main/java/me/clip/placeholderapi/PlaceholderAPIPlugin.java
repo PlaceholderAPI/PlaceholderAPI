@@ -33,9 +33,11 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -49,7 +51,7 @@ import java.util.concurrent.TimeUnit;
 public class PlaceholderAPIPlugin extends JavaPlugin {
 
   private static PlaceholderAPIPlugin instance;
-  private static SimpleDateFormat dateFormat;
+  private static DateTimeFormatter dateFormat;
   private static String booleanTrue;
   private static String booleanFalse;
   private static final Version serverVersion;
@@ -90,9 +92,8 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
    *
    * @return date format
    */
-  public static SimpleDateFormat getDateFormat() {
-    return dateFormat != null ? dateFormat : new SimpleDateFormat(
-        "MM/dd/yy HH:mm:ss");
+  public static DateTimeFormatter getDateFormat() {
+    return dateFormat != null ? dateFormat : DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
   }
 
   /**
@@ -118,19 +119,16 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   @Override
-  public void onLoad() {
+  public void onEnable() {
     startTime = System.currentTimeMillis();
     instance = this;
-    config = new PlaceholderAPIConfig(this);
-    expansionManager = new ExpansionManager(this);
-  }
 
-  @Override
-  public void onEnable() {
+    config = new PlaceholderAPIConfig(this);
     config.loadDefConfig();
     setupOptions();
 
     getCommand("placeholderapi").setExecutor(new PlaceholderAPICommands(this));
+    expansionManager = new ExpansionManager(this);
     new PlaceholderListener(this);
 
     try {
@@ -141,7 +139,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         getLogger().info("Placeholder expansion registration initializing...");
 
         //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
-        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.PLACEHOLDERS;
         getExpansionManager().registerAllExpansions();
 
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
@@ -189,45 +187,38 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
   @SuppressWarnings("deprecation")
   private void checkHook() {
-    Map<String, PlaceholderHook> loaded = PlaceholderAPI.getPlaceholders();
-
-    loaded.values().forEach(h -> {
-      if (h instanceof EZPlaceholderHook) {
+    for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
+      if (hook instanceof EZPlaceholderHook) {
+        String pluginName = ((EZPlaceholderHook) hook).getPluginName();
         String author;
 
         try {
-          author = Bukkit.getPluginManager().getPlugin(((EZPlaceholderHook) h).getPluginName()).getDescription().getAuthors().toString();
+          author = Bukkit.getPluginManager().getPlugin(pluginName).getDescription().getAuthors().toString();
         } catch (Exception ex) {
           author = "the author of the hook's plugin";
         }
 
-        getLogger().severe(((EZPlaceholderHook) h).getPluginName() +
+        getLogger().severe(pluginName +
                 " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
                 "Please consult " + author + " and urge them to update it ASAP.");
 
         // disable the hook on startup
-        PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());
+        PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) hook).getPlaceholderName());
       }
-    });
+    }
   }
 
   private void setupOptions() {
     booleanTrue = config.booleanTrue();
-
-    if (booleanTrue == null) {
-      booleanTrue = "true";
-    }
+    if (booleanTrue == null) booleanTrue = "true";
 
     booleanFalse = config.booleanFalse();
-
-    if (booleanFalse == null) {
-      booleanFalse = "false";
-    }
+    if (booleanFalse == null) booleanFalse = "false";
 
     try {
-      dateFormat = new SimpleDateFormat(config.dateFormat());
-    } catch (Exception e) {
-      dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+      dateFormat = DateTimeFormatter.ofPattern(config.dateFormat());
+    } catch (Exception ignored) {
+      dateFormat = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
     }
   }
 
@@ -241,20 +232,15 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
     m.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
       Map<String, Integer> map = new HashMap<>();
-      Map<String, PlaceholderHook> p = PlaceholderAPI.getPlaceholders();
-
-      if (!p.isEmpty()) {
-
-        for (PlaceholderHook hook : p.values()) {
+        for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
           if (hook.isExpansion()) {
             PlaceholderExpansion ex = (PlaceholderExpansion) hook;
             map.put(ex.getRequiredPlugin() == null ? ex.getIdentifier()
                 : ex.getRequiredPlugin(), 1);
           }
         }
-      }
-      return map;
 
+      return map;
     }));
 
   }
@@ -269,10 +255,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   public void disableCloud() {
-    if (expansionCloud != null) {
-      expansionCloud.clean();
-      expansionCloud = null;
-    }
+    if (expansionCloud != null) expansionCloud = null;
   }
 
   /**
@@ -298,6 +281,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   public long getUptimeMillis() {
-    return (System.currentTimeMillis() - startTime);
+    return System.currentTimeMillis() - startTime;
   }
 }

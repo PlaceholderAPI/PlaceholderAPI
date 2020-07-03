@@ -28,20 +28,20 @@ public class PlaceholderReplacer {
      */
     public static String evaluatePlaceholders(OfflinePlayer player, String str, Closure closure, boolean colorize) {
         StringBuilder builder = new StringBuilder(str.length());
-        StringBuilder identifier = null;
+        StringBuilder identifier = new StringBuilder(50);
         PlaceholderHook handler = null;
-        boolean color = false;
 
         // Stages:
+        //   Stage -1: Look for the color code in the next character.
         //   Stage 0: No closures has been detected or the detected identifier is invalid. We're going forward appending normal string.
         //   Stage 1: The closure has been detected, looking for identifier...
         //   Stage 2: The identifier has been detected and the parameter has been found. Translating placeholder...
         int stage = 0;
 
         for (char ch : str.toCharArray()) {
-            if (color && COLOR_CODES.contains(ch)) {
+            if (stage == -1 && COLOR_CODES.contains(ch)) {
                 builder.append(ChatColor.COLOR_CHAR).append(ch);
-                color = false;
+                stage = 0;
                 continue;
             }
 
@@ -55,14 +55,14 @@ public class PlaceholderReplacer {
                     if (translated == null) builder.append(identifier);
                     else builder.append(translated);
 
-                    identifier = new StringBuilder();
+                    identifier.setLength(0);
                     stage = 0;
                     continue;
-                } else if (stage == 1) { // If it just started | double closures. // If it's still hasn't verified the indentifier, reset.
+                } else if (stage == 1) { // If it just started | Double closures | If it's still hasn't detected the indentifier, reset.
                     builder.append(closure.start).append(identifier);
                 }
 
-                identifier = new StringBuilder();
+                identifier.setLength(0);
                 stage = 1;
                 continue;
             }
@@ -77,7 +77,7 @@ public class PlaceholderReplacer {
                         builder.append(closure.start).append(identifier).append('_');
                         stage = 0;
                     } else {
-                        identifier = new StringBuilder();
+                        identifier.setLength(0);
                         stage = 2;
                     }
                     continue;
@@ -96,7 +96,7 @@ public class PlaceholderReplacer {
 
             // Nothing placeholder related was found.
             if (colorize && ch == '&') {
-                color = true;
+                stage = -1;
                 continue;
             }
             builder.append(ch);

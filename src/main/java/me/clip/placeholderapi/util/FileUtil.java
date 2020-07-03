@@ -71,10 +71,7 @@ public class FileUtil {
   }
 
   private static List<Class<?>> gather(URL jar, List<Class<?>> list, Class<?> clazz) {
-    if (list == null) {
-      list = new ArrayList<>();
-    }
-
+    // list cannot be null.
     try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
          JarInputStream jis = new JarInputStream(jar.openStream())) {
 
@@ -84,13 +81,10 @@ public class FileUtil {
         if (name == null || name.isEmpty()) continue;
 
         if (name.endsWith(".class")) {
-          name = name.replace('/', '.');
-          String cname = name.substring(0, name.lastIndexOf(".class"));
+          name = name.substring(0, name.length() - 6).replace('/', '.');
 
-          Class<?> c = cl.loadClass(cname);
-          if (clazz.isAssignableFrom(c)) {
-            list.add(c);
-          }
+          Class<?> loaded = cl.loadClass(name);
+          if (clazz.isAssignableFrom(loaded)) list.add(loaded);
         }
       }
     } catch (Throwable ignored) {

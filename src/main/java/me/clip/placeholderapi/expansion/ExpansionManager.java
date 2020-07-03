@@ -107,8 +107,7 @@ public final class ExpansionManager {
     if (!expansion.register()) return false;
 
     if (expansion instanceof Listener) {
-      Listener l = (Listener) expansion;
-      Bukkit.getPluginManager().registerEvents(l, plugin);
+      Bukkit.getPluginManager().registerEvents((Listener) expansion, plugin);
     }
 
     plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier());
@@ -147,8 +146,6 @@ public final class ExpansionManager {
   }
 
   public void registerAllExpansions() {
-    if (plugin == null) return;
-
     List<Class<?>> subs = FileUtil.getClasses("expansions", null, PlaceholderExpansion.class);
     if (subs == null || subs.isEmpty()) return;
 

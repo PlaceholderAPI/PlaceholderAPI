@@ -100,7 +100,7 @@ public class UpdateChecker implements Listener {
     return StringUtils.remove(version, '.');
   }
 
-  @EventHandler(priority = EventPriority.MONITOR)
+  @EventHandler
   public void onJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
     if (player.hasPermission("placeholderapi.updatenotify")) {
