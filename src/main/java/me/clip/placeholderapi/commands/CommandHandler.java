@@ -6,18 +6,20 @@ import me.clip.placeholderapi.commands.command.*;
 import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
 import me.clip.placeholderapi.commands.command.ecloud.ListCommand;
 import me.clip.placeholderapi.commands.command.ecloud.*;
-import me.clip.placeholderapi.exceptions.NoDefaultCommandException;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class CommandHandler implements CommandExecutor {
+public final class CommandHandler implements CommandExecutor {
+    private static final Command DEFAULT = new VersionCommand();
+
     private static final Set<Command> COMMANDS = Sets.newHashSet(
             new ClearCommand(),
             new DownloadCommand(),
@@ -38,13 +40,9 @@ public class CommandHandler implements CommandExecutor {
             new me.clip.placeholderapi.commands.command.ListCommand(),
             new RegisterCommand(),
             new ReloadCommand(),
-            new VersionCommand(),
+            DEFAULT,
             new UnregisterCommand()
     );
-
-    private static final Command DEFAULT = COMMANDS.stream()
-            .filter(command -> command.getMatch().isEmpty())
-            .findAny().orElseThrow(() -> new NoDefaultCommandException("There is no default command present in the plugin."));
 
     private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
@@ -73,12 +71,16 @@ public class CommandHandler implements CommandExecutor {
 
         final Command command = optional.get();
 
-        if (!command.getPermissions().isEmpty() && command.getPermissions().stream().anyMatch(sender::hasPermission)) {
+        if (!command.getPermissions().isEmpty() && command.getPermissions().stream().noneMatch(sender::hasPermission)) {
             sender.sendMessage("You do not have the permission to execute specified command.");
             return true;
         }
 
-        args = shiftArguments(args, command.getMatch());
+        args = shiftArguments(args, command.getMatch(), 1);
+
+        System.out.println(Arrays.toString(args));
+        System.out.println(args.length);
+        System.out.println(command.getMinimumArguments());
 
         if (args.length < command.getMinimumArguments()) {
             Msg.msg(sender, command.getUsage());
@@ -90,10 +92,11 @@ public class CommandHandler implements CommandExecutor {
         return true;
     }
 
-    static String[] shiftArguments(@NotNull final String[] arguments, final String command) {
-        final int shift = SPACE_PATTERN.split(command).length + 1;
+    static String[] shiftArguments(@NotNull final String[] arguments, @NotNull final String command,
+                                   final int shiftAddition) {
+        final int shift = SPACE_PATTERN.split(command).length + shiftAddition;
         final int newSize = arguments.length - shift;
-        final String[] result = new String[newSize];
+        final String[] result = new String[Math.max(newSize, 0)];
 
         if (newSize >= 0) System.arraycopy(arguments, shift, result, 0, newSize);
 

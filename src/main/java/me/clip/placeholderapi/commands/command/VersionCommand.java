@@ -30,7 +30,7 @@ public final class VersionCommand extends Command {
     );
 
     public VersionCommand() {
-        super("");
+        super("version");
     }
 
     @Override

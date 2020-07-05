@@ -139,7 +139,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         config.loadDefConfig();
         setupOptions();
 
-        Objects.requireNonNull(getCommand("placeholderapi")).setExecutor(new CommandHandler(this));
+        Objects.requireNonNull(getCommand("placeholderapi")).setExecutor(new CommandHandler());
         new PlaceholderListener(this);
 
         try {
