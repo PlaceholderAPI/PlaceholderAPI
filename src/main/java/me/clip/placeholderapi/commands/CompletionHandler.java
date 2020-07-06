@@ -7,12 +7,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public final class CompletionHandler implements TabCompleter {
-    private final Set<Command> commands;
+    private final List<Command> commands;
 
-    CompletionHandler(@NotNull final Set<Command> commands) {
+    CompletionHandler(@NotNull final List<Command> commands) {
         this.commands = commands;
     }
 
@@ -27,7 +26,7 @@ public final class CompletionHandler implements TabCompleter {
                 .findAny();
 
         return optional
-                .map(command -> command.handleCompletion(sender, CommandHandler.shiftArguments(args, command.getMatch(), 0)))
+                .map(command -> command.handleCompletion(sender, CommandHandler.splitArguments(joined, command.getMatch())))
                 .orElse(Collections.emptyList());
     }
 }

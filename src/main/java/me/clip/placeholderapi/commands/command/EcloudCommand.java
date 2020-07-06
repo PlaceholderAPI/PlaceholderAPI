@@ -63,9 +63,10 @@ public final class EcloudCommand extends Command {
 
         if (plugin.getExpansionCloud().getCloudExpansions().isEmpty()) {
             Msg.msg(sender, "&7No cloud expansions are available at this time.");
+            return;
         }
 
-        return;
+        sender.sendMessage("Specified command is not valid.");
     }
 
     @NotNull

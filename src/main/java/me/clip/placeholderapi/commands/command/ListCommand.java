@@ -24,7 +24,5 @@ public final class ListCommand extends Command {
 
         Msg.msg(sender, registered.size() + " &7Placeholder hooks registered:",
                 registered.stream().sorted().collect(Collectors.joining(", ")));
-
-        return;
     }
 }

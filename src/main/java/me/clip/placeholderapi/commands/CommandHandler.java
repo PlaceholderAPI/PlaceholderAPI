@@ -1,6 +1,6 @@
 package me.clip.placeholderapi.commands;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.command.*;
 import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
@@ -11,16 +11,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 public final class CommandHandler implements CommandExecutor {
     private static final Command DEFAULT = new VersionCommand();
 
-    private static final Set<Command> COMMANDS = Sets.newHashSet(
+    private static final List<Command> COMMANDS = Lists.newArrayList(
             new ClearCommand(),
             new DownloadCommand(),
             new InfoCommand(),
@@ -44,6 +43,16 @@ public final class CommandHandler implements CommandExecutor {
             new UnregisterCommand()
     );
 
+    static {
+        COMMANDS.sort((command1, command2) -> {
+            final int comparison = Integer.compare(command1.getMatch().length(), command2.getMatch().length());
+
+            if (comparison == 1) return -1;
+            if (comparison == -1) return 1;
+            return 0;
+        });
+    }
+
     private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
 
     static {
@@ -62,7 +71,7 @@ public final class CommandHandler implements CommandExecutor {
         final String joined = String.join(" ", args).toLowerCase();
         final Optional<Command> optional = COMMANDS.stream()
                 .filter(command -> joined.startsWith(command.getMatch()))
-                .findAny();
+                .findFirst();
 
         if (!optional.isPresent()) {
             sender.sendMessage("Specified command is not valid.");
@@ -76,11 +85,7 @@ public final class CommandHandler implements CommandExecutor {
             return true;
         }
 
-        args = shiftArguments(args, command.getMatch(), 1);
-
-        System.out.println(Arrays.toString(args));
-        System.out.println(args.length);
-        System.out.println(command.getMinimumArguments());
+        args = splitArguments(joined, command.getMatch());
 
         if (args.length < command.getMinimumArguments()) {
             Msg.msg(sender, command.getUsage());
@@ -92,14 +97,8 @@ public final class CommandHandler implements CommandExecutor {
         return true;
     }
 
-    static String[] shiftArguments(@NotNull final String[] arguments, @NotNull final String command,
-                                   final int shiftAddition) {
-        final int shift = SPACE_PATTERN.split(command).length + shiftAddition;
-        final int newSize = arguments.length - shift;
-        final String[] result = new String[Math.max(newSize, 0)];
-
-        if (newSize >= 0) System.arraycopy(arguments, shift, result, 0, newSize);
-
-        return result;
+    static String[] splitArguments(@NotNull final String joinedArguments, @NotNull final String command) {
+        final String[] args = SPACE_PATTERN.split(joinedArguments.replace(command, "").trim());
+        return args.length == 1 && args[0].isEmpty() ? new String[]{} : args;
     }
 }
