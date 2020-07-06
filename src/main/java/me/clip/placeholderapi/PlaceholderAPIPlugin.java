@@ -23,6 +23,7 @@ package me.clip.placeholderapi;
 import me.clip.placeholderapi.commands.CommandHandler;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
@@ -30,12 +31,14 @@ import me.clip.placeholderapi.listeners.PlaceholderListener;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.clip.placeholderapi.util.TimeUtil;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -240,27 +243,27 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     private void setupMetrics() {
-//        Metrics m = new Metrics(this, 438);
-//        m.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getExpansionCloud() != null ? "yes" : "no"));
-//
-//        m.addCustomChart(new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
-//
-//        m.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
-//            Map<String, Integer> map = new HashMap<>();
-//            Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
-//
-//            if (!hooks.isEmpty()) {
-//
-//                for (PlaceholderHook hook : hooks.values()) {
-//                    if (hook instanceof PlaceholderExpansion) {
-//                        PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
-//                        map.put(expansion.getRequiredPlugin() == null ? expansion.getIdentifier() : expansion.getRequiredPlugin(), 1);
-//                    }
-//                }
-//            }
-//            return map;
-//
-//        }));
+        Metrics m = new Metrics(this, 438);
+        m.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getExpansionCloud() != null ? "yes" : "no"));
+
+        m.addCustomChart(new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
+
+        m.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
+            Map<String, Integer> map = new HashMap<>();
+            Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
+
+            if (!hooks.isEmpty()) {
+
+                for (PlaceholderHook hook : hooks.values()) {
+                    if (hook instanceof PlaceholderExpansion) {
+                        PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
+                        map.put(expansion.getRequiredPlugin() == null ? expansion.getIdentifier() : expansion.getRequiredPlugin(), 1);
+                    }
+                }
+            }
+            return map;
+
+        }));
 
     }
 
