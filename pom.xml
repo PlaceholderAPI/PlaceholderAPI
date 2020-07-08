@@ -95,20 +95,20 @@
                         <configuration>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>me.rayzr522</pattern>
-                                    <shadedPattern>me.clip.placeholderapi.util</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>com.google.code.gson</pattern>
-                                    <shadedPattern>me.clip.placeholderapi.libs.gson</shadedPattern>
-                                </relocation>
-                            </relocations>
+<!--                            <relocations>-->
+<!--                                <relocation>-->
+<!--                                    <pattern>org.bstats</pattern>-->
+<!--                                    <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>-->
+<!--                                </relocation>-->
+<!--                                <relocation>-->
+<!--                                    <pattern>me.rayzr522</pattern>-->
+<!--                                    <shadedPattern>me.clip.placeholderapi.util</shadedPattern>-->
+<!--                                </relocation>-->
+<!--                                <relocation>-->
+<!--                                    <pattern>com.google.code.gson</pattern>-->
+<!--                                    <shadedPattern>me.clip.placeholderapi.libs.gson</shadedPattern>-->
+<!--                                </relocation>-->
+<!--                            </relocations>-->
                         </configuration>
                     </execution>
                 </executions>

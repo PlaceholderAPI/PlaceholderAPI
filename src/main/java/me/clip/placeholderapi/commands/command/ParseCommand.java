@@ -43,7 +43,5 @@ public final class ParseCommand extends Command {
 
         final String parse = StringUtils.join(args, " ", 1, args.length);
         Msg.msg(sender, "&r" + PlaceholderAPI.setPlaceholders(player, parse));
-
-        return;
     }
 }

@@ -28,8 +28,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Msg {
-
+public final class Msg {
     public static void msg(CommandSender s, String... msg) {
         s.sendMessage(Arrays.stream(msg).filter(Objects::nonNull).map(Msg::color).collect(Collectors.joining("\n")));
     }
