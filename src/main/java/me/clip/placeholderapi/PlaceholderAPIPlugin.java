@@ -243,7 +243,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     private void setupMetrics() {
-        Metrics m = new Metrics(this, 438);
+        Metrics m = new Metrics(this);
         m.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getExpansionCloud() != null ? "yes" : "no"));
 
         m.addCustomChart(new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
@@ -264,7 +264,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
             return map;
 
         }));
-
     }
 
     public void enableCloud() {

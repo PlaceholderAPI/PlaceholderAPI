@@ -6,45 +6,50 @@
     <groupId>me.clip</groupId>
     <artifactId>placeholderapi</artifactId>
 
-  <version>2.10.7-DEV-${BUILD_NUMBER}</version>
-  <name>PlaceholderAPI</name>
-  <description>An awesome placeholder provider!</description>
-  <url>http://extendedclip.com</url>
+    <version>2.10.7-DEV-${BUILD_NUMBER}</version>
+    <name>PlaceholderAPI</name>
+    <description>An awesome placeholder provider!</description>
+    <url>http://extendedclip.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-  <repositories>
-    <repository>
-      <id>spigot-repo</id>
-      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-    </repository>
-    <repository>
-      <id>CodeMC</id>
-      <url>https://repo.codemc.org/repository/maven-public</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>CodeMC</id>
+            <url>https://repo.codemc.org/repository/maven-public</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot-api</artifactId>
-      <version>1.16.1-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.5</version>
-  </dependency>
-    <dependency>
-      <groupId>org.bstats</groupId>
-      <artifactId>bstats-bukkit</artifactId>
-      <version>1.5</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>19.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -80,20 +85,16 @@
                         <configuration>
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-<!--                            <relocations>-->
-<!--                                <relocation>-->
-<!--                                    <pattern>org.bstats</pattern>-->
-<!--                                    <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>-->
-<!--                                </relocation>-->
-<!--                                <relocation>-->
-<!--                                    <pattern>me.rayzr522</pattern>-->
-<!--                                    <shadedPattern>me.clip.placeholderapi.util</shadedPattern>-->
-<!--                                </relocation>-->
-<!--                                <relocation>-->
-<!--                                    <pattern>com.google.code.gson</pattern>-->
-<!--                                    <shadedPattern>me.clip.placeholderapi.libs.gson</shadedPattern>-->
-<!--                                </relocation>-->
-<!--                            </relocations>-->
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>me.clip.placeholderapi.metrics</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.google.code.gson</pattern>
+                                    <shadedPattern>me.clip.placeholderapi.libs.gson</shadedPattern>
+                                </relocation>
+                            </relocations>
                         </configuration>
                     </execution>
                 </executions>
