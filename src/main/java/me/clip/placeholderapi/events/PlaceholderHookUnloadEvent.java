@@ -27,29 +27,29 @@ import org.bukkit.event.HandlerList;
 @Deprecated
 public class PlaceholderHookUnloadEvent extends Event {
 
-  private static final HandlerList HANDLERS = new HandlerList();
-  private final String plugin;
-  private final PlaceholderHook hook;
+    private static final HandlerList HANDLERS = new HandlerList();
+    private final String plugin;
+    private final PlaceholderHook hook;
 
-  public PlaceholderHookUnloadEvent(String plugin, PlaceholderHook placeholderHook) {
-    this.plugin = plugin;
-    this.hook = placeholderHook;
-  }
+    public PlaceholderHookUnloadEvent(String plugin, PlaceholderHook placeholderHook) {
+        this.plugin = plugin;
+        this.hook = placeholderHook;
+    }
 
-  public static HandlerList getHandlerList() {
-    return HANDLERS;
-  }
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
 
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLERS;
-  }
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLERS;
+    }
 
-  public String getHookName() {
-    return plugin;
-  }
+    public String getHookName() {
+        return plugin;
+    }
 
-  public PlaceholderHook getHook() {
-    return hook;
-  }
+    public PlaceholderHook getHook() {
+        return hook;
+    }
 }
