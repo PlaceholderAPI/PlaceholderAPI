@@ -1,9 +1,9 @@
-name: ${project.name}
+name: @name@
 main: me.clip.placeholderapi.PlaceholderAPIPlugin
-version: ${project.version}
+version: @version@
 api-version: '1.13'
 authors: [extended_clip, Glare]
-description: ${project.description}
+description: @description@
 permissions:
     placeholderapi.*:
         description: ability to use all commands

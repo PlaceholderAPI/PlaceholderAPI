@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'me.clip'
+version '2.10.7-DEV-${BUILD_NUMBER}'
+description 'PlaceholderAPI'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenLocal()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = 'https://repo.codemc.org/repository/maven-public'
+    }
+    maven {
+        url = 'https://rayzr.dev/repo/'
+    }
+    maven {
+        url = 'http://repo.maven.apache.org/maven2'
+    }
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.bstats:bstats-bukkit:1.5'
+    implementation 'me.rayzr522:jsonmessage:1.2.1'
+    compileOnly 'org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT'
+    compileOnly 'org.jetbrains:annotations:19.0.0'
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [name: rootProject.name, version: version, description: description]
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+shadowJar {
+    archiveClassifier.set("")
+    relocate "org.bstats", "me.clip.placeholderapi.metrics"
+    relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
+    relocate "me.rayzr522.jsonmessage", "me.clip.placeholderapi.libs.jsonmessage"
+}
