@@ -51,14 +51,11 @@ public final class CommandHandler implements CommandExecutor {
             if (comparison == -1) return 1;
             return 0;
         });
+        Objects.requireNonNull(PlaceholderAPIPlugin.getInstance().getCommand("placeholderapi"))
+            .setTabCompleter(new CompletionHandler(COMMANDS));
     }
 
     private static final Pattern SPACE_PATTERN = Pattern.compile(" ");
-
-    static {
-        Objects.requireNonNull(PlaceholderAPIPlugin.getInstance().getCommand("placeholderapi"))
-                .setTabCompleter(new CompletionHandler(COMMANDS));
-    }
 
     @Override
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
