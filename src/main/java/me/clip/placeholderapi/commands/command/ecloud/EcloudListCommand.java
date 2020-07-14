@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
-public final class ListCommand extends Command {
+public final class EcloudListCommand extends Command {
     private static final int MINIMUM_ARGUMENTS = 1;
     private static final Set<String> COMPLETIONS = Sets.newHashSet(
             "all",
@@ -24,7 +24,7 @@ public final class ListCommand extends Command {
             "installed"
     );
 
-    public ListCommand() {
+    public EcloudListCommand() {
         super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)",
                 MINIMUM_ARGUMENTS, "placeholderapi.ecloud"));
     }

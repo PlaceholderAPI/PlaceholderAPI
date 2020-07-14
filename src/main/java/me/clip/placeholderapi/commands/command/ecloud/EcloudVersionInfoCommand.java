@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public final class VersionInfoCommand extends Command {
-    public VersionInfoCommand() {
+public final class EcloudVersionInfoCommand extends Command {
+    public EcloudVersionInfoCommand() {
         super("ecloud versioninfo", options("&cIncorrect usage! &7/papi ecloud versioninfo <name> <version>",
                 2, "placeholderapi.ecloud"));
     }

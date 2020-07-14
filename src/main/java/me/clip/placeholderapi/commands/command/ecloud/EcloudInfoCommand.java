@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
-public final class InfoCommand extends Command {
-    public InfoCommand() {
+public final class EcloudInfoCommand extends Command {
+    public EcloudInfoCommand() {
         super("ecloud info", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 

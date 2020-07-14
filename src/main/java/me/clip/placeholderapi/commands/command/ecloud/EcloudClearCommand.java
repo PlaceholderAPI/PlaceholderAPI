@@ -6,8 +6,8 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public final class ClearCommand extends Command {
-    public ClearCommand() {
+public final class EcloudClearCommand extends Command {
+    public EcloudClearCommand() {
         super("ecloud clear", permissions("placeholderapi.ecloud"));
     }
 

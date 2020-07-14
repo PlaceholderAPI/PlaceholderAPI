@@ -3,8 +3,8 @@ package me.clip.placeholderapi.commands;
 import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.command.*;
-import me.clip.placeholderapi.commands.command.ecloud.InfoCommand;
-import me.clip.placeholderapi.commands.command.ecloud.ListCommand;
+import me.clip.placeholderapi.commands.command.ecloud.EcloudInfoCommand;
+import me.clip.placeholderapi.commands.command.ecloud.EcloudListCommand;
 import me.clip.placeholderapi.commands.command.ecloud.*;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandExecutor;
@@ -20,14 +20,14 @@ public final class CommandHandler implements CommandExecutor {
     private static final Command DEFAULT = new VersionCommand();
 
     private static final List<Command> COMMANDS = Lists.newArrayList(
-            new ClearCommand(),
-            new DownloadCommand(),
-            new InfoCommand(),
-            new ListCommand(),
-            new PlaceholdersCommand(),
-            new RefreshCommand(),
-            new StatusCommand(),
-            new VersionInfoCommand(),
+            new EcloudClearCommand(),
+            new EcloudDownloadCommand(),
+            new EcloudInfoCommand(),
+            new EcloudListCommand(),
+            new EcloudPlaceholdersCommand(),
+            new EcloudRefreshCommand(),
+            new EcloudStatusCommand(),
+            new EcloudVersionInfoCommand(),
             new EcloudCommand(),
             new BcParseCommand(),
             new ParseCommand(),
@@ -35,8 +35,8 @@ public final class CommandHandler implements CommandExecutor {
             new DisableEcloudCommand(),
             new EnableCloudCommand(),
             new HelpCommand(),
-            new me.clip.placeholderapi.commands.command.InfoCommand(),
-            new me.clip.placeholderapi.commands.command.ListCommand(),
+            new InfoCommand(),
+            new ListCommand(),
             new RegisterCommand(),
             new ReloadCommand(),
             DEFAULT,

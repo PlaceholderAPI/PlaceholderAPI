@@ -7,8 +7,8 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public final class RefreshCommand extends Command {
-    public RefreshCommand() {
+public final class EcloudRefreshCommand extends Command {
+    public EcloudRefreshCommand() {
         super("ecloud refresh", permissions("placeholderapi.ecloud"));
     }
 

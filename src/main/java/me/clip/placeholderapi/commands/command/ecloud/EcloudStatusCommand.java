@@ -6,8 +6,8 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-public final class StatusCommand extends Command {
-    public StatusCommand() {
+public final class EcloudStatusCommand extends Command {
+    public EcloudStatusCommand() {
         super("ecloud status", permissions("placeholderapi.ecloud"));
     }
 

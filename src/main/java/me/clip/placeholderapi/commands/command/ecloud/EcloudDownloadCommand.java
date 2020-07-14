@@ -11,8 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public final class DownloadCommand extends Command {
-    public DownloadCommand() {
+public final class EcloudDownloadCommand extends Command {
+    public EcloudDownloadCommand() {
         super("ecloud download", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 

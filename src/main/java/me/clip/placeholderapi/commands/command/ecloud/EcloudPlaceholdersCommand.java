@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public final class PlaceholdersCommand extends Command {
-    public PlaceholdersCommand() {
+public final class EcloudPlaceholdersCommand extends Command {
+    public EcloudPlaceholdersCommand() {
         super("ecloud placeholders", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 
