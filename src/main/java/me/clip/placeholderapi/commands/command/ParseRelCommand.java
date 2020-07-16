@@ -27,7 +27,7 @@ public final class ParseRelCommand extends Command {
             return;
         }
 
-        String parse = StringUtils.join(args, " ", 1, args.length);
+        String parse = StringUtils.join(args, " ", 2, args.length);
         Msg.msg(sender, "&r" + PlaceholderAPI.setRelationalPlaceholders(one, two, parse));
     }
 }

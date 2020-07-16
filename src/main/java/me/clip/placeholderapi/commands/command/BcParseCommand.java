@@ -35,7 +35,7 @@ public final class BcParseCommand extends Command {
             }
         }
 
-        String parse = StringUtils.join(args, " ", 2, args.length);
+        String parse = StringUtils.join(args, " ", 1, args.length);
         Msg.broadcast("&r" + PlaceholderAPI.setPlaceholders(player, parse));
     }
 }
