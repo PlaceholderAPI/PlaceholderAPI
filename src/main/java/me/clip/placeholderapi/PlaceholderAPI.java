@@ -20,6 +20,7 @@
  */
 package me.clip.placeholderapi;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
@@ -33,14 +34,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
 public class PlaceholderAPI {
-    protected static final Map<String, PlaceholderHook> PLACEHOLDERS = new HashMap<>();
-    private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
+    protected static final Map<String, PlaceholderHook> PLACEHOLDERS = new ConcurrentHashMap<>();
+    private static final Pattern PERCENT_PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
     private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
     private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
 
@@ -54,10 +56,7 @@ public class PlaceholderAPI {
      * @return true if identifier is already registered
      */
     public static boolean isRegistered(String identifier) {
-        for (String registered : getRegisteredIdentifiers()) {
-            if (registered.equalsIgnoreCase(identifier)) return true;
-        }
-        return false;
+        return PLACEHOLDERS.containsKey(identifier.toLowerCase(Locale.ENGLISH));
     }
 
     /**
@@ -70,8 +69,8 @@ public class PlaceholderAPI {
      * registered for the specified identifier
      */
     public static boolean registerPlaceholderHook(String identifier, PlaceholderHook placeholderHook) {
-        Validate.notNull(identifier, "Identifier can not be null");
-        Validate.notNull(placeholderHook, "Placeholderhook can not be null");
+        Validate.notEmpty(identifier, "Placeholder identifier cannot be null or empty");
+        Objects.requireNonNull(placeholderHook, "Placeholder hook cannot be null");
 
         if (isRegistered(identifier)) return false;
         PLACEHOLDERS.put(identifier.toLowerCase(Locale.ENGLISH), placeholderHook);
@@ -86,7 +85,7 @@ public class PlaceholderAPI {
      * placeholder hook registered for the identifier specified
      */
     public static boolean unregisterPlaceholderHook(String identifier) {
-        Validate.notNull(identifier, "Identifier can not be null");
+        Validate.notEmpty(identifier, "Identifier cannot be null");
         return PLACEHOLDERS.remove(identifier.toLowerCase(Locale.ENGLISH)) != null;
     }
 
@@ -124,7 +123,7 @@ public class PlaceholderAPI {
      * @return true if String contains any registered placeholder identifiers, false otherwise
      */
     public static boolean containsPlaceholders(String text) {
-        return text != null && PLACEHOLDER_PATTERN.matcher(text).find();
+        return !Strings.isNullOrEmpty(text) && PERCENT_PLACEHOLDER_PATTERN.matcher(text).find();
     }
 
     /**
@@ -134,7 +133,7 @@ public class PlaceholderAPI {
      * @return true if String contains any registered placeholder identifiers, false otherwise
      */
     public static boolean containsBracketPlaceholders(String text) {
-        return text != null && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
+        return !Strings.isNullOrEmpty(text) && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
     }
 
     /**
@@ -171,7 +170,7 @@ public class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     public static List<String> setPlaceholders(OfflinePlayer player, List<String> text) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, true);
     }
 
     /**
@@ -184,7 +183,7 @@ public class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     public static List<String> setPlaceholders(OfflinePlayer player, List<String> text, boolean colorize) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, colorize);
     }
 
     /**
@@ -256,7 +255,7 @@ public class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     public static String setPlaceholders(OfflinePlayer player, String text) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN);
+        return PlaceholderReplacer.evaluatePlaceholders(player, text, PlaceholderReplacer.Closure.PERCENT, false);
     }
 
     /**
@@ -269,7 +268,7 @@ public class PlaceholderAPI {
      * @return The text containing the parsed placeholders
      */
     public static String setPlaceholders(OfflinePlayer player, String text, boolean colorize) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, colorize);
     }
 
     /**
@@ -469,8 +468,8 @@ public class PlaceholderAPI {
      *
      * @return The pattern for {@literal %<identifier>_<params>%}
      */
-    public static Pattern getPLACEHOLDER_PATTERN() {
-        return PLACEHOLDER_PATTERN;
+    public static Pattern getPlaceholderPattern() {
+        return PERCENT_PLACEHOLDER_PATTERN;
     }
 
     /**
@@ -478,7 +477,7 @@ public class PlaceholderAPI {
      *
      * @return The pattern for {@literal {<identifier>_<params>}}
      */
-    public static Pattern getBRACKET_PLACEHOLDER_PATTERN() {
+    public static Pattern getBracketPlaceholderPattern() {
         return BRACKET_PLACEHOLDER_PATTERN;
     }
 
@@ -487,7 +486,7 @@ public class PlaceholderAPI {
      *
      * @return The pattern for {@literal %rel_<identifier>_<params>%}
      */
-    public static Pattern getRELATIONAL_PLACEHOLDER_PATTERN() {
+    public static Pattern getRelationalPlaceholderPattern() {
         return RELATIONAL_PLACEHOLDER_PATTERN;
     }
 
@@ -512,19 +511,19 @@ public class PlaceholderAPI {
     }
 
     public static String setPlaceholders(Player player, String text) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, true);
     }
 
     public static String setPlaceholders(Player player, String text, boolean colorize) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, colorize);
     }
 
     public static List<String> setPlaceholders(Player player, List<String> text) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, true);
     }
 
     public static List<String> setPlaceholders(Player player, List<String> text, boolean colorize) {
-        return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
+        return setPlaceholders(player, text, PERCENT_PLACEHOLDER_PATTERN, colorize);
     }
 
     public static String setBracketPlaceholders(Player player, String text) {

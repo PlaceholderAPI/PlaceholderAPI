@@ -26,39 +26,42 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public abstract class PlaceholderHook {
+    /**
+     * Called when a placeholder value is requested from this hook.
+     *
+     * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
+     *               player
+     * @param params String passed to the hook to determine what value to return
+     * @return value for the requested player and params
+     */
+    public String onRequest(OfflinePlayer player, String params) {
+        if (player != null && player.isOnline()) {
+            return onPlaceholderRequest((Player) player, params);
+        }
 
-  /**
-   * called when a placeholder value is requested from this hook
-   *
-   * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
-   * player
-   * @param params String passed to the hook to determine what value to return
-   * @return value for the requested player and params
-   */
-  public String onRequest(OfflinePlayer player, String params) {
-    if (player != null && player.isOnline()) {
-      return onPlaceholderRequest((Player) player, params);
+        return onPlaceholderRequest(null, params);
     }
 
-    return onPlaceholderRequest(null, params);
-  }
+    public PlaceholderAPIPlugin getPlaceholderAPI() {
+        return PlaceholderAPIPlugin.getInstance();
+    }
 
-  /**
-   * called when a placeholder is requested from this hook
-   *
-   * @param player {@link Player} to request the placeholder value for, null if not needed for a player
-   * @param params String passed to the hook to determine what value to return
-   * @return value for the requested player and params
-   */
-  public String onPlaceholderRequest(Player player, String params) {
-    return null;
-  }
+    /**
+     * Called when a placeholder is requested from this hook.
+     *
+     * @param player {@link Player} to request the placeholder value for, null if not needed for a player
+     * @param params String passed to the hook to determine what value to return
+     * @return value for the requested player and params
+     */
+    public String onPlaceholderRequest(Player player, String params) {
+        return null;
+    }
 
-  public boolean isExpansion() {
-    return this instanceof PlaceholderExpansion;
-  }
+    public boolean isExpansion() {
+        return this instanceof PlaceholderExpansion;
+    }
 
-  public boolean isRelational() {
-    return this instanceof Relational;
-  }
+    public boolean isRelational() {
+        return this instanceof Relational;
+    }
 }

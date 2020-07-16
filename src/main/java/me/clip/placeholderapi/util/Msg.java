@@ -24,26 +24,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-
 public class Msg {
-
-  public static void msg(CommandSender sender, String... messages) {
-    for (String message : messages) {
-      String msg = color(message);
-      sender.sendMessage(msg);
+    public static void msg(CommandSender sender, String... messages) {
+        for (String message : messages) {
+            String msg = color(message);
+            sender.sendMessage(msg);
+        }
     }
-  }
 
-  public static void broadcast(String... messages) {
-    CommandSender sender = Bukkit.getConsoleSender();
-    for (String message : messages) {
-      String msg = color(message);
-      sender.sendMessage(msg);
+    public static void broadcast(String... messages) {
+        CommandSender sender = Bukkit.getConsoleSender();
+        for (String message : messages) {
+            String msg = color(message);
+            sender.sendMessage(msg);
+        }
     }
-  }
 
-  public static String color(String text) {
-    return ChatColor.translateAlternateColorCodes('&', text);
-  }
+    public static String color(String text) {
+        return ChatColor.translateAlternateColorCodes('&', text);
+    }
 }

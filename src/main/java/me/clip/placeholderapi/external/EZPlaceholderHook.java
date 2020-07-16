@@ -29,29 +29,29 @@ import org.bukkit.plugin.Plugin;
 @Deprecated
 public abstract class EZPlaceholderHook extends PlaceholderHook {
 
-  private final String identifier;
-  private final String plugin;
+    private final String identifier;
+    private final String plugin;
 
-  public EZPlaceholderHook(Plugin plugin, String identifier) {
-    Validate.notNull(plugin, "Plugin cannot be null");
-    Validate.notNull(identifier, "Placeholder name cannot be null");
-    this.identifier = identifier;
-    this.plugin = plugin.getName();
-  }
+    public EZPlaceholderHook(Plugin plugin, String identifier) {
+        Validate.notNull(plugin, "Plugin cannot be null");
+        Validate.notNull(identifier, "Placeholder name cannot be null");
+        this.identifier = identifier;
+        this.plugin = plugin.getName();
+    }
 
-  public boolean isHooked() {
-    return PlaceholderAPI.getRegisteredPlaceholderPlugins().contains(identifier);
-  }
+    public boolean isHooked() {
+        return PlaceholderAPI.getRegisteredPlaceholderPlugins().contains(identifier);
+    }
 
-  public boolean hook() {
-    return PlaceholderAPI.registerPlaceholderHook(identifier, this);
-  }
+    public boolean hook() {
+        return PlaceholderAPI.registerPlaceholderHook(identifier, this);
+    }
 
-  public String getPlaceholderName() {
-    return identifier;
-  }
+    public String getPlaceholderName() {
+        return identifier;
+    }
 
-  public String getPluginName() {
-    return plugin;
-  }
+    public String getPluginName() {
+        return plugin;
+    }
 }

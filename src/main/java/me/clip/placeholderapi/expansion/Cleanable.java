@@ -30,11 +30,10 @@ import org.bukkit.entity.Player;
  * @author Ryan McCarthy
  */
 public interface Cleanable {
-
-  /**
-   * Called when a player leaves the server
-   *
-   * @param player (@link Player} who left the server
-   */
-  void cleanup(Player player);
+    /**
+     * Called when a player leaves the server
+     *
+     * @param player (@link Player} who left the server
+     */
+    void cleanup(Player player);
 }

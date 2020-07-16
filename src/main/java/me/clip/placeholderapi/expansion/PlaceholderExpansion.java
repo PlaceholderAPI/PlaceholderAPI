@@ -167,7 +167,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
         return getConfig().contains(getPathStarter() + path);
     }
 
-    public String getPathStarter() {
+    protected String getPathStarter() {
         return "expansions." + getIdentifier() + '.';
     }
 

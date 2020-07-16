@@ -18,8 +18,11 @@
  *
  *
  */
-package me.clip.placeholderapi;
+package me.clip.placeholderapi.listeners;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,7 +31,6 @@ import org.bukkit.event.server.ServerLoadEvent;
 import java.util.Map;
 
 public class ServerLoadEventListener implements Listener {
-
     private final PlaceholderAPIPlugin plugin;
 
     public ServerLoadEventListener(PlaceholderAPIPlugin instance) {
@@ -38,17 +40,18 @@ public class ServerLoadEventListener implements Listener {
 
     /**
      * This method will be called when the server is first loaded.
-     *
+     * <p>
      * The goal of the method is to register all the expansions as soon as possible
      * especially before players can join.
-     *
+     * <p>
      * This will ensure no issues with expanions and hooks.
+     *
      * @param event the server load event.
      */
     @EventHandler
     public void onServerLoad(ServerLoadEvent event) {
         plugin.getLogger().info("Placeholder expansion registration initializing...");
-        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.PLACEHOLDERS;
+        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         plugin.getExpansionManager().registerAllExpansions();
 
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {

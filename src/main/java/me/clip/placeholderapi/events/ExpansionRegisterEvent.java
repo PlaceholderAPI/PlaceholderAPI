@@ -27,35 +27,35 @@ import org.bukkit.event.HandlerList;
 
 public class ExpansionRegisterEvent extends Event implements Cancellable {
 
-  private static final HandlerList HANDLERS = new HandlerList();
-  private final PlaceholderExpansion expansion;
-  private boolean isCancelled;
+    private static final HandlerList HANDLERS = new HandlerList();
+    private final PlaceholderExpansion expansion;
+    private boolean isCancelled;
 
 
-  public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
-    this.expansion = expansion;
-  }
+    public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
+        this.expansion = expansion;
+    }
 
-  public static HandlerList getHandlerList() {
-    return HANDLERS;
-  }
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
 
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLERS;
-  }
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLERS;
+    }
 
-  public PlaceholderExpansion getExpansion() {
-    return expansion;
-  }
+    public PlaceholderExpansion getExpansion() {
+        return expansion;
+    }
 
-  @Override
-  public boolean isCancelled() {
-    return isCancelled;
-  }
+    @Override
+    public boolean isCancelled() {
+        return isCancelled;
+    }
 
-  @Override
-  public void setCancelled(boolean b) {
-    this.isCancelled = b;
-  }
+    @Override
+    public void setCancelled(boolean b) {
+        this.isCancelled = b;
+    }
 }
