@@ -24,17 +24,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-public final class Msg {
-    public static void msg(CommandSender s, String... msg) {
-        s.sendMessage(Arrays.stream(msg).filter(Objects::nonNull).map(Msg::color).collect(Collectors.joining("\n")));
+public class Msg {
+    public static void msg(CommandSender sender, String... messages) {
+        for (String message : messages) {
+            String msg = color(message);
+            sender.sendMessage(msg);
+        }
     }
 
-    public static void broadcast(String... msg) {
-        Arrays.stream(msg).filter(Objects::nonNull).map(Msg::color).forEach(Bukkit::broadcastMessage);
+    public static void broadcast(String... messages) {
+        CommandSender sender = Bukkit.getConsoleSender();
+        for (String message : messages) {
+            String msg = color(message);
+            sender.sendMessage(msg);
+        }
     }
 
     public static String color(String text) {

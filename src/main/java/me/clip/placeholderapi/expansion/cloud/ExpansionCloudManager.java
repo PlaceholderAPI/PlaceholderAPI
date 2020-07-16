@@ -37,36 +37,28 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ExpansionCloudManager {
-
     private static final String API_URL = "http://api.extendedclip.com/v2/";
     private static final Gson GSON = new Gson();
-
 
     private final PlaceholderAPIPlugin plugin;
     private final File expansionsDir;
 
-    private final List<String> downloading = new ArrayList<>();
+    private final Set<String> downloading = new HashSet<>();
     private final Map<Integer, CloudExpansion> remote = new TreeMap<>();
-
 
     public ExpansionCloudManager(PlaceholderAPIPlugin plugin) {
         this.plugin = plugin;
-
         expansionsDir = new File(plugin.getDataFolder(), "expansions");
 
-        final boolean result = expansionsDir.mkdirs();
-        if (result) {
+        if (expansionsDir.mkdirs()) {
             plugin.getLogger().info("Created Expansions Directory");
         }
-
     }
-
 
     public void clean() {
         remote.clear();
         downloading.clear();
     }
-
 
     public Map<Integer, CloudExpansion> getCloudExpansions() {
         return remote;
@@ -79,7 +71,6 @@ public class ExpansionCloudManager {
                 .findFirst()
                 .orElse(null);
     }
-
 
     public int getCloudAuthorCount() {
         return remote.values()
@@ -126,14 +117,10 @@ public class ExpansionCloudManager {
 
 
     public int getPagesAvailable(Map<Integer, CloudExpansion> map, int amount) {
-        if (map == null) {
-            return 0;
-        }
+        if (map == null) return 0;
 
         int pages = map.size() > 0 ? 1 : 0;
-        if (pages == 0) {
-            return pages;
-        }
+        if (pages == 0) return 0;
 
         if (map.size() > amount) {
             pages = map.size() / amount;
@@ -159,12 +146,11 @@ public class ExpansionCloudManager {
         return ex;
     }
 
-
     public void fetch(boolean allowUnverified) {
         plugin.getLogger().info("Fetching available expansion information...");
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
-            final Map<String, CloudExpansion> data = new HashMap<>();
+            Map<String, CloudExpansion> data = new HashMap<>();
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
                 data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {
@@ -173,11 +159,12 @@ public class ExpansionCloudManager {
                 if (plugin.getPlaceholderAPIConfig().isDebugMode()) {
                     ex.printStackTrace();
                 } else {
-                    plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
+                    plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api" +
+                            ".extendedclip.com/v2/)");
                 }
             }
 
-            final List<CloudExpansion> unsorted = new ArrayList<>();
+            List<CloudExpansion> unsorted = new ArrayList<>();
 
             data.forEach((name, cexp) -> {
                 if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null) {
@@ -204,7 +191,6 @@ public class ExpansionCloudManager {
             }
 
             plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
-
             long updates = getToUpdateCount();
 
             if (updates > 0) {
@@ -220,19 +206,15 @@ public class ExpansionCloudManager {
 
     private void download(URL url, String name) throws IOException {
         InputStream is = null;
-
         FileOutputStream fos = null;
 
         try {
             URLConnection urlConn = url.openConnection();
-
             is = urlConn.getInputStream();
-
             fos = new FileOutputStream(
                     expansionsDir.getAbsolutePath() + File.separator + "Expansion-" + name + ".jar");
 
             byte[] buffer = new byte[is.available()];
-
             int l;
 
             while ((l = is.read(buffer)) > 0) {
@@ -252,42 +234,35 @@ public class ExpansionCloudManager {
     }
 
 
-    public void downloadExpansion(final String player, final CloudExpansion ex) {
+    public void downloadExpansion(String player, CloudExpansion ex) {
         downloadExpansion(player, ex, ex.getLatestVersion());
     }
 
-    public void downloadExpansion(final String player, final CloudExpansion ex, final String version) {
+    public void downloadExpansion(String player, CloudExpansion ex, String version) {
         if (downloading.contains(ex.getName())) {
             return;
         }
 
-        final CloudExpansion.Version ver = ex.getVersions()
+        CloudExpansion.Version ver = ex.getVersions()
                 .stream()
                 .filter(v -> v.getVersion().equals(version))
                 .findFirst()
                 .orElse(null);
 
-        if (ver == null) {
-            return;
-        }
+        if (ver == null) return;
 
         downloading.add(ex.getName());
-
         plugin.getLogger().info("Attempting download of expansion: " + ex.getName() + (player != null ? " by user: " + player : "") + " from url: " + ver.getUrl());
-
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
 
             try {
                 download(new URL(ver.getUrl()), ex.getName());
-
                 plugin.getLogger().info("Download of expansion: " + ex.getName() + " complete!");
-
             } catch (Exception e) {
                 plugin.getLogger()
                         .warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
 
                 Bukkit.getScheduler().runTask(plugin, () -> {
-
                     downloading.remove(ex.getName());
 
                     if (player != null) {
@@ -314,7 +289,6 @@ public class ExpansionCloudManager {
                     }
                 }
             });
-
         });
     }
 }
