@@ -23,6 +23,8 @@ public final class HelpCommand extends Command {
                 "&fParse a String with placeholders",
                 "&b/papi bcparse <(playername)/me> <...args>",
                 "&fParse a String with placeholders and broadcast the message",
+                "&b/papi cmdparse <(playername)/me> <...args>",
+                "&fParse a String with placeholders and execute it as command",
                 "&b/papi parserel <player one> <player two> <...args>",
                 "&fParse a String with relational placeholders",
                 "&b/papi register <fileName>",

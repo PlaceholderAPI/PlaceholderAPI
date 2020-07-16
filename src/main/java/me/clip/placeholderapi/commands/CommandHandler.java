@@ -24,6 +24,7 @@ public final class CommandHandler implements CommandExecutor {
             new UnregisterCommand(),
             new ReloadCommand(),
             new BcParseCommand(),
+            new CmdParseCommand(),
             new ParseCommand(),
             new ParseRelCommand(),
 

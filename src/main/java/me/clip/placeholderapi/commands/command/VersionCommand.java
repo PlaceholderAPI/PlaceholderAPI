@@ -25,7 +25,8 @@ public final class VersionCommand extends Command {
             "ecloud",
             "enablecloud",
             "disablecloud",
-            "bcparse"
+            "bcparse",
+            "cmdparse"
     );
 
     public VersionCommand() {
