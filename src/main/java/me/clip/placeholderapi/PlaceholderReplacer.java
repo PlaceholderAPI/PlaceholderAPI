@@ -1,20 +1,42 @@
+/*
+ * PlaceholderAPI
+ * Copyright (C) 2019 Ryan McCarthy
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package me.clip.placeholderapi;
 
 import com.google.common.collect.ImmutableSet;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 
 import java.util.Set;
 
 /**
- * This is certainly hard to understand, but it's fully optimized.
+ * This is certainly hard to understand and maintain, but it's fully optimized.
+ * It's almost x5 times faster than the RegEx method for normal sized strings. This performance gap gets smaller
+ * for smaller strings.
+ *
+ * @author Crypto Morin
  */
 public class PlaceholderReplacer {
     /**
      * Cached available color codes. Technically the uppercase of each letter can be used too, but no one really uses the uppercase ones.
      */
     private static final Set<Character> COLOR_CODES = ImmutableSet.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-            'a', 'b', 'c', 'd', 'e', 'f', 'k', 'l', 'm', 'o', 'r');
+            'a', 'b', 'c', 'd', 'e', 'f', 'k', 'l', 'm', 'o', 'r', 'x');
 
     /**
      * Translates placeholders for a string using pure character loops.
@@ -27,33 +49,39 @@ public class PlaceholderReplacer {
      * @return a translated string.
      */
     public static String evaluatePlaceholders(OfflinePlayer player, String str, Closure closure, boolean colorize) {
-        StringBuilder builder = new StringBuilder(str.length());
+        char[] chars = str.toCharArray();
+        StringBuilder builder = new StringBuilder(chars.length);
+
+        // This won't cause memory leaks. It's inside a method. And we want to use setLength instead of
+        // creating a new string builder to use the maximum capacity and avoid initializing new objects.
         StringBuilder identifier = new StringBuilder(50);
         PlaceholderHook handler = null;
 
         // Stages:
         //   Stage -1: Look for the color code in the next character.
-        //   Stage 0: No closures has been detected or the detected identifier is invalid. We're going forward appending normal string.
-        //   Stage 1: The closure has been detected, looking for identifier...
-        //   Stage 2: The identifier has been detected and the parameter has been found. Translating placeholder...
+        //   Stage 0: No closures detected, or the detected identifier is invalid. We're going forward while appending the characters normally.
+        //   Stage 1: The closure has been detected, looking for the placeholder identifier...
+        //   Stage 2: Detected the identifier and the parameter. Translating the placeholder...
         int stage = 0;
 
-        for (char ch : str.toCharArray()) {
+        for (char ch : chars) {
             if (stage == -1 && COLOR_CODES.contains(ch)) {
                 builder.append(ChatColor.COLOR_CHAR).append(ch);
                 stage = 0;
                 continue;
             }
 
-            // Check if the placeholder ends or starts.
-            if (ch == closure.end || ch == closure.start) {
+            // Check if the placeholder starts or ends.
+            if (ch == closure.start || ch == closure.end) {
                 // If the placeholder ends.
                 if (stage == 2) {
                     String parameter = identifier.toString();
                     String translated = handler.onRequest(player, parameter);
 
-                    if (translated == null) builder.append(identifier);
-                    else builder.append(translated);
+                    if (translated == null) {
+                        String name = handler.isExpansion() ? ((PlaceholderExpansion) handler).getIdentifier() : "";
+                        builder.append(closure.start).append(name).append('_').append(parameter).append(closure.end);
+                    } else builder.append(translated);
 
                     identifier.setLength(0);
                     stage = 0;

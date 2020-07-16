@@ -5,9 +5,9 @@ import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 
-public final class DisableEcloudCommand extends Command {
-    public DisableEcloudCommand() {
-        super("disablecloud");
+public final class EcloudDisableCommand extends Command {
+    public EcloudDisableCommand() {
+        super("ecloud disable");
     }
 
     @Override

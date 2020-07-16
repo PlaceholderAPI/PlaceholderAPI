@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.command.ecloud;
+package me.clip.placeholderapi.commands.command;
 
 import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -21,7 +21,9 @@ public final class EcloudCommand extends Command {
             "placeholders",
             "refresh",
             "status",
-            "versioninfo"
+            "versioninfo",
+            "enable",
+            "disable"
     );
 
     public EcloudCommand() {

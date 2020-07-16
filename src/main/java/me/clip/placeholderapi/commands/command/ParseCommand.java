@@ -7,41 +7,53 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public final class ParseCommand extends Command {
     public ParseCommand() {
-        super("parse", options("&cYou must specify a player.", 1, "placeholderapi.parse"));
+        super("parse", options("&cYou must specify a player.", 1));
     }
 
     @Override
-    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        final OfflinePlayer player;
-        final String input = args[0];
+    public void execute(CommandSender sender, String[] args) {
+        OfflinePlayer player;
+        String input = args[0];
 
         if (input.equalsIgnoreCase("me")) {
             if (sender instanceof Player) {
                 player = (Player) sender;
             } else {
                 Msg.msg(sender, "&cThis command must target a player when used by console");
-
                 return;
             }
         } else {
-            if (Bukkit.getPlayer(input) != null) {
-                player = Bukkit.getPlayer(input);
-            } else {
-                player = Bukkit.getOfflinePlayer(input);
+            player = Bukkit.getPlayer(input);
+            if (player == null) player = Bukkit.getOfflinePlayer(input);
+            if (player == null || !player.hasPlayedBefore()) {
+                Msg.msg(sender, "&cCould not find player&8: &f" + input);
+                return;
             }
         }
 
-        if (player == null || !player.hasPlayedBefore()) {
-            Msg.msg(sender, "&cFailed to find player: &f" + input);
-            return;
-        }
-
-        final String parse = StringUtils.join(args, " ", 1, args.length);
+        String parse = StringUtils.join(args, " ", 1, args.length);
         Msg.msg(sender, "&r" + PlaceholderAPI.setPlaceholders(player, parse));
+    }
+
+    @Override
+    public List<String> handleCompletion(CommandSender sender, String[] args) {
+        if (args.length == 1) {
+            List<String> players = Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName).collect(Collectors.toList());
+            players.add("me");
+            if (args[0].isEmpty()) return players;
+            else return players.stream().filter(name -> name.startsWith(args[0])).collect(Collectors.toList());
+        }
+        if (args.length == 2) return Collections.singletonList("<message>");
+        return new ArrayList<>();
     }
 }

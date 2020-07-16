@@ -7,7 +7,6 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +16,17 @@ public final class UnregisterCommand extends Command {
     private static final int MINIMUM_ARGUMENTS = 1;
 
     public UnregisterCommand() {
-        super("unregister", options("&cAn expansion name must be specified!", MINIMUM_ARGUMENTS, "placeholderapi.register"));
+        super("unregister", options("&cAn expansion name must be specified!", MINIMUM_ARGUMENTS));
     }
 
     @Override
-    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        final String requestedExpansion = args[0];
-        final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionManager()
+    public void execute(CommandSender sender, String[] args) {
+        String requestedExpansion = args[0];
+        PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionManager()
                 .getRegisteredExpansion(requestedExpansion);
 
         if (expansion == null) {
             Msg.msg(sender, "&cFailed to find expansion: &f" + requestedExpansion);
-
             return;
         }
 
@@ -39,12 +37,11 @@ public final class UnregisterCommand extends Command {
         }
     }
 
-    @NotNull
-    @Override
-    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        if (args.length == MINIMUM_ARGUMENTS) {
-            final Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
 
+    @Override
+    public List<String> handleCompletion(CommandSender sender, String[] args) {
+        if (args.length == MINIMUM_ARGUMENTS) {
+            Set<String> completions = PlaceholderAPI.getRegisteredIdentifiers();
             return StringUtil.copyPartialMatches(args[0], completions, new ArrayList<>(completions.size()));
         }
 

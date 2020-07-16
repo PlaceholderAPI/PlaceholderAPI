@@ -7,19 +7,18 @@ import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import static me.clip.placeholderapi.util.Msg.color;
 
 public final class EcloudInfoCommand extends Command {
     public EcloudInfoCommand() {
-        super("ecloud info", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
+        super("ecloud info", options("&cAn expansion name must be specified!", 1));
     }
 
     @Override
-    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
-        final String input = args[0];
-        final CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
+    public void execute(CommandSender sender, String[] args) {
+        String input = args[0];
+        CloudExpansion expansion = PlaceholderAPIPlugin.getInstance().getExpansionCloud().getCloudExpansion(input);
 
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found by the name: &f" + input);
@@ -35,7 +34,7 @@ public final class EcloudInfoCommand extends Command {
             return;
         }
 
-        final Player p = (Player) sender;
+        Player p = (Player) sender;
 
         Msg.msg(sender, "&bExpansion&7: &f" + expansion.getName(),
                 "&bAuthor: &f" + expansion.getAuthor(),
@@ -43,7 +42,7 @@ public final class EcloudInfoCommand extends Command {
         );
 
         // latest version
-        final JSONMessage latestVersion = JSONMessage
+        JSONMessage latestVersion = JSONMessage
                 .create(color("&bLatest version: &f" + expansion.getLatestVersion()));
         latestVersion.tooltip(color("&bReleased: &f" + expansion.getTimeSinceLastUpdate()
                 + "\n&bUpdate information: &f" + expansion.getVersion().getReleaseNotes()
@@ -51,7 +50,7 @@ public final class EcloudInfoCommand extends Command {
         latestVersion.send(p);
 
         // versions
-        final JSONMessage versions = JSONMessage
+        JSONMessage versions = JSONMessage
                 .create(color("&bVersions available: &f" + expansion.getVersions().size()));
         versions.tooltip(color(String.join("&b, &f", expansion.getAvailableVersions())));
         versions.suggestCommand(
@@ -60,7 +59,7 @@ public final class EcloudInfoCommand extends Command {
 
         // placeholders
         if (expansion.getPlaceholders() != null) {
-            final JSONMessage placeholders = JSONMessage
+            JSONMessage placeholders = JSONMessage
                     .create(color("&bPlaceholders: &f" + expansion.getPlaceholders().size()));
             placeholders.tooltip(color(String.join("&b, &f", expansion.getPlaceholders())));
             placeholders.suggestCommand("/papi ecloud placeholders " + expansion.getName());

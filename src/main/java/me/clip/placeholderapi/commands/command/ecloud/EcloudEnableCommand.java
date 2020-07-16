@@ -5,9 +5,9 @@ import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 
-public final class EnableCloudCommand extends Command {
-    public EnableCloudCommand() {
-        super("enablecloud");
+public final class EcloudEnableCommand extends Command {
+    public EcloudEnableCommand() {
+        super("ecloud enable");
     }
 
     @Override
@@ -15,7 +15,6 @@ public final class EnableCloudCommand extends Command {
         PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() != null) {
             Msg.msg(sender, "&7The cloud is already enabled!");
-
             return;
         }
 

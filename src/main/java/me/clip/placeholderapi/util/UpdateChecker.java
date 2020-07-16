@@ -18,15 +18,13 @@
  *
  *
  */
-package me.clip.placeholderapi.updatechecker;
+package me.clip.placeholderapi.util;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -40,8 +38,8 @@ public class UpdateChecker implements Listener {
     private static final int RESOURCE_ID = 6245;
     private static final String SPIGOT_API = "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID;
     private final PlaceholderAPIPlugin plugin;
-    private String spigotVersion;
     private final String pluginVersion;
+    private String spigotVersion;
     private boolean updateAvailable;
 
     public UpdateChecker(PlaceholderAPIPlugin i) {
@@ -69,7 +67,7 @@ public class UpdateChecker implements Listener {
 
                 spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8)).readLine();
             } catch (Exception ex) {
-                plugin.getLogger().info("Failed to check for updates on spigot.");
+                plugin.getLogger().warning("Failed to check for updates on spigot.");
                 return;
             }
 

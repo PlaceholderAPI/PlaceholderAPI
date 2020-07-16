@@ -37,13 +37,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
 
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 
 public class PlaceholderListener implements Listener {
-
     private final PlaceholderAPIPlugin plugin;
 
     public PlaceholderListener(PlaceholderAPIPlugin instance) {
@@ -53,22 +48,23 @@ public class PlaceholderListener implements Listener {
 
     @EventHandler
     public void onExpansionUnregister(ExpansionUnregisterEvent event) {
-        if (event.getExpansion() instanceof Listener) {
-            HandlerList.unregisterAll((Listener) event.getExpansion());
+        PlaceholderExpansion expansion = event.getExpansion();
+        if (expansion instanceof Listener) {
+            HandlerList.unregisterAll((Listener) expansion);
         }
 
-        if (event.getExpansion() instanceof Taskable) {
-            ((Taskable) event.getExpansion()).stop();
+        if (expansion instanceof Taskable) {
+            ((Taskable) expansion).stop();
         }
 
-        if (event.getExpansion() instanceof Cacheable) {
-            ((Cacheable) event.getExpansion()).clear();
+        if (expansion instanceof Cacheable) {
+            ((Cacheable) expansion).clear();
         }
 
         if (plugin.getExpansionCloud() != null) {
 
             CloudExpansion ex = plugin.getExpansionCloud()
-                    .getCloudExpansion(event.getExpansion().getName());
+                    .getCloudExpansion(expansion.getName());
 
             if (ex != null) {
                 ex.setHasExpansion(false);
@@ -78,28 +74,20 @@ public class PlaceholderListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPluginUnload(PluginDisableEvent e) {
-        String n = e.getPlugin().getName();
+    public void onPluginUnload(PluginDisableEvent event) {
+        // A plugin name cannot be null.
+        String name = event.getPlugin().getName();
+        if (name.equals(plugin.getName())) return;
 
-        if (n.equals(plugin.getName())) {
-            return;
-        }
+        for (PlaceholderHook hook : PlaceholderAPI.getPlaceholders().values()) {
+            if (hook.isExpansion()) {
+                PlaceholderExpansion ex = (PlaceholderExpansion) hook;
 
-        Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
+                if (ex.getRequiredPlugin() == null) continue;
 
-        for (Entry<String, PlaceholderHook> entry : hooks.entrySet()) {
-            PlaceholderHook hook = entry.getValue();
-
-            if (hook instanceof PlaceholderExpansion) {
-                PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
-
-                if (expansion.getRequiredPlugin() == null) {
-                    continue;
-                }
-
-                if (expansion.getRequiredPlugin().equalsIgnoreCase(n)) {
-                    if (PlaceholderAPI.unregisterExpansion(expansion)) {
-                        plugin.getLogger().info("Unregistered placeholder expansion: " + expansion.getIdentifier());
+                if (ex.getRequiredPlugin().equalsIgnoreCase(name)) {
+                    if (PlaceholderAPI.unregisterExpansion(ex)) {
+                        plugin.getLogger().info("Unregistered placeholder expansion: " + ex.getIdentifier());
                     }
                 }
             }
@@ -107,16 +95,10 @@ public class PlaceholderListener implements Listener {
     }
 
     @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
-        Set<PlaceholderExpansion> expansions = PlaceholderAPI.getExpansions();
-
-        if (expansions.isEmpty()) {
-            return;
-        }
-
-        for (PlaceholderExpansion ex : expansions) {
-            if (ex instanceof Cleanable) {
-                ((Cleanable) ex).cleanup(e.getPlayer());
+    public void onQuit(PlayerQuitEvent event) {
+        for (PlaceholderHook hook : PlaceholderAPI.getPlaceholders().values()) {
+            if (hook instanceof Cleanable) {
+                ((Cleanable) hook).cleanup(event.getPlayer());
             }
         }
     }
