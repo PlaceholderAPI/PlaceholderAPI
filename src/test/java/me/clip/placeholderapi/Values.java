@@ -2,7 +2,6 @@ package me.clip.placeholderapi;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.replacer.CharsReplacer;
 import me.clip.placeholderapi.replacer.RegexReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
@@ -33,7 +32,7 @@ public interface Values
 																		  'a', 'b', 'c', 'd', 'e', 'f', 'k', 'l', 'm', 'o', 'r', 'x');
 
 		private final boolean colorize = true;
-		private final PlaceholderReplacer.Closure closure = PlaceholderReplacer.Closure.PERCENT;
+		private final Replacer.Closure closure = Replacer.Closure.PERCENT;
 
 		@Override
 		public @NotNull String apply(final @NotNull String text, final @Nullable OfflinePlayer player, final @NotNull Function<String, @Nullable PlaceholderHook> lookup)
@@ -63,7 +62,7 @@ public interface Values
 				}
 
 				// Check if the placeholder starts or ends.
-				if (ch == closure.start || ch == closure.end)
+				if (ch == closure.head || ch == closure.tail)
 				{
 					// If the placeholder ends.
 					if (stage == 2)
@@ -73,8 +72,8 @@ public interface Values
 
 						if (translated == null)
 						{
-							String name = handler.isExpansion() ? ((PlaceholderExpansion) handler).getIdentifier() : "";
-							builder.append(closure.start).append(name).append('_').append(parameter).append(closure.end);
+							String name = "";
+							builder.append(closure.head).append(name).append('_').append(parameter).append(closure.tail);
 						}
 						else
 						{
@@ -87,7 +86,7 @@ public interface Values
 					}
 					else if (stage == 1)
 					{ // If it just started | Double closures | If it's still hasn't detected the indentifier, reset.
-						builder.append(closure.start).append(identifier);
+						builder.append(closure.head).append(identifier);
 					}
 
 					identifier.setLength(0);
@@ -105,7 +104,7 @@ public interface Values
 						handler = lookup.apply(identifier.toString());
 						if (handler == null)
 						{
-							builder.append(closure.start).append(identifier).append('_');
+							builder.append(closure.head).append(identifier).append('_');
 							stage = 0;
 						}
 						else
@@ -141,7 +140,7 @@ public interface Values
 			{
 				if (stage > 0)
 				{
-					builder.append(closure.end);
+					builder.append(closure.tail);
 				}
 				builder.append(identifier);
 			}
