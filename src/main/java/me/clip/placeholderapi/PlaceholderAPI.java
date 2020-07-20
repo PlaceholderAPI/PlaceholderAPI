@@ -240,7 +240,8 @@ public final class PlaceholderAPI
 	 *                 identifier from the params
 	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
 	 * @return The text containing the parsed placeholders
-	 * @deprecated this will do absolutely nothing different
+	 *
+	 * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, String)} instead.
 	 */
 	@NotNull
 	@Deprecated
