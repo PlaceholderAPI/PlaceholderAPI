@@ -16,8 +16,7 @@ public interface Replacer
 
 	enum Closure
 	{
-		BRACES('{', '}'),
-		BRACKETS('[', ']'),
+		BRACKET('{', '}'),
 		PERCENT('%', '%');
 
 

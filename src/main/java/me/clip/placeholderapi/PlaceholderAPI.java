@@ -50,7 +50,9 @@ import java.util.stream.Collectors;
 public final class PlaceholderAPI
 {
 
-	private static final Replacer                     REPLACER     = new CharsReplacer(Closure.PERCENT);
+	private static final Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
+	private static final Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
+
 	private static final Map<String, PlaceholderHook> PLACEHOLDERS = new HashMap<>();
 
 
@@ -80,7 +82,7 @@ public final class PlaceholderAPI
 	@NotNull
 	public static String setPlaceholders(@Nullable final OfflinePlayer player, @NotNull final String text)
 	{
-		return REPLACER.apply(text, player, PLACEHOLDERS::get);
+		return REPLACER_PERCENT.apply(text, player, PLACEHOLDERS::get);
 	}
 
 	/**
@@ -92,10 +94,41 @@ public final class PlaceholderAPI
 	 * @return String containing all translated placeholders
 	 */
 	@NotNull
-	public static List<String> setPlaceholders(@Nullable final OfflinePlayer player, @NotNull List<@NotNull String> text)
+	public static List<String> setPlaceholders(@Nullable final OfflinePlayer player, @NotNull final List<@NotNull String> text)
 	{
 		return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
 	}
+
+	/**
+	 * Translates all placeholders into their corresponding values.
+	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+	 *
+	 * @param player Player to parse the placeholders against
+	 * @param text   Text to set the placeholder values in
+	 *
+	 * @return String containing all translated placeholders
+	 */
+	@NotNull
+	public static String setBracketPlaceholders(@Nullable final OfflinePlayer player, @NotNull final String text)
+	{
+		return REPLACER_BRACKET.apply(text, player, PLACEHOLDERS::get);
+	}
+
+	/**
+	 * Translates all placeholders into their corresponding values.
+	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+	 *
+	 * @param player Player to parse the placeholders against
+	 * @param text   List of Strings to set the placeholder values in
+	 *
+	 * @return String containing all translated placeholders
+	 */
+	@NotNull
+	public static List<String> setBracketPlaceholders(@Nullable final OfflinePlayer player, @NotNull final List<@NotNull String> text)
+	{
+		return text.stream().map(line -> setBracketPlaceholders(player, line)).collect(Collectors.toList());
+	}
+
 
 	/**
 	 * Check if a specific placeholder identifier is currently registered
@@ -308,21 +341,6 @@ public final class PlaceholderAPI
 	 * Translates all placeholders into their corresponding values.
 	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
 	 *
-	 * @param player Player to parse the placeholders against
-	 * @param text   List of Strings to set the placeholder values in
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
-	 */
-	@Deprecated
-	public static List<String> setBracketPlaceholders(OfflinePlayer player, List<String> text)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
-	 *
 	 * @param player   Player to parse the placeholders against
 	 * @param text     List of Strings to set the placeholder values in
 	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
@@ -368,20 +386,6 @@ public final class PlaceholderAPI
 		return setPlaceholders(player, text, pattern, true);
 	}
 
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
-	 *
-	 * @param player Player to parse the placeholders against
-	 * @param text   Text to set the placeholder values in
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	public static String setBracketPlaceholders(OfflinePlayer player, String text)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
-	}
 
 	/**
 	 * Translates all placeholders into their corresponding values.
@@ -581,8 +585,7 @@ public final class PlaceholderAPI
 	{
 		return RELATIONAL_PLACEHOLDER_PATTERN;
 	}
-	
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -591,7 +594,7 @@ public final class PlaceholderAPI
 	{
 		return getRegisteredIdentifiers();
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -600,7 +603,7 @@ public final class PlaceholderAPI
 	{
 		return null;
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -609,7 +612,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -618,7 +621,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -627,7 +630,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -636,7 +639,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -645,7 +648,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
@@ -654,7 +657,7 @@ public final class PlaceholderAPI
 	{
 		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
 	}
-	
+
 	/**
 	 * @deprecated Will be removed in a future release.
 	 */
