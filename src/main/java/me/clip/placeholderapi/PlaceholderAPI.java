@@ -27,6 +27,9 @@ import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
+import me.clip.placeholderapi.replacer.CharsReplacer;
+import me.clip.placeholderapi.replacer.Replacer;
+import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
@@ -47,6 +50,7 @@ public class PlaceholderAPI {
     private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
     private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
     private static final Map<String, PlaceholderHook> placeholders = new HashMap<>();
+    private static final Replacer REPLACER = new CharsReplacer(Closure.PERCENT);
 
     private PlaceholderAPI() {
     }
@@ -304,41 +308,7 @@ public class PlaceholderAPI {
      * @return The text containing the parsed placeholders
      */
     public static String setPlaceholders(OfflinePlayer player, String text, Pattern pattern, boolean colorize) {
-        if (text == null) {
-            return null;
-        }
-
-        if (placeholders.isEmpty()) {
-            return colorize ? color(text) : text;
-        }
-
-        final Matcher matcher = pattern.matcher(text);
-        final Map<String, PlaceholderHook> hooks = getPlaceholders();
-
-        while (matcher.find()) {
-            final String format = matcher.group(1);
-            final int index = format.indexOf("_");
-
-            if (index <= 0 || index >= format.length()) {
-                continue;
-            }
-
-            final String identifier = format.substring(0, index).toLowerCase();
-            final String params = format.substring(index + 1);
-            final PlaceholderHook hook = hooks.get(identifier);
-
-            if (hook == null) {
-                continue;
-            }
-
-            final String value = hook.onRequest(player, params);
-
-            if (value != null) {
-                text = text.replaceAll(Pattern.quote(matcher.group()), Matcher.quoteReplacement(value));
-            }
-        }
-
-        return colorize ? color(text) : text;
+        return REPLACER.apply(text, player, placeholders::get);
     }
 
     /**
