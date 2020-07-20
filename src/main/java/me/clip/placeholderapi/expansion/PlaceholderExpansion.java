@@ -26,11 +26,11 @@ import me.clip.placeholderapi.PlaceholderHook;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;
 
 public abstract class PlaceholderExpansion extends PlaceholderHook {
+
     /**
      * The name of this expansion
      *
@@ -123,58 +123,60 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     }
 
     /**
-     * Quick getter for the {@link PlaceholderAPIPlugin} config.
+     * Quick getter for the {@link PlaceholderAPIPlugin} instance
      *
-     * @return {@link PlaceholderAPIPlugin} config instance.
+     * @return {@link PlaceholderAPIPlugin} instance
      */
-    public FileConfiguration getConfig() {
-        return PlaceholderAPIPlugin.getInstance().getConfig();
+    public PlaceholderAPIPlugin getPlaceholderAPI() {
+        return PlaceholderAPIPlugin.getInstance();
     }
 
     public String getString(String path, String def) {
-        return getConfig().getString(getPathStarter() + path, def);
+        return getPlaceholderAPI().getConfig()
+                .getString("expansions." + getIdentifier() + "." + path, def);
     }
 
     public int getInt(String path, int def) {
-        return getConfig().getInt(getPathStarter() + path, def);
+        return getPlaceholderAPI().getConfig()
+                .getInt("expansions." + getIdentifier() + "." + path, def);
     }
 
     public long getLong(String path, long def) {
-        return getConfig().getLong(getPathStarter() + path, def);
+        return getPlaceholderAPI().getConfig()
+                .getLong("expansions." + getIdentifier() + "." + path, def);
     }
 
     public double getDouble(String path, double def) {
-        return getConfig().getDouble(getPathStarter() + path, def);
+        return getPlaceholderAPI().getConfig()
+                .getDouble("expansions." + getIdentifier() + "." + path, def);
     }
 
     public List<String> getStringList(String path) {
-        return getConfig().getStringList(getPathStarter() + path);
+        return getPlaceholderAPI().getConfig()
+                .getStringList("expansions." + getIdentifier() + "." + path);
     }
 
     public Object get(String path, Object def) {
-        return getConfig().get(getPathStarter() + path, def);
+        return getPlaceholderAPI().getConfig().get("expansions." + getIdentifier() + "." + path, def);
     }
 
     public ConfigurationSection getConfigSection(String path) {
-        return getConfig().getConfigurationSection(getPathStarter() + path);
+        return getPlaceholderAPI().getConfig()
+                .getConfigurationSection("expansions." + getIdentifier() + "." + path);
     }
 
     public ConfigurationSection getConfigSection() {
-        return getConfig().getConfigurationSection("expansions." + getIdentifier());
+        return getPlaceholderAPI().getConfig().getConfigurationSection("expansions." + getIdentifier());
     }
 
     public boolean configurationContains(String path) {
-        return getConfig().contains(getPathStarter() + path);
+        return getPlaceholderAPI().getConfig().contains("expansions." + getIdentifier() + "." + path);
     }
 
-    protected String getPathStarter() {
-        return "expansions." + getIdentifier() + '.';
-    }
 
     /**
      * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
      */
-    @SuppressWarnings("DeprecatedIsStillUsed")
     @Deprecated
     public String getPlugin() {
         return null;

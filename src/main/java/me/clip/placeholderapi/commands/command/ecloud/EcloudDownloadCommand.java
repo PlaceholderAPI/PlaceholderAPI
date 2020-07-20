@@ -9,24 +9,25 @@ import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public final class EcloudDownloadCommand extends Command {
     public EcloudDownloadCommand() {
-        super("ecloud download", options("&cAn expansion name must be specified!", 1));
+        super("ecloud download", options("&cAn expansion name must be specified!", 1, "placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
-        String input = args[0];
-        CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+        final String input = args[0];
+        final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(input);
 
         if (expansion == null) {
             Msg.msg(sender, "&cNo expansion found with the name: &f" + input);
             return;
         }
 
-        PlaceholderExpansion loaded = plugin.getExpansionManager().getRegisteredExpansion(input);
+        final PlaceholderExpansion loaded = plugin.getExpansionManager().getRegisteredExpansion(input);
         if (loaded != null && loaded.isRegistered()) {
             PlaceholderAPI.unregisterPlaceholderHook(loaded.getIdentifier());
         }
@@ -45,23 +46,10 @@ public final class EcloudDownloadCommand extends Command {
         }
 
         Msg.msg(sender, "&aDownload starting for expansion: &f" + expansion.getName() + " &aversion: &f" + version);
-        String player = ((sender instanceof Player) ? sender.getName() : null);
-        ExpansionCloudManager cloud = plugin.getExpansionCloud();
+        final String player = ((sender instanceof Player) ? sender.getName() : null);
+        final ExpansionCloudManager cloud = plugin.getExpansionCloud();
         cloud.downloadExpansion(player, expansion, version);
         cloud.clean();
         cloud.fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
     }
-
-//    @Override
-//    public List<String> handleCompletion(CommandSender sender, String[] args) {
-//        List<String> downloads = new ArrayList<>();
-//        if (!PlaceholderAPI.isRegistered("player")) downloads.add("player");
-//
-//        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-//            String identifier = plugin.getName();
-//            if (!PlaceholderAPI.isRegistered(identifier)) downloads.add(identifier);
-//        }
-//
-//        return downloads;
-//    }
 }

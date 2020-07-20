@@ -9,6 +9,7 @@ import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,12 +25,13 @@ public final class EcloudListCommand extends Command {
     );
 
     public EcloudListCommand() {
-        super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)", MINIMUM_ARGUMENTS));
+        super("ecloud list", options("&cIncorrect usage! &7/papi ecloud list <all/author/installed> (page)",
+                MINIMUM_ARGUMENTS, "placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         int page = 1;
 
         String author;
@@ -101,7 +103,7 @@ public final class EcloudListCommand extends Command {
         Msg.msg(sender, "&6Gold = Expansions which need updated");
 
         if (!(sender instanceof Player)) {
-            Map<String, CloudExpansion> expansions = new HashMap<>();
+            final Map<String, CloudExpansion> expansions = new HashMap<>();
 
             for (CloudExpansion exp : ex.values()) {
                 if (exp == null || exp.getName() == null) {
@@ -111,7 +113,7 @@ public final class EcloudListCommand extends Command {
                 expansions.put(exp.getName(), exp);
             }
 
-            List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+            final List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
 
             int i = (int) ex.keySet().toArray()[0];
 
@@ -120,7 +122,7 @@ public final class EcloudListCommand extends Command {
                     continue;
                 }
 
-                CloudExpansion expansion = expansions.get(name);
+                final CloudExpansion expansion = expansions.get(name);
 
                 Msg.msg(sender,
                         "&b" + i + "&7: " + (expansion.shouldUpdate() ? "&6"
@@ -132,11 +134,11 @@ public final class EcloudListCommand extends Command {
             return;
         }
 
-        Player p = (Player) sender;
+        final Player p = (Player) sender;
 
-        Map<String, CloudExpansion> expansions = new HashMap<>();
+        final Map<String, CloudExpansion> expansions = new HashMap<>();
 
-        for (CloudExpansion exp : ex.values()) {
+        for (final CloudExpansion exp : ex.values()) {
             if (exp == null || exp.getName() == null) {
                 continue;
             }
@@ -144,7 +146,7 @@ public final class EcloudListCommand extends Command {
             expansions.put(exp.getName(), exp);
         }
 
-        List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
+        final List<String> ce = expansions.keySet().stream().sorted().collect(Collectors.toList());
 
         int i = page > 1 ? page * 10 : 0;
 
@@ -153,8 +155,8 @@ public final class EcloudListCommand extends Command {
                 continue;
             }
 
-            CloudExpansion expansion = expansions.get(name);
-            StringBuilder sb = new StringBuilder();
+            final CloudExpansion expansion = expansions.get(name);
+            final StringBuilder sb = new StringBuilder();
 
             if (expansion.shouldUpdate()) {
                 sb.append("&6Click to update to the latest version of this expansion\n\n");
@@ -170,13 +172,13 @@ public final class EcloudListCommand extends Command {
             sb.append("&bLast updated&7: &f").append(expansion.getTimeSinceLastUpdate()).append(" ago\n");
             sb.append("\n").append(expansion.getDescription());
 
-            String msg = color(
+            final String msg = color(
                     "&b" + (i + 1) + "&7: " + (expansion.shouldUpdate() ? "&6"
                             : (expansion.hasExpansion() ? "&a" : "")) + expansion.getName());
 
-            String hover = color(sb.toString());
+            final String hover = color(sb.toString());
 
-            JSONMessage line = JSONMessage.create(msg);
+            final JSONMessage line = JSONMessage.create(msg);
             line.tooltip(hover);
 
             if (expansion.shouldUpdate() || !expansion.hasExpansion()) {
@@ -190,9 +192,9 @@ public final class EcloudListCommand extends Command {
         }
     }
 
-
+    @NotNull
     @Override
-    public List<String> handleCompletion(CommandSender sender, String[] args) {
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
         if (args.length == MINIMUM_ARGUMENTS) {
             return StringUtil.copyPartialMatches(args[0], COMPLETIONS, new ArrayList<>(COMPLETIONS.size()));
         }

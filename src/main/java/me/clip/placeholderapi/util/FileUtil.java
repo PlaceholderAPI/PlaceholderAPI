@@ -42,50 +42,65 @@ public class FileUtil {
 
         try {
             File f = new File(PlaceholderAPIPlugin.getInstance().getDataFolder(), folder);
-            if (!f.exists()) return list;
+            if (!f.exists()) {
+                return list;
+            }
 
             FilenameFilter fileNameFilter = (dir, name) -> {
-                boolean isJar = name.endsWith(".jar");
                 if (fileName != null) {
-                    return isJar && name.substring(0, name.length() - 4)
-                            .equalsIgnoreCase(fileName.substring(0, fileName.length() - 4));
+                    return name.endsWith(".jar") && name.replace(".jar", "")
+                            .equalsIgnoreCase(fileName.replace(".jar", ""));
                 }
 
-                return isJar;
+                return name.endsWith(".jar");
             };
 
             File[] jars = f.listFiles(fileNameFilter);
-            if (jars == null) return list;
+            if (jars == null) {
+                return list;
+            }
 
             for (File file : jars) {
                 list = gather(file.toURI().toURL(), list, type);
             }
 
             return list;
-        } catch (Throwable ignored) {
+        } catch (Throwable t) {
         }
 
         return null;
     }
 
     private static List<Class<?>> gather(URL jar, List<Class<?>> list, Class<?> clazz) {
-        // list cannot be null.
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+
         try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
              JarInputStream jis = new JarInputStream(jar.openStream())) {
 
-            JarEntry entry;
-            while ((entry = jis.getNextJarEntry()) != null) {
-                String name = entry.getName();
-                if (name == null || name.isEmpty()) continue;
+            while (true) {
+                JarEntry j = jis.getNextJarEntry();
+                if (j == null) {
+                    break;
+                }
+
+                String name = j.getName();
+                if (name == null || name.isEmpty()) {
+                    continue;
+                }
 
                 if (name.endsWith(".class")) {
-                    name = name.substring(0, name.length() - 6).replace('/', '.');
+                    name = name.replace("/", ".");
+                    String cname = name.substring(0, name.lastIndexOf(".class"));
 
-                    Class<?> loaded = cl.loadClass(name);
-                    if (clazz.isAssignableFrom(loaded)) list.add(loaded);
+                    Class<?> c = cl.loadClass(cname);
+                    if (clazz.isAssignableFrom(c)) {
+                        list.add(c);
+                    }
                 }
             }
-        } catch (Throwable ignored) {
+        } catch (Throwable t) {
         }
 
         return list;

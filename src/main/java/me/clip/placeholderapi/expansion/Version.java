@@ -21,6 +21,7 @@
 package me.clip.placeholderapi.expansion;
 
 public final class Version {
+
     private final boolean isSpigot;
     private final String version;
 
@@ -40,4 +41,5 @@ public final class Version {
     public boolean compareTo(String version) {
         return getVersion().equalsIgnoreCase(version);
     }
+
 }

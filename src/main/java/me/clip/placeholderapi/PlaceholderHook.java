@@ -20,14 +20,13 @@
  */
 package me.clip.placeholderapi;
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Relational;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public abstract class PlaceholderHook {
+
     /**
-     * Called when a placeholder value is requested from this hook.
+     * called when a placeholder value is requested from this hook
      *
      * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
      *               player
@@ -42,12 +41,8 @@ public abstract class PlaceholderHook {
         return onPlaceholderRequest(null, params);
     }
 
-    public PlaceholderAPIPlugin getPlaceholderAPI() {
-        return PlaceholderAPIPlugin.getInstance();
-    }
-
     /**
-     * Called when a placeholder is requested from this hook.
+     * called when a placeholder is requested from this hook
      *
      * @param player {@link Player} to request the placeholder value for, null if not needed for a player
      * @param params String passed to the hook to determine what value to return
@@ -55,13 +50,5 @@ public abstract class PlaceholderHook {
      */
     public String onPlaceholderRequest(Player player, String params) {
         return null;
-    }
-
-    public boolean isExpansion() {
-        return this instanceof PlaceholderExpansion;
-    }
-
-    public boolean isRelational() {
-        return this instanceof Relational;
     }
 }

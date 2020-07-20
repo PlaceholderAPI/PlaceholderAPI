@@ -4,15 +4,16 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 public final class EcloudStatusCommand extends Command {
     public EcloudStatusCommand() {
-        super("ecloud status");
+        super("ecloud status", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         Msg.msg(sender, "&bThere are &f" + plugin.getExpansionCloud().getCloudExpansions().size()
                         + " &bexpansions available on the cloud.",
                 "&7A total of &f" + plugin.getExpansionCloud().getCloudAuthorCount()

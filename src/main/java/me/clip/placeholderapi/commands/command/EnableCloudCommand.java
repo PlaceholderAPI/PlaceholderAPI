@@ -1,20 +1,22 @@
-package me.clip.placeholderapi.commands.command.ecloud;
+package me.clip.placeholderapi.commands.command;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
-public final class EcloudEnableCommand extends Command {
-    public EcloudEnableCommand() {
-        super("ecloud enable");
+public final class EnableCloudCommand extends Command {
+    public EnableCloudCommand() {
+        super("enablecloud", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
         if (plugin.getExpansionCloud() != null) {
             Msg.msg(sender, "&7The cloud is already enabled!");
+
             return;
         }
 

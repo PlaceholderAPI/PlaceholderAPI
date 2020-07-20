@@ -21,30 +21,28 @@
 package me.clip.placeholderapi;
 
 import me.clip.placeholderapi.commands.CommandHandler;
-import me.clip.placeholderapi.commands.CompletionHandler;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
-import me.clip.placeholderapi.listeners.ApacheListener;
 import me.clip.placeholderapi.listeners.PlaceholderListener;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
+import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.clip.placeholderapi.util.TimeUtil;
-import me.clip.placeholderapi.util.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * Yes I have a shit load of work to do...
@@ -52,31 +50,36 @@ import java.util.concurrent.TimeUnit;
  * @author Ryan McCarthy
  */
 public class PlaceholderAPIPlugin extends JavaPlugin {
-    private static final Version serverVersion;
+
     private static PlaceholderAPIPlugin instance;
-    private static DateTimeFormatter dateFormat;
+    private static SimpleDateFormat dateFormat;
     private static String booleanTrue;
     private static String booleanFalse;
-
-    static {
-        // It's not possible to be null or throw an index exception unless it's a bug.
-        String nmsVersion = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        boolean spigot;
-
-        try {
-            Class.forName("org.spigotmc.SpigotConfig");
-            spigot = true;
-        } catch (ExceptionInInitializerError | ClassNotFoundException ignored) {
-            spigot = false;
-        }
-
-        serverVersion = new Version(nmsVersion, spigot);
-    }
-
+    private static Version serverVersion;
     private PlaceholderAPIConfig config;
     private ExpansionManager expansionManager;
     private ExpansionCloudManager expansionCloud;
     private long startTime;
+
+    private static Version getVersion() {
+        String v = "unknown";
+        boolean spigot = false;
+
+        try {
+            v = Bukkit.getServer().getClass().getPackage().getName()
+                    .split("\\.")[3];
+        } catch (ArrayIndexOutOfBoundsException ex) {
+        }
+
+        try {
+            Class.forName("org.spigotmc.SpigotConfig");
+            Class.forName("net.md_5.bungee.api.chat.BaseComponent");
+            spigot = true;
+        } catch (ExceptionInInitializerError | ClassNotFoundException ignored) {
+        }
+
+        return new Version(v, spigot);
+    }
 
     /**
      * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
@@ -95,8 +98,9 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
      *
      * @return date format
      */
-    public static DateTimeFormatter getDateFormat() {
-        return dateFormat != null ? dateFormat : DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
+    public static SimpleDateFormat getDateFormat() {
+        return dateFormat != null ? dateFormat : new SimpleDateFormat(
+                "MM/dd/yy HH:mm:ss");
     }
 
     /**
@@ -118,26 +122,26 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     public static Version getServerVersion() {
-        return serverVersion;
+        return serverVersion != null ? serverVersion : getVersion();
+    }
+
+    @Override
+    public void onLoad() {
+        startTime = System.currentTimeMillis();
+        instance = this;
+        serverVersion = getVersion();
+        config = new PlaceholderAPIConfig(this);
+        expansionManager = new ExpansionManager(this);
     }
 
     @Override
     public void onEnable() {
-        startTime = System.currentTimeMillis();
-        instance = this;
-
-        config = new PlaceholderAPIConfig(this);
         config.loadDefConfig();
         setupOptions();
 
-        expansionManager = new ExpansionManager(this);
+        Objects.requireNonNull(getCommand("placeholderapi")).setExecutor(new CommandHandler());
         new PlaceholderListener(this);
 
-        PluginCommand command = getCommand("placeholderapi");
-        command.setExecutor(new CommandHandler());
-        command.setTabCompleter(new CompletionHandler());
-
-        new ApacheListener(this);
         try {
             Class.forName("org.bukkit.event.server.ServerLoadEvent");
             new ServerLoadEventListener(this);
@@ -146,7 +150,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
                 getLogger().info("Placeholder expansion registration initializing...");
 
                 //fetch any hooks that may have registered externally onEnable first otherwise they will be lost
-                Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.PLACEHOLDERS;
+                final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
                 getExpansionManager().registerAllExpansions();
 
                 if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
@@ -155,8 +159,13 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
             }, 1);
         }
 
-        if (config.checkUpdates()) new UpdateChecker(this).fetch();
-        if (config.isCloudEnabled()) enableCloud();
+        if (config.checkUpdates()) {
+            new UpdateChecker(this).fetch();
+        }
+
+        if (config.isCloudEnabled()) {
+            enableCloud();
+        }
 
         setupMetrics();
         getServer().getScheduler().runTaskLater(this, this::checkHook, 40);
@@ -166,13 +175,14 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     public void onDisable() {
         disableCloud();
         PlaceholderAPI.unregisterAll();
-        Bukkit.getScheduler().cancelTasks(this);
-
         expansionManager = null;
+        Bukkit.getScheduler().cancelTasks(this);
+        serverVersion = null;
         instance = null;
     }
 
     public void reloadConf(CommandSender s) {
+        boolean cloudEnabled = this.expansionCloud != null;
         PlaceholderAPI.unregisterAllProvidedExpansions();
         reloadConfig();
         setupOptions();
@@ -180,70 +190,79 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
         if (!config.isCloudEnabled()) {
             disableCloud();
-        } else if (this.expansionCloud != null) {
+        } else if (!cloudEnabled) {
             enableCloud();
         }
 
-        s.sendMessage(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.PLACEHOLDERS.size() + " &aplaceholder hooks successfully registered!"));
+        s.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                PlaceholderAPI.getRegisteredIdentifiers().size()
+                        + " &aplaceholder hooks successfully registered!"));
     }
 
-    @SuppressWarnings("deprecation")
     private void checkHook() {
-        for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
-            if (hook instanceof EZPlaceholderHook) {
-                String pluginName = ((EZPlaceholderHook) hook).getPluginName();
+        Map<String, PlaceholderHook> loaded = PlaceholderAPI.getPlaceholders();
+
+        loaded.values().forEach(h -> {
+            if (h instanceof EZPlaceholderHook) {
                 String author;
 
                 try {
-                    author = Bukkit.getPluginManager().getPlugin(pluginName).getDescription().getAuthors().toString();
+                    author = Bukkit.getPluginManager().getPlugin(((EZPlaceholderHook) h).getPluginName()).getDescription().getAuthors().toString();
                 } catch (Exception ex) {
                     author = "the author of the hook's plugin";
                 }
 
-                getLogger().severe(pluginName +
+                getLogger().severe(((EZPlaceholderHook) h).getPluginName() +
                         " is currently using a deprecated method to hook into PlaceholderAPI. Placeholders for that plugin no longer work. " +
-                        "Please consult " + author + " and urge them to update it ASAP.");
+                        "Please consult {author} and urge them to update it ASAP.".replace("{author}", author));
 
                 // disable the hook on startup
-                PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) hook).getPlaceholderName());
+                PlaceholderAPI.unregisterPlaceholderHook(((EZPlaceholderHook) h).getPlaceholderName());
             }
-        }
+        });
     }
 
     private void setupOptions() {
         booleanTrue = config.booleanTrue();
-        if (booleanTrue == null) booleanTrue = "true";
+
+        if (booleanTrue == null) {
+            booleanTrue = "true";
+        }
 
         booleanFalse = config.booleanFalse();
-        if (booleanFalse == null) booleanFalse = "false";
+
+        if (booleanFalse == null) {
+            booleanFalse = "false";
+        }
 
         try {
-            dateFormat = DateTimeFormatter.ofPattern(config.dateFormat());
-        } catch (Exception ignored) {
-            dateFormat = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm:ss");
+            dateFormat = new SimpleDateFormat(config.dateFormat());
+        } catch (Exception e) {
+            dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
         }
     }
 
     private void setupMetrics() {
-        // This is NOT the plugin resource ID. it's the bStats ID.
-        Metrics metrics = new Metrics(this, 438);
-        metrics.addCustomChart(new Metrics.SimplePie("using_expansion_cloud",
-                () -> getExpansionCloud() != null ? "yes" : "no"));
+        Metrics m = new Metrics(this);
+        m.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getExpansionCloud() != null ? "yes" : "no"));
 
-        metrics.addCustomChart(new Metrics.SimplePie("using_spigot",
-                () -> getServerVersion().isSpigot() ? "yes" : "no"));
+        m.addCustomChart(new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
 
-        metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
+        m.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
             Map<String, Integer> map = new HashMap<>();
-            for (PlaceholderHook hook : PlaceholderAPI.PLACEHOLDERS.values()) {
-                if (hook.isExpansion()) {
-                    PlaceholderExpansion ex = (PlaceholderExpansion) hook;
-                    map.put(ex.getRequiredPlugin() == null ? ex.getIdentifier()
-                            : ex.getRequiredPlugin(), 1);
+            Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
+
+            if (!hooks.isEmpty()) {
+
+                for (PlaceholderHook hook : hooks.values()) {
+                    if (hook instanceof PlaceholderExpansion) {
+                        PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
+                        map.put(expansion.getRequiredPlugin() == null ? expansion.getIdentifier() : expansion.getRequiredPlugin(), 1);
+                    }
                 }
             }
-
             return map;
+
         }));
     }
 
@@ -257,7 +276,10 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     public void disableCloud() {
-        if (expansionCloud != null) expansionCloud = null;
+        if (expansionCloud != null) {
+            expansionCloud.clean();
+            expansionCloud = null;
+        }
     }
 
     /**
@@ -283,6 +305,6 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     public long getUptimeMillis() {
-        return System.currentTimeMillis() - startTime;
+        return (System.currentTimeMillis() - startTime);
     }
 }

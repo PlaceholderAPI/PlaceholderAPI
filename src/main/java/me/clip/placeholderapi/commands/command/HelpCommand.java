@@ -4,14 +4,15 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 public final class HelpCommand extends Command {
     public HelpCommand() {
-        super("help");
+        super("help", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
         Msg.msg(sender, "PlaceholderAPI &aHelp &e(&f" + PlaceholderAPIPlugin.getInstance().getDescription().getVersion() + "&e)",
                 "&b/papi",
                 "&fView plugin info/version info",

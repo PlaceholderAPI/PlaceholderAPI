@@ -20,28 +20,26 @@
  */
 package me.clip.placeholderapi.expansion;
 
-import com.google.common.base.Enums;
-
-import java.util.Optional;
-
 public enum NMSVersion {
-    UNKNOWN("unknown"),
-    SPIGOT_1_7_R1("v1_7_R1"),
-    SPIGOT_1_7_R2("v1_7_R2"),
-    SPIGOT_1_7_R3("v1_7_R3"),
-    SPIGOT_1_7_R4("v1_7_R4"),
-    SPIGOT_1_8_R1("v1_8_R1"),
-    SPIGOT_1_8_R2("v1_8_R2"),
-    SPIGOT_1_8_R3("v1_8_R3"),
-    SPIGOT_1_9_R1("v1_9_R1"),
-    SPIGOT_1_9_R2("v1_9_R2"),
-    SPIGOT_1_10_R1("v1_10_R1"),
-    SPIGOT_1_11_R1("v1_11_R1"),
-    SPIGOT_1_12_R1("v1_12_R1"),
-    SPIGOT_1_13_R1("v1_13_R1"),
-    SPIGOT_1_13_R2("v1_13_R2"),
-    SPIGOT_1_14_R1("v1_14_R1"),
-    SPIGOT_1_15_R1("v1_15_R1");
+
+  UNKNOWN("unknown"),
+  SPIGOT_1_7_R1("v1_7_R1"),
+  SPIGOT_1_7_R2("v1_7_R2"),
+  SPIGOT_1_7_R3("v1_7_R3"),
+  SPIGOT_1_7_R4("v1_7_R4"),
+  SPIGOT_1_8_R1("v1_8_R1"),
+  SPIGOT_1_8_R2("v1_8_R2"),
+  SPIGOT_1_8_R3("v1_8_R3"),
+  SPIGOT_1_9_R1("v1_9_R1"),
+  SPIGOT_1_9_R2("v1_9_R2"),
+  SPIGOT_1_10_R1("v1_10_R1"),
+  SPIGOT_1_11_R1("v1_11_R1"),
+  SPIGOT_1_12_R1("v1_12_R1"),
+  SPIGOT_1_13_R1("v1_13_R1"),
+  SPIGOT_1_13_R2("v1_13_R2"),
+  SPIGOT_1_14_R1("v1_14_R1"),
+  SPIGOT_1_15_R1("v1_15_R1"),
+  SPIGOT_1_16_R1("v1_16_R1");
 
     private final String version;
 
@@ -50,12 +48,17 @@ public enum NMSVersion {
     }
 
     public static NMSVersion getVersion(String version) {
-        // Guava caches values() as well.
-        Optional<NMSVersion> opt = Enums.getIfPresent(NMSVersion.class, version).toJavaUtil();
-        return opt.orElse(NMSVersion.UNKNOWN);
+        for (NMSVersion v : values()) {
+            if (v.getVersion().equalsIgnoreCase(version)) {
+                return v;
+            }
+        }
+
+        return NMSVersion.UNKNOWN;
     }
 
     public String getVersion() {
         return version;
     }
+
 }

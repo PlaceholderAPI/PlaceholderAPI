@@ -7,6 +7,7 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.util.StringUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +34,8 @@ public final class VersionCommand extends Command {
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PluginDescriptionFile description = PlaceholderAPIPlugin.getInstance().getDescription();
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PluginDescriptionFile description = PlaceholderAPIPlugin.getInstance().getDescription();
 
         Msg.msg(sender, "PlaceholderAPI &7version &b&o" + description.getVersion(),
                 "&fCreated by&7: &b" + description.getAuthors(),
@@ -42,9 +43,9 @@ public final class VersionCommand extends Command {
                 "&fEcloud commands: &b/papi ecloud");
     }
 
-
+    @NotNull
     @Override
-    public List<String> handleCompletion(CommandSender sender, String[] args) {
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
         if (args.length == 1) {
             return StringUtil.copyPartialMatches(args[0], COMPLETIONS, new ArrayList<>(COMPLETIONS.size()));
         }

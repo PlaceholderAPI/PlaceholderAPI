@@ -36,5 +36,5 @@ public interface VersionSpecific {
      *
      * @return true if your expansion is compatible with the version the server is running.
      */
-    boolean isCompatibleWith(Version version);
+    boolean isCompatibleWith(Version v);
 }

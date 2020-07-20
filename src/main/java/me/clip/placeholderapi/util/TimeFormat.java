@@ -20,24 +20,9 @@
  */
 package me.clip.placeholderapi.util;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-public final class Msg {
-    public static void msg(CommandSender s, String... msg) {
-        s.sendMessage(Arrays.stream(msg).filter(Objects::nonNull).map(Msg::color).collect(Collectors.joining("\n")));
-    }
-
-    public static void broadcast(String... msg) {
-        Arrays.stream(msg).filter(Objects::nonNull).map(Msg::color).forEach(Bukkit::broadcastMessage);
-    }
-
-    public static String color(String text) {
-        return ChatColor.translateAlternateColorCodes('&', text);
-    }
+public enum TimeFormat {
+    DAYS,
+    HOURS,
+    MINUTES,
+    SECONDS
 }

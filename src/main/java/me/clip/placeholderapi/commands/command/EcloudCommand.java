@@ -6,6 +6,7 @@ import me.clip.placeholderapi.commands.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.util.StringUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +22,16 @@ public final class EcloudCommand extends Command {
             "placeholders",
             "refresh",
             "status",
-            "versioninfo",
-            "enable",
-            "disable"
+            "versioninfo"
     );
 
     public EcloudCommand() {
-        super("ecloud");
+        super("ecloud", permissions("placeholderapi.ecloud"));
     }
 
     @Override
-    public void execute(CommandSender sender, String[] args) {
-        PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
+    public void execute(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        final PlaceholderAPIPlugin plugin = PlaceholderAPIPlugin.getInstance();
 
         if (args.length == 0) {
             Msg.msg(sender, "&bExpansion cloud commands",
@@ -58,6 +57,7 @@ public final class EcloudCommand extends Command {
 
         if (plugin.getExpansionCloud() == null) {
             Msg.msg(sender, "&7The expansion cloud is not enabled!");
+
             return;
         }
 
@@ -69,9 +69,9 @@ public final class EcloudCommand extends Command {
         sender.sendMessage("Specified command is not valid.");
     }
 
-
+    @NotNull
     @Override
-    public List<String> handleCompletion(CommandSender sender, String[] args) {
+    public List<String> handleCompletion(@NotNull final CommandSender sender, @NotNull final String[] args) {
         if (args.length == MAXIMUM_ARGUMENTS) {
             return StringUtil.copyPartialMatches(args[0], COMPLETIONS, new ArrayList<>(COMPLETIONS.size()));
         }

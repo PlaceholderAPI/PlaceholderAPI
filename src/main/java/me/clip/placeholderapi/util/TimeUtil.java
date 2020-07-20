@@ -22,10 +22,10 @@ package me.clip.placeholderapi.util;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.concurrent.TimeUnit;
 
 public class TimeUtil {
-    public static String getRemaining(int seconds, TimeUnit type) {
+
+    public static String getRemaining(int seconds, TimeFormat type) {
         if (seconds < 60) {
             switch (type) {
                 case DAYS:
@@ -124,8 +124,8 @@ public class TimeUtil {
      * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20 seconds)
      * @return formatted time
      */
-    public static String getTime(Duration duration) {
-        StringBuilder builder = new StringBuilder();
+    public static String getTime(final Duration duration) {
+        final StringBuilder builder = new StringBuilder();
 
         long seconds = duration.getSeconds();
         long minutes = seconds / 60;

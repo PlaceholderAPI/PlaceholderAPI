@@ -31,6 +31,7 @@ import org.bukkit.event.server.ServerLoadEvent;
 import java.util.Map;
 
 public class ServerLoadEventListener implements Listener {
+
     private final PlaceholderAPIPlugin plugin;
 
     public ServerLoadEventListener(PlaceholderAPIPlugin instance) {
@@ -39,19 +40,19 @@ public class ServerLoadEventListener implements Listener {
     }
 
     /**
-     * This method will be called when the server is first loaded.
+     * This method will be called when the server is first loaded
      * <p>
      * The goal of the method is to register all the expansions as soon as possible
-     * especially before players can join.
+     * especially before players can join
      * <p>
      * This will ensure no issues with expanions and hooks.
      *
-     * @param event the server load event.
+     * @param e the server load event
      */
     @EventHandler
-    public void onServerLoad(ServerLoadEvent event) {
+    public void onServerLoad(ServerLoadEvent e) {
         plugin.getLogger().info("Placeholder expansion registration initializing...");
-        Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
+        final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
         plugin.getExpansionManager().registerAllExpansions();
 
         if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {

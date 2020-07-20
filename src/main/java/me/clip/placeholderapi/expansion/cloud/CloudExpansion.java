@@ -26,8 +26,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+
 public class CloudExpansion {
-    private String name, author,
+
+    private String name,
+            author,
             latest_version,
             description,
             source_url,
@@ -71,12 +74,14 @@ public class CloudExpansion {
     }
 
     public Version getVersion() {
-        return latest_version == null ? null : getVersion(latest_version);
+        return getLatestVersion() == null ? null : getVersion(getLatestVersion());
     }
 
     public Version getVersion(String version) {
         return versions == null ? null : versions.stream()
-                .filter(v -> v.getVersion().equals(version)).findFirst().orElse(null);
+                .filter(v -> v.getVersion().equals(version))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<String> getAvailableVersions() {
@@ -135,10 +140,6 @@ public class CloudExpansion {
         return verified;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
     public long getLastUpdate() {
         return last_update;
     }
@@ -153,10 +154,6 @@ public class CloudExpansion {
 
     public double getAverage_rating() {
         return average_rating;
-    }
-
-    public void setAverage_rating(double average_rating) {
-        this.average_rating = average_rating;
     }
 
     public List<String> getPlaceholders() {
@@ -175,11 +172,7 @@ public class CloudExpansion {
         this.versions = versions;
     }
 
-    public void setRatings_count(long ratings_count) {
-        this.ratings_count = ratings_count;
-    }
-
-    public static class Version {
+    public class Version {
         private String url, version, release_notes;
 
         public String getUrl() {

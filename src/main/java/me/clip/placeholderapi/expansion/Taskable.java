@@ -20,7 +20,9 @@
  */
 package me.clip.placeholderapi.expansion;
 
+
 public interface Taskable {
+
     /**
      * Called when the implementing class has successfully been registered to the placeholder map
      * Tasks that need to be performed when this expansion is registered should go here
