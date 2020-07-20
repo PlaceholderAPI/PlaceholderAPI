@@ -10,6 +10,15 @@ import java.util.function.Function;
 public final class CharsReplacer implements Replacer
 {
 
+	@NotNull
+	private final Closure closure;
+
+	public CharsReplacer(@NotNull final Closure closure)
+	{
+		this.closure = closure;
+	}
+
+
 	@Override
 	public @NotNull String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup)
 	{
@@ -38,20 +47,27 @@ public final class CharsReplacer implements Replacer
 				continue;
 			}
 
-			if (l != '%')
+			if (l != closure.head || i + 1 >= chars.length)
 			{
 				builder.append(l);
 				continue;
 			}
 
 			boolean identified = false;
+			boolean oopsitsbad = false;
 
-			while (i++ < chars.length)
+			while (++i < chars.length)
 			{
 				final char p = chars[i];
 
-				if (p == '%')
+				if (p == closure.tail)
 				{
+					break;
+				}
+
+				if (p == ' ')
+				{
+					oopsitsbad = true;
 					break;
 				}
 
@@ -77,17 +93,30 @@ public final class CharsReplacer implements Replacer
 			identifier.setLength(0);
 			parameters.setLength(0);
 
+			if (oopsitsbad)
+			{
+				builder.append(closure.head).append(identifierString);
+
+				if (identified)
+				{
+					builder.append('_').append(parametersString);
+				}
+
+				builder.append(' ');
+				continue;
+			}
+
 			final PlaceholderHook placeholder = lookup.apply(identifierString);
 			if (placeholder == null)
 			{
-				builder.append('%').append(identifierString).append('_').append(parametersString).append('%');
+				builder.append(closure.head).append(identifierString).append('_').append(parametersString).append(closure.tail);
 				continue;
 			}
 
 			final String replacement = placeholder.onRequest(player, parametersString);
 			if (replacement == null)
 			{
-				builder.append('%').append(identifierString).append('_').append(parametersString).append('%');
+				builder.append(closure.head).append(identifierString).append('_').append(parametersString).append(closure.tail);
 				continue;
 			}
 

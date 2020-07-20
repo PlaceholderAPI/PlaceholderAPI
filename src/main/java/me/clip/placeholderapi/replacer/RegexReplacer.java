@@ -13,13 +13,19 @@ import java.util.regex.Pattern;
 public final class RegexReplacer implements Replacer
 {
 
-	private static final Pattern PATTERN = Pattern.compile("%((?<identifier>[a-zA-Z0-9]+)_)(?<parameters>[^%]+)%");
+	@NotNull
+	private final Pattern pattern;
+
+	public RegexReplacer(@NotNull final Closure closure)
+	{
+		this.pattern = Pattern.compile(String.format("\\%s((?<identifier>[a-zA-Z0-9]+)_)(?<parameters>[^%s%s]+)\\%s", closure.head, closure.head, closure.tail, closure.tail));
+	}
 
 
 	@Override
 	public @NotNull String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup)
 	{
-		final Matcher matcher = PATTERN.matcher(text);
+		final Matcher matcher = pattern.matcher(text);
 		if (!matcher.find())
 		{
 			return text;

@@ -56,4 +56,12 @@ public final class ReplacerUnitTester
 		assertEquals(resultChars, resultRegex);
 	}
 
+	@Test
+	void testCharsReplacerIgnoresMalformed()
+	{
+		final String text = "10% and %hello world 15%";
+
+		assertEquals(text, Values.CHARS_REPLACER.apply(text, null, Values.PLACEHOLDERS::get));
+	}
+
 }

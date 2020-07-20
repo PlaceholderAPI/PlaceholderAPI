@@ -25,8 +25,8 @@ public interface Values
 			.build();
 
 
-	Replacer CHARS_REPLACER = new CharsReplacer();
-	Replacer REGEX_REPLACER = new RegexReplacer();
+	Replacer CHARS_REPLACER = new CharsReplacer(Replacer.Closure.PERCENT);
+	Replacer REGEX_REPLACER = new RegexReplacer(Replacer.Closure.PERCENT);
 	Replacer TESTS_REPLACER = new Replacer()
 	{
 		private final Set<Character> COLOR_CODES = ImmutableSet.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9',

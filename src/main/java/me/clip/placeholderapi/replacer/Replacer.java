@@ -9,6 +9,25 @@ import java.util.function.Function;
 
 public interface Replacer
 {
+
 	@NotNull
 	String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup);
+
+
+	enum Closure
+	{
+		BRACES('{', '}'),
+		BRACKETS('[', ']'),
+		PERCENT('%', '%');
+
+
+		public final char head, tail;
+
+		Closure(final char head, final char tail)
+		{
+			this.head = head;
+			this.tail = tail;
+		}
+	}
+
 }
