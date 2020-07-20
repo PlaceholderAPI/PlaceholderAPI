@@ -40,5 +40,5 @@ Please also make sure that you use the [latest release][Spigot] or the latest [d
 1. 
 
 ### Installed expansions
-> Please use all expansions that are listed when running `/papi list`
+> Please list all expansions that are displayed when running `/papi list`
 <!-- Please write below this line to prevent formatting issues -->
