@@ -23,26 +23,43 @@ package me.clip.placeholderapi.events;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
-public class ExpansionUnregisterEvent extends Event {
+public final class ExpansionUnregisterEvent extends Event
+{
 
-    private static final HandlerList HANDLERS = new HandlerList();
-    private final PlaceholderExpansion expansion;
+	@NotNull
+	private static final HandlerList HANDLERS = new HandlerList();
 
-    public ExpansionUnregisterEvent(PlaceholderExpansion expansion) {
-        this.expansion = expansion;
-    }
 
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
-    }
+	@NotNull
+	private final PlaceholderExpansion expansion;
 
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
-    }
+	public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion)
+	{
+		this.expansion = expansion;
+	}
 
-    public PlaceholderExpansion getExpansion() {
-        return expansion;
-    }
+
+	@NotNull
+	public PlaceholderExpansion getExpansion()
+	{
+		return expansion;
+	}
+
+
+	@NotNull
+	@Override
+	public HandlerList getHandlers()
+	{
+		return HANDLERS;
+	}
+
+
+	@NotNull
+	public static HandlerList getHandlerList()
+	{
+		return HANDLERS;
+	}
+
 }

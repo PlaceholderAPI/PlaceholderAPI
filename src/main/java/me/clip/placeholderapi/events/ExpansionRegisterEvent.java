@@ -24,38 +24,57 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
-public class ExpansionRegisterEvent extends Event implements Cancellable {
+public final class ExpansionRegisterEvent extends Event implements Cancellable
+{
 
-    private static final HandlerList HANDLERS = new HandlerList();
-    private final PlaceholderExpansion expansion;
-    private boolean isCancelled;
+	@NotNull
+	private static final HandlerList HANDLERS = new HandlerList();
 
 
-    public ExpansionRegisterEvent(PlaceholderExpansion expansion) {
-        this.expansion = expansion;
-    }
+	private       boolean              cancelled;
+	@NotNull
+	private final PlaceholderExpansion expansion;
 
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
-    }
+	public ExpansionRegisterEvent(@NotNull final PlaceholderExpansion expansion)
+	{
+		this.expansion = expansion;
+	}
 
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
-    }
 
-    public PlaceholderExpansion getExpansion() {
-        return expansion;
-    }
+	@NotNull
+	public PlaceholderExpansion getExpansion()
+	{
+		return expansion;
+	}
 
-    @Override
-    public boolean isCancelled() {
-        return isCancelled;
-    }
 
-    @Override
-    public void setCancelled(boolean b) {
-        this.isCancelled = b;
-    }
+	@Override
+	public boolean isCancelled()
+	{
+		return cancelled;
+	}
+
+	@Override
+	public void setCancelled(boolean cancelled)
+	{
+		this.cancelled = cancelled;
+	}
+
+
+	@NotNull
+	@Override
+	public HandlerList getHandlers()
+	{
+		return HANDLERS;
+	}
+
+
+	@NotNull
+	public static HandlerList getHandlerList()
+	{
+		return HANDLERS;
+	}
+
 }
