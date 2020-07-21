@@ -1,8 +1,8 @@
-package me.clip.placeholderapi.commands.command.ecloud;
+package me.clip.placeholderapi.commands.legacy.command.ecloud;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.Command;
+import me.clip.placeholderapi.commands.legacy.Command;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;

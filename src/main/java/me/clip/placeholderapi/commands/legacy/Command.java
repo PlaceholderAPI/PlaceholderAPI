@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands;
+package me.clip.placeholderapi.commands.legacy;
 
 import com.google.common.collect.ImmutableSet;
 import org.bukkit.command.CommandSender;
