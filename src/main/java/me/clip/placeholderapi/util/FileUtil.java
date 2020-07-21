@@ -20,89 +20,85 @@
  */
 package me.clip.placeholderapi.util;
 
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
-public class FileUtil {
+public class FileUtil
+{
 
-    public static List<Class<?>> getClasses(String folder, Class<?> type) {
-        return getClasses(folder, null, type);
-    }
+	@NotNull
+	public static <T> List<@NotNull Class<? extends T>> getClasses(@NotNull final File folder, @NotNull final Class<T> clazz)
+	{
+		return getClasses(folder, clazz, null);
+	}
 
-    public static List<Class<?>> getClasses(String folder, String fileName, Class<?> type) {
-        List<Class<?>> list = new ArrayList<>();
+	@NotNull
+	public static <T> List<@NotNull Class<? extends T>> getClasses(@NotNull final File folder, @NotNull final Class<T> clazz, @Nullable final String target)
+	{
+		if (!folder.exists())
+		{
+			return Collections.emptyList();
+		}
 
-        try {
-            File f = new File(PlaceholderAPIPlugin.getInstance().getDataFolder(), folder);
-            if (!f.exists()) {
-                return list;
-            }
+		try
+		{
+			final FilenameFilter filter =
+					(dir, name) -> name.endsWith(".jar") && (target == null || name.replace(".jar", "").equalsIgnoreCase(target.replace(".jar", "")));
 
-            FilenameFilter fileNameFilter = (dir, name) -> {
-                if (fileName != null) {
-                    return name.endsWith(".jar") && name.replace(".jar", "")
-                            .equalsIgnoreCase(fileName.replace(".jar", ""));
-                }
+			final File[] jars = folder.listFiles(filter);
+			if (jars == null)
+			{
+				return Collections.emptyList();
+			}
 
-                return name.endsWith(".jar");
-            };
+			final List<@NotNull Class<? extends T>> list = new ArrayList<>();
 
-            File[] jars = f.listFiles(fileNameFilter);
-            if (jars == null) {
-                return list;
-            }
+			for (File file : jars)
+			{
+				gather(file.toURI().toURL(), clazz, list);
+			}
 
-            for (File file : jars) {
-                list = gather(file.toURI().toURL(), list, type);
-            }
+			return list;
+		}
+		catch (Throwable t)
+		{
+			// THIS SHOULD NOT BE EATEN LIKE THIS.
+		}
 
-            return list;
-        } catch (Throwable t) {
-        }
+		return Collections.emptyList();
+	}
 
-        return null;
-    }
+	private static <T> void gather(@NotNull final URL jar, @NotNull final Class<T> clazz, @NotNull final List<@NotNull Class<? extends T>> list) throws IOException, ClassNotFoundException
+	{
+		try (final URLClassLoader loader = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader()); final JarInputStream stream = new JarInputStream(jar.openStream()))
+		{
+			JarEntry entry;
+			while ((entry = stream.getNextJarEntry()) != null)
+			{
+				final String name = entry.getName();
+				if (name == null || name.isEmpty() || !name.endsWith(".class"))
+				{
+					continue;
+				}
 
-    private static List<Class<?>> gather(URL jar, List<Class<?>> list, Class<?> clazz) {
-        if (list == null) {
-            list = new ArrayList<>();
-        }
+				final Class<?> loaded = loader.loadClass(name.substring(0, name.lastIndexOf('.')).replace('/', '.'));
+				if (clazz.isAssignableFrom(loaded))
+				{
+					list.add(loaded.asSubclass(clazz));
+				}
+			}
+		}
+	}
 
-        try (URLClassLoader cl = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
-             JarInputStream jis = new JarInputStream(jar.openStream())) {
-
-            while (true) {
-                JarEntry j = jis.getNextJarEntry();
-                if (j == null) {
-                    break;
-                }
-
-                String name = j.getName();
-                if (name == null || name.isEmpty()) {
-                    continue;
-                }
-
-                if (name.endsWith(".class")) {
-                    name = name.replace("/", ".");
-                    String cname = name.substring(0, name.lastIndexOf(".class"));
-
-                    Class<?> c = cl.loadClass(cname);
-                    if (clazz.isAssignableFrom(c)) {
-                        list.add(c);
-                    }
-                }
-            }
-        } catch (Throwable t) {
-        }
-
-        return list;
-    }
 }
