@@ -1,7 +1,7 @@
-package me.clip.placeholderapi.commands.command;
+package me.clip.placeholderapi.commands.legacy.command;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.Command;
+import me.clip.placeholderapi.commands.legacy.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
