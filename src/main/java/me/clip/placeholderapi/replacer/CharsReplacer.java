@@ -54,20 +54,19 @@ public final class CharsReplacer implements Replacer
 			}
 
 			boolean identified = false;
-			boolean oopsitsbad = false;
+			boolean oopsitsbad = true;
 
 			while (++i < chars.length)
 			{
 				final char p = chars[i];
 
-				if (p == closure.tail)
+				if (p == ' ')
 				{
 					break;
 				}
-
-				if (p == ' ')
+				if (p == closure.tail)
 				{
-					oopsitsbad = true;
+					oopsitsbad = false;
 					break;
 				}
 
@@ -109,14 +108,28 @@ public final class CharsReplacer implements Replacer
 			final PlaceholderHook placeholder = lookup.apply(identifierString);
 			if (placeholder == null)
 			{
-				builder.append(closure.head).append(identifierString).append('_').append(parametersString).append(closure.tail);
+				builder.append(closure.head).append(identifierString);
+
+				if (identified)
+				{
+					builder.append('_');
+				}
+
+				builder.append(parametersString).append(closure.tail);
 				continue;
 			}
 
 			final String replacement = placeholder.onRequest(player, parametersString);
 			if (replacement == null)
 			{
-				builder.append(closure.head).append(identifierString).append('_').append(parametersString).append(closure.tail);
+				builder.append(closure.head).append(identifierString);
+
+				if (identified)
+				{
+					builder.append('_');
+				}
+
+				builder.append(parametersString).append(closure.tail);
 				continue;
 			}
 
