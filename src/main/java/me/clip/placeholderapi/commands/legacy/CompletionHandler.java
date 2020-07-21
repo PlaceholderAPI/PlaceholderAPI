@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands;
+package me.clip.placeholderapi.commands.legacy;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;

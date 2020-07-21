@@ -1,11 +1,11 @@
-package me.clip.placeholderapi.commands;
+package me.clip.placeholderapi.commands.legacy;
 
 import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.command.*;
-import me.clip.placeholderapi.commands.command.ecloud.EcloudInfoCommand;
-import me.clip.placeholderapi.commands.command.ecloud.EcloudListCommand;
-import me.clip.placeholderapi.commands.command.ecloud.*;
+import me.clip.placeholderapi.commands.legacy.command.*;
+import me.clip.placeholderapi.commands.legacy.command.ecloud.EcloudInfoCommand;
+import me.clip.placeholderapi.commands.legacy.command.ecloud.EcloudListCommand;
+import me.clip.placeholderapi.commands.legacy.command.ecloud.*;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

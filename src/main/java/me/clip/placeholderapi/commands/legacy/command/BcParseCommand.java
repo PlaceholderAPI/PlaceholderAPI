@@ -1,7 +1,7 @@
-package me.clip.placeholderapi.commands.command;
+package me.clip.placeholderapi.commands.legacy.command;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.commands.Command;
+import me.clip.placeholderapi.commands.legacy.Command;
 import me.clip.placeholderapi.util.Msg;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -10,9 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public final class ParseCommand extends Command {
-    public ParseCommand() {
-        super("parse", options("&cYou must specify a player.", 1, "placeholderapi.parse"));
+public final class BcParseCommand extends Command {
+    public BcParseCommand() {
+        super("bcparse", options("&cYou must specify a player.", 1, "placeholderapi.parse"));
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class ParseCommand extends Command {
             return;
         }
 
-        final String parse = StringUtils.join(args, " ", 1, args.length);
-        Msg.msg(sender, "&r" + PlaceholderAPI.setPlaceholders(player, parse));
+        final String parse = StringUtils.join(args, " ", 2, args.length);
+        Msg.broadcast("&r" + PlaceholderAPI.setPlaceholders(player, parse));
     }
 }
