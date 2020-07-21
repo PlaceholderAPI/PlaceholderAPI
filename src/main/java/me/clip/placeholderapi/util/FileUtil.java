@@ -71,9 +71,9 @@ public class FileUtil
 
 			return list;
 		}
-		catch (Throwable t)
+		catch (final Throwable ex)
 		{
-			// THIS SHOULD NOT BE EATEN LIKE THIS.
+			ex.printStackTrace();
 		}
 
 		return Collections.emptyList();
@@ -92,11 +92,16 @@ public class FileUtil
 					continue;
 				}
 
-				final Class<?> loaded = loader.loadClass(name.substring(0, name.lastIndexOf('.')).replace('/', '.'));
-				if (clazz.isAssignableFrom(loaded))
+				try
 				{
-					list.add(loaded.asSubclass(clazz));
+					final Class<?> loaded = loader.loadClass(name.substring(0, name.lastIndexOf('.')).replace('/', '.'));
+					if (clazz.isAssignableFrom(loaded))
+					{
+						list.add(loaded.asSubclass(clazz));
+					}
 				}
+				catch (final NoClassDefFoundError ignored)
+				{ }
 			}
 		}
 	}
