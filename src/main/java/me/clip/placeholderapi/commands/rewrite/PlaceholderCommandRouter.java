@@ -1,6 +1,8 @@
 package me.clip.placeholderapi.commands.rewrite;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionRegister;
+import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionUnregister;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandHelp;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandInfo;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandList;
@@ -40,7 +42,9 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 			new CommandList(),
 			new CommandParse(),
 			new CommandReload(),
-			new CommandVersion());
+			new CommandVersion(),
+			new CommandExpansionRegister(),
+			new CommandExpansionUnregister());
 	}
 
 
