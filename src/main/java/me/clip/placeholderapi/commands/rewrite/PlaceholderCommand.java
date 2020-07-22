@@ -39,9 +39,10 @@ public abstract class PlaceholderCommand
 	}
 
 	@NotNull
+	@Unmodifiable
 	public final Set<String> getAlias()
 	{
-		return alias;
+		return ImmutableSet.copyOf(alias);
 	}
 
 	@NotNull
