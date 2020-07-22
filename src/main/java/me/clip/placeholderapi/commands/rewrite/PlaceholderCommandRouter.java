@@ -1,5 +1,7 @@
 package me.clip.placeholderapi.commands.rewrite;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionRegister;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionUnregister;
@@ -15,11 +17,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -27,24 +29,36 @@ import java.util.stream.Stream;
 public final class PlaceholderCommandRouter implements CommandExecutor, TabCompleter
 {
 
+	@Unmodifiable
+	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandHelp(),
+																			  new CommandInfo(),
+																			  new CommandList(),
+																			  new CommandParse(),
+																			  new CommandReload(),
+																			  new CommandVersion(),
+																			  new CommandExpansionRegister(),
+																			  new CommandExpansionUnregister());
+
+
 	@NotNull
 	private final PlaceholderAPIPlugin            plugin;
 	@NotNull
-	private final Map<String, PlaceholderCommand> commands = new HashMap<>();
+	@Unmodifiable
+	private final Map<String, PlaceholderCommand> commands;
 
 
 	public PlaceholderCommandRouter(@NotNull final PlaceholderAPIPlugin plugin)
 	{
 		this.plugin = plugin;
 
-		add(new CommandHelp(),
-			new CommandInfo(),
-			new CommandList(),
-			new CommandParse(),
-			new CommandReload(),
-			new CommandVersion(),
-			new CommandExpansionRegister(),
-			new CommandExpansionUnregister());
+		final ImmutableMap.Builder<String, PlaceholderCommand> commands = ImmutableMap.builder();
+
+		for (final PlaceholderCommand command : COMMANDS)
+		{
+			command.getLabels().forEach(label -> commands.put(label, command));
+		}
+
+		this.commands = commands.build();
 	}
 
 
@@ -116,16 +130,6 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 		}
 
 		return suggestions;
-	}
-
-
-	private void add(@NotNull final PlaceholderCommand... commands)
-	{
-		for (final PlaceholderCommand command : commands)
-		{
-			this.commands.put(command.getLabel().toLowerCase(), command);
-			command.getAlias().forEach(alias -> this.commands.put(alias.toLowerCase(), command));
-		}
 	}
 
 }
