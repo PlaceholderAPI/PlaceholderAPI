@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public final class CommandHandler implements CommandExecutor {
-    private static final Command DEFAULT = new VersionCommand();
 
     private static final List<Command> COMMANDS = Lists.newArrayList(
             new EcloudClearCommand(),
@@ -29,17 +28,10 @@ public final class CommandHandler implements CommandExecutor {
             new EcloudStatusCommand(),
             new EcloudVersionInfoCommand(),
             new EcloudCommand(),
-            new BcParseCommand(),
-            new ParseCommand(),
             new ParseRelCommand(),
             new DisableEcloudCommand(),
             new EnableCloudCommand(),
-            new HelpCommand(),
-            new InfoCommand(),
-            new ListCommand(),
             new RegisterCommand(),
-            new ReloadCommand(),
-            DEFAULT,
             new UnregisterCommand()
     );
 
@@ -61,7 +53,6 @@ public final class CommandHandler implements CommandExecutor {
     public boolean onCommand(@NotNull final CommandSender sender, @NotNull final org.bukkit.command.Command bukkitCommand,
                              @NotNull final String name, @NotNull String[] args) {
         if (args.length == 0) {
-            DEFAULT.execute(sender, args);
             return true;
         }
 
