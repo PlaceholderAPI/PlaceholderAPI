@@ -20,7 +20,7 @@ public final class CommandInfo extends PlaceholderCommand
 	}
 
 	@Override
-	public void evaluate(final @NotNull PlaceholderAPIPlugin plugin, final @NotNull CommandSender sender, final @NotNull String alias, final @NotNull List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
 	{
 		if (params.size() < 1)
 		{
@@ -87,7 +87,7 @@ public final class CommandInfo extends PlaceholderCommand
 	}
 
 	@Override
-	public void complete(final @NotNull PlaceholderAPIPlugin plugin, final @NotNull CommandSender sender, final @NotNull String alias, final @NotNull List<String> params, final @NotNull List<String> suggestions)
+	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params, @NotNull final List<String> suggestions)
 	{
 		final Stream<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers().stream();
 

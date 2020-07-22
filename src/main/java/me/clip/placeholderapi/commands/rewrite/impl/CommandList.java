@@ -22,7 +22,7 @@ public final class CommandList extends PlaceholderCommand
 
 
 	@Override
-	public void evaluate(final @NotNull PlaceholderAPIPlugin plugin, final @NotNull CommandSender sender, final @NotNull String alias, final @NotNull List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
 	{
 		final Set<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers();
 		if (identifiers.isEmpty())
