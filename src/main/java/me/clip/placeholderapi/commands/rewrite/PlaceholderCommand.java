@@ -1,10 +1,12 @@
 package me.clip.placeholderapi.commands.rewrite;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 import java.util.Set;
@@ -40,6 +42,13 @@ public abstract class PlaceholderCommand
 	public final Set<String> getAlias()
 	{
 		return alias;
+	}
+
+	@NotNull
+	@Unmodifiable
+	public final Set<String> getLabels()
+	{
+		return ImmutableSet.<String>builder().add(label).addAll(alias).build();
 	}
 
 
