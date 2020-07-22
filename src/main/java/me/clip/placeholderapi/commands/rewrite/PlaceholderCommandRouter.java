@@ -2,8 +2,10 @@ package me.clip.placeholderapi.commands.rewrite;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandHelp;
+import me.clip.placeholderapi.commands.rewrite.impl.CommandInfo;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandList;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandParse;
+import me.clip.placeholderapi.commands.rewrite.impl.CommandReload;
 import me.clip.placeholderapi.commands.rewrite.impl.CommandVersion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
@@ -34,8 +36,10 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 		this.plugin = plugin;
 
 		add(new CommandHelp(),
+			new CommandInfo(),
 			new CommandList(),
 			new CommandParse(),
+			new CommandReload(),
 			new CommandVersion());
 	}
 
