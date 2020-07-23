@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.rewrite.impl;
+package me.clip.placeholderapi.commands.rewrite.impl.local;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.rewrite.PlaceholderCommand;

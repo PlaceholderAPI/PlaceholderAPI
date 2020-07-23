@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.rewrite.impl;
+package me.clip.placeholderapi.commands.rewrite.impl.local;
 
 import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPI;

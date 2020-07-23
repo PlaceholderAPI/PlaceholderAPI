@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.rewrite.impl;
+package me.clip.placeholderapi.commands.rewrite.impl.local;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -11,12 +11,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.stream.Stream;
 
-public final class CommandInfo extends PlaceholderCommand
+public final class CommandExpansionUnregister extends PlaceholderCommand
 {
 
-	public CommandInfo()
+	public CommandExpansionUnregister()
 	{
-		super("info");
+		super("unregister");
 	}
 
 	@Override
@@ -37,53 +37,12 @@ public final class CommandInfo extends PlaceholderCommand
 			return;
 		}
 
-		final StringBuilder builder = new StringBuilder();
 
-		builder.append("&7Placeholder expansion info for: &r")
-			   .append(expansion.getName())
-			   .append('\n')
-			   .append("&7Status: &r")
-			   .append(expansion.isRegistered() ? "&aRegistered" : "7cNotRegistered")
-			   .append('\n');
+		final String message = !PlaceholderAPI.unregisterExpansion(expansion) ?
+							   "&cFailed to unregister expansion: &f" :
+							   "&aSuccessfully unregistered expansion: &f";
 
-		final String author = expansion.getAuthor();
-		if (author != null)
-		{
-			builder.append("&7Author: &r")
-				   .append(author)
-				   .append('\n');
-		}
-
-		final String version = expansion.getVersion();
-		if (version != null)
-		{
-			builder.append("&7Version: &r")
-				   .append(version)
-				   .append('\n');
-		}
-
-		final String requiredPlugin = expansion.getRequiredPlugin();
-		if (requiredPlugin != null)
-		{
-			builder.append("&7Requires plugin: &r")
-				   .append(requiredPlugin)
-				   .append('\n');
-		}
-
-		final List<String> placeholders = expansion.getPlaceholders();
-		if (placeholders != null && !placeholders.isEmpty())
-		{
-			builder.append("&8&m-- &7Placeholders &8&m--&r")
-				   .append('\n');
-
-			for (final String placeholder : placeholders)
-			{
-				builder.append(placeholder)
-					   .append('\n');
-			}
-		}
-
-		Msg.msg(sender, builder.toString());
+		Msg.msg(sender, message + expansion.getName());
 	}
 
 	@Override
