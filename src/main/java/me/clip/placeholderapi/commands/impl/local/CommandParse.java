@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -25,7 +26,7 @@ public final class CommandParse extends PlaceholderCommand
 
 
 	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		switch (alias.toLowerCase())
 		{
@@ -45,7 +46,7 @@ public final class CommandParse extends PlaceholderCommand
 	}
 
 	@Override
-	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params, @NotNull final List<String> suggestions)
+	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
 		switch (alias.toLowerCase())
 		{
@@ -60,7 +61,7 @@ public final class CommandParse extends PlaceholderCommand
 	}
 
 
-	private void evaluateParseSingular(@NotNull final CommandSender sender, @NotNull final List<String> params, final boolean broadcast, final boolean command)
+	private void evaluateParseSingular(@NotNull final CommandSender sender, @NotNull @Unmodifiable final List<String> params, final boolean broadcast, final boolean command)
 	{
 		if (params.size() < 2)
 		{
@@ -117,7 +118,7 @@ public final class CommandParse extends PlaceholderCommand
 		}
 	}
 
-	private void evaluateParseRelation(@NotNull final CommandSender sender, @NotNull final List<String> params)
+	private void evaluateParseRelation(@NotNull final CommandSender sender, @NotNull @Unmodifiable final List<String> params)
 	{
 		if (params.size() < 3)
 		{
@@ -144,7 +145,7 @@ public final class CommandParse extends PlaceholderCommand
 	}
 
 
-	private void completeParseSingular(@NotNull final CommandSender sender, @NotNull final List<String> params, @NotNull final List<String> suggestions)
+	private void completeParseSingular(@NotNull final CommandSender sender, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
 		if (sender instanceof Player && (params.isEmpty() || (params.size() == 1 && params.get(0).toLowerCase().startsWith("m"))))
 		{
@@ -155,7 +156,7 @@ public final class CommandParse extends PlaceholderCommand
 		suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
-	private void completeParseRelation(@NotNull final List<String> params, @NotNull final List<String> suggestions)
+	private void completeParseRelation(@NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
 		if (params.size() > 2)
 		{

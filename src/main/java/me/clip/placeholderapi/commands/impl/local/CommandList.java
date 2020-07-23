@@ -7,6 +7,7 @@ import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ public final class CommandList extends PlaceholderCommand
 
 
 	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		final Set<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers();
 		if (identifiers.isEmpty())

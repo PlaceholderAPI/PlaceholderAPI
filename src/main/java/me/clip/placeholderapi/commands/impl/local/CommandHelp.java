@@ -6,6 +6,7 @@ import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public final class CommandHelp extends PlaceholderCommand
 
 
 	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		final PluginDescriptionFile description = plugin.getDescription();
 
