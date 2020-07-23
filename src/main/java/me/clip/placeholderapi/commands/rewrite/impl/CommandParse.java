@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.rewrite.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -96,7 +97,14 @@ public final class CommandParse extends PlaceholderCommand
 		}
 		else
 		{
-			Msg.msg(sender, message);
+			if (!(sender instanceof Player))
+			{
+				Msg.msg(sender, message);
+			}
+			else
+			{
+				sender.spigot().sendMessage(TextComponent.fromLegacyText(message));
+			}
 		}
 	}
 
