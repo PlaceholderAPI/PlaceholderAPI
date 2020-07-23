@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public abstract class PlaceholderCommand
 {
@@ -73,6 +74,25 @@ public abstract class PlaceholderCommand
 	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
 
+	}
+
+
+	@NotNull
+	public static Stream<PlaceholderCommand> filterByPermission(@NotNull final CommandSender sender, @NotNull final Stream<PlaceholderCommand> commands)
+	{
+		return commands.filter(target -> target.getPermission() == null || sender.hasPermission(target.getPermission()));
+	}
+
+	public static void suggestByParameter(@NotNull final Stream<String> possible, @NotNull final List<String> suggestions, @Nullable final String parameter)
+	{
+		if (parameter == null)
+		{
+			possible.forEach(suggestions::add);
+		}
+		else
+		{
+			possible.filter(suggestion -> suggestion.toLowerCase().startsWith(parameter.toLowerCase())).forEach(suggestions::add);
+		}
 	}
 
 }
