@@ -1,6 +1,7 @@
 package me.clip.placeholderapi.replacer;
 
 import me.clip.placeholderapi.PlaceholderHook;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,15 +35,51 @@ public final class CharsReplacer implements Replacer
 
 			if (l == '&' && ++i < chars.length)
 			{
-				final char c = chars[i];
+				final char c = Character.toLowerCase(chars[i]);
 
 				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd' && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'o' && c != 'r' && c != 'x')
 				{
-					builder.append(l).append(c);
+					builder.append(l).append(chars[i]);
 				}
 				else
 				{
-					builder.append('§').append(c);
+					builder.append(ChatColor.COLOR_CHAR);
+
+					if (c != 'x')
+					{
+						builder.append(chars[i]);
+						continue;
+					}
+
+					if ((i > 1 && chars[i - 2] == '\\') /*allow escaping &x*/)
+					{
+						builder.setLength(builder.length() - 2);
+						builder.append('&').append(chars[i]);
+						continue;
+					}
+
+					builder.append(c);
+
+					int j = 0;
+					while (++j <= 6)
+					{
+						if (i + j >= chars.length)
+						{
+							break;
+						}
+
+						final char x = chars[i + j];
+						builder.append(ChatColor.COLOR_CHAR).append(x);
+					}
+
+					if (j == 7)
+					{
+						i += 6;
+					}
+					else
+					{
+						builder.setLength(builder.length() - (j * 2)); // undo &x parsing
+					}
 				}
 				continue;
 			}
