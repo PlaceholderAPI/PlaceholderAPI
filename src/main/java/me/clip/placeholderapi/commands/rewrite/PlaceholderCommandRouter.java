@@ -76,11 +76,12 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 			return true;
 		}
 
-		final PlaceholderCommand target = commands.get(args[0]);
+		final String             search = args[0].toLowerCase();
+		final PlaceholderCommand target = commands.get(search);
 
 		if (target == null)
 		{
-			Msg.msg(sender, "&cUnknown command &7" + args[0]);
+			Msg.msg(sender, "&cUnknown command &7" + search);
 			return true;
 		}
 
@@ -91,7 +92,7 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 			return true;
 		}
 
-		target.evaluate(plugin, sender, args[0].toLowerCase(), Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
+		target.evaluate(plugin, sender, search, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
 
 		return true;
 	}
