@@ -1,8 +1,8 @@
-package me.clip.placeholderapi.commands.rewrite.impl.local;
+package me.clip.placeholderapi.commands.impl.local;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.rewrite.PlaceholderCommand;
+import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;

@@ -1,17 +1,17 @@
-package me.clip.placeholderapi.commands.rewrite;
+package me.clip.placeholderapi.commands;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.rewrite.impl.cloud.CommandECloud;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandExpansionRegister;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandExpansionUnregister;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandHelp;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandInfo;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandList;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandParse;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandReload;
-import me.clip.placeholderapi.commands.rewrite.impl.local.CommandVersion;
+import me.clip.placeholderapi.commands.impl.cloud.CommandECloud;
+import me.clip.placeholderapi.commands.impl.local.CommandExpansionRegister;
+import me.clip.placeholderapi.commands.impl.local.CommandExpansionUnregister;
+import me.clip.placeholderapi.commands.impl.local.CommandHelp;
+import me.clip.placeholderapi.commands.impl.local.CommandInfo;
+import me.clip.placeholderapi.commands.impl.local.CommandList;
+import me.clip.placeholderapi.commands.impl.local.CommandParse;
+import me.clip.placeholderapi.commands.impl.local.CommandReload;
+import me.clip.placeholderapi.commands.impl.local.CommandVersion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

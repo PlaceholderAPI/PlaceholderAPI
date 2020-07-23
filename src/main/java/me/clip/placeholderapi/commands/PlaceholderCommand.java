@@ -1,4 +1,4 @@
-package me.clip.placeholderapi.commands.rewrite;
+package me.clip.placeholderapi.commands;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;

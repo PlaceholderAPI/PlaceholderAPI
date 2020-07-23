@@ -1,7 +1,7 @@
-package me.clip.placeholderapi.commands.rewrite.impl.local;
+package me.clip.placeholderapi.commands.impl.local;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.rewrite.PlaceholderCommand;
+import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public final class CommandExpansionRegister extends PlaceholderCommand
 {

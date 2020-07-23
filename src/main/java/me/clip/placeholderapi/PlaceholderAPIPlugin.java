@@ -20,7 +20,7 @@
  */
 package me.clip.placeholderapi;
 
-import me.clip.placeholderapi.commands.rewrite.PlaceholderCommandRouter;
+import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;

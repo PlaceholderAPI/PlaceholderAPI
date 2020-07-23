@@ -1,9 +1,9 @@
-package me.clip.placeholderapi.commands.rewrite.impl.cloud;
+package me.clip.placeholderapi.commands.impl.cloud;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.rewrite.PlaceholderCommand;
+import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +18,13 @@ public final class CommandECloud extends PlaceholderCommand
 {
 
 	@Unmodifiable
-	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandECloudToggle());
+	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandECloudClear(),
+																			  new CommandECloudToggle(),
+																			  new CommandECloudStatus(),
+																			  new CommandECloudRefresh(),
+																			  new CommandECloudDownload(),
+																			  new CommandECloudExpansionInfo(),
+																			  new CommandECloudExpansionList());
 
 
 	@NotNull
@@ -46,7 +52,25 @@ public final class CommandECloud extends PlaceholderCommand
 	{
 		if (params.isEmpty())
 		{
-			return; // send help message
+			Msg.msg(sender,
+					"&b&lPlaceholderAPI &8- &7ECloud Help Menu &8- ",
+					" ",
+					"&b/papi &fecloud status",
+					"  &7&oView status of the ecloud",
+					"&b/papi &fecloud list <all/{author}/installed> {page}",
+					"  &7&oList all/author specific available expansions",
+					"&b/papi &fecloud info <expansion name> {version}",
+					"  &7&oView information about a specific expansion available on the cloud",
+					"&b/papi &fecloud placeholders <expansion name>",
+					"  &7&oView placeholders for an expansion",
+					"&b/papi &fecloud download <expansion name> {version}",
+					"  &7&oDownload an expansion from the ecloud",
+					"&b/papi &fecloud refresh",
+					"  &7&oFetch the most up to date list of expansions available.",
+					"&b/papi &fecloud clear",
+					"  &7&oClear the expansion cloud cache.");
+
+			return;
 		}
 
 		final String             search = params.get(0).toLowerCase();
@@ -62,6 +86,13 @@ public final class CommandECloud extends PlaceholderCommand
 		if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission))
 		{
 			Msg.msg(sender, "&cYou do not have permission to do this!");
+			return;
+		}
+
+		if (!(target instanceof CommandECloudToggle) && !plugin.getPlaceholderAPIConfig().isCloudEnabled())
+		{
+			Msg.msg(sender,
+					"&cThe ECloud Manager is not enabled!");
 			return;
 		}
 
