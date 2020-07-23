@@ -21,50 +21,69 @@
 package me.clip.placeholderapi.configuration;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public class PlaceholderAPIConfig {
+public final class PlaceholderAPIConfig
+{
 
-    private final PlaceholderAPIPlugin plugin;
+	@NotNull
+	private final PlaceholderAPIPlugin plugin;
 
-    public PlaceholderAPIConfig(PlaceholderAPIPlugin i) {
-        plugin = i;
-    }
+	public PlaceholderAPIConfig(@NotNull final PlaceholderAPIPlugin plugin)
+	{
+		this.plugin = plugin;
+	}
 
-    public void loadDefConfig() {
-        plugin.saveDefaultConfig();
-        plugin.reloadConfig();
-    }
 
-    public boolean checkUpdates() {
-        return plugin.getConfig().getBoolean("check_updates");
-    }
+	public boolean checkUpdates()
+	{
+		return plugin.getConfig().getBoolean("check_updates");
+	}
 
-    public boolean cloudAllowUnverifiedExpansions() {
-        return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
-    }
+	public boolean cloudAllowUnverifiedExpansions()
+	{
+		return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
+	}
 
-    public boolean isCloudEnabled() {
-        return plugin.getConfig().getBoolean("cloud_enabled");
-    }
 
-    public void setCloudEnabled(boolean b) {
-        plugin.getConfig().set("cloud_enabled", b);
-        plugin.reloadConfig();
-    }
+	public boolean isCloudEnabled()
+	{
+		return plugin.getConfig().getBoolean("cloud_enabled");
+	}
 
-    public boolean isDebugMode() {
-        return plugin.getConfig().getBoolean("debug", false);
-    }
+	public void setCloudEnabled(boolean state)
+	{
+		plugin.getConfig().set("cloud_enabled", state);
+		plugin.saveConfig();
+	}
 
-    public String booleanTrue() {
-        return plugin.getConfig().getString("boolean.true");
-    }
 
-    public String booleanFalse() {
-        return plugin.getConfig().getString("boolean.false");
-    }
+	public boolean isDebugMode()
+	{
+		return plugin.getConfig().getBoolean("debug", false);
+	}
 
-    public String dateFormat() {
-        return plugin.getConfig().getString("date_format");
-    }
+
+	@NotNull
+	public String dateFormat()
+	{
+		//noinspection ConstantConditions (bad spigot annotation)
+		return plugin.getConfig().getString("date_format", "MM/dd/yy HH:mm:ss");
+	}
+
+
+	@NotNull
+	public String booleanTrue()
+	{
+		//noinspection ConstantConditions (bad spigot annotation)
+		return plugin.getConfig().getString("boolean.true", "true");
+	}
+
+	@NotNull
+	public String booleanFalse()
+	{
+		//noinspection ConstantConditions (bad spigot annotation)
+		return plugin.getConfig().getString("boolean.false", "false");
+	}
+
 }
