@@ -57,6 +57,12 @@ public final class ExpansionManager
 	}
 
 
+	@NotNull
+	public File getFolder()
+	{
+		return folder;
+	}
+
 	public void initializeExpansions()
 	{
 		plugin.getLogger().info("Placeholder expansion registration initializing...");
