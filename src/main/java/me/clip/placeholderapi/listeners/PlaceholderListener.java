@@ -65,11 +65,8 @@ public class PlaceholderListener implements Listener {
             ((Cacheable) event.getExpansion()).clear();
         }
 
-        if (plugin.getExpansionCloud() != null) {
-
-            CloudExpansion ex = plugin.getExpansionCloud()
-                    .getCloudExpansion(event.getExpansion().getName());
-
+        if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
+            CloudExpansion ex = plugin.getExpansionCloud().getCloudExpansion(event.getExpansion().getName()).orElse(null);
             if (ex != null) {
                 ex.setHasExpansion(false);
                 ex.setShouldUpdate(false);
