@@ -18,8 +18,7 @@ public final class CommandECloud extends PlaceholderCommand
 {
 
 	@Unmodifiable
-	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandECloudEnable(),
-																			  new CommandECloudDisable());
+	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandECloudToggle());
 
 
 	@NotNull
