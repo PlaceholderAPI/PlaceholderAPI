@@ -172,9 +172,9 @@ public final class ExpansionManager
 			((Taskable) expansion).start();
 		}
 
-		if (plugin.getExpansionCloud() != null)
+		if (plugin.getPlaceholderAPIConfig().isCloudEnabled())
 		{
-			final CloudExpansion cloudExpansion = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier());
+			final CloudExpansion cloudExpansion = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier()).orElse(null);
 
 			if (cloudExpansion != null)
 			{
