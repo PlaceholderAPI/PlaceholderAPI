@@ -27,9 +27,7 @@ public final class CommandHandler implements CommandExecutor {
             new EcloudRefreshCommand(),
             new EcloudStatusCommand(),
             new EcloudVersionInfoCommand(),
-            new EcloudCommand(),
-            new DisableEcloudCommand(),
-            new EnableCloudCommand()
+            new EcloudCommand()
     );
 
     static {
