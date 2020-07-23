@@ -33,6 +33,7 @@ public final class CommandParse extends PlaceholderCommand
 				break;
 			case "parse":
 				evaluateParseSingular(sender, params, false);
+				break;
 			case "bcparse":
 				evaluateParseSingular(sender, params, true);
 				break;
