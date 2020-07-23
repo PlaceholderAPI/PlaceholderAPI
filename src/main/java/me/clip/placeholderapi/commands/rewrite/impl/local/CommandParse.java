@@ -152,16 +152,7 @@ public final class CommandParse extends PlaceholderCommand
 		}
 
 		final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
-
-		switch (params.size())
-		{
-			case 0:
-				names.forEach(suggestions::add);
-				break;
-			case 1:
-				names.filter(name -> name.toLowerCase().startsWith(params.get(0).toLowerCase())).forEach(suggestions::add);
-				break;
-		}
+		suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
 	private void completeParseRelation(@NotNull final List<String> params, @NotNull final List<String> suggestions)
@@ -172,13 +163,7 @@ public final class CommandParse extends PlaceholderCommand
 		}
 
 		final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
-		if (params.size() == 0)
-		{
-			names.forEach(suggestions::add);
-			return;
-		}
-
-		names.filter(name -> name.toLowerCase().startsWith(params.get(params.size() - 1).toLowerCase())).forEach(suggestions::add);
+		suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(params.size() - 1));
 	}
 
 

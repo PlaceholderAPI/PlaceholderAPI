@@ -22,7 +22,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 	@Override
 	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
 	{
-		if (params.size() < 1)
+		if (params.isEmpty())
 		{
 			Msg.msg(sender,
 					"&cYou must specify the name of the expansion.");
@@ -48,17 +48,12 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 	@Override
 	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params, @NotNull final List<String> suggestions)
 	{
-		final Stream<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers().stream();
-
-		switch (params.size())
+		if (params.size() > 1)
 		{
-			case 0:
-				identifiers.forEach(suggestions::add);
-				break;
-			case 1:
-				identifiers.filter(identifier -> identifier.startsWith(params.get(0).toLowerCase())).forEach(suggestions::add);
-				break;
+			return;
 		}
+
+		suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
 }
