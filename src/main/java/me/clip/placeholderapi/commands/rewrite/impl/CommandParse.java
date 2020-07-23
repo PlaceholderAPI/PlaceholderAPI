@@ -20,7 +20,7 @@ public final class CommandParse extends PlaceholderCommand
 
 	public CommandParse()
 	{
-		super("parse", "bcparse", "parserel");
+		super("parse", "bcparse", "parserel", "cmdparse");
 	}
 
 
@@ -33,10 +33,13 @@ public final class CommandParse extends PlaceholderCommand
 				evaluateParseRelation(sender, params);
 				break;
 			case "parse":
-				evaluateParseSingular(sender, params, false);
+				evaluateParseSingular(sender, params, false, false);
 				break;
 			case "bcparse":
-				evaluateParseSingular(sender, params, true);
+				evaluateParseSingular(sender, params, true, false);
+				break;
+			case "cmdparse":
+				evaluateParseSingular(sender, params, false, true);
 				break;
 		}
 	}
@@ -57,7 +60,7 @@ public final class CommandParse extends PlaceholderCommand
 	}
 
 
-	private void evaluateParseSingular(@NotNull final CommandSender sender, @NotNull final List<String> params, final boolean broadcast)
+	private void evaluateParseSingular(@NotNull final CommandSender sender, @NotNull final List<String> params, final boolean broadcast, final boolean command)
 	{
 		if (params.size() < 2)
 		{
@@ -90,6 +93,12 @@ public final class CommandParse extends PlaceholderCommand
 		}
 
 		final String message = PlaceholderAPI.setPlaceholders(player, String.join(" ", params.subList(1, params.size())));
+
+		if (command)
+		{
+			Bukkit.dispatchCommand(sender, message);
+			return;
+		}
 
 		if (broadcast)
 		{
