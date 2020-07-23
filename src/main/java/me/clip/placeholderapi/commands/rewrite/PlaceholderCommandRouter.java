@@ -35,6 +35,7 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandHelp(),
 																			  new CommandInfo(),
 																			  new CommandList(),
+																			  new CommandECloud(),
 																			  new CommandParse(),
 																			  new CommandReload(),
 																			  new CommandVersion(),
