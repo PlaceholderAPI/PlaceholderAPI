@@ -20,43 +20,42 @@
  */
 package me.clip.placeholderapi.listeners;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
+public final class ServerLoadEventListener implements Listener
+{
 
-public class ServerLoadEventListener implements Listener {
+    @NotNull
+	private final PlaceholderAPIPlugin plugin;
 
-    private final PlaceholderAPIPlugin plugin;
+	public ServerLoadEventListener(@NotNull final PlaceholderAPIPlugin plugin)
+	{
+        this.plugin = plugin;
 
-    public ServerLoadEventListener(PlaceholderAPIPlugin instance) {
-        plugin = instance;
-        Bukkit.getPluginManager().registerEvents(this, instance);
-    }
+		Bukkit.getPluginManager().registerEvents(this, plugin);
+	}
 
-    /**
-     * This method will be called when the server is first loaded
-     * <p>
-     * The goal of the method is to register all the expansions as soon as possible
-     * especially before players can join
-     * <p>
-     * This will ensure no issues with expanions and hooks.
-     *
-     * @param e the server load event
-     */
-    @EventHandler
-    public void onServerLoad(ServerLoadEvent e) {
-        plugin.getLogger().info("Placeholder expansion registration initializing...");
-        final Map<String, PlaceholderHook> alreadyRegistered = PlaceholderAPI.getPlaceholders();
-        plugin.getExpansionManager().registerAllExpansions();
+	/**
+	 * This method will be called when the server is first loaded
+	 * <p>
+	 * The goal of the method is to register all the expansions as soon as possible
+	 * especially before players can join
+	 * <p>
+	 * This will ensure no issues with expansions and hooks.
+	 *
+	 * @param event the server load event
+	 */
+	@EventHandler
+	public void onServerLoad(@NotNull final ServerLoadEvent event)
+	{
+        HandlerList.unregisterAll(this);
+		plugin.getExpansionManager().initializeExpansions();
+	}
 
-        if (alreadyRegistered != null && !alreadyRegistered.isEmpty()) {
-            alreadyRegistered.forEach(PlaceholderAPI::registerPlaceholderHook);
-        }
-    }
 }
