@@ -3,14 +3,15 @@ package me.clip.placeholderapi.commands.rewrite;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionRegister;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandExpansionUnregister;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandHelp;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandInfo;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandList;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandParse;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandReload;
-import me.clip.placeholderapi.commands.rewrite.impl.CommandVersion;
+import me.clip.placeholderapi.commands.rewrite.impl.cloud.CommandECloud;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandExpansionRegister;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandExpansionUnregister;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandHelp;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandInfo;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandList;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandParse;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandReload;
+import me.clip.placeholderapi.commands.rewrite.impl.local.CommandVersion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,6 +22,7 @@ import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -102,33 +104,20 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 	{
 		final List<String> suggestions = new ArrayList<>();
 
-		switch (args.length)
+		if (args.length > 1)
 		{
-			case 0:
-			case 1:
-				Stream<PlaceholderCommand> targets = commands.values()
-															 .stream()
-															 .filter(target -> target.getPermission() == null || sender.hasPermission(target.getPermission()));
+			final PlaceholderCommand target = this.commands.get(args[0].toLowerCase());
 
-				targets.forEach(target -> {
-					suggestions.add(target.getLabel());
-					suggestions.addAll(target.getAlias());
-				});
+			if (target != null)
+			{
+				target.complete(plugin, sender, args[0].toLowerCase(), Arrays.asList(Arrays.copyOfRange(args, 1, args.length)), suggestions);
+			}
 
-				if (args.length == 1)
-				{
-					suggestions.removeIf(suggestion -> !suggestion.startsWith(args[0].toLowerCase()));
-				}
-				break;
-			default:
-				final PlaceholderCommand target = this.commands.get(args[0]);
-
-				if (target != null)
-				{
-					target.complete(plugin, sender, args[0].toLowerCase(), Arrays.asList(Arrays.copyOfRange(args, 1, args.length)), suggestions);
-				}
-				break;
+			return suggestions;
 		}
+
+		final Stream<String> targets = PlaceholderCommand.filterByPermission(sender, commands.values().stream()).map(PlaceholderCommand::getLabels).flatMap(Collection::stream);
+		PlaceholderCommand.suggestByParameter(targets, suggestions, args.length == 0 ? null : args[0]);
 
 		return suggestions;
 	}
