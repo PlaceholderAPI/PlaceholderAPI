@@ -56,6 +56,21 @@ public final class ExpansionManager
 		}
 	}
 
+
+	public void initializeExpansions()
+	{
+		plugin.getLogger().info("Placeholder expansion registration initializing...");
+
+		final Map<String, PlaceholderHook> registered = PlaceholderAPI.getPlaceholders();
+		registerAllExpansions();
+
+		if (!registered.isEmpty()) {
+			registered.forEach(PlaceholderAPI::registerPlaceholderHook);
+		}
+	}
+
+
+
 	public PlaceholderExpansion getRegisteredExpansion(String name)
 	{
 		for (Entry<String, PlaceholderHook> hook : PlaceholderAPI.getPlaceholders().entrySet())
