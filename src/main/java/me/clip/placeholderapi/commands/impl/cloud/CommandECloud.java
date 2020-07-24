@@ -61,7 +61,7 @@ public final class CommandECloud extends PlaceholderCommand
 					"&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
 					" ",
 					"&b/papi &fecloud status",
-					"  &7&oView status of the ecloud",
+					"  &7&oView status of the eCloud",
 					"&b/papi &fecloud list <all/{author}/installed> {page}",
 					"  &7&oList all/author specific available expansions",
 					"&b/papi &fecloud info <expansion name> {version}",
