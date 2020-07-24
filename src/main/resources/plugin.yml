@@ -1,11 +1,11 @@
-name: "${project.name}"
+name: "@name@"
 main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
 
-version: "${project.version}"
-authors: ["extended_clip", "Glare"]
+version: "@version@"
+author: HelpChat
 
 api-version: "1.13"
-description: "${project.description}"
+description: "@description@"
 
 commands:
   placeholderapi:
