@@ -30,7 +30,7 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand
 			return;
 		}
 
-		final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(params.get(0)).orElse(null);
+		final CloudExpansion expansion = plugin.getCloudExpansionManager().findCloudExpansionByName(params.get(0)).orElse(null);
 		if (expansion == null)
 		{
 			Msg.msg(sender,
@@ -99,12 +99,12 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand
 
 		if (params.size() <= 1)
 		{
-			final Stream<String> names = plugin.getExpansionCloud().getCloudExpansions().values().stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
+			final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values().stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
 			suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 			return;
 		}
 
-		final Optional<CloudExpansion> expansion = plugin.getExpansionCloud().getCloudExpansion(params.get(0));
+		final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager().findCloudExpansionByName(params.get(0));
 		if (!expansion.isPresent())
 		{
 			return;

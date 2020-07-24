@@ -20,25 +20,18 @@
  */
 package me.clip.placeholderapi;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import me.clip.placeholderapi.events.ExpansionRegisterEvent;
-import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
-import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
 import me.clip.placeholderapi.replacer.CharsReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +45,6 @@ public final class PlaceholderAPI
 
 	private static final Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
 	private static final Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
-
-	private static final Map<String, PlaceholderHook> PLACEHOLDERS = new HashMap<>();
 
 
 	@Deprecated
@@ -82,7 +73,7 @@ public final class PlaceholderAPI
 	@NotNull
 	public static String setPlaceholders(@Nullable final OfflinePlayer player, @NotNull final String text)
 	{
-		return REPLACER_PERCENT.apply(text, player, PLACEHOLDERS::get);
+		return REPLACER_PERCENT.apply(text, player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
 	}
 
 	/**
@@ -105,13 +96,12 @@ public final class PlaceholderAPI
 	 *
 	 * @param player Player to parse the placeholders against
 	 * @param text   Text to set the placeholder values in
-	 *
 	 * @return String containing all translated placeholders
 	 */
 	@NotNull
 	public static String setBracketPlaceholders(@Nullable final OfflinePlayer player, @NotNull final String text)
 	{
-		return REPLACER_BRACKET.apply(text, player, PLACEHOLDERS::get);
+		return REPLACER_BRACKET.apply(text, player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
 	}
 
 	/**
@@ -120,7 +110,6 @@ public final class PlaceholderAPI
 	 *
 	 * @param player Player to parse the placeholders against
 	 * @param text   List of Strings to set the placeholder values in
-	 *
 	 * @return String containing all translated placeholders
 	 */
 	@NotNull
@@ -138,43 +127,7 @@ public final class PlaceholderAPI
 	 */
 	public static boolean isRegistered(@NotNull final String identifier)
 	{
-		return PLACEHOLDERS.containsKey(identifier.toLowerCase());
-	}
-
-	/**
-	 * Register a new placeholder hook
-	 *
-	 * @param identifier      Identifier of the placeholder -> "%(identifier)_(args...)%
-	 * @param placeholderHook Implementing class that contains the onPlaceholderRequest method which
-	 *                        is called when a value is needed for the specific placeholder
-	 * @return true if the hook was successfully registered, false if there is already a hook
-	 * registered for the specified identifier
-	 */
-	public static boolean registerPlaceholderHook(@NotNull final String identifier, @NotNull final PlaceholderHook placeholderHook)
-	{
-		return PLACEHOLDERS.putIfAbsent(identifier.toLowerCase(), placeholderHook) == null;
-	}
-
-	public static boolean registerPlaceholderHook(@NotNull final Plugin plugin, @NotNull final PlaceholderHook placeholderHook)
-	{
-		return registerPlaceholderHook(plugin.getName(), placeholderHook);
-	}
-
-	/**
-	 * Unregister a placeholder hook by identifier
-	 *
-	 * @param identifier The identifier for the placeholder hook to unregister
-	 * @return true if the placeholder hook was successfully unregistered, false if there was no
-	 * placeholder hook registered for the identifier specified
-	 */
-	public static boolean unregisterPlaceholderHook(@NotNull final String identifier)
-	{
-		return PLACEHOLDERS.remove(identifier.toLowerCase()) != null;
-	}
-
-	public static boolean unregisterPlaceholderHook(@NotNull final Plugin plugin)
-	{
-		return unregisterPlaceholderHook(plugin.getName());
+		return PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByIdentifier(identifier).isPresent();
 	}
 
 
@@ -186,7 +139,7 @@ public final class PlaceholderAPI
 	@NotNull
 	public static Set<String> getRegisteredIdentifiers()
 	{
-		return ImmutableSet.copyOf(PLACEHOLDERS.keySet());
+		return ImmutableSet.copyOf(PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getIdentifiers());
 	}
 
 	/**
@@ -195,69 +148,11 @@ public final class PlaceholderAPI
 	 * @return Copy of the internal placeholder map
 	 */
 	@NotNull
+	@Deprecated
 	public static Map<String, PlaceholderHook> getPlaceholders()
 	{
-		return ImmutableMap.copyOf(PLACEHOLDERS);
-	}
-
-
-	/**
-	 * Unregister ALL placeholder hooks that are currently registered
-	 */
-	protected static void unregisterAll()
-	{
-		unregisterAllProvidedExpansions();
-		PLACEHOLDERS.clear();
-	}
-
-	/**
-	 * Unregister all expansions provided by PlaceholderAPI
-	 */
-	public static void unregisterAllProvidedExpansions()
-	{
-		final Set<PlaceholderHook> set = new HashSet<>(PLACEHOLDERS.values());
-
-		for (PlaceholderHook hook : set)
-		{
-			if (hook instanceof PlaceholderExpansion)
-			{
-				final PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
-
-				if (!expansion.persist())
-				{
-					unregisterExpansion(expansion);
-				}
-			}
-
-			if (hook instanceof Cacheable)
-			{
-				((Cacheable) hook).clear();
-			}
-		}
-	}
-
-	public static boolean registerExpansion(@NotNull final PlaceholderExpansion expansion)
-	{
-		final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
-		Bukkit.getPluginManager().callEvent(event);
-
-		if (event.isCancelled())
-		{
-			return false;
-		}
-
-		return registerPlaceholderHook(expansion.getIdentifier(), expansion);
-	}
-
-	public static boolean unregisterExpansion(@NotNull final PlaceholderExpansion expansion)
-	{
-		if (unregisterPlaceholderHook(expansion.getIdentifier()))
-		{
-			Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
-			return true;
-		}
-
-		return false;
+		throw new UnsupportedOperationException("PlaceholderAPI no longer provides a view of the placeholder's map!\n" +
+												"Use: PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByIdentifier(String)");
 	}
 
 
@@ -512,7 +407,7 @@ public final class PlaceholderAPI
 			return null;
 		}
 
-		if (PLACEHOLDERS.isEmpty())
+		if (PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getExpansionsCount() == 0)
 		{
 			return colorize ? Msg.color(text) : text;
 		}
@@ -608,7 +503,8 @@ public final class PlaceholderAPI
 	 * @deprecated Will be removed in a future release.
 	 */
 	@Deprecated
-	public static String setPlaceholders(Player player, String text) {
+	public static String setPlaceholders(Player player, String text)
+	{
 		return setPlaceholders(((OfflinePlayer) player), text);
 	}
 

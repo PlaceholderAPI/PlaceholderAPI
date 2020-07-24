@@ -3,13 +3,17 @@ package me.clip.placeholderapi.commands.impl.local;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
 
 public final class CommandExpansionRegister extends PlaceholderCommand
 {
@@ -29,16 +33,45 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 			return;
 		}
 
-		final PlaceholderExpansion expansion = plugin.getExpansionManager().registerExpansion(params.get(0));
-		if (expansion == null)
+
+		final LocalExpansionManager manager = plugin.getLocalExpansionManager();
+
+		final File file = new File(manager.getExpansionsFolder(), params.get(0));
+		if (!file.exists())
 		{
 			Msg.msg(sender,
-					"&cFailed to register expansion from &f" + params.get(0));
+					"&cThe file &f" + file.getName() + "&c doesn't exist!");
 			return;
 		}
 
-		Msg.msg(sender,
-				"&aSuccessfully registered expansion: &f" + expansion.getName());
+		manager.findExpansionsInFile(file).whenCompleteAsync((classes, exception) -> {
+			if (exception != null)
+			{
+				Msg.msg(sender,
+						"&cFailed to find expansion in file: &f" + file);
+
+				plugin.getLogger().log(Level.WARNING, "failed to find expansion in file: " + file, exception);
+				return;
+			}
+
+			if (classes.isEmpty())
+			{
+				Msg.msg(sender,
+						"&cNo expansion class found in file: &f" + file);
+				return;
+			}
+
+			final Optional<PlaceholderExpansion> expansion = manager.register(classes.get(0));
+			if (!expansion.isPresent())
+			{
+				Msg.msg(sender,
+						"&cFailed to register expansion from &f" + params.get(0));
+				return;
+			}
+
+			Msg.msg(sender,
+					"&aSuccessfully registered expansion: &f" + expansion.get().getName());
+		});
 	}
 
 	@Override
@@ -49,7 +82,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 			return;
 		}
 
-		final String[] fileNames = plugin.getExpansionManager().getFolder().list((dir, name) -> name.endsWith(".jar"));
+		final String[] fileNames = plugin.getLocalExpansionManager().getExpansionsFolder().list((dir, name) -> name.endsWith(".jar"));
 		if (fileNames == null || fileNames.length == 0)
 		{
 			return;

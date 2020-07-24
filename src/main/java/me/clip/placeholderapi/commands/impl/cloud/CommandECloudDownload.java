@@ -30,7 +30,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			return;
 		}
 
-		final CloudExpansion expansion = plugin.getExpansionCloud().getCloudExpansion(params.get(0)).orElse(null);
+		final CloudExpansion expansion = plugin.getCloudExpansionManager().findCloudExpansionByName(params.get(0)).orElse(null);
 		if (expansion == null)
 		{
 			Msg.msg(sender,
@@ -61,7 +61,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			}
 		}
 
-		plugin.getExpansionCloud().downloadExpansion(expansion, version).whenComplete((file, exception) -> {
+		plugin.getCloudExpansionManager().downloadExpansion(expansion, version).whenComplete((file, exception) -> {
 			if (exception != null)
 			{
 				Msg.msg(sender,
@@ -72,8 +72,8 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			Msg.msg(sender,
 					"&aSuccessfully downloaded expansion to file: &e" + file.getName());
 
-			plugin.getExpansionCloud().clean();
-			plugin.getExpansionCloud().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
+			plugin.getCloudExpansionManager().clean();
+			plugin.getCloudExpansionManager().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
 		});
 	}
 
@@ -87,12 +87,12 @@ public final class CommandECloudDownload extends PlaceholderCommand
 
 		if (params.size() <= 1)
 		{
-			final Stream<String> names = plugin.getExpansionCloud().getCloudExpansions().values().stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
+			final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values().stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
 			suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 			return;
 		}
 
-		final Optional<CloudExpansion> expansion = plugin.getExpansionCloud().getCloudExpansion(params.get(0));
+		final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager().findCloudExpansionByName(params.get(0));
 		if (!expansion.isPresent())
 		{
 			return;

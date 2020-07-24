@@ -55,7 +55,7 @@ public final class ServerLoadEventListener implements Listener
 	public void onServerLoad(@NotNull final ServerLoadEvent event)
 	{
         HandlerList.unregisterAll(this);
-		plugin.getExpansionManager().initializeExpansions();
+        plugin.getLocalExpansionManager().load();
 	}
 
 }

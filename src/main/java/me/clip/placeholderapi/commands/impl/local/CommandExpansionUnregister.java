@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
+import java.util.Optional;
 
 public final class CommandExpansionUnregister extends PlaceholderCommand
 {
@@ -29,8 +30,8 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 			return;
 		}
 
-		final PlaceholderExpansion expansion = plugin.getExpansionManager().getRegisteredExpansion(params.get(0));
-		if (expansion == null)
+		final Optional<PlaceholderExpansion> expansion = plugin.getLocalExpansionManager().findExpansionByName(params.get(0));
+		if (!expansion.isPresent())
 		{
 			Msg.msg(sender,
 					"&cThere is no expansion loaded with the identifier: &f" + params.get(0));
@@ -38,11 +39,11 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 		}
 
 
-		final String message = !PlaceholderAPI.unregisterExpansion(expansion) ?
+		final String message = !plugin.getLocalExpansionManager().unregister(expansion.get()) ?
 							   "&cFailed to unregister expansion: &f" :
 							   "&aSuccessfully unregistered expansion: &f";
 
-		Msg.msg(sender, message + expansion.getName());
+		Msg.msg(sender, message + expansion.get().getName());
 	}
 
 	@Override
