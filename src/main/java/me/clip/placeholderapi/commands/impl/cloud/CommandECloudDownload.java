@@ -26,7 +26,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 		if (params.isEmpty())
 		{
 			Msg.msg(sender,
-					"&cYou must supply the name of a cloud expansion.");
+					"&cYou must supply the name of an eCloud expansion.");
 			return;
 		}
 

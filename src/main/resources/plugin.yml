@@ -14,12 +14,12 @@ commands:
 
 permissions:
   placeholderapi.*:
-    description: "ability to use all papi commands"
+    description: "Ability to use all PAPI commands"
     children:
       placeholderapi.admin: true
       placeholderapi.ecloud.*: true
   placeholderapi.admin:
-    description: "ability to use all papi commands"
+    description: "Ability to use all PAPI commands"
     children:
         placeholderapi.help: true
         placeholderapi.info: true
@@ -31,7 +31,7 @@ permissions:
         placeholderapi.unregister: true
         placeholderapi.updatenotify: true
   placeholderapi.ecloud.*:
-    description: "ability to use all papi ecloud commands"
+    description: "Ability to use all PAPI ecloud commands"
     children:
       placeholderapi.ecloud: true
       placeholderapi.ecloud.info: true
@@ -44,55 +44,55 @@ permissions:
       placeholderapi.ecloud.placeholders: true
   placeholderapi.help:
     default: "op"
-    description: "allows you to view the list of papi commands"
+    description: "Allows you to view the list of PAPI commands"
   placeholderapi.info:
     default: "op"
-    description: "allows you to view expansion information"
+    description: "Allows you to view expansion information"
   placeholderapi.list:
     default: "op"
-    description: "allows you to list active expansions"
+    description: "Allows you to list active expansions"
   placeholderapi.ecloud:
-      default: "op"
-      description: "allows you to access papi eCloud"
+    default: "op"
+    description: "Allows you to access PAPI eCloud"
   placeholderapi.parse:
     default: "op"
-    description: "allows you to parse placeholders"
+    description: "Allows you to parse placeholders"
   placeholderapi.reload:
     default: "op"
-    description: "allows you to reload papi and its configuration"
+    description: "Allows you to reload PAPI and its configuration"
   placeholderapi.version:
     default: "op"
-    description: "allows you to view the version of papi installed"
+    description: "Allows you to view the version of PAPI installed"
   placeholderapi.register:
     default: "op"
-    description: "allows you to register expansions"
+    description: "Allows you to register expansions"
   placeholderapi.unregister:
     default: "op"
-    description: "allows you to unregister expansions"
+    description: "Allows you to unregister expansions"
   placeholderapi.updatenotify:
     default: "op"
-    description: "notifies you when there is a PAPI update"
+    description: "Notifies you when there is a PAPI update"
   placeholderapi.ecloud.info:
     default: "op"
-    description: "allows you to view cloud expansion information"
+    description: "Allows you to view cloud expansion information"
   placeholderapi.ecloud.list:
     default: "op"
-    description: "allows you to list cloud expansions"
+    description: "Allows you to list eCloud expansions"
   placeholderapi.ecloud.clear:
     default: "op"
-    description: "allows you to clear the local cloud expansion cache"
+    description: "Allows you to clear the local eCloud expansion cache"
   placeholderapi.ecloud.toggle:
     default: "op"
-    description: "allows you to toggle/enable/disable the cloud manager"
+    description: "Allows you to toggle/enable/disable the eCloud manager"
   placeholderapi.ecloud.status:
     default: "op"
-    description: "allows you to view the status of cloud expansions"
+    description: "Allows you to view the status of eCloud expansions"
   placeholderapi.ecloud.refresh:
     default: "op"
-    description: "allows you to refresh the local cloud expansion cache"
+    description: "Allows you to refresh the local eCloud expansion cache"
   placeholderapi.ecloud.download:
     default: "op"
-    description: "allows you to download an expansion from the cloud"
+    description: "Allows you to download an expansion from the eCloud"
   placeholderapi.ecloud.placeholders:
     default: "op"
-    description: "allows you to view the placeholders of a cloud expansion"
+    description: "Allows you to view the placeholders of a eCloud expansion"

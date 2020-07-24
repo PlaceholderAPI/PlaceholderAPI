@@ -65,7 +65,7 @@ public final class CommandECloud extends PlaceholderCommand
 					"&b/papi &fecloud list <all/{author}/installed> {page}",
 					"  &7&oList all/author specific available expansions",
 					"&b/papi &fecloud info <expansion name> {version}",
-					"  &7&oView information about a specific expansion available on the cloud",
+					"  &7&oView information about a specific expansion available on the eCloud",
 					"&b/papi &fecloud placeholders <expansion name>",
 					"  &7&oView placeholders for an expansion",
 					"&b/papi &fecloud download <expansion name> {version}",

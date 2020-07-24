@@ -29,8 +29,8 @@ public final class CommandECloudStatus extends PlaceholderCommand
 
 		final StringBuilder builder = new StringBuilder();
 
-		builder.append("&bThere are &a").append(expansionCount).append("&b expansions available on the cloud.").append('\n');
-		builder.append("&7A total of &f").append(authorCount).append("&7 authors have contributed to the expansion cloud.").append('\n');
+		builder.append("&bThere are &a").append(expansionCount).append("&b expansions available on the eCloud.").append('\n');
+		builder.append("&7A total of &f").append(authorCount).append("&7 authors have contributed to the eCloud.").append('\n');
 
 		if (updateCount > 0)
 		{
