@@ -143,7 +143,8 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			int index = ((page - 1) * PAGE_SIZE) + 1;
 			for (final CloudExpansion expansion : values)
 			{
-				builder.append("&8")
+				builder.append("\n")
+				           .append("&8")
 					   .append(index++)
 					   .append(". ")
 					   .append((expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7"))
