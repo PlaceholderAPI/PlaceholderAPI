@@ -608,6 +608,14 @@ public final class PlaceholderAPI
 	 * @deprecated Will be removed in a future release.
 	 */
 	@Deprecated
+	public static String setPlaceholders(Player player, String text) {
+		return setPlaceholders(((OfflinePlayer) player), text);
+	}
+
+	/**
+	 * @deprecated Will be removed in a future release.
+	 */
+	@Deprecated
 	public static String setPlaceholders(Player player, String text, boolean colorize)
 	{
 		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);

@@ -20,301 +20,264 @@
  */
 package me.clip.placeholderapi.expansion.cloud;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.*;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public class ExpansionCloudManager {
+public final class ExpansionCloudManager
+{
+
+	private static final String API_URL = "http://api.extendedclip.com/v2/";
+	private static final Gson   GSON    = new Gson();
+
+
+	@NotNull
+	private final File                 folder;
+	@NotNull
+	private final PlaceholderAPIPlugin plugin;
+
+
+	@NotNull
+	private final Map<Integer, CloudExpansion>                 expansions  = new TreeMap<>();
+	@NotNull
+	private final Map<CloudExpansion, CompletableFuture<File>> downloading = new HashMap<>();
+
+
+	public ExpansionCloudManager(@NotNull final PlaceholderAPIPlugin plugin)
+	{
+		this.plugin = plugin;
+		this.folder = new File(plugin.getDataFolder(), "expansions");
+
+		if (!this.folder.exists() && !this.folder.mkdirs())
+		{
+			plugin.getLogger().severe("Failed to create expansions directory!");
+		}
+	}
+
+
+	@NotNull
+	@Unmodifiable
+	public Map<Integer, CloudExpansion> getCloudExpansions()
+	{
+		return ImmutableMap.copyOf(expansions);
+	}
+
+	@NotNull
+	@Unmodifiable
+	public Set<String> getCloudAuthorNames()
+	{
+		return ImmutableSet.copyOf(expansions.values().stream().map(CloudExpansion::getAuthor).collect(Collectors.toSet()));
+	}
+
+	public int getCloudAuthorCount()
+	{
+		return expansions.values()
+						 .stream()
+						 .collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting()))
+						 .size();
+	}
+
+	@NotNull
+	public Optional<CloudExpansion> getCloudExpansion(String name)
+	{
+		return expansions.values()
+						 .stream()
+						 .filter(ex -> ex.getName().replace(' ', '_').equalsIgnoreCase(name.replace(' ', '_')))
+						 .findFirst();
+	}
+
+
+	public int getCloudUpdateCount()
+	{
+		return ((int) PlaceholderAPI.getExpansions()
+									.stream()
+									.filter(ex -> getCloudExpansion(ex.getName()).map(CloudExpansion::shouldUpdate).isPresent())
+									.count());
+	}
+
+	@NotNull
+	@Unmodifiable
+	public Map<Integer, CloudExpansion> getAllByAuthor(@NotNull final String author)
+	{
+		if (expansions.isEmpty())
+		{
+			return Collections.emptyMap();
+		}
+
+		final AtomicInteger index = new AtomicInteger();
+
+		return expansions.values()
+						 .stream()
+						 .filter(expansion -> author.equalsIgnoreCase(expansion.getAuthor()))
+						 .collect(Collectors.toMap(($) -> index.incrementAndGet(), Function.identity()));
+	}
+
+	@NotNull
+	@Unmodifiable
+	public Map<Integer, CloudExpansion> getAllInstalled()
+	{
+		if (expansions.isEmpty())
+		{
+			return Collections.emptyMap();
+		}
+
+		final AtomicInteger index = new AtomicInteger();
+
+		return expansions.values()
+						 .stream()
+						 .filter(CloudExpansion::hasExpansion)
+						 .collect(Collectors.toMap(($) -> index.incrementAndGet(), Function.identity()));
+	}
+
+
+	public void clean()
+	{
+		expansions.clear();
+
+		downloading.values().forEach(future -> future.cancel(true));
+		downloading.clear();
+	}
+
+	public void fetch(boolean allowUnverified)
+	{
+		plugin.getLogger().info("Fetching available expansion information...");
+
+		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+			final Map<String, CloudExpansion> data = new HashMap<>();
+
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream())))
+			{
+				data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>()
+				{
+				}.getType()));
+			}
+			catch (Exception ex)
+			{
+				if (plugin.getPlaceholderAPIConfig().isDebugMode())
+				{
+					ex.printStackTrace();
+				}
+				else
+				{
+					plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
+				}
+			}
+
+			final List<CloudExpansion> unsorted = new ArrayList<>();
+
+			data.forEach((name, cexp) -> {
+				if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null)
+				{
+					cexp.setName(name);
+
+					PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(cexp.getName());
+
+					if (ex != null && ex.isRegistered())
+					{
+						cexp.setHasExpansion(true);
+						if (!ex.getVersion().equals(cexp.getLatestVersion()))
+						{
+							cexp.setShouldUpdate(true);
+						}
+					}
+
+					unsorted.add(cexp);
+				}
+			});
+
+			unsorted.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
+
+			int count = 0;
+			for (CloudExpansion e : unsorted)
+			{
+				expansions.put(count++, e);
+			}
+
+			plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
+
+			long updates = getCloudUpdateCount();
+
+			if (updates > 0)
+			{
+				plugin.getLogger().info(updates + " installed expansions have updates available.");
+			}
+		});
+	}
+
+
+	public boolean isDownloading(@NotNull final CloudExpansion expansion)
+	{
+		return downloading.containsKey(expansion);
+	}
+
+
+	@NotNull
+	public CompletableFuture<@NotNull File> downloadExpansion(@NotNull final CloudExpansion expansion, @NotNull final CloudExpansion.Version version)
+	{
+		final CompletableFuture<File> previous = downloading.get(expansion);
+		if (previous != null)
+		{
+			return previous;
+		}
+
+		final File file = new File(folder, "Expansion-" + expansion.getName() + ".jar");
+
+		final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
+
+			try (final ReadableByteChannel source = Channels.newChannel(new URL(version.getUrl()).openStream()); final FileOutputStream target = new FileOutputStream(file))
+			{
+				target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
+			}
+			catch (final IOException ex)
+			{
+				throw new CompletionException(ex);
+			}
+
+			return file;
+		});
+
+		download.whenCompleteAsync((value, exception) -> {
+			downloading.remove(expansion);
+
+			if (exception != null)
+			{
+				plugin.getLogger().log(Level.SEVERE, "failed to download " + expansion.getName() + ":" + version.getVersion(), exception);
+			}
+		});
+
+		downloading.put(expansion, download);
+
+		return download;
+	}
 
-    private static final String API_URL = "http://api.extendedclip.com/v2/";
-    private static final Gson GSON = new Gson();
-
-
-    private final PlaceholderAPIPlugin plugin;
-    private final File expansionsDir;
-
-    private final List<String> downloading = new ArrayList<>();
-    private final Map<Integer, CloudExpansion> remote = new TreeMap<>();
-
-
-    public ExpansionCloudManager(PlaceholderAPIPlugin plugin) {
-        this.plugin = plugin;
-
-        expansionsDir = new File(plugin.getDataFolder(), "expansions");
-
-        final boolean result = expansionsDir.mkdirs();
-        if (result) {
-            plugin.getLogger().info("Created Expansions Directory");
-        }
-
-    }
-
-
-    public void clean() {
-        remote.clear();
-        downloading.clear();
-    }
-
-
-    public Map<Integer, CloudExpansion> getCloudExpansions() {
-        return remote;
-    }
-
-    public CloudExpansion getCloudExpansion(String name) {
-        return remote.values()
-                .stream()
-                .filter(ex -> ex.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-
-    public int getCloudAuthorCount() {
-        return remote.values()
-                .stream()
-                .collect(Collectors.groupingBy(CloudExpansion::getAuthor, Collectors.counting()))
-                .size();
-    }
-
-    public int getToUpdateCount() {
-        return ((int) PlaceholderAPI.getExpansions()
-                .stream()
-                .filter(ex -> getCloudExpansion(ex.getName()) != null && getCloudExpansion(ex.getName()).shouldUpdate())
-                .count());
-    }
-
-
-    public Map<Integer, CloudExpansion> getAllByAuthor(String author) {
-        if (remote.isEmpty()) return new HashMap<>();
-
-        Map<Integer, CloudExpansion> byAuthor = new TreeMap<>();
-
-        for (CloudExpansion ex : remote.values()) {
-            if (!ex.getAuthor().equalsIgnoreCase(author)) continue;
-
-            byAuthor.put(byAuthor.size(), ex);
-        }
-
-        return byAuthor;
-    }
-
-    public Map<Integer, CloudExpansion> getAllInstalled() {
-        if (remote.isEmpty()) return new HashMap<>();
-
-        Map<Integer, CloudExpansion> has = new TreeMap<>();
-
-        for (CloudExpansion ex : remote.values()) {
-            if (!ex.hasExpansion()) continue;
-
-            has.put(has.size(), ex);
-        }
-
-        return has;
-    }
-
-
-    public int getPagesAvailable(Map<Integer, CloudExpansion> map, int amount) {
-        if (map == null) {
-            return 0;
-        }
-
-        int pages = map.size() > 0 ? 1 : 0;
-        if (pages == 0) {
-            return pages;
-        }
-
-        if (map.size() > amount) {
-            pages = map.size() / amount;
-            if (map.size() % amount > 0) {
-                pages++;
-            }
-        }
-
-        return pages;
-    }
-
-    public Map<Integer, CloudExpansion> getPage(Map<Integer, CloudExpansion> map, int page, int size) {
-        if (map == null || map.size() == 0 || page > getPagesAvailable(map, size)) {
-            return new HashMap<>();
-        }
-
-        int end = size * page;
-        int start = end - size;
-
-        Map<Integer, CloudExpansion> ex = new TreeMap<>();
-        IntStream.range(start, end).forEach(n -> ex.put(n, map.get(n)));
-
-        return ex;
-    }
-
-
-    public void fetch(boolean allowUnverified) {
-        plugin.getLogger().info("Fetching available expansion information...");
-
-        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
-            final Map<String, CloudExpansion> data = new HashMap<>();
-
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream()))) {
-                data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>() {
-                }.getType()));
-            } catch (Exception ex) {
-                if (plugin.getPlaceholderAPIConfig().isDebugMode()) {
-                    ex.printStackTrace();
-                } else {
-                    plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
-                }
-            }
-
-            final List<CloudExpansion> unsorted = new ArrayList<>();
-
-            data.forEach((name, cexp) -> {
-                if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null) {
-                    cexp.setName(name);
-
-                    PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(cexp.getName());
-
-                    if (ex != null && ex.isRegistered()) {
-                        cexp.setHasExpansion(true);
-                        if (!ex.getVersion().equals(cexp.getLatestVersion())) {
-                            cexp.setShouldUpdate(true);
-                        }
-                    }
-
-                    unsorted.add(cexp);
-                }
-            });
-
-            unsorted.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
-
-            int count = 0;
-            for (CloudExpansion e : unsorted) {
-                remote.put(count++, e);
-            }
-
-            plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
-
-            long updates = getToUpdateCount();
-
-            if (updates > 0) {
-                plugin.getLogger().info(updates + " installed expansions have updates available.");
-            }
-        });
-    }
-
-
-    public boolean isDownloading(String expansion) {
-        return downloading.contains(expansion);
-    }
-
-    private void download(URL url, String name) throws IOException {
-        InputStream is = null;
-
-        FileOutputStream fos = null;
-
-        try {
-            URLConnection urlConn = url.openConnection();
-
-            is = urlConn.getInputStream();
-
-            fos = new FileOutputStream(
-                    expansionsDir.getAbsolutePath() + File.separator + "Expansion-" + name + ".jar");
-
-            byte[] buffer = new byte[is.available()];
-
-            int l;
-
-            while ((l = is.read(buffer)) > 0) {
-                fos.write(buffer, 0, l);
-            }
-        } finally {
-            try {
-                if (is != null) {
-                    is.close();
-                }
-            } finally {
-                if (fos != null) {
-                    fos.close();
-                }
-            }
-        }
-    }
-
-
-    public void downloadExpansion(final String player, final CloudExpansion ex) {
-        downloadExpansion(player, ex, ex.getLatestVersion());
-    }
-
-    public void downloadExpansion(final String player, final CloudExpansion ex, final String version) {
-        if (downloading.contains(ex.getName())) {
-            return;
-        }
-
-        final CloudExpansion.Version ver = ex.getVersions()
-                .stream()
-                .filter(v -> v.getVersion().equals(version))
-                .findFirst()
-                .orElse(null);
-
-        if (ver == null) {
-            return;
-        }
-
-        downloading.add(ex.getName());
-
-        plugin.getLogger().info("Attempting download of expansion: " + ex.getName() + (player != null ? " by user: " + player : "") + " from url: " + ver.getUrl());
-
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-
-            try {
-                download(new URL(ver.getUrl()), ex.getName());
-
-                plugin.getLogger().info("Download of expansion: " + ex.getName() + " complete!");
-
-            } catch (Exception e) {
-                plugin.getLogger()
-                        .warning("Failed to download expansion: " + ex.getName() + " from: " + ver.getUrl());
-
-                Bukkit.getScheduler().runTask(plugin, () -> {
-
-                    downloading.remove(ex.getName());
-
-                    if (player != null) {
-                        Player p = Bukkit.getPlayer(player);
-
-                        if (p != null) {
-                            Msg.msg(p, "&cThere was a problem downloading expansion: &f" + ex.getName());
-                        }
-                    }
-                });
-
-                return;
-            }
-
-            Bukkit.getScheduler().runTask(plugin, () -> {
-                downloading.remove(ex.getName());
-
-                if (player != null) {
-                    Player p = Bukkit.getPlayer(player);
-
-                    if (p != null) {
-                        Msg.msg(p, "&aExpansion &f" + ex.getName() + " &adownload complete!");
-                        Msg.msg(p, "&aMake sure to run &f/papi reload &ato enable it!");
-                    }
-                }
-            });
-
-        });
-    }
 }

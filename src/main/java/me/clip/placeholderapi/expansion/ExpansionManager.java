@@ -56,6 +56,27 @@ public final class ExpansionManager
 		}
 	}
 
+
+	@NotNull
+	public File getFolder()
+	{
+		return folder;
+	}
+
+	public void initializeExpansions()
+	{
+		plugin.getLogger().info("Placeholder expansion registration initializing...");
+
+		final Map<String, PlaceholderHook> registered = PlaceholderAPI.getPlaceholders();
+		registerAllExpansions();
+
+		if (!registered.isEmpty()) {
+			registered.forEach(PlaceholderAPI::registerPlaceholderHook);
+		}
+	}
+
+
+
 	public PlaceholderExpansion getRegisteredExpansion(String name)
 	{
 		for (Entry<String, PlaceholderHook> hook : PlaceholderAPI.getPlaceholders().entrySet())
@@ -151,9 +172,9 @@ public final class ExpansionManager
 			((Taskable) expansion).start();
 		}
 
-		if (plugin.getExpansionCloud() != null)
+		if (plugin.getPlaceholderAPIConfig().isCloudEnabled())
 		{
-			final CloudExpansion cloudExpansion = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier());
+			final CloudExpansion cloudExpansion = plugin.getExpansionCloud().getCloudExpansion(expansion.getIdentifier()).orElse(null);
 
 			if (cloudExpansion != null)
 			{

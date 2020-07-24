@@ -23,33 +23,55 @@ package me.clip.placeholderapi.events;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * @deprecated This event is no longer used.
+ */
 @Deprecated
-public class PlaceholderHookUnloadEvent extends Event {
+public final class PlaceholderHookUnloadEvent extends Event
+{
 
-    private static final HandlerList HANDLERS = new HandlerList();
-    private final String plugin;
-    private final PlaceholderHook hook;
+	@NotNull
+	private static final HandlerList HANDLERS = new HandlerList();
 
-    public PlaceholderHookUnloadEvent(String plugin, PlaceholderHook placeholderHook) {
-        this.plugin = plugin;
-        this.hook = placeholderHook;
-    }
 
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
-    }
+	@NotNull
+	private final String          plugin;
+	@NotNull
+	private final PlaceholderHook placeholderHook;
 
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
-    }
+	public PlaceholderHookUnloadEvent(@NotNull final String plugin, @NotNull final PlaceholderHook placeholderHook)
+	{
+		this.plugin          = plugin;
+		this.placeholderHook = placeholderHook;
+	}
 
-    public String getHookName() {
-        return plugin;
-    }
+	@NotNull
+	public String getHookName()
+	{
+		return plugin;
+	}
 
-    public PlaceholderHook getHook() {
-        return hook;
-    }
+	@NotNull
+	public PlaceholderHook getHook()
+	{
+		return placeholderHook;
+	}
+
+
+	@NotNull
+	@Override
+	public HandlerList getHandlers()
+	{
+		return HANDLERS;
+	}
+
+
+	@NotNull
+	public static HandlerList getHandlerList()
+	{
+		return HANDLERS;
+	}
+
 }
