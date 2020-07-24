@@ -7,6 +7,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 	}
 
 	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		if (params.isEmpty())
 		{
@@ -45,7 +46,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 	}
 
 	@Override
-	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull final List<String> params, @NotNull final List<String> suggestions)
+	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
 		if (params.size() > 1)
 		{

@@ -19,7 +19,7 @@ public final class CommandECloudToggle extends PlaceholderCommand
 
 
 	@Override
-	public void evaluate(final @NotNull PlaceholderAPIPlugin plugin, final @NotNull CommandSender sender, final @NotNull String alias, final @NotNull @Unmodifiable List<String> params)
+	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		final boolean desiredState;
 		final boolean currentState = plugin.getPlaceholderAPIConfig().isCloudEnabled();
