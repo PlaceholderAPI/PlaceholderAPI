@@ -1,19 +1,25 @@
 package me.clip.placeholderapi.commands.impl.cloud;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.Msg;
+import me.rayzr522.jsonmessage.JSONMessage;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +28,7 @@ import java.util.stream.IntStream;
 public final class CommandECloudExpansionList extends PlaceholderCommand
 {
 
-	private static final int PAGE_SIZE = 3;
+	private static final int PAGE_SIZE = 10;
 
 
 	@Unmodifiable
@@ -45,8 +51,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			return;
 		}
 
-
-		@Unmodifiable final Map<Integer, CloudExpansion> expansions = getExpansions(params.get(0), plugin);
+		final List<CloudExpansion> expansions = Lists.newArrayList(getExpansions(params.get(0), plugin));
 
 		final int page;
 
@@ -77,6 +82,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			page = parsed;
 		}
 
+		expansions.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
 
 		final StringBuilder        builder = new StringBuilder();
 		final List<CloudExpansion> values  = getPage(expansions, page - 1, PAGE_SIZE);
@@ -100,27 +106,63 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			   .append(page)
 			   .append('\n');
 
-		int index = ((page - 1) * PAGE_SIZE) + 1;
-		for (final CloudExpansion expansion : values)
+
+		if (sender instanceof Player)
 		{
-			builder.append("&8")
-				   .append(index++)
-				   .append(". ")
-				   .append(expansion.shouldUpdate() ? "&e" : "&a")
-				   .append(expansion.getName())
-				   .append('\n')
-				   .append("    &bAuthor: &f")
-				   .append(expansion.getAuthor())
-				   .append('\n')
-				   .append("    &bVerified: ")
-				   .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
-				   .append('\n')
-				   .append("    &bLatest Version: &f")
-				   .append(expansion.getLatestVersion())
-				   .append('\n');
+			Msg.msg(sender, builder.toString());
+
+			final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
+
+			final JSONMessage message = getMessage(values, page);
+
+			if (limit > 1)
+			{
+				message.newline();
+
+				message.then("◀")
+					   .color(page <= 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+				if (page > 1)
+				{
+					message.runCommand("/papi ecloud list " + params.get(0) + " " + (page - 1));
+				}
+
+				message.then(" " + page + " ").color(ChatColor.GREEN);
+
+				message.then("▶")
+					   .color(page >= limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+				if (page < limit)
+				{
+					message.runCommand("/papi ecloud list " + params.get(0) + " " + (page + 1));
+				}
+			}
+
+			message.send(((Player) sender));
+		}
+		else
+		{
+			int index = ((page - 1) * PAGE_SIZE) + 1;
+			for (final CloudExpansion expansion : values)
+			{
+				builder.append("&8")
+					   .append(index++)
+					   .append(". ")
+					   .append((expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7"))
+					   .append(expansion.getName())
+					   .append('\n')
+					   .append("    &bAuthor: &f")
+					   .append(expansion.getAuthor())
+					   .append('\n')
+					   .append("    &bVerified: ")
+					   .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
+					   .append('\n')
+					   .append("    &bLatest Version: &f")
+					   .append(expansion.getLatestVersion())
+					   .append('\n');
+			}
+
+			Msg.msg(sender, builder.toString());
 		}
 
-		Msg.msg(sender, builder.toString());
 	}
 
 	@Override
@@ -137,14 +179,12 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			return;
 		}
 
-		final Map<Integer, CloudExpansion> expansions = getExpansions(params.get(0), plugin);
-
-		suggestByParameter(IntStream.rangeClosed(1, (int) Math.ceil((double) expansions.size() / PAGE_SIZE)).mapToObj(Objects::toString), suggestions, params.get(1));
+		suggestByParameter(IntStream.rangeClosed(1, (int) Math.ceil((double) getExpansions(params.get(0), plugin).size() / PAGE_SIZE)).mapToObj(Objects::toString), suggestions, params.get(1));
 	}
 
 
 	@NotNull
-	private static List<CloudExpansion> getPage(@NotNull final Map<Integer, CloudExpansion> expansions, final int page, final int pageSize)
+	private static List<CloudExpansion> getPage(@NotNull final List<CloudExpansion> expansions, final int page, final int pageSize)
 	{
 		if (expansions.isEmpty())
 		{
@@ -152,23 +192,80 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 		}
 
 		final int head = (page * pageSize);
-		final int tail = (head + pageSize);
+		final int tail = Math.min(expansions.size(), head + pageSize);
+
+		if (expansions.size() < head)
+		{
+			return Collections.emptyList();
+		}
 
 		return IntStream.range(head, tail).mapToObj(expansions::get).filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
 	@NotNull
-	private static Map<Integer, CloudExpansion> getExpansions(@NotNull final String target, @NotNull final PlaceholderAPIPlugin plugin)
+	private static Collection<CloudExpansion> getExpansions(@NotNull final String target, @NotNull final PlaceholderAPIPlugin plugin)
 	{
 		switch (target.toLowerCase())
 		{
 			case "all":
-				return plugin.getExpansionCloud().getCloudExpansions();
+				return plugin.getExpansionCloud().getCloudExpansions().values();
 			case "installed":
-				return plugin.getExpansionCloud().getAllInstalled();
+				return plugin.getExpansionCloud().getAllInstalled().values();
 			default:
-				return plugin.getExpansionCloud().getAllByAuthor(target);
+				return plugin.getExpansionCloud().getAllByAuthor(target).values();
 		}
+	}
+
+	@NotNull
+	private static JSONMessage getMessage(@NotNull final List<CloudExpansion> expansions, final int page)
+	{
+		final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
+
+		final StringBuilder tooltip = new StringBuilder();
+		final JSONMessage   message = JSONMessage.create();
+
+		int index = ((page - 1) * PAGE_SIZE) + 1;
+		for (int i = 0; i < expansions.size(); i++)
+		{
+			final CloudExpansion expansion = expansions.get(i);
+			tooltip.append("&bClick to download this expansion!")
+				   .append('\n')
+				   .append('\n')
+				   .append("&bAuthor: &f")
+				   .append(expansion.getAuthor())
+				   .append('\n')
+				   .append("&bVerified: ")
+				   .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
+				   .append('\n')
+				   .append("&bLatest Version: &f")
+				   .append(expansion.getLatestVersion())
+				   .append('\n')
+				   .append("&bReleased: &f")
+				   .append(format.format(expansion.getLastUpdate()));
+
+			final String description = expansion.getDescription();
+			if (description != null && !description.isEmpty())
+			{
+				tooltip.append('\n')
+					   .append('\n')
+					   .append("&f")
+					   .append(description.replace("\r", "").trim());
+			}
+
+			message.then(Msg.color("&8" + (index++) + ".&r " + (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+
+			message.tooltip(Msg.color(tooltip.toString()));
+			message.suggestCommand("/papi ecloud download " + expansion.getName());
+
+			if (i < expansions.size() - 1)
+			{
+				message.newline();
+			}
+
+			tooltip.setLength(0);
+		}
+
+		return message;
 	}
 
 }
