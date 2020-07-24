@@ -20,7 +20,7 @@
  */
 package me.clip.placeholderapi;
 
-import me.clip.placeholderapi.commands.CommandHandler;
+import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -177,8 +177,9 @@ public final class PlaceholderAPIPlugin extends JavaPlugin
 			return;
 		}
 
-		final CommandHandler evaluator = new CommandHandler();
-		pluginCommand.setExecutor(evaluator);
+		final PlaceholderCommandRouter router = new PlaceholderCommandRouter(this);
+		pluginCommand.setExecutor(router);
+		pluginCommand.setTabCompleter(router);
 	}
 
 	private void setupMetrics()

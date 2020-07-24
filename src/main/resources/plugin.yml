@@ -1,42 +1,98 @@
-name: ${project.name}
-main: me.clip.placeholderapi.PlaceholderAPIPlugin
-version: ${project.version}
-api-version: '1.13'
-authors: [extended_clip, Glare]
-description: ${project.description}
-permissions:
-    placeholderapi.*:
-        description: ability to use all commands
-        children:
-            placeholderapi.admin: true
-    placeholderapi.admin:
-        description: ability to use all commands
-        children:
-            placeholderapi.list: true
-            placeholderapi.reload: true
-            placeholderapi.ecloud: true
-            placeholderapi.parse: true
-            placeholderapi.register: true
-            placeholderapi.updatenotify: true
-    placeholderapi.list:
-        description: ability to use the list command
-        default: op
-    placeholderapi.reload:
-        description: ability to use the reload command
-        default: op
-    placeholderapi.parse:
-        description: ability to use parse command
-        default: op
-    placeholderapi.register:
-        description: ability to register or unregister placeholder expansions
-        default: op
-    placeholderapi.ecloud:
-        description: allows the usage of ecloud commands
-        default: op
-    placeholderapi.updatenotify:
-        description: notifies you when there is a PAPI update
-        default: op
+name: "${project.name}"
+main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
+
+version: "${project.version}"
+authors: ["extended_clip", "Glare"]
+
+api-version: "1.13"
+description: "${project.description}"
+
 commands:
-   placeholderapi:
-     description: PlaceholderAPI command
-     aliases: [papi]
+  placeholderapi:
+    description: "PlaceholderAPI Command"
+    aliases: ["papi"]
+
+permissions:
+  placeholderapi.*:
+    description: "ability to use all papi commands"
+    children:
+      placeholderapi.admin: true
+      placeholderapi.ecloud.*: true
+  placeholderapi.admin:
+    description: "ability to use all papi commands"
+    children:
+        placeholderapi.help: true
+        placeholderapi.info: true
+        placeholderapi.list: true
+        placeholderapi.parse: true
+        placeholderapi.reload: true
+        placeholderapi.version: true
+        placeholderapi.register: true
+        placeholderapi.unregister: true
+        placeholderapi.updatenotify: true
+  placeholderapi.ecloud.*:
+    description: "ability to use all papi ecloud commands"
+    children:
+      placeholderapi.ecloud: true
+      placeholderapi.ecloud.info: true
+      placeholderapi.ecloud.list: true
+      placeholderapi.ecloud.clear: true
+      placeholderapi.ecloud.toggle: true
+      placeholderapi.ecloud.status: true
+      placeholderapi.ecloud.refresh: true
+      placeholderapi.ecloud.download: true
+      placeholderapi.ecloud.placeholders: true
+  placeholderapi.help:
+    default: "op"
+    description: "allows you to view the list of papi commands"
+  placeholderapi.info:
+    default: "op"
+    description: "allows you to view expansion information"
+  placeholderapi.list:
+    default: "op"
+    description: "allows you to list active expansions"
+  placeholderapi.ecloud:
+      default: "op"
+      description: "allows you to access papi ecloud"
+  placeholderapi.parse:
+    default: "op"
+    description: "allows you to parse placeholders"
+  placeholderapi.reload:
+    default: "op"
+    description: "allows you to reload papi and its configuration"
+  placeholderapi.version:
+    default: "op"
+    description: "allows you to view the version of papi installed"
+  placeholderapi.register:
+    default: "op"
+    description: "allows you to register expansions"
+  placeholderapi.unregister:
+    default: "op"
+    description: "allows you to unregister expansions"
+  placeholderapi.updatenotify:
+    default: "op"
+    description: "notifies you when there is a PAPI update"
+  placeholderapi.ecloud.info:
+    default: "op"
+    description: "allows you to view cloud expansion information"
+  placeholderapi.ecloud.list:
+    default: "op"
+    description: "allows you to list cloud expansions"
+  placeholderapi.ecloud.clear:
+    default: "op"
+    description: "allows you to clear the local cloud expansion cache"
+  placeholderapi.ecloud.toggle:
+    default: "op"
+    description: "allows you to toggle/enable/disable the cloud manager"
+  placeholderapi.ecloud.status:
+    default: "op"
+    description: "allows you to view the status of cloud expansions"
+  placeholderapi.ecloud.refresh:
+    default: "op"
+    description: "allows you to refresh the local cloud expansion cache"
+  placeholderapi.ecloud.download:
+    default: "op"
+    description: "allows you to download an expansion from the cloud"
+  placeholderapi.ecloud.placeholders:
+    default: "op"
+    description: "allows you to view the placeholders of a cloud expansion"
