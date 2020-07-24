@@ -5,22 +5,16 @@ plugins {
 
 group 'me.clip'
 version "2.10.7-DEV-${System.getProperty("BUILD_NUMBER")}"
-description 'PlaceholderAPI'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
+description 'An awesome placeholder provider!'
+
 
 repositories {
 	mavenCentral()
-	mavenLocal()
-	maven {
-		url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-	}
-	maven {
-		url = 'https://repo.codemc.org/repository/maven-public'
-	}
-	maven {
-		url = 'https://rayzr.dev/repo/'
-	}
+	
+	maven({ url 'https://rayzr.dev/repo/' })
+	maven({ url 'https://repo.codemc.org/repository/maven-public' })
+	maven({ url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' })
 }
 
 dependencies {
@@ -38,18 +32,22 @@ dependencies {
 	testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
-import org.apache.tools.ant.filters.ReplaceTokens
-
 processResources {
 	from(sourceSets.main.resources.srcDirs) {
-		filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+		filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 	}
 }
 
-compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+	
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 shadowJar {
-	archiveClassifier.set("")
+	archiveClassifier = ""
+	
 	relocate "org.bstats", "me.clip.placeholderapi.metrics"
 	relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
 	relocate "me.rayzr522.jsonmessage", "me.clip.placeholderapi.libs.jsonmessage"
