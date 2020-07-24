@@ -22,6 +22,7 @@ package me.clip.placeholderapi.expansion.cloud;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -30,26 +31,22 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -58,7 +55,9 @@ public final class ExpansionCloudManager
 {
 
 	private static final String API_URL = "http://api.extendedclip.com/v2/";
-	private static final Gson   GSON    = new Gson();
+
+	private static final Gson GSON = new Gson();
+	private static final Type TYPE = new TypeToken<Map<String, CloudExpansion>>() {}.getType();
 
 
 	@NotNull
@@ -68,7 +67,7 @@ public final class ExpansionCloudManager
 
 
 	@NotNull
-	private final Map<Integer, CloudExpansion>                 expansions  = new TreeMap<>();
+	private final Map<String, CloudExpansion>                  expansions  = new TreeMap<>();
 	@NotNull
 	private final Map<CloudExpansion, CompletableFuture<File>> downloading = new HashMap<>();
 
@@ -87,7 +86,7 @@ public final class ExpansionCloudManager
 
 	@NotNull
 	@Unmodifiable
-	public Map<Integer, CloudExpansion> getCloudExpansions()
+	public Map<String, CloudExpansion> getCloudExpansions()
 	{
 		return ImmutableMap.copyOf(expansions);
 	}
@@ -127,36 +126,32 @@ public final class ExpansionCloudManager
 
 	@NotNull
 	@Unmodifiable
-	public Map<Integer, CloudExpansion> getAllByAuthor(@NotNull final String author)
+	public Map<String, CloudExpansion> getAllByAuthor(@NotNull final String author)
 	{
 		if (expansions.isEmpty())
 		{
 			return Collections.emptyMap();
 		}
-
-		final AtomicInteger index = new AtomicInteger();
 
 		return expansions.values()
 						 .stream()
 						 .filter(expansion -> author.equalsIgnoreCase(expansion.getAuthor()))
-						 .collect(Collectors.toMap(($) -> index.incrementAndGet(), Function.identity()));
+						 .collect(Collectors.toMap(CloudExpansion::getName, Function.identity()));
 	}
 
 	@NotNull
 	@Unmodifiable
-	public Map<Integer, CloudExpansion> getAllInstalled()
+	public Map<String, CloudExpansion> getAllInstalled()
 	{
 		if (expansions.isEmpty())
 		{
 			return Collections.emptyMap();
 		}
 
-		final AtomicInteger index = new AtomicInteger();
-
 		return expansions.values()
 						 .stream()
 						 .filter(CloudExpansion::hasExpansion)
-						 .collect(Collectors.toMap(($) -> index.incrementAndGet(), Function.identity()));
+						 .collect(Collectors.toMap(CloudExpansion::getName, Function.identity()));
 	}
 
 
@@ -168,70 +163,68 @@ public final class ExpansionCloudManager
 		downloading.clear();
 	}
 
-	public void fetch(boolean allowUnverified)
+	@NotNull
+	public CompletableFuture<Map<String, CloudExpansion>> fetch(boolean allowUnverified)
 	{
 		plugin.getLogger().info("Fetching available expansion information...");
 
-		plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
-			final Map<String, CloudExpansion> data = new HashMap<>();
+		CompletableFuture<Map<String, CloudExpansion>> future = CompletableFuture.supplyAsync(() -> {
+			final Map<String, CloudExpansion> values = new HashMap<>();
 
-			try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(API_URL).openStream())))
+			try
 			{
-				data.putAll(GSON.fromJson(reader, new TypeToken<Map<String, CloudExpansion>>()
-				{
-				}.getType()));
+				//noinspection UnstableApiUsage
+				final String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
+				values.putAll(GSON.fromJson(json, TYPE));
 			}
-			catch (Exception ex)
+			catch (final IOException ex)
 			{
-				if (plugin.getPlaceholderAPIConfig().isDebugMode())
-				{
-					ex.printStackTrace();
-				}
-				else
-				{
-					plugin.getLogger().warning("Unable to fetch expansions!\nThere was an error with the server host connecting to the PlaceholderAPI eCloud (https://api.extendedclip.com/v2/)");
-				}
+				throw new CompletionException(ex);
 			}
 
-			final List<CloudExpansion> unsorted = new ArrayList<>();
+			values.values().removeIf(value -> value.getLatestVersion() == null || value.getVersion(value.getLatestVersion()) == null);
 
-			data.forEach((name, cexp) -> {
-				if ((allowUnverified || cexp.isVerified()) && cexp.getLatestVersion() != null && cexp.getVersion(cexp.getLatestVersion()) != null)
+			return values;
+		});
+
+
+		if (!allowUnverified)
+		{
+			future = future.thenApplyAsync((values) -> {
+				values.values().removeIf(expansion -> !expansion.isVerified());
+				return values;
+			});
+		}
+
+
+		future = future.thenApplyAsync((values) -> {
+
+			values.forEach((name, expansion) -> {
+				expansion.setName(name);
+
+				final PlaceholderExpansion local = plugin.getExpansionManager().getRegisteredExpansion(name);
+				if (local != null && local.isRegistered())
 				{
-					cexp.setName(name);
-
-					PlaceholderExpansion ex = plugin.getExpansionManager().getRegisteredExpansion(cexp.getName());
-
-					if (ex != null && ex.isRegistered())
-					{
-						cexp.setHasExpansion(true);
-						if (!ex.getVersion().equals(cexp.getLatestVersion()))
-						{
-							cexp.setShouldUpdate(true);
-						}
-					}
-
-					unsorted.add(cexp);
+					expansion.setHasExpansion(true);
+					expansion.setShouldUpdate(!local.getVersion().equals(expansion.getLatestVersion()));
 				}
 			});
 
-			unsorted.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
-
-			int count = 0;
-			for (CloudExpansion e : unsorted)
-			{
-				expansions.put(count++, e);
-			}
-
-			plugin.getLogger().info(count + " placeholder expansions are available on the cloud.");
-
-			long updates = getCloudUpdateCount();
-
-			if (updates > 0)
-			{
-				plugin.getLogger().info(updates + " installed expansions have updates available.");
-			}
+			return values;
 		});
+
+		future.whenComplete((expansions, exception) -> {
+
+			if (exception != null)
+			{
+				plugin.getLogger().log(Level.WARNING, "failed to download expansion information", exception);
+				return;
+			}
+
+			this.expansions.putAll(expansions);
+		});
+
+		return future;
 	}
 
 
