@@ -204,7 +204,10 @@ public final class CloudExpansionManager
 				return;
 			}
 
-			this.cache.putAll(expansions);
+			for (final CloudExpansion expansion : expansions.values())
+			{
+				this.cache.put(toIndexName(expansion), expansion);
+			}
 		});
 	}
 
