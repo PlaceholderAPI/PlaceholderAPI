@@ -10,6 +10,7 @@ description 'PlaceholderAPI'
 sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
+	mavenCentral()
 	mavenLocal()
 	maven {
 		url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
@@ -19,9 +20,6 @@ repositories {
 	}
 	maven {
 		url = 'https://rayzr.dev/repo/'
-	}
-	maven {
-		url = 'http://repo.maven.apache.org/maven2'
 	}
 }
 
