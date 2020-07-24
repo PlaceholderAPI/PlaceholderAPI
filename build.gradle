@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.clip'
-version '2.10.7-DEV-${BUILD_NUMBER}'
+version "2.10.7-DEV-${System.getProperty("BUILD_NUMBER")}"
 description 'PlaceholderAPI'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
