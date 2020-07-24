@@ -44,7 +44,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 processResources {
 	from(sourceSets.main.resources.srcDirs) {
-		filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version, description: project.description]
+		filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 	}
 }
 
