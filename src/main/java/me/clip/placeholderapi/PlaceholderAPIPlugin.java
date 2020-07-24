@@ -20,6 +20,10 @@
  */
 package me.clip.placeholderapi;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.ExpansionManager;
@@ -38,269 +42,225 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-
 /**
  * Yes I have a shit load of work to do...
  *
  * @author Ryan McCarthy
  */
-public final class PlaceholderAPIPlugin extends JavaPlugin
-{
+public final class PlaceholderAPIPlugin extends JavaPlugin {
 
-	@NotNull
-	private static final Version version = resolveServerVersion();
+  @NotNull private static final Version version = resolveServerVersion();
 
+  private static PlaceholderAPIPlugin instance;
 
-	private static PlaceholderAPIPlugin instance;
+  @NotNull private final PlaceholderAPIConfig config = new PlaceholderAPIConfig(this);
+  @NotNull private final ExpansionCloudManager cloud = new ExpansionCloudManager(this);
+  @NotNull private final ExpansionManager manager = new ExpansionManager(this);
 
+  @Override
+  public void onLoad() {
+    instance = this;
 
-	@NotNull
-	private final PlaceholderAPIConfig  config  = new PlaceholderAPIConfig(this);
-	@NotNull
-	private final ExpansionCloudManager cloud   = new ExpansionCloudManager(this);
-	@NotNull
-	private final ExpansionManager      manager = new ExpansionManager(this);
+    saveDefaultConfig();
+  }
 
+  @Override
+  public void onEnable() {
+    setupCommand();
+    setupMetrics();
+    setupExpansions();
 
-	@Override
-	public void onLoad()
-	{
-		instance = this;
+    new PlaceholderListener(this);
 
-		saveDefaultConfig();
-	}
+    if (config.isCloudEnabled()) {
+      enableCloud();
+    }
 
-	@Override
-	public void onEnable()
-	{
-		setupCommand();
-		setupMetrics();
-		setupExpansions();
+    if (config.checkUpdates()) {
+      new UpdateChecker(this).fetch();
+    }
+  }
 
-		new PlaceholderListener(this);
+  @Override
+  public void onDisable() {
+    disableCloud();
 
-		if (config.isCloudEnabled())
-		{
-			enableCloud();
-		}
+    PlaceholderAPI.unregisterAll();
 
-		if (config.checkUpdates())
-		{
-			new UpdateChecker(this).fetch();
-		}
-	}
+    HandlerList.unregisterAll(this);
+    Bukkit.getScheduler().cancelTasks(this);
 
-	@Override
-	public void onDisable()
-	{
-		disableCloud();
+    instance = null;
+  }
 
-		PlaceholderAPI.unregisterAll();
+  public void reloadConf(@NotNull final CommandSender sender) {
+    PlaceholderAPI.unregisterAllProvidedExpansions();
 
-		HandlerList.unregisterAll(this);
-		Bukkit.getScheduler().cancelTasks(this);
+    reloadConfig();
 
-		instance = null;
-	}
+    manager.registerAllExpansions();
 
+    if (config.isCloudEnabled()) {
+      enableCloud();
+    } else {
+      disableCloud();
+    }
 
-	public void reloadConf(@NotNull final CommandSender sender)
-	{
-		PlaceholderAPI.unregisterAllProvidedExpansions();
+    Msg.msg(
+        sender,
+        PlaceholderAPI.getRegisteredIdentifiers().size()
+            + " &aplaceholder hooks successfully registered!");
+  }
 
-		reloadConfig();
+  public void enableCloud() {
+    disableCloud();
+    cloud.fetch(config.cloudAllowUnverifiedExpansions());
+  }
 
-		manager.registerAllExpansions();
+  public void disableCloud() {
+    cloud.clean();
+  }
 
-		if (config.isCloudEnabled())
-		{
-			enableCloud();
-		}
-		else
-		{
-			disableCloud();
-		}
+  /**
+   * Obtain the configuration class for PlaceholderAPI.
+   *
+   * @return PlaceholderAPIConfig instance
+   */
+  @NotNull
+  public PlaceholderAPIConfig getPlaceholderAPIConfig() {
+    return config;
+  }
 
-		Msg.msg(sender,
-				PlaceholderAPI.getRegisteredIdentifiers().size() + " &aplaceholder hooks successfully registered!");
-	}
+  @NotNull
+  public ExpansionManager getExpansionManager() {
+    return manager;
+  }
 
-	public void enableCloud()
-	{
-		disableCloud();
-		cloud.fetch(config.cloudAllowUnverifiedExpansions());
-	}
+  @NotNull
+  public ExpansionCloudManager getExpansionCloud() {
+    return cloud;
+  }
 
-	public void disableCloud()
-	{
-		cloud.clean();
-	}
+  private void setupCommand() {
+    final PluginCommand pluginCommand = getCommand("placeholderapi");
+    if (pluginCommand == null) {
+      return;
+    }
 
+    final PlaceholderCommandRouter router = new PlaceholderCommandRouter(this);
+    pluginCommand.setExecutor(router);
+    pluginCommand.setTabCompleter(router);
+  }
 
-	/**
-	 * Obtain the configuration class for PlaceholderAPI.
-	 *
-	 * @return PlaceholderAPIConfig instance
-	 */
-	@NotNull
-	public PlaceholderAPIConfig getPlaceholderAPIConfig()
-	{
-		return config;
-	}
+  private void setupMetrics() {
+    final Metrics metrics = new Metrics(this);
+    metrics.addCustomChart(
+        new Metrics.SimplePie(
+            "using_expansion_cloud",
+            () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
 
-	@NotNull
-	public ExpansionManager getExpansionManager()
-	{
-		return manager;
-	}
+    metrics.addCustomChart(
+        new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
 
-	@NotNull
-	public ExpansionCloudManager getExpansionCloud()
-	{
-		return cloud;
-	}
+    metrics.addCustomChart(
+        new Metrics.AdvancedPie(
+            "expansions_used",
+            () -> {
+              Map<String, Integer> map = new HashMap<>();
+              Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
 
+              if (!hooks.isEmpty()) {
 
-	private void setupCommand()
-	{
-		final PluginCommand pluginCommand = getCommand("placeholderapi");
-		if (pluginCommand == null)
-		{
-			return;
-		}
+                for (PlaceholderHook hook : hooks.values()) {
+                  if (hook instanceof PlaceholderExpansion) {
+                    PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
+                    map.put(
+                        expansion.getRequiredPlugin() == null
+                            ? expansion.getIdentifier()
+                            : expansion.getRequiredPlugin(),
+                        1);
+                  }
+                }
+              }
 
-		final PlaceholderCommandRouter router = new PlaceholderCommandRouter(this);
-		pluginCommand.setExecutor(router);
-		pluginCommand.setTabCompleter(router);
-	}
+              return map;
+            }));
+  }
 
-	private void setupMetrics()
-	{
-		final Metrics metrics = new Metrics(this);
-		metrics.addCustomChart(new Metrics.SimplePie("using_expansion_cloud", () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
+  private void setupExpansions() {
+    try {
+      Class.forName("org.bukkit.event.server.ServerLoadEvent");
+      new ServerLoadEventListener(this);
+    } catch (final ExceptionInInitializerError | ClassNotFoundException exception) {
+      Bukkit.getScheduler().runTaskLater(this, getExpansionManager()::initializeExpansions, 1);
+    }
+  }
 
-		metrics.addCustomChart(new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
+  /**
+   * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
+   * class, this is the main class that extends JavaPlugin. For most API methods, use static methods
+   * available from the class: {@link PlaceholderAPI}
+   *
+   * @return PlaceholderAPIPlugin instance
+   */
+  @NotNull
+  public static PlaceholderAPIPlugin getInstance() {
+    return instance;
+  }
 
-		metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
+  /**
+   * Get the configurable {@linkplain SimpleDateFormat} object that is used to parse time for
+   * generic time based placeholders
+   *
+   * @return date format
+   */
+  @NotNull
+  public static SimpleDateFormat getDateFormat() {
+    try {
+      return new SimpleDateFormat(getInstance().getPlaceholderAPIConfig().dateFormat());
+    } catch (final IllegalArgumentException ex) {
 
-			Map<String, Integer>         map   = new HashMap<>();
-			Map<String, PlaceholderHook> hooks = PlaceholderAPI.getPlaceholders();
+      getInstance().getLogger().log(Level.WARNING, "configured date format is invalid", ex);
 
-			if (!hooks.isEmpty())
-			{
+      return new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+    }
+  }
 
-				for (PlaceholderHook hook : hooks.values())
-				{
-					if (hook instanceof PlaceholderExpansion)
-					{
-						PlaceholderExpansion expansion = (PlaceholderExpansion) hook;
-						map.put(expansion.getRequiredPlugin() == null ? expansion.getIdentifier() : expansion.getRequiredPlugin(), 1);
-					}
-				}
-			}
+  /**
+   * Get the configurable {@linkplain String} value that should be returned when a boolean is true
+   *
+   * @return string value of true
+   */
+  @NotNull
+  public static String booleanTrue() {
+    return getInstance().getPlaceholderAPIConfig().booleanTrue();
+  }
 
-			return map;
-		}));
-	}
+  /**
+   * Get the configurable {@linkplain String} value that should be returned when a boolean is false
+   *
+   * @return string value of false
+   */
+  @NotNull
+  public static String booleanFalse() {
+    return getInstance().getPlaceholderAPIConfig().booleanFalse();
+  }
 
-	private void setupExpansions()
-	{
-		try
-		{
-			Class.forName("org.bukkit.event.server.ServerLoadEvent");
-			new ServerLoadEventListener(this);
-		}
-		catch (final ExceptionInInitializerError | ClassNotFoundException exception)
-		{
-			Bukkit.getScheduler().runTaskLater(this, getExpansionManager()::initializeExpansions, 1);
-		}
-	}
+  public static Version getServerVersion() {
+    return version;
+  }
 
+  private static Version resolveServerVersion() {
+    final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 
-	/**
-	 * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
-	 * class, this is the main class that extends JavaPlugin. For most API methods, use static methods
-	 * available from the class: {@link PlaceholderAPI}
-	 *
-	 * @return PlaceholderAPIPlugin instance
-	 */
-	@NotNull
-	public static PlaceholderAPIPlugin getInstance()
-	{
-		return instance;
-	}
+    boolean isSpigot;
+    try {
+      Class.forName("org.spigotmc.SpigotConfig");
+      isSpigot = true;
+    } catch (final ExceptionInInitializerError | ClassNotFoundException ignored) {
+      isSpigot = false;
+    }
 
-
-	/**
-	 * Get the configurable {@linkplain SimpleDateFormat} object that is used to parse time for
-	 * generic time based placeholders
-	 *
-	 * @return date format
-	 */
-	@NotNull
-	public static SimpleDateFormat getDateFormat()
-	{
-		try
-		{
-			return new SimpleDateFormat(getInstance().getPlaceholderAPIConfig().dateFormat());
-		}
-		catch (final IllegalArgumentException ex)
-		{
-
-			getInstance().getLogger().log(Level.WARNING, "configured date format is invalid", ex);
-
-			return new SimpleDateFormat("MM/dd/yy HH:mm:ss");
-		}
-	}
-
-	/**
-	 * Get the configurable {@linkplain String} value that should be returned when a boolean is true
-	 *
-	 * @return string value of true
-	 */
-	@NotNull
-	public static String booleanTrue()
-	{
-		return getInstance().getPlaceholderAPIConfig().booleanTrue();
-	}
-
-	/**
-	 * Get the configurable {@linkplain String} value that should be returned when a boolean is false
-	 *
-	 * @return string value of false
-	 */
-	@NotNull
-	public static String booleanFalse()
-	{
-		return getInstance().getPlaceholderAPIConfig().booleanFalse();
-	}
-
-
-	public static Version getServerVersion()
-	{
-		return version;
-	}
-
-	private static Version resolveServerVersion()
-	{
-		final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-
-		boolean isSpigot;
-		try
-		{
-			Class.forName("org.spigotmc.SpigotConfig");
-			isSpigot = true;
-		}
-		catch (final ExceptionInInitializerError | ClassNotFoundException ignored)
-		{
-			isSpigot = false;
-		}
-
-		return new Version(version, isSpigot);
-	}
-
+    return new Version(version, isSpigot);
+  }
 }

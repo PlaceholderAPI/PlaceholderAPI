@@ -1,179 +1,152 @@
 package me.clip.placeholderapi.replacer;
 
+import java.util.function.Function;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Function;
+public final class CharsReplacer implements Replacer {
 
-public final class CharsReplacer implements Replacer
-{
+  @NotNull private final Closure closure;
 
-	@NotNull
-	private final Closure closure;
+  public CharsReplacer(@NotNull final Closure closure) {
+    this.closure = closure;
+  }
 
-	public CharsReplacer(@NotNull final Closure closure)
-	{
-		this.closure = closure;
-	}
+  @Override
+  public @NotNull String apply(
+      @NotNull final String text,
+      @Nullable final OfflinePlayer player,
+      @NotNull final Function<String, @Nullable PlaceholderHook> lookup) {
+    final char[] chars = text.toCharArray();
+    final StringBuilder builder = new StringBuilder(text.length());
 
+    final StringBuilder identifier = new StringBuilder();
+    final StringBuilder parameters = new StringBuilder();
 
-	@Override
-	public @NotNull String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup)
-	{
-		final char[]        chars   = text.toCharArray();
-		final StringBuilder builder = new StringBuilder(text.length());
+    for (int i = 0; i < chars.length; i++) {
+      final char l = chars[i];
 
-		final StringBuilder identifier = new StringBuilder();
-		final StringBuilder parameters = new StringBuilder();
+      if (l == '&' && ++i < chars.length) {
+        final char c = Character.toLowerCase(chars[i]);
 
-		for (int i = 0; i < chars.length; i++)
-		{
-			final char l = chars[i];
+        if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
+            && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
+            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'o' && c != 'r'
+            && c != 'x') {
+          builder.append(l).append(chars[i]);
+        } else {
+          builder.append(ChatColor.COLOR_CHAR);
 
-			if (l == '&' && ++i < chars.length)
-			{
-				final char c = Character.toLowerCase(chars[i]);
+          if (c != 'x') {
+            builder.append(chars[i]);
+            continue;
+          }
 
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd' && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'o' && c != 'r' && c != 'x')
-				{
-					builder.append(l).append(chars[i]);
-				}
-				else
-				{
-					builder.append(ChatColor.COLOR_CHAR);
+          if ((i > 1 && chars[i - 2] == '\\') /*allow escaping &x*/) {
+            builder.setLength(builder.length() - 2);
+            builder.append('&').append(chars[i]);
+            continue;
+          }
 
-					if (c != 'x')
-					{
-						builder.append(chars[i]);
-						continue;
-					}
+          builder.append(c);
 
-					if ((i > 1 && chars[i - 2] == '\\') /*allow escaping &x*/)
-					{
-						builder.setLength(builder.length() - 2);
-						builder.append('&').append(chars[i]);
-						continue;
-					}
+          int j = 0;
+          while (++j <= 6) {
+            if (i + j >= chars.length) {
+              break;
+            }
 
-					builder.append(c);
+            final char x = chars[i + j];
+            builder.append(ChatColor.COLOR_CHAR).append(x);
+          }
 
-					int j = 0;
-					while (++j <= 6)
-					{
-						if (i + j >= chars.length)
-						{
-							break;
-						}
+          if (j == 7) {
+            i += 6;
+          } else {
+            builder.setLength(builder.length() - (j * 2)); // undo &x parsing
+          }
+        }
+        continue;
+      }
 
-						final char x = chars[i + j];
-						builder.append(ChatColor.COLOR_CHAR).append(x);
-					}
+      if (l != closure.head || i + 1 >= chars.length) {
+        builder.append(l);
+        continue;
+      }
 
-					if (j == 7)
-					{
-						i += 6;
-					}
-					else
-					{
-						builder.setLength(builder.length() - (j * 2)); // undo &x parsing
-					}
-				}
-				continue;
-			}
+      boolean identified = false;
+      boolean oopsitsbad = true;
 
-			if (l != closure.head || i + 1 >= chars.length)
-			{
-				builder.append(l);
-				continue;
-			}
+      while (++i < chars.length) {
+        final char p = chars[i];
 
-			boolean identified = false;
-			boolean oopsitsbad = true;
+        if (p == ' ') {
+          break;
+        }
+        if (p == closure.tail) {
+          oopsitsbad = false;
+          break;
+        }
 
-			while (++i < chars.length)
-			{
-				final char p = chars[i];
+        if (p == '_' && !identified) {
+          identified = true;
+          continue;
+        }
 
-				if (p == ' ')
-				{
-					break;
-				}
-				if (p == closure.tail)
-				{
-					oopsitsbad = false;
-					break;
-				}
+        if (identified) {
+          parameters.append(p);
+        } else {
+          identifier.append(p);
+        }
+      }
 
-				if (p == '_' && !identified)
-				{
-					identified = true;
-					continue;
-				}
+      final String identifierString = identifier.toString();
+      final String parametersString = parameters.toString();
 
-				if (identified)
-				{
-					parameters.append(p);
-				}
-				else
-				{
-					identifier.append(p);
-				}
-			}
+      identifier.setLength(0);
+      parameters.setLength(0);
 
-			final String identifierString = identifier.toString();
-			final String parametersString = parameters.toString();
+      if (oopsitsbad) {
+        builder.append(closure.head).append(identifierString);
 
-			identifier.setLength(0);
-			parameters.setLength(0);
+        if (identified) {
+          builder.append('_').append(parametersString);
+        }
 
-			if (oopsitsbad)
-			{
-				builder.append(closure.head).append(identifierString);
+        builder.append(' ');
+        continue;
+      }
 
-				if (identified)
-				{
-					builder.append('_').append(parametersString);
-				}
+      final PlaceholderHook placeholder = lookup.apply(identifierString);
+      if (placeholder == null) {
+        builder.append(closure.head).append(identifierString);
 
-				builder.append(' ');
-				continue;
-			}
+        if (identified) {
+          builder.append('_');
+        }
 
-			final PlaceholderHook placeholder = lookup.apply(identifierString);
-			if (placeholder == null)
-			{
-				builder.append(closure.head).append(identifierString);
+        builder.append(parametersString).append(closure.tail);
+        continue;
+      }
 
-				if (identified)
-				{
-					builder.append('_');
-				}
+      final String replacement = placeholder.onRequest(player, parametersString);
+      if (replacement == null) {
+        builder.append(closure.head).append(identifierString);
 
-				builder.append(parametersString).append(closure.tail);
-				continue;
-			}
+        if (identified) {
+          builder.append('_');
+        }
 
-			final String replacement = placeholder.onRequest(player, parametersString);
-			if (replacement == null)
-			{
-				builder.append(closure.head).append(identifierString);
+        builder.append(parametersString).append(closure.tail);
+        continue;
+      }
 
-				if (identified)
-				{
-					builder.append('_');
-				}
+      builder.append(replacement);
+    }
 
-				builder.append(parametersString).append(closure.tail);
-				continue;
-			}
-
-			builder.append(replacement);
-		}
-
-		return builder.toString();
-	}
-
+    return builder.toString();
+  }
 }

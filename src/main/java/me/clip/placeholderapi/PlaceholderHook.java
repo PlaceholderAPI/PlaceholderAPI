@@ -25,40 +25,36 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class PlaceholderHook
-{
+public abstract class PlaceholderHook {
 
-	/**
-	 * called when a placeholder value is requested from this hook
-	 *
-	 * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
-	 *               player
-	 * @param params String passed to the hook to determine what value to return
-	 * @return value for the requested player and params
-	 */
-	@Nullable
-	public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
-	{
-		if (player != null && player.isOnline())
-		{
-			return onPlaceholderRequest((Player) player, params);
-		}
+  /**
+   * called when a placeholder value is requested from this hook
+   *
+   * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed
+   *     for a player
+   * @param params String passed to the hook to determine what value to return
+   * @return value for the requested player and params
+   */
+  @Nullable
+  public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params) {
+    if (player != null && player.isOnline()) {
+      return onPlaceholderRequest((Player) player, params);
+    }
 
-		return onPlaceholderRequest(null, params);
-	}
+    return onPlaceholderRequest(null, params);
+  }
 
-	/**
-	 * called when a placeholder is requested from this hook
-	 *
-	 * @param player {@link Player} to request the placeholder value for, null if not needed for a player
-	 * @param params String passed to the hook to determine what value to return
-	 * @return value for the requested player and params
-	 */
-	@Nullable
-	@Deprecated
-	public String onPlaceholderRequest(@Nullable final Player player, @NotNull final String params)
-	{
-		return null;
-	}
-
+  /**
+   * called when a placeholder is requested from this hook
+   *
+   * @param player {@link Player} to request the placeholder value for, null if not needed for a
+   *     player
+   * @param params String passed to the hook to determine what value to return
+   * @return value for the requested player and params
+   */
+  @Nullable
+  @Deprecated
+  public String onPlaceholderRequest(@Nullable final Player player, @NotNull final String params) {
+    return null;
+  }
 }

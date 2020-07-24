@@ -25,41 +25,29 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public final class ExpansionUnregisterEvent extends Event
-{
+public final class ExpansionUnregisterEvent extends Event {
 
-	@NotNull
-	private static final HandlerList HANDLERS = new HandlerList();
+  @NotNull private static final HandlerList HANDLERS = new HandlerList();
 
+  @NotNull private final PlaceholderExpansion expansion;
 
-	@NotNull
-	private final PlaceholderExpansion expansion;
+  public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion) {
+    this.expansion = expansion;
+  }
 
-	public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion)
-	{
-		this.expansion = expansion;
-	}
+  @NotNull
+  public PlaceholderExpansion getExpansion() {
+    return expansion;
+  }
 
+  @NotNull
+  @Override
+  public HandlerList getHandlers() {
+    return HANDLERS;
+  }
 
-	@NotNull
-	public PlaceholderExpansion getExpansion()
-	{
-		return expansion;
-	}
-
-
-	@NotNull
-	@Override
-	public HandlerList getHandlers()
-	{
-		return HANDLERS;
-	}
-
-
-	@NotNull
-	public static HandlerList getHandlerList()
-	{
-		return HANDLERS;
-	}
-
+  @NotNull
+  public static HandlerList getHandlerList() {
+    return HANDLERS;
+  }
 }
