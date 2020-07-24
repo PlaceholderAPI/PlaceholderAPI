@@ -21,7 +21,6 @@ public final class CommandReload extends PlaceholderCommand
 	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
 		plugin.reloadConf(sender);
-		Msg.msg(sender, "&fPlaceholder&7API &bconfiguration reloaded!");
 	}
 
 }

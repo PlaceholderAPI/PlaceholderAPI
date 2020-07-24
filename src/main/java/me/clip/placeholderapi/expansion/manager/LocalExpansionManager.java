@@ -13,7 +13,9 @@ import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
+import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -63,9 +65,9 @@ public final class LocalExpansionManager implements Listener
 		}
 	}
 
-	public void load()
+	public void load(@NotNull final CommandSender sender)
 	{
-		registerAll();
+		registerAll(sender);
 	}
 
 	public void kill()
@@ -266,7 +268,7 @@ public final class LocalExpansionManager implements Listener
 	}
 
 
-	private void registerAll()
+	private void registerAll(@NotNull final CommandSender sender)
 	{
 		plugin.getLogger().info("Placeholder expansion registration initializing...");
 
@@ -277,7 +279,11 @@ public final class LocalExpansionManager implements Listener
 				return;
 			}
 
-			Bukkit.getScheduler().runTask(plugin, () -> classes.forEach(this::register));
+			Bukkit.getScheduler().runTask(plugin, () -> {
+				final long registered = classes.stream().map(this::register).filter(Optional::isPresent).count();
+				Msg.msg(sender,
+						registered == 0 ? "&6No expansions were registered!" : registered + "&a placeholder hooks successfully registered!");
+			});
 		});
 	}
 
