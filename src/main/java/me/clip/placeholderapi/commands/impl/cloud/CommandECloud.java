@@ -24,7 +24,8 @@ public final class CommandECloud extends PlaceholderCommand
 																			  new CommandECloudRefresh(),
 																			  new CommandECloudDownload(),
 																			  new CommandECloudExpansionInfo(),
-																			  new CommandECloudExpansionList());
+																			  new CommandECloudExpansionList(),
+																			  new CommandECloudExpansionPlaceholders());
 
 	static
 	{

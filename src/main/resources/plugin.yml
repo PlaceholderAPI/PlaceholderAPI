@@ -41,6 +41,7 @@ permissions:
       placeholderapi.ecloud.status: true
       placeholderapi.ecloud.refresh: true
       placeholderapi.ecloud.download: true
+      placeholderapi.ecloud.placeholders: true
   placeholderapi.help:
     default: "op"
     description: "allows you to view the list of papi commands"
@@ -92,3 +93,6 @@ permissions:
   placeholderapi.ecloud.download:
     default: "op"
     description: "allows you to download an expansion from the cloud"
+  placeholderapi.ecloud.placeholders:
+    default: "op"
+    description: "allows you to view the placeholders of a cloud expansion"
