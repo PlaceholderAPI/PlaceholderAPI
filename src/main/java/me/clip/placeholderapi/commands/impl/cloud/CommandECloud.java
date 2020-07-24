@@ -26,6 +26,10 @@ public final class CommandECloud extends PlaceholderCommand
 																			  new CommandECloudExpansionInfo(),
 																			  new CommandECloudExpansionList());
 
+	static
+	{
+		COMMANDS.forEach(command -> command.setPermission("placeholderapi.ecloud." + command.getLabel()));
+	}
 
 	@NotNull
 	@Unmodifiable
