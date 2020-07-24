@@ -59,7 +59,7 @@ permissions:
     description: "Allows you to parse placeholders"
   placeholderapi.reload:
     default: "op"
-    description: "Allows you to reload PAPI and its configuration"
+    description: "Allows you to reload PAPI and it's configuration"
   placeholderapi.version:
     default: "op"
     description: "Allows you to view the version of PAPI installed"
