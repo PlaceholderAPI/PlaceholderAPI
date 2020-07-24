@@ -26,7 +26,6 @@ import me.clip.placeholderapi.expansion.ExpansionManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
-import me.clip.placeholderapi.external.EZPlaceholderHook;
 import me.clip.placeholderapi.listeners.PlaceholderListener;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
@@ -36,7 +35,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -94,8 +92,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin
 		{
 			new UpdateChecker(this).fetch();
 		}
-
-		getServer().getScheduler().runTaskLater(this, this::serveWarning, 40);
 	}
 
 	@Override
@@ -209,28 +205,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin
 
 			return map;
 		}));
-	}
-
-	private void serveWarning()
-	{
-		for (final PlaceholderHook hook : PlaceholderAPI.getPlaceholders().values())
-		{
-			if (!(hook instanceof EZPlaceholderHook))
-			{
-				continue;
-			}
-
-			final EZPlaceholderHook legacy = (EZPlaceholderHook) hook;
-			final Plugin            plugin = Bukkit.getPluginManager().getPlugin(legacy.getPluginName());
-
-
-			getLogger().severe(String.format("%s is using a legacy PlaceholderAPI hook, these placeholders will no longer work.\nPlease consult %s and urge them to update it ASAP.",
-											 legacy.getPluginName(),
-											 plugin == null ? "the author of the hook's plugin" : plugin.getDescription().getAuthors().toString()));
-
-			// disable the hook on startup
-			PlaceholderAPI.unregisterPlaceholderHook(legacy.getPlaceholderName());
-		}
 	}
 
 	private void setupExpansions()
