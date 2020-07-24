@@ -2,7 +2,7 @@ package me.clip.placeholderapi.commands.impl.cloud;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
-import me.clip.placeholderapi.expansion.cloud.ExpansionCloudManager;
+import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -21,10 +21,10 @@ public final class CommandECloudStatus extends PlaceholderCommand
 	@Override
 	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
-		final ExpansionCloudManager manager = plugin.getExpansionCloud();
+		final CloudExpansionManager manager = plugin.getCloudExpansionManager();
 
 		final int updateCount    = manager.getCloudUpdateCount();
-		final int authorCount    = manager.getCloudAuthorCount();
+		final int authorCount    = manager.getCloudExpansionAuthorCount();
 		final int expansionCount = manager.getCloudExpansions().size();
 
 		final StringBuilder builder = new StringBuilder();
