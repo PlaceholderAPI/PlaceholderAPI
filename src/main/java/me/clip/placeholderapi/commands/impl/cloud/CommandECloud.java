@@ -58,7 +58,7 @@ public final class CommandECloud extends PlaceholderCommand
 		if (params.isEmpty())
 		{
 			Msg.msg(sender,
-					"&b&lPlaceholderAPI &8- &7ECloud Help Menu &8- ",
+					"&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
 					" ",
 					"&b/papi &fecloud status",
 					"  &7&oView status of the ecloud",
@@ -69,7 +69,7 @@ public final class CommandECloud extends PlaceholderCommand
 					"&b/papi &fecloud placeholders <expansion name>",
 					"  &7&oView placeholders for an expansion",
 					"&b/papi &fecloud download <expansion name> {version}",
-					"  &7&oDownload an expansion from the ecloud",
+					"  &7&oDownload an expansion from the eCloud",
 					"&b/papi &fecloud refresh",
 					"  &7&oFetch the most up to date list of expansions available.",
 					"&b/papi &fecloud clear",
@@ -97,7 +97,7 @@ public final class CommandECloud extends PlaceholderCommand
 		if (!(target instanceof CommandECloudToggle) && !plugin.getPlaceholderAPIConfig().isCloudEnabled())
 		{
 			Msg.msg(sender,
-					"&cThe ECloud Manager is not enabled!");
+					"&cThe eCloud Manager is not enabled!");
 			return;
 		}
 

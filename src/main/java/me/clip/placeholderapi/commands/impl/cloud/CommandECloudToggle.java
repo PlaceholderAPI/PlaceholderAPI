@@ -40,7 +40,7 @@ public final class CommandECloudToggle extends PlaceholderCommand
 		if (desiredState == currentState)
 		{
 			Msg.msg(sender,
-					"&7The ECloud Manager is already " + (desiredState ? "enabled" : "disabled"));
+					"&7The eCloud Manager is already " + (desiredState ? "enabled" : "disabled"));
 			return;
 		}
 
@@ -56,7 +56,7 @@ public final class CommandECloudToggle extends PlaceholderCommand
 		}
 
 		Msg.msg(sender,
-				"&aThe ECloud Manager has been " + (desiredState ? "enabled" : "disabled"));
+				"&aThe eCloud Manager has been " + (desiredState ? "enabled" : "disabled"));
 	}
 
 }

@@ -53,7 +53,7 @@ permissions:
     description: "allows you to list active expansions"
   placeholderapi.ecloud:
       default: "op"
-      description: "allows you to access papi ecloud"
+      description: "allows you to access papi eCloud"
   placeholderapi.parse:
     default: "op"
     description: "allows you to parse placeholders"
