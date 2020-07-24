@@ -28,7 +28,7 @@ public final class CommandVersion extends PlaceholderCommand
 				"&b&lPlaceholderAPI &e(&f" + description.getVersion() + "&e)",
 				"&fAuthors&8: &6" + description.getAuthors(),
 				"&fPAPI Commands&8: &b/papi &7help",
-				"&fECloud Commands&8: &b/papi &7ecloud");
+				"&feCloud Commands&8: &b/papi &7ecloud");
 	}
 
 }
