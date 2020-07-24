@@ -1,6 +1,7 @@
 plugins {
 	id 'java'
 	id 'com.github.johnrengelman.shadow' version '6.0.0'
+	id 'com.github.sherter.google-java-format' version '0.9'
 }
 
 group 'me.clip'
@@ -10,7 +11,9 @@ description 'PlaceholderAPI'
 sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
+	jcenter()
 	mavenLocal()
+	
 	maven {
 		url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
 	}
