@@ -186,13 +186,21 @@ public final class LocalExpansionManager implements Listener
 			}
 		}
 
-		final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
-		Bukkit.getPluginManager().callEvent(event);
-
-		if (event.isCancelled() || expansions.put(expansion.getIdentifier(), expansion) != null)
+		final PlaceholderExpansion removed = expansions.get(expansion.getIdentifier());
+		if (removed != null && !unregister(removed))
 		{
 			return false;
 		}
+
+		final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
+		Bukkit.getPluginManager().callEvent(event);
+
+		if (event.isCancelled())
+		{
+			return false;
+		}
+
+		expansions.put(expansion.getIdentifier(), expansion);
 
 		if (expansion instanceof Listener)
 		{
