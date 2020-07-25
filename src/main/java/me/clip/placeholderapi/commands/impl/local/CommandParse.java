@@ -55,6 +55,7 @@ public final class CommandParse extends PlaceholderCommand
 				break;
 			case "parse":
 			case "bcparse":
+			case "cmdparse":
 				completeParseSingular(sender, params, suggestions);
 				break;
 		}
