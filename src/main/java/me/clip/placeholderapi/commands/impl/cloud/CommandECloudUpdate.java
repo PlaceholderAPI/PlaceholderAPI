@@ -1,5 +1,6 @@
 package me.clip.placeholderapi.commands.impl.cloud;
 
+import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -96,7 +97,20 @@ public final class CommandECloudUpdate extends PlaceholderCommand
 	@Override
 	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
+		if (params.size() > 1)
+		{
+			return;
+		}
 
+		final List<CloudExpansion> installed = Lists.newArrayList(plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values());
+		installed.removeIf(expansion -> !expansion.shouldUpdate());
+
+		if (!installed.isEmpty() && (params.isEmpty() || "all".startsWith(params.get(0).toLowerCase())))
+		{
+			suggestions.add("all");
+		}
+
+		suggestByParameter(installed.stream().map(CloudExpansion::getName).map(name -> name.replace(" ", "_")), suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
 
