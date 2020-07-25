@@ -11,11 +11,13 @@ on:
     #
     paths:
     - 'wiki/**'
+    branches:
+    - 'master'
     #
     # Releases cause this action to also fire.
     # Using this prevents this problem.
     #
-    branches:
+    tags-ignore:
     - '**'
 
 jobs:
@@ -35,13 +37,9 @@ jobs:
         ACTION_NAME: 'github-actions[bot]'
         GH_PAT: '${{ secrets.GITHUB_TOKEN }}'
         OWNER: 'PlaceholderAPI'
-        WIKI: 'PlaceholderAPI'
+        REPO_NAME: 'PlaceholderAPI'
         #
         # We only want to target files in the wiki folder
         #
         MD_FOLDER: 'wiki'
         WIKI_PUSH_MESSAGE: 'Updating wiki from Commit ${GITHUB_SHA:0:7}'
-        #
-        # The Wiki pages have spaces in their file name, so we change "_" to " ".
-        #
-        TRANSLATE_UNDERSCORE_TO_SPACE: true
