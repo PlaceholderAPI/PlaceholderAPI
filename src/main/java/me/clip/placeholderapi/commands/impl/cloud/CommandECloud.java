@@ -21,6 +21,7 @@ public final class CommandECloud extends PlaceholderCommand
 	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandECloudClear(),
 																			  new CommandECloudToggle(),
 																			  new CommandECloudStatus(),
+																			  new CommandECloudUpdate(),
 																			  new CommandECloudRefresh(),
 																			  new CommandECloudDownload(),
 																			  new CommandECloudExpansionInfo(),
