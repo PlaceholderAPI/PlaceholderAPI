@@ -39,6 +39,7 @@ permissions:
       placeholderapi.ecloud.clear: true
       placeholderapi.ecloud.toggle: true
       placeholderapi.ecloud.status: true
+      placeholderapi.ecloud.update: true
       placeholderapi.ecloud.refresh: true
       placeholderapi.ecloud.download: true
       placeholderapi.ecloud.placeholders: true
@@ -87,6 +88,9 @@ permissions:
   placeholderapi.ecloud.status:
     default: "op"
     description: "Allows you to view the status of eCloud expansions"
+  placeholderapi.ecloud.update:
+    default: "op"
+    description: "Allows you to update registered eCloud expansions"
   placeholderapi.ecloud.refresh:
     default: "op"
     description: "Allows you to refresh the local eCloud expansion cache"
