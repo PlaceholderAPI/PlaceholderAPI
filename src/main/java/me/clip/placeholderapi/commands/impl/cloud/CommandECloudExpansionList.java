@@ -7,6 +7,7 @@ import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;
@@ -21,9 +22,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,6 +35,17 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 {
 
 	private static final int PAGE_SIZE = 10;
+
+	private static final Function<CloudExpansion, Object> EXPANSION_NAME            =
+			expansion -> (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName();
+	private static final Function<CloudExpansion, Object> EXPANSION_AUTHOR          =
+			expansion -> "&f" + expansion.getAuthor();
+	private static final Function<CloudExpansion, Object> EXPANSION_VERIFIED        =
+			expansion -> expansion.isVerified() ? "&aY" : "&cN";
+	private static final Function<CloudExpansion, Object> EXPANSION_LATEST_VERSION  =
+			expansion -> "&f" + expansion.getLatestVersion();
+	private static final Function<CloudExpansion, Object> EXPANSION_CURRENT_VERSION =
+			expansion -> "&f" + PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion).orElse("Unknown");
 
 
 	@Unmodifiable
@@ -52,7 +67,26 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			return;
 		}
 
+
+		final boolean              installed  = params.get(0).equalsIgnoreCase("installed");
 		final List<CloudExpansion> expansions = Lists.newArrayList(getExpansions(params.get(0), plugin));
+
+		expansions.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
+
+		if (!(sender instanceof Player) && params.size() < 2)
+		{
+			final StringBuilder builder = new StringBuilder();
+
+			addExpansionTitle(builder, params.get(0), -1);
+			addExpansionTable(expansions,
+							  builder,
+							  1,
+							  installed ? "&9Version" : "&9Latest Version",
+							  installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
+
+			Msg.msg(sender, builder.toString());
+			return;
+		}
 
 		final int page;
 
@@ -83,35 +117,19 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			page = parsed;
 		}
 
-		expansions.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
-
 		final StringBuilder        builder = new StringBuilder();
 		final List<CloudExpansion> values  = getPage(expansions, page - 1);
 
-
-		switch (params.get(0).toLowerCase())
-		{
-			case "all":
-				builder.append("&bAll Expansions");
-				break;
-			case "installed":
-				builder.append("&bInstalled Expansions");
-				break;
-			default:
-				builder.append("&bExpansions by &6")
-					   .append(params.get(0));
-				break;
-		}
-
-		builder.append(" &bPage&7: &a")
-			   .append(page)
-			   .append("&r")
-			   .append('\n');
-
+		addExpansionTitle(builder, params.get(0), page);
 
 		if (!(sender instanceof Player))
 		{
-			addExpansionTable(values, builder, ((page - 1) * PAGE_SIZE) + 1);
+			addExpansionTable(values,
+							  builder,
+							  ((page - 1) * PAGE_SIZE) + 1,
+							  installed ? "&9Version" : "&9Latest Version",
+							  installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
+
 			Msg.msg(sender, builder.toString());
 
 			return;
@@ -169,6 +187,34 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 		}
 
 		return expansions.subList(head, tail);
+	}
+
+	public static void addExpansionTitle(@NotNull final StringBuilder builder, @NotNull final String target, final int page)
+	{
+		switch (target.toLowerCase())
+		{
+			case "all":
+				builder.append("&bAll Expansions");
+				break;
+			case "installed":
+				builder.append("&bInstalled Expansions");
+				break;
+			default:
+				builder.append("&bExpansions by &6")
+					   .append(target);
+				break;
+		}
+
+		if (page == -1)
+		{
+			builder.append('\n');
+			return;
+		}
+
+		builder.append(" &bPage&7: &a")
+			   .append(page)
+			   .append("&r")
+			   .append('\n');
 	}
 
 
@@ -245,49 +291,61 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 		return message;
 	}
 
-	private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions, @NotNull final StringBuilder message, final int startIndex)
+	private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions, @NotNull final StringBuilder message, final int startIndex, @NotNull final String versionTitle, @NotNull final Function<CloudExpansion, Object> versionFunction)
 	{
-		final List<List<String>> rows = IntStream.range(0, expansions.size())
-												 .mapToObj(index -> {
-													 final CloudExpansion expansion = expansions.get(index);
+		final LinkedHashMap<String, Function<CloudExpansion, Object>> rows = new LinkedHashMap<>();
 
-													 return Arrays.asList("&8" + (startIndex + index) + ".",
-																		  (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName(),
-																		  "&f" + expansion.getAuthor(),
-																		  expansion.isVerified() ? "&aY" : "&cN",
-																		  "&f" + expansion.getLatestVersion());
-												 }).collect(Collectors.toList());
-		if (rows.isEmpty())
-		{
-			return;
-		}
+		final AtomicInteger counter = new AtomicInteger(startIndex);
+		rows.put("&f", expansion -> "&8" + counter.getAndIncrement() + ".");
 
-		rows.add(0, Arrays.asList("&f", "&9Name", "&9Author", "&9Verified", "&9Latest Version"));
+		rows.put("&9Name", EXPANSION_NAME);
+		rows.put("&9Author", EXPANSION_AUTHOR);
+		rows.put("&9Verified", EXPANSION_VERIFIED);
+		rows.put(versionTitle, versionFunction);
 
-		final int[] lengths = new int[rows.get(0).size()];
+		message.append(createTable(expansions, rows));
+	}
 
-		rows.forEach(row -> {
+	@NotNull
+	private static String createTable(@NotNull final List<CloudExpansion> expansions, @NotNull final LinkedHashMap<String, Function<CloudExpansion, Object>> rows)
+	{
+		final List<List<String>> values = expansions.stream()
+													.map(expansion -> rows.values().stream().map(function -> function.apply(expansion).toString()).collect(Collectors.toList()))
+													.collect(Collectors.toList());
+
+
+		values.add(0, Lists.newArrayList(rows.keySet()));
+
+		final int[] lengths = new int[values.get(0).size()];
+
+		values.forEach(row -> {
 			for (int column = 0; column < row.size(); column++)
 			{
 				lengths[column] = Math.max(lengths[column], row.get(column).length());
 			}
 		});
 
-		final String format = Arrays.stream(lengths).mapToObj(length -> "%-" + (length + 2) + "s").collect(Collectors.joining());
 
-		final String header = String.format(format, rows.get(0).toArray());
-		message.append(header)
+		final String format = Arrays.stream(lengths).mapToObj(length -> "%-" + (length + 2) + "s").collect(Collectors.joining());
+		final String header = String.format(format, values.get(0).toArray());
+
+
+		final StringBuilder builder = new StringBuilder();
+
+		builder.append(header)
 			   .append('\n')
 			   .append("&8")
-			   .append(Strings.repeat("-", header.length() - (rows.get(0).size() * 2)))
+			   .append(Strings.repeat("-", header.length() - (values.get(0).size() * 2)))
 			   .append('\n');
 
-		for (int i = 1; i < rows.size(); i++)
+		for (int i = 1; i < values.size(); i++)
 		{
-			message.append(String.format(format, rows.get(i).toArray())).append('\n');
+			builder.append(String.format(format, values.get(i).toArray())).append('\n');
 		}
 
+		builder.setLength(builder.length() - 1);
 
+		return builder.toString();
 	}
 
 }
