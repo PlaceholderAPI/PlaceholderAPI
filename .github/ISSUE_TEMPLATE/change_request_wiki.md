@@ -4,11 +4,6 @@ about: Request a update/change of a wiki-page
 
 ---
 
-[Request change (PlaceholderAPI)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
-[Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
-[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
-[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
-
 ## Please read
 This template is only for requesting new information to be added to the wiki or for updating of already existing information!  
 Please use the [Request change (PlaceholderAPI)] template to ask for additions/changes to the plugin PlaceholderAPI.  
@@ -32,3 +27,12 @@ An already listed expansion/plugin has new placeholders or old ones have changed
 > Please provide any information that is useful including links and images.  
 > For plugins/expansion providing new placeholders or updating old ones, provide the placeholders (that have changed)
 <!-- Please write below this line to prevent formatting issues -->
+
+
+
+<!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
+
+[Request change (PlaceholderAPI)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
+[Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
+[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
