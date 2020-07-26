@@ -6,6 +6,8 @@ import me.clip.placeholderapi.replacer.CharsReplacer;
 import me.clip.placeholderapi.replacer.RegexReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface Values
 {
@@ -31,18 +33,21 @@ public interface Values
 		public static final String PLAYER_NAME = "Sxtanna";
 
 
+		@NotNull
 		@Override
 		public String getIdentifier()
 		{
 			return "player";
 		}
 
+		@NotNull
 		@Override
 		public String getAuthor()
 		{
 			return "Sxtanna";
 		}
 
+		@NotNull
 		@Override
 		public String getVersion()
 		{
@@ -50,7 +55,7 @@ public interface Values
 		}
 
 		@Override
-		public String onRequest(final OfflinePlayer player, final String params)
+		public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
 		{
 			final String[] parts = params.split("_");
 			if (parts.length == 0)

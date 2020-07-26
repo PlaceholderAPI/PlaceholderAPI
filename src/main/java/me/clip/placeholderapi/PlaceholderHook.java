@@ -25,6 +25,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * @deprecated This class will be completely removed in the next release, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion}
+ */
+@Deprecated
 public abstract class PlaceholderHook
 {
 
@@ -35,8 +39,10 @@ public abstract class PlaceholderHook
 	 *               player
 	 * @param params String passed to the hook to determine what value to return
 	 * @return value for the requested player and params
+	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
 	 */
 	@Nullable
+	@Deprecated
 	public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
 	{
 		if (player != null && player.isOnline())
@@ -53,6 +59,8 @@ public abstract class PlaceholderHook
 	 * @param player {@link Player} to request the placeholder value for, null if not needed for a player
 	 * @param params String passed to the hook to determine what value to return
 	 * @return value for the requested player and params
+	 *
+	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
 	 */
 	@Nullable
 	@Deprecated
