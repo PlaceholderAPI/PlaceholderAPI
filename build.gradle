@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation 'com.google.code.gson:gson:2.8.6'
 	implementation 'org.bstats:bstats-bukkit:1.5'
 	implementation 'me.rayzr522:jsonmessage:1.2.1'
 	

@@ -37,8 +37,6 @@ public final class CommandDump extends PlaceholderCommand
 	private static final String URL = "https://paste.helpch.at/";
 
 	@NotNull
-	private static final JsonParser        JSON_PARSER = new JsonParser();
-	@NotNull
 	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)
 																		  .withLocale(Locale.US)
 																		  .withZone(ZoneId.of("UTC"));
@@ -89,7 +87,7 @@ public final class CommandDump extends PlaceholderCommand
 				{
 					//noinspection UnstableApiUsage
 					final String json = CharStreams.toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
-					return JSON_PARSER.parse(json).getAsJsonObject().get("key").getAsString();
+					return JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
 				}
 			}
 			catch (final IOException ex)
