@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.impl.cloud.CommandECloud;
+import me.clip.placeholderapi.commands.impl.local.CommandDump;
 import me.clip.placeholderapi.commands.impl.local.CommandExpansionRegister;
 import me.clip.placeholderapi.commands.impl.local.CommandExpansionUnregister;
 import me.clip.placeholderapi.commands.impl.local.CommandHelp;
@@ -35,6 +36,7 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
 	private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandHelp(),
 																			  new CommandInfo(),
 																			  new CommandList(),
+																			  new CommandDump(),
 																			  new CommandECloud(),
 																			  new CommandParse(),
 																			  new CommandReload(),
