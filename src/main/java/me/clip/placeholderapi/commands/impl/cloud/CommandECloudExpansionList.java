@@ -9,6 +9,7 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
 import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.ChatColor;
@@ -18,12 +19,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,14 +38,19 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 
 	private static final int PAGE_SIZE = 10;
 
+	@NotNull
 	private static final Function<CloudExpansion, Object> EXPANSION_NAME            =
 			expansion -> (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName();
+	@NotNull
 	private static final Function<CloudExpansion, Object> EXPANSION_AUTHOR          =
 			expansion -> "&f" + expansion.getAuthor();
+	@NotNull
 	private static final Function<CloudExpansion, Object> EXPANSION_VERIFIED        =
 			expansion -> expansion.isVerified() ? "&aY" : "&cN";
+	@NotNull
 	private static final Function<CloudExpansion, Object> EXPANSION_LATEST_VERSION  =
 			expansion -> "&f" + expansion.getLatestVersion();
+	@NotNull
 	private static final Function<CloudExpansion, Object> EXPANSION_CURRENT_VERSION =
 			expansion -> "&f" + PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion).orElse("Unknown");
 
@@ -70,6 +77,13 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 
 		final boolean              installed  = params.get(0).equalsIgnoreCase("installed");
 		final List<CloudExpansion> expansions = Lists.newArrayList(getExpansions(params.get(0), plugin));
+
+		if (expansions.isEmpty())
+		{
+			Msg.msg(sender,
+					"&cNo expansions available to list.");
+			return;
+		}
 
 		expansions.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
 
@@ -293,59 +307,34 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 
 	private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions, @NotNull final StringBuilder message, final int startIndex, @NotNull final String versionTitle, @NotNull final Function<CloudExpansion, Object> versionFunction)
 	{
-		final LinkedHashMap<String, Function<CloudExpansion, Object>> rows = new LinkedHashMap<>();
+		final Map<String, Function<CloudExpansion, Object>> functions = new LinkedHashMap<>();
 
 		final AtomicInteger counter = new AtomicInteger(startIndex);
-		rows.put("&f", expansion -> "&8" + counter.getAndIncrement() + ".");
+		functions.put("&f", expansion -> "&8" + counter.getAndIncrement() + ".");
 
-		rows.put("&9Name", EXPANSION_NAME);
-		rows.put("&9Author", EXPANSION_AUTHOR);
-		rows.put("&9Verified", EXPANSION_VERIFIED);
-		rows.put(versionTitle, versionFunction);
+		functions.put("&9Name", EXPANSION_NAME);
+		functions.put("&9Author", EXPANSION_AUTHOR);
+		functions.put("&9Verified", EXPANSION_VERIFIED);
+		functions.put(versionTitle, versionFunction);
 
-		message.append(createTable(expansions, rows));
-	}
+		final List<List<String>> rows = new ArrayList<>();
 
-	@NotNull
-	private static String createTable(@NotNull final List<CloudExpansion> expansions, @NotNull final LinkedHashMap<String, Function<CloudExpansion, Object>> rows)
-	{
-		final List<List<String>> values = expansions.stream()
-													.map(expansion -> rows.values().stream().map(function -> function.apply(expansion).toString()).collect(Collectors.toList()))
-													.collect(Collectors.toList());
+		rows.add(0, new ArrayList<>(functions.keySet()));
 
-
-		values.add(0, Lists.newArrayList(rows.keySet()));
-
-		final int[] lengths = new int[values.get(0).size()];
-
-		values.forEach(row -> {
-			for (int column = 0; column < row.size(); column++)
-			{
-				lengths[column] = Math.max(lengths[column], row.get(column).length());
-			}
-		});
-
-
-		final String format = Arrays.stream(lengths).mapToObj(length -> "%-" + (length + 2) + "s").collect(Collectors.joining());
-		final String header = String.format(format, values.get(0).toArray());
-
-
-		final StringBuilder builder = new StringBuilder();
-
-		builder.append(header)
-			   .append('\n')
-			   .append("&8")
-			   .append(Strings.repeat("-", header.length() - (values.get(0).size() * 2)))
-			   .append('\n');
-
-		for (int i = 1; i < values.size(); i++)
+		for (final CloudExpansion expansion : expansions)
 		{
-			builder.append(String.format(format, values.get(i).toArray())).append('\n');
+			rows.add(functions.values().stream().map(function -> function.apply(expansion)).map(Objects::toString).collect(Collectors.toList()));
 		}
 
-		builder.setLength(builder.length() - 1);
+		final List<String> table = Format.tablify(Format.Align.LEFT, rows).orElse(Collections.emptyList());
+		if (table.isEmpty())
+		{
+			return;
+		}
 
-		return builder.toString();
+		table.add(1, "&8" + Strings.repeat("-", table.get(0).length() - (rows.get(0).size() * 2)));
+
+		message.append(String.join("\n", table));
 	}
 
 }
