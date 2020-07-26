@@ -25,9 +25,9 @@ public interface Values
 	final class MockPlayerPlaceholderExpansion extends PlaceholderExpansion
 	{
 
-		public static final String PLAYER_X    = String.valueOf(10);
-		public static final String PLAYER_Y    = String.valueOf(20);
-		public static final String PLAYER_Z    = String.valueOf(30);
+		public static final String PLAYER_X    = "10";
+		public static final String PLAYER_Y    = "20";
+		public static final String PLAYER_Z    = "30";
 		public static final String PLAYER_NAME = "Sxtanna";
 
 
