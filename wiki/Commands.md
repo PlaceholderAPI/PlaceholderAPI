@@ -26,6 +26,7 @@ This page shows all commands, including with a detailed description of what ever
   - [`/papi unregister <jar file>`](#papi-unregister)
 
 - **[Other Commands](#other-commands)**
+  - [`/papi dump`](#papi-dump)
   - [`/papi reload`](#papi-reload)
 
 ----
@@ -227,6 +228,10 @@ Unregisters the specified expansion.
 ----
 ### Other Commands
 These are other commands of PlaceholderAPI that don't fit any of the above categories.
+
+#### `/papi dump`
+**Description**:  
+Pastes useful information from PlaceholderAPI such as plugin version, server version and installed expansions to https://paste.helpch.at for simple sharing and support.
 
 #### `/papi reload`
 **Description**:  
