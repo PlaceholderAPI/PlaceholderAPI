@@ -72,6 +72,7 @@ public final class CloudExpansionManager
 		clean();
 	}
 
+
 	@NotNull
 	@Unmodifiable
 	public Map<String, CloudExpansion> getCloudExpansions()
@@ -211,10 +212,12 @@ public final class CloudExpansionManager
 		});
 	}
 
+
 	public boolean isDownloading(@NotNull final CloudExpansion expansion)
 	{
 		return await.containsKey(toIndexName(expansion));
 	}
+
 
 	@NotNull
 	public CompletableFuture<File> downloadExpansion(@NotNull final CloudExpansion expansion, @NotNull final CloudExpansion.Version version)
