@@ -23,6 +23,8 @@ package me.clip.placeholderapi.configuration;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 public final class PlaceholderAPIConfig
 {
 
@@ -61,6 +63,22 @@ public final class PlaceholderAPIConfig
 	public boolean isDebugMode()
 	{
 		return plugin.getConfig().getBoolean("debug", false);
+	}
+
+
+	public Optional<ExpansionSort> getExpansionSort()
+	{
+		final String option = plugin.getConfig().getString("cloud_sorting", ExpansionSort.LATEST.name());
+
+		try
+		{
+			//noinspection ConstantConditions (bad spigot annotation)
+			return Optional.of(ExpansionSort.valueOf(option.toUpperCase()));
+		}
+		catch (final IllegalArgumentException ignored)
+		{
+			return Optional.empty();
+		}
 	}
 
 
