@@ -1,6 +1,6 @@
 package me.clip.placeholderapi.replacer;
 
-import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +20,9 @@ public final class CharsReplacer implements Replacer
 	}
 
 
+	@NotNull
 	@Override
-	public @NotNull String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup)
+	public String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup)
 	{
 		final char[]        chars   = text.toCharArray();
 		final StringBuilder builder = new StringBuilder(text.length());
@@ -142,7 +143,7 @@ public final class CharsReplacer implements Replacer
 				continue;
 			}
 
-			final PlaceholderHook placeholder = lookup.apply(identifierString);
+			final PlaceholderExpansion placeholder = lookup.apply(identifierString);
 			if (placeholder == null)
 			{
 				builder.append(closure.head).append(identifierString);

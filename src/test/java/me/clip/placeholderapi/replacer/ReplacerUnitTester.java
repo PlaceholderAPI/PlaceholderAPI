@@ -3,10 +3,10 @@ package me.clip.placeholderapi.replacer;
 import me.clip.placeholderapi.Values;
 import org.junit.jupiter.api.Test;
 
-import static me.clip.placeholderapi.Values.MockPlayerPlaceholderHook.PLAYER_NAME;
-import static me.clip.placeholderapi.Values.MockPlayerPlaceholderHook.PLAYER_X;
-import static me.clip.placeholderapi.Values.MockPlayerPlaceholderHook.PLAYER_Y;
-import static me.clip.placeholderapi.Values.MockPlayerPlaceholderHook.PLAYER_Z;
+import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_NAME;
+import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_X;
+import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_Y;
+import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_Z;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class ReplacerUnitTester

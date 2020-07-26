@@ -1,6 +1,6 @@
 package me.clip.placeholderapi.replacer;
 
-import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -22,8 +22,9 @@ public final class RegexReplacer implements Replacer
 	}
 
 
+	@NotNull
 	@Override
-	public @NotNull String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderHook> lookup)
+	public String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup)
 	{
 		final Matcher matcher = pattern.matcher(text);
 		if (!matcher.find())
@@ -38,13 +39,13 @@ public final class RegexReplacer implements Replacer
 			final String identifier = matcher.group("identifier");
 			final String parameters = matcher.group("parameters");
 
-			final PlaceholderHook hook = lookup.apply(identifier);
-			if (hook == null)
+			final PlaceholderExpansion expansion = lookup.apply(identifier);
+			if (expansion == null)
 			{
 				continue;
 			}
 
-			final String requested = hook.onRequest(player, parameters);
+			final String requested = expansion.onRequest(player, parameters);
 			matcher.appendReplacement(builder, requested != null ? requested : matcher.group(0));
 		}
 		while (matcher.find());
