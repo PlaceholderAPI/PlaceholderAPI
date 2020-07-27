@@ -13,6 +13,7 @@ import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
+import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -28,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -290,18 +291,17 @@ public final class LocalExpansionManager implements Listener
 	{
 		plugin.getLogger().info("Placeholder expansion registration initializing...");
 
-		findExpansionsOnDisk().whenCompleteAsync((classes, exception) -> {
+		Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
 			if (exception != null)
 			{
 				plugin.getLogger().log(Level.SEVERE, "failed to load class files of expansions", exception);
 				return;
 			}
 
-			Bukkit.getScheduler().runTask(plugin, () -> {
-				final long registered = classes.stream().map(this::register).filter(Optional::isPresent).count();
-				Msg.msg(sender,
-						registered == 0 ? "&6No expansions were registered!" : registered + "&a placeholder hooks successfully registered!");
-			});
+			final long registered = classes.stream().map(this::register).filter(Optional::isPresent).count();
+
+			Msg.msg(sender,
+					registered == 0 ? "&6No expansions were registered!" : registered + "&a placeholder hooks successfully registered!");
 		});
 	}
 
@@ -320,33 +320,26 @@ public final class LocalExpansionManager implements Listener
 
 
 	@NotNull
-	public CompletableFuture<List<Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk()
+	public CompletableFuture<@NotNull List<@NotNull Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk()
 	{
-		return CompletableFuture.supplyAsync(() -> {
-			try
-			{
-				return FileUtil.getClasses(getExpansionsFolder(), PlaceholderExpansion.class);
-			}
-			catch (final IOException | ClassNotFoundException ex)
-			{
-				throw new CompletionException(ex);
-			}
-		});
+		return Arrays.stream(folder.listFiles((dir, name) -> name.endsWith(".jar")))
+					 .map(this::findExpansionInFile)
+					 .collect(Futures.collector());
 	}
 
 	@NotNull
-	public CompletableFuture<List<Class<? extends PlaceholderExpansion>>> findExpansionsInFile(@NotNull final File file)
+	public CompletableFuture<@Nullable Class<? extends PlaceholderExpansion>> findExpansionInFile(@NotNull final File file)
 	{
 		return CompletableFuture.supplyAsync(() -> {
 			try
 			{
-				final List<@NotNull Class<? extends PlaceholderExpansion>> classes = FileUtil.getClasses(getExpansionsFolder(), PlaceholderExpansion.class, file.getName());
-				if (classes.size() > 1)
-				{
-					throw new IllegalStateException("multiple expansion classes in one file!");
-				}
-
-				return classes;
+				return FileUtil.findClass(file, PlaceholderExpansion.class);
+			}
+			catch (final VerifyError ex)
+			{
+				plugin.getLogger().severe("expansion file " + file.getName() + " is outdated: \n" +
+										  "Failed to load due to a [" + ex.getClass().getSimpleName() + "], attempted to use" + ex.getMessage().substring(ex.getMessage().lastIndexOf(' ')));
+				return null;
 			}
 			catch (final Exception ex)
 			{
@@ -365,6 +358,11 @@ public final class LocalExpansionManager implements Listener
 		}
 		catch (final Exception ex)
 		{
+			if (ex.getCause() instanceof LinkageError)
+			{
+				throw ((LinkageError) ex.getCause());
+			}
+
 			plugin.getLogger().log(Level.SEVERE, "Failed to load placeholder expansion from class: " + clazz.getName(), ex);
 			return null;
 		}

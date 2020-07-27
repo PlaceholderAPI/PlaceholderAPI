@@ -4,8 +4,8 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
+import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -45,7 +45,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 			return;
 		}
 
-		manager.findExpansionsInFile(file).whenComplete((classes, exception) -> {
+		Futures.onMainThread(plugin, manager.findExpansionInFile(file), (clazz, exception) -> {
 			if (exception != null)
 			{
 				Msg.msg(sender,
@@ -55,25 +55,25 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 				return;
 			}
 
-			if (classes.isEmpty())
+			if (clazz == null)
 			{
 				Msg.msg(sender,
 						"&cNo expansion class found in file: &f" + file);
 				return;
 			}
 
-			Bukkit.getScheduler().runTask(plugin, () -> {
-				final Optional<PlaceholderExpansion> expansion = manager.register(classes.get(0));
-				if (!expansion.isPresent())
-				{
-					Msg.msg(sender,
-							"&cFailed to register expansion from &f" + params.get(0));
-					return;
-				}
 
+			final Optional<PlaceholderExpansion> expansion = manager.register(clazz);
+			if (!expansion.isPresent())
+			{
 				Msg.msg(sender,
-						"&aSuccessfully registered expansion: &f" + expansion.get().getName());
-			});
+						"&cFailed to register expansion from &f" + params.get(0));
+				return;
+			}
+
+			Msg.msg(sender,
+					"&aSuccessfully registered expansion: &f" + expansion.get().getName());
+
 		});
 	}
 

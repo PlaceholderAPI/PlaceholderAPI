@@ -24,51 +24,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 public class FileUtil
 {
 
-	@NotNull
-	public static <T> List<@NotNull Class<? extends T>> getClasses(@NotNull final File folder, @NotNull final Class<T> clazz) throws IOException, ClassNotFoundException
+	@Nullable
+	public static <T> Class<? extends T> findClass(@NotNull final File file, @NotNull final Class<T> clazz) throws IOException, ClassNotFoundException
 	{
-		return getClasses(folder, clazz, null);
-	}
-
-	@NotNull
-	public static <T> List<@NotNull Class<? extends T>> getClasses(@NotNull final File folder, @NotNull final Class<T> clazz, @Nullable final String target) throws IOException, ClassNotFoundException
-	{
-		if (!folder.exists())
+		if (!file.exists())
 		{
-			return Collections.emptyList();
+			return null;
 		}
 
-		final File[] jars = folder.listFiles((dir, name) -> name.endsWith(".jar") && (target == null || name.replace(".jar", "").equalsIgnoreCase(target.replace(".jar", ""))));
-		if (jars == null)
-		{
-			return Collections.emptyList();
-		}
+		final URL jar = file.toURI().toURL();
 
-		final List<@NotNull Class<? extends T>> list = new ArrayList<>();
-
-		for (final File file : jars)
-		{
-			gather(file.toURI().toURL(), clazz, list);
-		}
-
-		return list;
-	}
-
-	private static <T> void gather(@NotNull final URL jar, @NotNull final Class<T> clazz, @NotNull final List<@NotNull Class<? extends T>> list) throws IOException, ClassNotFoundException
-	{
 		try (final URLClassLoader loader = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader()); final JarInputStream stream = new JarInputStream(jar.openStream()))
 		{
 			JarEntry entry;
@@ -85,7 +59,7 @@ public class FileUtil
 					final Class<?> loaded = loader.loadClass(name.substring(0, name.lastIndexOf('.')).replace('/', '.'));
 					if (clazz.isAssignableFrom(loaded))
 					{
-						list.add(loaded.asSubclass(clazz));
+						return loaded.asSubclass(clazz);
 					}
 				}
 				catch (final NoClassDefFoundError ignored)
@@ -93,6 +67,8 @@ public class FileUtil
 				}
 			}
 		}
+
+		return null;
 	}
 
 }
