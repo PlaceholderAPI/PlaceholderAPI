@@ -27,6 +27,7 @@ import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.configuration.ExpansionSort;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.Format;
@@ -39,7 +40,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -97,7 +105,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 			return;
 		}
 
-		expansions.sort(Comparator.comparing(CloudExpansion::getLastUpdate).reversed());
+		expansions.sort(plugin.getPlaceholderAPIConfig().getExpansionSort().orElse(ExpansionSort.LATEST));
 
 		if (!(sender instanceof Player) && params.size() < 2)
 		{

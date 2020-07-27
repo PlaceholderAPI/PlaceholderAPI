@@ -38,3 +38,7 @@ Please also make sure that you use the [latest release][Spigot] or the latest [d
 > What steps did you made, to get this bug?
 <!-- Please write below this line to prevent formatting issues -->
 1. 
+
+### Installed expansions
+> Please list all expansions that are displayed when running `/papi list`
+<!-- Please write below this line to prevent formatting issues -->

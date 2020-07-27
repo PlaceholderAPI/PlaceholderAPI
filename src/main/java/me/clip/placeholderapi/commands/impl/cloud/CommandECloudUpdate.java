@@ -25,16 +25,16 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -87,31 +87,31 @@ public final class CommandECloudUpdate extends PlaceholderCommand
 		Msg.msg(sender,
 				"&aUpdating expansions: " + expansions.stream().map(CloudExpansion::getName).collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r")));
 
-		downloadExpansions(plugin, expansions)
-				.thenCompose(files -> discoverExpansions(plugin, files))
-				.whenComplete((classes, exception) -> {
-					if (exception != null)
-					{
-						Msg.msg(sender,
-								"&cFailed to update expansions: &e" + exception.getMessage());
-						return;
-					}
 
-					Msg.msg(sender,
-							"&aSuccessfully downloaded updates, registering new versions.");
+		Futures.onMainThread(plugin, downloadAndDiscover(expansions, plugin), (classes, exception) -> {
+			if (exception != null)
+			{
+				Msg.msg(sender,
+						"&cFailed to update expansions: &e" + exception.getMessage());
+				return;
+			}
 
-					Bukkit.getScheduler().runTask(plugin, () -> {
-						final String message = classes.stream()
-													  .map(plugin.getLocalExpansionManager()::register)
-													  .filter(Optional::isPresent)
-													  .map(Optional::get)
-													  .map(expansion -> "  &a" + expansion.getName() + " &f" + expansion.getVersion())
-													  .collect(Collectors.joining("\n"));
-						Msg.msg(sender,
-								"&7Registered expansions:",
-								message);
-					});
-				});
+			Msg.msg(sender,
+					"&aSuccessfully downloaded updates, registering new versions.");
+
+
+			final String message = classes.stream()
+										  .filter(Objects::nonNull)
+										  .map(plugin.getLocalExpansionManager()::register)
+										  .filter(Optional::isPresent)
+										  .map(Optional::get)
+										  .map(expansion -> "  &a" + expansion.getName() + " &f" + expansion.getVersion())
+										  .collect(Collectors.joining("\n"));
+
+			Msg.msg(sender,
+					"&7Registered expansions:", message);
+
+		});
 	}
 
 	@Override
@@ -134,22 +134,12 @@ public final class CommandECloudUpdate extends PlaceholderCommand
 	}
 
 
-	public static CompletableFuture<List<File>> downloadExpansions(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final List<CloudExpansion> expansions)
+	private static CompletableFuture<List<@Nullable Class<? extends PlaceholderExpansion>>> downloadAndDiscover(@NotNull final List<CloudExpansion> expansions, @NotNull final PlaceholderAPIPlugin plugin)
 	{
-		final List<CompletableFuture<File>> futures = expansions.stream()
-																.map(expansion -> plugin.getCloudExpansionManager().downloadExpansion(expansion, expansion.getVersion()))
-																.collect(Collectors.toList());
-
-		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenApplyAsync(v -> futures.stream().map(CompletableFuture::join).collect(Collectors.toList()));
-	}
-
-	public static CompletableFuture<List<Class<? extends PlaceholderExpansion>>> discoverExpansions(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final List<File> files)
-	{
-		final List<CompletableFuture<List<Class<? extends PlaceholderExpansion>>>> futures = files.stream()
-																								  .map(file -> plugin.getLocalExpansionManager().findExpansionsInFile(file))
-																								  .collect(Collectors.toList());
-
-		return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).thenApplyAsync(v -> futures.stream().map(CompletableFuture::join).flatMap(Collection::stream).collect(Collectors.toList()));
+		return expansions.stream()
+						 .map(expansion -> plugin.getCloudExpansionManager().downloadExpansion(expansion, expansion.getVersion()))
+						 .map(future -> future.thenCompose(plugin.getLocalExpansionManager()::findExpansionInFile))
+						 .collect(Futures.collector());
 	}
 
 }
