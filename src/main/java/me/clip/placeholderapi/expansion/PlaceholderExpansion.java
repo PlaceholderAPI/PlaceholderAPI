@@ -25,6 +25,7 @@ import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -271,6 +272,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
 	 */
 	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
 	public String getPlugin()
 	{
 		return null;
@@ -280,6 +282,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
 	 */
 	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
 	public String getDescription()
 	{
 		return null;
@@ -289,6 +292,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
 	 */
 	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
 	public String getLink()
 	{
 		return null;

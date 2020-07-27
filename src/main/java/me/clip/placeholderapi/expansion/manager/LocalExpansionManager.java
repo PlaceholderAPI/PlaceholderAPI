@@ -39,6 +39,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -163,13 +164,10 @@ public final class LocalExpansionManager implements Listener
 	/**
 	 * Do not call this method yourself, use {@link PlaceholderExpansion#register()}
 	 */
+	@ApiStatus.Internal
 	public boolean register(@NotNull final PlaceholderExpansion expansion)
 	{
 		final String identifier = expansion.getIdentifier();
-		if (identifier == null)
-		{
-			return false;
-		}
 
 		if (expansion instanceof Configurable)
 		{
@@ -267,6 +265,7 @@ public final class LocalExpansionManager implements Listener
 	/**
 	 * Do not call this method yourself, use {@link PlaceholderExpansion#unregister()}
 	 */
+	@ApiStatus.Internal
 	public boolean unregister(@NotNull final PlaceholderExpansion expansion)
 	{
 		if (expansions.remove(expansion.getIdentifier()) == null)
