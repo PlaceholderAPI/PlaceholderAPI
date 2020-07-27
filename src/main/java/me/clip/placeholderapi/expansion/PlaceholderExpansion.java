@@ -87,7 +87,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	@Nullable
 	public String getRequiredPlugin()
 	{
-		return null;
+		return getPlugin();
 	}
 
 	/**
@@ -229,7 +229,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
 	 */
 	@Deprecated
-	public final String getPlugin()
+	public String getPlugin()
 	{
 		return null;
 	}
@@ -238,7 +238,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
 	 */
 	@Deprecated
-	public final String getDescription()
+	public String getDescription()
 	{
 		return null;
 	}
@@ -247,7 +247,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
 	 */
 	@Deprecated
-	public final String getLink()
+	public String getLink()
 	{
 		return null;
 	}
