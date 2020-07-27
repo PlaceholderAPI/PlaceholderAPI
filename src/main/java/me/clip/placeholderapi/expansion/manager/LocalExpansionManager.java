@@ -124,6 +124,27 @@ public final class LocalExpansionManager implements Listener
 	}
 
 
+	public Optional<PlaceholderExpansion> register(@NotNull final Class<? extends PlaceholderExpansion> clazz)
+	{
+		try
+		{
+			final PlaceholderExpansion expansion = createExpansionInstance(clazz);
+			if (expansion == null || !expansion.register())
+			{
+				return Optional.empty();
+			}
+
+			return Optional.of(expansion);
+		}
+		catch (final LinkageError ex)
+		{
+			plugin.getLogger().severe("expansion class " + clazz.getSimpleName() + " is outdated: \n" +
+									  "Failed to load due to a [" + ex.getClass().getSimpleName() + "], attempted to use " + ex.getMessage());
+		}
+
+		return Optional.empty();
+	}
+
 	/**
 	 * Do not call this method yourself, use {@link PlaceholderExpansion#register()}
 	 */
@@ -188,7 +209,7 @@ public final class LocalExpansionManager implements Listener
 		}
 
 		final PlaceholderExpansion removed = expansions.get(expansion.getIdentifier());
-		if (removed != null && !unregister(removed))
+		if (removed != null && !removed.unregister())
 		{
 			return false;
 		}
@@ -228,27 +249,9 @@ public final class LocalExpansionManager implements Listener
 		return true;
 	}
 
-	public Optional<PlaceholderExpansion> register(@NotNull final Class<? extends PlaceholderExpansion> clazz)
-	{
-		try
-		{
-			final PlaceholderExpansion expansion = createExpansionInstance(clazz);
-			if (expansion == null || !expansion.register())
-			{
-				return Optional.empty();
-			}
-
-			return Optional.of(expansion);
-		}
-		catch (final LinkageError ex)
-		{
-			plugin.getLogger().severe("expansion class " + clazz.getSimpleName() + " is outdated: \n" +
-									  "Failed to load due to a [" + ex.getClass().getSimpleName() + "], attempted to use " + ex.getMessage());
-		}
-
-		return Optional.empty();
-	}
-
+	/**
+	 * Do not call this method yourself, use {@link PlaceholderExpansion#unregister()}
+	 */
 	public boolean unregister(@NotNull final PlaceholderExpansion expansion)
 	{
 		if (expansions.remove(expansion.getIdentifier()) == null)
@@ -314,7 +317,7 @@ public final class LocalExpansionManager implements Listener
 				continue;
 			}
 
-			unregister(expansion);
+			expansion.unregister();
 		}
 	}
 
@@ -399,7 +402,7 @@ public final class LocalExpansionManager implements Listener
 				continue;
 			}
 
-			unregister(expansion);
+			expansion.unregister();
 			plugin.getLogger().info("Unregistered placeholder expansion: " + expansion.getName());
 		}
 	}

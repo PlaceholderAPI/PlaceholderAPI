@@ -20,7 +20,6 @@
  */
 package me.clip.placeholderapi.expansion;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
@@ -32,6 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class PlaceholderExpansion extends PlaceholderHook
 {
@@ -122,7 +122,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 */
 	public final boolean isRegistered()
 	{
-		return PlaceholderAPI.isRegistered(getIdentifier());
+		return getPlaceholderAPI().getLocalExpansionManager().findExpansionByIdentifier(getIdentifier()).map(it -> it.equals(this)).orElse(false);
 	}
 
 
@@ -141,10 +141,22 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	 * Attempt to register this PlaceholderExpansion
 	 *
 	 * @return true if this expansion is now registered with PlaceholderAPI
+	 * @deprecated This is going to be final in the future, startup and shutdown logic will have their own methods soon.
 	 */
+	@Deprecated
 	public boolean register()
 	{
 		return canRegister() && getPlaceholderAPI().getLocalExpansionManager().register(this);
+	}
+
+	/**
+	 * Attempt to unregister this PlaceholderExpansion
+	 *
+	 * @return true if this expansion is now unregistered with PlaceholderAPI
+	 */
+	public final boolean unregister()
+	{
+		return getPlaceholderAPI().getLocalExpansionManager().unregister(this);
 	}
 
 
@@ -222,6 +234,36 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 		return section != null && section.contains(path);
 	}
 
+	@Override
+	public final boolean equals(final Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (!(o instanceof PlaceholderExpansion))
+		{
+			return false;
+		}
+
+		final PlaceholderExpansion expansion = (PlaceholderExpansion) o;
+
+		return getIdentifier().equals(expansion.getIdentifier()) &&
+			   getAuthor().equals(expansion.getAuthor()) &&
+			   getVersion().equals(expansion.getVersion());
+	}
+
+	@Override
+	public final int hashCode()
+	{
+		return Objects.hash(getIdentifier(), getAuthor(), getVersion());
+	}
+
+	@Override
+	public final String toString()
+	{
+		return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s']", getName(), getAuthor(), getVersion());
+	}
 
 	// === Deprecated API ===
 

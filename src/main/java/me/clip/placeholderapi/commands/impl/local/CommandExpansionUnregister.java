@@ -39,7 +39,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 		}
 
 
-		final String message = !plugin.getLocalExpansionManager().unregister(expansion.get()) ?
+		final String message = !expansion.get().unregister() ?
 							   "&cFailed to unregister expansion: &f" :
 							   "&aSuccessfully unregistered expansion: &f";
 
