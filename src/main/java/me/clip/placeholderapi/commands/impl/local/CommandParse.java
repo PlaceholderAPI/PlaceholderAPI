@@ -23,6 +23,7 @@ package me.clip.placeholderapi.commands.impl.local;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -33,7 +34,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public final class CommandParse extends PlaceholderCommand
@@ -168,13 +173,45 @@ public final class CommandParse extends PlaceholderCommand
 
 	private void completeParseSingular(@NotNull final CommandSender sender, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
 	{
-		if (sender instanceof Player && (params.isEmpty() || (params.size() == 1 && "me".startsWith(params.get(0).toLowerCase()))))
+		if (params.size() <= 1)
 		{
-			suggestions.add("me");
+			if (sender instanceof Player && (params.isEmpty() || "me".startsWith(params.get(0).toLowerCase())))
+			{
+				suggestions.add("me");
+			}
+
+			final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
+			suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
+
+			return;
 		}
 
-		final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
-		suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
+		final String name = params.get(params.size() - 1);
+		if (!name.startsWith("%") || name.endsWith("%"))
+		{
+			return;
+		}
+
+		final int index = name.indexOf('_');
+		if (index == -1)
+		{
+			return; // no arguments supplied yet
+		}
+
+		final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByIdentifier(name.substring(1, index)).orElse(null);
+		if (expansion == null)
+		{
+			return;
+		}
+
+		final Set<String> possible = new HashSet<>(expansion.getPlaceholders());
+
+		PlaceholderAPIPlugin.getInstance()
+							.getCloudExpansionManager()
+							.findCloudExpansionByName(expansion.getName())
+							.ifPresent(cloud -> possible.addAll(cloud.getPlaceholders()));
+
+		suggestByParameter(possible.stream(), suggestions, params.get(params.size() - 1));
 	}
 
 	private void completeParseRelation(@NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
