@@ -35,7 +35,7 @@ jobs:
         #
         ACTION_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
         ACTION_NAME: 'github-actions[bot]'
-        GH_PAT: '${{ secrets.GITHUB_TOKEN }}'
+        GH_PAT: '${{ secrets.WORKFLOWPAT }}'
         OWNER: 'PlaceholderAPI'
         REPO_NAME: 'PlaceholderAPI'
         #
