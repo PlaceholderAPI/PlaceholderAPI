@@ -1,0 +1,49 @@
+#
+# This is a GitHub Action that allows us to auto-update the wiki
+# when a Pull request changes specific files in a folder.
+#
+name: Update Wiki
+
+on:
+  push:
+    #
+    # Only trigger when the push changes any files in the wiki-folder.
+    #
+    paths:
+    - 'wiki/**'
+    branches:
+    - 'master'
+    #
+    # Releases cause this action to also fire.
+    # Using this prevents this problem.
+    #
+    tags-ignore:
+    - '**'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout Code'
+      uses: actions/Checkout@v2
+    - name: 'Update Wiki'
+      uses: docker://decathlon/wiki-page-creator-action:latest
+      env:
+        #
+        # We can use the E-Mail and Name of the GitHub Actions account
+        # for our convenience.
+        #
+        ACTION_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+        ACTION_NAME: 'github-actions[bot]'
+        GH_PAT: '${{ secrets.GITHUB_TOKEN }}'
+        OWNER: 'PlaceholderAPI'
+        REPO_NAME: 'PlaceholderAPI'
+        #
+        # We only want to target files in the wiki folder
+        #
+        MD_FOLDER: 'wiki'
+        WIKI_PUSH_MESSAGE: 'Updating wiki from commit ${{ github.event.after }}'
+        #
+        # We skip/ignore the README.md file in the Wiki folder
+        #
+        SKIP_MD: README.md
