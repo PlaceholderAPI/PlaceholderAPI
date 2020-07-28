@@ -32,7 +32,7 @@ Replace `{VERSION}` with the version listed at the top of this page.
     <dependencies>
         <dependency>
          <groupId>me.clip</groupId>
-          <artifactId>placeholderapi</artifactId>
+          <artifactId>PlaceholderAPI</artifactId>
           <version>{VERSION}</version>
          <scope>provided</scope>
         </dependency>
@@ -51,7 +51,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'me.clip:placeholderapi:{VERSION}'
+    compileOnly 'me.clip:PlaceholderAPI:{VERSION}'
 }
 ```
 
