@@ -33,7 +33,7 @@ jobs:
         # We can use the E-Mail and Name of the GitHub Actions account
         # for our convenience.
         #
-        ACTION_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+        ACTION_MAIL: 'actions@github.com'
         ACTION_NAME: 'github-actions[bot]'
         GH_PAT: '${{ secrets.WORKFLOWPAT }}'
         OWNER: 'PlaceholderAPI'
