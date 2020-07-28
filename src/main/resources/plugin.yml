@@ -10,7 +10,7 @@ description: "@description@"
 commands:
   placeholderapi:
     description: "PlaceholderAPI Command"
-    aliases: ["papi"]
+    aliases: ["papi", "daddy"]
 
 permissions:
   placeholderapi.*:
