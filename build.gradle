@@ -1,5 +1,6 @@
 plugins {
 	id "java"
+	id "maven-publish"
 	id "net.minecrell.licenser" version "0.4.1"
 	id "com.github.johnrengelman.shadow" version "6.0.0"
 }
@@ -77,3 +78,17 @@ sourceSets {
 	test.compileClasspath += configurations.compileOnly
 	test.runtimeClasspath += configurations.compileOnly
 }
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			groupId = project.group
+			artifactId = project.name
+			version = project.version.toString()
+			
+			from(components.java)
+		}
+	}
+}
+
+publishToMavenLocal.dependsOn clean, test, jar
