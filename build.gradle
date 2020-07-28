@@ -85,8 +85,8 @@ publishing {
 			url = uri("https://repo.extendedclip.com/content/repositories/public/")
 		
 			credentials {
-				username = System.getProperty("JENKINS_USER")
-				password = System.getProperty("JENKINS_PASS")
+				username = System.getenv("JENKINS_USER")
+				password = System.getenv("JENKINS_PASS")
 			}
 		}
 	}
