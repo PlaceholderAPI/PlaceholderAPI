@@ -1,5 +1,6 @@
 [Wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
 [Placeholders]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+[Plugins using PlaceholderAPI]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
 
 # Wiki
 This is the wiki folder. It contains all pages that you can find in our [Wiki].  
@@ -71,7 +72,8 @@ However, when you link to a section in the same wiki page should you do it in th
 When you link to an external page that isn't part of the wiki should you do it as a reference link (Exception is the above mentioned cases for resources and extensions).  
 You do this by adding `[:name]: :url` at the top of the page where `:name` is the reference name to use and `:url` is the url to link to.
 
-You can then just use either `[:name]` or `[:display_text][:name]` to link to the url you set (`:display_text` could be any text (including spaces) to display).
+You can then just use either `[:name]` or `[:display_text][:name]` to link to the url you set (`:display_text` could be any text (including spaces) to display).  
+Reference links are case-insensitive.
 
 This system allows us to easly maintain the links without the need to update a URL on several places within the page.
 
