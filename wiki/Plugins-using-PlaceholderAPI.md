@@ -189,8 +189,8 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#clans]]**]
 - **[Clans](https://www.spigotmc.org/resources/78415/)**
-  - [x] Supports placeholders.
-  - [ ] Provides own placeholders. [Link]
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#clans-1]]**]
 - **[ClicksPerSecond](https://www.spigotmc.org/resources/57214/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
