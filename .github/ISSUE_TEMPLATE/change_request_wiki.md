@@ -38,4 +38,5 @@ An already listed expansion/plugin has new placeholders or old ones have changed
 [Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
 [issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
 [wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+[Pull request]: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
 [wiki_folder]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/wiki
