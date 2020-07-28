@@ -188,6 +188,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Clans](https://www.spigotmc.org/resources/34696/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#clans]]**]
+- **[Clans](https://www.spigotmc.org/resources/78415/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[ClicksPerSecond](https://www.spigotmc.org/resources/57214/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -789,6 +792,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[stTitles](https://www.spigotmc.org/resources/8310/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#sttitles]]**]
+- **[SubServers](https://github.com/ME1312/SubServers-2)**
+  - [ ] Supports Placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#subservers]]**]
 - **[SuperbVote](https://www.spigotmc.org/resources/11626/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#superbvote]]**]
