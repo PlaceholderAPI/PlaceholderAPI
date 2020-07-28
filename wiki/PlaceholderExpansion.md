@@ -35,8 +35,8 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
  * This class will automatically register as a placeholder expansion 
  * when a jar including this class is added to the directory 
  * {@code /plugins/PlaceholderAPI/expansions} on your server.
- * <br>
- * <br>If you create such a class inside your own plugin, you have to
+ *
+ * <p>If you create such a class inside your own plugin, you have to
  * register it manually in your plugins {@code onEnable()} by using 
  * {@code new YourExpansionClass().register();}
  */
@@ -93,7 +93,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * This is the method called when a placeholder with our identifier 
      * is found and needs a value.
      * <br>We specify the value identifier in this method.
-     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests.
+     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests (recommended).
      *
      * @param  player
      *         A {@link org.bukkit.OfflinePlayer OfflinePlayer}.
@@ -146,8 +146,8 @@ import at.helpch.placeholderapi.example.SomePlugin;
  * This class will automatically register as a placeholder expansion 
  * when a jar including this class is added to the directory 
  * {@code /plugins/PlaceholderAPI/expansions} on your server.
- * <br>
- * <br>If you create such a class inside your own plugin, you have to
+ *
+ * <p>If you create such a class inside your own plugin, you have to
  * register it manually in your plugins {@code onEbale()} by using 
  * {@code new YourExpansionClass().register();}
  */
@@ -160,7 +160,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * Since this expansion requires api access to the plugin "SomePlugin" 
      * we must check if said plugin is on the server or not.
      *
-     * @return true or false depending on if the required plugin is installed.
+     * @return wether the required plugin is installed.
      */
     @Override
     public boolean canRegister(){
@@ -196,8 +196,8 @@ public class SomeExpansion extends PlaceholderExpansion {
      * proper name of the dependency should go here.
      * <br>Set this to {@code null} if your placeholders do not require 
      * another plugin to be installed on the server for them to work.
-     * <br>
-     * <br>This is extremely important to set your plugin here, since if 
+     *
+     * <p>This is extremely important to set your plugin here, since if 
      * you don't do it, your expansion will throw errors.
      *
      * @return The name of our dependency.
@@ -222,7 +222,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * This is the method called when a placeholder with our identifier 
      * is found and needs a value.
      * <br>We specify the value identifier in this method.
-     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests.
+     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests (recommended).
      *
      * @param  player
      *         A {@link org.bukkit.Player Player}.
@@ -315,7 +315,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 
     /**
      * The name of the person who created this expansion should go here.
-     * <br>For convienience do we return the author from the plugin.yml
+     * <br>For convienience do we return the authors from the plugin.yml
      * 
      * @return The name of the author as a String.
      */
@@ -355,7 +355,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * This is the method called when a placeholder with our identifier 
      * is found and needs a value.
      * <br>We specify the value identifier in this method.
-     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests.
+     * <br>Since version 2.9.1 can you use OfflinePlayers in your requests (recommended).
      *
      * @param  player
      *         A {@link org.bukkit.Player Player}.
