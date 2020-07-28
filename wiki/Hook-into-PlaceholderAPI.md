@@ -1,4 +1,4 @@
-[APIBadge]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/PlaceholderAPI.svg?label=API-Version
+[APIBadge]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/PlaceholderAPI.svg?label=API%20Version
 
 [SpigotBadge]: https://img.shields.io/spiget/version/6245?label=Spigot
 [Spigot]: https://spigotmc.org/resources/6245
@@ -21,7 +21,7 @@ Before you can actually make use of PlaceholderAPI, you first have to import it 
 
 ### Import with Maven
 To import PlaceholderAPI, simply add the following code to your **pom.xml**  
-Replace `{VERSION}` with the version listed at the top of this page.  
+Replace `{VERSION}` with the `API Version` listed at the top of this page.  
 ```xml
     <repositories>
         <repository>
@@ -42,7 +42,7 @@ Replace `{VERSION}` with the version listed at the top of this page.
 ### Import with Gradle
 Here is how you can import PlaceholderAPI through gradle.  
 Put this into your **Gradle.build**.  
-Replace `{VERSION}` with the version listed at the top of this page.  
+Replace `{VERSION}` with the `API Version` listed at the top of this page.  
 ```gradle
 repositories {
     maven {
