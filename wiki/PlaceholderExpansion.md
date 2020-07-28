@@ -31,6 +31,8 @@ package at.helpch.placeholderapi.example.expansions;
 import org.bukkit.OfflinePlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
+import javax.annotation.Nonnull;
+
 /**
  * This class will automatically register as a placeholder expansion 
  * when a jar including this class is added to the directory 
@@ -60,6 +62,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The name of the author as a String.
      */
     @Override
+    @Nonnull
     public String getAuthor(){
         return "someauthor";
     }
@@ -74,6 +77,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
     @Override
+    @Nonnull
     public String getIdentifier(){
         return "example";
     }
@@ -85,6 +89,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The version as a String.
      */
     @Override
+    @Nonnull
     public String getVersion(){
         return "1.0.0";
     }
@@ -103,7 +108,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return Possibly-null String of the requested identifier.
      */
     @Override
-    public String onRequest(OfflinePlayer player, String identifier){
+    public String onRequest(OfflinePlayer player, @Nonnull String identifier){
   
         // %example_placeholder1%
         if(identifier.equals("placeholder1")){
@@ -142,6 +147,8 @@ import org.bukkit.OfflinePlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.example.SomePlugin;
 
+import javax.annotation.Nonnull;
+
 /**
  * This class will automatically register as a placeholder expansion 
  * when a jar including this class is added to the directory 
@@ -173,6 +180,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The name of the author as a String.
      */
     @Override
+    @Nonnull
     public String getAuthor(){
         return "someauthor";
     }
@@ -187,6 +195,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
     @Override
+    @Nonnull
     public String getIdentifier(){
         return "someplugin";
     }
@@ -214,6 +223,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The version as a String.
      */
     @Override
+    @Nonnull
     public String getVersion(){
         return "1.0.0";
     }
@@ -232,7 +242,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return possibly-null String of the requested identifier.
      */
     @Override
-    public String onRequest(OfflinePlayer player, String identifier){
+    public String onRequest(OfflinePlayer player, @Nonnull String identifier){
 
         if(p == null){
             return "";
@@ -269,6 +279,8 @@ package at.helpch.placeholderapi.example.expansions;
 import org.bukkit.OfflinePlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.example.SomePlugin;
+
+import javax.annotation.Nonnull;
 
 /**
  * This class will be registered through the register-method in the 
@@ -320,6 +332,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The name of the author as a String.
      */
     @Override
+    @Nonnull
     public String getAuthor(){
         return plugin.getDescription().getAuthors().toString();
     }
@@ -334,6 +347,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
     @Override
+    @Nonnull
     public String getIdentifier(){
         return "someplugin";
     }
@@ -347,6 +361,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return The version as a String.
      */
     @Override
+    @Nonnull
     public String getVersion(){
         return plugin.getDescription().getVersion();
     }
@@ -365,7 +380,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return possibly-null String of the requested identifier.
      */
     @Override
-    public String onRequest(Player player, String identifier){
+    public String onRequest(Player player, @Nonnull String identifier){
 
         if(player == null){
             return "";
