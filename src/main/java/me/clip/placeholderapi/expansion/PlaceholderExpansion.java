@@ -21,7 +21,6 @@
 package me.clip.placeholderapi.expansion;
 
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -34,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class PlaceholderExpansion extends PlaceholderHook
+public abstract class PlaceholderExpansion
 {
 
 	/**
@@ -62,11 +61,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook
 	public abstract String getVersion();
 
 	@Nullable
-	@Override /* override for now >:) */
-	public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
-	{
-		return super.onRequest(player, params);
-	}
+	public abstract String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params);
 
 
 	/**
