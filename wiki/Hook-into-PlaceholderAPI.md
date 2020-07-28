@@ -1,11 +1,16 @@
-[version]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
-[Spigot page]: https://spigotmc.org/resources/6245
-[GitHub release]: /PlaceholderAPI/PlaceholderAPI/releases/latest
+[APIBadge]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
 
-> ![version]  
-> **[Spigot page]** | **[GitHub Release]***
+[SpigotBadge]: https://img.shields.io/spiget/version/6245?label=Spigot
+[Spigot]: https://spigotmc.org/resources/6245
+
+[GitHubBadge]: https://img.shields.io/github/v/release/PlaceholderAPI/PlaceholderAPI?label=GitHub%20Release
+[GitHub]: /PlaceholderAPI/PlaceholderAPI/releases/latest
+
+> [![SpigotBadge]][Spigot] [![GitHubBadge]][GitHub]
 >
-> *The GitHub release may be different from the spigot release
+> ![APIBadge]  
+>
+> *The GitHub release may be different from the spigot release*
 
 This page is about using PlaceholderAPI in your own plugin, to either let other plugins use your plugin, or just use placeholders from other plugins in your own.
 

@@ -8,8 +8,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 > If you changed, removed or added placeholders, or made your plugin(s) and/or expansion(s) no longer available and want us to update this page, [create an issue](/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md) and let us know.  
 > This is also the case for when you want your plugin to be added to the list.
 
-[PAPI-placeholders](#papi-placeholders-1)
-----
+## [PAPI-placeholders](#papi-placeholders-1)
+
 - **[Advancements](#advancements)**
 - **[Animations](#animations)**
 - **[Armor](#armor)**
@@ -28,6 +28,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[ParseOther](#parseother)**
 - **[Pinger](#pinger)**
 - **[Player](#player)**
+- **[PlayerList](#playerlist)**
 - **[Plugin](#plugin)**
 - **[Progress](#progress)**
 - **[RainbowColor](#RainbowColor)**
@@ -44,8 +45,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[World](#world)**
 ----
 
-[Plugin-placeholders](#plugin-placeholders-1)
-----
+## [Plugin-placeholders](#plugin-placeholders-1)
+
 ## **A**
 - **[AAC - AdvancedAntiCheat](#aac)**
 - **[AbstractMenus](#abstractmenus)**
@@ -256,6 +257,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Statz](#statz)**
 - **[StrikePractice 2](#strikepractice-2)**
 - **[stTitles](#sttitles)**
+- **[SubServers](#subservers)**
 - **[SuperbVote](#superbvote)**
 - **[SuperCredits](#supercredits)**
 - **[SuperVanish](#supervanish)**
@@ -300,8 +302,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 ## **X**
 - **[XLTournaments](#xltournaments)**
 
-
-***
+----
 ## PAPI-placeholders
 These placeholders are from PlaceholderAPI and don't require any additional plugin to function (unless mentioned).
 
@@ -320,46 +321,16 @@ These placeholders are from PlaceholderAPI and don't require any additional plug
 - ### **Animations**
 > /papi ecloud download Animations
 
-More info about this expansion can be found on the [dedicated wiki](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers).
-
-Placeholder format:
 ```html
 %animations_<tag>Text</tag>%
+%animations_<tag option>Text</tag>%
+%animations_<tag option=:value>Text</tag>%
 ```
 
-With implicit boolean flag set to true
-```html
-%animations_<tag option>Text</tag>%
-```
-With explicit options set
-```html
-%animations_<tag option=10>Text</tag>%
-```
-With bracket placeholders:
-```html
-%animations_<tag>{placeholder}</tag>%
-```
 Please note: When using placeholders within the animation text, you must use the bracket variant.
 Use `{player_name}` instead of `%player_name%` within the <tag> </tag> tags.
 
-Available tags:
-- [Left Align](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Align) - `<align left width=32>Text</align>`
-- [Right Align](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Align) - `<align right width=32>Text</align>`
-- [Appear](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Appear) - `<appear>Text</appear>`
-- [Faded Appear](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Appear) - `<appear fade>Text</appear>`
-- [Erase](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Erase) - `<erase>Text</erase>`
-- [Faded Erase](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Erase) - `<erase fade>Text</erase>`
-- [Fading In](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Fading-text) - `<fade in>Text</fade>`
-- [Fading Out](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Fading-text) - `<fade out>Text</fade>`
-- [Format/Round](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Format-number) - `<format format=#.## mode=HALF_EVEN>Number</format>`
-- [Healthbar](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Health-Bar) - `<healthbar symbol=♥ fill=&c empty=&7 size=10 max=20>{player_health}</healthbar>`
-- [Marquee/Scroll](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Marquee) - `<marquee width=32 space=32>Scrolling text</marquee>`
-- [Pause](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Pause) - `<pause times=10>This text is repeated for 10 frames</pause>`
-- [Pulse](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Pulse) - `<pulse color=multi pause=1>Pulsating text</pulse>`
-- [Rainbow](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Rainbow) -`<rainbow>Rainbow text</rainbow>`
-- [Shine/Glow](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Shine) - `<shine start=&9 middle=&4 end=&9 normal=&7>Shining Text</shine>`
-- [Typewriter](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers#Typewriter) - `<typewriter cursor=_ pause=10 reverse>Typing text</typewriter>`
-- [Wave]() - `<wave colors=&c,&e,&6,&a,&9,&1,&d>Wave text</wave>`
+Please visit the [dedicated wiki](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers) for all available tags.
 
 ----
 
@@ -378,19 +349,20 @@ Chose one value that's inside () and replace SLOT with one of the following: hel
 %armor_material_SLOT%
 %armor_maxamount_SLOT%
 ```
-
----
+----
 
 - ### **ASCII**
 > /papi ecloud download ascii
 
 Returns the [ASCII Value](http://www.asciitable.com/) based on input
 
-`%ascii_<value>%`
+```
+%ascii_<value>%
+```
 
 Ex: `%ascii_37%` returns `%`
 
----
+----
 
 - ### **BungeeCord**
 > /papi ecloud download Bungee
@@ -402,6 +374,7 @@ Allows you to show, how many players are online on the entire network, or just o
 %bungee_<servername>%
 ```
 ----
+
 - ### **CheckItem**
 > /papi ecloud download CheckItem
 
@@ -685,6 +658,47 @@ Gives you various placeholders for the player, that triggers the action.
 %player_y%
 %player_z%
 ```
+
+----
+
+- ### **PlayerList**
+> /papi ecloud download PlayerList
+
+### List Players
+
+Returns the player list matching the specified syntax
+
+`%playerlist_<type>,<subtype>,<yes/no>,<output>,<subtype_value>%` - The `yes/no` is to include/exclude the player.
+
+**Types:**
+* `all` - Matches all players
+* `online` - Matches online players
+* `offline` - Matches offline players
+
+**Output Types:**
+* `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.* 
+* `amount` - Returns amount of players matched
+* `<integer>` - Returns the player at the specified index
+
+**SubTypes:**
+* `normal` - Matches all players - Requires no `<subtype_value>`
+* `perm` - Matches all players that match the permission defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `perm1+perm2`)
+* `world` - Matches all player in the world defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `world1+world2`)
+* `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
+
+**Examples:**
+* `%playerlist_all,normal,yes,list%` - `Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare`
+* `%playerlist_online,perm,yes,amount,staff.admin%` - `2`
+* `%playerlist_online,world,yes,2,buildingworld+spawnworld%` - `cj89898, funnycube`
+* `%playerlist_online,nearby,yes,list,5%` - `Tanguygab, cj89898, clip`
+* `%playerlist_online,nearby,no,list,5%` - `Tanguygab, clip`
+* `%playerlist_online,nearby,no,list--,20%` - `Tanguygab-clip-Terfs`
+
+*You can also use `[placeholder]` for papi placeholders in addition to the javascript `{placeholder}`*
+
+*Note: `Offline` and `All` only support the `Normal` subtype.*  
+**Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.*
+
 ----
 
 - ### **Plugin**
@@ -2431,9 +2445,23 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 > NO DOWNLOAD COMMAND
 
 ```
-%marriage_gender_symbol%
+%marriage_gender%
 %marriage_gender_color%
+%marriage_gender_symbol%
+%marriage_home%
 %marriage_partner%
+%marriage_partner_gender%
+%marriage_partner_gender_color%
+%marriage_partner_gender_symbol%
+%marriage_partner_lastseen%
+%marriage_partner_pvp%
+%marriage_pitch%
+%marriage_pvp%
+%marriage_state%
+%marriage_x%
+%marriage_y%
+%marriage_yaw%
+%marriage_z%
 ```
 ----
 
@@ -3706,6 +3734,83 @@ Per Player/Event placeholders:
 %sttitles_id%
 %sttitles_display%
 %sttitles_content%
+```
+----
+
+- ### **[SubServers](https://github.com/ME1312/SubServers-2)**
+> NO DOWNLOAD COMMAND
+
+```
+%subservers_proxies()%
+%subservers_proxy.displayname(<Proxy>)%
+%subservers_proxy.type(<Proxy>)_{Master Proxy, Proxy}%
+%subservers_proxy.players(<Proxy>)%
+%subservers_proxy.subdata(<Proxy>)_{Connected, Disconnected}%
+%subservers_proxy.subdata.channels(<Proxy>)%
+%subservers_proxy.subdata.subchannels(<Proxy>)%
+%subservers_proxy.signature(<Proxy>)%
+
+%subservers_hosts()%
+%subservers_host.displayname(<Host>)%
+%subservers_host.available(<Host>)_{Available, Unavailable}%
+%subservers_host.enabled(<Host>)_{Enabled, Disabled}%
+%subservers_host.address(<Host>)%
+%subservers_host.creator.templates(<Host>)%
+%subservers_host.creator.template.displayname(<Host>, <Template>)%
+%subservers_host.creator.template.enabled(<Host>, <Template>)_{Enabled, Disabled}%
+%subservers_host.creator.template.type(<Host>, <Template>)%
+%subservers_host.creator.template.requiresversion(<Host>, <Template>)_{Optional, Required}%
+%subservers_host.creator.template.updatable(<Host>, <Template>)_{Updatable, Not Updatable}%
+%subservers_host.subservers(<Host>)%
+%subservers_host.players(<Host>)%
+%subservers_host.subdata(<Host>)_{Connected, Unsupported, Disconnected}%
+%subservers_host.subdata.channels(<Host>)%
+%subservers_host.subdata.subchannels(<Host>)%
+%subservers_host.signature(<Host>)%
+
+%subservers_servers()%
+%subservers_server.displayname(<Server>)%
+%subservers_server.type(<Server>)_{Subserver, Server}%
+%subservers_server.groups(<Server>)%
+%subservers_server.address(<Server>)%
+%subservers_server.motd(<Server>)%
+%subservers_server.restricted(<Server>)_{Public, Private}%
+%subservers_server.hidden(<Server>)_{Visible, Hidden}%
+%subservers_server.players(<Server>)%
+%subservers_server.subdata(<Server>)_{Connected, Disconnected}%
+%subservers_server.subdata.channels(<Server>)%
+%subservers_server.subdata.subchannels(<Server>)%
+%subservers_server.signature(<Server>)%
+
+%subservers_subservers()%
+%subservers_subserver.displayname(<Subserver>)%
+%subservers_subserver.available(<Subserver>)_{Available, Unavailable}%
+%subservers_subserver.enabled(<Subserver>)_{Enabled, Disabled}%
+%subservers_subserver.editable(<Subserver>)_{Editable, Locked}%
+%subservers_subserver.host(<Subserver>)%
+%subservers_subserver.template(<Subserver>)%
+%subservers_subserver.template.displayname(<Subserver>)%
+%subservers_subserver.template.enabled(<Subserver>)_{Enabled, Disabled}%
+%subservers_subserver.template.type(<Subserver>)%
+%subservers_subserver.template.requiresversion(<Subserver>)_{Optional, Required}%
+%subservers_subserver.template.updatable(<Subserver>)_{Updatable, Not Updatable}%
+%subservers_subserver.groups(<Subserver>)%
+%subservers_subserver.address(<Subserver>)%
+%subservers_subserver.motd(<Subserver>)%
+%subservers_subserver.logging(<Subserver>)_{Logging, Muted}%
+%subservers_subserver.running(<Subserver>)_{Running, Offline}%
+%subservers_subserver.online(<Subserver>)_{Online, Starting, Offline}%
+%subservers_subserver.temporary(<Subserver>)_{Permanent, Temporary}%
+%subservers_subserver.stopaction(<Subserver>)%
+%subservers_subserver.incompatibilities(<Subserver>)%
+%subservers_subserver.incompatibilities.current(<Subserver>)%
+%subservers_subserver.restricted(<Subserver>)_{Public, Private}%
+%subservers_subserver.hidden(<Subserver>)_{Visible, Hidden}%
+%subservers_subserver.players(<Subserver>)%
+%subservers_subserver.subdata(<Subserver>)_{Connected, Disconnected}%
+%subservers_subserver.subdata.channels(<Subserver>)%
+%subservers_subserver.subdata.subchannels(<Subserver>)%
+%subservers_subserver.signature(<Subserver>)%
 ```
 ----
 
