@@ -80,15 +80,22 @@ sourceSets {
 }
 
 publishing {
+	repositories {
+		maven {
+			url = uri("https://repo.extendedclip.com/content/repositories/public/")
+		
+			credentials {
+				username = System.getProperty("JENKINS_USER")
+				password = System.getProperty("JENKINS_PASS")
+			}
+		}
+	}
+	
 	publications {
 		maven(MavenPublication) {
-			groupId = project.group
-			artifactId = project.name
-			version = project.version.toString()
-			
 			from(components.java)
 		}
 	}
 }
 
-publishToMavenLocal.dependsOn clean, test, jar
+publish.dependsOn clean, test, jar
