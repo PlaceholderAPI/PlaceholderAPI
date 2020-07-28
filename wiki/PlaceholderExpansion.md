@@ -232,7 +232,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return possibly-null String of the requested identifier.
      */
     @Override
-    public String onPlaceholderRequest(Player player, String identifier){
+    public String onRequest(OfflinePlayer player, String identifier){
 
         if(p == null){
             return "";
@@ -365,7 +365,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * @return possibly-null String of the requested identifier.
      */
     @Override
-    public String onPlaceholderRequest(Player player, String identifier){
+    public String onRequest(Player player, String identifier){
 
         if(player == null){
             return "";
