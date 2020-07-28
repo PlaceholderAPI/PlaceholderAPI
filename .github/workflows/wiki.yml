@@ -42,4 +42,8 @@ jobs:
         # We only want to target files in the wiki folder
         #
         MD_FOLDER: 'wiki'
-        WIKI_PUSH_MESSAGE: 'Updating wiki from Commit ${GITHUB_SHA:0:7}'
+        WIKI_PUSH_MESSAGE: 'Updating wiki from commit ${{ github.event.after }}'
+        #
+        # We skip/ignore the README.md file in the Wiki folder
+        #
+        SKIP_MD: README.md
