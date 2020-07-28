@@ -4,12 +4,6 @@ about: Request a update/change of the PlaceholderAPI-code
 
 ---
 
-[Request change (Wiki)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md
-[Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
-[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
-[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
-[Pull Requests]: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
-
 ## Please read
 This template is only for requesting new functions to be added to PlaceholderAPI or for old one to be changed!  
 Please use the [Request change (Wiki)] template to ask for additions/changes to the wiki.  
@@ -36,3 +30,13 @@ Changes to code that will affect the end-user (breaks stuff).
 > What is the change?  
 > Please provide as much information (including links, images and code-snippeds) as possible.
 <!-- Please write below this line to prevent formatting issues -->
+
+
+
+<!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
+
+[Request change (Wiki)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md
+[Bug report]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md
+[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+[Pull Requests]: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
