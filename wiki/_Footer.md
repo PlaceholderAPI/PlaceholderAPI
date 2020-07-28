@@ -10,7 +10,7 @@
 [issuesImg]: https://img.shields.io/github/issues-raw/PlaceholderAPI/PlaceholderAPI.svg?logo=github&logoColor=white
 [issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
 
-[versionImg]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/PlaceholderAPI.svg?label=API-Version
+[versionImg]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/PlaceholderAPI.svg?label=API%20Version
 
 [plugin-page]: https://spigotmc.org/resources/6245
 
