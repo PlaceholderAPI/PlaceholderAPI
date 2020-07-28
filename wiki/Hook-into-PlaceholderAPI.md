@@ -1,4 +1,4 @@
-[APIBadge]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
+[APIBadge]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/PlaceholderAPI.svg?label=API-Version
 
 [SpigotBadge]: https://img.shields.io/spiget/version/6245?label=Spigot
 [Spigot]: https://spigotmc.org/resources/6245
