@@ -61,7 +61,7 @@ public final class CommandDump extends PlaceholderCommand
 			}
 
 			Msg.msg(sender,
-					"&aSuccessfully posted dump: " + URL + key);
+					"&aSuccessfully posted dump: &7&o" + URL + key);
 		});
 	}
 
