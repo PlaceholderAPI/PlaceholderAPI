@@ -52,6 +52,16 @@ tasks.withType(JavaCompile) {
 	targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+tasks.withType(Javadoc) {
+	options.encoding = "UTF-8"
+	options.addBooleanOption('html5', true)
+}
+
+java {
+	withJavadocJar()
+	withSourcesJar()
+}
+
 shadowJar {
 	archiveClassifier.set("")
 	
