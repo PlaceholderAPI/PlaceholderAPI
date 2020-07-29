@@ -53,6 +53,8 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.withType(Javadoc) {
+	failOnError = false /* remove this once builds are ran with JDK 11 */
+	
 	options.encoding = "UTF-8"
 	options.addBooleanOption('html5', true)
 }
