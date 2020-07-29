@@ -139,7 +139,7 @@ public final class CommandParse extends PlaceholderCommand
 			}
 			else
 			{
-				sender.spigot().sendMessage(TextComponent.fromLegacyText(message));
+				((Player) sender).spigot().sendMessage(TextComponent.fromLegacyText(message));
 			}
 		}
 	}
