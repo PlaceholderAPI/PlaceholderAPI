@@ -142,4 +142,10 @@ public final class CommandECloudUpdate extends PlaceholderCommand
 						 .collect(Futures.collector());
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Update an eCloud expansion.";
+	}
+
 }

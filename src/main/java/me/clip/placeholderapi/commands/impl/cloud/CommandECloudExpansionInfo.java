@@ -133,4 +133,10 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand
 		suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Get eCloud information on a specific expansion.";
+	}
+
 }

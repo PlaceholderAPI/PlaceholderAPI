@@ -76,4 +76,10 @@ public final class CommandECloudToggle extends PlaceholderCommand
 		Msg.msg(sender, "&aThe eCloud Manager has been " + (desiredState ? "enabled" : "disabled"));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Toggle the eCloud accessibility.";
+	}
+
 }

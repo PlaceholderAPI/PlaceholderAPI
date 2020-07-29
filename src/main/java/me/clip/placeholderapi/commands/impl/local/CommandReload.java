@@ -42,4 +42,10 @@ public final class CommandReload extends PlaceholderCommand
 		plugin.reloadConf(sender);
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Reload the plugin configuration.";
+	}
+
 }

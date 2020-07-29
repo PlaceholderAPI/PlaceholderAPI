@@ -121,4 +121,10 @@ public final class CommandECloudDownload extends PlaceholderCommand
 		suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Download an expansion from the eCloud.";
+	}
+
 }

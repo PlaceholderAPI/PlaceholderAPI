@@ -93,4 +93,10 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 		suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Get eCloud expansion placeholder list.";
+	}
+
 }

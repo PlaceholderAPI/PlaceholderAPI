@@ -51,4 +51,10 @@ public final class CommandVersion extends PlaceholderCommand
 				"&feCloud Commands&8: &b/papi &7ecloud");
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "View plugin information/version.";
+	}
+
 }

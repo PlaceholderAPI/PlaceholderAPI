@@ -114,4 +114,10 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 		suggestByParameter(Arrays.stream(fileNames), suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Register an expansion by the name of a file.";
+	}
+
 }

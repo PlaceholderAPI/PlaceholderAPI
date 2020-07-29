@@ -77,4 +77,10 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 		suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Unregister an expansion by name.";
+	}
+
 }

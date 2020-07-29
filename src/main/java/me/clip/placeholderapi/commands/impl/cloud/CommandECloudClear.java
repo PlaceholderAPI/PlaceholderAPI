@@ -45,4 +45,10 @@ public final class CommandECloudClear extends PlaceholderCommand
 				"&aThe eCloud cache has been cleared!");
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Clear the expansion cloud cache.";
+	}
+
 }

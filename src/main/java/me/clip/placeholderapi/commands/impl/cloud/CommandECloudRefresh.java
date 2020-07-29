@@ -47,4 +47,10 @@ public final class CommandECloudRefresh extends PlaceholderCommand
 				"&aThe eCloud Manager has been refreshed!");
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Fetch the most up to date list of expansions available.";
+	}
+
 }

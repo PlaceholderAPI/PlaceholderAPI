@@ -117,4 +117,10 @@ public final class CommandInfo extends PlaceholderCommand
 		suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions, params.isEmpty() ? null : params.get(0));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "View information for a specific expansions";
+	}
+
 }

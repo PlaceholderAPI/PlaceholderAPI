@@ -357,4 +357,10 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 		message.append(String.join("\n", table));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Get eCloud expansion list.";
+	}
+
 }

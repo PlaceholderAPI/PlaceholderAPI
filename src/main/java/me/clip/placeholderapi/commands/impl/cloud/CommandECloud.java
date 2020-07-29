@@ -78,24 +78,16 @@ public final class CommandECloud extends PlaceholderCommand
 	{
 		if (params.isEmpty())
 		{
-			Msg.msg(sender,
-					"&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
-					" ",
-					"&b/papi &fecloud status",
-					"  &7&oView status of the eCloud",
-					"&b/papi &fecloud list <all/{author}/installed> {page}",
-					"  &7&oList all/author specific available expansions",
-					"&b/papi &fecloud info <expansion name> {version}",
-					"  &7&oView information about a specific expansion available on the eCloud",
-					"&b/papi &fecloud placeholders <expansion name>",
-					"  &7&oView placeholders for an expansion",
-					"&b/papi &fecloud download <expansion name> {version}",
-					"  &7&oDownload an expansion from the eCloud",
-					"&b/papi &fecloud refresh",
-					"  &7&oFetch the most up to date list of expansions available.",
-					"&b/papi &fecloud clear",
-					"  &7&oClear the expansion cloud cache.");
+			final StringBuilder builder = new StringBuilder("&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- \n");
 
+			COMMANDS.forEach(command -> {
+				if (command.equals(this)) return;
+
+				builder.append("&b/papi &f").append(command.getLabel()).append("\n");
+				builder.append("   &7&o").append(command.getDescription()).append("\n");
+			});
+
+			Msg.msg(sender, builder.toString());
 			return;
 		}
 
@@ -145,6 +137,12 @@ public final class CommandECloud extends PlaceholderCommand
 		}
 
 		target.complete(plugin, sender, search, params.subList(1, params.size()), suggestions);
+	}
+
+	@Override
+	public String getDescription()
+	{
+		return "eCloud part of the plugin commands";
 	}
 
 }

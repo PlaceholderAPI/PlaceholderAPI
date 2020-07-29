@@ -60,4 +60,10 @@ public final class CommandECloudStatus extends PlaceholderCommand
 		Msg.msg(sender,builder.toString());
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Get the eCloud status.";
+	}
+
 }

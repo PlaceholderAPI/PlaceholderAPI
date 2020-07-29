@@ -176,4 +176,10 @@ public final class CommandDump extends PlaceholderCommand
 		return builder.toString();
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "Provides information regarding installed expansions within a paste.";
+	}
+
 }

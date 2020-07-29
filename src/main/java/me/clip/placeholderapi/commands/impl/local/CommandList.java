@@ -59,4 +59,10 @@ public final class CommandList extends PlaceholderCommand
 				partitions.stream().map(partition -> "  " + String.join(", ", partition)).collect(Collectors.joining("\n")));
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return "List all active expansions.";
+	}
+
 }
