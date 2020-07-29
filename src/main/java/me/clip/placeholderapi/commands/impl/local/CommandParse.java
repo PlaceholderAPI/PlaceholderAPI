@@ -91,7 +91,7 @@ public final class CommandParse extends PlaceholderCommand
 	{
 		if (params.size() < 2)
 		{
-			Msg.msg(sender, "&cYou must supply a target, and a message: &b/papi " + (broadcast ? "bcparse" : "parse") + " &7{target} &a{message}");
+			Msg.msg(sender, "&cYou must supply a target, and a message:\n&7/papi " + (broadcast ? "bcparse" : "parse") + " &f<target> <message>");
 			return;
 		}
 
@@ -148,7 +148,7 @@ public final class CommandParse extends PlaceholderCommand
 	{
 		if (params.size() < 3)
 		{
-			Msg.msg(sender, "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} {target two} &a{message}");
+			Msg.msg(sender, "&cYou must supply two targets, and a message:\n&7/papi parserel &f<target one> <target two> <message>");
 			return;
 		}
 
