@@ -191,7 +191,7 @@ public final class CharsReplacer implements Replacer
 				continue;
 			}
 
-			builder.append(replacement);
+			builder.append(ChatColor.translateAlternateColorCodes('&', replacement));
 		}
 
 		return builder.toString();
