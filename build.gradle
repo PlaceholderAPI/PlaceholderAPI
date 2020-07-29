@@ -56,11 +56,11 @@ shadowJar {
 
 license {
 	header = file("headers/header.txt")
-
+	
 	ext {
 		year = 2020
 	}
-
+	
 	include "**/*.java"
 }
 
@@ -81,7 +81,7 @@ publishing {
 			} else {
 				url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 			}
-		
+			
 			credentials {
 				username = System.getenv("JENKINS_USER")
 				password = System.getenv("JENKINS_PASS")
@@ -94,6 +94,7 @@ publishing {
 			from components.java
 			
 			pom.withXml {
+				asNode().appendNode("packaging", "jar")
 				asNode().remove(asNode().get("dependencies"))
 			}
 		}
