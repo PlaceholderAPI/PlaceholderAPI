@@ -85,12 +85,12 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			if (exception != null)
 			{
 				Msg.msg(sender,
-						"&cFailed to download expansion: &e" + exception.getMessage());
+						"&cFailed to download expansion: &7" + exception.getMessage());
 				return;
 			}
 
 			Msg.msg(sender,
-					"&aSuccessfully downloaded expansion to file: &e" + file.getName());
+					"&aSuccessfully downloaded expansion to file: &7" + file.getName());
 
 			plugin.getCloudExpansionManager().clean();
 			plugin.getCloudExpansionManager().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
