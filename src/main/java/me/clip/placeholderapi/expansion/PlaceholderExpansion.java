@@ -83,7 +83,7 @@ public abstract class PlaceholderExpansion
 	@Nullable
 	public String getRequiredPlugin()
 	{
-		return getPlugin();
+		return null;
 	}
 
 	/**
@@ -137,10 +137,8 @@ public abstract class PlaceholderExpansion
 	 * Attempt to register this PlaceholderExpansion
 	 *
 	 * @return true if this expansion is now registered with PlaceholderAPI
-	 * @deprecated This is going to be final in the future, startup and shutdown logic will have their own methods soon.
 	 */
-	@Deprecated
-	public boolean register()
+	public final boolean register()
 	{
 		return canRegister() && getPlaceholderAPI().getLocalExpansionManager().register(this);
 	}
@@ -259,38 +257,6 @@ public abstract class PlaceholderExpansion
 	public final String toString()
 	{
 		return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s']", getName(), getAuthor(), getVersion());
-	}
-
-	// === Deprecated API ===
-
-	/**
-	 * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public String getPlugin()
-	{
-		return null;
-	}
-
-	/**
-	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public String getDescription()
-	{
-		return null;
-	}
-
-	/**
-	 * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public String getLink()
-	{
-		return null;
 	}
 
 }

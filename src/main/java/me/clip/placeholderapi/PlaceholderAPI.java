@@ -29,7 +29,6 @@ import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,20 +45,15 @@ public final class PlaceholderAPI
 	private static final Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
 
 
-	@Deprecated
-	private static final Pattern PLACEHOLDER_PATTERN            = Pattern.compile("[%]([^%]+)[%]");
-	@Deprecated
-	private static final Pattern BRACKET_PLACEHOLDER_PATTERN    = Pattern.compile("[{]([^{}]+)[}]");
-	@Deprecated
-	private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern.compile("[%](rel_)([^%]+)[%]");
+	private static final Pattern PERCENT_PLACEHOLDER_PATTERN = Pattern.compile("%((?<identifier>[a-zA-Z0-9]+)_)(?<parameters>[^%]+)%");
+	private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("\\{((?<identifier>[a-zA-Z0-9]+)_)(?<parameters>[^{}]+)}");
+	private static final Pattern RELATED_PLACEHOLDER_PATTERN = Pattern.compile("%rel_((?<identifier>[a-zA-Z0-9]+)_)(?<parameters>[^%]+)%");
 
 
 	private PlaceholderAPI()
 	{
 	}
 
-
-	// === Current API ===
 
 	/**
 	 * Translates all placeholders into their corresponding values.
@@ -88,6 +82,7 @@ public final class PlaceholderAPI
 	{
 		return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
 	}
+
 
 	/**
 	 * Translates all placeholders into their corresponding values.
@@ -119,6 +114,66 @@ public final class PlaceholderAPI
 
 
 	/**
+	 * set relational placeholders in the text specified placeholders are matched with the pattern
+	 * {@literal %<rel_(identifier)_(params)>%} when set with this method
+	 *
+	 * @param one  First player to compare
+	 * @param two  Second player to compare
+	 * @param text Text to parse the placeholders in
+	 * @return The text containing the parsed relational placeholders
+	 */
+	@NotNull
+	public static String setRelationalPlaceholders(@Nullable final Player one, @Nullable final Player two, @NotNull String text)
+	{
+		if (PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getExpansionsCount() == 0)
+		{
+			return Msg.color(text);
+		}
+
+		final Matcher matcher = RELATED_PLACEHOLDER_PATTERN.matcher(text);
+		if (!matcher.find())
+		{
+			return text;
+		}
+
+		final StringBuffer builder = new StringBuffer();
+
+		do
+		{
+			final String identifier = matcher.group("identifier");
+			final String parameters = matcher.group("parameters");
+
+			final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getExpansion(identifier);
+			if (!(expansion instanceof Relational))
+			{
+				continue;
+			}
+
+			final String requested = ((Relational) expansion).onPlaceholderRequest(one, two, parameters);
+			matcher.appendReplacement(builder, requested != null ? requested : matcher.group(0));
+		}
+		while (matcher.find());
+
+		return Msg.color(text);
+	}
+
+	/**
+	 * Translate placeholders in the provided List based on the relation of the two provided players.
+	 * <br>The pattern of a valid placeholder is {@literal %rel_<identifier>_<param>%}.
+	 *
+	 * @param one  Player to compare
+	 * @param two  Player to compare
+	 * @param text text to parse the placeholder values to
+	 * @return The text containing the parsed relational placeholders
+	 */
+	@NotNull
+	public static List<String> setRelationalPlaceholders(@Nullable final Player one, @Nullable final Player two, @NotNull final List<String> text)
+	{
+		return text.stream().map(line -> setRelationalPlaceholders(one, two, line)).collect(Collectors.toList());
+	}
+
+
+	/**
 	 * Check if a specific placeholder identifier is currently registered
 	 *
 	 * @param identifier The identifier to check
@@ -142,59 +197,15 @@ public final class PlaceholderAPI
 	}
 
 
-	// === Deprecated API ===
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>You set the pattern yourself through this method.
-	 *
-	 * @param player   Player to parse the placeholders against
-	 * @param text     Text to set the placeholder values in
-	 * @param pattern  The pattern to match placeholders to. Capture group 1 must contain an underscore separating the
-	 *                 identifier from the params
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return The text containing the parsed placeholders
-	 * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, String)} instead
-	 */
-	@NotNull
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setPlaceholders(@Nullable final OfflinePlayer player, @NotNull final String text, @NotNull final Pattern pattern, final boolean colorize)
-	{
-		return setPlaceholders(player, text);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>You set the pattern yourself through this method.
-	 *
-	 * @param player   Player to parse the placeholders against
-	 * @param text     List of Strings to set the placeholder values in
-	 * @param pattern  The pattern to match placeholders to. Capture group 1 must contain an underscore separating the
-	 *                 identifier from the params
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return String containing all translated placeholders
-	 * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, List)} instead
-	 */
-	@NotNull
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setPlaceholders(@Nullable final OfflinePlayer player, @NotNull final List<String> text, @NotNull final Pattern pattern, final boolean colorize)
-	{
-		return setPlaceholders(player, text);
-	}
-
 	/**
 	 * Check if a String contains any PlaceholderAPI placeholders ({@literal %<identifier>_<params>%}).
 	 *
 	 * @param text String to check
 	 * @return true if String contains any registered placeholder identifiers, false otherwise
-	 * @deprecated Will be removed in a future release.
 	 */
-	@Deprecated
-	public static boolean containsPlaceholders(String text)
+	public static boolean containsPlaceholders(@NotNull final String text)
 	{
-		return text != null && PLACEHOLDER_PATTERN.matcher(text).find();
+		return PERCENT_PLACEHOLDER_PATTERN.matcher(text).find();
 	}
 
 	/**
@@ -202,372 +213,21 @@ public final class PlaceholderAPI
 	 *
 	 * @param text String to check
 	 * @return true if String contains any registered placeholder identifiers, false otherwise
-	 * @deprecated Will be removed in a future release.
 	 */
-	@Deprecated
-	public static boolean containsBracketPlaceholders(String text)
+	public static boolean containsBracketPlaceholders(@NotNull final String text)
 	{
-		return text != null && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
+		return BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
 	}
 
 	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+	 * Check if a String contains any PlaceholderAPI relational placeholders ({@literal %rel_<identifier>_<param>%}).
 	 *
-	 * @param player   Player to parse the placeholders against
-	 * @param text     List of Strings to set the placeholder values in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
+	 * @param text String to check
+	 * @return true if String contains any registered placeholder identifiers, false otherwise
 	 */
-	@Deprecated
-	public static List<String> setBracketPlaceholders(OfflinePlayer player, List<String> text, boolean colorize)
+	public static boolean containsRelationalPlaceholders(@NotNull final String text)
 	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
-	 *
-	 * @param player   Player to parse the placeholders against
-	 * @param text     List of Strings to set the placeholder values in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setPlaceholders(OfflinePlayer player, List<String> text, boolean colorize)
-	{
-		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>You set the pattern yourself through this method.
-	 *
-	 * @param player  Player to parse the placeholders against
-	 * @param text    List of Strings to set the placeholder values in
-	 * @param pattern The pattern to match placeholders to. Capture group 1 must contain an underscore separating the
-	 *                identifier from the params
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setPlaceholders(OfflinePlayer player, List<String> text, Pattern pattern)
-	{
-		return setPlaceholders(player, text, pattern, true);
-	}
-
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}
-	 *
-	 * @param player   Player to parse the placeholders against
-	 * @param text     Text to set the placeholder values in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return String containing all translated placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setBracketPlaceholders(OfflinePlayer player, String text, boolean colorize)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
-	 *
-	 * @param player   Player to parse the placeholder against
-	 * @param text     Text to parse the placeholders in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return The text containing the parsed placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setPlaceholders(OfflinePlayer player, String text, boolean colorize)
-	{
-		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * Translates all placeholders into their corresponding values.
-	 * <br>You set the pattern yourself through this method.
-	 *
-	 * @param player  Player to parse the placeholders against
-	 * @param text    Text to set the placeholder values in
-	 * @param pattern The pattern to match placeholders to. Capture group 1 must contain an underscore separating the
-	 *                identifier from the params
-	 * @return The text containing the parsed placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setPlaceholders(OfflinePlayer player, String text, Pattern pattern)
-	{
-		return setPlaceholders(player, text, pattern, true);
-	}
-
-	/**
-	 * Translate placeholders in the provided List based on the relation of the two provided players.
-	 * <br>The pattern of a valid placeholder is {@literal %rel_<identifier>_<param>%}.
-	 *
-	 * @param one  Player to compare
-	 * @param two  Player to compare
-	 * @param text text to parse the placeholder values to
-	 * @return The text containing the parsed relational placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text)
-	{
-		return setRelationalPlaceholders(one, two, text, true);
-	}
-
-	/**
-	 * Translate placeholders in the provided list based on the relation of the two provided players.
-	 * <br>The pattern of a valid placeholder is {@literal %rel_<identifier>_<params>%}.
-	 *
-	 * @param one      First player to compare
-	 * @param two      Second player to compare
-	 * @param text     Text to parse the placeholders in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return The text containing the parsed relational placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text, boolean colorize)
-	{
-		if (text == null)
-		{
-			return null;
-		}
-
-		return text.stream()
-				   .map(line -> setRelationalPlaceholders(one, two, line, colorize))
-				   .collect(Collectors.toList());
-	}
-
-	/**
-	 * set relational placeholders in the text specified placeholders are matched with the pattern
-	 * %<rel_(identifier)_(params)>% when set with this method
-	 *
-	 * @param one  First player to compare
-	 * @param two  Second player to compare
-	 * @param text Text to parse the placeholders in
-	 * @return The text containing the parsed relational placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setRelationalPlaceholders(Player one, Player two, String text)
-	{
-		return setRelationalPlaceholders(one, two, text, true);
-	}
-
-	/**
-	 * set relational placeholders in the text specified placeholders are matched with the pattern
-	 * %<rel_(identifier)_(params)>% when set with this method
-	 *
-	 * @param one      Player to compare
-	 * @param two      Player to compare
-	 * @param text     Text to parse the placeholders in
-	 * @param colorize If color codes (&[0-1a-fk-o]) should be translated
-	 * @return The text containing the parsed relational placeholders
-	 * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
-	 */
-	@Deprecated
-	@SuppressWarnings("DuplicatedCode")
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setRelationalPlaceholders(Player one, Player two, String text, boolean colorize)
-	{
-		if (text == null)
-		{
-			return null;
-		}
-
-		if (PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getExpansionsCount() == 0)
-		{
-			return colorize ? Msg.color(text) : text;
-		}
-
-		final Matcher matcher = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
-
-		while (matcher.find())
-		{
-			final String format = matcher.group(2);
-			final int    index  = format.indexOf("_");
-
-			if (index <= 0 || index >= format.length())
-			{
-				continue;
-			}
-
-			String                     identifier = format.substring(0, index).toLowerCase();
-			String                     params     = format.substring(index + 1);
-			final PlaceholderExpansion expansion  = PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getExpansion(identifier);
-
-			if (!(expansion instanceof Relational))
-			{
-				continue;
-			}
-
-			final String value = ((Relational) expansion).onPlaceholderRequest(one, two, params);
-
-			if (value != null)
-			{
-				text = text.replaceAll(Pattern.quote(matcher.group()), Matcher.quoteReplacement(value));
-			}
-		}
-
-		return colorize ? Msg.color(text) : text;
-	}
-
-	/**
-	 * Gets the placeholder pattern for the default placeholders.
-	 *
-	 * @return The pattern for {@literal %<identifier>_<params>%}
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static Pattern getPlaceholderPattern()
-	{
-		return PLACEHOLDER_PATTERN;
-	}
-
-	/**
-	 * Gets the placeholder pattern for the bracket placeholders.
-	 *
-	 * @return The pattern for {@literal {<identifier>_<params>}}
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static Pattern getBracketPlaceholderPattern()
-	{
-		return BRACKET_PLACEHOLDER_PATTERN;
-	}
-
-	/**
-	 * Gets the placeholder pattern for the relational placeholders.
-	 *
-	 * @return The pattern for {@literal %rel_<identifier>_<params>%}
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static Pattern getRelationalPlaceholderPattern()
-	{
-		return RELATIONAL_PLACEHOLDER_PATTERN;
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static Set<String> getRegisteredPlaceholderPlugins()
-	{
-		return getRegisteredIdentifiers();
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static Set<String> getExternalPlaceholderPlugins()
-	{
-		return null;
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setPlaceholders(Player player, String text)
-	{
-		return setPlaceholders(((OfflinePlayer) player), text);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setPlaceholders(Player player, String text, boolean colorize)
-	{
-		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setPlaceholders(Player player, List<String> text)
-	{
-		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, true);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setPlaceholders(Player player, List<String> text, boolean colorize)
-	{
-		return setPlaceholders(player, text, PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setBracketPlaceholders(Player player, String text)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static String setBracketPlaceholders(Player player, String text, boolean colorize)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setBracketPlaceholders(Player player, List<String> text)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, true);
-	}
-
-	/**
-	 * @deprecated Will be removed in a future release.
-	 */
-	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
-	public static List<String> setBracketPlaceholders(Player player, List<String> text, boolean colorize)
-	{
-		return setPlaceholders(player, text, BRACKET_PLACEHOLDER_PATTERN, colorize);
+		return RELATED_PLACEHOLDER_PATTERN.matcher(text).find();
 	}
 
 }

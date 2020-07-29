@@ -20,6 +20,8 @@
 
 package me.clip.placeholderapi.expansion;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Placeholder expansions which use NMS code should be version specific. Implementing this class
  * allows you to perform checks based on the version the server is running. The isCompatibleWith
@@ -28,13 +30,16 @@ package me.clip.placeholderapi.expansion;
  *
  * @author Ryan McCarthy
  */
-public interface VersionSpecific {
+public interface VersionSpecific
+{
 
-    /**
-     * This method is called before the expansion is attempted to be registered The server version
-     * will be passed to this method so you know what version the server is currently running.
-     *
-     * @return true if your expansion is compatible with the version the server is running.
-     */
-    boolean isCompatibleWith(Version v);
+	/**
+	 * This method is called before the expansion is attempted to be registered The server version
+	 * will be passed to this method so you know what version the server is currently running.
+	 *
+	 * @param version The version to check against
+	 * @return true if your expansion is compatible with the version the server is running.
+	 */
+	boolean isCompatibleWith(@NotNull final Version version);
+
 }
