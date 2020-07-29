@@ -33,15 +33,9 @@ dependencies {
 	testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
-import org.apache.tools.ant.filters.ReplaceTokens
-
 processResources {
 	from(sourceSets.main.resources.srcDirs) {
-		filter ReplaceTokens, tokens: [
-				name: rootProject.name,
-				version: project.version.toString(),
-				description: project.description
-		]
+		filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 	}
 }
 
@@ -82,7 +76,6 @@ sourceSets {
 publishing {
 	repositories {
 		maven {
-			
 			if (version.contains("-DEV-")) {
 				url = uri("https://repo.extendedclip.com/content/repositories/dev/")
 			} else {
@@ -97,8 +90,12 @@ publishing {
 	}
 	
 	publications {
-		maven(MavenPublication) {
-			from(components.java)
+		mavenJava(MavenPublication) {
+			from components.java
+			
+			pom.withXml {
+				asNode().remove(asNode().get("dependencies"))
+			}
 		}
 	}
 }
