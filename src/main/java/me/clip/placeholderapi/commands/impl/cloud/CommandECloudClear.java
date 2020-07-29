@@ -42,7 +42,7 @@ public final class CommandECloudClear extends PlaceholderCommand
 	{
 		plugin.getCloudExpansionManager().clean();
 		Msg.msg(sender,
-				"&aThe eCloud cache has been cleared!");
+				"&aThe local eCloud cache has been cleared!");
 	}
 
 }
