@@ -4,14 +4,23 @@ about: Report bugs of PlaceholderAPI with this template
 
 ---
 
-## Please read
-This template is only for reporting bugs of PlaceholderAPI!  
-If you want to request changes to the code of PlaceholderAPI, use the [Request change (PlaceholderAPI)] template.  
-For changes to the wiki use the [Request change (Wiki)] template.
+<!--
+  ### Please read ###
+  This template is only for reporting bugs of PlaceholderAPI!  
+  If you want to request changes to the code of PlaceholderAPI, use the "Request change (PlaceholderAPI)" template.  
+  For changes to the wiki consider making a Pull request towards the "wiki" folder containing your changes.
 
-Please also make sure that you use the [latest release][Spigot] or the latest [developement build][Jenkins] and that your bug isn't already reported on the [issues] page.
+  Please also make sure that you use the latest Spigot release or the latest developement build and that your bug isn't already reported on the issues page.
+  You may get Releases from following sources:
+  
+  - Spigot:  https://www.spigotmc.org/resources/6245/
+  - Jenkins: http://ci.extendedclip.com/job/PlaceholderAPI/
 
-**Please report issues with expansions/placeholders to the corresponding issue tracker! Only report it here if you can't find any place to report it!**
+  NOTE:
+  PLEASE REPORT ISSUES WITH EXPANSIONS AND/OR PLACEHOLDERS TO THEIR CORRESPONDING REPOSITORY/ISSUE TRACKER.
+  THIS REPOSITORY IS NOT FOR SUCH ISSUES.
+-->
+## Bug Report
 
 ### Issue
 > What is the issue? Describe it like you would tell a friend.
@@ -36,13 +45,3 @@ Please also make sure that you use the [latest release][Spigot] or the latest [d
 ### Installed expansions
 > Please list all expansions that are displayed when running `/papi list`
 <!-- Please write below this line to prevent formatting issues -->
-
-
-
-<!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
-
-[Request change (Wiki)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md
-[Request change (PlaceholderAPI)]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
-[Spigot]: https://www.spigotmc.org/resources/6245/
-[Jenkins]: http://ci.extendedclip.com/job/PlaceholderAPI/
-[issues]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues
