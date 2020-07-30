@@ -64,7 +64,9 @@ public final class CommandHelp extends PlaceholderCommand
 				"&b/papi &fregister &9<file name>",
 				"  &7&oRegister an expansion by the name of the file",
 				"&b/papi &funregister &9<expansion name>",
-				"  &7&oUnregister an expansion by name");
+				"  &7&oUnregister an expansion by name",
+				"&b/papi &fdump",
+				"  &7&oTake a dump and send it to clip or someone else in HelpChat");
 	}
 
 }
