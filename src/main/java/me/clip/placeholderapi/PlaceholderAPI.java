@@ -29,6 +29,7 @@ import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -285,6 +286,44 @@ public final class PlaceholderAPI
 		return colorize ? Msg.color(text) : text;
 	}
 
+	/**
+	 * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to register placeholders instead
+	 */
+	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+	public static boolean registerPlaceholderHook(Plugin plugin, PlaceholderHook placeholderHook) {
+		throw new UnsupportedOperationException(plugin.getName() + " is attempting to register placeholders via a PlaceholderHook class which is no longer supported!"
+				+ " Please reach out to " + plugin.getDescription().getAuthors().toString() + " and let them know that they need to update ASAP!");
+	}
+
+	/**
+	 * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to register placeholders instead
+	 */
+	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+	public static boolean registerPlaceholderHook(String identifier, PlaceholderHook placeholderHook) {
+		throw new UnsupportedOperationException(identifier + " is attempting to register placeholders via a PlaceholderHook class which is no longer supported!");
+	}
+
+
+	/**
+	 * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to unregister placeholders instead
+	 */
+	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+	public static boolean unregisterPlaceholderHook(Plugin plugin) {
+		throw new UnsupportedOperationException(plugin.getName() + " is attempting to unregister placeholders via the PlaceholderAPI class which is no longer supported!"
+				+ " Please reach out to " + plugin.getDescription().getAuthors().toString() + " and let them know that they need to update ASAP!");
+	}
+
+	/**
+	 * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to unregister placeholders instead
+	 */
+	@Deprecated
+	@ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+	public static boolean unregisterPlaceholderHook(String identifier) {
+		throw new UnsupportedOperationException(identifier + " is attempting to unregister placeholders through the PlaceholderAPI class which is no longer supported!");
+	}
 
 	/**
 	 * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, String)} instead
