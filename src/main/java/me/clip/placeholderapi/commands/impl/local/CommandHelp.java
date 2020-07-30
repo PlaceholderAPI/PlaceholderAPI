@@ -66,7 +66,7 @@ public final class CommandHelp extends PlaceholderCommand
 				"&b/papi &funregister &9<expansion name>",
 				"  &7&oUnregister an expansion by name",
 				"&b/papi &fdump",
-				"  &7&oTake a dump and send it to sxtanna or someone else in HelpChat");
+					"  &7&oTake a dump and send it to Sxtanna or someone else in HelpChat");
 	}
 
 }
