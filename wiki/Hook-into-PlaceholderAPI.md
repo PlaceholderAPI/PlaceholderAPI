@@ -116,13 +116,18 @@ public class JoinExample extends JavaPlugin implements Listener {
              */
             Bukkit.getPluginManager().registerEvents(this, this);
         } else {
-            throw new RuntimeException("Could not find PlaceholderAPI!! Plugin can not work without it!");
+            /*
+             * We inform about the fact that PlaceholderAPI isn't installed and then
+             * disable this plugin to prevent issues.
+             */
+            getLogger().warn("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
-        String joinText = "%player_name% &ajoined the server! He/she is rank &f%vault_rank%";
+        String joinText = "%player_name% &ajoined the server! They are rank &f%vault_rank%";
 
         /*
          * We parse the placeholders using "setPlaceholders"
