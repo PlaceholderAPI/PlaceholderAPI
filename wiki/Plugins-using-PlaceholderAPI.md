@@ -233,6 +233,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[CustomHelp](https://www.spigotmc.org/resources/20606/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Custom Items](https://www.spigotmc.org/resources/63848/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#custom-items]]**]
 - **[CustomSigns](https://www.spigotmc.org/resources/63569/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
