@@ -35,6 +35,9 @@ jobs:
         #
         ACTION_MAIL: 'actions@github.com'
         ACTION_NAME: 'github-actions[bot]'
+        #
+        # We (sadly) have to use a PAT (Personal Access Token) for this action.
+        #
         GH_PAT: '${{ secrets.WORKFLOWPAT }}'
         OWNER: 'PlaceholderAPI'
         REPO_NAME: 'PlaceholderAPI'
