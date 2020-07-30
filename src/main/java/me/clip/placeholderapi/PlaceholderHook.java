@@ -31,17 +31,11 @@ import org.jetbrains.annotations.Nullable;
  */
 @Deprecated
 @ApiStatus.NonExtendable
-@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
+@ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
 public abstract class PlaceholderHook
 {
 
 	/**
-	 * called when a placeholder value is requested from this hook
-	 *
-	 * @param player {@link OfflinePlayer} to request the placeholder value for, null if not needed for a
-	 *               player
-	 * @param params String passed to the hook to determine what value to return
-	 * @return value for the requested player and params
 	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
 	 */
 	@Nullable
@@ -57,17 +51,10 @@ public abstract class PlaceholderHook
 	}
 
 	/**
-	 * called when a placeholder is requested from this hook
-	 *
-	 * @param player {@link Player} to request the placeholder value for, null if not needed for a player
-	 * @param params String passed to the hook to determine what value to return
-	 * @return value for the requested player and params
-	 *
 	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
 	 */
 	@Nullable
 	@Deprecated
-	@ApiStatus.ScheduledForRemoval(inVersion = "2.10.8")
 	public String onPlaceholderRequest(@Nullable final Player player, @NotNull final String params)
 	{
 		return null;
