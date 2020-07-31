@@ -46,7 +46,7 @@ tasks.withType(JavaCompile) {
 
 shadowJar {
 	archiveClassifier.set("")
-	archiveFileName = "PlaceholderAPI-${project.version}.jar"
+
 	relocate "org.bstats", "me.clip.placeholderapi.metrics"
 	relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
 }
