@@ -12,7 +12,7 @@ on:
     paths:
     - 'wiki/**'
     branches:
-    - 'master'
+    - 'docs/wiki'
     #
     # Releases cause this action to also fire.
     # Using this prevents this problem.
@@ -45,7 +45,7 @@ jobs:
         # We only want to target files in the wiki folder
         #
         MD_FOLDER: 'wiki'
-        WIKI_PUSH_MESSAGE: 'Updating wiki from commit ${{ github.event.after }}'
+        WIKI_PUSH_MESSAGE: '${{ github.event.commits[0].message }}'
         #
         # We skip/ignore the README.md file in the Wiki folder
         #
