@@ -47,7 +47,7 @@ public final class CommandHelp extends PlaceholderCommand
 		Msg.msg(sender,
 				"&b&lPlaceholderAPI &8- &7Help Menu &8- &7(&f" + description.getVersion() + "&7)",
 				" ",
-				"&b/papi",
+				"&b/papi &fversion",
 				"  &7&oView plugin info/version",
 				"&b/papi &freload",
 				"  &7&oReload the config of PAPI",
@@ -61,12 +61,14 @@ public final class CommandHelp extends PlaceholderCommand
 				"  &7&oParse a message with placeholders and broadcast it",
 				"&b/papi &fparserel &9<player one> <player two> <message>",
 				"  &7&oParse a message with relational placeholders",
+				"&b/papi &fcmdparse &9<me/player> <command with placeholders>",
+				"  &7&oParse a message with relational placeholders",
 				"&b/papi &fregister &9<file name>",
 				"  &7&oRegister an expansion by the name of the file",
 				"&b/papi &funregister &9<expansion name>",
 				"  &7&oUnregister an expansion by name",
 				"&b/papi &fdump",
-					"  &7&oTake a dump and send it to Sxtanna or someone else in HelpChat");
+					"  &7&oDump all relevant information needed to help debug issues into a paste link.");
 	}
 
 }

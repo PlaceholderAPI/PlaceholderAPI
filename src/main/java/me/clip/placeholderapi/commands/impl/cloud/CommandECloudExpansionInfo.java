@@ -91,7 +91,7 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand
 			{
 				Msg.msg(sender,
 						"&cCould not find specified version: &f" + params.get(1),
-						"&7Versions: &a" + expansion.getAvailableVersions());
+						"&aVersions: &f" + expansion.getAvailableVersions());
 				return;
 			}
 

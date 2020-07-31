@@ -48,15 +48,15 @@ public final class CommandList extends PlaceholderCommand
 		final Set<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers();
 		if (identifiers.isEmpty())
 		{
-			Msg.msg(sender, "&6There are no placeholder hooks active!");
+			Msg.msg(sender, "&cThere are no placeholder hooks active!");
 			return;
 		}
 
 		final List<List<String>> partitions = Lists.partition(identifiers.stream().sorted().collect(Collectors.toList()), 10);
 
 		Msg.msg(sender,
-				"&6" + identifiers.size() + "&7 placeholder hook(s) active: &a",
-				partitions.stream().map(partition -> "  " + String.join(", ", partition)).collect(Collectors.joining("\n")));
+				"&7A total of &f" + identifiers.size() + "&7 placeholder hook(s) are active: &a",
+				partitions.stream().map(partition -> String.join("&7, &a", partition)).collect(Collectors.joining("\n")));
 	}
 
 }
