@@ -2438,27 +2438,31 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 > NO DOWNLOAD COMMAND
 
 ```
-%mbedwars_<arena>-players%
-%mbedwars_<arena>-maxplayers%
-%mbedwars_<arena>-status%
-%mbedwars_<arena>-teams%
-%mbedwars_<arena>-teamsize%
+%mbedwars_arena-<arena>-maxplayers%
+%mbedwars_arena-<arena>-players%
+%mbedwars_arena-<arena>-status%
+%mbedwars_arena-<arena>-teams%
+%mbedwars_arena-<arena>-teamsize%
+
+%mbedwars_playerarena-current-team%
+%mbedwars_playerarena-current-team-color%
+%mbedwars_playerarena-maxplayers%
 %mbedwars_playerarena-name%
 %mbedwars_playerarena-players%
-%mbedwars_playerarena-maxplayers%
 %mbedwars_playerarena-status%
 %mbedwars_playerarena-teams%
 %mbedwars_playerarena-teamsize%
-%mbedwars_playerarena-current-team%
-%mbedwars_playerarena-current-team-color%
-%mbedwars_stats-rank%
-%mbedwars_stats-wins%
-%mbedwars_stats-loses%
-%mbedwars_stats-kills%
+
+%mbedwars_stats-beds_destroyed%
 %mbedwars_stats-deaths%
-%mbedwars_stats-bedsdestroyed%
-%mbedwars_stats-roundsplayed%
-%mbedwars_stats-playtime%
+%mbedwars_stats-kd%
+%mbedwars_stats-kills%
+%mbedwars_stats-loses%
+%mbedwars_stats-play_time%
+%mbedwars_stats-rank%
+%mbedwars_stats-rounds_played%
+%mbedwars_stats-wins%
+%mbedwars_stats-wl%
 ```
 ----
 
