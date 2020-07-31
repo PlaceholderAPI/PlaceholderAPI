@@ -42,9 +42,10 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.logging.Level;
@@ -52,21 +53,21 @@ import java.util.stream.Collectors;
 
 public final class CommandDump extends PlaceholderCommand
 {
-
+	
 	@NotNull
 	private static final String URL = "https://paste.helpch.at/";
-
+	
 	@NotNull
 	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)
-																		  .withLocale(Locale.US)
-																		  .withZone(ZoneId.of("UTC"));
-
-
+			.withLocale(Locale.US)
+			.withZone(ZoneId.of("UTC"));
+	
+	
 	public CommandDump()
 	{
 		super("dump");
 	}
-
+	
 	@Override
 	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
 	{
@@ -74,17 +75,17 @@ public final class CommandDump extends PlaceholderCommand
 			if (exception != null)
 			{
 				plugin.getLogger().log(Level.WARNING, "failed to post dump details", exception);
-
+				
 				Msg.msg(sender,
 						"&cFailed to post dump details, check console.");
 				return;
 			}
-
+			
 			Msg.msg(sender,
 					"&aSuccessfully posted dump: " + URL + key);
 		});
 	}
-
+	
 	@NotNull
 	private CompletableFuture<String> postDump(@NotNull final String dump)
 	{
@@ -95,14 +96,14 @@ public final class CommandDump extends PlaceholderCommand
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
 				connection.setDoOutput(true);
-
+				
 				connection.connect();
-
+				
 				try (final OutputStream stream = connection.getOutputStream())
 				{
 					stream.write(dump.getBytes(StandardCharsets.UTF_8));
 				}
-
+				
 				try (final InputStream stream = connection.getInputStream())
 				{
 					//noinspection UnstableApiUsage
@@ -116,84 +117,97 @@ public final class CommandDump extends PlaceholderCommand
 			}
 		});
 	}
-
+	
 	@NotNull
 	private String makeDump(@NotNull final PlaceholderAPIPlugin plugin)
 	{
 		final StringBuilder builder = new StringBuilder();
-
+		
 		builder.append("Generated: ")
-			   .append(DATE_FORMAT.format(Instant.now()))
-			   .append("\n\n");
-
+				.append(DATE_FORMAT.format(Instant.now()))
+				.append("\n\n");
+		
 		builder.append("PlaceholderAPI: ")
-			   .append(plugin.getDescription().getVersion())
-			   .append("\n\n");
-
+				.append(plugin.getDescription().getVersion())
+				.append("\n\n");
+		
 		builder.append("Expansions Registered:")
-			   .append('\n');
-
-
-		final Map<String, List<PlaceholderExpansion>> expansions = plugin.getLocalExpansionManager()
-																		 .getExpansions()
-																		 .stream()
-																		 .collect(Collectors.groupingBy(PlaceholderExpansion::getAuthor));
-
-		for (final Map.Entry<String, List<PlaceholderExpansion>> expansionsByAuthor : expansions.entrySet())
-		{
-			builder.append("  ")
-				   .append(expansionsByAuthor.getKey())
-				   .append(": ")
-				   .append('\n');
-
-			for (final PlaceholderExpansion expansion : expansionsByAuthor.getValue())
-			{
-				builder.append("    ")
-					   .append(expansion.getName())
-					   .append(':')
-					   .append(expansion.getVersion())
-					   .append('\n');
+				.append('\n');
+		
+		final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
+				.getExpansions()
+				.stream()
+				.sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
+				.sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
+				.collect(Collectors.toList());
+		
+		int size = 0;
+		
+		for(final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier).collect(Collectors.toList())){
+			if (name.length() > size) {
+				size = name.length();
 			}
 		}
-
+		
+		for (final PlaceholderExpansion expansion : expansions) {
+			builder.append("  ")
+					.append(String.format("%-" + size + "s", expansion.getIdentifier()))
+					.append(" [Author: ")
+					.append(expansion.getAuthor())
+					.append(", Version: ")
+					.append(expansion.getVersion())
+					.append("]\n");
+			
+		}
+		
 		builder.append('\n');
-
+		
 		builder.append("Expansions Directory:")
-			   .append('\n');
-
+				.append('\n');
+		
 		final String[] jars = plugin.getLocalExpansionManager()
-									.getExpansionsFolder()
-									.list((dir, name) -> name.toLowerCase().endsWith(".jar"));
-
+				.getExpansionsFolder()
+				.list((dir, name) -> name.toLowerCase().endsWith(".jar"));
+		
 		for (final String jar : jars)
 		{
 			builder.append("  ")
-				   .append(jar)
-				   .append('\n');
+					.append(jar)
+					.append('\n');
 		}
-
+		
 		builder.append('\n');
-
-
+		
+		
 		builder.append("Server Info: ")
-			   .append(plugin.getServer().getBukkitVersion())
-			   .append('/')
-			   .append(plugin.getServer().getVersion())
-			   .append("\n\n");
-
+				.append(plugin.getServer().getBukkitVersion())
+				.append('/')
+				.append(plugin.getServer().getVersion())
+				.append("\n\n");
+		
 		builder.append("Plugin Info:")
-			   .append('\n');
-
-		for (final Plugin other : plugin.getServer().getPluginManager().getPlugins())
+				.append('\n');
+		
+		List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
+				.sorted(Comparator.comparing(Plugin::getName))
+				.collect(Collectors.toList());
+		
+		for (final String pluginName : plugins.stream().map(Plugin::getName).collect(Collectors.toList())) {
+			if (pluginName.length() > size) {
+				size = pluginName.length();
+			}
+		}
+		
+		for (final Plugin other : plugins)
 		{
 			builder.append("  ")
-				   .append(other.getName())
-				   .append(": ")
-				   .append(other.getDescription().getVersion())
-				   .append('\n');
+					.append(String.format("%-" + size + "s", other.getName()))
+					.append(" [Version: ")
+					.append(other.getDescription().getVersion())
+					.append("]")
+					.append("\n");
 		}
-
+		
 		return builder.toString();
 	}
-
 }
