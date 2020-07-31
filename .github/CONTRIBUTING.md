@@ -1,26 +1,58 @@
-[issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_placeholderapi.md
+[issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new
 [Discord]: https://helpch.at/discord
+[Code of Conduct]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/CODE_OF_CONDUCT.md
 
-# Contributing
+# Contributing Guidelines
+We welcome everyone to contribute towards the PlaceholderAPI Project, but doing so will require you to follow specific rules to keep a consistent and welcoming way of contributing.
 
-When contributing to this repository, please first discuss the change you wish to make via [issue] or through [Discord] with the owners of this repository before making a change. 
+## Issues
+Like any other Project can you encounter bugs or a feature is missing for you in the plugin.  
+For that can you open an [issue] to report a bug or suggest a new feature to be added.
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+When doing so, make sure you follow the below rules.
 
-## Pull Request Process
+### Follow the Template
+We have Issue templates to help us get the required information more easly. Please follow the provided template when either filing a bug report or feature request.  
+We reserve the right to close your issue without warning for not following the templates.
 
-When creating a Pull request should you follow the below rules:
+### Using Latest Version
+When it comes to bug reports should you always check first, if you're using the latest release of PlaceholderAPI.  
+Often is a bug you encounter fixed in a newer release.
 
-- When pushing towards the code of PlaceholderAPI make the Pull request target the `develop` branch of this repository.
-- When pushing towards the wiki (Towards the dedicated Wiki folder) make the Pull request target the `docs/wiki` branch of this repository.
-- Any Pull requests targeting the `master` branch for above reasons will be denied and closed.
+You can optionally also try out development builds to see, if your bug is fixed in those.
 
-### Code structure
-When changing the code of PlaceholderAPI should you follow these basic guidelines for how to do stuff.
+The same rules apply for when making a feature request.
 
-#### Codestyle
-We follow the Google Codestyle for the project. Please make sure that you follow it when contributing code to this project.
+### No duplicate issue
+Make sure that there isn't any existing issue, which is still open, or is closed with a solution/explanation.  
+Opening a separate issue for a bug report or feature request, that already exists on the issue tracker only slows down the process of fixing the bug or implementing the feature.
 
-#### Documentation
-When you implement/change methods that are supposed to be usable by the end-user (developer) is it required to also add or update the corresponding Javadocs of the methods.  
-Deprecating a method requires you to add a `@deprecated` tag to the comments and mention the next version this may get removed.
+If an issue with the bug or feature you want to report/suggest exists, comment on it with your info (bug reports) or give it a :thumbsup: (Feature Request) to show that this is important for you.
+
+### Issue isn't caused by external sourced
+PlaceholderAPI provides a feature to have extensions (separate jar files) for placeholders. This gives it a possability that an issue you encounter is caused by said extensions or a separate plugin that uses this extension.  
+In those cases should you report the issue to the issue tracker of the extension or plugin.
+
+## Pull requests
+As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code like bug fixes or new features, or contributions to its documentation such as the Wiki or the Javadoc.
+
+### Code contributions
+Any contributions to PlaceholderAPI's code should be done towards the `develop` branch. Targeting the `master` branch in your Pull request may get it closed without warning.  
+Additionally should you follow the `Google Codestyle` when changing the code and Javadoc.
+
+Some noteworthy points about Javadoc:
+
+- `@param` tags are in a single line and any additional param tag after one don't have an empty line in between.  
+Example:  
+```java
+/**
+ * @param param1 description
+ * @param param2 description
+ */
+```
+- Tags follow the order `@param`, `@return`, `@since` and `@deprecated`
+- The `@deprecated` tag should mention the version of when the annotated object will be removed. This usually the next minor version.
+
+## Code of Conduct
+We have a [Code of Conduct] to maintain a welcoming atmosphere in this project.  
+If your contributions go against the above linked Code of Conduct will we reserve the right t deny or revert your contributions and to permanently remove your access from this project.
