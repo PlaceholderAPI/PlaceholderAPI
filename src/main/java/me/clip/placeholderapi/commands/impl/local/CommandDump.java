@@ -137,14 +137,15 @@ public final class CommandDump extends PlaceholderCommand
     final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
                                 .getExpansions()
                                 .stream()
+                                .sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
                                 .sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
                                 .collect(Collectors.toList());
     
     int size = 0;
 	
-		for(final PlaceholderExpansion placeholderExpansion : expansions){
-			if (placeholderExpansion.getIdentifier().length() > size) {
-				size = placeholderExpansion.getIdentifier().length();
+		for(final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier).collect(Collectors.toList())){
+			if (name.length() > size) {
+				size = name.length();
 			}
 		}
     
@@ -187,9 +188,11 @@ public final class CommandDump extends PlaceholderCommand
     builder.append("Plugin Info:")
          .append('\n');
     
-    Plugin[] plugins = plugin.getServer().getPluginManager().getPlugins();
+    List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
+                                 .sorted(Comparator.comparing(Plugin::getName))
+                                 .collect(Collectors.toList());
     
-    for (final String pluginName : Arrays.stream(plugins).map(Plugin::getName).collect(Collectors.toList())) {
+    for (final String pluginName : plugins.stream().map(Plugin::getName).collect(Collectors.toList())) {
       if (pluginName.length() > size) {
         size = pluginName.length();
       }
