@@ -35,46 +35,46 @@ import java.util.Optional;
 public final class CommandExpansionUnregister extends PlaceholderCommand
 {
 
-	public CommandExpansionUnregister()
-	{
-		super("unregister");
-	}
+  public CommandExpansionUnregister()
+  {
+    super("unregister");
+  }
 
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		if (params.isEmpty())
-		{
-			Msg.msg(sender,
-					"&cYou must specify the name of the expansion.");
-			return;
-		}
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
+  {
+    if (params.isEmpty())
+    {
+      Msg.msg(sender,
+          "&cYou must specify the name of the expansion.");
+      return;
+    }
 
-		final Optional<PlaceholderExpansion> expansion = plugin.getLocalExpansionManager().findExpansionByName(params.get(0));
-		if (!expansion.isPresent())
-		{
-			Msg.msg(sender,
-					"&cThere is no expansion loaded with the identifier: &f" + params.get(0));
-			return;
-		}
+    final Optional<PlaceholderExpansion> expansion = plugin.getLocalExpansionManager().findExpansionByName(params.get(0));
+    if (!expansion.isPresent())
+    {
+      Msg.msg(sender,
+          "&cThere is no expansion loaded with the identifier: &f" + params.get(0));
+      return;
+    }
 
 
-		final String message = !expansion.get().unregister() ?
-							   "&cFailed to unregister expansion: &f" :
-							   "&aSuccessfully unregistered expansion: &f";
+    final String message = !expansion.get().unregister() ?
+                 "&cFailed to unregister expansion: &f" :
+                 "&aSuccessfully unregistered expansion: &f";
 
-		Msg.msg(sender, message + expansion.get().getName());
-	}
+    Msg.msg(sender, message + expansion.get().getName());
+  }
 
-	@Override
-	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
-	{
-		if (params.size() > 1)
-		{
-			return;
-		}
+  @Override
+  public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
+  {
+    if (params.size() > 1)
+    {
+      return;
+    }
 
-		suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions, params.isEmpty() ? null : params.get(0));
-	}
+    suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions, params.isEmpty() ? null : params.get(0));
+  }
 
 }

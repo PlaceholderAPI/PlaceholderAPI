@@ -32,30 +32,30 @@ public final class ServerLoadEventListener implements Listener
 {
 
     @NotNull
-	private final PlaceholderAPIPlugin plugin;
+  private final PlaceholderAPIPlugin plugin;
 
-	public ServerLoadEventListener(@NotNull final PlaceholderAPIPlugin plugin)
-	{
+  public ServerLoadEventListener(@NotNull final PlaceholderAPIPlugin plugin)
+  {
         this.plugin = plugin;
 
-		Bukkit.getPluginManager().registerEvents(this, plugin);
-	}
+    Bukkit.getPluginManager().registerEvents(this, plugin);
+  }
 
-	/**
-	 * This method will be called when the server is first loaded
-	 * <p>
-	 * The goal of the method is to register all the expansions as soon as possible
-	 * especially before players can join
-	 * <p>
-	 * This will ensure no issues with expansions and hooks.
-	 *
-	 * @param event the server load event
-	 */
-	@EventHandler
-	public void onServerLoad(@NotNull final ServerLoadEvent event)
-	{
+  /**
+   * This method will be called when the server is first loaded
+   * <p>
+   * The goal of the method is to register all the expansions as soon as possible
+   * especially before players can join
+   * <p>
+   * This will ensure no issues with expansions and hooks.
+   *
+   * @param event the server load event
+   */
+  @EventHandler
+  public void onServerLoad(@NotNull final ServerLoadEvent event)
+  {
         HandlerList.unregisterAll(this);
         plugin.getLocalExpansionManager().load(Bukkit.getConsoleSender());
-	}
+  }
 
 }

@@ -33,31 +33,31 @@ import java.util.List;
 public final class CommandECloudStatus extends PlaceholderCommand
 {
 
-	public CommandECloudStatus()
-	{
-		super("status");
-	}
+  public CommandECloudStatus()
+  {
+    super("status");
+  }
 
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		final CloudExpansionManager manager = plugin.getCloudExpansionManager();
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
+  {
+    final CloudExpansionManager manager = plugin.getCloudExpansionManager();
 
-		final int updateCount    = manager.getCloudUpdateCount();
-		final int authorCount    = manager.getCloudExpansionAuthorCount();
-		final int expansionCount = manager.getCloudExpansions().size();
+    final int updateCount    = manager.getCloudUpdateCount();
+    final int authorCount    = manager.getCloudExpansionAuthorCount();
+    final int expansionCount = manager.getCloudExpansions().size();
 
-		final StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
 
-		builder.append("&bThere are &a").append(expansionCount).append("&b expansions available on the eCloud.").append('\n');
-		builder.append("&7A total of &f").append(authorCount).append("&7 authors have contributed to the eCloud.").append('\n');
+    builder.append("&bThere are &a").append(expansionCount).append("&b expansions available on the eCloud.").append('\n');
+    builder.append("&7A total of &f").append(authorCount).append("&7 authors have contributed to the eCloud.").append('\n');
 
-		if (updateCount > 0)
-		{
-			builder.append("&eYou have &a").append(updateCount).append("&e expansions installed that have updates available.");
-		}
+    if (updateCount > 0)
+    {
+      builder.append("&eYou have &a").append(updateCount).append("&e expansions installed that have updates available.");
+    }
 
-		Msg.msg(sender,builder.toString());
-	}
+    Msg.msg(sender,builder.toString());
+  }
 
 }

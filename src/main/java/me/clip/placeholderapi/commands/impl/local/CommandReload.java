@@ -31,15 +31,15 @@ import java.util.List;
 public final class CommandReload extends PlaceholderCommand
 {
 
-	public CommandReload()
-	{
-		super("reload");
-	}
+  public CommandReload()
+  {
+    super("reload");
+  }
 
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		plugin.reloadConf(sender);
-	}
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
+  {
+    plugin.reloadConf(sender);
+  }
 
 }

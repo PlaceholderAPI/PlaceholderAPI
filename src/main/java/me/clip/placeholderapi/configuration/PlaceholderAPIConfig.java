@@ -28,80 +28,80 @@ import java.util.Optional;
 public final class PlaceholderAPIConfig
 {
 
-	@NotNull
-	private final PlaceholderAPIPlugin plugin;
+  @NotNull
+  private final PlaceholderAPIPlugin plugin;
 
-	public PlaceholderAPIConfig(@NotNull final PlaceholderAPIPlugin plugin)
-	{
-		this.plugin = plugin;
-	}
-
-
-	public boolean checkUpdates()
-	{
-		return plugin.getConfig().getBoolean("check_updates");
-	}
-
-	public boolean cloudAllowUnverifiedExpansions()
-	{
-		return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
-	}
+  public PlaceholderAPIConfig(@NotNull final PlaceholderAPIPlugin plugin)
+  {
+    this.plugin = plugin;
+  }
 
 
-	public boolean isCloudEnabled()
-	{
-		return plugin.getConfig().getBoolean("cloud_enabled");
-	}
+  public boolean checkUpdates()
+  {
+    return plugin.getConfig().getBoolean("check_updates");
+  }
 
-	public void setCloudEnabled(boolean state)
-	{
-		plugin.getConfig().set("cloud_enabled", state);
-		plugin.saveConfig();
-	}
-
-
-	public boolean isDebugMode()
-	{
-		return plugin.getConfig().getBoolean("debug", false);
-	}
+  public boolean cloudAllowUnverifiedExpansions()
+  {
+    return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
+  }
 
 
-	public Optional<ExpansionSort> getExpansionSort()
-	{
-		final String option = plugin.getConfig().getString("cloud_sorting", ExpansionSort.LATEST.name());
+  public boolean isCloudEnabled()
+  {
+    return plugin.getConfig().getBoolean("cloud_enabled");
+  }
 
-		try
-		{
-			//noinspection ConstantConditions (bad spigot annotation)
-			return Optional.of(ExpansionSort.valueOf(option.toUpperCase()));
-		}
-		catch (final IllegalArgumentException ignored)
-		{
-			return Optional.empty();
-		}
-	}
+  public void setCloudEnabled(boolean state)
+  {
+    plugin.getConfig().set("cloud_enabled", state);
+    plugin.saveConfig();
+  }
 
 
-	@NotNull
-	public String dateFormat()
-	{
-		//noinspection ConstantConditions (bad spigot annotation)
-		return plugin.getConfig().getString("date_format", "MM/dd/yy HH:mm:ss");
-	}
+  public boolean isDebugMode()
+  {
+    return plugin.getConfig().getBoolean("debug", false);
+  }
 
 
-	@NotNull
-	public String booleanTrue()
-	{
-		//noinspection ConstantConditions (bad spigot annotation)
-		return plugin.getConfig().getString("boolean.true", "true");
-	}
+  public Optional<ExpansionSort> getExpansionSort()
+  {
+    final String option = plugin.getConfig().getString("cloud_sorting", ExpansionSort.LATEST.name());
 
-	@NotNull
-	public String booleanFalse()
-	{
-		//noinspection ConstantConditions (bad spigot annotation)
-		return plugin.getConfig().getString("boolean.false", "false");
-	}
+    try
+    {
+      //noinspection ConstantConditions (bad spigot annotation)
+      return Optional.of(ExpansionSort.valueOf(option.toUpperCase()));
+    }
+    catch (final IllegalArgumentException ignored)
+    {
+      return Optional.empty();
+    }
+  }
+
+
+  @NotNull
+  public String dateFormat()
+  {
+    //noinspection ConstantConditions (bad spigot annotation)
+    return plugin.getConfig().getString("date_format", "MM/dd/yy HH:mm:ss");
+  }
+
+
+  @NotNull
+  public String booleanTrue()
+  {
+    //noinspection ConstantConditions (bad spigot annotation)
+    return plugin.getConfig().getString("boolean.true", "true");
+  }
+
+  @NotNull
+  public String booleanFalse()
+  {
+    //noinspection ConstantConditions (bad spigot annotation)
+    return plugin.getConfig().getString("boolean.false", "false");
+  }
 
 }

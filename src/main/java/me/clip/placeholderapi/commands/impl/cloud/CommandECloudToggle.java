@@ -32,48 +32,48 @@ import java.util.List;
 public final class CommandECloudToggle extends PlaceholderCommand
 {
 
-	public CommandECloudToggle()
-	{
-		super("toggle", "enable", "disable");
-	}
+  public CommandECloudToggle()
+  {
+    super("toggle", "enable", "disable");
+  }
 
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		final boolean desiredState;
-		final boolean currentState = plugin.getPlaceholderAPIConfig().isCloudEnabled();
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
+  {
+    final boolean desiredState;
+    final boolean currentState = plugin.getPlaceholderAPIConfig().isCloudEnabled();
 
-		switch (alias.toLowerCase())
-		{
-			case "enable":
-				desiredState = true;
-				break;
-			case "disable":
-				desiredState = false;
-				break;
-			default:
-				desiredState = !currentState;
-				break;
-		}
+    switch (alias.toLowerCase())
+    {
+      case "enable":
+        desiredState = true;
+        break;
+      case "disable":
+        desiredState = false;
+        break;
+      default:
+        desiredState = !currentState;
+        break;
+    }
 
-		if (desiredState == currentState)
-		{
-			Msg.msg(sender, "&7The eCloud Manager is already " + (desiredState ? "enabled" : "disabled"));
-			return;
-		}
+    if (desiredState == currentState)
+    {
+      Msg.msg(sender, "&7The eCloud Manager is already " + (desiredState ? "enabled" : "disabled"));
+      return;
+    }
 
-		plugin.getPlaceholderAPIConfig().setCloudEnabled(desiredState);
+    plugin.getPlaceholderAPIConfig().setCloudEnabled(desiredState);
 
-		if (desiredState)
-		{
-			plugin.getCloudExpansionManager().load();
-		}
-		else
-		{
-			plugin.getCloudExpansionManager().kill();
-		}
+    if (desiredState)
+    {
+      plugin.getCloudExpansionManager().load();
+    }
+    else
+    {
+      plugin.getCloudExpansionManager().kill();
+    }
 
-		Msg.msg(sender, "&aThe eCloud Manager has been " + (desiredState ? "enabled" : "disabled"));
-	}
+    Msg.msg(sender, "&aThe eCloud Manager has been " + (desiredState ? "enabled" : "disabled"));
+  }
 
 }
