@@ -234,7 +234,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 				builder.append("&bInstalled Expansions");
 				break;
 			default:
-				builder.append("&bExpansions by &6")
+				builder.append("&bExpansions by &f")
 					   .append(target);
 				break;
 		}
