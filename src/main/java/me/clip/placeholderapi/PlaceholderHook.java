@@ -35,11 +35,7 @@ import org.jetbrains.annotations.Nullable;
 public abstract class PlaceholderHook
 {
 
-	/**
-	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
-	 */
 	@Nullable
-	@Deprecated
 	public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
 	{
 		if (player != null && player.isOnline())

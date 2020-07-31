@@ -155,14 +155,14 @@ public final class CommandParse extends PlaceholderCommand
 		final OfflinePlayer targetOne = resolvePlayer(params.get(0));
 		if (targetOne == null || !targetOne.isOnline())
 		{
-			Msg.msg(sender, "&cFailed to find player: &7" + params.get(0));
+			Msg.msg(sender, "&cFailed to find player: &f" + params.get(0));
 			return;
 		}
 
 		final OfflinePlayer targetTwo = resolvePlayer(params.get(1));
 		if (targetTwo == null || !targetTwo.isOnline())
 		{
-			Msg.msg(sender, "&cFailed to find player: &7" + params.get(1));
+			Msg.msg(sender, "&cFailed to find player: &f" + params.get(1));
 			return;
 		}
 

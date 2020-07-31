@@ -46,7 +46,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 		if (params.isEmpty())
 		{
 			Msg.msg(sender,
-					"&cYou must supply the name of an eCloud expansion.");
+					"&cYou must supply the name of an expansion.");
 			return;
 		}
 
@@ -54,7 +54,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 		if (expansion == null)
 		{
 			Msg.msg(sender,
-					"&cCould not find expansion named: &f" + params.get(0));
+					"&cFailed to find an expansion named: &f" + params.get(0));
 			return;
 		}
 
@@ -76,7 +76,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			{
 				Msg.msg(sender,
 						"&cCould not find specified version: &f" + params.get(1),
-						"&7Versions: &a" + expansion.getAvailableVersions());
+						"&7Available versions: &f" + expansion.getAvailableVersions());
 				return;
 			}
 		}
@@ -85,12 +85,13 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			if (exception != null)
 			{
 				Msg.msg(sender,
-						"&cFailed to download expansion: &e" + exception.getMessage());
+						"&cFailed to download expansion: &f" + exception.getMessage());
 				return;
 			}
 
 			Msg.msg(sender,
-					"&aSuccessfully downloaded expansion to file: &e" + file.getName());
+					"&aSuccessfully downloaded expansion &f" + expansion.getName() + " [" + version.getVersion() + "] &ato file: &f" + file.getName(),
+					"&aMake sure to type &f/papi reload &ato enable your new expansion!");
 
 			plugin.getCloudExpansionManager().clean();
 			plugin.getCloudExpansionManager().fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());

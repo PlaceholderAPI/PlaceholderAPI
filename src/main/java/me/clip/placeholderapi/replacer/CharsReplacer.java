@@ -144,7 +144,7 @@ public final class CharsReplacer implements Replacer
 				}
 			}
 
-			final String identifierString = identifier.toString();
+			final String identifierString = identifier.toString().toLowerCase();
 			final String parametersString = parameters.toString();
 
 			identifier.setLength(0);

@@ -30,9 +30,9 @@ import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.configuration.ExpansionSort;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.libs.JSONMessage;
 import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
-import me.rayzr522.jsonmessage.JSONMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -234,7 +234,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 				builder.append("&bInstalled Expansions");
 				break;
 			default:
-				builder.append("&bExpansions by &6")
+				builder.append("&bExpansions by &f")
 					   .append(target);
 				break;
 		}

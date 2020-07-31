@@ -9,3 +9,6 @@ contact_links:
   - name: Hastebin
     url: https://paste.helpch.at
     about: Use our Hastebin-site for sharing errors and configuration files.
+  - name: Update Wiki
+    url: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
+    about: Please make a Pull request towards the "wiki" folder to update the wiki.

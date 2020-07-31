@@ -63,7 +63,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 		if (placeholders == null || placeholders.isEmpty())
 		{
 			Msg.msg(sender,
-					"&cThat expansion does not have placeholders listed.");
+					"&cThe expansion specified does not have placeholders listed.");
 			return;
 		}
 

@@ -45,10 +45,10 @@ public final class CommandVersion extends PlaceholderCommand
 		final PluginDescriptionFile description = plugin.getDescription();
 
 		Msg.msg(sender,
-				"&b&lPlaceholderAPI &e(&f" + description.getVersion() + "&e)",
-				"&fAuthors&8: &6" + description.getAuthors(),
-				"&fPAPI Commands&8: &b/papi &7help",
-				"&feCloud Commands&8: &b/papi &7ecloud");
+				"&b&lPlaceholderAPI &7(&f" + description.getVersion() + "&7)",
+				"&7Author: &f" + description.getAuthors(),
+				"&7PAPI Commands: &b/papi &fhelp",
+				"&7eCloud Commands&8: &b/papi &fecloud");
 	}
 
 }
