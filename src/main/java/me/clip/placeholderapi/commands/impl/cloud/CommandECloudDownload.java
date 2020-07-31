@@ -90,7 +90,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 			}
 
 			Msg.msg(sender,
-					"&aSuccessfully downloaded expansion &f" + expansion.getName() + " [" + version + "] &ato file: &f" + file.getName(),
+					"&aSuccessfully downloaded expansion &f" + expansion.getName() + " [" + version.getVersion() + "] &ato file: &f" + file.getName(),
 					"&aMake sure to type &f/papi reload &ato enable your new expansion!");
 
 			plugin.getCloudExpansionManager().clean();
