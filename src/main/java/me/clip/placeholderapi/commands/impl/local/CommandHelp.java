@@ -24,6 +24,7 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.libs.JSONMessage;
+import me.clip.placeholderapi.util.ColorPalette;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,6 +32,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.util.Collection;
 import java.util.List;
 
 public final class CommandHelp extends PlaceholderCommand
@@ -44,16 +46,29 @@ public final class CommandHelp extends PlaceholderCommand
     @Override
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
     {
+        final PluginDescriptionFile description = plugin.getDescription();
+        final Collection<PlaceholderCommand> commands = PlaceholderCommandRouter.COMMANDS;
+        Msg.msg(sender, "&b&lPlaceholderAPI &8- &7Help Menu &8- &7(&f" + description.getVersion() + "&7)");
+
         if (!(sender instanceof Player))
         {
-            Msg.msg(sender, "&cDue to this command using JSON Messages, it can not be executed through console.");
+            final StringBuilder builder = new StringBuilder();
+            for (final PlaceholderCommand command : commands)
+            {
+                if (command.equals(this))
+                {
+                    continue;
+                }
+
+                builder.append(ColorPalette.MAIN_GRAY.getColor()).append(" • ").append(ColorPalette.MAIN_BLUE.getColor()).append("/papi ").append(ColorPalette.MAIN_WHITE.getColor()).append(command.getLabel()).append("\n");
+                builder.append(ColorPalette.MAIN_GRAY.getColor()).append(ColorPalette.ITALIC.getColor()).append("   ").append(command.getDescription()).append("\n");
+            }
+
+            sender.sendMessage(Msg.color(builder.toString()));
             return;
         }
 
         final Player player = (Player) sender;
-        final PluginDescriptionFile description = plugin.getDescription();
-        Msg.msg(sender, "&b&lPlaceholderAPI &8- &7Help Menu &8- &7(&f" + description.getVersion() + "&7)");
-
         for (final PlaceholderCommand command : PlaceholderCommandRouter.COMMANDS)
         {
             if (command.equals(this))
@@ -61,10 +76,10 @@ public final class CommandHelp extends PlaceholderCommand
                 continue;
             }
 
-            final JSONMessage message = JSONMessage.create(Msg.color(" &8• &b/papi &f" + command.getLabel()));
-            final String tooltip = Msg.color("&7" + command.getDescription() + "\n\n" + "&7Permission&8: &f&n" + command.getPermission());
+            final JSONMessage message = JSONMessage.create(Msg.color(ColorPalette.MAIN_GRAY.getColor() + " • " + ColorPalette.MAIN_BLUE.getColor() + "/papi " + ColorPalette.MAIN_WHITE.getColor() + command.getLabel()));
+            final String tooltip = ColorPalette.MAIN_GRAY.getColor() + command.getDescription() + "\n\n" + ColorPalette.MAIN_GRAY.getColor() + "Permission: " + ColorPalette.MAIN_WHITE.getColor() + ColorPalette.UNDERLINE.getColor() + command.getPermission();
 
-            message.tooltip(tooltip);
+            message.tooltip(Msg.color(tooltip));
             message.send(player);
         }
     }

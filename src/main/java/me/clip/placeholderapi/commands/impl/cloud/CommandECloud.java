@@ -24,8 +24,12 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
+import me.clip.placeholderapi.libs.JSONMessage;
+import me.clip.placeholderapi.util.ColorPalette;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -78,6 +82,41 @@ public final class CommandECloud extends PlaceholderCommand
 	{
 		if (params.isEmpty())
 		{
+			if (!(sender instanceof Player)) {
+				Msg.msg(sender, "&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ");
+				final StringBuilder builder = new StringBuilder();
+				for (final PlaceholderCommand command : COMMANDS)
+				{
+					if (command.equals(this))
+					{
+						continue;
+					}
+
+					builder.append(ColorPalette.MAIN_GRAY.getColor()).append(" • ").append(ColorPalette.MAIN_BLUE.getColor()).append("/papi ecloud ").append(ColorPalette.MAIN_WHITE.getColor()).append(command.getLabel()).append("\n");
+					builder.append(ColorPalette.MAIN_GRAY.getColor()).append(ColorPalette.ITALIC.getColor()).append("   ").append(command.getDescription()).append("\n");
+				}
+
+				sender.sendMessage(Msg.color(builder.toString()));
+				return;
+			}
+
+			final Player player = (Player) sender;
+			for (final PlaceholderCommand command : PlaceholderCommandRouter.COMMANDS)
+			{
+				if (command.equals(this))
+				{
+					continue;
+				}
+
+				final JSONMessage message = JSONMessage.create(Msg.color(ColorPalette.MAIN_GRAY.getColor() + " • " + ColorPalette.MAIN_BLUE.getColor() + "/papi ecloud" + ColorPalette.MAIN_WHITE.getColor() + command.getLabel()));
+				final String tooltip = ColorPalette.MAIN_GRAY.getColor() + command.getDescription() + "\n\n" + ColorPalette.MAIN_GRAY.getColor() + "Permission: " + ColorPalette.MAIN_WHITE.getColor() + ColorPalette.UNDERLINE.getColor() + command.getPermission();
+
+				message.tooltip(Msg.color(tooltip));
+				message.send(player);
+			}
+
+			return;
+			/*
 			Msg.msg(sender,
 					"&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
 					" ",
@@ -101,6 +140,7 @@ public final class CommandECloud extends PlaceholderCommand
 					"  &7&oClear the expansion cloud cache.");
 
 			return;
+			*/
 		}
 
 		final String             search = params.get(0).toLowerCase();

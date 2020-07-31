@@ -20,8 +20,8 @@
 
 package me.clip.placeholderapi.util;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,29 +31,29 @@ import java.util.stream.Collectors;
 public final class Msg
 {
 
-	public static void msg(@NotNull final CommandSender sender, @NotNull final String... messages)
-	{
-		if (messages.length == 0)
-		{
-			return;
-		}
+    public static void msg(@NotNull final CommandSender sender, @NotNull final String... messages)
+    {
+        if (messages.length == 0)
+        {
+            return;
+        }
 
-		sender.sendMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
-	}
+        sender.sendMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
+    }
 
-	public static void broadcast(@NotNull final String... messages)
-	{
-		if (messages.length == 0)
-		{
-			return;
-		}
+    public static void broadcast(@NotNull final String... messages)
+    {
+        if (messages.length == 0)
+        {
+            return;
+        }
 
-		Bukkit.broadcastMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
-	}
+        Bukkit.broadcastMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
+    }
 
-	public static String color(@NotNull final String text)
-	{
-		return ChatColor.translateAlternateColorCodes('&', text);
-	}
+    public static String color(@NotNull final String text)
+    {
+        return ChatColor.translateAlternateColorCodes('&', text);
+    }
 
 }
