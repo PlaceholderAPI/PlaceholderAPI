@@ -47,7 +47,7 @@ public final class CommandECloudUpdate extends PlaceholderCommand
 
 	public CommandECloudUpdate()
 	{
-		super("update");
+		super("update", "Update a specific/all installed expansions.");
 	}
 
 

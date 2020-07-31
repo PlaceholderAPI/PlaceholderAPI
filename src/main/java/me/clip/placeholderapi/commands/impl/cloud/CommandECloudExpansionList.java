@@ -81,7 +81,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand
 
 	public CommandECloudExpansionList()
 	{
-		super("list");
+		super("list", "List all/author specific available expansions.");
 	}
 
 	@Override

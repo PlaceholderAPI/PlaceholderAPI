@@ -46,7 +46,7 @@ public final class CommandParse extends PlaceholderCommand
 
 	public CommandParse()
 	{
-		super("parse", "bcparse", "parserel", "cmdparse");
+		super("parse", "Parse a message with placeholders.", "bcparse", "parserel", "cmdparse");
 	}
 
 

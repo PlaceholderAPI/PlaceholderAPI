@@ -35,7 +35,7 @@ public final class CommandECloudStatus extends PlaceholderCommand
 
 	public CommandECloudStatus()
 	{
-		super("status");
+		super("status", "View status of the eCloud");
 	}
 
 	@Override

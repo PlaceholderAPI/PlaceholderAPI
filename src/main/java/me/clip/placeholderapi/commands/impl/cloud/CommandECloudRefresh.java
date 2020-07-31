@@ -34,7 +34,7 @@ public final class CommandECloudRefresh extends PlaceholderCommand
 
 	public CommandECloudRefresh()
 	{
-		super("refresh");
+		super("refresh", "Fetch the most up to date list of expansions available.");
 	}
 
 	@Override

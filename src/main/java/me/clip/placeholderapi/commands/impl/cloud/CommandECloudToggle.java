@@ -34,7 +34,7 @@ public final class CommandECloudToggle extends PlaceholderCommand
 
 	public CommandECloudToggle()
 	{
-		super("toggle", "enable", "disable");
+		super("toggle", "Enable or disable the eCloud", "enable", "disable");
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand
 
 	public CommandExpansionUnregister()
 	{
-		super("unregister");
+		super("unregister", "Unregister an expansion by name.");
 	}
 
 	@Override

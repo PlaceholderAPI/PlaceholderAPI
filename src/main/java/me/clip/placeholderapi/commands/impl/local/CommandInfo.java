@@ -36,7 +36,7 @@ public final class CommandInfo extends PlaceholderCommand
 
 	public CommandInfo()
 	{
-		super("info");
+		super("info", "View information for a specific expansion.");
 	}
 
 	@Override

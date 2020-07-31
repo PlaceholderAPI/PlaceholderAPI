@@ -60,7 +60,7 @@ public final class CommandECloud extends PlaceholderCommand
 
 	public CommandECloud()
 	{
-		super("ecloud");
+		super("ecloud", "View all eCloud related commands.");
 
 		final ImmutableMap.Builder<String, PlaceholderCommand> commands = ImmutableMap.builder();
 

@@ -33,7 +33,7 @@ public final class CommandReload extends PlaceholderCommand
 
 	public CommandReload()
 	{
-		super("reload");
+		super("reload", "Reload the plugin's configuration.");
 	}
 
 	@Override

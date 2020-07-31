@@ -34,7 +34,7 @@ public final class CommandECloudClear extends PlaceholderCommand
 
 	public CommandECloudClear()
 	{
-		super("clear");
+		super("clear", "Clear the expansion cloud cache.");
 	}
 
 	@Override

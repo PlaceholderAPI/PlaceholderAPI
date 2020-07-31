@@ -38,7 +38,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 
 	public CommandECloudExpansionPlaceholders()
 	{
-		super("placeholders");
+		super("placeholders", "View placeholders for an expansion.");
 	}
 
 	@Override

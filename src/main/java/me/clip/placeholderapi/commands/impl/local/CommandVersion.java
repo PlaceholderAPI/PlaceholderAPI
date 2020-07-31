@@ -35,7 +35,7 @@ public final class CommandVersion extends PlaceholderCommand
 
 	public CommandVersion()
 	{
-		super("version");
+		super("version", "View plugin information/version.");
 	}
 
 

@@ -38,7 +38,7 @@ public final class CommandList extends PlaceholderCommand
 
 	public CommandList()
 	{
-		super("list");
+		super("list", "List active expansions.");
 	}
 
 

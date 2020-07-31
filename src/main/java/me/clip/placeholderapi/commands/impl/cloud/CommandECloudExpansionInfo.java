@@ -37,7 +37,7 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand
 
 	public CommandECloudExpansionInfo()
 	{
-		super("info");
+		super("info", "View information about a specific expansion available on the eCloud.");
 	}
 
 	@Override

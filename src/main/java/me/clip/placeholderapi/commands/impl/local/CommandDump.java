@@ -64,7 +64,7 @@ public final class CommandDump extends PlaceholderCommand
 
 	public CommandDump()
 	{
-		super("dump");
+		super("dump", "Dump all relevant information needed to help debug.");
 	}
 
 	@Override

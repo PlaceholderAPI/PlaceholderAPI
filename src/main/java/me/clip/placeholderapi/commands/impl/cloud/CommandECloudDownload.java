@@ -37,7 +37,7 @@ public final class CommandECloudDownload extends PlaceholderCommand
 
 	public CommandECloudDownload()
 	{
-		super("download");
+		super("download", "Download an expansion from the eCloud.");
 	}
 
 	@Override

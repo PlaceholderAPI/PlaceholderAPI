@@ -39,15 +39,18 @@ public abstract class PlaceholderCommand
 	private final String      label;
 	@NotNull
 	private final Set<String> alias;
+	@NotNull
+	private final String description;
 
 	@Nullable
 	private String permission;
 
 
-	protected PlaceholderCommand(@NotNull final String label, @NotNull final String... alias)
+	protected PlaceholderCommand(@NotNull final String label, @NotNull final String description, @NotNull final String... alias)
 	{
 		this.label = label;
 		this.alias = Sets.newHashSet(alias);
+		this.description = description;
 
 		setPermission("placeholderapi." + label);
 	}
@@ -73,12 +76,15 @@ public abstract class PlaceholderCommand
 		return ImmutableSet.<String>builder().add(label).addAll(alias).build();
 	}
 
-
 	@Nullable
 	public final String getPermission()
 	{
 		return permission;
 	}
+
+	@NotNull
+	@Unmodifiable
+	public final String getDescription() { return description; }
 
 	public void setPermission(@NotNull final String permission)
 	{

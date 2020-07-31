@@ -41,7 +41,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand
 
 	public CommandExpansionRegister()
 	{
-		super("register");
+		super("register", "Register an expansion by the name of a file.");
 	}
 
 	@Override
