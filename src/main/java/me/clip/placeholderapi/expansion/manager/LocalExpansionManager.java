@@ -167,12 +167,12 @@ public final class LocalExpansionManager implements Listener
 	@ApiStatus.Internal
 	public boolean register(@NotNull final PlaceholderExpansion expansion)
 	{
-		final String identifier = expansion.getIdentifier();
+		final String identifier = expansion.getIdentifier().toLowerCase();
 
 		if (expansion instanceof Configurable)
 		{
 			Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
-			String              pre      = "expansions." + expansion.getIdentifier() + ".";
+			String              pre      = "expansions." + identifier + ".";
 			FileConfiguration   cfg      = plugin.getConfig();
 			boolean             save     = false;
 
@@ -221,7 +221,7 @@ public final class LocalExpansionManager implements Listener
 			}
 		}
 
-		final PlaceholderExpansion removed = expansions.get(expansion.getIdentifier());
+		final PlaceholderExpansion removed = expansions.get(identifier);
 		if (removed != null && !removed.unregister())
 		{
 			return false;
@@ -235,7 +235,7 @@ public final class LocalExpansionManager implements Listener
 			return false;
 		}
 
-		expansions.put(expansion.getIdentifier(), expansion);
+		expansions.put(identifier, expansion);
 
 		if (expansion instanceof Listener)
 		{

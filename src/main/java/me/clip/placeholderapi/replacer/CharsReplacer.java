@@ -44,7 +44,7 @@ public final class CharsReplacer implements Replacer
 	@Override
 	public String apply(@NotNull final String text, @Nullable final OfflinePlayer player, @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup)
 	{
-		final char[]        chars   = text.toCharArray();
+		final char[]        chars   = text.toLowerCase().toCharArray();
 		final StringBuilder builder = new StringBuilder(text.length());
 
 		final StringBuilder identifier = new StringBuilder();
