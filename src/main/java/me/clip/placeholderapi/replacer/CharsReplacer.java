@@ -196,5 +196,4 @@ public final class CharsReplacer implements Replacer
 
     return builder.toString();
   }
-
 }

@@ -420,5 +420,4 @@ public final class LocalExpansionManager implements Listener
       plugin.getLogger().info("Unregistered placeholder expansion: " + expansion.getName());
     }
   }
-
 }
