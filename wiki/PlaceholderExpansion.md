@@ -69,7 +69,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * <br>This is what tells PlaceholderAPI to call our onRequest 
      * method to obtain a value if a placeholder starts with our 
      * identifier.
-     * <br>This must be unique and can not contain % or _
+     * <br>The identifier has to be lowercase and can't contain _ or %
      *
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
@@ -182,7 +182,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * <br>This is what tells PlaceholderAPI to call our onRequest 
      * method to obtain a value if a placeholder starts with our 
      * identifier.
-     * <br>This must be unique and can not contain % or _
+     * <br>The identifier has to be lowercase and can't contain _ or %
      *
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
@@ -329,7 +329,7 @@ public class SomeExpansion extends PlaceholderExpansion {
      * <br>This is what tells PlaceholderAPI to call our onRequest 
      * method to obtain a value if a placeholder starts with our 
      * identifier.
-     * <br>This must be unique and can not contain % or _
+     * <br>The identifier has to be lowercase and can't contain _ or %
      *
      * @return The identifier in {@code %<identifier>_<value>%} as String.
      */
