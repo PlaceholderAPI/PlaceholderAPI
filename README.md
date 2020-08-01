@@ -14,7 +14,7 @@
 [ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
 [ciImg]: http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI
 
-[APIversionImg]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
+[APIversionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
 [logo]: https://i.imgur.com/Ea4PURv.png
 <!-- The stuff above isn't visible in the readme -->
 
