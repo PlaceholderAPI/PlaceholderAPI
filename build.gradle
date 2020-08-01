@@ -82,7 +82,7 @@ publishing {
 			} else {
 				url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
 			}
-			
+
 			credentials {
 				username = System.getenv("JENKINS_USER")
 				password = System.getenv("JENKINS_PASS")
@@ -92,6 +92,9 @@ publishing {
 	
 	publications {
 		mavenJava(MavenPublication) {
+
+			artifactId = "placeholderapi"
+
 			from components.java
 
 			pom.withXml {
