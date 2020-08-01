@@ -52,6 +52,8 @@ shadowJar {
 }
 
 license {
+	include '**/*.java'
+
 	matching('**/*.java') {
 		header = file('headers/main.txt')
 	}
@@ -92,7 +94,6 @@ publishing {
 	
 	publications {
 		mavenJava(MavenPublication) {
-
 			artifactId = "placeholderapi"
 
 			from components.java

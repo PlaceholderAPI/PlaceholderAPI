@@ -9,6 +9,7 @@
  */
 
 package me.clip.placeholderapi.libs;
+
 import com.google.common.base.Strings;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
