@@ -148,7 +148,7 @@ import at.helpch.placeholderapi.example.SomePlugin;
  * {@code /plugins/PlaceholderAPI/expansions} on your server.
  * <br>
  * <br>If you create such a class inside your own plugin, you have to
- * register it manually in your plugins {@code onEbale()} by using 
+ * register it manually in your plugins {@code onEnable()} by using 
  * {@code new YourExpansionClass().register();}
  */
 public class SomeExpansion extends PlaceholderExpansion {
