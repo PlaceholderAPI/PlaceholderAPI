@@ -55,11 +55,11 @@ license {
     include '**/*.java'
 
     matching('**/*.java') {
-        header = file('headers/main.txt')
+        header = file('config/headers/main.txt')
     }
 
     matching('**/JSONMessage.java') {
-        header = file('headers/jsonmessage.txt')
+        header = file('config/headers/jsonmessage.txt')
     }
 
     ext {
