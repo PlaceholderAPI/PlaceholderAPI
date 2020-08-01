@@ -675,7 +675,7 @@
 # <http://www.gnu.org/philosophy/why-not-lgpl.html>.
 #
 
-name: "PlaceholderAPI"
+name: "@name@"
 main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
 
 version: "@version@"
