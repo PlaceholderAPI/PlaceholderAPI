@@ -25,6 +25,19 @@ import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.configuration.ExpansionSort;
@@ -39,322 +52,297 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+public final class CommandECloudExpansionList extends PlaceholderCommand {
 
-public final class CommandECloudExpansionList extends PlaceholderCommand
-{
+  private static final int PAGE_SIZE = 10;
 
-	private static final int PAGE_SIZE = 10;
-
-	@NotNull
-	private static final Function<CloudExpansion, Object> EXPANSION_NAME            =
-			expansion -> (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName();
-	@NotNull
-	private static final Function<CloudExpansion, Object> EXPANSION_AUTHOR          =
-			expansion -> "&f" + expansion.getAuthor();
-	@NotNull
-	private static final Function<CloudExpansion, Object> EXPANSION_VERIFIED        =
-			expansion -> expansion.isVerified() ? "&aY" : "&cN";
-	@NotNull
-	private static final Function<CloudExpansion, Object> EXPANSION_LATEST_VERSION  =
-			expansion -> "&f" + expansion.getLatestVersion();
-	@NotNull
-	private static final Function<CloudExpansion, Object> EXPANSION_CURRENT_VERSION =
-			expansion -> "&f" + PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion).orElse("Unknown");
+  @NotNull
+  private static final Function<CloudExpansion, Object> EXPANSION_NAME =
+      expansion -> (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7")
+          + expansion.getName();
+  @NotNull
+  private static final Function<CloudExpansion, Object> EXPANSION_AUTHOR =
+      expansion -> "&f" + expansion.getAuthor();
+  @NotNull
+  private static final Function<CloudExpansion, Object> EXPANSION_VERIFIED =
+      expansion -> expansion.isVerified() ? "&aY" : "&cN";
+  @NotNull
+  private static final Function<CloudExpansion, Object> EXPANSION_LATEST_VERSION =
+      expansion -> "&f" + expansion.getLatestVersion();
+  @NotNull
+  private static final Function<CloudExpansion, Object> EXPANSION_CURRENT_VERSION =
+      expansion -> "&f" + PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()
+          .findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion)
+          .orElse("Unknown");
 
 
-	@Unmodifiable
-	private static final Set<String> OPTIONS = ImmutableSet.of("all", "installed");
+  @Unmodifiable
+  private static final Set<String> OPTIONS = ImmutableSet.of("all", "installed");
 
 
-	public CommandECloudExpansionList()
-	{
-		super("list");
-	}
+  public CommandECloudExpansionList() {
+    super("list");
+  }
 
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		if (params.isEmpty())
-		{
-			Msg.msg(sender,
-					"&cYou must specify an option. [all, {author}, installed]");
-			return;
-		}
+  @NotNull
+  private static Collection<CloudExpansion> getExpansions(@NotNull final String target,
+      @NotNull final PlaceholderAPIPlugin plugin) {
+    switch (target.toLowerCase()) {
+      case "all":
+        return plugin.getCloudExpansionManager().getCloudExpansions().values();
+      case "installed":
+        return plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values();
+      default:
+        return plugin.getCloudExpansionManager().getCloudExpansionsByAuthor(target).values();
+    }
+  }
 
+  @NotNull
+  private static List<CloudExpansion> getPage(@NotNull final List<CloudExpansion> expansions,
+      final int page) {
+    final int head = (page * PAGE_SIZE);
+    final int tail = Math.min(expansions.size(), head + PAGE_SIZE);
 
-		final boolean              installed  = params.get(0).equalsIgnoreCase("installed");
-		final List<CloudExpansion> expansions = Lists.newArrayList(getExpansions(params.get(0), plugin));
+    if (expansions.size() < head) {
+      return Collections.emptyList();
+    }
 
-		if (expansions.isEmpty())
-		{
-			Msg.msg(sender,
-					"&cNo expansions available to list.");
-			return;
-		}
+    return expansions.subList(head, tail);
+  }
 
-		expansions.sort(plugin.getPlaceholderAPIConfig().getExpansionSort().orElse(ExpansionSort.LATEST));
+  public static void addExpansionTitle(@NotNull final StringBuilder builder,
+      @NotNull final String target, final int page) {
+    switch (target.toLowerCase()) {
+      case "all":
+        builder.append("&bAll Expansions");
+        break;
+      case "installed":
+        builder.append("&bInstalled Expansions");
+        break;
+      default:
+        builder.append("&bExpansions by &f")
+            .append(target);
+        break;
+    }
 
-		if (!(sender instanceof Player) && params.size() < 2)
-		{
-			final StringBuilder builder = new StringBuilder();
+    if (page == -1) {
+      builder.append('\n');
+      return;
+    }
 
-			addExpansionTitle(builder, params.get(0), -1);
-			addExpansionTable(expansions,
-							  builder,
-							  1,
-							  installed ? "&9Version" : "&9Latest Version",
-							  installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
+    builder.append(" &bPage&7: &a")
+        .append(page)
+        .append("&r")
+        .append('\n');
+  }
 
-			Msg.msg(sender, builder.toString());
-			return;
-		}
+  @NotNull
+  private static JSONMessage getMessage(@NotNull final List<CloudExpansion> expansions,
+      final int page, final int limit, @NotNull final String target) {
+    final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
 
-		final int page;
+    final StringBuilder tooltip = new StringBuilder();
+    final JSONMessage message = JSONMessage.create();
 
-		if (params.size() < 2)
-		{
-			page = 1;
-		}
-		else
-		{
-			//noinspection UnstableApiUsage
-			final Integer parsed = Ints.tryParse(params.get(1));
-			if (parsed == null)
-			{
-				Msg.msg(sender,
-						"&cPage number must be an integer.");
-				return;
-			}
+    for (int index = 0; index < expansions.size(); index++) {
+      final CloudExpansion expansion = expansions.get(index);
 
-			final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
+      tooltip.append("&bClick to download this expansion!")
+          .append('\n')
+          .append('\n')
+          .append("&bAuthor: &f")
+          .append(expansion.getAuthor())
+          .append('\n')
+          .append("&bVerified: ")
+          .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
+          .append('\n')
+          .append("&bLatest Version: &f")
+          .append(expansion.getLatestVersion())
+          .append('\n')
+          .append("&bReleased: &f")
+          .append(format.format(expansion.getLastUpdate()));
 
-			if (parsed < 1 || parsed > limit)
-			{
-				Msg.msg(sender,
-						"&cPage number must be in the range &8[&a1&7..&a" + limit + "&8]");
-				return;
-			}
+      final String description = expansion.getDescription();
+      if (description != null && !description.isEmpty()) {
+        tooltip.append('\n')
+            .append('\n')
+            .append("&f")
+            .append(description.replace("\r", "").trim());
+      }
 
-			page = parsed;
-		}
+      message.then(Msg.color(
+          "&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6"
+              : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
 
-		final StringBuilder        builder = new StringBuilder();
-		final List<CloudExpansion> values  = getPage(expansions, page - 1);
+      message.tooltip(Msg.color(tooltip.toString()));
+      message.suggestCommand("/papi ecloud download " + expansion.getName());
 
-		addExpansionTitle(builder, params.get(0), page);
+      if (index < expansions.size() - 1) {
+        message.newline();
+      }
 
-		if (!(sender instanceof Player))
-		{
-			addExpansionTable(values,
-							  builder,
-							  ((page - 1) * PAGE_SIZE) + 1,
-							  installed ? "&9Version" : "&9Latest Version",
-							  installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
+      tooltip.setLength(0);
+    }
 
-			Msg.msg(sender, builder.toString());
+    if (limit > 1) {
+      message.newline();
 
-			return;
-		}
+      message.then("◀")
+          .color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+      if (page > 1) {
+        message.runCommand("/papi ecloud list " + target + " " + (page - 1));
+      }
 
-		Msg.msg(sender, builder.toString());
+      message.then(" " + page + " ").color(ChatColor.GREEN);
 
-		final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
+      message.then("▶")
+          .color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+      if (page < limit) {
+        message.runCommand("/papi ecloud list " + target + " " + (page + 1));
+      }
+    }
 
-		final JSONMessage message = getMessage(values, page, limit, params.get(0));
-		message.send(((Player) sender));
-	}
+    return message;
+  }
 
-	@Override
-	public void complete(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions)
-	{
-		if (params.size() > 2)
-		{
-			return;
-		}
+  private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions,
+      @NotNull final StringBuilder message, final int startIndex,
+      @NotNull final String versionTitle,
+      @NotNull final Function<CloudExpansion, Object> versionFunction) {
+    final Map<String, Function<CloudExpansion, Object>> functions = new LinkedHashMap<>();
 
-		if (params.size() <= 1)
-		{
-			suggestByParameter(Sets.union(OPTIONS, plugin.getCloudExpansionManager().getCloudExpansionAuthors()).stream(), suggestions, params.isEmpty() ? null : params.get(0));
-			return;
-		}
+    final AtomicInteger counter = new AtomicInteger(startIndex);
+    functions.put("&f", expansion -> "&8" + counter.getAndIncrement() + ".");
 
-		suggestByParameter(IntStream.rangeClosed(1, (int) Math.ceil((double) getExpansions(params.get(0), plugin).size() / PAGE_SIZE)).mapToObj(Objects::toString), suggestions, params.get(1));
-	}
+    functions.put("&9Name", EXPANSION_NAME);
+    functions.put("&9Author", EXPANSION_AUTHOR);
+    functions.put("&9Verified", EXPANSION_VERIFIED);
+    functions.put(versionTitle, versionFunction);
 
+    final List<List<String>> rows = new ArrayList<>();
 
-	@NotNull
-	private static Collection<CloudExpansion> getExpansions(@NotNull final String target, @NotNull final PlaceholderAPIPlugin plugin)
-	{
-		switch (target.toLowerCase())
-		{
-			case "all":
-				return plugin.getCloudExpansionManager().getCloudExpansions().values();
-			case "installed":
-				return plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values();
-			default:
-				return plugin.getCloudExpansionManager().getCloudExpansionsByAuthor(target).values();
-		}
-	}
+    rows.add(0, new ArrayList<>(functions.keySet()));
 
-	@NotNull
-	private static List<CloudExpansion> getPage(@NotNull final List<CloudExpansion> expansions, final int page)
-	{
-		final int head = (page * PAGE_SIZE);
-		final int tail = Math.min(expansions.size(), head + PAGE_SIZE);
+    for (final CloudExpansion expansion : expansions) {
+      rows.add(functions.values().stream().map(function -> function.apply(expansion))
+          .map(Objects::toString).collect(Collectors.toList()));
+    }
 
-		if (expansions.size() < head)
-		{
-			return Collections.emptyList();
-		}
+    final List<String> table = Format.tablify(Format.Align.LEFT, rows)
+        .orElse(Collections.emptyList());
+    if (table.isEmpty()) {
+      return;
+    }
 
-		return expansions.subList(head, tail);
-	}
+    table.add(1, "&8" + Strings.repeat("-", table.get(0).length() - (rows.get(0).size() * 2)));
 
-	public static void addExpansionTitle(@NotNull final StringBuilder builder, @NotNull final String target, final int page)
-	{
-		switch (target.toLowerCase())
-		{
-			case "all":
-				builder.append("&bAll Expansions");
-				break;
-			case "installed":
-				builder.append("&bInstalled Expansions");
-				break;
-			default:
-				builder.append("&bExpansions by &f")
-					   .append(target);
-				break;
-		}
+    message.append(String.join("\n", table));
+  }
 
-		if (page == -1)
-		{
-			builder.append('\n');
-			return;
-		}
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull final CommandSender sender, @NotNull final String alias,
+      @NotNull @Unmodifiable final List<String> params) {
+    if (params.isEmpty()) {
+      Msg.msg(sender,
+          "&cYou must specify an option. [all, {author}, installed]");
+      return;
+    }
 
-		builder.append(" &bPage&7: &a")
-			   .append(page)
-			   .append("&r")
-			   .append('\n');
-	}
+    final boolean installed = params.get(0).equalsIgnoreCase("installed");
+    final List<CloudExpansion> expansions = Lists
+        .newArrayList(getExpansions(params.get(0), plugin));
 
+    if (expansions.isEmpty()) {
+      Msg.msg(sender,
+          "&cNo expansions available to list.");
+      return;
+    }
 
-	@NotNull
-	private static JSONMessage getMessage(@NotNull final List<CloudExpansion> expansions, final int page, final int limit, @NotNull final String target)
-	{
-		final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
+    expansions
+        .sort(plugin.getPlaceholderAPIConfig().getExpansionSort().orElse(ExpansionSort.LATEST));
 
-		final StringBuilder tooltip = new StringBuilder();
-		final JSONMessage   message = JSONMessage.create();
+    if (!(sender instanceof Player) && params.size() < 2) {
+      final StringBuilder builder = new StringBuilder();
 
-		for (int index = 0; index < expansions.size(); index++)
-		{
-			final CloudExpansion expansion = expansions.get(index);
+      addExpansionTitle(builder, params.get(0), -1);
+      addExpansionTable(expansions,
+          builder,
+          1,
+          installed ? "&9Version" : "&9Latest Version",
+          installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
 
-			tooltip.append("&bClick to download this expansion!")
-				   .append('\n')
-				   .append('\n')
-				   .append("&bAuthor: &f")
-				   .append(expansion.getAuthor())
-				   .append('\n')
-				   .append("&bVerified: ")
-				   .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
-				   .append('\n')
-				   .append("&bLatest Version: &f")
-				   .append(expansion.getLatestVersion())
-				   .append('\n')
-				   .append("&bReleased: &f")
-				   .append(format.format(expansion.getLastUpdate()));
+      Msg.msg(sender, builder.toString());
+      return;
+    }
 
-			final String description = expansion.getDescription();
-			if (description != null && !description.isEmpty())
-			{
-				tooltip.append('\n')
-					   .append('\n')
-					   .append("&f")
-					   .append(description.replace("\r", "").trim());
-			}
+    final int page;
 
-			message.then(Msg.color("&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6" : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+    if (params.size() < 2) {
+      page = 1;
+    } else {
+      //noinspection UnstableApiUsage
+      final Integer parsed = Ints.tryParse(params.get(1));
+      if (parsed == null) {
+        Msg.msg(sender,
+            "&cPage number must be an integer.");
+        return;
+      }
 
-			message.tooltip(Msg.color(tooltip.toString()));
-			message.suggestCommand("/papi ecloud download " + expansion.getName());
+      final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
-			if (index < expansions.size() - 1)
-			{
-				message.newline();
-			}
+      if (parsed < 1 || parsed > limit) {
+        Msg.msg(sender,
+            "&cPage number must be in the range &8[&a1&7..&a" + limit + "&8]");
+        return;
+      }
 
-			tooltip.setLength(0);
-		}
+      page = parsed;
+    }
 
-		if (limit > 1)
-		{
-			message.newline();
+    final StringBuilder builder = new StringBuilder();
+    final List<CloudExpansion> values = getPage(expansions, page - 1);
 
-			message.then("◀")
-				   .color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
-			if (page > 1)
-			{
-				message.runCommand("/papi ecloud list " + target + " " + (page - 1));
-			}
+    addExpansionTitle(builder, params.get(0), page);
 
-			message.then(" " + page + " ").color(ChatColor.GREEN);
+    if (!(sender instanceof Player)) {
+      addExpansionTable(values,
+          builder,
+          ((page - 1) * PAGE_SIZE) + 1,
+          installed ? "&9Version" : "&9Latest Version",
+          installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
 
-			message.then("▶")
-				   .color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
-			if (page < limit)
-			{
-				message.runCommand("/papi ecloud list " + target + " " + (page + 1));
-			}
-		}
+      Msg.msg(sender, builder.toString());
 
-		return message;
-	}
+      return;
+    }
 
-	private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions, @NotNull final StringBuilder message, final int startIndex, @NotNull final String versionTitle, @NotNull final Function<CloudExpansion, Object> versionFunction)
-	{
-		final Map<String, Function<CloudExpansion, Object>> functions = new LinkedHashMap<>();
+    Msg.msg(sender, builder.toString());
 
-		final AtomicInteger counter = new AtomicInteger(startIndex);
-		functions.put("&f", expansion -> "&8" + counter.getAndIncrement() + ".");
+    final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
-		functions.put("&9Name", EXPANSION_NAME);
-		functions.put("&9Author", EXPANSION_AUTHOR);
-		functions.put("&9Verified", EXPANSION_VERIFIED);
-		functions.put(versionTitle, versionFunction);
+    final JSONMessage message = getMessage(values, page, limit, params.get(0));
+    message.send(((Player) sender));
+  }
 
-		final List<List<String>> rows = new ArrayList<>();
+  @Override
+  public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull final CommandSender sender, @NotNull final String alias,
+      @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+    if (params.size() > 2) {
+      return;
+    }
 
-		rows.add(0, new ArrayList<>(functions.keySet()));
+    if (params.size() <= 1) {
+      suggestByParameter(
+          Sets.union(OPTIONS, plugin.getCloudExpansionManager().getCloudExpansionAuthors())
+              .stream(), suggestions, params.isEmpty() ? null : params.get(0));
+      return;
+    }
 
-		for (final CloudExpansion expansion : expansions)
-		{
-			rows.add(functions.values().stream().map(function -> function.apply(expansion)).map(Objects::toString).collect(Collectors.toList()));
-		}
-
-		final List<String> table = Format.tablify(Format.Align.LEFT, rows).orElse(Collections.emptyList());
-		if (table.isEmpty())
-		{
-			return;
-		}
-
-		table.add(1, "&8" + Strings.repeat("-", table.get(0).length() - (rows.get(0).size() * 2)));
-
-		message.append(String.join("\n", table));
-	}
+    suggestByParameter(IntStream.rangeClosed(1,
+        (int) Math.ceil((double) getExpansions(params.get(0), plugin).size() / PAGE_SIZE))
+        .mapToObj(Objects::toString), suggestions, params.get(1));
+  }
 
 }

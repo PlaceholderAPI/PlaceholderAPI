@@ -220,16 +220,15 @@ public final class PlaceholderAPI {
    *
    * @return Map of registered placeholders
    * @deprecated Use {@link me.clip.placeholderapi.PlaceholderAPIPlugin().getLocalExpansionManager()
-   *         .getExpansions()} instead.
+   * .getExpansions()} instead.
    */
   @NotNull
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
-  public static Map<String, PlaceholderHook> getPlaceholders()
-  {
+  public static Map<String, PlaceholderHook> getPlaceholders() {
     return PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()
         .getExpansions().stream()
-      .collect(Collectors.toMap(PlaceholderExpansion::getIdentifier, ex -> ex));
+        .collect(Collectors.toMap(PlaceholderExpansion::getIdentifier, ex -> ex));
   }
 
   /**

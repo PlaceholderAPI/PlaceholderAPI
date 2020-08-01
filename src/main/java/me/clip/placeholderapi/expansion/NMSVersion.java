@@ -41,24 +41,24 @@ public enum NMSVersion {
   SPIGOT_1_15_R1("v1_15_R1"),
   SPIGOT_1_16_R1("v1_16_R1");
 
-    private final String version;
+  private final String version;
 
-    NMSVersion(String version) {
-        this.version = version;
+  NMSVersion(String version) {
+    this.version = version;
+  }
+
+  public static NMSVersion getVersion(String version) {
+    for (NMSVersion v : values()) {
+      if (v.getVersion().equalsIgnoreCase(version)) {
+        return v;
+      }
     }
 
-    public static NMSVersion getVersion(String version) {
-        for (NMSVersion v : values()) {
-            if (v.getVersion().equalsIgnoreCase(version)) {
-                return v;
-            }
-        }
+    return NMSVersion.UNKNOWN;
+  }
 
-        return NMSVersion.UNKNOWN;
-    }
-
-    public String getVersion() {
-        return version;
-    }
+  public String getVersion() {
+    return version;
+  }
 
 }

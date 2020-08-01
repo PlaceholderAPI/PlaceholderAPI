@@ -27,33 +27,31 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @deprecated This class will be completely removed in the next release, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion}
+ * @deprecated This class will be completely removed in the next release, please use {@link
+ * me.clip.placeholderapi.expansion.PlaceholderExpansion}
  */
 @Deprecated
 @ApiStatus.NonExtendable
 @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
-public abstract class PlaceholderHook
-{
+public abstract class PlaceholderHook {
 
-	@Nullable
-	public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params)
-	{
-		if (player != null && player.isOnline())
-		{
-			return onPlaceholderRequest((Player) player, params);
-		}
+  @Nullable
+  public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params) {
+    if (player != null && player.isOnline()) {
+      return onPlaceholderRequest((Player) player, params);
+    }
 
-		return onPlaceholderRequest(null, params);
-	}
+    return onPlaceholderRequest(null, params);
+  }
 
-	/**
-	 * @deprecated This method will be completely removed, please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
-	 */
-	@Nullable
-	@Deprecated
-	public String onPlaceholderRequest(@Nullable final Player player, @NotNull final String params)
-	{
-		return null;
-	}
+  /**
+   * @deprecated This method will be completely removed, please use {@link
+   * me.clip.placeholderapi.expansion.PlaceholderExpansion#onRequest(OfflinePlayer, String)}
+   */
+  @Nullable
+  @Deprecated
+  public String onPlaceholderRequest(@Nullable final Player player, @NotNull final String params) {
+    return null;
+  }
 
 }

@@ -21,15 +21,15 @@ permissions:
   placeholderapi.admin:
     description: "Ability to use all PAPI commands"
     children:
-        placeholderapi.help: true
-        placeholderapi.info: true
-        placeholderapi.list: true
-        placeholderapi.parse: true
-        placeholderapi.reload: true
-        placeholderapi.version: true
-        placeholderapi.register: true
-        placeholderapi.unregister: true
-        placeholderapi.updatenotify: true
+      placeholderapi.help: true
+      placeholderapi.info: true
+      placeholderapi.list: true
+      placeholderapi.parse: true
+      placeholderapi.reload: true
+      placeholderapi.version: true
+      placeholderapi.register: true
+      placeholderapi.unregister: true
+      placeholderapi.updatenotify: true
   placeholderapi.ecloud.*:
     description: "Ability to use all PAPI ecloud commands"
     children:
