@@ -71,7 +71,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 
 		Msg.msg(sender,
 				"&6" + placeholders.size() + "&7 placeholders: &a",
-				partitions.stream().map(partition -> "  " + String.join(", ", partition)).collect(Collectors.joining("\n")));
+				partitions.stream().map(partition -> String.join(", ", partition)).collect(Collectors.joining("\n")));
 
 	}
 
