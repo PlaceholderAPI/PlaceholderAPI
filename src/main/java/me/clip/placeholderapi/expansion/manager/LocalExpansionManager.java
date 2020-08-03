@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.expansion.manager;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import java.io.File;
@@ -114,17 +115,14 @@ public final class LocalExpansionManager implements Listener {
     return ImmutableSet.copyOf(expansions.values());
   }
 
-
   @Nullable
   public PlaceholderExpansion getExpansion(@NotNull final String identifier) {
-    return expansions.get(identifier.toLowerCase());
+    return ImmutableMap.copyOf(expansions).get(identifier.toLowerCase());
   }
-
 
   @NotNull
   public Optional<PlaceholderExpansion> findExpansionByName(@NotNull final String name) {
-    return expansions.values().stream()
-        .filter(expansion -> name.equalsIgnoreCase(expansion.getName())).findFirst();
+    return getExpansions().stream().filter(expansion -> name.equalsIgnoreCase(expansion.getName())).findFirst();
   }
 
   @NotNull
