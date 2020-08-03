@@ -159,6 +159,10 @@ public final class LocalExpansionManager implements Listener {
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase();
 
+    if (!expansion.canRegister()) {
+      return false;
+    }
+
     if (expansion instanceof Configurable) {
       Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
       String pre = "expansions." + identifier + ".";
