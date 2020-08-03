@@ -1,6 +1,7 @@
 [issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new
 [discord]: https://helpch.at/discord
 [Code of Conduct]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/CODE_OF_CONDUCT.md
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki
 
 # Contributing Guidelines
 We welcome everyone to contribute towards the PlaceholderAPI Project, but doing so will require you to follow specific rules to keep a consistent and welcoming way of contributing.
@@ -31,8 +32,8 @@ Opening a separate issue for a bug report or feature request, that already exist
 
 If an issue with the bug or feature you want to report/suggest exists, comment on it with your info (bug reports) or give it a :thumbsup: (Feature Request) to show that this is important for you.
 
-### Issue isn't caused by external sourced
-PlaceholderAPI provides a feature to have extensions (separate jar files) for placeholders. This gives it a possability that an issue you encounter is caused by said extensions or a separate plugin that uses this extension.  
+### Issue isn't caused by external source
+PlaceholderAPI provides a feature to have extensions (separate jar files) for placeholders. This gives it a possability that an issue you encounter is caused by said extensions or a separate plugin that uses those extensions.  
 In those cases should you report the issue to the issue tracker of the extension or plugin.
 
 ## Pull requests
@@ -53,7 +54,11 @@ Example:
  */
 ```
 - Tags follow the order `@param`, `@return`, `@since` and `@deprecated`
-- The `@deprecated` tag should mention the version of when the annotated object will be removed. This usually the next minor version.
+- The `@deprecated` tag should mention the version of when the annotated object will be removed. This usually would be the next minor version.
+
+### Wiki/Javadoc contributions
+If your Pull request only targets the [wiki] or only changes the Javadoc of PlaceholderAPI (And not its actual code) should Pull requests target the `docs` branch.  
+The develop branch should only be targeted when you also change some of PlaceholderAPI's code.
 
 ## Code of Conduct
 We have a [Code of Conduct] to maintain a welcoming atmosphere in this project.  
