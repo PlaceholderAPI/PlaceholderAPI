@@ -104,11 +104,11 @@ publishing {
                 asNode().remove(asNode().get("dependencies"))
 
                 // jetbrains annotations
-                def dependenciesNode = asNode().appendNode('dependencies')
-                def dependencyNode = dependenciesNode.appendNode('dependency')
-                dependencyNode.appendNode('groupId', "org.jetbrains")
-                dependencyNode.appendNode('artifactId', "annotations")
-                dependencyNode.appendNode('version', "19.0.0")
+                def dependenciesNode = asNode().appendNode("dependencies")
+                def dependencyNode = dependenciesNode.appendNode("dependency")
+                dependencyNode.appendNode("groupId", "org.jetbrains")
+                dependencyNode.appendNode("artifactId", "annotations")
+                dependencyNode.appendNode("version", "19.0.0")
             }
         }
     }
