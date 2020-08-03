@@ -55,7 +55,7 @@ public final class CharsReplacer implements Replacer {
 
         if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
             && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
-            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'o' && c != 'r'
+            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' && c != 'r'
             && c != 'x') {
           builder.append(l).append(chars[i]);
         } else {
