@@ -23,25 +23,21 @@ about: Report bugs of PlaceholderAPI with this template
 ## Bug Report
 
 ### Issue
-> What is the issue? Describe it like you would tell a friend.
-<!-- Please write below this line to prevent formatting issues -->
+<!-- What is the issue? Describe it like you would tell a friend. -->
 
 
 ### Expected behaviour
-> What should PlaceholderAPI do?
-<!-- Please write below this line to prevent formatting issues -->
+<!-- What should PlaceholderAPI do? -->
 
 
 ### Actual behaviour
-> What does PlaceholderAPI actually do?
-<!-- Please write below this line to prevent formatting issues -->
+<!-- What does PlaceholderAPI actually do? -->
 
 
 ### How to reproduce
-> What steps did you made, to get this bug?
-<!-- Please write below this line to prevent formatting issues -->
+<!-- What steps did you made, to get this bug? -->
+
 1. 
 
-### Installed expansions
-> Please list all expansions that are displayed when running `/papi list`
-<!-- Please write below this line to prevent formatting issues -->
+### `/papi dump` output
+<!-- Please provide the URL that was generated when using /papi dump -->

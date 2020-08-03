@@ -15,10 +15,9 @@ about: Request a update/change of the PlaceholderAPI-code
 ## Feature Request
 
 ### Type
-> What kind of request is this? (Multiple selections possible)
-<!--
-      Please select the right options by replacing the [ ] with a [x]
--->
+<!-- What kind of request is this? (Multiple selections possible) -->
+<!-- To select an option change the [ ] to [x] -->
+
 - [ ] New function for PlaceholderAPI.  
 A new function that developers could use.
 - [ ] Change to code (Internal).  
@@ -27,7 +26,6 @@ Changes to code that won't affect the end-user.
 Changes to code that will affect the end-user (breaks stuff).
 - [ ] Other: __________ <!-- Use this if none of the above matches your request -->
 
-### Info
-> What is the change?  
-> Please provide as much information (including links, images and code-snippeds) as possible.
-<!-- Please write below this line to prevent formatting issues -->
+### Description
+<!-- Describe what this suggested change should do and why it would be useful -->
+<!-- When possible, add some code-examples to better illustrate the change -->
