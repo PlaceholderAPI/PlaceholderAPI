@@ -74,6 +74,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[BlockQuests](#blockquests)**
 - **[BuildBattlePro](#buildbattlepro)**
 - **[BungeePerms](#bungeeperms)**
+- **[BuyCraft](#buycraft)**
 
 ## **C**
 - **[CarlTheCreeper](#carlthecreeper)**
@@ -1394,6 +1395,21 @@ Available gamemodes:
 %bungeeperms_suffix_primary_group%
 %bungeeperms_in_group_<Group>%
 %bungeeperms_has_permission_<Permission>%
+```
+----
+
+- ### **[BuyCraft](https://www.spigotmc.org/resources/82261/)
+> NO DOWNLOAD COMMAND
+
+Note: You have to download the jar from the linked Spigot page.
+
+```
+%buycraftAPI_recent_currency_<number>%
+%buycraftAPI_recent_name_<number>%
+%buycraftAPI_recent_price_<number>%
+%buycraftapi_top_donator_currency%
+%buycraftapi_top_donator_name%
+%buycraftapi_top_donator_price%
 ```
 ----
 
