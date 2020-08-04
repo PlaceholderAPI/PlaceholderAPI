@@ -29,49 +29,42 @@ import org.jetbrains.annotations.NotNull;
  * @deprecated This event is no longer used.
  */
 @Deprecated
-public final class PlaceholderHookUnloadEvent extends Event
-{
+public final class PlaceholderHookUnloadEvent extends Event {
 
-	@NotNull
-	private static final HandlerList HANDLERS = new HandlerList();
-
-
-	@NotNull
-	private final String          plugin;
-	@NotNull
-	private final PlaceholderHook placeholderHook;
-
-	public PlaceholderHookUnloadEvent(@NotNull final String plugin, @NotNull final PlaceholderHook placeholderHook)
-	{
-		this.plugin          = plugin;
-		this.placeholderHook = placeholderHook;
-	}
-
-	@NotNull
-	public String getHookName()
-	{
-		return plugin;
-	}
-
-	@NotNull
-	public PlaceholderHook getHook()
-	{
-		return placeholderHook;
-	}
+  @NotNull
+  private static final HandlerList HANDLERS = new HandlerList();
 
 
-	@NotNull
-	@Override
-	public HandlerList getHandlers()
-	{
-		return HANDLERS;
-	}
+  @NotNull
+  private final String plugin;
+  @NotNull
+  private final PlaceholderHook placeholderHook;
 
+  public PlaceholderHookUnloadEvent(@NotNull final String plugin,
+      @NotNull final PlaceholderHook placeholderHook) {
+    this.plugin = plugin;
+    this.placeholderHook = placeholderHook;
+  }
 
-	@NotNull
-	public static HandlerList getHandlerList()
-	{
-		return HANDLERS;
-	}
+  @NotNull
+  public static HandlerList getHandlerList() {
+    return HANDLERS;
+  }
+
+  @NotNull
+  public String getHookName() {
+    return plugin;
+  }
+
+  @NotNull
+  public PlaceholderHook getHook() {
+    return placeholderHook;
+  }
+
+  @NotNull
+  @Override
+  public HandlerList getHandlers() {
+    return HANDLERS;
+  }
 
 }

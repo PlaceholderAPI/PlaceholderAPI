@@ -51,163 +51,156 @@ import java.util.concurrent.CompletionException;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public final class CommandDump extends PlaceholderCommand
-{
-	
-	@NotNull
-	private static final String URL = "https://paste.helpch.at/";
-	
-	@NotNull
-	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)
-			.withLocale(Locale.US)
-			.withZone(ZoneId.of("UTC"));
-	
-	
-	public CommandDump()
-	{
-		super("dump");
-	}
-	
-	@Override
-	public void evaluate(@NotNull final PlaceholderAPIPlugin plugin, @NotNull final CommandSender sender, @NotNull final String alias, @NotNull @Unmodifiable final List<String> params)
-	{
-		postDump(makeDump(plugin)).whenComplete((key, exception) -> {
-			if (exception != null)
-			{
-				plugin.getLogger().log(Level.WARNING, "failed to post dump details", exception);
-				
-				Msg.msg(sender,
-						"&cFailed to post dump details, check console.");
-				return;
-			}
-			
-			Msg.msg(sender,
-					"&aSuccessfully posted dump: " + URL + key);
-		});
-	}
-	
-	@NotNull
-	private CompletableFuture<String> postDump(@NotNull final String dump)
-	{
-		return CompletableFuture.supplyAsync(() -> {
-			try
-			{
-				final HttpURLConnection connection = ((HttpURLConnection) new URL(URL + "documents").openConnection());
-				connection.setRequestMethod("POST");
-				connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
-				connection.setDoOutput(true);
-				
-				connection.connect();
-				
-				try (final OutputStream stream = connection.getOutputStream())
-				{
-					stream.write(dump.getBytes(StandardCharsets.UTF_8));
-				}
-				
-				try (final InputStream stream = connection.getInputStream())
-				{
-					//noinspection UnstableApiUsage
-					final String json = CharStreams.toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
-					return JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
-				}
-			}
-			catch (final IOException ex)
-			{
-				throw new CompletionException(ex);
-			}
-		});
-	}
-	
-	@NotNull
-	private String makeDump(@NotNull final PlaceholderAPIPlugin plugin)
-	{
-		final StringBuilder builder = new StringBuilder();
-		
-		builder.append("Generated: ")
-				.append(DATE_FORMAT.format(Instant.now()))
-				.append("\n\n");
-		
-		builder.append("PlaceholderAPI: ")
-				.append(plugin.getDescription().getVersion())
-				.append("\n\n");
-		
-		builder.append("Expansions Registered:")
-				.append('\n');
-		
-		final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
-				.getExpansions()
-				.stream()
-				.sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
-				.sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
-				.collect(Collectors.toList());
-		
-		int size = 0;
-		
-		for(final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier).collect(Collectors.toList())){
-			if (name.length() > size) {
-				size = name.length();
-			}
-		}
-		
-		for (final PlaceholderExpansion expansion : expansions) {
-			builder.append("  ")
-					.append(String.format("%-" + size + "s", expansion.getIdentifier()))
-					.append(" [Author: ")
-					.append(expansion.getAuthor())
-					.append(", Version: ")
-					.append(expansion.getVersion())
-					.append("]\n");
-			
-		}
-		
-		builder.append('\n');
-		
-		builder.append("Expansions Directory:")
-				.append('\n');
-		
-		final String[] jars = plugin.getLocalExpansionManager()
-				.getExpansionsFolder()
-				.list((dir, name) -> name.toLowerCase().endsWith(".jar"));
-		
-		for (final String jar : jars)
-		{
-			builder.append("  ")
-					.append(jar)
-					.append('\n');
-		}
-		
-		builder.append('\n');
-		
-		
-		builder.append("Server Info: ")
-				.append(plugin.getServer().getBukkitVersion())
-				.append('/')
-				.append(plugin.getServer().getVersion())
-				.append("\n\n");
-		
-		builder.append("Plugin Info:")
-				.append('\n');
-		
-		List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
-				.sorted(Comparator.comparing(Plugin::getName))
-				.collect(Collectors.toList());
-		
-		for (final String pluginName : plugins.stream().map(Plugin::getName).collect(Collectors.toList())) {
-			if (pluginName.length() > size) {
-				size = pluginName.length();
-			}
-		}
-		
-		for (final Plugin other : plugins)
-		{
-			builder.append("  ")
-					.append(String.format("%-" + size + "s", other.getName()))
-					.append(" [Version: ")
-					.append(other.getDescription().getVersion())
-					.append("]")
-					.append("\n");
-		}
-		
-		return builder.toString();
-	}
+public final class CommandDump extends PlaceholderCommand {
+
+  @NotNull
+  private static final String URL = "https://paste.helpch.at/";
+
+  @NotNull
+  private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter
+      .ofLocalizedDateTime(FormatStyle.LONG)
+      .withLocale(Locale.US)
+      .withZone(ZoneId.of("UTC"));
+
+
+  public CommandDump() {
+    super("dump");
+  }
+
+  @Override
+  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull final CommandSender sender, @NotNull final String alias,
+      @NotNull @Unmodifiable final List<String> params) {
+    postDump(makeDump(plugin)).whenComplete((key, exception) -> {
+      if (exception != null) {
+        plugin.getLogger().log(Level.WARNING, "failed to post dump details", exception);
+
+        Msg.msg(sender,
+            "&cFailed to post dump details, check console.");
+        return;
+      }
+
+      Msg.msg(sender,
+          "&aSuccessfully posted dump: " + URL + key);
+    });
+  }
+
+  @NotNull
+  private CompletableFuture<String> postDump(@NotNull final String dump) {
+    return CompletableFuture.supplyAsync(() -> {
+      try {
+        final HttpURLConnection connection = ((HttpURLConnection) new URL(URL + "documents")
+            .openConnection());
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+        connection.setDoOutput(true);
+
+        connection.connect();
+
+        try (final OutputStream stream = connection.getOutputStream()) {
+          stream.write(dump.getBytes(StandardCharsets.UTF_8));
+        }
+
+        try (final InputStream stream = connection.getInputStream()) {
+          //noinspection UnstableApiUsage
+          final String json = CharStreams
+              .toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
+          return JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
+        }
+      } catch (final IOException ex) {
+        throw new CompletionException(ex);
+      }
+    });
+  }
+
+  @NotNull
+  private String makeDump(@NotNull final PlaceholderAPIPlugin plugin) {
+    final StringBuilder builder = new StringBuilder();
+
+    builder.append("Generated: ")
+        .append(DATE_FORMAT.format(Instant.now()))
+        .append("\n\n");
+
+    builder.append("PlaceholderAPI: ")
+        .append(plugin.getDescription().getVersion())
+        .append("\n\n");
+
+    builder.append("Expansions Registered:")
+        .append('\n');
+
+    final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
+        .getExpansions()
+        .stream()
+        .sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
+        .sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
+        .collect(Collectors.toList());
+
+    int size = 0;
+
+    for (final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier)
+        .collect(Collectors.toList())) {
+      if (name.length() > size) {
+        size = name.length();
+      }
+    }
+
+    for (final PlaceholderExpansion expansion : expansions) {
+      builder.append("  ")
+          .append(String.format("%-" + size + "s", expansion.getIdentifier()))
+          .append(" [Author: ")
+          .append(expansion.getAuthor())
+          .append(", Version: ")
+          .append(expansion.getVersion())
+          .append("]\n");
+
+    }
+
+    builder.append('\n');
+
+    builder.append("Expansions Directory:")
+        .append('\n');
+
+    final String[] jars = plugin.getLocalExpansionManager()
+        .getExpansionsFolder()
+        .list((dir, name) -> name.toLowerCase().endsWith(".jar"));
+
+    for (final String jar : jars) {
+      builder.append("  ")
+          .append(jar)
+          .append('\n');
+    }
+
+    builder.append('\n');
+
+    builder.append("Server Info: ")
+        .append(plugin.getServer().getBukkitVersion())
+        .append('/')
+        .append(plugin.getServer().getVersion())
+        .append("\n\n");
+
+    builder.append("Plugin Info:")
+        .append('\n');
+
+    List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
+        .sorted(Comparator.comparing(Plugin::getName))
+        .collect(Collectors.toList());
+
+    for (final String pluginName : plugins.stream().map(Plugin::getName)
+        .collect(Collectors.toList())) {
+      if (pluginName.length() > size) {
+        size = pluginName.length();
+      }
+    }
+
+    for (final Plugin other : plugins) {
+      builder.append("  ")
+          .append(String.format("%-" + size + "s", other.getName()))
+          .append(" [Version: ")
+          .append(other.getDescription().getVersion())
+          .append("]")
+          .append("\n");
+    }
+
+    return builder.toString();
+  }
 }

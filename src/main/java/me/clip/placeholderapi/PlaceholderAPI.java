@@ -22,6 +22,7 @@ package me.clip.placeholderapi;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -211,6 +212,23 @@ public final class PlaceholderAPI {
   @Deprecated
   public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text) {
     return setRelationalPlaceholders(one, two, text, true);
+  }
+
+
+  /**
+   * Get map of registered placeholders
+   *
+   * @return Map of registered placeholders
+   * @deprecated Use {@link me.clip.placeholderapi.PlaceholderAPIPlugin().getLocalExpansionManager()
+   * .getExpansions()} instead.
+   */
+  @NotNull
+  @Deprecated
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  public static Map<String, PlaceholderHook> getPlaceholders() {
+    return PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()
+        .getExpansions().stream()
+        .collect(Collectors.toMap(PlaceholderExpansion::getIdentifier, ex -> ex));
   }
 
   /**
