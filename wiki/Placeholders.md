@@ -1398,7 +1398,7 @@ Available gamemodes:
 ```
 ----
 
-- ### **[BuyCraft](https://www.spigotmc.org/resources/82261/)
+- ### **[BuyCraft](https://www.spigotmc.org/resources/82261/)**
 > NO DOWNLOAD COMMAND
 
 Note: You have to download the jar from the linked Spigot page.
