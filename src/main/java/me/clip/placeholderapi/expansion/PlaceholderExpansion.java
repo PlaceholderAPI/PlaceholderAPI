@@ -26,7 +26,6 @@ import java.util.Objects;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
@@ -58,13 +57,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    */
   @NotNull
   public abstract String getVersion();
-
-  @Nullable
-  @Override /* override for now >:) */
-  public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params) {
-    return super.onRequest(player, params);
-  }
-
 
   /**
    * The name of this expansion
