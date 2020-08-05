@@ -222,11 +222,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   @Override
-  public final int hashCode() {
-    return Objects.hash(getIdentifier(), getAuthor(), getVersion());
-  }
-
-  @Override
   public final String toString() {
     return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s']", getName(),
         getAuthor(), getVersion());
