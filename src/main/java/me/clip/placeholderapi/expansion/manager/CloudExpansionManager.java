@@ -79,8 +79,8 @@ public final class CloudExpansionManager {
   private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
 
   private final ExecutorService ASYNC_EXECUTOR =
-      Executors.newFixedThreadPool(
-          6, new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
+      Executors.newCachedThreadPool(
+          new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
 
   public CloudExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
     this.plugin = plugin;
@@ -205,7 +205,7 @@ public final class CloudExpansionManager {
           plugin
               .getServer()
               .getScheduler()
-              .scheduleSyncDelayedTask(
+              .runTask(
                   plugin,
                   () -> {
                     try {
@@ -234,8 +234,7 @@ public final class CloudExpansionManager {
                           .getLogger()
                           .log(Level.WARNING, "Failed to download expansion information", e);
                     }
-                  // a defence tactic! wait 250ms before proceeding
-                  }, 5);
+                  });
         });
   }
 
