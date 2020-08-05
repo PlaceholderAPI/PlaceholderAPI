@@ -20,18 +20,18 @@
 
 package me.clip.placeholderapi.expansion.manager;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
@@ -72,7 +72,8 @@ public final class LocalExpansionManager implements Listener {
   private final PlaceholderAPIPlugin plugin;
 
   @NotNull
-  private final Map<String, PlaceholderExpansion> expansions = new HashMap<>();
+  private final Map<String, PlaceholderExpansion> expansions = new ConcurrentHashMap<>();
+  private final ReentrantLock expansionsLock = new ReentrantLock();
 
 
   public LocalExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
@@ -98,31 +99,54 @@ public final class LocalExpansionManager implements Listener {
     return folder;
   }
 
-  public int getExpansionsCount() {
-    return expansions.size();
-  }
-
-
   @NotNull
   @Unmodifiable
   public Collection<String> getIdentifiers() {
-    return ImmutableSet.copyOf(expansions.keySet());
+    expansionsLock.lock();
+    try {
+      return ImmutableSet.copyOf(expansions.keySet());
+    } finally {
+      expansionsLock.unlock();
+    }
   }
 
   @NotNull
   @Unmodifiable
   public Collection<PlaceholderExpansion> getExpansions() {
-    return ImmutableSet.copyOf(expansions.values());
+    expansionsLock.lock();
+    try {
+      return ImmutableSet.copyOf(expansions.values());
+    } finally {
+      expansionsLock.unlock();
+    }
   }
 
   @Nullable
   public PlaceholderExpansion getExpansion(@NotNull final String identifier) {
-    return ImmutableMap.copyOf(expansions).get(identifier.toLowerCase());
+    expansionsLock.lock();
+    try {
+      return expansions.get(identifier.toLowerCase());
+    } finally {
+      expansionsLock.unlock();
+    }
   }
 
   @NotNull
   public Optional<PlaceholderExpansion> findExpansionByName(@NotNull final String name) {
-    return getExpansions().stream().filter(expansion -> name.equalsIgnoreCase(expansion.getName())).findFirst();
+    expansionsLock.lock();
+    try {
+      PlaceholderExpansion bestMatch = null;
+      for (Map.Entry<String, PlaceholderExpansion> entry : expansions.entrySet()) {
+        PlaceholderExpansion expansion = entry.getValue();
+        if (expansion.getName().equalsIgnoreCase(name)) {
+          bestMatch = expansion;
+          break;
+        }
+      }
+      return Optional.ofNullable(bestMatch);
+    } finally {
+      expansionsLock.unlock();
+    }
   }
 
   @NotNull
@@ -203,7 +227,7 @@ public final class LocalExpansionManager implements Listener {
       }
     }
 
-    final PlaceholderExpansion removed = expansions.get(identifier);
+    final PlaceholderExpansion removed = getExpansion(identifier);
     if (removed != null && !removed.unregister()) {
       return false;
     }
@@ -215,7 +239,12 @@ public final class LocalExpansionManager implements Listener {
       return false;
     }
 
-    expansions.put(identifier, expansion);
+    expansionsLock.lock();
+    try {
+      expansions.put(identifier, expansion);
+    } finally {
+      expansionsLock.unlock();
+    }
 
     if (expansion instanceof Listener) {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
@@ -228,12 +257,13 @@ public final class LocalExpansionManager implements Listener {
     }
 
     if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
-      final Optional<CloudExpansion> cloudExpansion = plugin.getCloudExpansionManager()
-          .findCloudExpansionByName(identifier);
-      if (cloudExpansion.isPresent()) {
-        cloudExpansion.get().setHasExpansion(true);
-        cloudExpansion.get().setShouldUpdate(
-            !cloudExpansion.get().getLatestVersion().equals(expansion.getVersion()));
+      final Optional<CloudExpansion> cloudExpansionOptional =
+          plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
+      if (cloudExpansionOptional.isPresent()) {
+        CloudExpansion cloudExpansion = cloudExpansionOptional.get();
+        cloudExpansion.setHasExpansion(true);
+        cloudExpansion.setShouldUpdate(
+            !cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
       }
     }
 
