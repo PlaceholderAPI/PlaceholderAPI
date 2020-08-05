@@ -26,6 +26,10 @@ import java.util.StringJoiner;
 
 public class TimeUtil {
 
+  public static String getRemaining(final int seconds, final TimeFormat type) {
+    return getRemaining((long) seconds, type);
+  }
+
   public static String getRemaining(final long seconds, final TimeFormat type) {
     switch (type) {
       default:
@@ -49,11 +53,15 @@ public class TimeUtil {
    * Format the given value with s, m, h and d (seconds, minutes, hours and days)
    *
    * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20
-   * seconds)
+   *                 seconds)
    * @return formatted time
    */
   public static String getTime(final Duration duration) {
     return getTime(duration.getSeconds());
+  }
+
+  public static String getTime(final int seconds) {
+    return getTime((long) seconds);
   }
 
   public static String getTime(long seconds) {
