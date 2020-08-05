@@ -268,6 +268,20 @@ public final class PlaceholderAPI {
 
   // === Deprecated API ===
 
+  @Deprecated
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  public static boolean registerExpansion(PlaceholderExpansion expansion)
+  {
+    return expansion.register();
+  }
+
+  @Deprecated
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  public static boolean unregisterExpansion(PlaceholderExpansion expansion)
+  {
+    return expansion.unregister();
+  }
+
   /**
    * Get map of registered placeholders
    *
