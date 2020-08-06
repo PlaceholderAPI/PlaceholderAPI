@@ -22,6 +22,7 @@ package me.clip.placeholderapi.expansion.manager;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Resources;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.File;
@@ -32,14 +33,18 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collector;
@@ -73,6 +78,9 @@ public final class CloudExpansionManager {
   @NotNull
   private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
 
+  private final ExecutorService ASYNC_EXECUTOR =
+      Executors.newCachedThreadPool(
+          new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
 
   public CloudExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
     this.plugin = plugin;
@@ -163,58 +171,71 @@ public final class CloudExpansionManager {
   public void fetch(final boolean allowUnverified) {
     plugin.getLogger().info("Fetching available expansion information...");
 
-    CompletableFuture<Map<String, CloudExpansion>> future = CompletableFuture.supplyAsync(() -> {
-      final Map<String, CloudExpansion> values = new HashMap<>();
+    ASYNC_EXECUTOR.submit(
+        () -> {
+          // a defence tactic! use ConcurrentHashMap instead of normal HashMap
+          Map<String, CloudExpansion> values = new ConcurrentHashMap<>();
+          try {
+            //noinspection UnstableApiUsage
+            String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
+            values.putAll(GSON.fromJson(json, TYPE));
 
-      try {
-        //noinspection UnstableApiUsage
-        final String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
-        values.putAll(GSON.fromJson(json, TYPE));
-      } catch (final IOException ex) {
-        throw new CompletionException(ex);
-      }
+            List<String> toRemove = new ArrayList<>();
 
-      values.values().removeIf(value -> value.getLatestVersion() == null
-          || value.getVersion(value.getLatestVersion()) == null);
+            for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
+              CloudExpansion expansion = entry.getValue();
+              if (expansion.getLatestVersion() == null
+                  || expansion.getVersion(expansion.getLatestVersion()) == null) {
+                toRemove.add(entry.getKey());
+              }
+              if (!allowUnverified && !expansion.isVerified()) {
+                toRemove.add(entry.getKey());
+              }
+            }
 
-      return values;
-    });
+            for (String name : toRemove) {
+              values.remove(name);
+            }
+          } catch (Throwable e) {
+            // ugly swallowing of every throwable, but we have to be defensive
+            plugin.getLogger().log(Level.WARNING, "Failed to download expansion information", e);
+          }
 
-    if (!allowUnverified) {
-      future = future.thenApplyAsync((values) -> {
-        values.values().removeIf(expansion -> !expansion.isVerified());
-        return values;
-      });
-    }
+          // loop thru what's left on the main thread
+          plugin
+              .getServer()
+              .getScheduler()
+              .runTask(
+                  plugin,
+                  () -> {
+                    try {
+                      for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
+                        String name = entry.getKey();
+                        CloudExpansion expansion = entry.getValue();
 
-    future = future.thenApplyAsync((values) -> {
+                        expansion.setName(name);
 
-      values.forEach((name, expansion) -> {
-        expansion.setName(name);
+                        Optional<PlaceholderExpansion> localOpt =
+                            plugin.getLocalExpansionManager().findExpansionByName(name);
+                        if (localOpt.isPresent()) {
+                          PlaceholderExpansion local = localOpt.get();
+                          if (local.isRegistered()) {
+                            expansion.setHasExpansion(true);
+                            expansion.setShouldUpdate(
+                                !local.getVersion().equalsIgnoreCase(expansion.getLatestVersion()));
+                          }
+                        }
 
-        final Optional<PlaceholderExpansion> local = plugin.getLocalExpansionManager()
-            .findExpansionByName(name);
-        if (local.isPresent() && local.get().isRegistered()) {
-          expansion.setHasExpansion(true);
-          expansion.setShouldUpdate(!local.get().getVersion().equals(expansion.getLatestVersion()));
-        }
-      });
-
-      return values;
-    });
-
-    future.whenComplete((expansions, exception) -> {
-
-      if (exception != null) {
-        plugin.getLogger()
-            .log(Level.WARNING, "failed to download expansion information", exception);
-        return;
-      }
-
-      for (final CloudExpansion expansion : expansions.values()) {
-        this.cache.put(toIndexName(expansion), expansion);
-      }
-    });
+                        cache.put(toIndexName(expansion), expansion);
+                      }
+                    } catch (Throwable e) {
+                      // ugly swallowing of every throwable, but we have to be defensive
+                      plugin
+                          .getLogger()
+                          .log(Level.WARNING, "Failed to download expansion information", e);
+                    }
+                  });
+        });
   }
 
   public boolean isDownloading(@NotNull final CloudExpansion expansion) {
@@ -240,7 +261,7 @@ public final class CloudExpansionManager {
         throw new CompletionException(ex);
       }
       return file;
-    });
+    }, ASYNC_EXECUTOR);
 
     download.whenCompleteAsync((value, exception) -> {
       await.remove(toIndexName(expansion));
@@ -249,7 +270,7 @@ public final class CloudExpansionManager {
         plugin.getLogger().log(Level.SEVERE,
             "failed to download " + expansion.getName() + ":" + version.getVersion(), exception);
       }
-    });
+    }, ASYNC_EXECUTOR);
 
     await.put(toIndexName(expansion), download);
 
