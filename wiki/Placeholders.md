@@ -991,25 +991,28 @@ Other statistics
 
 For the totalBalance placeholder, you must have a service provider plugin (eg. EssentialsX)
 ```
-%world_#_biome%
-%world_#_nearbyEntities_<radius>%
-%world_<world>_name%
-%world_<world>_seed%
-%world_<world>_time%
-%world_<world>_canPvP%
-%world_<world>_animalAllowed%
-%world_<world>_monsterAllowed%
-%world_<world>_difficulty%
-%world_<world>_players%
-%world_<world>_players_<group>%
-%world_<world>_difficulty%
-%world_<world>_playerExist%
-%world_<world>_gamerule_<gamerule>%
-%world_<world>_recentjoin%
-%world_<world>_recentquit%
-%world_<world>_totalBalance%
+%world_animalAllowed_<world>%
+%world_biome%
+%world_canPvP_<world>%
+%world_difficulty_<world>%
+%world_isgamerule_<gamerule>_<world>%
+%world_monsterAllowed_<world>%
+%world_name_<world>%
+%world_nearbyEntities_<radius>%
+%world_playerexist_<world>%
+%world_players_<world>%
+%world_players_<group>_<world>%
+%world_recentjoin_<world>%
+%world_recentquit_<world>%
+%world_sealevel_<world>%
+%world_seed_<world>%
+%world_thunder_<world>%
+%world_time_<world>%
+%world_total%
+%world_totalbalance_<world>%
 ```
-***
+----
+
 ## Plugin-placeholders
 These placeholders require the corresponding plugin to work.  
 **The developer of the plugin is responsible for the placeholders to work!**
