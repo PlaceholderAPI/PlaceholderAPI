@@ -168,6 +168,9 @@ public final class CharsReplacer implements Replacer {
       builder.append(ChatColor.translateAlternateColorCodes('&', replacement));
     }
 
+    if (builder.length() == 0) {
+      return "";
+    }
     char c = builder.charAt(builder.length() - 1);
     if (c == ' ') {
       return builder.substring(0, builder.length() - 1);
