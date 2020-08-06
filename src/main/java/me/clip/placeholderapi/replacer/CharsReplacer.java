@@ -100,11 +100,13 @@ public final class CharsReplacer implements Replacer {
 
       boolean identified = false;
       boolean oopsitsbad = true;
+      boolean hadSpace = false;
 
       while (++i < chars.length) {
         final char p = chars[i];
 
         if (p == ' ' && !identified) {
+          hadSpace = true;
           break;
         }
         if (p == closure.tail) {
@@ -137,7 +139,9 @@ public final class CharsReplacer implements Replacer {
           builder.append('_').append(parametersString);
         }
 
-        builder.append(' ');
+        if (hadSpace) {
+          builder.append(' ');
+        }
         continue;
       }
 
@@ -168,15 +172,7 @@ public final class CharsReplacer implements Replacer {
       builder.append(ChatColor.translateAlternateColorCodes('&', replacement));
     }
 
-    if (builder.length() == 0) {
-      return "";
-    }
-    char c = builder.charAt(builder.length() - 1);
-    if (c == ' ') {
-      return builder.substring(0, builder.length() - 1);
-    } else {
-      return builder.toString();
-    }
+    return builder.toString();
   }
 
 }
