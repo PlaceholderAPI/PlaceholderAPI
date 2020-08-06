@@ -100,6 +100,8 @@ publishing {
 
             pom.withXml {
 
+                // some are having issues with bstats so we might need to add that to the pom as well
+
                 asNode().appendNode("packaging", "jar")
                 asNode().remove(asNode().get("dependencies"))
 
