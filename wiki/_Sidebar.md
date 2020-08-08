@@ -49,7 +49,10 @@
   - [[Server|Placeholders#server]]
   - [[Sound|Placeholders#sound]]
   - [[Spectators|Placeholders#spectators]]
+  - [[SpeedPerSec|Placeholders#speedpersec]]
   - [[Statistic|Placeholders#statistic]]
+  - [[Team|Placeholders#team]]
+  - [[World|Placeholders#world]]
   
 - [[Plugin-placeholders|Placeholders#plugin-placeholders-1]]
   - [[A|Placeholders#a]]
