@@ -693,6 +693,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RestrictedDimensions](http://spigotmc.org/resources/80574/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#restricteddimensions]]**]
+- **[RocketJoin](https://www.spigotmc.org/resources/82520/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rogueparkour]]**]
