@@ -40,6 +40,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Sound](#sound)**
 - **[Spectators](#spectators)**
 - **[SpeedPerSec](#speedpersec)**
+- **[Statistic](#statistic)**
 - **[Team](#team)**
 - **[World](#world)**
 ----
