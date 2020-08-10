@@ -43,7 +43,7 @@ Any contributions to PlaceholderAPI's code should be done towards the `develop` 
 Additionally should you follow the project's codestyle which you can find in the [`config/style`][style] directory.
 
 ### Wiki/Javadoc contributions
-If your pull request only targets the [wiki] or only changes the javadoc comments of PlaceholderAPI (And not its actual code), it should be to `docs` branch.  
+If your pull request only targets the [wiki] or only changes the javadoc comments of PlaceholderAPI (And not its actual code), it should be to `docs/wiki` branch.  
 The develop branch should only be targeted when you also change some of PlaceholderAPI's code.
 
 ## Code of Conduct
