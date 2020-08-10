@@ -1,105 +1,119 @@
 plugins {
-	id "java"
-	id "maven-publish"
-	id "net.minecrell.licenser" version "0.4.1"
-	id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "java"
+    id "maven-publish"
+    id "net.minecrell.licenser" version "0.4.1"
+    id "com.github.johnrengelman.shadow" version "6.0.0"
 }
 
 group "me.clip"
-version "2.10.8-DEV-${System.getProperty("BUILD_NUMBER")}"
+version "2.10.10-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description "An awesome placeholder provider!"
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 
-	maven({ url = "https://repo.codemc.org/repository/maven-public" })
-	maven({ url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" })
+    maven({ url = "https://repo.codemc.org/repository/maven-public" })
+    maven({ url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" })
 }
 
 dependencies {
-	implementation "com.google.code.gson:gson:2.8.6"
-	implementation "org.bstats:bstats-bukkit:1.5"
-	
-	compileOnly "org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT"
-	compileOnly "org.jetbrains:annotations:19.0.0"
-	
-	testImplementation "org.openjdk.jmh:jmh-core:1.23"
-	testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.23"
-	
-	testCompile "org.junit.jupiter:junit-jupiter-engine:5.6.2"
-	testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "org.bstats:bstats-bukkit:1.5"
+
+    compileOnly "org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT"
+    compileOnly "org.jetbrains:annotations:19.0.0"
+
+    testImplementation "org.openjdk.jmh:jmh-core:1.23"
+    testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.23"
+
+    testCompile "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
 processResources {
-	from(sourceSets.main.resources.srcDirs) {
-		filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
-	}
+    from(sourceSets.main.resources.srcDirs) {
+        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+    }
 }
 
 tasks.withType(JavaCompile) {
-	options.encoding = "UTF-8"
-	
-	sourceCompatibility = JavaVersion.VERSION_1_8
-	targetCompatibility = JavaVersion.VERSION_1_8
+    options.encoding = "UTF-8"
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 shadowJar {
-	archiveClassifier.set("")
+    archiveClassifier.set("")
 
-	relocate "org.bstats", "me.clip.placeholderapi.metrics"
-	relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
+    relocate "org.bstats", "me.clip.placeholderapi.metrics"
+    relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
 }
 
 license {
-	matching('**/*.java') {
-		header = file('headers/main.txt')
-	}
+    include '**/*.java'
 
-	matching('**/JSONMessage.java') {
-		header = file('headers/jsonmessage.txt')
-	}
+    matching('**/*.java') {
+        header = file('config/headers/main.txt')
+    }
 
-	ext {
-		year = 2020
-	}
+    matching('**/JSONMessage.java') {
+        header = file('config/headers/jsonmessage.txt')
+    }
+
+    ext {
+        year = 2020
+    }
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 sourceSets {
-	test.compileClasspath += configurations.compileOnly
-	test.runtimeClasspath += configurations.compileOnly
+    test.compileClasspath += configurations.compileOnly
+    test.runtimeClasspath += configurations.compileOnly
 }
 
 publishing {
-	repositories {
-		maven {
-			if (version.contains("-DEV-")) {
-				url = uri("https://repo.extendedclip.com/content/repositories/dev/")
-			} else {
-				url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-			}
-			
-			credentials {
-				username = System.getenv("JENKINS_USER")
-				password = System.getenv("JENKINS_PASS")
-			}
-		}
-	}
-	
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
+    repositories {
+        maven {
+            if (version.contains("-DEV-")) {
+                url = uri("https://repo.extendedclip.com/content/repositories/dev/")
+            } else {
+                url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+            }
 
-			pom.withXml {
-				asNode().appendNode("packaging", "jar")
-				asNode().remove(asNode().get("dependencies"))
-			}
-		}
-	}
+            credentials {
+                username = System.getenv("JENKINS_USER")
+                password = System.getenv("JENKINS_PASS")
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "placeholderapi"
+
+            from components.java
+
+            pom.withXml {
+
+                // some are having issues with bstats so we might need to add that to the pom as well
+
+                asNode().appendNode("packaging", "jar")
+                asNode().remove(asNode().get("dependencies"))
+
+                def dependenciesNode = asNode().appendNode("dependencies")
+                // jetbrains annotations
+                def jetbrainsAnnotations = dependenciesNode.appendNode("dependency")
+                jetbrainsAnnotations.appendNode("groupId", "org.jetbrains")
+                jetbrainsAnnotations.appendNode("artifactId", "annotations")
+                jetbrainsAnnotations.appendNode("version", "19.0.0")
+            }
+        }
+    }
 }
 
 publish.dependsOn clean, test, jar

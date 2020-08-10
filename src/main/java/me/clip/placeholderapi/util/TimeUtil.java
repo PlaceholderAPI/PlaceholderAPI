@@ -22,149 +22,75 @@ package me.clip.placeholderapi.util;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.StringJoiner;
 
 public class TimeUtil {
 
-    public static String getRemaining(int seconds, TimeFormat type) {
-        if (seconds < 60) {
-            switch (type) {
-                case DAYS:
-                case HOURS:
-                case MINUTES:
-                    return "0";
-                case SECONDS:
-                    return String.valueOf(seconds);
-            }
+  public static String getRemaining(final int seconds, final TimeFormat type) {
+    return getRemaining((long) seconds, type);
+  }
 
-            return String.valueOf(seconds);
-        }
+  public static String getRemaining(final long seconds, final TimeFormat type) {
+    switch (type) {
+      default:
+        return String.valueOf(seconds);
 
-        int minutes = seconds / 60;
-        int s = 60 * minutes;
-        int secondsLeft = seconds - s;
+      case SECONDS:
+        return String.valueOf(seconds % 60);
 
-        if (minutes < 60) {
-            switch (type) {
-                case DAYS:
-                case HOURS:
-                    return "0";
-                case MINUTES:
-                    return String.valueOf(minutes);
-                case SECONDS:
-                    return String.valueOf(secondsLeft);
-            }
+      case MINUTES:
+        return String.valueOf((seconds / 60) % 60);
 
-            return String.valueOf(seconds);
-        }
+      case HOURS:
+        return String.valueOf((seconds / 3600) % 24);
 
-        if (minutes < 1440) {
-            int hours = minutes / 60;
-            int inMins = 60 * hours;
-            int leftOver = minutes - inMins;
+      case DAYS:
+        return String.valueOf(seconds / 86400);
+    }
+  }
 
-            switch (type) {
-                case DAYS:
-                    return "0";
-                case HOURS:
-                    return String.valueOf(hours);
-                case MINUTES:
-                    return String.valueOf(leftOver);
-                case SECONDS:
-                    return String.valueOf(secondsLeft);
-            }
+  /**
+   * Format the given value with s, m, h and d (seconds, minutes, hours and days)
+   *
+   * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20
+   *                 seconds)
+   * @return formatted time
+   */
+  public static String getTime(final Duration duration) {
+    return getTime(duration.getSeconds());
+  }
 
-            return String.valueOf(seconds);
-        }
+  public static String getTime(final int seconds) {
+    return getTime((long) seconds);
+  }
 
-        int days = minutes / 1440;
-        int inMins = 1440 * days;
-        int leftOver = minutes - inMins;
+  public static String getTime(long seconds) {
+    final StringJoiner joiner = new StringJoiner(" ");
 
-        if (leftOver < 60) {
-            switch (type) {
-                case DAYS:
-                    return String.valueOf(days);
-                case HOURS:
-                    return String.valueOf(0);
-                case MINUTES:
-                    return String.valueOf(leftOver);
-                case SECONDS:
-                    return String.valueOf(secondsLeft);
-            }
+    long minutes = seconds / 60;
+    long hours = minutes / 60;
+    final long days = hours / 24;
 
-            return String.valueOf(seconds);
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
 
-        } else {
-            int hours = leftOver / 60;
-            int hoursInMins = 60 * hours;
-            int minsLeft = leftOver - hoursInMins;
-
-            switch (type) {
-                case DAYS:
-                    return String.valueOf(days);
-                case HOURS:
-                    return String.valueOf(hours);
-                case MINUTES:
-                    return String.valueOf(minsLeft);
-                case SECONDS:
-                    return String.valueOf(secondsLeft);
-            }
-
-            return String.valueOf(seconds);
-        }
+    if (days > 0) {
+      joiner.add(days + "d");
     }
 
-    public static String getTime(int seconds) {
-        return getTime(Duration.ofSeconds(seconds));
+    if (hours > 0) {
+      joiner.add(hours + "h");
     }
 
-    /**
-     * Format the given value with s, m, h and d (seconds, minutes, hours and days)
-     *
-     * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20 seconds)
-     * @return formatted time
-     */
-    public static String getTime(final Duration duration) {
-        final StringBuilder builder = new StringBuilder();
-
-        long seconds = duration.getSeconds();
-        long minutes = seconds / 60;
-        long hours = minutes / 60;
-        long days = hours / 24;
-
-        seconds %= 60;
-        minutes %= 60;
-        hours %= 60;
-        days %= 24;
-
-        if (seconds > 0) {
-            builder.insert(0, seconds + "s");
-        }
-
-        if (minutes > 0) {
-            if (builder.length() > 0) {
-                builder.insert(0, ' ');
-            }
-
-            builder.insert(0, minutes + "m");
-        }
-
-        if (hours > 0) {
-            if (builder.length() > 0) {
-                builder.insert(0, ' ');
-            }
-
-            builder.insert(0, hours + "h");
-        }
-
-        if (days > 0) {
-            if (builder.length() > 0) {
-                builder.insert(0, ' ');
-            }
-
-            builder.insert(0, days + "d");
-        }
-
-        return builder.toString();
+    if (minutes > 0) {
+      joiner.add(minutes + "m");
     }
+
+    if (seconds > 0) {
+      joiner.add(seconds + "s");
+    }
+
+    return joiner.toString();
+  }
 }

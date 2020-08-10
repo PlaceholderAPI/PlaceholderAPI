@@ -1,8 +1,13 @@
-## Please read
-Please make sure you checked the following:
-- You checked the [Pull requests] page for any upcoming changes.
-- You documented any public code that the end-user might use.
-- You followed the [contributing file] 
+<!--
+  ### Please read ###
+  Please make sure you checked the following:
+
+  - You checked the Pull requests page for any upcoming changes.
+  - You documented any public code that the end-user might use.
+  - You followed the contributing file (https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/.github/CONTRIBUTING.md).
+-->
+
+## Pull Request
 
 ### Type
 <!--
@@ -14,12 +19,10 @@ Please make sure you checked the following:
 - [ ] Other: __________ <!-- Use this if none of the above matches your request -->
 
 ### Description
-> Provide additional information if needed.
-<!-- Please type below this line -->
+<!-- What does your Pull request change? -->
+
+Closes N/A <!-- If your PR is based on an issue, change "N/A" the the issue ID (#id) -->
 
 
 <!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
-
-[Pull requests]: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
-[contributing file]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/.github/CONTRIBUTING.md
 [Wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki

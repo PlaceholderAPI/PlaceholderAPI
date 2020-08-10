@@ -889,10 +889,6 @@ This placeholder is for all players on the server.
 - ### **Statistic**
 > /papi ecloud download Statistic
 
-**For MC v1.12.2 or older:** <br />
-You'll have to download v1.7.0 manually: <br />
-Download the jar file from [the eCloud](https://api.extendedclip.com/expansions/statistic/versions/statistic-170/) then place it in your `plugins/PlaceholderAPI/expansions` folder. After that reload PlaceholderAPI `/papi reload`.
-
 Supports all statistics in [SpigotAPI](https://helpch.at/docs/1.13.1/org/bukkit/Statistic.html). `%statistic_<StatisticType>%`
 
 For specific blocks, items, entities, ...

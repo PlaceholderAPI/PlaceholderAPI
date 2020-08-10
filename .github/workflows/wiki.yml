@@ -10,43 +10,43 @@ on:
     # Only trigger when the push changes any files in the wiki-folder.
     #
     paths:
-    - 'wiki/**'
+      - 'wiki/**'
     branches:
-    - 'docs/wiki'
+      - 'docs/wiki'
     #
     # Releases cause this action to also fire.
     # Using this prevents this problem.
     #
     tags-ignore:
-    - '**'
+      - '**'
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - name: 'Checkout Code'
-      uses: actions/Checkout@v2
-    - name: 'Update Wiki'
-      uses: docker://decathlon/wiki-page-creator-action:latest
-      env:
-        #
-        # We can use the E-Mail and Name of the GitHub Actions account
-        # for our convenience.
-        #
-        ACTION_MAIL: 'actions@github.com'
-        ACTION_NAME: 'github-actions[bot]'
-        #
-        # We (sadly) have to use a PAT (Personal Access Token) for this action.
-        #
-        GH_PAT: '${{ secrets.WORKFLOWPAT }}'
-        OWNER: 'PlaceholderAPI'
-        REPO_NAME: 'PlaceholderAPI'
-        #
-        # We only want to target files in the wiki folder
-        #
-        MD_FOLDER: 'wiki'
-        WIKI_PUSH_MESSAGE: '${{ github.event.commits[0].message }}'
-        #
-        # We skip/ignore the README.md file in the Wiki folder
-        #
-        SKIP_MD: README.md
+      - name: 'Checkout Code'
+        uses: actions/Checkout@v2
+      - name: 'Update Wiki'
+        uses: docker://decathlon/wiki-page-creator-action:latest
+        env:
+          #
+          # We can use the E-Mail and Name of the GitHub Actions account
+          # for our convenience.
+          #
+          ACTION_MAIL: 'actions@github.com'
+          ACTION_NAME: 'github-actions[bot]'
+          #
+          # We (sadly) have to use a PAT (Personal Access Token) for this action.
+          #
+          GH_PAT: '${{ secrets.WORKFLOWPAT }}'
+          OWNER: 'PlaceholderAPI'
+          REPO_NAME: 'PlaceholderAPI'
+          #
+          # We only want to target files in the wiki folder
+          #
+          MD_FOLDER: 'wiki'
+          WIKI_PUSH_MESSAGE: '${{ github.event.commits[0].message }}'
+          #
+          # We skip/ignore the README.md file in the Wiki folder
+          #
+          SKIP_MD: README.md

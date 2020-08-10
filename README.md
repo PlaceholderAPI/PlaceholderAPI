@@ -14,7 +14,7 @@
 [ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
 [ciImg]: http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI
 
-[APIversionImg]: https://img.shields.io/nexus/r/http/repo.extendedclip.com/me.clip/placeholderapi.svg?label=API-Version
+[APIversionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
 [logo]: https://i.imgur.com/Ea4PURv.png
 <!-- The stuff above isn't visible in the readme -->
 
@@ -27,7 +27,7 @@
 
 Support for specific plugins are provided either by the plugin itself or through expansions. The expansions may be downloaded in-game through the PAPI Expansion Cloud. There are currently over 150+ expansions that support a wide variety of plugins, such as Essentials, Factions, LuckPerms, and Vault. 
 
-PlaceholderAPI has been downloaded over 300,000 times and has been used concurrently on over 20,000 servers, which makes it a must-have for a server of any type or scale.
+PlaceholderAPI has been downloaded over 400,000 times and has been used concurrently on over 20,000 servers, which makes it a must-have for a server of any type or scale.
 
 <!-- TODO: Add contributing section -->
 <!-- TODO: Add expansion creation section (possibly add to a wiki?) -->
