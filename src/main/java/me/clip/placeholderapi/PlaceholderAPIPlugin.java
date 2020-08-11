@@ -30,9 +30,9 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
+import me.clip.placeholderapi.libs.Metrics;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -205,7 +205,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   private void setupMetrics() {
-    final Metrics metrics = new Metrics(this);
+    final Metrics metrics = new Metrics(this, 438);
     metrics.addCustomChart(new Metrics.SimplePie("using_expansion_cloud",
         () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
 
