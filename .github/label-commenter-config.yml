@@ -55,3 +55,18 @@ labels:
           - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md)
           - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md)
         action: close
+  - name: 'Target: Wiki'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ sender.login }},
+          
+          Thank you for reaching out to us about the wiki.
+          We would like to inform you, that you are now able to directly commit your changes to the wiki through a Pull request.
+          When doing so, make sure you follow these steps:
+          
+          - The Pull request targets the [`docs/wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki) branch of the Repository.
+          - You only made changes to the files inside the `wiki` folder.
+          - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md) file.
+          
+          If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
