@@ -1,0 +1,57 @@
+labels:
+  - name: 'Type: Issue (Expansion)'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ sender.login }},
+          
+          The issue you encountered is caused by an Expansion and not PlaceholderAPI itself.
+          This issue-tracker is reserved for Bug reports and feature requests towards PlaceholderAPI.
+          
+          Please report this issue to the Expansion's main issue-tracker.
+          
+          > *This is an automated response.*
+  - name: 'Type: Duplicate'
+    labeled:
+      issue:
+        body: |-
+          Your issue is already known and a separate issue with the exact same report/feature request already exist.
+          
+          Please comment on the already existing issue with your information instead of opening your own.
+          
+          > *This is an automated response.*
+        action: close
+  - name: 'Problem: More info required'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ sender.login }},
+          
+          Your issue unfortunately lacks certain information that we require in order to help you with your issue.
+          Please make sure you provide the following information:
+          
+          - Currently used Versions of your server and PlaceholderAPI
+          - Currently installed Expansions
+          - Currently installed Plugins
+          
+          The easiest way to provide those information is through the `/papi dumb` command which posts the required information and gives a URL to share.
+          
+          > *This is an automated response.*
+    unlabeled:
+      issue:
+        body: |-
+          Thank you for providing additional information.
+          We will take a look at the issue you encounter and come back to you with a possible solution.
+  - name: 'Type: Invalid'
+    labeled:
+      issue:
+        body: |-
+          Your issue has beeen marked as invalid.
+          This means that it either doesn't follow any provided template, or isn't related to PlaceholderAPI in any way.
+          
+          Please make sure to use one of the issue templates and provide the requested information.
+          Currently available Templates are:
+          
+          - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md)
+          - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md)
+        action: close
