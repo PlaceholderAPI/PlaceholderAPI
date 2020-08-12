@@ -54,6 +54,8 @@ labels:
           
           - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md)
           - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md)
+          
+          > *This is an automated response.*
         action: close
   - name: 'Target: Wiki'
     labeled:
@@ -70,3 +72,5 @@ labels:
           - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md) file.
           
           If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
+          
+          > *This is an automated response.*
