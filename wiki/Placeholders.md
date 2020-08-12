@@ -448,6 +448,7 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 %formatter_text_substring_<start:end>_<text>%
 %formatter_text_uppercase_<text>%
 %formatter_text_lowercase_<text>%
+%formatter_join_<character>_<text>%
 ```
 
 Available options:
