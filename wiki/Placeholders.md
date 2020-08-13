@@ -236,6 +236,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RedProtect](#redprotect)**
 - **[ReferralSystem](#referralsystem)**
 - **[RestrictedDimensions](#restricteddimensions)**
+- **[RocketPlaceholders](#rocketplaceholders)**
 - **[RogueParkour](#rogueparkour)**
 - **[RoyalCommands](#royalcommands)**
 - **[RPGInventory](#rpginventory)**
@@ -3302,8 +3303,20 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 ```
 ----
 
+- ### **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
+> NO DOWNLOAD COMMAND
+
+```
+%rp_<name>%
+```
+
+`<name>` is the name you configured in the config.yml of this plugin.  
+[Read More](https://lorenzo0111.gitbook.io/rocekt-plugins/rocketplaceholders/configure)
+
+----
+
 - ### **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
-> Download manually from [here](https://api.extendedclip.com/expansions/rogueparkour-temporary/)
+> /papi ecloud download rogueparkour-temporary
 
 ```
 %RogueParkour-temporary_top_<number>;<type>%
