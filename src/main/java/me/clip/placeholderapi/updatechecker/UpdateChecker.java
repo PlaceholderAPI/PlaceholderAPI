@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.listeners.JoinListener;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -51,6 +52,10 @@ public class UpdateChecker implements Listener {
 
   public String getSpigotVersion() {
     return spigotVersion;
+  }
+  
+  public int getResourceId(){
+    return RESOURCE_ID;
   }
 
   public void fetch() {
@@ -80,7 +85,7 @@ public class UpdateChecker implements Listener {
             .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
         plugin.getLogger()
             .info("https://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID + "/");
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        Bukkit.getPluginManager().registerEvents(new JoinListener(plugin, this), plugin);
       });
     });
   }
@@ -101,16 +106,5 @@ public class UpdateChecker implements Listener {
     }
 
     return version.replaceAll("\\.", "");
-  }
-
-  @EventHandler(priority = EventPriority.MONITOR)
-  public void onJoin(PlayerJoinEvent e) {
-    if (e.getPlayer().hasPermission("placeholderapi.updatenotify")) {
-      Msg.msg(e.getPlayer(),
-          "&bAn update for &fPlaceholder&7API &e(&fPlaceholder&7API &fv" + getSpigotVersion()
-              + "&e)"
-          , "&bis available at &ehttps://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID
-              + "/");
-    }
   }
 }
