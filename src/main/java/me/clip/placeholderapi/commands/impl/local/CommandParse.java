@@ -101,6 +101,7 @@ public final class CommandParse extends PlaceholderCommand {
       }
 
       player = ((Player) sender);
+    } else if ("all".equalsIgnoreCase(params.get(0))) {
     } else {
       final OfflinePlayer target = resolvePlayer(params.get(0));
       if (target == null) {
