@@ -139,11 +139,27 @@ public final class PlaceholderAPI {
     return text.stream().map(line -> setBracketPlaceholders(player, line))
         .collect(Collectors.toList());
   }
-
+  
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text Text to set the placeholder values in
+   * @return String containing all translated placeholders
+   */
   public static String setBracketPlaceholders(Player player, String text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
-
+  
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text List of Strings to set the placeholder values in
+   * @return String containing all translated placeholders
+   */
   public static List<String> setBracketPlaceholders(Player player, List<String> text) {
     return setPlaceholders((OfflinePlayer) player, text);
   }
@@ -215,7 +231,7 @@ public final class PlaceholderAPI {
   /**
    * Get all registered placeholder identifiers
    *
-   * @return All registered placeholder identifiers
+   * @return A Set of type String containing the identifiers of all registered expansions.
    */
   @NotNull
   public static Set<String> getRegisteredIdentifiers() {
@@ -225,6 +241,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the normal placeholder pattern.
+   * 
+   * @return Regex Pattern of {@literal [%]([^%]+)[%]}
    */
   public static Pattern getPlaceholderPattern() {
     return PLACEHOLDER_PATTERN;
@@ -232,6 +250,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the bracket placeholder pattern.
+   * 
+   * @return Regex Pattern of {@literal [{]([^{}]+)[}]}
    */
   public static Pattern getBracketPlaceholderPattern() {
     return BRACKET_PLACEHOLDER_PATTERN;
@@ -239,6 +259,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the relational placeholder pattern.
+   * 
+   * @return Regex Pattern of {@literal [%](rel_)([^%]+)[%]}
    */
   public static Pattern getRelationalPlaceholderPattern() {
     return RELATIONAL_PLACEHOLDER_PATTERN;

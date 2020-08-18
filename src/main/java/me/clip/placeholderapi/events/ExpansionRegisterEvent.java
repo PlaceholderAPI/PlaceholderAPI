@@ -46,7 +46,12 @@ public final class ExpansionRegisterEvent extends Event implements Cancellable {
   public static HandlerList getHandlerList() {
     return HANDLERS;
   }
-
+  
+  /**
+   * The {@link PlaceholderExpansion expansion} that was registered.
+   * 
+   * @return The {@link PlaceholderExpansion} instance.
+   */
   @NotNull
   public PlaceholderExpansion getExpansion() {
     return expansion;
