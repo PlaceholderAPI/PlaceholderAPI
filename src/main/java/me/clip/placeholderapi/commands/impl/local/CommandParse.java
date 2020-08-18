@@ -41,7 +41,7 @@ import org.jetbrains.annotations.Unmodifiable;
 public final class CommandParse extends PlaceholderCommand {
 
   public CommandParse() {
-    super("parse", "bcparse", "parserel", "cmdparse");
+    super("parse", "bcparse", "parserel", "cmdparse", "parseall");
   }
 
 
