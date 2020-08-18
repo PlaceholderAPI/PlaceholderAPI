@@ -62,6 +62,9 @@ public final class CommandParse extends PlaceholderCommand {
       case "cmdparse":
         evaluateParseSingular(sender, params, false, true);
         break;
+      case "parseall":
+        evaluateParseAll(sender, params);
+        break;
     }
   }
 
@@ -78,9 +81,25 @@ public final class CommandParse extends PlaceholderCommand {
       case "cmdparse":
         completeParseSingular(sender, params, suggestions);
         break;
+      case "parseall":
+        completeParse(params, suggestions);
+        break;
     }
   }
-
+  
+  private void evaluateParseAll(@NotNull final CommandSender sender,
+      @NotNull @Unmodifiable final List<String> params) {
+    for (Player player : Bukkit.getOnlinePlayers()) {
+      final String message = PlaceholderAPI
+              .setPlaceholders(player, String.join(" ", params.subList(1, params.size())));
+      
+      if (!(sender instanceof Player)) {
+        Msg.msg(sender, message);
+      } else {
+        ((Player) sender).spigot().sendMessage(TextComponent.fromLegacyText(message));
+      }
+    }
+  }
 
   private void evaluateParseSingular(@NotNull final CommandSender sender,
       @NotNull @Unmodifiable final List<String> params, final boolean broadcast,
@@ -101,7 +120,6 @@ public final class CommandParse extends PlaceholderCommand {
       }
 
       player = ((Player) sender);
-    } else if ("all".equalsIgnoreCase(params.get(0))) {
     } else {
       final OfflinePlayer target = resolvePlayer(params.get(0));
       if (target == null) {
@@ -172,31 +190,7 @@ public final class CommandParse extends PlaceholderCommand {
       return;
     }
 
-    final String name = params.get(params.size() - 1);
-    if (!name.startsWith("%") || name.endsWith("%")) {
-      return;
-    }
-
-    final int index = name.indexOf('_');
-    if (index == -1) {
-      return; // no arguments supplied yet
-    }
-
-    final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance()
-        .getLocalExpansionManager().findExpansionByIdentifier(name.substring(1, index))
-        .orElse(null);
-    if (expansion == null) {
-      return;
-    }
-
-    final Set<String> possible = new HashSet<>(expansion.getPlaceholders());
-
-    PlaceholderAPIPlugin.getInstance()
-        .getCloudExpansionManager()
-        .findCloudExpansionByName(expansion.getName())
-        .ifPresent(cloud -> possible.addAll(cloud.getPlaceholders()));
-
-    suggestByParameter(possible.stream(), suggestions, params.get(params.size() - 1));
+    completeParse(params, suggestions);
   }
 
   private void completeParseRelation(@NotNull @Unmodifiable final List<String> params,
@@ -208,12 +202,45 @@ public final class CommandParse extends PlaceholderCommand {
     final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
     suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(params.size() - 1));
   }
-
+  
+  private void completeParse(@NotNull @Unmodifiable final List<String> params,
+      @NotNull final List<String> suggestions) {
+    if (params.size() == 0) {
+      return;
+    }
+    
+    final String name = params.get(params.size() -1);
+    if (!name.startsWith("%") || name.endsWith("%")) {
+      return;
+    }
+    
+    final int index = name.indexOf("_");
+    if (index == -1) {
+      return; // No arguments supplied yet
+    }
+    
+    final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance()
+        .getLocalExpansionManager().findExpansionByIdentifier(name.substring(1, index))
+        .orElse(null);
+    if (expansion == null) {
+      return;
+    }
+    
+    final Set<String> possible = new HashSet<>(expansion.getPlaceholders());
+    
+    PlaceholderAPIPlugin.getInstance()
+        .getCloudExpansionManager()
+        .findCloudExpansionByName(expansion.getName())
+        .ifPresent(cloud -> possible.addAll(cloud.getPlaceholders()));
+    
+    suggestByParameter(possible.stream(), suggestions, params.get(params.size() - 1));
+  }
 
   @Nullable
   private OfflinePlayer resolvePlayer(@NotNull final String name) {
     OfflinePlayer target = Bukkit.getPlayer(name);
 
+    // TODO: Maybe not have this?
     if (target == null) {
       target = Bukkit.getOfflinePlayer(name); // this is probably not a great idea.
     }
