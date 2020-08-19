@@ -13,7 +13,7 @@ If you have any questions about contributions towards the project, feel free to 
 Like any other project can you encounter bugs or a feature is missing for you in the plugin.  
 For that can you open an [issue] to report a bug or suggest a new feature to be added.
 
-When doing so, make sure you follow the below rules.
+When doing so, make sure you follow rules below:
 
 ### Follow the template
 We have issue templates to help us get the required information more easily. Please follow the provided template when either filing a bug report or feature request.  
