@@ -2869,28 +2869,36 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 > /papi ecloud download Parkour
 
 ```
-%parkour_last_played%
-%parkour_last_completed%
-%parkour_level%
-%parkour_rank%
-%parkour_parkoins%
+%parkour_course_count%
+%parkour_course_global_completions%
+%parkour_course_prize_delay%
 %parkour_course_record_<course>%
 %parkour_course_record_deaths_<course>%
-%parkour_personal_best_<course>%
-%parkour_personal_best_deaths_<course>%
-%parkour_leader_<course>%
+%parkour_courses_completed%
+%parkour_current_checkpoint%
 %parkour_current_course%
+%parkour_current_course_deaths%
+%parkour_current_course_leader%
+%parkour_current_course_timer%
 %parkour_current_course_record%
 %parkour_current_course_record_deaths%
 %parkour_current_personal_best%
 %parkour_current_personal_best_deaths%
-%parkour_current_course_leader%
-%parkour_current_course_timer%
-%parkour_course_count%
+%parkour_last_played%
+%parkour_last_completed%
+%parkour_leader_<course>%
+%parkour_leaderboard_<course>_<position>_deaths%
+%parkour_leaderboard_<course>_<position>_player%
+%parkour_leaderboard_<course>_<position>_time%
+%parkour_level%
+%parkour_parkoins%
+%parkour_personal_best_<course>%
+%parkour_personal_best_deaths_<course>%
 %parkour_player_count%
-%parkour_version%
+%parkour_rank%
 %parkour_topten_<course>_<position>%
 %parkour_toptenxcc_<course>_<position>%
+%parkour_version%
 ```
 ----
 
@@ -3962,13 +3970,23 @@ Per Player/Event placeholders:
 > NO DOWNLOAD COMMANDS
 
 ```
-%tntrun_played%
-%tntrun_wins%
-%tntrun_losses%
-%tntrun_version%
 %tntrun_arena_count%
+%tntrun_currency_<arena>%
+%tntrun_doublejumps%
+%tntrun_joinfee_<arena>%
+%tntrun_leaderboard_wins_player_<position>%
+%tntrun_leaderboard_wins_score_<position>%
+%tntrun_leaderboard_losses_player_<position>%
+%tntrun_leaderboard_losses_score_<position>%
+%tntrun_leaderboard_played_player_<position>%
+%tntrun_leaderboard_played_score_<position>%
+%tntrun_losses%
+%tntrun_played%
 %tntrun_player_count%
-%tntrun_leaderboard_<position>%
+%tntrun_player_count_<arena>%
+%tntrun_status_<arena>%
+%tntrun_version%
+%tntrun_wins%
 ```
 ----
 
