@@ -3929,13 +3929,23 @@ Per Player/Event placeholders:
 > NO DOWNLOAD COMMANDS
 
 ```
-%tntrun_played%
-%tntrun_wins%
-%tntrun_losses%
-%tntrun_version%
 %tntrun_arena_count%
+%tntrun_currency_<arena>%
+%tntrun_doublejumps%
+%tntrun_joinfee_<arena>%
+%tntrun_leaderboard_wins_player_<position>%
+%tntrun_leaderboard_wins_score_<position>%
+%tntrun_leaderboard_losses_player_<position>%
+%tntrun_leaderboard_losses_score_<position>%
+%tntrun_leaderboard_played_player_<position>%
+%tntrun_leaderboard_played_score_<position>%
+%tntrun_losses%
+%tntrun_played%
 %tntrun_player_count%
-%tntrun_leaderboard_<position>%
+%tntrun_player_count_<arena>%
+%tntrun_status_<arena>%
+%tntrun_version%
+%tntrun_wins%
 ```
 ----
 
