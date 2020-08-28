@@ -795,6 +795,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#statz]]**]
+- **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#streaming-drops]]**]
 - **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#strikepractice-2]]**]
