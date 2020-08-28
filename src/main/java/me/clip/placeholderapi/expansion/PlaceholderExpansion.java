@@ -199,6 +199,12 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     final ConfigurationSection section = getConfigSection();
     return section == null ? Collections.emptyList() : section.getStringList(path);
   }
+  
+  @NotNull
+  public final boolean getBoolean(@NotNull final String path, final boolean def) {
+    final ConfigurationSection section = getConfigSection();
+    return section == null ? def : section.getBoolean(path, def);
+  }
 
   public final boolean configurationContains(@NotNull final String path) {
     final ConfigurationSection section = getConfigSection();
