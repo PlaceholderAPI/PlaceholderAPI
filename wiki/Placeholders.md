@@ -259,6 +259,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[SQLTokens](#sqltokens)**
 - **[Staff Facilities](#staff-facilities)**
 - **[Statz](#statz)**
+- **[Streaming Drops](#streaming-drops)**
 - **[StrikePractice 2](#strikepractice-2)**
 - **[stTitles](#sttitles)**
 - **[SubServers](#subservers)**
@@ -3699,6 +3700,21 @@ The following placeholders are the same as above but instead of specifying the s
 %statz_xp_gained%
 ```
 ----
+
+- ### **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
+> NO DOWNLOAD COMMAND
+
+```
+%streamingdrops_dropsamount%
+%streamingdrops_generaldropsamount%
+%streamingdrops_globallivetag%
+%streamingdrops_nextdroptime%
+%streamingdrops_senddrops%
+%streamingdrops_streamerlivetag%
+%streamingdrops_topdropsprefix%
+%streamingdrops_twitch%
+```
+
 
 - ### **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
 > NO DOWNLOAD COMMAND
