@@ -3497,7 +3497,7 @@ Replace `[variable name]` with the name of the signlink variable
 %skillapi_skill_req_<skillName>%
 ```
 
-The following placeholders are the same as above but instead of specifying the skillName, you can specify a number from 1 to pretty much infinity <amount of skills a player has> which will show the information related to the players 1st, 2nd, 3rd skill and so on...
+The following placeholders are the same as above but instead of specifying the skillName, you can specify a number from 1 to pretty much infinity (amount of skills a player has) which will show the information related to the players 1st, 2nd, 3rd skill and so on...  
 ```
 %skillapi_player_skill_points_<#>%
 %skillapi_player_skill_level_<#>%
@@ -3714,7 +3714,7 @@ The following placeholders are the same as above but instead of specifying the s
 %streamingdrops_topdropsprefix%
 %streamingdrops_twitch%
 ```
-
+----
 
 - ### **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
 > NO DOWNLOAD COMMAND
