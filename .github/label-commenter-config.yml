@@ -55,6 +55,9 @@ labels:
           - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md)
           - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md)
           
+          If you want changes to be made towards the Wiki, would we encourage you to [Make a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls).  
+          You can find more information about this process on the [Wiki's Readme](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki/README.md).
+          
           > *This is an automated response.*
         action: close
   - name: 'Target: Wiki'
