@@ -11,7 +11,7 @@ If you have any questions about contributions towards the project, feel free to 
 
 ## Issues
 Like any other project can you encounter bugs or a feature is missing for you in the plugin.  
-For that can you open an [issue] to report a bug or suggest a new feature to be added.
+For that, you can open an [issue] to report a bug, or suggest a new feature to be added.
 
 When doing so, make sure you follow rules below:
 
