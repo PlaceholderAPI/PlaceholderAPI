@@ -8,6 +8,10 @@ It allows you to suggest changes through Pull request while keeping a simple way
 
 If you want to contribute towards the wiki would we highly recommend to follow the below contributing Guidelines, to keep the overal style of the wiki intact.
 
+## Target branch
+The wiki is handled on a separate branch called `docs/wiki`.  
+When making a Pull request, make sure to target this specific branch. Any PR not targeting this branch may either be closed or the target changed.
+
 ## Adding your resource(s)
 If you have one or multiple resources that support PlaceholderAPI (being it by just supporting placeholders from other plugins, or providing your own) can you add them to the wiki in the following ways.
 
