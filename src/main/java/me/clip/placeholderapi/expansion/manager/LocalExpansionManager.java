@@ -36,6 +36,7 @@ import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
+import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
 import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
 import me.clip.placeholderapi.expansion.Configurable;
@@ -320,6 +321,9 @@ public final class LocalExpansionManager implements Listener {
       Msg.msg(sender,
           registered == 0 ? "&6No expansions were registered!"
               : registered + "&a placeholder hooks successfully registered!");
+
+      final ExpansionsLoadedEvent event = new ExpansionsLoadedEvent();
+      Bukkit.getPluginManager().callEvent(event);
     });
   }
 
