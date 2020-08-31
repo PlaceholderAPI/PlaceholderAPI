@@ -174,7 +174,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Marriage (Reloaded)](#marriage-reloaded)**
 - **[MarriageMaster](#marriagemaster)**
 - **[McInfected](#mcinfected)**
-- **[McInfected-Ranks](#mcinfected-ranks)**
 - **[McJobs](#mcjobs)**
 - **[McMMO](#mcmmo)**
 - **[MineChess](#minechess)**
@@ -2565,22 +2564,14 @@ Available if multiple partners are allowed on the server:
 > NO DOWNLOAD COMMAND
 
 ```
-%mcinfected_score%
-%mcinfected_kills%
-%mcinfected_deaths%
-%mcinfected_wins%
-%mcinfected_losses%
+%mcinfected_lobby_name%
+%mcinfected_lobby_time%
+%mcinfected_lobby_arena_name%
+%mcinfected_lobby_state%
+%mcinfected_kit_human%
+%mcinfected_kit_infected%
+%mcinfected_team%
 %mcinfected_killstreak%
-%mcinfected_time%
-```
-----
-
-- ### **[McInfected-Ranks](https://www.spigotmc.org/resources/2826/)**
-> NO DOWNLOAD COMMAND
-
-```
-%mcinfected-ranks_rank%
-%mcinfected-ranks_prefix%
 ```
 ----
 
