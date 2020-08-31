@@ -6,9 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is ran when all expansions are loaded.
- * This is done when reloading config, on plugin start and on server load.
- * @author jacobbordas (@ignissak)
+ * This event is called when all expansions are loaded (when reloading config, on plugin start and on server load).
  */
 public class ExpansionsLoadedEvent extends Event {
 

@@ -322,8 +322,7 @@ public final class LocalExpansionManager implements Listener {
           registered == 0 ? "&6No expansions were registered!"
               : registered + "&a placeholder hooks successfully registered!");
 
-      final ExpansionsLoadedEvent event = new ExpansionsLoadedEvent();
-      Bukkit.getPluginManager().callEvent(event);
+      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent());
     });
   }
 
