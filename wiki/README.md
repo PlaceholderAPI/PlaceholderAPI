@@ -1,6 +1,6 @@
 [Wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
 [Placeholders]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
-[Plugins using PlaceholderAPI]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+[Plugins using PlaceholderAPI]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Plugins-using-PlaceholderAPI
 
 # Wiki
 This is the wiki folder. It contains all pages that you can find in our [Wiki].  
