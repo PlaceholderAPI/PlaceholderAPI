@@ -1324,30 +1324,30 @@ All information about these placeholders can be found [here](https://gitlab.com/
 - ### **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
 > NO DOWNLOAD COMMAND
 
-Check out [BentoBox placeholders wiki](https://github.com/BentoBoxWorld/BentoBox/wiki/Placeholders) for more information.
+Check out [BentoBox placeholders docs](https://docs.bentobox.world/en/latest/BentoBox/Placeholders/) for more placeholders.
 
 Available gamemodes:
-`acidisland`, `bskyblock`, `caveblock` and `skygrid`.
+`acidisland`, `bskyblock`, `caveblock`, `skygrid` and `aoneblock`.
 
 ```
-%bentobox_[gamemode]-world-friendlyname%
-%bentobox_[gamemode]-island-distance%
-%bentobox_[gamemode]-island-protection-range%
-%bentobox_[gamemode]-island-owner%
-%bentobox_[gamemode]-island-creation-date%
-%bentobox_[gamemode]-island-spawnpoint%
-%bentobox_[gamemode]-island-name%
+%[gamemode]_world_friendly_name%
+%[gamemode]_island_distance%
+%[gamemode]_island_protection_range%
+%[gamemode]_island_owner%
+%[gamemode]_island_creation_date%
+%[gamemode]_island_center%
+%[gamemode]_island_name%
 ```
 
 **Level add-on**
 
 Available gamemodes:
-`acidisland`, `bskyblock`, and `caveblock`.
+`acidisland`, `bskyblock`, `caveblock`, `skygrid` and `aoneblock`.
 
 ```
-%level_[gamemode]-island-level%
-%level_[gamemode]-island-level-top-value-#%
-%level_[gamemode]-island-level-top-name-#%
+%Level_[gamemode]_island_level%
+%Level_[gamemode]_top_value_#RANK#%
+%Level_[gamemode]_top_name_#RANK#%
 ```
 ----
 
