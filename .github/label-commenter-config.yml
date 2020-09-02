@@ -10,7 +10,7 @@ labels:
           
           Please report this issue to the Expansion's main issue-tracker.
           
-          > *This is an automated response.*
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
   - name: 'Type: Duplicate'
     labeled:
       issue:
@@ -19,7 +19,7 @@ labels:
           
           Please comment on the already existing issue with your information instead of opening your own.
           
-          > *This is an automated response.*
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
         action: close
   - name: 'Problem: More info required'
     labeled:
@@ -36,12 +36,14 @@ labels:
           
           The easiest way to provide those information is through the `/papi dumb` command which posts the required information and gives a URL to share.
           
-          > *This is an automated response.*
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
     unlabeled:
       issue:
         body: |-
           Thank you for providing additional information.
           We will take a look at the issue you encounter and come back to you with a possible solution.
+          
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
   - name: 'Type: Invalid'
     labeled:
       issue:
@@ -58,7 +60,7 @@ labels:
           If you want changes to be made towards the Wiki, would we encourage you to [Make a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls).  
           You can find more information about this process on the [Wiki's Readme](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki/README.md).
           
-          > *This is an automated response.*
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
         action: close
   - name: 'Target: Wiki'
     labeled:
@@ -76,4 +78,23 @@ labels:
           
           If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
           
-          > *This is an automated response.*
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
+  - name: 'Type: Not a bug'
+    labeled:
+      issue:
+        body: |-
+          The issue you encounter is not considered a bug and rather an intentional behaviour of PlaceholderAPI and/or one of its expansions.
+          If you still believe that it is a bug, provide more information and a maintainer of this repository may look at it more closely.
+          
+          Before providing more info, always make sure to use the latest version of PlaceholderAPI, as the issue you encounter might already be fixed in a newer version.
+          Optionally can you also try out [development builds](https://ci.extendedclip.com/job/PlaceholderAPI/) and see if the issue was fixed there.
+          
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
+        action: close
+    unlabeled:
+      issue:
+        body: |-
+          After further investigation is the issue you encounter indeed considered a bug and we will try to fix it as soon as possible.
+          
+          > *This is an automated response created by a GitHub-Action. Responding to or mentioning this bot has no effect!*
+        action: open
