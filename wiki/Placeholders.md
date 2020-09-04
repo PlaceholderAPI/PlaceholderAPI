@@ -3012,6 +3012,9 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %powerranks_subranksuffix%
 %powerranks_chatcolor%
 %powerranks_namecolor%
+%powerranks_usertag%
+%powerranks_world%
+%powerranks_playtime%
 ```
 ----
 
