@@ -3470,7 +3470,7 @@ The following placeholders are the same as above but instead of specifying the s
 ```
 ----
 
-- ### **[SkinsRestorer](https://www.spigotmc.org/resources/skinsrestorer.2124/)**
+- ### **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
 > /papi ecloud download SkinsRestorer
 
 ```
