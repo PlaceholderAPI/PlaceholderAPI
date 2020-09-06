@@ -753,7 +753,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[SkillAPI](https://www.spigotmc.org/resources/4824/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#skillapi]]**]
-- **[SkinsRestorer](https://www.spigotmc.org/resources/skinsrestorer.2124/updates)**
+- **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#skinsrestorer]]**]
 - **[Skript](https://github.com/bensku/Skript)**
