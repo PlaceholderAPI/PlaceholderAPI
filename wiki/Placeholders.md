@@ -248,6 +248,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[SimplePrefix](#simpleprefix)**
 - **[Simple Suffix](#simple-suffix)**
 - **[SkillAPI](#skillapi)**
+- **[SkinsRestorer](#skinsrestorer)**
 - **[Skript](#skript)**
 - **[Skywars](#skywars)**
 - **[Skywars X](#skywars-x)**
@@ -3466,6 +3467,14 @@ The following placeholders are the same as above but instead of specifying the s
 %skillapi_player_skill_type_<#>%
 %skillapi_player_skill_can_autolevel_<#>%
 %skillapi_player_skill_can_cast_<#>%
+```
+----
+
+- ### **[SkinsRestorer](https://github.com/SkinsRestorer/SkinsRestorerX)**
+> /papi ecloud download SkinsRestorer
+
+```
+%skinsrestorer_getSkinName%
 ```
 ----
 
