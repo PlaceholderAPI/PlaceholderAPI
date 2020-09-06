@@ -21,7 +21,7 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
     implementation "org.bstats:bstats-bukkit:1.5"
 
-    compileOnly "org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.16.2-R0.1-SNAPSHOT"
     compileOnly "org.jetbrains:annotations:19.0.0"
 
     testImplementation "org.openjdk.jmh:jmh-core:1.23"
