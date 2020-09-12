@@ -70,6 +70,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[BeautyQuests](#beautyquests)**
 - **[BedWars1058](#bedwars1058)**
 - **[BentoBox](#bentobox)**
+- **[BetonQuest](#betonquest)**
 - **[BlockParty](#blockparty)**
 - **[BlockQuests](#blockquests)**
 - **[BuildBattlePro](#buildbattlepro)**
@@ -1349,6 +1350,16 @@ Available gamemodes:
 %Level_[gamemode]_island_level%
 %Level_[gamemode]_top_value_#RANK#%
 %Level_[gamemode]_top_name_#RANK#%
+```
+----
+
+- ### **[BetonQuest](https://www.spigotmc.org/resources/2117/)**
+> NO DOWNLOAD COMMAND
+
+Please refer to the [official documentation](https://betonquest.github.io/BetonQuest/versions/dev/User-Documentation/Compatibility/#placeholderapi) for more info.
+```
+%betonquest_<variable>%
+%betonquest_<package>:<variable>%
 ```
 ----
 
