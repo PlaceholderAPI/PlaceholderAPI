@@ -244,6 +244,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[SellAll](#sellall)**
 - **[SignLink](#signlink)**
 - **[SimpleClans](#simpleclans)**
+- **[SimpleCoins](#simplecoins)**
 - **[SimpleCoinsAPI](#simplecoinsapi)**
 - **[SimpleKillTracker](#simplekilltracker)**
 - **[SimplePrefix](#simpleprefix)**
@@ -3436,6 +3437,16 @@ Replace `[variable name]` with the name of the signlink variable
 ```
 
 - `<POSITION>` - The top rank position you want.
+
+----
+
+- ### **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)
+> NO DOWNLOAD COMMAND
+
+```
+%simplecoins_balane%
+%simplecoins_currency_name%
+```
 
 ----
 
