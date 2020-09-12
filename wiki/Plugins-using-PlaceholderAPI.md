@@ -116,6 +116,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#bentobox]]**]
+- **[BetonQuest](https://www.spigotmc.org/resources/2117/)
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#betonquest]]**]
 - **[Big Doors Opener](https://www.spigotmc.org/resources/80805/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
