@@ -19,6 +19,6 @@ jobs:
       with:
         ref: master
     - name: Send Issue/Pull request comment
-      uses: peaceiris/actions-label-commenter@v1.5.0
+      uses: peaceiris/actions-label-commenter@v1.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
