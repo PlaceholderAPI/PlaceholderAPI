@@ -3447,7 +3447,6 @@ Replace `[variable name]` with the name of the signlink variable
 %simplecoins_balane%
 %simplecoins_currency_name%
 ```
-
 ----
 
 - ### **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
