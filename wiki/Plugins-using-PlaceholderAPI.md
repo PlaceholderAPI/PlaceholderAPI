@@ -744,6 +744,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[SimpleClans](https://www.spigotmc.org/resources/5269/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#simpleclans]]**]
+- **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#simplecoins]]**]
 - **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#simplecoinsapi]]**]
