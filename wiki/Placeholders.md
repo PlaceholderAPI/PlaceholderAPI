@@ -5,8 +5,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 > ## Notes (Please read)  
 > We only add and/or update placeholders on request.  
 > We aren't responsible, to keep the placeholders of your plugin(s) up to date.  
-> If you changed, removed or added placeholders, or made your plugin(s) and/or expansion(s) no longer available and want us to update this page, [create an issue](/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md) and let us know.  
-> This is also the case for when you want your plugin to be added to the list.
+> If anything about your expansion/plugin has changed, consider [making a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls) to commit the changes yourself.
+>
+> You can find a comprehensive guide on how to do this on the [Wiki's README file](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md).
 
 ## [PAPI-placeholders](#papi-placeholders-1)
 
