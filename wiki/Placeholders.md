@@ -3966,11 +3966,13 @@ Per Player/Event placeholders:
 ----
 
 - ### **[ThemePark](https://www.spigotmc.org/resources/48648/)**
-> NO DOWNLOAD COMMAND
+> /papi ecloud download ThemePark
 
 ```
 %tp_name:<AttractionID>%
 %tp_status:<AttractionID>%
+%tp_ridecount%
+%tp_ridecount:<AttractionID>%
 ```
 ----
 
