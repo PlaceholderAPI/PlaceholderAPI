@@ -3965,7 +3965,7 @@ Per Player/Event placeholders:
 ----
 
 - ### **[ThemePark](https://www.spigotmc.org/resources/48648/)**
-> [Download here](https://api.extendedclip.com/expansions/themepark/)
+> /papi ecloud download ThemePark
 
 ```
 %tp_name:<AttractionID>%
