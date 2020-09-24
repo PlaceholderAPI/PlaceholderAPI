@@ -75,6 +75,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[BetonQuest](#betonquest)**
 - **[BlockParty](#blockparty)**
 - **[BlockQuest](#blockquest)**
+- **[Boxing](#boxing)**
 - **[BuildBattlePro](#buildbattlepro)**
 - **[BungeePerms](#bungeeperms)**
 - **[BuyCraft](#buycraft)**
@@ -275,6 +276,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[The Time](#the-time)**
 - **[ThemePark](#themepark)**
 - **[Thirst](#thirst)**
+- **[TicketGUI](#ticketgui)**
 - **[Timed Rewards](#timed-rewards)**
 - **[Time Tokens](#time-tokens)**
 - **[TNTRun_Reloaded](#tntrun_reloaded)**
@@ -1408,6 +1410,16 @@ Please refer to the [official documentation](https://betonquest.github.io/BetonQ
 %blockquest_blocksfound%
 %blockquest_blocksleft%
 %blockquest_allblocks%
+```
+----
+
+- ### **[Boxing](https://www.spigotmc.org/resources/83879/)**
+> NO DOWNLOAD COMMAND
+
+```
+%boxing_losses%
+%boxing_times_played%
+%boxing_wins%
 ```
 ----
 
@@ -4008,6 +4020,17 @@ Per Player/Event placeholders:
 
 ```
 %thirst_level%
+```
+----
+
+- ### **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
+> NO DOWNLOAD COMMAND
+
+```
+%ticketgui_blacklist_points_current%
+%ticketgui_blacklist_points_max%
+%ticketgui_tickets_handled%
+%ticketgui_tickets_sent%
 ```
 ----
 
