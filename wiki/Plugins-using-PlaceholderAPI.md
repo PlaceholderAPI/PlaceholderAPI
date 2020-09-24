@@ -140,6 +140,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[BossVote](https://www.spigotmc.org/resources/16497/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Boxing](https://www.spigotmc.org/resources/83879/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#boxing]]**]
 - **[Broadcaster Plugin](https://dev.bukkit.org/projects/broadcaster-plugin)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -681,6 +684,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RankedHelp](https://www.spigotmc.org/resources/61919/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[RankJoin](https://www.spigotmc.org/resources/67551/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[Rankup](https://www.spigotmc.org/resources/17933/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rankup]]**]
@@ -846,6 +852,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Thirst](https://www.spigotmc.org/resources/3316/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#thirst]]**]
+- **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ticketgui]]**]
 - **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#timed-rewards]]**]
@@ -870,6 +879,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[TownyChat](https://github.com/TownyAdvanced/TownyChat)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#townychat]]**]
+- **[TpLogin](https://www.spigotmc.org/resources/21692/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[TransmuteIt](https://www.spigotmc.org/resources/76287/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#transmuteIt]]**]
