@@ -62,6 +62,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[ajParkour](https://www.spigotmc.org/resources/60909/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ajparkour]]**]
+- **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#alonsolevels]]**]
 - **[AnimatedBoard](https://www.spigotmc.org/resources/13632/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
