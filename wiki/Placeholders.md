@@ -58,6 +58,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[AdvancedLottery](#advancedlottery)**
 - **[AdvancedModReq](#advancedmodreq)**
 - **[ajParkour](#ajparkour)**
+- **[AlonsoLevels](#alonsolevels)**
 - **[Animated Menu](#animated-menu)**
 - **[AParkour](#aparkour)**
 - **[ASkyBlock](#askyblock)**
@@ -1152,6 +1153,32 @@ All information about these placeholders can be found [here](https://gitlab.com/
 %ajpk_stats_top_name_%
 %ajpk_stats_top_score_%
 %ajpk_stats_highscore%
+```
+----
+
+- ### **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
+> NO DOWNLOAD COMMAND
+
+```
+%alonsolevels_developer%
+%alonsolevels_empty_progress_bar%
+%alonsolevels_experience%
+%alonsolevels_experience_format%
+%alonsolevels_experience_in_current_level%
+%alonsolevels_experience_to_level_up%
+%alonsolevels_experience_to_level_up_format%
+%alonsolevels_level%
+%alonsolevels_level_format%
+%alonsolevels_progress%
+%alonsolevels_progress_bar%
+%alonsolevels_progress_bar_format%
+%alonsolevels_progress_format%
+%alonsolevels_progress_stripped%
+%alonsolevels_progress_stripped_format%
+%alonsolevels_progress_percent%
+%alonsolevels_progress_percent_format%
+%alonsolevels_reqiored_experience_in_current_level%
+%alonsolevels_version%
 ```
 ----
 
