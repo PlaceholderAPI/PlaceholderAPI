@@ -32,8 +32,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[PlayerList](#playerlist)**
 - **[Plugin](#plugin)**
 - **[Progress](#progress)**
-- **[RainbowColor](#RainbowColor)**
-- **[RandomColor](#RandomColor)**
+- **[RainbowColor](#rainbowcolor)**
+- **[RandomColor](#randomcolor)**
 - **[RedisBungee](#redisbungee)**
 - **[RelCon](#relcon)**
 - **[ScoreboardObjectives](#scoreboardobjectives)**
@@ -74,7 +74,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[BentoBox](#bentobox)**
 - **[BetonQuest](#betonquest)**
 - **[BlockParty](#blockparty)**
-- **[BlockQuests](#blockquests)**
+- **[BlockQuest](#blockquest)**
 - **[BuildBattlePro](#buildbattlepro)**
 - **[BungeePerms](#bungeeperms)**
 - **[BuyCraft](#buycraft)**
@@ -104,7 +104,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[DeluxeCombat](#deluxecombat)**
 - **[DeluxePM](#deluxepm)**
 - **[DeluxeTags](#deluxetags)**
-- **[Denize](#denize)**
+- **[Denizen](#denizen)**
 - **[DiscordSRV](#discordsrv)**
 - **[Disease](#disease)**
 - **[DonateParty](#donateparty)**
@@ -160,7 +160,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Karma](#karma)**
 - **[KillStats](#killstats)**
 - **[KitPvP](#kitpvp)**
-- **[Kingdoms+](#kindoms)**
+- **[Kingdoms+](#kingdoms)**
 - **[KP-PVP](#kp-pvp)**
 
 ## **L**
@@ -283,7 +283,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Tokens](#tokens)**
 - **[Towny](#towny)**
 - **[TownyChat](#townychat)**
-- **[TransmuteIt](#transmuteIt)**
+- **[TransmuteIt](#transmuteit)**
 - **[Treasures](#treasures)**
 - **[Trey's Double Jump](#treys-double-jump)**
 - **[TrickOrTreat](#trickortreat)**
