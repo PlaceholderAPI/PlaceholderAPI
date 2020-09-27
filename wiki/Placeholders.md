@@ -863,7 +863,7 @@ This placeholder is for all players on the server.
 ----
 
 - ### **SpeedPerSec**
-> /papi ecloud download SpeedPerSecond
+> /papi ecloud download SpeedPerSec
 
 ```
 %speedpersec_blockBreak%
