@@ -38,7 +38,7 @@ PlaceholderAPI has been downloaded over 400,000 times and has been used concurre
 
 ## Quick Links
 - [CI Server][ci]
-- [Expansions cloud]
+- [Expansions Cloud]
 - [Placeholder List]
 - [Spigot Page][spigot]
 - [Plugin Statistics][statistics]
