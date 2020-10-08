@@ -2932,9 +2932,9 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 %parkour_last_played%
 %parkour_last_completed%
 %parkour_leader_<course>%
-%parkour_leaderboard_<course>_<position>_deaths%
-%parkour_leaderboard_<course>_<position>_player%
-%parkour_leaderboard_<course>_<position>_time%
+%parkour_leaderboard_<course>_deaths_<position>%
+%parkour_leaderboard_<course>_player_<position>%
+%parkour_leaderboard_<course>_time_<position>%
 %parkour_level%
 %parkour_parkoins%
 %parkour_personal_best_<course>%
