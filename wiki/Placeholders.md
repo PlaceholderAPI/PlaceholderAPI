@@ -3021,8 +3021,8 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 ```
 ----
 
-- ### **[PlotSquared](https://www.spigotmc.org/resources/1177/)**
-> /papi ecloud download PlotSquared
+- ### **[PlotSquared](https://www.spigotmc.org/resources/77506/)**
+> NO DOWNLOAD COMMAND
 
 ```
 %plotsquared_currentplot_alias%
@@ -3031,18 +3031,20 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %plotsquared_currentplot_members_added%
 %plotsquared_currentplot_members_trusted%
 %plotsquared_currentplot_members_denied%
-%plotsquared_currentplot_world%
+%plotsquared_world_name%
+%plotsquared_has_plot_<world>%
 %plotsquared_currentplot_x%
 %plotsquared_currentplot_y%
 %plotsquared_currentplot_xy%
 %plotsquared_currentplot_rating%
 %plotsquared_currentplot_biome%
 %plotsquared_has_plot%
-%plotsquared_has_plot_<World>%
 %plotsquared_has_build_rights%
 %plotsquared_plot_count%
-%plotsquared_plot_count_<World>%
+%plotsquared_plot_count_<world>%
 %plotsquared_allowed_plot_count%
+%plotsquared_currentplot_localflag_<flag>%
+%plotsquared_currentplot_flag_<flag>%
 ```
 ----
 
