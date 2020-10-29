@@ -4066,6 +4066,8 @@ Per Player/Event placeholders:
 
 ```
 %tntrun_arena_count%
+%tntrun_pvp_arena_count%
+%tntrun_nopvp_arena_count%
 %tntrun_currency_<arena>%
 %tntrun_doublejumps%
 %tntrun_joinfee_<arena>%
@@ -4078,6 +4080,8 @@ Per Player/Event placeholders:
 %tntrun_losses%
 %tntrun_played%
 %tntrun_player_count%
+%tntrun_pvp_player_count%
+%tntrun_nopvp_player_count%
 %tntrun_player_count_<arena>%
 %tntrun_status_<arena>%
 %tntrun_version%
