@@ -236,6 +236,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RabbitsVSPenguins](#rabbitsvspenguins)**
 - **[RageMode](#ragemode)**
 - **[Rankup](#rankup)**
+- **[RealisticWorldGenerator](#realisticworldgenerator)**
 - **[RedProtect](#redprotect)**
 - **[ReferralSystem](#referralsystem)**
 - **[RestrictedDimensions](#restricteddimensions)**
@@ -3328,6 +3329,18 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 %rankup_rank_money_<rank>%
 %rankup_rank_money_<rank>_left%
 %rankup_rank_requirement_<rank>_money_percent_[done/left]%
+```
+----
+
+- ### **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
+> NO DOWNLOAD COMMAND
+
+```
+%rwg_schematicAmount%
+%rwg_schematics%
+%rwg_biome%
+%rwg_position1%
+%rwg_position2%
 ```
 ----
 
