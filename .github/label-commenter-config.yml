@@ -107,3 +107,23 @@ labels:
           > *This is an automated response created by a GitHub-Action.*
           > *Responding to the bot or mentioning it won't have any effect!*
         action: open
+  - name: 'Type: Inactive'
+    labeled:
+      issue:
+        body: |-
+          The issue was marked as "inactive" which means it didn't recieve any responses from the Author for a long period of time.
+          To keep the issue-tracker clean and up to date are we closing issues, that didn't receive any responses for a long time.
+          
+          If you're the Author and this issue is still present, make sure to respond to this issue with extra info and **do not create a new issue for the same problem!**
+          
+          > *This is an automated response created by a GitHub-Action.*
+          > *Responding to the bot or mentioning it won't have any effect!*
+        action: close
+    unlabeled:
+      issue:
+        body: |-
+          The issue received a response from the Author who confirms this to still be prominent and has therefore been reopened.
+          
+          > *This is an automated response created by a GitHub-Action.*
+          > *Responding to the bot or mentioning it won't have any effect!*
+        action: open
