@@ -3092,10 +3092,10 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 - ### **[Prison](https://www.spigotmc.org/resources/1223/)**
 > NO DOWNLOAD COMMAND
 
-Each placeholder has a shorter alias, which follow immediatly. 
+Each placeholder has a shorter alias, which follows the primary placeholder below. 
 
-Player rank placeholders. Must be used directly with a player, such as player chat placeholders.
-These placeholders can return zero, one, or more rank related placeholders depending upon how many ladders the player is on.
+**Player rank placeholders:** Must be used directly with a player, such as with player chat prefixes.
+These placeholders can return zero, one, or more rank related values depending upon how many ladders the player is on.
 
 ```
 %prison_rank%
@@ -3120,8 +3120,8 @@ These placeholders can return zero, one, or more rank related placeholders depen
 %prison_rrt%
 ```
 
-Player rank placeholders for each ladder. Must be used directly with a player.
-The actual ladder name must be used in place of *<laddername>* and will return zero or one rank related placeholder.
+**Player rank placeholders for individual ladders:** Must be used directly with a player.
+Use the ladder name, all lowercase, in place of `<laddername>`, and it will return zero or one rank related values.
   
 ```
 %prison_rank_<laddername>%
@@ -3150,8 +3150,8 @@ The actual ladder name must be used in place of *<laddername>* and will return z
 %prison_pb_<laddername>%
 ```
 
-Mine relate placeholders for each mine.
-The actual mine name must be used in place of *<minename>*.
+**Mine relate placeholders:** 
+Use the mine name, all lowercase, in place of `<minename>`.
   
 ```
 %prison_mines_name_<minename>%
@@ -3184,7 +3184,8 @@ The actual mine name must be used in place of *<minename>*.
 %prison_mrc_<minename>%
 ```
 
-These are player-mines related placeholders. They must be used with a player and they only provide mine related information for the mine that the player is in. If the player is not in any mine, then it will only return a blank value.
+**Player-mine related placeholders:** Must be used with a player.
+These placeholders will only return non-blank results when the player is in a mine and they will be for that mine.
 
 ```
 %prison_mines_name_playermines%
