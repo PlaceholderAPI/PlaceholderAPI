@@ -217,6 +217,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[PointsAPI](#pointsapi)**
 - **[PowerRanks](#powerranks)**
 - **[PremiumVanish](#premiumvanish)**
+- **[Prison](#prison)**
 - **[PrisonMines](#prisonmines)**
 - **[PrisonRanksX](#prisonranksx)**
 - **[ProCosmetics](#procosmetics)**
@@ -3085,6 +3086,137 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %premiumvanish_bungeeplayercount@<server>%
 ```
 `<server>` is the name of the server it should show the playercount of.
+
+----
+
+- ### **[Prison](https://www.spigotmc.org/resources/1223/)**
+> NO DOWNLOAD COMMAND
+
+Each placeholder has a shorter alias, which follows the primary placeholder below. 
+
+**Player rank placeholders:** Must be used directly with a player, such as with player chat prefixes.
+These placeholders can return zero, one, or more rank related values depending upon how many ladders the player is on.
+
+```
+%prison_rank%
+%prison_r%
+%prison_rank_tag%
+%prison_rt%
+%prison_rankup_cost%
+%prison_rc%
+%prison_rankup_cost_formatted%
+%prison_rcf%
+%prison_rankup_cost_percent%
+%prison_rcp%
+%prison_rankup_cost_bar%
+%prison_rcb%
+%prison_rankup_cost_remaining%
+%prison_rcr%
+%prison_rankup_cost_remaining_formatted%
+%prison_rcrf%
+%prison_rankup_rank%
+%prison_rr%
+%prison_rankup_rank_tag%
+%prison_rrt%
+```
+
+**Player rank placeholders for individual ladders:** Must be used directly with a player.
+Use the ladder name, all lowercase, in place of `<laddername>`, and it will return zero or one rank related values.
+  
+```
+%prison_rank_<laddername>%
+%prison_r_<laddername>%
+%prison_rank_tag_<laddername>%
+%prison_rt_<laddername>%
+%prison_rankup_cost_<laddername>%
+%prison_rc_<laddername>%
+%prison_rankup_cost_formatted_<laddername>%
+%prison_rcf_<laddername>%
+%prison_rankup_cost_percent_<laddername>%
+%prison_rcp_<laddername>%
+%prison_rankup_cost_bar_<laddername>%
+%prison_rcb_<laddername>%
+%prison_rankup_cost_remaining_<laddername>%
+%prison_rcr_<laddername>%
+%prison_rankup_cost_remaining_formatted_<laddername>%
+%prison_rcrf_<laddername>%
+%prison_rankup_rank_<laddername>%
+%prison_rr_<laddername>%
+%prison_rankup_rank_tag_<laddername>%
+%prison_rrt_<laddername>%
+%prison_player_balance%
+%prison_pb%
+%prison_player_balance_<laddername>%
+%prison_pb_<laddername>%
+```
+
+**Mine relate placeholders:** 
+Use the mine name, all lowercase, in place of `<minename>`.
+  
+```
+%prison_mines_name_<minename>%
+%prison_mn_<minename>%
+%prison_mines_tag_<minename>%
+%prison_mt_<minename>%
+%prison_mines_interval_<minename>%
+%prison_mi_<minename>%
+%prison_mines_interval_formatted_<minename>%
+%prison_mif_<minename>%
+%prison_mines_timeleft_<minename>%
+%prison_mtl_<minename>%
+%prison_mines_timeleft_bar_<minename>%
+%prison_mtlb_<minename>%
+%prison_mines_timeleft_formatted_<minename>%
+%prison_mtlf_<minename>%
+%prison_mines_size_<minename>%
+%prison_ms_<minename>%
+%prison_mines_remaining_<minename>%
+%prison_mr_<minename>%
+%prison_mines_remaining_bar_<minename>%
+%prison_mrb_<minename>%
+%prison_mines_percent_<minename>%
+%prison_mp_<minename>%
+%prison_mines_player_count_<minename>%
+%prison_mpc_<minename>%
+%prison_mines_blocks_mined_<minename>%
+%prison_mbm_<minename>%
+%prison_mines_reset_count_<minename>%
+%prison_mrc_<minename>%
+```
+
+**Player-mine related placeholders:** Must be used with a player.
+These placeholders will only return non-blank values when the player is in a mine and the results will be for that mine.
+
+```
+%prison_mines_name_playermines%
+%prison_mn_pm%
+%prison_mines_tag_playermines%
+%prison_mt_pm%
+%prison_mines_interval_playermines%
+%prison_mi_pm%
+%prison_mines_interval_formatted_playermines%
+%prison_mif_pm%
+%prison_mines_timeleft_playermines%
+%prison_mtl_pm%
+%prison_mines_timeleft_bar_playermines%
+%prison_mtlb_pm%
+%prison_mines_timeleft_formatted_playermines%
+%prison_mtlf_pm%
+%prison_mines_size_playermines%
+%prison_ms_pm%
+%prison_mines_remaining_playermines%
+%prison_mr_pm%
+%prison_mines_remaining_bar_playermines%
+%prison_mrb_pm%
+%prison_mines_percent_playermines%
+%prison_mp_pm%
+%prison_mines_player_count_playermines%
+%prison_mpc_pm%
+%prison_mines_blocks_mined_playermines%
+%prison_mbm_pm%
+%prison_mines_reset_count_playermines%
+%prison_mrc_pm%
+```
 
 ----
 
