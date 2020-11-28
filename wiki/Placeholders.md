@@ -3185,7 +3185,7 @@ Use the mine name, all lowercase, in place of `<minename>`.
 ```
 
 **Player-mine related placeholders:** Must be used with a player.
-These placeholders will only return non-blank results when the player is in a mine and they will be for that mine.
+These placeholders will only return non-blank values when the player is in a mine and the results will be for that mine.
 
 ```
 %prison_mines_name_playermines%
