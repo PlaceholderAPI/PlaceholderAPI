@@ -1,20 +1,22 @@
 comment:
-  footer: |-
-    > *This is an automated response created by a **GitHub Action***
+  footer: "\
+    ----\n\n
+    > *This is an automated response created by a **GitHub Action*** \
     > *Mentioning the bot won't have any effect!*
+    "
 
 labels:
   - name: 'Type: Issue (Expansion)'
     labeled:
       issue:
         body: |-
-          
           Hello @{{ issue.user.login }},
           
           The issue you encountered is caused by an Expansion and not PlaceholderAPI itself.
           This issue-tracker is reserved for Bug reports and feature requests towards PlaceholderAPI.
           
           Please report this issue to the Expansion's main issue-tracker.
+        action: close
   - name: 'Type: Duplicate'
     labeled:
       issue:
@@ -94,10 +96,10 @@ labels:
     labeled:
       issue:
         body: |-
-          The issue was marked as "inactive" which means it didn't recieve any responses from the Author for a long period of time.
+          The issue was marked as "inactive" which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
           To keep the issue-tracker clean and up to date are we closing issues, that didn't receive any responses for a long time.
           
-          If you're the Author and this issue is still present, make sure to respond to this issue with extra info and **do not create a new issue for the same problem!**
+          If you're the Author and this issue is still present, make sure to respond with extra info and **do not create a new issue for the same problem!**
         action: close
     unlabeled:
       issue:
