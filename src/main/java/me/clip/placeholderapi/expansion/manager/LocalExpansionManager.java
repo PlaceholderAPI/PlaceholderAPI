@@ -174,10 +174,7 @@ public final class LocalExpansionManager implements Listener {
 
     return Optional.empty();
   }
-
-  /**
-   * Do not call this method yourself, use {@link PlaceholderExpansion#register()}
-   */
+  
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase();
@@ -271,9 +268,6 @@ public final class LocalExpansionManager implements Listener {
     return true;
   }
 
-  /**
-   * Do not call this method yourself, use {@link PlaceholderExpansion#unregister()}
-   */
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
     if (expansions.remove(expansion.getIdentifier()) == null) {
