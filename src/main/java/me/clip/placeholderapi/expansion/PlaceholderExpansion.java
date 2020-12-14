@@ -231,6 +231,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
+   *
+   * @return The plugin name.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -240,6 +242,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
+   *
+   * @return The description of the expansion.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -249,6 +253,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
+   *
+   * @return The link for the expansion.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
