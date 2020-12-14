@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
+import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.replacer.CharsReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import me.clip.placeholderapi.replacer.Replacer.Closure;
@@ -290,9 +291,10 @@ public final class PlaceholderAPI {
 
   /**
    * Get map of registered placeholders
+   * 
+   * @deprecated Use {@link LocalExpansionManager#getExpansions()} instead.
    *
    * @return Map of registered placeholders
-   * @deprecated Use {@link LocalExpansionManager#getExpansions()} instead.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -303,8 +305,12 @@ public final class PlaceholderAPI {
   }
 
   /**
-   * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to
+   * @deprecated Please use {@link PlaceholderExpansion} to
    * register placeholders instead
+   * 
+   * @param plugin The Plugin to register with this {@link PlaceholderHook}
+   * @param placeholderHook The {@link PlaceholderHook} to register
+   * @return always false
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -317,8 +323,12 @@ public final class PlaceholderAPI {
   }
 
   /**
-   * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to
+   * @deprecated Please use {@link PlaceholderExpansion} to
    * register placeholders instead
+   * 
+   * @param identifier The identifier to use for the {@link PlaceholderHook}
+   * @param placeholderHook The {@link PlaceholderHook} to register
+   * @return always false
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -330,8 +340,11 @@ public final class PlaceholderAPI {
   }
 
   /**
-   * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to
+   * @deprecated Please use {@link PlaceholderExpansion} to
    * unregister placeholders instead
+   * 
+   * @param plugin The plugin to unregister
+   * @return always false
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -344,8 +357,11 @@ public final class PlaceholderAPI {
   }
 
   /**
-   * @deprecated Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion} to
+   * @deprecated Please use {@link PlaceholderExpansion} to
    * unregister placeholders instead
+   * 
+   * @param identifier The identifier to unregister
+   * @return always false
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -357,6 +373,8 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Will be removed in a future release.
+   * 
+   * @return Set of registered identifiers
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -366,6 +384,8 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Will be removed in a future release.
+   * 
+   * @return always null
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -375,6 +395,12 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, String)} instead
+   * 
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param pattern The Pattern to use
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -385,6 +411,12 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Please use {@link #setPlaceholders(OfflinePlayer, List)} instead
+   * 
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param pattern The Pattern to use
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -395,6 +427,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -405,6 +442,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param pattern The Pattern to use
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -414,6 +456,11 @@ public final class PlaceholderAPI {
   }
   /**
    * @deprecated Will be removed in a future release.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -423,6 +470,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Will be removed in a future release.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -432,6 +484,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -441,6 +498,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param pattern The Pattern to use
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -450,6 +512,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, List)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -460,6 +527,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -469,6 +541,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Will be removed in a future release.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -478,6 +555,11 @@ public final class PlaceholderAPI {
 
   /**
    * @deprecated Will be removed in a future release.
+   *
+   * @param player The offline player to parse the placeholders against
+   * @param text The List of text to parse
+   * @param colorize If PlaceholderAPI should also parse color codes
+   * @return String with the parsed placeholders
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -488,12 +570,12 @@ public final class PlaceholderAPI {
 
   /**
    * set relational placeholders in the text specified placeholders are matched with the pattern
-   * %<rel_(identifier)_(params)>% when set with this method
+   * {@literal %<rel_(identifier)_(params)>%} when set with this method
    *
    * @param one Player to compare
    * @param two Player to compare
    * @param text Text to parse the placeholders in
-   * @param colorize If color codes (&[0-1a-fk-o]) should be translated
+   * @param colorize If color codes ({@literal &[0-1a-fk-o]}) should be translated
    * @return The text containing the parsed relational placeholders
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
    */
@@ -511,9 +593,9 @@ public final class PlaceholderAPI {
    * @param one First player to compare
    * @param two Second player to compare
    * @param text Text to parse the placeholders in
-   * @param colorize If color codes (&[0-1a-fk-o]) should be translated
+   * @param colorize If color codes ({@literal &[0-1a-fk-o]}) should be translated
    * @return The text containing the parsed relational placeholders
-   * @deprecated Use {@link #setRelationalPlaceholders(Player, Player, List<String>)} instead.
+   * @deprecated Use {@link #setRelationalPlaceholders(Player, Player, List)} instead.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
