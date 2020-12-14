@@ -150,7 +150,7 @@ public final class PlaceholderAPI {
 
   /**
    * set relational placeholders in the text specified placeholders are matched with the pattern
-   * %<rel_(identifier)_(params)>% when set with this method
+   * {@literal %<rel_(identifier)_(params)>%} when set with this method
    *
    * @param one First player to compare
    * @param two Second player to compare
@@ -225,6 +225,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the normal placeholder pattern.
+   *
+   * @return The default Placeholder Pattern
    */
   public static Pattern getPlaceholderPattern() {
     return PLACEHOLDER_PATTERN;
@@ -232,6 +234,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the bracket placeholder pattern.
+   *
+   * @return the Bracket Placeholder Pattern
    */
   public static Pattern getBracketPlaceholderPattern() {
     return BRACKET_PLACEHOLDER_PATTERN;
@@ -239,6 +243,8 @@ public final class PlaceholderAPI {
 
   /**
    * Get the relational placeholder pattern.
+   *
+   * @return The Relational Placeholder Pattern
    */
   public static Pattern getRelationalPlaceholderPattern() {
     return RELATIONAL_PLACEHOLDER_PATTERN;
@@ -286,8 +292,7 @@ public final class PlaceholderAPI {
    * Get map of registered placeholders
    *
    * @return Map of registered placeholders
-   * @deprecated Use {@link me.clip.placeholderapi.PlaceholderAPIPlugin().getLocalExpansionManager()
-   * .getExpansions()} instead.
+   * @deprecated Use {@link LocalExpansionManager#getExpansions()} instead.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
