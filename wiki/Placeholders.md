@@ -2947,7 +2947,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 %parkour_player_personal_best_<course>_deaths%
 %parkour_player_personal_best_<course>_player%
 %parkour_player_personal_best_<course>_time%
-%parkour_player_prize_delay_<course>%%
+%parkour_player_prize_delay_<course>%
 %parkour_player_rank%
 %parkour_topten_<course>_<position>%
 ```
