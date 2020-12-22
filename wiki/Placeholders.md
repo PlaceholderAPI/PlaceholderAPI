@@ -2913,39 +2913,45 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 ----
 
 - ### **[Parkour](https://www.spigotmc.org/resources/23685/)**
-> /papi ecloud download Parkour
+> NO DOWNLOAD COMMAND
 
 ```
-%parkour_course_count%
-%parkour_course_global_completions%
-%parkour_course_prize_delay%
-%parkour_course_record_<course>%
+%parkour_course_completed_<course>%
+%parkour_course_completions_<course>%
 %parkour_course_record_deaths_<course>%
-%parkour_courses_completed%
+%parkour_course_record_player_<course>%
+%parkour_course_record_time_<course>%
+%parkour_course_views%
 %parkour_current_checkpoint%
-%parkour_current_course%
+%parkour_current_course_checkpoints%
+%parkour_current_course_completed%
 %parkour_current_course_deaths%
-%parkour_current_course_leader%
-%parkour_current_course_timer%
-%parkour_current_course_record%
+%parkour_current_course_name%
+%parkour_current_course_personal_best_deaths%
+%parkour_current_course_personal_best_player%
+%parkour_current_course_personal_best_time%
 %parkour_current_course_record_deaths%
-%parkour_current_personal_best%
-%parkour_current_personal_best_deaths%
-%parkour_last_played%
-%parkour_last_completed%
-%parkour_leader_<course>%
-%parkour_leaderboard_<course>_deaths_<position>%
-%parkour_leaderboard_<course>_player_<position>%
-%parkour_leaderboard_<course>_time_<position>%
-%parkour_level%
-%parkour_parkoins%
-%parkour_personal_best_<course>%
-%parkour_personal_best_deaths_<course>%
-%parkour_player_count%
-%parkour_rank%
+%parkour_current_course_record_player%
+%parkour_current_course_record_time%
+%parkour_current_course_timer%
+%parkour_global_course_count%
+%parkour_global_player_count%
+%parkour_global_version%
+%parkour_leaderboard_<course>_<position>_deaths%
+%parkour_leaderboard_<course>_<position>_player%
+%parkour_leaderboard_<course>_<position>_time%
+%parkour_player_courses_completed%
+%parkour_player_courses_uncompleted%
+%parkour_player_last_completed%
+%parkour_player_last_joined%
+%parkour_player_level%
+%parkour_player_parkoins%
+%parkour_player_personal_best_<course>_deaths%
+%parkour_player_personal_best_<course>_player%
+%parkour_player_personal_best_<course>_time%
+%parkour_player_prize_delay_<course>%
+%parkour_player_rank%
 %parkour_topten_<course>_<position>%
-%parkour_toptenxcc_<course>_<position>%
-%parkour_version%
 ```
 ----
 
@@ -4210,24 +4216,28 @@ Per Player/Event placeholders:
 > NO DOWNLOAD COMMANDS
 
 ```
+%tntrun_allplayers_<arena>%
 %tntrun_arena_count%
-%tntrun_pvp_arena_count%
-%tntrun_nopvp_arena_count%
 %tntrun_currency_<arena>%
+%tntrun_current_arena%
 %tntrun_doublejumps%
 %tntrun_joinfee_<arena>%
-%tntrun_leaderboard_wins_player_<position>%
-%tntrun_leaderboard_wins_score_<position>%
 %tntrun_leaderboard_losses_player_<position>%
 %tntrun_leaderboard_losses_score_<position>%
 %tntrun_leaderboard_played_player_<position>%
 %tntrun_leaderboard_played_score_<position>%
+%tntrun_leaderboard_wins_player_<position>%
+%tntrun_leaderboard_wins_score_<position>%
 %tntrun_losses%
-%tntrun_played%
-%tntrun_player_count%
-%tntrun_pvp_player_count%
+%tntrun_nopvp_arena_count%
 %tntrun_nopvp_player_count%
+%tntrun_played%
+%tntrun_players_<arena>%
+%tntrun_player_count%
 %tntrun_player_count_<arena>%
+%tntrun_pvp_arena_count%
+%tntrun_pvp_player_count%
+%tntrun_spectators_<arena>%
 %tntrun_status_<arena>%
 %tntrun_version%
 %tntrun_wins%
