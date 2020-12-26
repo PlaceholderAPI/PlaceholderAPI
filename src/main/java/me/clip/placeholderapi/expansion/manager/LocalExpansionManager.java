@@ -36,6 +36,7 @@ import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
+import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
 import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
 import me.clip.placeholderapi.expansion.Configurable;
@@ -173,10 +174,7 @@ public final class LocalExpansionManager implements Listener {
 
     return Optional.empty();
   }
-
-  /**
-   * Do not call this method yourself, use {@link PlaceholderExpansion#register()}
-   */
+  
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase();
@@ -270,9 +268,6 @@ public final class LocalExpansionManager implements Listener {
     return true;
   }
 
-  /**
-   * Do not call this method yourself, use {@link PlaceholderExpansion#unregister()}
-   */
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
     if (expansions.remove(expansion.getIdentifier()) == null) {
@@ -320,6 +315,8 @@ public final class LocalExpansionManager implements Listener {
       Msg.msg(sender,
           registered == 0 ? "&6No expansions were registered!"
               : registered + "&a placeholder hooks successfully registered!");
+
+      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent());
     });
   }
 

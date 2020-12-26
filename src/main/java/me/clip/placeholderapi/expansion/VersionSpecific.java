@@ -34,6 +34,8 @@ public interface VersionSpecific {
    * This method is called before the expansion is attempted to be registered The server version
    * will be passed to this method so you know what version the server is currently running.
    *
+   * @param v The {@link Version} to check against
+   *
    * @return true if your expansion is compatible with the version the server is running.
    */
   boolean isCompatibleWith(Version v);

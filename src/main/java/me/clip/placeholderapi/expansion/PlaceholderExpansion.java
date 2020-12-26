@@ -269,6 +269,20 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
   
   /**
+   * Gets the boolean relative to the {@link #getConfigSection() default ConfigurationSection} set
+   * by the expansion or the default boolean, when the default ConfigurationSection is null
+   *
+   * @param path The path to get the boolean from. This is relative to the default section
+   * @param def The default boolean to return when the ConfigurationSection is null
+   * @return boolean from the provided path or the default one provided
+   */
+  @NotNull
+  public final boolean getBoolean(@NotNull final String path, final boolean def) {
+    final ConfigurationSection section = getConfigSection();
+    return section == null ? def : section.getBoolean(path, def);
+  }
+
+  /**
    * Whether the {@link #getConfigSection() default ConfigurationSection} contains the provided path
    * or not. This will return {@code false} when either the default section is null, or doesn't
    * contain the provided path
@@ -324,6 +338,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
+   *
+   * @return The plugin name.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -333,6 +349,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
+   *
+   * @return The description of the expansion.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
@@ -342,6 +360,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
 
   /**
    * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
+   *
+   * @return The link for the expansion.
    */
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
