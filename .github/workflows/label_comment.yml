@@ -12,7 +12,6 @@ on:
 
 jobs:
   give_comment:
-    if: github.event.state == 'open'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
