@@ -38,7 +38,7 @@ labels:
           - Currently installed Expansions
           - Currently installed Plugins
           
-          The easiest way to provide those information is through the `/papi dumb` command which posts the required information and gives a URL to share.
+          The easiest way to provide those information is through the `/papi dumb` command which posts the required information to https://paste.helpch.at and gives a URL to share.
     unlabeled:
       issue:
         body: |-
