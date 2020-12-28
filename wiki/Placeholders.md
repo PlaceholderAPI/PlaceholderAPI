@@ -1238,7 +1238,7 @@ All information about these placeholders can be found [here](https://gitlab.com/
 ```
 ----
 
-- ### **[Ath](https://www.spigotmc.org/resources/ath-peak-players-record-spigot-and-bungeecord-support.87124/)**
+- ### **[Ath](https://www.spigotmc.org/resources/87124/)**
 > NO DOWNLOAD COMMAND
 
 ```
