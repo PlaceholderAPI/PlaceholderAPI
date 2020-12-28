@@ -47,7 +47,7 @@ public final class CommandInfo extends PlaceholderCommand {
     }
 
     final PlaceholderExpansion expansion = plugin.getLocalExpansionManager()
-        .findExpansionByName(params.get(0)).orElse(null);
+        .findExpansionByIdentifier(params.get(0)).orElse(null);
     if (expansion == null) {
       Msg.msg(sender,
           "&cThere is no expansion loaded with the identifier: &f" + params.get(0));

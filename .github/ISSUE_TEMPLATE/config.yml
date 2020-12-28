@@ -12,3 +12,6 @@ contact_links:
   - name: Update Wiki
     url: https://github.com/PlaceholderAPI/PlaceholderAPI/pulls
     about: Please make a Pull request towards the "wiki" folder to update the wiki.
+  - name: Questions
+    url: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
+    about: If you have any questions, ask them in our Discussions Page.

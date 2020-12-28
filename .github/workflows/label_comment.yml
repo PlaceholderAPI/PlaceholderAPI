@@ -12,6 +12,7 @@ on:
 
 jobs:
   give_comment:
+    if: github.event.issue.state == 'open' || github.event.pull_request.state == 'open'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
@@ -19,6 +20,6 @@ jobs:
       with:
         ref: master
     - name: Send Issue/Pull request comment
-      uses: peaceiris/actions-label-commenter@v1.5.0
+      uses: peaceiris/actions-label-commenter@v1.8.2
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
