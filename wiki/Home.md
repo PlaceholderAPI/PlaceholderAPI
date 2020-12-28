@@ -24,6 +24,7 @@ It also has a list with all available placeholders (Work in progress).
   - [[Animations|Placeholders#animations]]
   - [[Armor|Placeholders#armor]]
   - [[ASCII|Placeholders#ASCII]]
+  - [[Ath|Placeholders#ath]]
   - [[BungeeCord|Placeholders#bungeecord]]
   - [[CheckItem|Placeholders#checkitem]]
   - [[CooldownBar|Placeholders#cooldownbar]]
