@@ -14,6 +14,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Animations](#animations)**
 - **[Armor](#armor)**
 - **[ASCII](#ascii)**
+- **[Ath](#ath)**
 - **[BungeeCord](#bungeecord)**
 - **[CheckItem](#checkitem)**
 - **[CooldownBar](#cooldownbar)**
@@ -61,6 +62,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[AParkour](#aparkour)**
 - **[ASkyBlock](#askyblock)**
 - **[AsyncKeepAlive](#asynckeepalive)**
+- **[Ath](#ath)**
 - **[AutoRank](#autorank)**
 - **[AutoSell](#autosell)**
 
@@ -1194,6 +1196,15 @@ All information about these placeholders can be found [here](https://gitlab.com/
 
 ```
 %asynckeepalive_ping%
+```
+----
+
+- ### **[Ath](https://www.spigotmc.org/resources/ath-peak-players-record-spigot-and-bungeecord-support.87124/)**
+> NO DOWNLOAD COMMAND
+
+```
+%ath_date%
+%ath_count%
 ```
 ----
 
