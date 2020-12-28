@@ -24,7 +24,6 @@
   - [[Animations|Placeholders#animations]]
   - [[Armor|Placeholders#armor]]
   - [[ASCII|Placeholders#ASCII]]
-  - [[Ath|Placeholders#ath]]
   - [[BungeeCord|Placeholders#bungeecord]]
   - [[CheckItem|Placeholders#checkitem]]
   - [[CooldownBar|Placeholders#cooldownbar]]

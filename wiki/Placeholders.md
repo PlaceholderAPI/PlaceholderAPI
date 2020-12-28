@@ -15,7 +15,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Animations](#animations)**
 - **[Armor](#armor)**
 - **[ASCII](#ascii)**
-- **[Ath](#ath)**
 - **[BungeeCord](#bungeecord)**
 - **[CheckItem](#checkitem)**
 - **[CooldownBar](#cooldownbar)**
@@ -64,7 +63,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[AParkour](#aparkour)**
 - **[ASkyBlock](#askyblock)**
 - **[AsyncKeepAlive](#asynckeepalive)**
-- **[Ath](#ath)**
 - **[AutoRank](#autorank)**
 - **[AutoSell](#autosell)**
 
