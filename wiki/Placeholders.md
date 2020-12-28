@@ -1238,6 +1238,15 @@ All information about these placeholders can be found [here](https://gitlab.com/
 ```
 ----
 
+- ### **[Ath](https://www.spigotmc.org/resources/87124/)**
+> NO DOWNLOAD COMMAND
+
+```
+%ath_date%
+%ath_count%
+```
+----
+
 - ### **[AutoRank](https://www.spigotmc.org/resources/3239/)**
 > /papi ecloud download AutoRank
 
