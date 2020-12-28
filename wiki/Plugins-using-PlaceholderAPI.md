@@ -89,7 +89,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[AsyncKeepAlive](https://www.spigotmc.org/resources/64676/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#asynckeepalive]]**]
-- **[Ath](https://www.spigotmc.org/resources/ath-peak-players-record-spigot-and-bungeecord-support.87124/)**
+- **[Ath](https://www.spigotmc.org/resources/87124/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ath]]**]
 - **[AutoCommandsPlus](https://www.spigotmc.org/resources/11083/)**
