@@ -39,7 +39,7 @@ jobs:
           # We (sadly) have to use a PAT (Personal Access Token) for this action.
           #
           GH_PAT: '${{ secrets.WORKFLOWPAT }}'
-          OWNER: 'Harieo'
+          OWNER: 'PlaceholderAPI'
           REPO_NAME: 'PlaceholderAPI'
           #
           # We only want to target files in the wiki folder
