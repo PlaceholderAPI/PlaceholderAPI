@@ -136,7 +136,7 @@ public class JoinExample extends JavaPlugin implements Listener {
          */
         joinText = PlaceholderAPI.setPlaceholders(event.getPlayer(), joinText);
 
-        event.setJoinMessage(withPlaceholdersSet);
+        event.setJoinMessage(joinText);
     }
 }
 ```
