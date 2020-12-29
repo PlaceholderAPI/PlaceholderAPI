@@ -749,7 +749,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Provides own placeholders. [Link]
 - **[Seasons](https://www.spigotmc.org/resources/39298/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[Link|Placeholders#seasons]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#seasons]]**]
 - **[SellAll](https://www.spigotmc.org/resources/1221/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#sellall]]**]
