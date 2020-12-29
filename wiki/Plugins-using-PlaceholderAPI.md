@@ -747,6 +747,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Skellett (Skript Add-on)](https://forums.skunity.com/resources/24/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Seasons](https://www.spigotmc.org/resources/39298/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#seasons]]**]
 - **[SellAll](https://www.spigotmc.org/resources/1221/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#sellall]]**]
