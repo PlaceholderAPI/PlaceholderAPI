@@ -1,3 +1,5 @@
+[papi]: https://placeholderapi.com
+
 [discordImg]: https://img.shields.io/discord/164280494874165248.svg?logo=discord&label=Discord&colorB=7289DA
 [discord]: https://helpch.at/discord
 
@@ -13,8 +15,9 @@
 [versionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
 [plugin-page]: https://spigotmc.org/resources/6245
 
+> © 2015 - 2021 [PlaceholderAPI Team][papi]  
 > Thanks for using PlaceholderAPI.
 >
 > **[Plugin-page]** | **[[Placeholders]]** | **[[Plugins using PlaceholderAPI]]** | **[[Hook into PlaceholderAPI]]**
- 
-![versionImg] [![jenkinsImg]][jenkins] [![licenseImg]][license] [![issuesImg]][issues] [![discordImg]][discord]
+> 
+> ![versionImg] [![jenkinsImg]][jenkins] [![licenseImg]][license] [![issuesImg]][issues] [![discordImg]][discord]
