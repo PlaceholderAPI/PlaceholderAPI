@@ -358,12 +358,8 @@ public final class LocalExpansionManager implements Listener {
         throw ((LinkageError) ex.getCause());
       }
       
-      /* Currently causes an exception when clazz is null due to an expansion not having any.
-       * 
-       *plugin.getLogger()
-       *    .log(Level.SEVERE, "Failed to load placeholder expansion from class: " + clazz.getName(),
-       *        ex);
-       */
+      plugin.getLogger().warning("There was an issue with loading an expansion");
+      
       return null;
     }
   }
