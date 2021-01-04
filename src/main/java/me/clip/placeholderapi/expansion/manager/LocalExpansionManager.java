@@ -300,7 +300,10 @@ public final class LocalExpansionManager implements Listener {
         return;
       }
 
-      final long registered = classes.stream().map(this::register).filter(Optional::isPresent)
+      final long registered = classes.stream()
+          .filter(Objects::nonNull)
+          .map(this::register)
+          .filter(Optional::isPresent)
           .count();
 
       Msg.msg(sender,
@@ -321,11 +324,9 @@ public final class LocalExpansionManager implements Listener {
     }
   }
 
-
   @NotNull
-  public CompletableFuture<@NotNull List<@NotNull Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
+  public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
     return Arrays.stream(folder.listFiles((dir, name) -> name.endsWith(".jar")))
-        .filter(Objects::nonNull)
         .map(this::findExpansionInFile)
         .collect(Futures.collector());
   }
@@ -335,7 +336,14 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final File file) {
     return CompletableFuture.supplyAsync(() -> {
       try {
-        return FileUtil.findClass(file, PlaceholderExpansion.class);
+        final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);
+
+        if (expansionClass == null) {
+          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
+                  " a class which extends PlaceholderExpansion.");
+        }
+
+        return expansionClass;
       } catch (final VerifyError ex) {
         plugin.getLogger().severe("Failed to load Expansion class " + file.getName() +
             " (Is a dependency missing?)");
