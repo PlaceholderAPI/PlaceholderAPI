@@ -340,7 +340,7 @@ public final class LocalExpansionManager implements Listener {
 
         if (expansionClass == null) {
           plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
-                  "an a class which extends PlaceholderExpansion.");
+                  " a class which extends PlaceholderExpansion.");
         }
 
         return expansionClass;
