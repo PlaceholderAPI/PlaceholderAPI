@@ -16,6 +16,7 @@ labels:
           This issue-tracker is reserved for Bug reports and feature requests towards PlaceholderAPI.
           
           Please report this issue to the Expansion's main issue-tracker.
+          A list of known Expansion repositories and their issue trackers can be found [here](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/510#discussion-63812).
         action: close
   - name: 'Type: Duplicate'
     labeled:
