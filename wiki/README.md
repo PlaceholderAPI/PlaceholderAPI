@@ -61,7 +61,10 @@ If your extension is build into your resource can you just set `NO DOWNLOAD COMM
 Always keep an empty line in between the `----` and the next entry below it.  
 If your extension is at the very bottom of the page can you ommit the `----`.
 
-You will also need to add your extension's name to the list at the very top in the format `- **[:name](#:name)**` where `:name` is the extension name.
+You will also need to add your extension's name to the list at the very top in the format `- **[:name](#:header)**` where `:name` is the extension name and `:header` is the name displayed in the URL after the `#` when you click the link icon next to the header.
+
+GitHub automatically adds a `-` followed by a number to it, if multiple headers with the same name exist.  
+For example: If 2 headers are called `example` will one be `#example` and the other `#example-1`.
 
 ## Other Wiki pages
 Please follow these general guidelines when editing any other pages.
