@@ -19,7 +19,7 @@ If you have one or multiple resources that support PlaceholderAPI (being it by j
 You should always add your resource to this page, no matter if it only supports placeholders or also provides its own.
 
 The format of a plugin is always as follows:
-```md
+```markdown
 - **[:name](:url)**
   - [?] Supports placeholders.
   - [?] Provides own placeholders. [:link]
@@ -41,7 +41,7 @@ PAPI Placeholders are extensions that don't require an external plugin or other 
 The Plugin Placeholders are extensions that require a plugin or other dependency to function. They are often used to provide values from one pluging (e.g. Vault) to another plugin through the help of PlaceholderAPI.
 
 The overall structure of an entry is always the same:  
-````md
+````markdown
 - ### **[:name](:url)**
 > :command
 
