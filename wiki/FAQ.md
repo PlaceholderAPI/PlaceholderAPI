@@ -41,8 +41,8 @@ We welcome contributions to our wiki by everyone. If you found a typo or want to
 
 ## PlaceholderAPI is posting an error about an outdated expansion?
 ```
-[00:00:01 ERROR]: [PlaceholderAPI] expansion class <expansion> is outdated:
-Failed to load due to a [NoClassDefFoundError], attempted to use <path>
+[00:00:01 ERROR]: [PlaceholderAPI] Failed to load Expansion class <expansion> (Is a dependency missing?)
+[00:00:01 ERROR]: [PlaceholderAPI] Cause: NoClassDefFoundError <path>
 ```
 
 If you receive the above error, try to do the following steps:
