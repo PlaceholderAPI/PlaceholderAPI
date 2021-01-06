@@ -86,7 +86,7 @@ labels:
           When doing so, make sure you follow these steps:
           
           - The Pull request targets the [`docs/wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki) branch of the Repository.
-          - You only made changes to the files inside the `wiki` folder.
+          - You only made changes to the files inside the [`wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki/wiki) folder.
           - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md) file.
           
           If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
