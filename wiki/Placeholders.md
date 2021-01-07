@@ -1770,9 +1770,9 @@ This can be used in plugins, that require an integer. (e.g. DeluxeMenus)
 ----
 
 - ### **[DiscordSRV](https://www.spigotmc.org/resources/18494/)**
-> /papi ecloud download DiscordSRV 
+> NO DOWNLOAD COMMAND 
 
-You can find an up-to-date list of the placeholders in [their wiki](https://github.com/DiscordSRV/DiscordSRV-PlaceholderAPI-Expansion#placeholders).
+You can find an up-to-date list of the placeholders in [their wiki](https://github.com/DiscordSRV/DiscordSRV/wiki/PAPI-Placeholders#placeholders).
 
 ----
 
