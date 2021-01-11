@@ -109,10 +109,11 @@ labels:
     labeled:
       issue:
         body: |-
-          The issue was marked as "inactive" which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
-          To keep the issue-tracker clean and up to date are we closing issues, that didn't receive any responses for a long time.
+          The issue has been marked as **inactive** which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
+          To keep the issue-tracker clean and up to date do we close issues that haven't received any responses for a long time.
           
-          If you're the Author and this issue is still present, make sure to respond with extra info and **do not create a new issue for the same problem!**
+          If you're the Author of this issue and the reported problem is still present, make sure to respond with additional info to this issue.
+          **Do not create a new issue for the same problem!**
         action: close
     unlabeled:
       issue:
