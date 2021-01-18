@@ -16,6 +16,7 @@ labels:
           This issue-tracker is reserved for Bug reports and feature requests towards PlaceholderAPI.
           
           Please report this issue to the Expansion's main issue-tracker.
+          A list of known Expansion repositories and their issue trackers can be found [here](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/510#discussion-63812).
         action: close
   - name: 'Type: Duplicate'
     labeled:
@@ -63,6 +64,18 @@ labels:
           It is recommended to [join our Discord Server](https://helpch.at/discord) as you often receive faster response compared to the issue tracker here.
           Questions about PlaceholderAPI should be asked in our [Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions).
         action: close
+      pull_request:
+        body: |-
+          Your Pull Request has been marked as invalid.
+          This means that it doesn't follow our [Contributing Guidelines](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/.github/CONTRIBUTING.md).
+          
+          Here is a small summary of what you should know:
+          
+          - Pull requests for PlaceholderAPI should target the `develop` branch.
+          - Pull requests for the Wiki should target the `docs/wiki` branch.
+          
+          Don't hesitate to ask us any questions.
+        action: close
   - name: 'Target: Wiki'
     labeled:
       issue:
@@ -74,7 +87,7 @@ labels:
           When doing so, make sure you follow these steps:
           
           - The Pull request targets the [`docs/wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki) branch of the Repository.
-          - You only made changes to the files inside the `wiki` folder.
+          - You only made changes to the files inside the [`wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki/wiki) folder.
           - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md) file.
           
           If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
@@ -96,10 +109,11 @@ labels:
     labeled:
       issue:
         body: |-
-          The issue was marked as "inactive" which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
-          To keep the issue-tracker clean and up to date are we closing issues, that didn't receive any responses for a long time.
+          The issue has been marked as **inactive** which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
+          To keep the issue-tracker clean and up to date do we close issues that haven't received any responses for a long time.
           
-          If you're the Author and this issue is still present, make sure to respond with extra info and **do not create a new issue for the same problem!**
+          If you're the Author of this issue and the reported problem is still present, make sure to respond with additional info to this issue.
+          **Do not create a new issue for the same problem!**
         action: close
     unlabeled:
       issue:
@@ -117,5 +131,5 @@ labels:
           
           Remember to first read the [READ ME](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/507) post to not face any issues.
           
-          For questions do we recommend to use the [Q&A Category](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions?discussions_q=category%3AQ%26A).
+          For questions do we recommend to use the [(2) Support](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/categories/-2-support) category.
           You can also use the Discussion to submit Feature requests (Feature requests through issues are still accepted tho).

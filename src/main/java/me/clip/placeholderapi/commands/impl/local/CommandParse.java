@@ -211,13 +211,16 @@ public final class CommandParse extends PlaceholderCommand {
 
   @Nullable
   private OfflinePlayer resolvePlayer(@NotNull final String name) {
-    OfflinePlayer target = Bukkit.getPlayer(name);
-
+    OfflinePlayer target = Bukkit.getPlayerExact(name);
+    
     if (target == null) {
-      target = Bukkit.getOfflinePlayer(name); // this is probably not a great idea.
+      // Not the best option, but Spigot doesn't offer a good replacement (as usual)
+      target = Bukkit.getOfflinePlayer(name);
+      
+      return target.hasPlayedBefore() ? target : null;
     }
 
-    return target.hasPlayedBefore() ? target : null;
+    return target;
 
   }
 

@@ -20,6 +20,9 @@
 
 package me.clip.placeholderapi.util;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -28,8 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class FileUtil {
 
@@ -51,7 +52,7 @@ public class FileUtil {
       JarEntry entry;
       while ((entry = stream.getNextJarEntry()) != null) {
         final String name = entry.getName();
-        if (name == null || name.isEmpty() || !name.endsWith(".class")) {
+        if (name.isEmpty() || !name.endsWith(".class")) {
           continue;
         }
 

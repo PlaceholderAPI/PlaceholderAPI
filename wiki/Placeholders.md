@@ -3107,8 +3107,12 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %premiumvanish_isvanished%
 %premiumvanish_vanishedplayers%
 %premiumvanish_playercount%
+%premiumvanish_playercountwithoutshowintab%
 %premiumvanish_bungeeplayercount%
 %premiumvanish_bungeeplayercount@<server>%
+%premiumvanish_target%
+%premiumvanish_uselevel%
+%premiumvanish_seelevel%
 ```
 `<server>` is the name of the server it should show the playercount of.
 

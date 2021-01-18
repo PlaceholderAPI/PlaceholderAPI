@@ -22,27 +22,11 @@ package me.clip.placeholderapi.expansion.manager;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
-import me.clip.placeholderapi.expansion.Cacheable;
-import me.clip.placeholderapi.expansion.Cleanable;
-import me.clip.placeholderapi.expansion.Configurable;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Taskable;
-import me.clip.placeholderapi.expansion.VersionSpecific;
+import me.clip.placeholderapi.expansion.*;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
 import me.clip.placeholderapi.util.Futures;
@@ -60,6 +44,14 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
+
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
 
 public final class LocalExpansionManager implements Listener {
 
@@ -167,9 +159,9 @@ public final class LocalExpansionManager implements Listener {
 
       return Optional.of(expansion);
     } catch (final LinkageError ex) {
-      plugin.getLogger().severe("expansion class " + clazz.getSimpleName() + " is outdated: \n" +
-          "Failed to load due to a [" + ex.getClass().getSimpleName() + "], attempted to use " + ex
-          .getMessage());
+      plugin.getLogger().severe("Failed to load Expansion class " + clazz.getSimpleName() +
+          " (Is a dependency missing?)");
+      plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
     }
 
     return Optional.empty();
@@ -218,9 +210,8 @@ public final class LocalExpansionManager implements Listener {
     if (expansion instanceof VersionSpecific) {
       VersionSpecific nms = (VersionSpecific) expansion;
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
-        plugin.getLogger().info(
-            "Your server version is not compatible with expansion: " + expansion.getIdentifier()
-                + " version: " + expansion.getVersion());
+        plugin.getLogger().warning("Your server version is not compatible with expansion " +
+            expansion.getIdentifier() + " " + expansion.getVersion());
         return false;
       }
     }
@@ -309,7 +300,10 @@ public final class LocalExpansionManager implements Listener {
         return;
       }
 
-      final long registered = classes.stream().map(this::register).filter(Optional::isPresent)
+      final long registered = classes.stream()
+          .filter(Objects::nonNull)
+          .map(this::register)
+          .filter(Optional::isPresent)
           .count();
 
       Msg.msg(sender,
@@ -330,9 +324,8 @@ public final class LocalExpansionManager implements Listener {
     }
   }
 
-
   @NotNull
-  public CompletableFuture<@NotNull List<@NotNull Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
+  public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
     return Arrays.stream(folder.listFiles((dir, name) -> name.endsWith(".jar")))
         .map(this::findExpansionInFile)
         .collect(Futures.collector());
@@ -343,11 +336,18 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final File file) {
     return CompletableFuture.supplyAsync(() -> {
       try {
-        return FileUtil.findClass(file, PlaceholderExpansion.class);
+        final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);
+
+        if (expansionClass == null) {
+          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
+                  " a class which extends PlaceholderExpansion.");
+        }
+
+        return expansionClass;
       } catch (final VerifyError ex) {
-        plugin.getLogger().severe("expansion file " + file.getName() + " is outdated: \n" +
-            "Failed to load due to a [" + ex.getClass().getSimpleName() + "], attempted to use" + ex
-            .getMessage().substring(ex.getMessage().lastIndexOf(' ')));
+        plugin.getLogger().severe("Failed to load Expansion class " + file.getName() +
+            " (Is a dependency missing?)");
+        plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
         return null;
       } catch (final Exception ex) {
         throw new CompletionException(ex);
@@ -365,10 +365,9 @@ public final class LocalExpansionManager implements Listener {
       if (ex.getCause() instanceof LinkageError) {
         throw ((LinkageError) ex.getCause());
       }
-
-      plugin.getLogger()
-          .log(Level.SEVERE, "Failed to load placeholder expansion from class: " + clazz.getName(),
-              ex);
+      
+      plugin.getLogger().warning("There was an issue with loading an expansion");
+      
       return null;
     }
   }
