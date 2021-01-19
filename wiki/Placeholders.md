@@ -2937,9 +2937,10 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 ```
 %parkour_course_completed_<course>%
 %parkour_course_completions_<course>%
-%parkour_course_record_deaths_<course>%
-%parkour_course_record_player_<course>%
-%parkour_course_record_time_<course>%
+%parkour_course_record_<course>_deaths%
+%parkour_course_record_<course>_milliseconds%
+%parkour_course_record_<course>_player%
+%parkour_course_record_<course>_time%
 %parkour_course_views%
 %parkour_current_checkpoint%
 %parkour_current_course_checkpoints%
@@ -2947,9 +2948,11 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 %parkour_current_course_deaths%
 %parkour_current_course_name%
 %parkour_current_course_personal_best_deaths%
+%parkour_current_course_personal_best_milliseconds%
 %parkour_current_course_personal_best_player%
 %parkour_current_course_personal_best_time%
 %parkour_current_course_record_deaths%
+%parkour_current_course_record_milliseconds%
 %parkour_current_course_record_player%
 %parkour_current_course_record_time%
 %parkour_current_course_timer%
@@ -2957,6 +2960,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 %parkour_global_player_count%
 %parkour_global_version%
 %parkour_leaderboard_<course>_<position>_deaths%
+%parkour_leaderboard_<course>_<position>_milliseconds%
 %parkour_leaderboard_<course>_<position>_player%
 %parkour_leaderboard_<course>_<position>_time%
 %parkour_player_courses_completed%
@@ -2966,6 +2970,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 %parkour_player_level%
 %parkour_player_parkoins%
 %parkour_player_personal_best_<course>_deaths%
+%parkour_player_personal_best_<course>_milliseconds%
 %parkour_player_personal_best_<course>_player%
 %parkour_player_personal_best_<course>_time%
 %parkour_player_prize_delay_<course>%
