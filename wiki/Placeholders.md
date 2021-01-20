@@ -103,6 +103,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[DeliveryMan](#deliveryman)**
 - **[DeluxeChat](#deluxechat)**
 - **[DeluxeCombat](#deluxecombat)**
+- **[DeluxeMenus](#deluxemenus)**
 - **[DeluxePM](#deluxepm)**
 - **[DeluxeTags](#deluxetags)**
 - **[Denizen](#denizen)**
@@ -1736,6 +1737,19 @@ This can be used in plugins, that require an integer. (e.g. DeluxeMenus)
 - StatsType: `kills`, `deaths`, `combatlogs`, `points`.
 - Rank: A number between 1 to the pull limit.
 - Group: The _servergroup_.
+
+----
+
+- ### **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
+> NO DOWNLOAD COMMAND 
+
+```
+%deluxemenus_meta_<key>_<dataType>_<default_value>%
+```
+
+- Key: The key of the meta you want to check
+- Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`. *If the given key has a different data type, an error will occur.*
+- Default Value: The value returned if nothing is found.
 
 ----
 
