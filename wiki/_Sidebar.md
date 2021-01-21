@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/icon.png" alt="PlaceholderAPI">
+  <img src="https://raw.githubusercontent.com/PlaceholderAPI/PlaceholderAPI/docs/wiki/wiki/img/icon.png" alt="PlaceholderAPI">
 </p>
 
 **[[Main page|Home]]**
