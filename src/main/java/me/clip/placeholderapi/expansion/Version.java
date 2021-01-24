@@ -24,9 +24,18 @@ public final class Version {
 
   private final boolean isSpigot;
   private final String version;
+  private final Type type;
 
+  public Version(String version, Type type){
+    this.version = version;
+    this.type = type;
+    this.isSpigot = type.isSpigot();
+  }
+  
+  @Deprecated
   public Version(String version, boolean isSpigot) {
     this.version = version;
+    this.type = isSpigot ? Type.SPIGOT : Type.UNKNOWN;
     this.isSpigot = isSpigot;
   }
 
@@ -37,9 +46,42 @@ public final class Version {
   public boolean isSpigot() {
     return isSpigot;
   }
-
+  
+  public String getName(){
+    return type.getName();
+  }
+  
+  public Type getType(){
+    return type;
+  }
+  
   public boolean compareTo(String version) {
     return getVersion().equalsIgnoreCase(version);
+  }
+  
+  public enum Type{
+    SPIGOT("Spigot", true),
+    PAPERMC("PaperMC", true),
+    TUINITY("Tuinity", true),
+    PURPUR("Purpur", true),
+    
+    UNKNOWN("Unknown", false);
+    
+    private final String name;
+    private final boolean spigot;
+    
+    Type(String name, boolean spigot){
+      this.name = name;
+      this.spigot = spigot;
+    }
+  
+    public String getName(){
+      return name;
+    }
+  
+    public boolean isSpigot(){
+      return spigot;
+    }
   }
 
 }

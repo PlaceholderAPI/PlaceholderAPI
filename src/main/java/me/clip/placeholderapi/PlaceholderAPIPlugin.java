@@ -53,16 +53,32 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   static {
     final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-
-    boolean isSpigot;
-    try {
-      Class.forName("org.spigotmc.SpigotConfig");
-      isSpigot = true;
-    } catch (final ExceptionInInitializerError | ClassNotFoundException ignored) {
-      isSpigot = false;
+  
+    // Not the prettiest thing to do, but it does the job.
+    Version.Type type;
+    try{
+      Class.forName("net.pl3x.purpur.PurpurConfig");
+      type = Version.Type.PURPUR;
+    } catch (final ExceptionInInitializerError | ClassNotFoundException e1) {
+      try {
+        Class.forName("com.tuinity.tuinity.config.TuinityConfig");
+        type = Version.Type.TUINITY;
+      } catch (final ExceptionInInitializerError | ClassNotFoundException e2) {
+        try {
+          Class.forName("com.destroytokyo.paper.PaperConfig");
+          type = Version.Type.PAPERMC;
+        } catch (final ExceptionInInitializerError | ClassNotFoundException e3) {
+          try {
+            Class.forName("org.spigotmc.SpigotConfig");
+            type = Version.Type.SPIGOT;
+          } catch (final ExceptionInInitializerError | ClassNotFoundException e4) {
+            type = Version.Type.UNKNOWN;
+          }
+        }
+      }
     }
-
-    VERSION = new Version(version, isSpigot);
+    
+    VERSION = new Version(version, type);
   }
 
   @NotNull
@@ -210,7 +226,22 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
         () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
 
     metrics.addCustomChart(
-        new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
+        new Metrics.DrilldownPie("using_spigot", () -> {
+          Map<String, Map<String, Integer>> map = new HashMap<>();
+          Map<String, Integer> entry = new HashMap<>();
+          entry.put(getServerVersion().getType().getName(), 1);
+          
+          if (getServerVersion().isSpigot()) {
+            map.put("yes", entry);
+          } else {
+            map.put("no", entry);
+          }
+          
+          return map;
+        }));
+    
+    metrics.addCustomChart(
+        new Metrics.SimplePie("server_brand", () -> getServerVersion().getName()));
 
     metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
       final Map<String, Integer> values = new HashMap<>();
