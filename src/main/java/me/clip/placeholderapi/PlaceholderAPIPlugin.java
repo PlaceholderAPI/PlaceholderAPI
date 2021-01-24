@@ -239,9 +239,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
           
           return map;
         }));
-    
-    metrics.addCustomChart(
-        new Metrics.SimplePie("server_brand", () -> getServerVersion().getName()));
 
     metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
       final Map<String, Integer> values = new HashMap<>();
