@@ -935,10 +935,10 @@ Other statistics
 %statistic_hours_played%
 %statistic_days_played%
 %statistic_time_played%
-%statistic_seconds_played_remaining%
-%statistic_minutes_played_remaining%
-%statistic_hours_played_remaining%
-%statistic_days_played_remaining%
+%statistic_time_played:seconds%
+%statistic_time_played:minutes%
+%statistic_time_played:hours%
+%statistic_time_played:days%
 %statistic_animals_bred%
 %statistic_armor_cleaned%
 %statistic_banner_cleaned%
