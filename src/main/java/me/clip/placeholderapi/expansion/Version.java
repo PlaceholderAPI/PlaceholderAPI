@@ -25,18 +25,16 @@ public final class Version {
   private final boolean isSpigot;
   private final String version;
   private final Type type;
+  
+  @Deprecated
+  public Version(String version, boolean isSpigot) {
+    this(version, isSpigot ? Type.SPIGOT : Type.UNKNOWN);
+  }
 
   public Version(String version, Type type){
     this.version = version;
     this.type = type;
     this.isSpigot = type.isSpigot();
-  }
-  
-  @Deprecated
-  public Version(String version, boolean isSpigot) {
-    this.version = version;
-    this.type = isSpigot ? Type.SPIGOT : Type.UNKNOWN;
-    this.isSpigot = isSpigot;
   }
 
   public String getVersion() {
