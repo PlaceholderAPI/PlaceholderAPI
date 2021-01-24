@@ -16,6 +16,9 @@
 
 [APIversionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
 [logo]: https://i.imgur.com/Ea4PURv.png
+
+[contributing]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/.github/CONTRIBUTING.md
+[placeholderexpansion]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/PlaceholderExpansion
 <!-- The stuff above isn't visible in the readme -->
 
 [![logo]][spigot]
@@ -29,8 +32,11 @@ Support for specific plugins are provided either by the plugin itself or through
 
 PlaceholderAPI has been downloaded over 500,000 times and has been used concurrently on over 20,000 servers, which makes it a must-have for a server of any type or scale.
 
-<!-- TODO: Add contributing section -->
-<!-- TODO: Add expansion creation section (possibly add to a wiki?) -->
+## Contribute
+If you would like to contribute towards PlaceholderAPI should you take a look at our [Contributing file][contributing] for the ins and outs on how you can do that and what you need to keep in mind.
+
+## Create an Expansion
+If you would like to create your own Placeholder Expansion for PlaceholderAPI, take a look at our [Wiki][placeholderexpansion] which contains a detailed tutorial on how you can achieve this.
 
 ## Support
 - [Issue Tracker][issues]
