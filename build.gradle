@@ -74,6 +74,10 @@ license {
         header = file('config/headers/main.txt')
     }
 
+    matching('**/Adventure.java') {
+        header = file('config/headers/adventure.txt')
+    }
+
     ext {
         year = 2020
     }
