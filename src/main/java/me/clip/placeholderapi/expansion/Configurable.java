@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * Any {@link PlaceholderExpansion} class which implements configurable will have any options listed
- * in the getDefaults map automatically added to the PlaceholderAPI config.yml file
+ * in the {@link #getDefaults()} map automatically added to the PlaceholderAPI config.yml file
  *
  * @author Ryan McCarthy
  */

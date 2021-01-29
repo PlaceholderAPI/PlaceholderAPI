@@ -25,6 +25,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Indicates that a {@link PlaceholderExpansion} had been unregistered by
+ * PlaceholderAPI.
+ */
 public final class ExpansionUnregisterEvent extends Event {
 
   @NotNull
@@ -42,7 +46,12 @@ public final class ExpansionUnregisterEvent extends Event {
   public static HandlerList getHandlerList() {
     return HANDLERS;
   }
-
+  
+  /**
+   * The {@link PlaceholderExpansion expansion} that was unregistered.
+   * 
+   * @return The {@link PlaceholderExpansion} instance.
+   */
   @NotNull
   public PlaceholderExpansion getExpansion() {
     return expansion;

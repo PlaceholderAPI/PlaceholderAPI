@@ -26,7 +26,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when all expansions are loaded (when reloading config, on plugin start and on server load).
+ * Indicates that <b>all</b> {@link PlaceholderExpansions} have been
+ * loaded.
+ * <br/>This event is fired on Server load and when reloading the
+ * confiuration.
  */
 public class ExpansionsLoadedEvent extends Event {
 

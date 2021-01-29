@@ -26,6 +26,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Indicates that a {@link PlaceholderExpansion} has been registered by
+ * PlaceholderAPI.
+ */
 public final class ExpansionRegisterEvent extends Event implements Cancellable {
 
   @NotNull
@@ -42,7 +46,12 @@ public final class ExpansionRegisterEvent extends Event implements Cancellable {
   public static HandlerList getHandlerList() {
     return HANDLERS;
   }
-
+  
+  /**
+   * The {@link PlaceholderExpansion expansion} that was registered.
+   * 
+   * @return The {@link PlaceholderExpansion} instance.
+   */
   @NotNull
   public PlaceholderExpansion getExpansion() {
     return expansion;
