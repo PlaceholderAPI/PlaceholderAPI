@@ -26,8 +26,8 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Indicates that <b>all</b> {@link PlaceholderExpansions} have been
- * loaded.
+ * Indicates that <b>all</b> {@link PlaceholderExpansion PlayceholderExpansions}
+ * have been loaded.
  * <br/>This event is fired on Server load and when reloading the
  * confiuration.
  */
