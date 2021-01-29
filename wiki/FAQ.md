@@ -38,3 +38,18 @@ A tutorial can be found [[here|Hook into PlaceholderAPI]]!
 ## Can I help on this wiki?
 You sure can!  
 We welcome contributions to our wiki by everyone. If you found a typo or want to improve this wiki in another way, head over to the [Wiki's readme file][readme] to find out about how you can contribute towards this wiki.
+
+## PlaceholderAPI is posting an error about an outdated expansion?
+```
+[00:00:01 ERROR]: [PlaceholderAPI] Failed to load Expansion class <expansion> (Is a dependency missing?)
+[00:00:01 ERROR]: [PlaceholderAPI] Cause: NoClassDefFoundError <path>
+```
+
+If you receive the above error, try to do the following steps:
+
+- Make sure any required dependency of the mentioned expansion (e.g. a plugin) is installed.
+- Make sure you use the latest version supported for the server version you use.
+- If you downloaded the jar from the ecloud, make sure it isn't malformed/corrupted.
+
+If the issue persists after you've done those checks, report it to the author of the expansion.  
+In most cases is the issue that either a dependency is missing or that the expansion tries to use outdated methods from PlaceholderAPI.
