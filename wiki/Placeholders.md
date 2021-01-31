@@ -2145,6 +2145,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://fact
 %griefprevention_claims%
 %griefprevention_claims_formatted%
 %griefprevention_bonusclaims%
+%griefprevention_bonusclaims_formatted%
 %griefprevention_accruedclaims%
 %griefprevention_accruedclaims_formatted%
 %griefprevention_remainingclaims%
