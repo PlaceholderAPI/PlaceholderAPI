@@ -463,18 +463,22 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
 
 ```
-%formatter_number_format_<number>[_<options>]%
+%formatter_number_format_<number>%
+%formatter_number_format_[locale]:[format]_<number>%
+
 %formatter_number_time_<number>%
+%formatter_number_time_seconds_<number>% # Handles number as seconds
+%formatter_number_time_secs_<number>%    # Handles number as seconds
+%formatter_number_time_minutes_<number>% # Handles number as minutes
+%formatter_number_time_mins_<number>%    # Handles number as minutes
+%formatter_number_time_hours_<number>%   # Handles number as hours
+%formatter_number_time_hrs_<number>%     # Handles number as hours
 
 %formatter_text_substring_<start:end>_<text>%
 %formatter_text_uppercase_<text>%
 %formatter_text_lowercase_<text>%
-%formatter_join_<character>_<text>%
+%formatter_join_<target>_<separator>_<text>%
 ```
-
-Available options:
-- `format:(<format>)` - The actual format, using Java's DecimalFormat system.
-- `locale:(<locale>)` - The locale to use. Formats can be different depending on the locale.
 
 ----
 
