@@ -20,10 +20,6 @@
 
 package me.clip.placeholderapi;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -39,6 +35,11 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * Yes I have a shit load of work to do...
@@ -225,20 +226,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     metrics.addCustomChart(new Metrics.SimplePie("using_expansion_cloud",
         () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
 
-    metrics.addCustomChart(
-        new Metrics.DrilldownPie("using_spigot", () -> {
-          Map<String, Map<String, Integer>> map = new HashMap<>();
-          Map<String, Integer> entry = new HashMap<>();
-          entry.put(getServerVersion().getType().getName(), 1);
-          
-          if (getServerVersion().isSpigot()) {
-            map.put("yes", entry);
-          } else {
-            map.put("no", entry);
-          }
-          
-          return map;
-        }));
+    metrics.addCustomChart(new Metrics.SimplePie("using_spigot",
+            () -> getServerVersion().isSpigot() ? getServerVersion().isFork() ? "yes (fork)" : "yes" : "no"));
+    
+    metrics.addCustomChart(new Metrics.SimplePie("server_brand", () -> getServerVersion().getName()));
 
     metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
       final Map<String, Integer> values = new HashMap<>();

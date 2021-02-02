@@ -22,9 +22,9 @@ package me.clip.placeholderapi.expansion;
 
 public final class Version {
 
-  private final boolean isSpigot;
   private final String version;
   private final Type type;
+  private final boolean isSpigot;
   
   @Deprecated
   public Version(String version, boolean isSpigot) {
@@ -40,17 +40,17 @@ public final class Version {
   public String getVersion() {
     return version == null ? "unknown" : version;
   }
-
-  public boolean isSpigot() {
-    return isSpigot;
-  }
   
   public String getName(){
     return type.getName();
   }
   
-  public Type getType(){
-    return type;
+  public boolean isSpigot() {
+    return isSpigot;
+  }
+  
+  public boolean isFork(){
+    return type.isFork();
   }
   
   public boolean compareTo(String version) {
@@ -58,19 +58,21 @@ public final class Version {
   }
   
   public enum Type{
-    SPIGOT("Spigot", true),
-    PAPERMC("PaperMC", true),
-    TUINITY("Tuinity", true),
-    PURPUR("Purpur", true),
+    SPIGOT("Spigot", true, false),
+    PAPERMC("PaperMC", true, true),
+    TUINITY("Tuinity", true, true),
+    PURPUR("Purpur", true, true),
     
-    UNKNOWN("Unknown", false);
+    UNKNOWN("Unknown", false, false);
     
     private final String name;
     private final boolean spigot;
+    private final boolean fork;
     
-    Type(String name, boolean spigot){
+    Type(String name, boolean spigot, boolean fork){
       this.name = name;
       this.spigot = spigot;
+      this.fork = fork;
     }
   
     public String getName(){
@@ -79,6 +81,10 @@ public final class Version {
   
     public boolean isSpigot(){
       return spigot;
+    }
+  
+    public boolean isFork(){
+      return fork;
     }
   }
 
