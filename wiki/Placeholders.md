@@ -38,6 +38,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RelCon](#relcon)**
 - **[ScoreboardObjectives](#scoreboardobjectives)**
 - **[Server](#server)**
+- **[Shortcut](#shortcut)**
 - **[Sound](#sound)**
 - **[Spectators](#spectators)**
 - **[SpeedPerSec](#speedpersec)**
@@ -882,6 +883,19 @@ The output of the SimpleDateTime will look different, depending on how many lett
 Example: `MM` turns into `01` while `MMM` turns into `Jan` (If the month is January).  
 
 More info can be found here: http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+
+----
+
+- ### **Shortcut**
+> /papi ecloud download Shortcut
+
+Allows the parsing of large text with placeholders by having them in TXT files stored.
+
+```
+%shortcut_<filename without .txt>%
+```
+
+The file needs to be a TXT and has to be inside the `PlaceholderAPI/shortcuts` directory.
 
 ----
 
