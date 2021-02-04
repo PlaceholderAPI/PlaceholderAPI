@@ -522,10 +522,12 @@ Lists players with a certain permission or in a certain world... 'nuf said.
 > /papi ecloud download Math
 
 Lets you make simple or advanced calculations.  
-Placeholders are supported (You have to use `{}` instead of `%`).  
-Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx) with the exception of `%`.  
-You have to use `[prc]` for using the `%` symbol.  
-You can use `[precision:<number>]` in the placeholder, to set, how many digits after the `.` are shown.
+Placeholders are supported (You have to use `{}` instead of `%`).
+
+Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx).
+Note that the `%` can't be used within the placeholder and that you have to to use `[prc]` instead.
+
+You can use `[precision:<number>]` in the placeholder, to set how many decimal points are returned (e.g. `1.345` with `[precision:2]` returns `1.35`)
 
 ```
 %math_<math expression>%
@@ -575,9 +577,10 @@ Lets you get placeholders for other players. (Not the one that triggers the acti
 
 Lets you parse any placeholder for the closest player. Will return blank if no player is found.
 
-* `%parsenear_<placeholder_without_percent_signs>%` - Parses placeholder for closest player
-* `%parsenear_<radius>_<placeholder_without_percent_signs>%` - Parses placeholder for closest player in a radius
-
+```
+%parsenear_<placeholder_without_percent_signs>%          # Parses placeholder for closest player
+%parsenear_<radius>_<placeholder_without_percent_signs>% # Parses placeholder for closest player in a radius
+```
 ----
 
 - ### **ParseOther**
@@ -697,36 +700,45 @@ Gives you various placeholders for the player, that triggers the action.
 
 Returns the player list matching the specified syntax
 
-`%playerlist_<type>,<subtype>,<yes/no>,<output>,<subtype_value>%` - The `yes/no` is to include/exclude the player.
+```
+%playerlist_<type>,<subtype>,<include>,<output>,<subtype_value>%
+```
 
-**Types:**
-* `all` - Matches all players
-* `online` - Matches online players
-* `offline` - Matches offline players
+**Type:**
+- `all` - Matches all players
+- `online` - Matches online players
+- `offline` - Matches offline players
 
-**Output Types:**
-* `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.* 
-* `amount` - Returns amount of players matched
-* `<integer>` - Returns the player at the specified index
+**Subtypes:**
+- `normal` - Matches all players. Requires no `<subtype_value>`
+- `perm` - Matches all players that match the permission defined by `<subtype_value>`. Supports multiple permissions separated by `+` (`perm.1+perm.2`)
+- `world` - Matches all players in the world defined by `<subtype_value>`. Supports multiple worlds separated by `+` (`world+world_nether`)
+- `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
 
-**SubTypes:**
-* `normal` - Matches all players - Requires no `<subtype_value>`
-* `perm` - Matches all players that match the permission defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `perm1+perm2`)
-* `world` - Matches all player in the world defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `world1+world2`)
-* `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
+**Include:**
+- `yes` - Include the player
+- `no` - Exclude the player
+
+**Output:**
+- `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.* 
+- `amount` - Returns amount of players matched
+- `<integer>` - Returns the player at the specified index
+
 
 **Examples:**
-* `%playerlist_all,normal,yes,list%` - `Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare`
-* `%playerlist_online,perm,yes,amount,staff.admin%` - `2`
-* `%playerlist_online,world,yes,2,buildingworld+spawnworld%` - `cj89898, funnycube`
-* `%playerlist_online,nearby,yes,list,5%` - `Tanguygab, cj89898, clip`
-* `%playerlist_online,nearby,no,list,5%` - `Tanguygab, clip`
-* `%playerlist_online,nearby,no,list--,20%` - `Tanguygab-clip-Terfs`
+```
+%playerlist_all,normal,yes,list%                          # Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare
+%playerlist_online,perm,yes,amount,staff.admin%           # 2
+%playerlist_online,world,yes,2,buildingworld+spawnworld%` # cj89898, funnycube
+%playerlist_online,nearby,yes,list,5%                     # Tanguygab, cj89898, clip
+%playerlist_online,nearby,no,list,5%                      # Tanguygab, clip
+%playerlist_online,nearby,no,list--,20%                   # Tanguygab-clip-Terfs
+```
 
 *You can also use `[placeholder]` for papi placeholders in addition to the javascript `{placeholder}`*
 
 *Note: `Offline` and `All` only support the `Normal` subtype.*  
-**Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.*
+**Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.**
 
 ----
 
@@ -781,8 +793,8 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 ```
 %randomcolor_all%
 %randomcolor_color%
-%randomcolor_format%
 %randomcolor_combined%
+%randomcolor_format%
 %randomcolor_selected_<option1,option2,option3,...>%
 ```
 ----
