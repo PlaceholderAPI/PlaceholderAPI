@@ -528,10 +528,9 @@ Placeholders are supported (You have to use `{}` instead of `%`).
 Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx).
 Note that the `%` can't be used within the placeholder and that you have to to use `[prc]` instead.
 
-You can use `[precision:<number>]` in the placeholder, to set how many decimal points are returned (e.g. `1.345` with `[precision:2]` returns `1.35`)
-
 ```
 %math_<math expression>%
+%math_[precision]:[rounding]_<expression>%
 ```
 ----
 
