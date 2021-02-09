@@ -13,34 +13,37 @@ The wiki is handled on a separate branch called `docs/wiki`.
 When making a Pull request, make sure to target this specific branch. Any PR not targeting this branch may either be closed or the target changed.
 
 ## Adding your resource(s)
-If you have one or multiple resources that support PlaceholderAPI (being it by just supporting placeholders from other plugins, or providing your own) can you add them to the wiki in the following ways.
+When you either have a plugin, which adds and/or uses placeholders or an expansion and you want to add it to the wiki should you follow the below steps.
+
+- [Plugins using PlaceholderAPI](#plugins-using-placeholderapi)
+- [Placeholders](#placeholders)
 
 ### [Plugins using PlaceholderAPI]
-You should always add your resource to this page, no matter if it only supports placeholders or also provides its own.
+This is only required for plugins.  
+If your plugin supports placeholders of other plugins and/or provides own placeholders through PlaceholderAPI should you always add it the the `Plugins using PlaceholderAPI` page.
 
-The format of a plugin is always as follows:
+Each entry on this page follows a specific format that you need to follow:  
 ```markdown
 - **[:name](:url)**
   - [?] Supports placeholders.
   - [?] Provides own placeholders. [:link]
 ```
 
-A quick summary over the different parts:
-
-- `:name` is the name of your resource. The resources are ordered by alphabet and if yours has the same name as another one listed, add it __below__ the other resource.
-- `:url` should be replaced with a URL to your resource page (Spigot, dev.bukkit, etc.). If you use Spigot, make sure to remove any text after the `/resources/` and only leave the ID. For example will https://www.spigotmc.org/resources/placeholderapi.6245/ become https://www.spigotmc.org/resources/6245/.  
-If you don't have your resource on any resource page can you either ommit the URL (Just provide the name) or provide a link to its source, if available.
-- `?` should be replaced with either an `x` or a space depending on wether your plugin supports the option or not. So the `[?]` becomes either `[x]` or `[ ]`
-- `:link` depends on wether your plugin provides own placeholders or not. If it doesn't, then you can just give `Link`. If it does provide placeholders, make sure to provide `[[Link|Placeholders#:name]]` where `:name` would be the name of your resource in the [Placeholders] page.
+| Key     | Description                                                                                                                                                                              |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:name` | The name of the Plugin. Plugins are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                     |
+| `:url`  | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/            |
+| `?`     | Should be replaced with either an `x` or a space, depending on if the option is supported. So the result is either `[x]` or `[ ]`                                                        |
+| `:link` | If your plugin also provides own placeholders should you add it to the [Placeholders] page. In such a case should you use `[**[[Link\|Placeholders#:name]]**]` otherwhise just `[Link]` |
 
 ### [Placeholders]
-If your plugin provides its own placeholders through an extension is it recommendet to add this extension to the [Placeholders] page.  
+This step is required if you either have a plugin or an expansion that provides their own placeholders. You should add your resource to the Placeholders page of the wiki.  
 This page is split up into two sections: PAPI Placeholders and Plugin Placeholders.
 
 PAPI Placeholders are extensions that don't require an external plugin or other dependency to function normally. Common examples are the Player or Server extensions.  
 The Plugin Placeholders are extensions that require a plugin or other dependency to function. They are often used to provide values from one pluging (e.g. Vault) to another plugin through the help of PlaceholderAPI.
 
-The overall structure of an entry is always the same:  
+The syntax used for each entry is the same:
 ````markdown
 - ### **[:name](:url)**
 > :command
@@ -51,39 +54,51 @@ The overall structure of an entry is always the same:
 ----
 ````
 
-- `:name` is the name of your resource. The resources are ordered by alphabet and if yours has the same name as another one listed, add it __below__ the other resource.
-- `:url` should be replaced with a URL to your resource page (Spigot, dev.bukkit, etc.). If you use Spigot, make sure to remove any text after the `/resources/` and only leave the ID. For example will https://www.spigotmc.org/resources/placeholderapi.6245/ become https://www.spigotmc.org/resources/6245/.  
-If you don't have your resource on any resource page can you either ommit the URL (Just provide the name) or provide a link to its source, if available.
-- `:command` depends on if your extension is available on the eCloud or is build into your resource. If you have it on the eCloud should you provide `/papi ecloud download :name` where `:name` is the name your expansion has on the eCloud.  
-If your extension is build into your resource can you just set `NO DOWNLOAD COMMAND` instead.
-- `:placeholders` would be a list of all placeholders that your extension offers (Sorted by alphabet). If your placeholders support multiple variables like item names, should you use either `<text>` or `[text]` depending on if it is required or optional.
+| Key             | Description                                                                                                                                                                                        |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:name`         | The name of the resource. Resources are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                           |
+| `:url`          | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/                      |
+| `:command`      | The download command. When your resource is an expansion on the ecloud would you need to add `/papi ecloud download :name`. If it isn't an expansion should you put `NO DOWNLOAD COMMAND` instead. |
+| `:placeholders` | List of placeholders your plugin/expansion offers. The list should stay in alphabetical order. You can use `<>` and `[]` to indicate required and optional variables.                              |
 
-Always keep an empty line in between the `----` and the next entry below it.  
-If your extension is at the very bottom of the page can you ommit the `----`.
+#### Extra notes
 
-You will also need to add your extension's name to the list at the very top in the format `- **[:name](#:header)**` where `:name` is the extension name and `:header` is the name displayed in the URL after the `#` when you click the link icon next to the header.
+- If your entry has another one below it will you need to add an empty line, followed by for hypthons (`----`) at the bottom of your entry to separate it.
+- You are allowed to add a description between the `> :command` and the placeholder list. Keep in mind to keep an empty line after the command line to prevent wrong formatting. A description is only useful/required if your expansion/plugin offers specific placeholder values and/or features.
+- Always add your entry's name to the list at the top of the page in the format `- [:name](#:name)`. Note that if your entry shares the same name as another one on the page and you added it below it, that you will need to append a `-1`, `-2`, ... to the name in the brackets, depending on how many entries with the same name there are.
 
-GitHub automatically adds a `-` followed by a number to it, if multiple headers with the same name exist.  
-For example: If 2 headers are called `example` will one be `#example` and the other `#example-1`.
-
+----
 ## Other Wiki pages
 Please follow these general guidelines when editing any other pages.
 
-### Linking
-Linking should always be done through either the reference option or through the Wiki link option.  
-When the link leads to a page on the wiki should you use either `[[:page]]` or `[[:name|:page]]` where `:page` would be the name of the Wiki page (Case sensitive) and `:name` the text that would be displayed instead.  
-When linking to a section within a Wiki page should you link to it using a hashtag (`#`). For example would linking to the player extension result in `[[Placeholders#player]]` (Always have the section lowercase.  
-However, when you link to a section in the same wiki page should you do it in the format `[:name](#:section)` where `:name` is the text to display and `:section` is the name of the section.
+### Links
+The wiki uses 3 types of links:
 
+- [Reference Links](#reference-links)
+- [Wiki Links](#wiki-links)
+- [Header Links](#header-links)
 
-When you link to an external page that isn't part of the wiki should you do it as a reference link (Exception is the above mentioned cases for resources and extensions).  
-You do this by adding `[:name]: :url` at the top of the page where `:name` is the reference name to use and `:url` is the url to link to.
+#### Reference Links
+Reference Links are in the format `[:text]: :url` where `:text` is the name to use as reference and `:url` is the url.  
+These types of links are usually put at the top of the page and allow us easier updating of these links, by just altering the URL without the need to replace them in the entire file.
 
-You can then just use either `[:name]` or `[:display_text][:name]` to link to the url you set (`:display_text` could be any text (including spaces) to display).  
-Reference links are case-insensitive.
+To use a reference link, either use `[:text]` or `[:displayed_text][:text]` to link with a differently shown text.
 
-This system allows us to easly maintain the links without the need to update a URL on several places within the page.
+For example: With `[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki` will `[wiki]` become [wiki] and `[to the wiki][wiki]` becomes [to the wiki][wiki].
 
+Always use reference links for URLs that point outside of the Wiki. Only exceptions are Links in the [Placeholders] and [Plugins using PlaceholderAPI] page (See above for details).
+
+#### Wiki Links
+Wiki links are used to link to other pages on the wiki.  
+These types of links are in the format `[[:pagename]]` or `[[:text|:pagename]]` to display a different text. `:pagename` is case-sensitive.
+
+If you want to link to a header in another wiki page can you use `[[:text|:pagename#:header]]`.
+
+#### Header Links
+Header links are used to link to a section within the same wiki page.  
+The format is `[:text](#:header)`. The header name is case-insensitive but it's recommended to keep it lowercase.
+
+----
 ### Lists
 Lists should always be started with a hyphen (`-`) to better distinguish it from other formatting characters like the asterisk (`*`) used for bold or italic text.
 
