@@ -3664,72 +3664,10 @@ Replace `[variable name]` with the name of the signlink variable
 
 ----
 
-- ### **[SimpleClans](https://www.spigotmc.org/resources/5269/)**
+- ### **[SimpleClans](https://www.spigotmc.org/resources/71242/)**
 > NO DOWNLOAD COMMAND
 
-```
-%simpleclans_neutral_kills%
-%simpleclans_rival_kills%
-%simpleclans_civilian_kills%
-%simpleclans_total_kills%
-%simpleclans_weighted_kills%
-%simpleclans_deaths%
-%simpleclans_kdr%
-%simpleclans_in_clan%
-%simpleclans_is_leader%
-%simpleclans_is_trusted%
-%simpleclans_is_member%
-%simpleclans_is_bb_enabled%
-%simpleclans_is_usechatshortcut%
-%simpleclans_is_allychat%
-%simpleclans_is_clanchat%
-%simpleclans_is_globalchat%
-%simpleclans_is_cape_enabled%
-%simpleclans_is_tag_enabled%
-%simpleclans_is_friendlyfire_on%
-%simpleclans_is_muted%
-%simpleclans_is_mutedally%
-%simpleclans_join_date%
-%simpleclans_inactive_days%
-%simpleclans_lastseen%
-%simpleclans_lastseendays%
-%simpleclans_tag%
-%simpleclans_tag_label%
-%simpleclans_rank%
-%simpleclans_clan_total_neutral%
-%simpleclans_clan_total_civilian%
-%simpleclans_clan_total_rival%
-%simpleclans_clan_total_kills%
-%simpleclans_clan_total_deaths%
-%simpleclans_clan_total_kdr%
-%simpleclans_clan_average_wk%
-%simpleclans_clan_leader_size%
-%simpleclans_clan_balance%
-%simpleclans_clan_allow_withdraw%
-%simpleclans_clan_allow_deposit%
-%simpleclans_clan_size%
-%simpleclans_clan_name%
-%simpleclans_clan_color_tag%
-%simpleclans_clan_tag%
-%simpleclans_clan_founded%
-%simpleclans_clan_friendly_fire%
-%simpleclans_clan_is_unrivable%
-%simpleclans_clan_is_anyonline%
-%simpleclans_clan_is_verified%
-%simpleclans_clan_capeurl%
-%simpleclans_clan_inactivedays%
-%simpleclans_clan_onlinemembers_count%
-%simpleclans_clan_allies_count%
-%simpleclans_clan_rivals_count%
-%simpleclans_clanchat_player_color%
-%simpleclans_allychat_player_color%
-%simpleclans_rank_displayname%
-%simpleclans_topclans_<POSITION>_color_tag%
-%simpleclans_topclans_<POSITION>_kdr%
-%simpleclans_topclans_<POSITION>_total_kills%
-```
-
-- `<POSITION>` - The top rank position you want.
+You can find an up-to-date list of the placeholders in [their wiki](https://simpleclans.gitbook.io/simpleclans/other/placeholderapi-support).
 
 ----
 
