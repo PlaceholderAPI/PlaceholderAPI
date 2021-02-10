@@ -195,6 +195,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
 ## **N**
 - **[Nameless Plugin](#nameless-plugin)**
+- **[NameMC-API-ServersMC Plugin](#namemc-api-serversmc)**
 - **[Nicknamer](#nicknamer)**
 - **[NickReloaded](#nickreloaded)**
 - **[Nicky](#nicky)**
@@ -2880,6 +2881,19 @@ Available if multiple partners are allowed on the server:
 ```
 %namelessmc_notifications%
 ```
+----
+
+- ### **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
+> NO DOWNLOAD COMMAND
+
+```
+%namemcapi_prefix%
+%namemcapi_namemcweb%
+%namemcapi_ip%
+%namemcapi_player%
+```
+You can find more information on the [Wiki!](https://github.com/HappyRogelio7/NameMC-API-ServersMC/wiki)
+
 ----
 
 - ### **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
