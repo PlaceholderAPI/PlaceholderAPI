@@ -64,14 +64,14 @@ labels:
           It is recommended to [join our Discord Server](https://helpch.at/discord) as you often receive faster response compared to the issue tracker here.
           Questions about PlaceholderAPI should be asked in our [Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions).
         action: close
-      pull_request:
+      pr:
         body: |-
-          Your Pull Request has been marked as invalid.
+          Your Pull request has been marked as **invalid**.
           This means that it doesn't follow our [Contributing Guidelines](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/.github/CONTRIBUTING.md).
           
           Here is a small summary of what you should know:
           
-          - Pull requests for PlaceholderAPI should target the `develop` branch.
+          - Pull requests for PlaceholderAPI should target the `development` branch.
           - Pull requests for the Wiki should target the `docs/wiki` branch.
           
           Don't hesitate to ask us any questions.

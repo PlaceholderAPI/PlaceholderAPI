@@ -1,7 +1,8 @@
 [issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new
 [discord]: https://helpch.at/discord
 [code of conduct]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/CODE_OF_CONDUCT.md
-[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki
+[dev]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/development
 [style]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/config/style
 
 # Contributing Guidelines
@@ -39,7 +40,7 @@ In those cases should you report the issue to the issue tracker of the expansion
 As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code like bug fixes or new features, or contributions to its documentation such as the [Wiki] or the Javadoc.
 
 ### Code contributions
-Any contributions to PlaceholderAPI's code should be done towards the `develop` branch. Targeting the `master` branch in your Pull request may get it closed without warning.  
+Any contributions to PlaceholderAPI's code should be done towards the [`development`][dev] branch. Targeting the `master` branch in your Pull request may get it closed without warning.  
 Additionally should you follow the project's codestyle which you can find in the [`config/style`][style] directory.
 
 ### Wiki/Javadoc contributions
