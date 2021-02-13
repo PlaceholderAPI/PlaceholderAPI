@@ -873,6 +873,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#timed-rewards]]**]
+- **[TimeManager](https://www.spigotmc.org/resources/44344/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#timemanager]]**]
 - **[Time Tokens](https://www.spigotmc.org/resources/75441/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#time-tokens]]**]
