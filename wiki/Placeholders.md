@@ -284,6 +284,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Thirst](#thirst)**
 - **[TicketGUI](#ticketgui)**
 - **[Timed Rewards](#timed-rewards)**
+- **[TimeManager](#timemanager)**
 - **[Time Tokens](#time-tokens)**
 - **[TNTRun_Reloaded](#tntrun_reloaded)**
 - **[TokenEnchant](#tokenenchant)**
@@ -4235,6 +4236,23 @@ Per Player/Event placeholders:
 %trs_claimed_<reward>%
 %trs_time_remaining_<reward>%
 %trs_name_<reward>%
+```
+----
+
+- ### **[TimeManager](https://www.spigotmc.org/resources/44344/)**
+> NO DOWNLOAD COMMANDS
+
+```
+%tm_currentday%
+%tm_daypart%
+%tm_dd%
+%tm_elapseddays%
+%tm_mm%
+%tm_monthname%
+%tm_time%
+%tm_yearweek%
+%tm_yy%
+%tm_yyyy%
 ```
 ----
 
