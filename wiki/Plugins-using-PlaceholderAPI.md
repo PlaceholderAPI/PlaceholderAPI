@@ -190,10 +190,10 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [x] Provides own placeholders. [**[[Link|Placeholders#clans]]**]
 - **[ClansFree](https://www.spigotmc.org/resources/78415/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#clans-1]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#clansfree]]**]
 - **[ClansPro](https://www.spigotmc.org/resources/87515/)**
   - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#clans-1]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#clanspro]]**]
 - **[ClicksPerSecond](https://www.spigotmc.org/resources/57214/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
