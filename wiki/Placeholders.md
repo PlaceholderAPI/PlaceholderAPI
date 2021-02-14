@@ -1460,13 +1460,30 @@ Available gamemodes:
 ```
 ----
 
-- ### **[Clans](https://www.spigotmc.org/resources/78415/)**
+- ### **[ClansFree](https://www.spigotmc.org/resources/78415/)**
 > NO DOWNLOAD COMMAND
 
 ```
 %clans_name%
 %clans_raidshield%
 %clans_rank%
+```
+----
+
+- ### **[ClansPro](https://www.spigotmc.org/resources/87515/)**
+> NO DOWNLOAD COMMAND
+
+```
+%clanspro_clan_name%
+%clanspro_clan_description%
+%clanspro_clan_color%
+%clanspro_clan_pvp_mode%
+%clanspro_clan_balance%
+%clanspro_clan_power%
+%clanspro_clan_members_online%
+%clanspro_member_rank%
+%clanspro_member_bio%
+%clanspro_raidshield_status%
 ```
 ----
 
