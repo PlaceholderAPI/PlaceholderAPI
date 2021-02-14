@@ -82,8 +82,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[ChatReaction](#chatreaction)**
 - **[CheckNameHistory](#checknamehistory)**
 - **[Clans](#clans)**
-- **[Clans](#clans-1)**
+- **[ClansFree](#clansfree)**
 - **[Clans-API for Spigot/Clan tag in chat](#clans-api-for-spigotclan-tag-in-chat)**
+- **[ClansPro](#clanspro)**
 - **[ClanSystem](#clansystem)**
 - **[CombatLogX](#combatlogx)**
 - **[Compassance](#compassance)**
@@ -1470,6 +1471,15 @@ Available gamemodes:
 ```
 ----
 
+- ### **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
+> NO DOWNLOAD COMMAND 
+
+```
+%clantagprovider_clantag_custom_design%
+%clantagprovider_clantag%
+```
+----
+
 - ### **[ClansPro](https://www.spigotmc.org/resources/87515/)**
 > NO DOWNLOAD COMMAND
 
@@ -1484,15 +1494,6 @@ Available gamemodes:
 %clanspro_member_rank%
 %clanspro_member_bio%
 %clanspro_raidshield_status%
-```
-----
-
-- ### **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
-> NO DOWNLOAD COMMAND 
-
-```
-%clantagprovider_clantag_custom_design%
-%clantagprovider_clantag%
 ```
 ----
 
