@@ -36,6 +36,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RandomColor](#randomcolor)**
 - **[RedisBungee](#redisbungee)**
 - **[RelCon](#relcon)**
+- **[RNG](#rng)**
 - **[ScoreboardObjectives](#scoreboardobjectives)**
 - **[Server](#server)**
 - **[Shortcut](#shortcut)**
@@ -826,6 +827,17 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 ```
 ----
 
+- ### **RNG**
+> /papi ecloud download RNG
+
+More info about the expansion can be found on the [GitHub-Repository](https://github.com/Kqliber/Expansion-RNG).
+
+```
+%rng_random%
+%rng_<minimum>,<maximum>%
+```
+----
+
 - ### **ScoreboardObjectives**
 > /papi ecloud download ScoreboardObjectives
 
@@ -1561,12 +1573,17 @@ Note: You have to download the jar from the linked Spigot page.
 
 ```
 %chatreaction_wins% - Chat reaction wins (Requires MySQL)
+%chatreaction_wins_<playername>% - Chat reactions wins for a certain player (Requires MySQL)
+%chatreaction_top_player_<placement>% - Returns the player at the placement inputted from the leaderboard (Requires MySQL)
+%chatreaction_top_wins_<placement>% - Returns the amount of wins a player has at that placement (Requires MySQL)
 %chatreaction_type% - Type of reaction (Reaction or Scramble)
 %chatreaction_active_round% - Is a round currently active
 %chatreaction_display_word% - The scrambled word
 %chatreaction_reaction_word% - The actual solution word
 %chatreaction_start_time% - Time when the round started
 %chatreaction_latest_winner% - Last recorded winner
+%chatreaction_start_time_in_seconds% - Returns the time (in seconds) since the chat reaction started
+%chatreaction_time_remaining% - returns the time (in seconds) when the chat reaction event will expire
 ```
 ----
 
