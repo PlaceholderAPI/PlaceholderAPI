@@ -479,10 +479,10 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 %formatter_number_time_hours_<number>%   # Handles number as hours
 %formatter_number_time_hrs_<number>%     # Handles number as hours
 
+%formatter_replace_<target>_<replacement>_<text>%
 %formatter_text_substring_<start:end>_<text>%
 %formatter_text_uppercase_<text>%
 %formatter_text_lowercase_<text>%
-%formatter_join_<target>_<separator>_<text>%
 ```
 
 ----
