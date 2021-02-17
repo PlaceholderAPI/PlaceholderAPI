@@ -22,7 +22,7 @@ package me.clip.placeholderapi.replacer;
 
 import java.util.function.Function;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -56,12 +56,12 @@ public final class CharsReplacer implements Replacer {
         if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
             && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
             && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' && c != 'r'
-            && c != 'x') {
+            && c != 'x' && c != '#') {
           builder.append(l).append(chars[i]);
         } else {
           builder.append(ChatColor.COLOR_CHAR);
 
-          if (c != 'x') {
+          if (c != 'x' && c != '#') {
             builder.append(chars[i]);
             continue;
           }
@@ -71,8 +71,13 @@ public final class CharsReplacer implements Replacer {
             builder.append('&').append(chars[i]);
             continue;
           }
-
-          builder.append(c);
+          
+          // Turn the # into an X to support Hex colors
+          if (c == '#') {
+            builder.append('x');
+          } else {
+            builder.append(c);
+          }
 
           int j = 0;
           while (++j <= 6) {
@@ -80,7 +85,13 @@ public final class CharsReplacer implements Replacer {
               break;
             }
 
-            final char x = chars[i + j];
+            final char x = Character.toLowerCase(chars[i + j]);
+            // Make sure the characters are valid hex options (0-9, a-f)
+            if (x != '0' && x != '1' && x != '2' && x != '3' && x != '4' && x != '5' && x != '6' && x != '7'
+               && x != '8' && x != '9' && x != 'a' && x != 'b' && x != 'c' && x != 'd' && x != 'e' && x != 'f') {
+              break;
+            }
+            
             builder.append(ChatColor.COLOR_CHAR).append(x);
           }
 

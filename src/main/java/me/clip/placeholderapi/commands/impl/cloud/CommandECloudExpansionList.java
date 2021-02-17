@@ -46,7 +46,7 @@ import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.libs.JSONMessage;
 import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

@@ -22,8 +22,9 @@ package me.clip.placeholderapi.util;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 

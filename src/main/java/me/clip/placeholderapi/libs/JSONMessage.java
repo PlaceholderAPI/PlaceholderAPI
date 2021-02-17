@@ -27,8 +27,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.Vector;
+
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
@@ -37,7 +38,7 @@ import org.bukkit.entity.Player;
  *
  * @author Rayzr
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("ALL")
 public class JSONMessage {
 
   private static final BiMap<ChatColor, String> stylesToNames;
@@ -45,24 +46,11 @@ public class JSONMessage {
   static {
     ImmutableBiMap.Builder<ChatColor, String> builder = ImmutableBiMap.builder();
     for (final ChatColor style : ChatColor.values()) {
-      if (!style.isFormat()) {
+      if (style.getColor() != null) {
         continue;
       }
 
-      String styleName;
-      switch (style) {
-        case MAGIC:
-          styleName = "obfuscated";
-          break;
-        case UNDERLINE:
-          styleName = "underlined";
-          break;
-        default:
-          styleName = style.name().toLowerCase();
-          break;
-      }
-
-      builder.put(style, styleName);
+      builder.put(style, style.getName());
     }
     stylesToNames = builder.build();
   }
@@ -173,10 +161,6 @@ public class JSONMessage {
    * @param players The players you want to send this to
    */
   public void send(Player... players) {
-    if (ReflectionHelper.MAJOR_VER >= 16) {
-//            ReflectionHelper.sendTextPacket(toString(), players);
-//            return;
-    }
 
     ReflectionHelper.sendPacket(ReflectionHelper.createTextPacket(toString()), players);
   }
@@ -221,11 +205,11 @@ public class JSONMessage {
    * @return This {@link JSONMessage} instance
    */
   public JSONMessage color(ChatColor color) {
-    if (!color.isColor()) {
-      throw new IllegalArgumentException(color.name() + " is not a color.");
+    if (color.getColor() == null) {
+      throw new IllegalArgumentException(color.getName() + " is not a color.");
     }
 
-    last().setColor(color);
+    last().setColor(color.getName());
     return this;
   }
 
@@ -1041,16 +1025,6 @@ public class JSONMessage {
 
     /**
      * @param color The color to set
-     * @deprecated Use {@link #setColor(String)} instead
-     */
-    @Deprecated
-    public void setColor(ChatColor color) {
-      setColor(color == null ? null : color.name().toLowerCase());
-      setLegacyColor(color);
-    }
-
-    /**
-     * @param color The color to set
      */
     public void setColor(String color) {
       if (color != null && color.isEmpty()) {
@@ -1082,8 +1056,8 @@ public class JSONMessage {
       if (style == null) {
         throw new IllegalArgumentException("Style cannot be null!");
       }
-      if (!style.isFormat()) {
-        throw new IllegalArgumentException(style.name() + " is not a style!");
+      if (style.getColor() != null) {
+        throw new IllegalArgumentException(style.getName() + " is not a style!");
       }
       styles.add(style);
     }
