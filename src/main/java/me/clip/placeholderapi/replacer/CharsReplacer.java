@@ -53,10 +53,10 @@ public final class CharsReplacer implements Replacer {
       if (l == '&' && ++i < chars.length) {
         final char c = Character.toLowerCase(chars[i]);
 
-        if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
-            && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
-            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' && c != 'r'
-            && c != 'x' && c != '#') {
+        if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' &&
+            c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd' &&
+            c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' &&
+            c != 'r' && c != 'x' && c != '#') {
           builder.append(l).append(chars[i]);
         } else {
           builder.append(ChatColor.COLOR_CHAR);
@@ -87,8 +87,9 @@ public final class CharsReplacer implements Replacer {
 
             final char x = Character.toLowerCase(chars[i + j]);
             // Make sure the characters are valid hex options (0-9, a-f)
-            if (x != '0' && x != '1' && x != '2' && x != '3' && x != '4' && x != '5' && x != '6' && x != '7'
-               && x != '8' && x != '9' && x != 'a' && x != 'b' && x != 'c' && x != 'd' && x != 'e' && x != 'f') {
+            if (x != '0' && x != '1' && x != '2' && x != '3' && x != '4' && x != '5' && x != '6' &&
+                x != '7' && x != '8' && x != '9' && x != 'a' && x != 'b' && x != 'c' && x != 'd' &&
+                x != 'e' && x != 'f') {
               break;
             }
             
