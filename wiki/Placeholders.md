@@ -329,12 +329,17 @@ These placeholders are from PlaceholderAPI and don't require any additional plug
 - ### **Advancements**
 > /papi ecloud download Advancements
 
+More info about this expansion can be found on the [GitHub-Repository](https://github.com/matahombres/Advancements).
 ```
 %Advancements_<advancement>%
 %Advancements_player_<player>;<advancement>%
 %Advancements_playerList_<player>%
 %Advancements_playerList_<player>,<command>%
 %Advancements_playerListFormat_<player>%
+%Advancements_completedAmount_<player>%
+%Advancements_completedAmount_<player>,<category>%
+%Advancements_remainingAmount_<player>%
+%Advancements_remainingAmount_<player>,<category>%
 ```
 ----
 
