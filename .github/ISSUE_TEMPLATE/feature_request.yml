@@ -1,0 +1,53 @@
+name: Feature Request
+about: Suggest a new Feature for PlaceholderAPI
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Thank you for opening a Feature request.
+      Please make sure you first checked for any existing issue (either open or closed), Discussion or Pull request about your suggestion.
+      If it doesn't exist, proceed.
+      
+      Note that any suggestions towards a specific Expansion should be made on that expansion's repository and not here!
+- type: dropdown
+  attributes:
+    label: "Type"
+    description: "What type is your Suggestion? Select all that match."
+    multiple: true
+    options:
+      - New API feature
+      - New config option
+      - Minor Code improvement (Won't affect Servers)
+      - Major Code improvement (Will affect Servers)
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: "Description"
+    description: |-
+      Give a detailed explanation about your suggestion and why it would be beneficial for PlaceholderAPI.
+      Just saying "It's cool!" or "I need it" aren't valid reasons, as it should also benefit other users and not just you.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: "Code Example"
+    description: "Do you have any Code Examples that you could show us?"
+  validations:
+    required: false
+
+- type: input
+  attributes:
+    label: "Jar file"
+    description: "If you already have a Jar file with those suggested features, provide it as download link here. Set 'N/A' if you don't have a jar file available."
+    placeholder: "https://cdn.discordapp.com/..."
+  validations:
+    required: true
+
+- type: markdown
+  attributes:
+    value: |-
+      Add any extra info you think is nessesary for this Feature request.
+      - When you selected `Major Code improvement (Will affect Servers)` should you mention what will break when people update.
