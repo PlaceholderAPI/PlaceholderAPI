@@ -404,6 +404,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[HoloBlock](https://www.spigotmc.org/resources/43192/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#holoblock]]**]
+- **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[HPWizard](https://www.spigotmc.org/resources/26821/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#hpwizard]]**]
@@ -416,6 +419,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[InteractionVisualizer](https://www.spigotmc.org/resources/77050/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#interactionvisualizer]]**]
+- **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#interactivechat]]**]
 - **[IslandRate (ASkyBlock Addon)](https://www.spigotmc.org/resources/53519/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#islandrate-askyblock-addon]]**]

@@ -152,7 +152,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Hugs](#hugs)**
 
 ## **I**
-- **[interactionvisualizer](#interactionvisualizer)**
+- **[InteractionVisualizer](#interactionvisualizer)**
+- **[InteractiveChat](#interactivechat)**
 - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border-askyblock--bentobox--uskyblock--acidisland)**
 - **[IslandRate (ASkyBlock Addon)](#islandrate-askyblock-addon)**
 - **[IslandRate (AcidIsland Addon)](#islandrate-acidisland-addon)**
@@ -2342,6 +2343,14 @@ You can find an up-to-date list of the placeholders in [their wiki](https://fact
 %interactionvisualizer_itemstand%
 %interactionvisualizer_itemdrop%
 %interactionvisualizer_hologram%
+```
+----
+
+- ### **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
+> NO DOWNLOAD COMMAND
+
+```
+%interactivechat_mentiontoggle%
 ```
 ----
 
