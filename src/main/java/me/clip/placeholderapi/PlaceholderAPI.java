@@ -146,7 +146,7 @@ public final class PlaceholderAPI {
   }
 
   public static List<String> setBracketPlaceholders(Player player, List<String> text) {
-    return setPlaceholders((OfflinePlayer) player, text);
+    return setBracketPlaceholders((OfflinePlayer) player, text);
   }
 
   /**
