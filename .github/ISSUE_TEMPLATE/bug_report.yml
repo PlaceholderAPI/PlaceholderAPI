@@ -1,0 +1,86 @@
+name: Bug Report
+description: Found a Bug about PlaceholderAPI? Use this template to report it!
+issue_body: false
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Thank you for opening a bug report. In order to process the Report efficiently and to also help you with it in the process do we require some specific information from you.
+      Please make sure to always use the latest Release on Spigot, or the latest Development release from our Jenkins Server.
+      
+      Spigot: https://www.spigotmc.org/resources/6245/
+      Jenkins: http://ci.extendedclip.com/job/PlaceholderAPI/
+      
+      **DO NOT REPORT ISSUES WITH EXPANSIONS AND/OR PLACEHOLDERS. USE THE APPROPRIATE ISSUE TRACKER FOR THOSE!**
+- type: checkboxes
+  attributes:
+    label: Confirmation
+    description: Please make sure to have followed the following checks.
+    options:
+      - label: My issue isn't already found on the Issue tracker.
+        required: true
+      - label: My issue is about **PlaceholderAPI** and not any expansion or external plugin
+        required: true
+- type: dropdown
+  attributes:
+    label: "Type"
+    description: "What type of bug do you encounter?"
+    multiple: false
+    options:
+      - Plugin Bug
+      - API Bug
+      - Plugin/Server Incompatability
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "What happens?"
+    description: "What bug are you encountering? Try to explain it as detailed as possible."
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Expected Behaviour"
+    description: "What behaviour did you expect from PlaceholderAPI?"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Actual Behaviour"
+    description: "How does PlaceholderAPI behave instead?"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "How to Reproduce"
+    description: |-
+      List the steps on how to reproduce this Bug.
+      Post any Code-examples in the `Additional Info` field below when you selected `API Bug`.
+    placeholder: |-
+      1. Do this
+      2. ...
+      3. Profit!
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: "`/papi dump` Output"
+    description: "Paste the output of `/papi dump` in the field below. It includes a lot of useful information for us."
+    placeholder: "https://paste.helpch.at/dump.log"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: "Errors"
+    description: "Post links to any Stacktraces or Errors PlaceholderAPI printed. We recommend using https://paste.helpch.at, https://paste.gg or any other hastebin/Pastebin-like site."
+    placeholder: "https://paste.helpch.at/error.log"
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: "Additional Info"
+    description: |-
+      Add any extra info you think is nessesary for this Bug report.
+      - If you selected `API Bug` will you need to include code-examples here to reproduce the issue.
+      - If you selected `Plugin/Server Incompatability` should you include extra Server info such as a Timings or Spark-Report or info about the plugin in question.
+    placeholder: "Put any extra info you like into this field..."
