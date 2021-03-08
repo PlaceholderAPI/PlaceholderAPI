@@ -1,5 +1,5 @@
 name: Bug Report
-about: Found a Bug about PlaceholderAPI? Use this template to report it!
+description: Found a Bug about PlaceholderAPI? Use this template to report it!
 body:
 - type: markdown
   attributes:
@@ -11,7 +11,15 @@ body:
       Jenkins: http://ci.extendedclip.com/job/PlaceholderAPI/
       
       **DO NOT REPORT ISSUES WITH EXPANSIONS AND/OR PLACEHOLDERS. USE THE APPROPRIATE ISSUE TRACKER FOR THOSE!**
-
+- type: checkboxes
+  attributes:
+    label: Confirmation
+    description: Please make sure to have followed the following checks.
+    options:
+      - label: My issue isn't already found on the Issue tracker.
+        required: true
+      - label: My issue is about **PlaceholderAPI** and not any expansion or external plugin
+        required: true
 - type: dropdown
   attributes:
     label: "Type"
@@ -23,28 +31,24 @@ body:
       - Plugin/Server Incompatability
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "What happens?"
     description: "What bug are you encountering? Try to explain it as detailed as possible."
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "Expected Behaviour"
     description: "What behaviour did you expect from PlaceholderAPI?"
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "Actual Behaviour"
     description: "How does PlaceholderAPI behave instead?"
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "How to Reproduce"
@@ -57,7 +61,6 @@ body:
       3. Profit!
   validations:
     required: true
-
 - type: input
   attributes:
     label: "`/papi dump` Output"
@@ -65,7 +68,6 @@ body:
     placeholder: "https://paste.helpch.at/dump.log"
   validations:
     required: true
-
 - type: input
   attributes:
     label: "Errors"
@@ -73,7 +75,6 @@ body:
     placeholder: "https://paste.helpch.at/error.log"
   validations:
     required: false
-
 - type: markdown
   attributes:
     value: |-
