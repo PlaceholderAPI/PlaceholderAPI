@@ -1,5 +1,6 @@
 name: Bug Report
 description: Found a Bug about PlaceholderAPI? Use this template to report it!
+issue_body: false
 body:
 - type: markdown
   attributes:
@@ -75,9 +76,11 @@ body:
     placeholder: "https://paste.helpch.at/error.log"
   validations:
     required: false
-- type: markdown
+- type: textarea
   attributes:
-    value: |-
+    label: "Additional Info"
+    description: |-
       Add any extra info you think is nessesary for this Bug report.
       - If you selected `API Bug` will you need to include code-examples here to reproduce the issue.
       - If you selected `Plugin/Server Incompatability` should you include extra Server info such as a Timings or Spark-Report or info about the plugin in question.
+    placeholder: "Put any extra info you like into this field..."
