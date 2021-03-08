@@ -1,7 +1,6 @@
 ---
-name: Bug Report  
+name: Bug Report (Old)
 about: Report bugs of PlaceholderAPI with this template
-
 ---
 
 <!--
