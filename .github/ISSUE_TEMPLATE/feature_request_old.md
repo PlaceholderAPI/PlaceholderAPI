@@ -1,7 +1,6 @@
 ---
-name: Feature Request
+name: Feature Request (Old)
 about: Request a update/change of the PlaceholderAPI-code
-
 ---
 
 <!--
