@@ -1,5 +1,7 @@
+---
 name: Feature Request
 about: Suggest a new Feature for PlaceholderAPI
+labels: 'Type: Enhancement'
 body:
 - type: markdown
   attributes:
@@ -9,6 +11,15 @@ body:
       If it doesn't exist, proceed.
       
       Note that any suggestions towards a specific Expansion should be made on that expansion's repository and not here!
+- type: checkboxes
+  attributes:
+    label: Confirmation
+    description: Please make sure to have followed the following checks.
+    options:
+      - label: I checked the Issue tracker and any Open PRs for my idea.
+        required: true
+      - label: My idea is for **PlaceholderAPI** and not any expansion or other plugin.
+        required: true
 - type: dropdown
   attributes:
     label: "Type"
@@ -21,7 +32,6 @@ body:
       - Major Code improvement (Will affect Servers)
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "Description"
@@ -30,14 +40,12 @@ body:
       Just saying "It's cool!" or "I need it" aren't valid reasons, as it should also benefit other users and not just you.
   validations:
     required: true
-
 - type: textarea
   attributes:
     label: "Code Example"
     description: "Do you have any Code Examples that you could show us?"
   validations:
     required: false
-
 - type: input
   attributes:
     label: "Jar file"
@@ -45,7 +53,6 @@ body:
     placeholder: "https://cdn.discordapp.com/..."
   validations:
     required: true
-
 - type: markdown
   attributes:
     value: |-
