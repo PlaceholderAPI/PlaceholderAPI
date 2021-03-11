@@ -1,6 +1,7 @@
 name: Feature Request
 description: Suggest a new Feature for PlaceholderAPI
-labels: 'Type: Enhancement'
+labels:
+- "Type: Enhancement"
 issue_body: false
 body:
 - type: markdown
