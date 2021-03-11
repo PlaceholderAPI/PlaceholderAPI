@@ -1,6 +1,7 @@
 name: Bug Report
 description: Found a Bug about PlaceholderAPI? Use this template to report it!
-labels: "Type: Issue (Unconfirmed)"
+labels:
+- "Type: Issue (Unconfirmed)"
 issue_body: false
 body:
 - type: markdown
