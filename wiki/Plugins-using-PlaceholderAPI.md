@@ -807,6 +807,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[SuperScratch](https://www.spigotmc.org/resources/12250/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[SuperiorSkyBlock2](https://www.spigotmc.org/resources/87411/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [Link]
 - **[SuperVanish](https://www.spigotmc.org/resources/1331/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#supervanish]]**]
