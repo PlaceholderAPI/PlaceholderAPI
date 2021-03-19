@@ -59,6 +59,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[AdvancedCustomMenu+](#advancedcustommenu)**
 - **[AdvancedLottery](#advancedlottery)**
 - **[AdvancedModReq](#advancedmodreq)**
+- **[ajLeaderboards](#ajleaderboards)**
 - **[ajParkour](#ajparkour)**
 - **[AlonsoLevels](#alonsolevels)**
 - **[Animated Menu](#animated-menu)**
@@ -1210,14 +1211,38 @@ All information about these placeholders can be found [here](https://gitlab.com/
 ```
 ----
 
+- ### **[ajLeaderboards](https://www.spigotmc.org/resources/85548/)**
+> NO DOWNLOAD COMMAND
+
+Description of placeholders: https://wiki.ajg0702.us/ajleaderboards/setup/placeholders
+
+**(<> = required)**
+```
+%ajleaderboards_board_<board>_<number>_name%
+%ajleaderboards_board_<board>_<number>_value%
+%ajleaderboards_position_<board>%
+%ajleaderboards_board_<board>_<number>_prefix%
+%ajleaderboards_board_<board>_<number>_suffix%
+%ajleaderboards_board_<board>_<number>_color%
+```
+----
+
 - ### **[ajParkour](https://www.spigotmc.org/resources/60909/)**
 > NO DOWNLOAD COMMAND
 
+Description of placeholders: https://wiki.ajg0702.us/ajparkour/setup/placeholders
+
+**(<> = required)**
 ```
-%ajpk_current%
-%ajpk_stats_top_name_%
-%ajpk_stats_top_score_%
+%ajpk_stats_top_name_<number>%
+%ajpk_stats_top_name_<number>_<area>%
+%ajpk_stats_top_score_<number>%
+%ajpk_stats_top_score_<number>_<area>%
+%ajpk_stats_top_time_<number>%
 %ajpk_stats_highscore%
+%ajpk_stats_highscore_<area>%
+%ajpk_current%
+%ajpk_jumping%
 ```
 ----
 
