@@ -2611,30 +2611,8 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
 > /papi ecloud download LuckPerms
 
-```
-%luckperms_groups%
-%luckperms_primary_group_name%
-%luckperms_group_expiry_time_<groupname>%
-%luckperms_in_group_<group>%
-%luckperms_has_groups_on_track_<track>%
-%luckperms_first_group_on_tracks_<tracks>%
-%luckperms_last_group_on_tracks_<tracks>%
-%luckperms_lowest_group_by_weight%
-%luckperms_highest_group_by_weight%
-%luckperms_prefix%
-%luckperms_prefix_element_<element>%
-%luckperms_suffix%
-%luckperms_suffix_element_<element>%
-%luckperms_context_<contextkey>%
-%luckperms_has_permission_<permission>%
-%luckperms_inherits_permission_<permission>%
-%luckperms_check_permission_<permission>%
-%luckperms_expiry_time_<permission>%
-%luckperms_inherits_group_<group>%
-%luckperms_on_track_<track>%
-%luckperms_inherited_expiry_time_<permission>%
-%luckperms_meta_<meta key>%
-```
+You can find an up-to-date list of placeholders on the [LuckPerms wiki](https://luckperms.net/wiki/Placeholders).
+
 ----
 
 - ### **LWC**
