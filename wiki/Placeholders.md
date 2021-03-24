@@ -312,6 +312,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - [Economy](#economy)
   - [Permissions](#permissions)
 - **[ViaVersion](#viaversion)**
+- **[VKAutoPickup](#vkautopickup)**
 - **[VoteParty](#voteparty)**
 - **[VoteRoulette](#voteroulette)**
 - **[VotingPlugin](#votingplugin)**
@@ -4594,6 +4595,16 @@ Replace `XXX` with the enchantment.
 ```
 %viaversion_player_protocol_id%
 %viaversion_player_protocol_version%
+```
+----
+
+- ### **[VKAutoPickup](https://polymart.org/resource/vkautopickup.153)**
+> /papi ecloud download VKAutoPickup
+
+```
+%vkautopickup_pickup%
+%vkautopickup_autosell%
+%vkautopickup_autoplanting%
 ```
 ----
 
