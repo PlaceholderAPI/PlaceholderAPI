@@ -4405,7 +4405,7 @@ Replace `XXX` with the enchantment.
 ```
 ----
 
-- ### **[TokensPlus](https://www.spigotmc.org/resources/tokensplus.90507/)**
+- ### **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
 > NO DOWNLOAD COMMAND
 ```
 %tokensplus_tokens%
