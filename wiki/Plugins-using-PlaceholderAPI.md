@@ -900,6 +900,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Tokens](https://www.spigotmc.org/resources/71941/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#tokens]]**]
+- **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#tokensplus]]**]
 - **[Towny](https://github.com/TownyAdvanced/Towny)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#towny]]**]
