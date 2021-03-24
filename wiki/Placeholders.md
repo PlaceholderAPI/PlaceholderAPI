@@ -274,6 +274,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[TokenEnchant](#tokenenchant)**
 - **[TokenManager](#tokenmanager)**
 - **[Tokens](#tokens)**
+- **[TokensPlus](#tokensplus)**
 - **[Towny](#towny)**
 - **[TownyChat](#townychat)**
 - **[TransmuteIt](#transmuteIt)**
@@ -3984,6 +3985,13 @@ Replace `XXX` with the enchantment.
 
 ```
 %tokens_getTokens%
+```
+----
+
+- ### **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
+> NO DOWNLOAD COMMAND
+```
+%tokensplus_tokens%
 ```
 ----
 
