@@ -4614,6 +4614,8 @@ Replace `XXX` with the enchantment.
 %vkautopickup_pickup%
 %vkautopickup_autosell%
 %vkautopickup_autoplanting%
+%vkautopickup_autosmelt%
+%vkautopickup_autoblock%
 ```
 ----
 
