@@ -3534,6 +3534,7 @@ The following placeholders are the same as above but instead of specifying the s
 > NO DOWNLOAD COMMAND
 
 ```
+Deprecated in old versions
 %skywarsreloaded_score%
 %skywarsreloaded_wins%
 %skywarsreloaded_kills%
@@ -3547,6 +3548,17 @@ The following placeholders are the same as above but instead of specifying the s
 %skywarsreloaded_time_vote%
 %skywarsreloaded_opvote%
 %skywarsreloaded_op_vote%
+
+Tested on version (5.4.2)
+%swr_wins%
+%swr_losses%
+%swr_kills%
+%swr_deaths%
+%swr_xp%
+%swr_level%
+%swr_games_played%
+%swr_kill_death%
+%swr_win_loss%
 ```
 ----
 
