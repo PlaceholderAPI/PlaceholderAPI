@@ -2378,6 +2378,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://fact
 
 ```
 %interactivechat_mentiontoggle%
+%interactivechat_invdisplaylayout%
 ```
 ----
 
