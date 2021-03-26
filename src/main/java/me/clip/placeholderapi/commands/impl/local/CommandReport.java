@@ -119,7 +119,7 @@ public class CommandReport extends PlaceholderCommand {
           + "?labels=Type%3A+Issue+%28Unconfirmed%29"
           + "&template=bug_report.yml"
           + "&dump=" + URLEncoder.encode(dumpUrl, "UTF-8")
-          + "&error=" + URLEncoder.encode(logUrl, "UTF-8");
+          + "&console=" + URLEncoder.encode(logUrl, "UTF-8");
     } catch (UnsupportedEncodingException ex) {
       return null;
     }
