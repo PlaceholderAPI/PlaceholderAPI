@@ -78,6 +78,14 @@ body:
   validations:
     required: true
 - type: input
+  id: "console"
+  attributes:
+    label: "Console Log"
+    description: |-
+      Share the content of your `latest.log` here.
+      It's recommended to use https://paste.helpch.at to share the logs.
+    placeholder: "https://paste.helpch.at/latest.log"
+- type: input
   id: "error"
   attributes:
     label: "Errors"
