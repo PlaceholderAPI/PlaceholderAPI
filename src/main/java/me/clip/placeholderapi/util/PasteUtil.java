@@ -47,7 +47,7 @@ public class PasteUtil {
   }
   
   public static CompletableFuture<String> postLogs(@NotNull final PlaceholderAPIPlugin plugin) {
-    final RequestBody requestBody = RequestBody.create(generateErrorDump(plugin), null);
+    final RequestBody requestBody = RequestBody.create(generateLogDump(plugin), null);
     
     return post(requestBody);
   }
@@ -162,7 +162,7 @@ public class PasteUtil {
     return builder.toString();
   }
   
-  private static String generateErrorDump(@NotNull final PlaceholderAPIPlugin plugin) {
+  private static String generateLogDump(@NotNull final PlaceholderAPIPlugin plugin) {
     final StringBuilder builder = getHeader(plugin);
     
     builder.append("========== START OF LOG ==========")
