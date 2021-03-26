@@ -39,6 +39,7 @@ import me.clip.placeholderapi.commands.impl.local.CommandInfo;
 import me.clip.placeholderapi.commands.impl.local.CommandList;
 import me.clip.placeholderapi.commands.impl.local.CommandParse;
 import me.clip.placeholderapi.commands.impl.local.CommandReload;
+import me.clip.placeholderapi.commands.impl.local.CommandReport;
 import me.clip.placeholderapi.commands.impl.local.CommandVersion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
@@ -60,7 +61,8 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
       new CommandReload(),
       new CommandVersion(),
       new CommandExpansionRegister(),
-      new CommandExpansionUnregister());
+      new CommandExpansionUnregister(),
+      new CommandReport());
 
 
   @NotNull

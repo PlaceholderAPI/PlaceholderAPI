@@ -20,6 +20,7 @@ repositories {
 dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
     implementation "org.bstats:bstats-bukkit:1.5"
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
 
     compileOnly "org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT"
     compileOnly "org.jetbrains:annotations:19.0.0"
