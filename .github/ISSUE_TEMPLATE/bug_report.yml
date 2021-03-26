@@ -68,6 +68,7 @@ body:
   validations:
     required: true
 - type: input
+  id: "dump"
   attributes:
     label: "`/papi dump` Output"
     description: |-
@@ -77,6 +78,7 @@ body:
   validations:
     required: true
 - type: input
+  id: "error"
   attributes:
     label: "Errors"
     description: |-
