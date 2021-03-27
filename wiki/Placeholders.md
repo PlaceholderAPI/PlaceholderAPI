@@ -337,13 +337,20 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 ```
 %Advancements_<advancement>%
 %Advancements_player_<player>;<advancement>%
+%Advancements_list%
+%Advancements_list_<command>%
 %Advancements_playerList_<player>%
 %Advancements_playerList_<player>,<command>%
+%Advancements_listFormat%
 %Advancements_playerListFormat_<player>%
-%Advancements_completedAmount_<player>%
-%Advancements_completedAmount_<player>,<category>%
-%Advancements_remainingAmount_<player>%
-%Advancements_remainingAmount_<player>,<category>%
+%Advancements_completedAmount%
+%Advancements_completedAmount_<category>%
+%Advancements_playerCompletedAmount_<player>%
+%Advancements_playerCompletedAmount_<player>,<category>%
+%Advancements_remainingAmount%
+%Advancements_remainingAmount_<category>%
+%Advancements_playerRemainingAmount_<player>%
+%Advancements_playerRemainingAmount_<player>,<category>%
 ```
 ----
 
