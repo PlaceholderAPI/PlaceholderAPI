@@ -1064,8 +1064,8 @@ Other statistics
 ```
 ----
 
-- ### **[TeamsExpansion](https://www.spigotmc.org/resources/90773/)**
-> /papi ecloud download TeamsExpansion
+- ### **[Teams](https://www.spigotmc.org/resources/90773/)**
+> /papi ecloud download Teams
 
 ```
 %team_color%
