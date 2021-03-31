@@ -1064,8 +1064,8 @@ Other statistics
 ```
 ----
 
-- ### **[TeamsExpansion](https://www.spigotmc.org/resources/teams-placeholder-expansion.90773/)**
-> Download from [here](https://www.spigotmc.org/resources/teams-placeholder-expansion.90773/)
+- ### **[TeamsExpansion](https://www.spigotmc.org/resources/90773/)**
+> /papi ecloud download TeamsExpansion
 
 ```
 %team_color%
