@@ -1064,6 +1064,17 @@ Other statistics
 ```
 ----
 
+- ### **[TeamsExpansion](https://www.spigotmc.org/resources/teams-placeholder-expansion.90773/)**
+> Download from [here](https://www.spigotmc.org/resources/teams-placeholder-expansion.90773/)
+
+```
+%team_color%
+%team_prefix%
+%team_suffix%
+%team_name%
+```
+----
+
 - ### **World**
 > /papi ecloud download world
 
@@ -4767,15 +4778,4 @@ Replace `XXX` with the enchantment.
 %xlt_{tournamentId}_score%
 %xlt_{tournamentId}_position%
 %xlt_{tournamentId}_type%
-```
-----
-
-- ### **[TeamsExpansion](https://www.spigotmc.org/resources/teams-placeholder-expansion.90773/)**
-> NO DOWNLOAD COMMAND
-
-```
-%team_color%
-%team_prefix%
-%team_suffix%
-%team_name%
 ```
