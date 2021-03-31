@@ -45,6 +45,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[SpeedPerSec](#speedpersec)**
 - **[Statistic](#statistic)**
 - **[Team](#team)**
+- **[Teams](#teams)**
 - **[World](#world)**
 ----
 
@@ -1056,11 +1057,24 @@ Other statistics
 ---
 
 - ### **[Team](https://www.spigotmc.org/resources/74959/)**
-> Download from [here](https://www.spigotmc.org/resources/74959/)
+> NO DOWNLOAD COMMAND
+
+Download from [here](https://www.spigotmc.org/resources/74959/)
 
 ```
 %team_color%
 %team_prefix%
+```
+----
+
+- ### **[Teams](https://www.spigotmc.org/resources/90773/)**
+> /papi ecloud download teams
+
+```
+%team_color%
+%team_prefix%
+%team_suffix%
+%team_name%
 ```
 ----
 
