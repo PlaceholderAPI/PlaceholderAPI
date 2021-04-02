@@ -730,7 +730,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
 - **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
-  - [ ] Supports placeholders.
+  - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rocketplaceholders]]**]
 - **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
   - [ ] Supports placeholders.
