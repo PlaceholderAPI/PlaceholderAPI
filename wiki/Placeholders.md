@@ -986,6 +986,7 @@ For specific blocks, items, entities, ...
 
 Other statistics
 ```
+%statistic_mob_kills%
 %statistic_mine_block%
 %statistic_use_item%
 %statistic_break_item%
