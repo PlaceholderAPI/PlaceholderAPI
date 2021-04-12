@@ -93,7 +93,7 @@ public class PasteUtil {
         
         String json = body.string();
         
-        if(json.isEmpty()) {
+        if (json.isEmpty()) {
           throw new IOException("Received Body was empty");
         }
         
@@ -143,9 +143,13 @@ public class PasteUtil {
         .getExpansionsFolder()
         .list(((dir, name) -> name.toLowerCase().endsWith(".jar")));
 
-    for (final String jar : jars) {
-      builder.append("\n  ")
-          .append(jar);
+    if (jars != null) {
+      for (final String jar : jars) {
+        builder.append("\n  ")
+            .append(jar);
+      }
+    } else {
+      builder.append("\n  No jars available");
     }
 
     builder.append("\n\n");
