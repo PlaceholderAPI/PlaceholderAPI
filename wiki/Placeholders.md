@@ -4445,6 +4445,8 @@ Replace `XXX` with the enchantment.
 
 ```
 %tokensplus_tokens%
+%tokensplus_tokens_commas%
+%tokensplus_tokens_formatted%
 ```
 ----
 
