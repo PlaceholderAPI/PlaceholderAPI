@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * Any {@link PlaceholderExpansion} class which implements configurable will have any options listed
- * in the getDefaults map automatically added to the PlaceholderAPI config.yml file
+ * in the {@link #getDefaults()} map automatically added to the PlaceholderAPI config.yml file
  *
  * @author Ryan McCarthy
  */

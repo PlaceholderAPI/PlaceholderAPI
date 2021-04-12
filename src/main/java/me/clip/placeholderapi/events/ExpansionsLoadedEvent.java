@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when all expansions are loaded (when reloading config, on plugin start and on server load).
+ * Indicates that <b>all</b> {@link PlaceholderExpansion PlayceholderExpansions}
+ * have been loaded.
+ * <br/>This event is fired on Server load and when reloading the
+ * confiuration.
  */
 public class ExpansionsLoadedEvent extends Event {
 

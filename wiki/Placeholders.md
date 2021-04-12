@@ -5,8 +5,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 > ## Notes (Please read)  
 > We only add and/or update placeholders on request.  
 > We aren't responsible, to keep the placeholders of your plugin(s) up to date.  
-> If you changed, removed or added placeholders, or made your plugin(s) and/or expansion(s) no longer available and want us to update this page, [create an issue](/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md) and let us know.  
-> This is also the case for when you want your plugin to be added to the list.
+> If anything about your expansion/plugin has changed, consider [making a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls) to commit the changes yourself.
+>
+> You can find a comprehensive guide on how to do this on the [Wiki's README file](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md).
 
 ## [PAPI-placeholders](#papi-placeholders-1)
 
@@ -31,12 +32,14 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[PlayerList](#playerlist)**
 - **[Plugin](#plugin)**
 - **[Progress](#progress)**
-- **[RainbowColor](#RainbowColor)**
-- **[RandomColor](#RandomColor)**
+- **[RainbowColor](#rainbowcolor)**
+- **[RandomColor](#randomcolor)**
 - **[RedisBungee](#redisbungee)**
 - **[RelCon](#relcon)**
+- **[RNG](#rng)**
 - **[ScoreboardObjectives](#scoreboardobjectives)**
 - **[Server](#server)**
+- **[Shortcut](#shortcut)**
 - **[Sound](#sound)**
 - **[Spectators](#spectators)**
 - **[SpeedPerSec](#speedpersec)**
@@ -56,7 +59,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[AdvancedCustomMenu+](#advancedcustommenu)**
 - **[AdvancedLottery](#advancedlottery)**
 - **[AdvancedModReq](#advancedmodreq)**
+- **[ajLeaderboards](#ajleaderboards)**
 - **[ajParkour](#ajparkour)**
+- **[AlonsoLevels](#alonsolevels)**
 - **[Animated Menu](#animated-menu)**
 - **[AParkour](#aparkour)**
 - **[ASkyBlock](#askyblock)**
@@ -70,10 +75,13 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[BeautyQuests](#beautyquests)**
 - **[BedWars1058](#bedwars1058)**
 - **[BentoBox](#bentobox)**
+- **[BetonQuest](#betonquest)**
 - **[BlockParty](#blockparty)**
-- **[BlockQuests](#blockquests)**
+- **[BlockQuest](#blockquest)**
+- **[Boxing](#boxing)**
 - **[BuildBattlePro](#buildbattlepro)**
 - **[BungeePerms](#bungeeperms)**
+- **[BuyCraft](#buycraft)**
 
 ## **C**
 - **[CarlTheCreeper](#carlthecreeper)**
@@ -82,8 +90,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[ChatReaction](#chatreaction)**
 - **[CheckNameHistory](#checknamehistory)**
 - **[Clans](#clans)**
-- **[Clans](#clans-1)**
+- **[ClansFree](#clansfree)**
 - **[Clans-API for Spigot/Clan tag in chat](#clans-api-for-spigotclan-tag-in-chat)**
+- **[ClansPro](#clanspro)**
 - **[ClanSystem](#clansystem)**
 - **[CombatLogX](#combatlogx)**
 - **[Compassance](#compassance)**
@@ -98,9 +107,10 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[DeliveryMan](#deliveryman)**
 - **[DeluxeChat](#deluxechat)**
 - **[DeluxeCombat](#deluxecombat)**
+- **[DeluxeMenus](#deluxemenus)**
 - **[DeluxePM](#deluxepm)**
 - **[DeluxeTags](#deluxetags)**
-- **[Denize](#denize)**
+- **[Denizen](#denizen)**
 - **[DiscordSRV](#discordsrv)**
 - **[Disease](#disease)**
 - **[DonateParty](#donateparty)**
@@ -143,7 +153,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Hugs](#hugs)**
 
 ## **I**
-- **[interactionvisualizer](#interactionvisualizer)**
+- **[InteractionVisualizer](#interactionvisualizer)**
+- **[InteractiveChat](#interactivechat)**
 - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border-askyblock--bentobox--uskyblock--acidisland)**
 - **[IslandRate (ASkyBlock Addon)](#islandrate-askyblock-addon)**
 - **[IslandRate (AcidIsland Addon)](#islandrate-acidisland-addon)**
@@ -156,7 +167,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Karma](#karma)**
 - **[KillStats](#killstats)**
 - **[KitPvP](#kitpvp)**
-- **[Kingdoms+](#kindoms)**
+- **[Kingdoms+](#kingdoms)**
 - **[KP-PVP](#kp-pvp)**
 
 ## **L**
@@ -173,7 +184,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Marriage (Reloaded)](#marriage-reloaded)**
 - **[MarriageMaster](#marriagemaster)**
 - **[McInfected](#mcinfected)**
-- **[McInfected-Ranks](#mcinfected-ranks)**
 - **[McJobs](#mcjobs)**
 - **[McMMO](#mcmmo)**
 - **[MineChess](#minechess)**
@@ -189,6 +199,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
 ## **N**
 - **[Nameless Plugin](#nameless-plugin)**
+- **[NameMC-API-ServersMC Plugin](#namemc-api-serversmc)**
 - **[Nicknamer](#nicknamer)**
 - **[NickReloaded](#nickreloaded)**
 - **[Nicky](#nicky)**
@@ -213,6 +224,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[PointsAPI](#pointsapi)**
 - **[PowerRanks](#powerranks)**
 - **[PremiumVanish](#premiumvanish)**
+- **[Prison](#prison)**
 - **[PrisonMines](#prisonmines)**
 - **[PrisonRanksX](#prisonranksx)**
 - **[ProCosmetics](#procosmetics)**
@@ -232,22 +244,27 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RabbitsVSPenguins](#rabbitsvspenguins)**
 - **[RageMode](#ragemode)**
 - **[Rankup](#rankup)**
+- **[RealisticWorldGenerator](#realisticworldgenerator)**
 - **[RedProtect](#redprotect)**
 - **[ReferralSystem](#referralsystem)**
 - **[RestrictedDimensions](#restricteddimensions)**
+- **[RocketPlaceholders](#rocketplaceholders)**
 - **[RogueParkour](#rogueparkour)**
 - **[RoyalCommands](#royalcommands)**
 - **[RPGInventory](#rpginventory)**
 
 ## **S**
+- **[Seasons](#seasons)**
 - **[SellAll](#sellall)**
 - **[SignLink](#signlink)**
 - **[SimpleClans](#simpleclans)**
+- **[SimpleCoins](#simplecoins)**
 - **[SimpleCoinsAPI](#simplecoinsapi)**
 - **[SimpleKillTracker](#simplekilltracker)**
 - **[SimplePrefix](#simpleprefix)**
 - **[Simple Suffix](#simple-suffix)**
 - **[SkillAPI](#skillapi)**
+- **[SkinsRestorer](#skinsrestorer)**
 - **[Skript](#skript)**
 - **[Skywars](#skywars)**
 - **[Skywars X](#skywars-x)**
@@ -257,6 +274,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[SQLTokens](#sqltokens)**
 - **[Staff Facilities](#staff-facilities)**
 - **[Statz](#statz)**
+- **[Streaming Drops](#streaming-drops)**
 - **[StrikePractice 2](#strikepractice-2)**
 - **[stTitles](#sttitles)**
 - **[SubServers](#subservers)**
@@ -268,7 +286,9 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[The Time](#the-time)**
 - **[ThemePark](#themepark)**
 - **[Thirst](#thirst)**
+- **[TicketGUI](#ticketgui)**
 - **[Timed Rewards](#timed-rewards)**
+- **[TimeManager](#timemanager)**
 - **[Time Tokens](#time-tokens)**
 - **[TNTRun_Reloaded](#tntrun_reloaded)**
 - **[TokenEnchant](#tokenenchant)**
@@ -276,7 +296,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Tokens](#tokens)**
 - **[Towny](#towny)**
 - **[TownyChat](#townychat)**
-- **[TransmuteIt](#transmuteIt)**
+- **[TransmuteIt](#transmuteit)**
 - **[Treasures](#treasures)**
 - **[Trey's Double Jump](#treys-double-jump)**
 - **[TrickOrTreat](#trickortreat)**
@@ -292,6 +312,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - [Economy](#economy)
   - [Permissions](#permissions)
 - **[ViaVersion](#viaversion)**
+- **[VKAutoPickup](#vkautopickup)**
 - **[VoteParty](#voteparty)**
 - **[VoteRoulette](#voteroulette)**
 - **[VotingPlugin](#votingplugin)**
@@ -311,12 +332,17 @@ These placeholders are from PlaceholderAPI and don't require any additional plug
 - ### **Advancements**
 > /papi ecloud download Advancements
 
+More info about this expansion can be found on the [GitHub-Repository](https://github.com/matahombres/Advancements).
 ```
 %Advancements_<advancement>%
 %Advancements_player_<player>;<advancement>%
 %Advancements_playerList_<player>%
 %Advancements_playerList_<player>,<command>%
 %Advancements_playerListFormat_<player>%
+%Advancements_completedAmount_<player>%
+%Advancements_completedAmount_<player>,<category>%
+%Advancements_remainingAmount_<player>%
+%Advancements_remainingAmount_<player>,<category>%
 ```
 ----
 
@@ -386,6 +412,7 @@ Allows you to check the inventory of a player for a certain item.
 - `%checkitem_<modifier1>,<modifier2>,<...>%` - Returns if user has the item
 - `%checkitem_amount_<modifier1>,<modifier2>,<...>%` - Returns amount of items the user has
 - `%checkitem_remove_<modifier1>,<modifier2>,<...>%` - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. `%checkitem_amount_remove_<...>%`) Please be careful as it does REMOVE ITEMS FOR GOOD
+- `%checkitem_give_<modifier1>,<modifier2>,<...>%` - Gives the player items. Returns true if successful, returns the number of items NOT given if unsuccessful. (When unsuccessful items can still be given, it just might not be all of them)
 ```
 
 **Modifiers**  
@@ -393,22 +420,30 @@ You can combine different modifiers to check for different values.
 Available modifiers are:
 - `namecontains:<text>` - Checks if the item's display name contains `<text>`* \*\*
 - `namestartswith:<text>` - Checks if the item's display name starts with `<text>`* \*\*
-- `nameequals:<text>` - Checks if the item's display name equals `<text>`* \*\*
-- `mat:<material>` - Checks if the item is `<material>` (For example: `STONE`)
-- `amt:<number>` - Checks if the player has `<number>` of items
+- `nameequals:<text>` - Checks if the item's display name equals `<text>`* \*\* ^
+- `mat:<material>` - Checks if the item is `<material>` (For example: `STONE`) ^
+- `amt:<number>` - Checks if the player has `<number>` of items ^
 - `data:<number>` - Checks if the item has data `<number>` (Example: Red wool has `14` as data (`WOOL:14`)).  
-This is only for 1.12 and older!
-- `custommodeldata:<number>` - Checks if the item has CustomModelData `<number>` This is only for 1.14 and newer!
+This is only for 1.12 and older! ^
+- `custommodeldata:<number>` - Checks if the item has CustomModelData `<number>` This is only for 1.14 and newer! ^
 - `lorecontains:<text>` - Checks if the item's lore contains `<text>`*
+- `loreequals:<text>` - Checks if the item's lore equals `<text>` Lines are separated by `|` ^
 - `matcontains:<text>` - Checks if the item's material contains `<text>`*
-- `enchantments:<enchantment=lvl>;<enchantment>` (`=lvl` is optional) (Uses vanilla minecraft enchantment names)
+- `enchantments:<enchantment=lvl>;<enchantment>` (`=lvl` is optional) (Uses vanilla minecraft enchantment names) ^
 - `enchanted` - Checks if the item is enchanted (with anything)
+- `potiontype:<potiontype>` - Checks if the item has the potiontype ([Click here for potion types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)) ^
+- `potionextended:<boolean>` - Checks if a potion is extended ^
+- `potionupgraded:<boolean>` - Checks if a potion is upgraded ^
 - `strict` - Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
 - `inhand` - Check if the item is in the player's hand (Also checks off-hand)
 
 *Case-sensitive
 
 **Only one can be used
+
+^Supported by the `give` placeholder
+
+To use Commas in strings you must escape them using `\` (Ex: `loreequals:Milk\, Eggs\, Bread`)
 
 **Placeholders are supported, but they need to be in brackets! (Ex: `%player_name%` would be `{player_name}`**
 
@@ -441,17 +476,22 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
 
 ```
-%formatter_number_format_<number>[_<options>]%
-%formatter_number_time_<number>%
+%formatter_number_format_<number>%
+%formatter_number_format_[locale]:[format]_<number>%
 
+%formatter_number_time_<number>%
+%formatter_number_time_seconds_<number>% # Handles number as seconds
+%formatter_number_time_secs_<number>%    # Handles number as seconds
+%formatter_number_time_minutes_<number>% # Handles number as minutes
+%formatter_number_time_mins_<number>%    # Handles number as minutes
+%formatter_number_time_hours_<number>%   # Handles number as hours
+%formatter_number_time_hrs_<number>%     # Handles number as hours
+
+%formatter_replace_<target>_<replacement>_<text>%
 %formatter_text_substring_<start:end>_<text>%
 %formatter_text_uppercase_<text>%
 %formatter_text_lowercase_<text>%
 ```
-
-Available options:
-- `format:(<format>)` - The actual format, using Java's DecimalFormat system.
-- `locale:(<locale>)` - The locale to use. Formats can be different depending on the locale.
 
 ----
 
@@ -495,13 +535,14 @@ Lists players with a certain permission or in a certain world... 'nuf said.
 > /papi ecloud download Math
 
 Lets you make simple or advanced calculations.  
-Placeholders are supported (You have to use `{}` instead of `%`).  
-Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx) with the exception of `%`.  
-You have to use `[prc]` for using the `%` symbol.  
-You can use `[precision:<number>]` in the placeholder, to set, how many digits after the `.` are shown.
+Placeholders are supported (You have to use `{}` instead of `%`).
+
+Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx).
+Note that the `%` can't be used within the placeholder and that you have to to use `[prc]` instead.
 
 ```
 %math_<math expression>%
+%math_[precision]:[rounding]_<expression>%
 ```
 ----
 
@@ -548,9 +589,10 @@ Lets you get placeholders for other players. (Not the one that triggers the acti
 
 Lets you parse any placeholder for the closest player. Will return blank if no player is found.
 
-* `%parsenear_<placeholder_without_percent_signs>%` - Parses placeholder for closest player
-* `%parsenear_<radius>_<placeholder_without_percent_signs>%` - Parses placeholder for closest player in a radius
-
+```
+%parsenear_<placeholder_without_percent_signs>%          # Parses placeholder for closest player
+%parsenear_<radius>_<placeholder_without_percent_signs>% # Parses placeholder for closest player in a radius
+```
 ----
 
 - ### **ParseOther**
@@ -670,36 +712,45 @@ Gives you various placeholders for the player, that triggers the action.
 
 Returns the player list matching the specified syntax
 
-`%playerlist_<type>,<subtype>,<yes/no>,<output>,<subtype_value>%` - The `yes/no` is to include/exclude the player.
+```
+%playerlist_<type>,<subtype>,<include>,<output>,<subtype_value>%
+```
 
-**Types:**
-* `all` - Matches all players
-* `online` - Matches online players
-* `offline` - Matches offline players
+**Type:**
+- `all` - Matches all players
+- `online` - Matches online players
+- `offline` - Matches offline players
 
-**Output Types:**
-* `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.* 
-* `amount` - Returns amount of players matched
-* `<integer>` - Returns the player at the specified index
+**Subtypes:**
+- `normal` - Matches all players. Requires no `<subtype_value>`
+- `perm` - Matches all players that match the permission defined by `<subtype_value>`. Supports multiple permissions separated by `+` (`perm.1+perm.2`)
+- `world` - Matches all players in the world defined by `<subtype_value>`. Supports multiple worlds separated by `+` (`world+world_nether`)
+- `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
 
-**SubTypes:**
-* `normal` - Matches all players - Requires no `<subtype_value>`
-* `perm` - Matches all players that match the permission defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `perm1+perm2`)
-* `world` - Matches all player in the world defined by `<subtype_value>` - Supports multiple separated by `+` (Ex: `world1+world2`)
-* `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
+**Include:**
+- `yes` - Include the player
+- `no` - Exclude the player
+
+**Output:**
+- `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.* 
+- `amount` - Returns amount of players matched
+- `<integer>` - Returns the player at the specified index
+
 
 **Examples:**
-* `%playerlist_all,normal,yes,list%` - `Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare`
-* `%playerlist_online,perm,yes,amount,staff.admin%` - `2`
-* `%playerlist_online,world,yes,2,buildingworld+spawnworld%` - `cj89898, funnycube`
-* `%playerlist_online,nearby,yes,list,5%` - `Tanguygab, cj89898, clip`
-* `%playerlist_online,nearby,no,list,5%` - `Tanguygab, clip`
-* `%playerlist_online,nearby,no,list--,20%` - `Tanguygab-clip-Terfs`
+```
+%playerlist_all,normal,yes,list%                          # Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare
+%playerlist_online,perm,yes,amount,staff.admin%           # 2
+%playerlist_online,world,yes,2,buildingworld+spawnworld%` # cj89898, funnycube
+%playerlist_online,nearby,yes,list,5%                     # Tanguygab, cj89898, clip
+%playerlist_online,nearby,no,list,5%                      # Tanguygab, clip
+%playerlist_online,nearby,no,list--,20%                   # Tanguygab-clip-Terfs
+```
 
 *You can also use `[placeholder]` for papi placeholders in addition to the javascript `{placeholder}`*
 
 *Note: `Offline` and `All` only support the `Normal` subtype.*  
-**Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.*
+**Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.**
 
 ----
 
@@ -754,8 +805,8 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 ```
 %randomcolor_all%
 %randomcolor_color%
-%randomcolor_format%
 %randomcolor_combined%
+%randomcolor_format%
 %randomcolor_selected_<option1,option2,option3,...>%
 ```
 ----
@@ -781,6 +832,17 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 %rel_relcon_player_<permission>_<text1>%
 %rel_relcon_viewer_<permission>_<text1>_[text2]%
 %rel_relcon_viewer_<permission>_<text1>%
+```
+----
+
+- ### **RNG**
+> /papi ecloud download RNG
+
+More info about the expansion can be found on the [GitHub-Repository](https://github.com/Kqliber/Expansion-RNG).
+
+```
+%rng_random%
+%rng_<minimum>,<maximum>%
 ```
 ----
 
@@ -843,6 +905,19 @@ The output of the SimpleDateTime will look different, depending on how many lett
 Example: `MM` turns into `01` while `MMM` turns into `Jan` (If the month is January).  
 
 More info can be found here: http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+
+----
+
+- ### **Shortcut**
+> /papi ecloud download Shortcut
+
+Allows the parsing of large text with placeholders by having them in TXT files stored.
+
+```
+%shortcut_<filename without .txt>%
+```
+
+The file needs to be a TXT and has to be inside the `PlaceholderAPI/shortcuts` directory.
 
 ----
 
@@ -912,10 +987,10 @@ Other statistics
 %statistic_hours_played%
 %statistic_days_played%
 %statistic_time_played%
-%statistic_seconds_played_remaining%
-%statistic_minutes_played_remaining%
-%statistic_hours_played_remaining%
-%statistic_days_played_remaining%
+%statistic_time_played:seconds%
+%statistic_time_played:minutes%
+%statistic_time_played:hours%
+%statistic_time_played:days%
 %statistic_animals_bred%
 %statistic_armor_cleaned%
 %statistic_banner_cleaned%
@@ -986,25 +1061,28 @@ Other statistics
 
 For the totalBalance placeholder, you must have a service provider plugin (eg. EssentialsX)
 ```
-%world_#_biome%
-%world_#_nearbyEntities_<radius>%
-%world_<world>_name%
-%world_<world>_seed%
-%world_<world>_time%
-%world_<world>_canPvP%
-%world_<world>_animalAllowed%
-%world_<world>_monsterAllowed%
-%world_<world>_difficulty%
-%world_<world>_players%
-%world_<world>_players_<group>%
-%world_<world>_difficulty%
-%world_<world>_playerExist%
-%world_<world>_gamerule_<gamerule>%
-%world_<world>_recentjoin%
-%world_<world>_recentquit%
-%world_<world>_totalBalance%
+%world_animalAllowed_<world>%
+%world_biome%
+%world_canPvP_<world>%
+%world_difficulty_<world>%
+%world_isgamerule_<gamerule>_<world>%
+%world_monsterAllowed_<world>%
+%world_name_<world>%
+%world_nearbyEntities_<radius>%
+%world_playerexist_<world>%
+%world_players_<world>%
+%world_players_<group>_<world>%
+%world_recentjoin_<world>%
+%world_recentquit_<world>%
+%world_sealevel_<world>%
+%world_seed_<world>%
+%world_thunder_<world>%
+%world_time_<world>%
+%world_total%
+%world_totalbalance_<world>%
 ```
-***
+----
+
 ## Plugin-placeholders
 These placeholders require the corresponding plugin to work.  
 **The developer of the plugin is responsible for the placeholders to work!**
@@ -1134,14 +1212,64 @@ All information about these placeholders can be found [here](https://gitlab.com/
 ```
 ----
 
+- ### **[ajLeaderboards](https://www.spigotmc.org/resources/85548/)**
+> NO DOWNLOAD COMMAND
+
+Description of placeholders: https://wiki.ajg0702.us/ajleaderboards/setup/placeholders
+
+**(<> = required)**
+```
+%ajleaderboards_board_<board>_<number>_name%
+%ajleaderboards_board_<board>_<number>_value%
+%ajleaderboards_position_<board>%
+%ajleaderboards_board_<board>_<number>_prefix%
+%ajleaderboards_board_<board>_<number>_suffix%
+%ajleaderboards_board_<board>_<number>_color%
+```
+----
+
 - ### **[ajParkour](https://www.spigotmc.org/resources/60909/)**
 > NO DOWNLOAD COMMAND
 
+Description of placeholders: https://wiki.ajg0702.us/ajparkour/setup/placeholders
+
+**(<> = required)**
 ```
-%ajpk_current%
-%ajpk_stats_top_name_%
-%ajpk_stats_top_score_%
+%ajpk_stats_top_name_<number>%
+%ajpk_stats_top_name_<number>_<area>%
+%ajpk_stats_top_score_<number>%
+%ajpk_stats_top_score_<number>_<area>%
+%ajpk_stats_top_time_<number>%
 %ajpk_stats_highscore%
+%ajpk_stats_highscore_<area>%
+%ajpk_current%
+%ajpk_jumping%
+```
+----
+
+- ### **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
+> NO DOWNLOAD COMMAND
+
+```
+%alonsolevels_developer%
+%alonsolevels_empty_progress_bar%
+%alonsolevels_experience%
+%alonsolevels_experience_format%
+%alonsolevels_experience_in_current_level%
+%alonsolevels_experience_to_level_up%
+%alonsolevels_experience_to_level_up_format%
+%alonsolevels_level%
+%alonsolevels_level_format%
+%alonsolevels_progress%
+%alonsolevels_progress_bar%
+%alonsolevels_progress_bar_format%
+%alonsolevels_progress_format%
+%alonsolevels_progress_stripped%
+%alonsolevels_progress_stripped_format%
+%alonsolevels_progress_percent%
+%alonsolevels_progress_percent_format%
+%alonsolevels_reqiored_experience_in_current_level%
+%alonsolevels_version%
 ```
 ----
 
@@ -1194,6 +1322,15 @@ All information about these placeholders can be found [here](https://gitlab.com/
 
 ```
 %asynckeepalive_ping%
+```
+----
+
+- ### **[Ath](https://www.spigotmc.org/resources/87124/)**
+> NO DOWNLOAD COMMAND
+
+```
+%ath_date%
+%ath_count%
 ```
 ----
 
@@ -1317,30 +1454,40 @@ All information about these placeholders can be found [here](https://gitlab.com/
 - ### **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
 > NO DOWNLOAD COMMAND
 
-Check out [BentoBox placeholders wiki](https://github.com/BentoBoxWorld/BentoBox/wiki/Placeholders) for more information.
+Check out [BentoBox placeholders docs](https://docs.bentobox.world/en/latest/BentoBox/Placeholders/) for more placeholders.
 
 Available gamemodes:
-`acidisland`, `bskyblock`, `caveblock` and `skygrid`.
+`acidisland`, `bskyblock`, `caveblock`, `skygrid` and `aoneblock`.
 
 ```
-%bentobox_[gamemode]-world-friendlyname%
-%bentobox_[gamemode]-island-distance%
-%bentobox_[gamemode]-island-protection-range%
-%bentobox_[gamemode]-island-owner%
-%bentobox_[gamemode]-island-creation-date%
-%bentobox_[gamemode]-island-spawnpoint%
-%bentobox_[gamemode]-island-name%
+%[gamemode]_world_friendly_name%
+%[gamemode]_island_distance%
+%[gamemode]_island_protection_range%
+%[gamemode]_island_owner%
+%[gamemode]_island_creation_date%
+%[gamemode]_island_center%
+%[gamemode]_island_name%
 ```
 
 **Level add-on**
 
 Available gamemodes:
-`acidisland`, `bskyblock`, and `caveblock`.
+`acidisland`, `bskyblock`, `caveblock`, `skygrid` and `aoneblock`.
 
 ```
-%level_[gamemode]-island-level%
-%level_[gamemode]-island-level-top-value-#%
-%level_[gamemode]-island-level-top-name-#%
+%Level_[gamemode]_island_level%
+%Level_[gamemode]_top_value_#RANK#%
+%Level_[gamemode]_top_name_#RANK#%
+```
+----
+
+- ### **[BetonQuest](https://www.spigotmc.org/resources/2117/)**
+> NO DOWNLOAD COMMAND
+
+Please refer to the [official documentation](https://betonquest.github.io/BetonQuest/versions/dev/User-Documentation/Compatibility/#placeholderapi) for more info.
+```
+%betonquest_<variable>%
+%betonquest_<package>:<variable>%
 ```
 ----
 
@@ -1361,6 +1508,16 @@ Available gamemodes:
 %blockquest_blocksfound%
 %blockquest_blocksleft%
 %blockquest_allblocks%
+```
+----
+
+- ### **[Boxing](https://www.spigotmc.org/resources/83879/)**
+> NO DOWNLOAD COMMAND
+
+```
+%boxing_losses%
+%boxing_times_played%
+%boxing_wins%
 ```
 ----
 
@@ -1390,6 +1547,21 @@ Available gamemodes:
 %bungeeperms_suffix_primary_group%
 %bungeeperms_in_group_<Group>%
 %bungeeperms_has_permission_<Permission>%
+```
+----
+
+- ### **[BuyCraft](https://www.spigotmc.org/resources/82261/)**
+> NO DOWNLOAD COMMAND
+
+Note: You have to download the jar from the linked Spigot page.
+
+```
+%buycraftAPI_recent_currency_<number>%
+%buycraftAPI_recent_name_<number>%
+%buycraftAPI_recent_price_<number>%
+%buycraftapi_top_donator_currency%
+%buycraftapi_top_donator_name%
+%buycraftapi_top_donator_price%
 ```
 ----
 
@@ -1433,12 +1605,17 @@ Available gamemodes:
 
 ```
 %chatreaction_wins% - Chat reaction wins (Requires MySQL)
+%chatreaction_wins_<playername>% - Chat reactions wins for a certain player (Requires MySQL)
+%chatreaction_top_player_<placement>% - Returns the player at the placement inputted from the leaderboard (Requires MySQL)
+%chatreaction_top_wins_<placement>% - Returns the amount of wins a player has at that placement (Requires MySQL)
 %chatreaction_type% - Type of reaction (Reaction or Scramble)
 %chatreaction_active_round% - Is a round currently active
 %chatreaction_display_word% - The scrambled word
 %chatreaction_reaction_word% - The actual solution word
 %chatreaction_start_time% - Time when the round started
 %chatreaction_latest_winner% - Last recorded winner
+%chatreaction_start_time_in_seconds% - Returns the time (in seconds) since the chat reaction started
+%chatreaction_time_remaining% - returns the time (in seconds) when the chat reaction event will expire
 ```
 ----
 
@@ -1460,7 +1637,7 @@ Available gamemodes:
 ```
 ----
 
-- ### **[Clans](https://www.spigotmc.org/resources/78415/)**
+- ### **[ClansFree](https://www.spigotmc.org/resources/78415/)**
 > NO DOWNLOAD COMMAND
 
 ```
@@ -1476,6 +1653,23 @@ Available gamemodes:
 ```
 %clantagprovider_clantag_custom_design%
 %clantagprovider_clantag%
+```
+----
+
+- ### **[ClansPro](https://www.spigotmc.org/resources/87515/)**
+> NO DOWNLOAD COMMAND
+
+```
+%clanspro_clan_name%
+%clanspro_clan_description%
+%clanspro_clan_color%
+%clanspro_clan_pvp_mode%
+%clanspro_clan_balance%
+%clanspro_clan_power%
+%clanspro_clan_members_online%
+%clanspro_member_rank%
+%clanspro_member_bio%
+%clanspro_raidshield_status%
 ```
 ----
 
@@ -1644,6 +1838,19 @@ This can be used in plugins, that require an integer. (e.g. DeluxeMenus)
 
 ----
 
+- ### **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
+> NO DOWNLOAD COMMAND 
+
+```
+%deluxemenus_meta_<key>_<dataType>_<default_value>%
+```
+
+- Key: The key of the meta you want to check
+- Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`. *If the given key has a different data type, an error will occur.*
+- Default Value: The value returned if nothing is found.
+
+----
+
 - ### **[DeluxePM](https://www.spigotmc.org/resources/52599/)**
 > /papi ecloud download DeluxePM
 
@@ -1675,9 +1882,9 @@ This can be used in plugins, that require an integer. (e.g. DeluxeMenus)
 ----
 
 - ### **[DiscordSRV](https://www.spigotmc.org/resources/18494/)**
-> /papi ecloud download DiscordSRV 
+> NO DOWNLOAD COMMAND 
 
-You can find an up-to-date list of the placeholders in [their wiki](https://github.com/DiscordSRV/DiscordSRV-PlaceholderAPI-Expansion#placeholders).
+You can find an up-to-date list of the placeholders in [their wiki](https://github.com/DiscordSRV/DiscordSRV/wiki/PAPI-Placeholders#placeholders).
 
 ----
 
@@ -2036,6 +2243,7 @@ You can find an up-to-date list of the placeholders in [their wiki](https://fact
 %griefprevention_claims%
 %griefprevention_claims_formatted%
 %griefprevention_bonusclaims%
+%griefprevention_bonusclaims_formatted%
 %griefprevention_accruedclaims%
 %griefprevention_accruedclaims_formatted%
 %griefprevention_remainingclaims%
@@ -2161,6 +2369,14 @@ You can find an up-to-date list of the placeholders in [their wiki](https://fact
 %interactionvisualizer_itemstand%
 %interactionvisualizer_itemdrop%
 %interactionvisualizer_hologram%
+```
+----
+
+- ### **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
+> NO DOWNLOAD COMMAND
+
+```
+%interactivechat_mentiontoggle%
 ```
 ----
 
@@ -2396,30 +2612,8 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
 > /papi ecloud download LuckPerms
 
-```
-%luckperms_groups%
-%luckperms_primary_group_name%
-%luckperms_group_expiry_time_<groupname>%
-%luckperms_in_group_<group>%
-%luckperms_has_groups_on_track_<track>%
-%luckperms_first_group_on_tracks_<tracks>%
-%luckperms_last_group_on_tracks_<tracks>%
-%luckperms_lowest_group_by_weight%
-%luckperms_highest_group_by_weight%
-%luckperms_prefix%
-%luckperms_prefix_element_<element>%
-%luckperms_suffix%
-%luckperms_suffix_element_<element>%
-%luckperms_context_<contextkey>%
-%luckperms_has_permission_<permission>%
-%luckperms_inherits_permission_<permission>%
-%luckperms_check_permission_<permission>%
-%luckperms_expiry_time_<permission>%
-%luckperms_inherits_group_<group>%
-%luckperms_on_track_<track>%
-%luckperms_inherited_expiry_time_<permission>%
-%luckperms_meta_<meta key>%
-```
+You can find an up-to-date list of placeholders on the [LuckPerms wiki](https://luckperms.net/wiki/Placeholders).
+
 ----
 
 - ### **LWC**
@@ -2543,22 +2737,14 @@ Available if multiple partners are allowed on the server:
 > NO DOWNLOAD COMMAND
 
 ```
-%mcinfected_score%
-%mcinfected_kills%
-%mcinfected_deaths%
-%mcinfected_wins%
-%mcinfected_losses%
+%mcinfected_lobby_name%
+%mcinfected_lobby_time%
+%mcinfected_lobby_arena_name%
+%mcinfected_lobby_state%
+%mcinfected_kit_human%
+%mcinfected_kit_infected%
+%mcinfected_team%
 %mcinfected_killstreak%
-%mcinfected_time%
-```
-----
-
-- ### **[McInfected-Ranks](https://www.spigotmc.org/resources/2826/)**
-> NO DOWNLOAD COMMAND
-
-```
-%mcinfected-ranks_rank%
-%mcinfected-ranks_prefix%
 ```
 ----
 
@@ -2751,6 +2937,19 @@ Available if multiple partners are allowed on the server:
 ```
 ----
 
+- ### **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
+> NO DOWNLOAD COMMAND
+
+```
+%namemcapi_prefix%
+%namemcapi_namemcweb%
+%namemcapi_ip%
+%namemcapi_player%
+```
+You can find more information on the [Wiki!](https://github.com/HappyRogelio7/NameMC-API-ServersMC/wiki)
+
+----
+
 - ### **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
 > /papi ecloud download Nicknamer
 
@@ -2845,31 +3044,50 @@ You can find an up-to-date list of the placeholders in [their wiki](https://ales
 ----
 
 - ### **[Parkour](https://www.spigotmc.org/resources/23685/)**
-> /papi ecloud download Parkour
+> NO DOWNLOAD COMMAND
 
 ```
-%parkour_last_played%
-%parkour_last_completed%
-%parkour_level%
-%parkour_rank%
-%parkour_parkoins%
-%parkour_course_record_<course>%
-%parkour_course_record_deaths_<course>%
-%parkour_personal_best_<course>%
-%parkour_personal_best_deaths_<course>%
-%parkour_leader_<course>%
-%parkour_current_course%
-%parkour_current_course_record%
+%parkour_course_completed_<course>%
+%parkour_course_completions_<course>%
+%parkour_course_record_<course>_deaths%
+%parkour_course_record_<course>_milliseconds%
+%parkour_course_record_<course>_player%
+%parkour_course_record_<course>_time%
+%parkour_course_views%
+%parkour_current_checkpoint%
+%parkour_current_course_checkpoints%
+%parkour_current_course_completed%
+%parkour_current_course_deaths%
+%parkour_current_course_name%
+%parkour_current_course_personal_best_deaths%
+%parkour_current_course_personal_best_milliseconds%
+%parkour_current_course_personal_best_player%
+%parkour_current_course_personal_best_time%
 %parkour_current_course_record_deaths%
-%parkour_current_personal_best%
-%parkour_current_personal_best_deaths%
-%parkour_current_course_leader%
+%parkour_current_course_record_milliseconds%
+%parkour_current_course_record_player%
+%parkour_current_course_record_time%
 %parkour_current_course_timer%
-%parkour_course_count%
-%parkour_player_count%
-%parkour_version%
+%parkour_global_course_count%
+%parkour_global_player_count%
+%parkour_global_version%
+%parkour_leaderboard_<course>_<position>_deaths%
+%parkour_leaderboard_<course>_<position>_milliseconds%
+%parkour_leaderboard_<course>_<position>_player%
+%parkour_leaderboard_<course>_<position>_time%
+%parkour_player_courses_completed%
+%parkour_player_courses_uncompleted%
+%parkour_player_last_completed%
+%parkour_player_last_joined%
+%parkour_player_level%
+%parkour_player_parkoins%
+%parkour_player_personal_best_<course>_deaths%
+%parkour_player_personal_best_<course>_milliseconds%
+%parkour_player_personal_best_<course>_player%
+%parkour_player_personal_best_<course>_time%
+%parkour_player_prize_delay_<course>%
+%parkour_player_rank%
 %parkour_topten_<course>_<position>%
-%parkour_toptenxcc_<course>_<position>%
 ```
 ----
 
@@ -2947,8 +3165,8 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 ```
 ----
 
-- ### **[PlotSquared](https://www.spigotmc.org/resources/1177/)**
-> /papi ecloud download PlotSquared
+- ### **[PlotSquared](https://www.spigotmc.org/resources/77506/)**
+> NO DOWNLOAD COMMAND
 
 ```
 %plotsquared_currentplot_alias%
@@ -2957,18 +3175,20 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %plotsquared_currentplot_members_added%
 %plotsquared_currentplot_members_trusted%
 %plotsquared_currentplot_members_denied%
-%plotsquared_currentplot_world%
+%plotsquared_world_name%
+%plotsquared_has_plot_<world>%
 %plotsquared_currentplot_x%
 %plotsquared_currentplot_y%
 %plotsquared_currentplot_xy%
 %plotsquared_currentplot_rating%
 %plotsquared_currentplot_biome%
 %plotsquared_has_plot%
-%plotsquared_has_plot_<World>%
 %plotsquared_has_build_rights%
 %plotsquared_plot_count%
-%plotsquared_plot_count_<World>%
+%plotsquared_plot_count_<world>%
 %plotsquared_allowed_plot_count%
+%plotsquared_currentplot_localflag_<flag>%
+%plotsquared_currentplot_flag_<flag>%
 ```
 ----
 
@@ -2991,6 +3211,9 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %powerranks_subranksuffix%
 %powerranks_chatcolor%
 %powerranks_namecolor%
+%powerranks_usertag%
+%powerranks_world%
+%powerranks_playtime%
 ```
 ----
 
@@ -3001,10 +3224,145 @@ Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/Placeholder
 %premiumvanish_isvanished%
 %premiumvanish_vanishedplayers%
 %premiumvanish_playercount%
+%premiumvanish_playercountwithoutshowintab%
 %premiumvanish_bungeeplayercount%
 %premiumvanish_bungeeplayercount@<server>%
+%premiumvanish_target%
+%premiumvanish_uselevel%
+%premiumvanish_seelevel%
 ```
 `<server>` is the name of the server it should show the playercount of.
+
+----
+
+- ### **[Prison](https://www.spigotmc.org/resources/1223/)**
+> NO DOWNLOAD COMMAND
+
+Each placeholder has a shorter alias, which follows the primary placeholder below. 
+
+**Player rank placeholders:** Must be used directly with a player, such as with player chat prefixes.
+These placeholders can return zero, one, or more rank related values depending upon how many ladders the player is on.
+
+```
+%prison_rank%
+%prison_r%
+%prison_rank_tag%
+%prison_rt%
+%prison_rankup_cost%
+%prison_rc%
+%prison_rankup_cost_formatted%
+%prison_rcf%
+%prison_rankup_cost_percent%
+%prison_rcp%
+%prison_rankup_cost_bar%
+%prison_rcb%
+%prison_rankup_cost_remaining%
+%prison_rcr%
+%prison_rankup_cost_remaining_formatted%
+%prison_rcrf%
+%prison_rankup_rank%
+%prison_rr%
+%prison_rankup_rank_tag%
+%prison_rrt%
+```
+
+**Player rank placeholders for individual ladders:** Must be used directly with a player.
+Use the ladder name, all lowercase, in place of `<laddername>`, and it will return zero or one rank related values.
+  
+```
+%prison_rank_<laddername>%
+%prison_r_<laddername>%
+%prison_rank_tag_<laddername>%
+%prison_rt_<laddername>%
+%prison_rankup_cost_<laddername>%
+%prison_rc_<laddername>%
+%prison_rankup_cost_formatted_<laddername>%
+%prison_rcf_<laddername>%
+%prison_rankup_cost_percent_<laddername>%
+%prison_rcp_<laddername>%
+%prison_rankup_cost_bar_<laddername>%
+%prison_rcb_<laddername>%
+%prison_rankup_cost_remaining_<laddername>%
+%prison_rcr_<laddername>%
+%prison_rankup_cost_remaining_formatted_<laddername>%
+%prison_rcrf_<laddername>%
+%prison_rankup_rank_<laddername>%
+%prison_rr_<laddername>%
+%prison_rankup_rank_tag_<laddername>%
+%prison_rrt_<laddername>%
+%prison_player_balance%
+%prison_pb%
+%prison_player_balance_<laddername>%
+%prison_pb_<laddername>%
+```
+
+**Mine relate placeholders:** 
+Use the mine name, all lowercase, in place of `<minename>`.
+  
+```
+%prison_mines_name_<minename>%
+%prison_mn_<minename>%
+%prison_mines_tag_<minename>%
+%prison_mt_<minename>%
+%prison_mines_interval_<minename>%
+%prison_mi_<minename>%
+%prison_mines_interval_formatted_<minename>%
+%prison_mif_<minename>%
+%prison_mines_timeleft_<minename>%
+%prison_mtl_<minename>%
+%prison_mines_timeleft_bar_<minename>%
+%prison_mtlb_<minename>%
+%prison_mines_timeleft_formatted_<minename>%
+%prison_mtlf_<minename>%
+%prison_mines_size_<minename>%
+%prison_ms_<minename>%
+%prison_mines_remaining_<minename>%
+%prison_mr_<minename>%
+%prison_mines_remaining_bar_<minename>%
+%prison_mrb_<minename>%
+%prison_mines_percent_<minename>%
+%prison_mp_<minename>%
+%prison_mines_player_count_<minename>%
+%prison_mpc_<minename>%
+%prison_mines_blocks_mined_<minename>%
+%prison_mbm_<minename>%
+%prison_mines_reset_count_<minename>%
+%prison_mrc_<minename>%
+```
+
+**Player-mine related placeholders:** Must be used with a player.
+These placeholders will only return non-blank values when the player is in a mine and the results will be for that mine.
+
+```
+%prison_mines_name_playermines%
+%prison_mn_pm%
+%prison_mines_tag_playermines%
+%prison_mt_pm%
+%prison_mines_interval_playermines%
+%prison_mi_pm%
+%prison_mines_interval_formatted_playermines%
+%prison_mif_pm%
+%prison_mines_timeleft_playermines%
+%prison_mtl_pm%
+%prison_mines_timeleft_bar_playermines%
+%prison_mtlb_pm%
+%prison_mines_timeleft_formatted_playermines%
+%prison_mtlf_pm%
+%prison_mines_size_playermines%
+%prison_ms_pm%
+%prison_mines_remaining_playermines%
+%prison_mr_pm%
+%prison_mines_remaining_bar_playermines%
+%prison_mrb_pm%
+%prison_mines_percent_playermines%
+%prison_mp_pm%
+%prison_mines_player_count_playermines%
+%prison_mpc_pm%
+%prison_mines_blocks_mined_playermines%
+%prison_mbm_pm%
+%prison_mines_reset_count_playermines%
+%prison_mrc_pm%
+```
 
 ----
 
@@ -3252,6 +3610,18 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 ```
 ----
 
+- ### **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
+> NO DOWNLOAD COMMAND
+
+```
+%rwg_schematicAmount%
+%rwg_schematics%
+%rwg_biome%
+%rwg_position1%
+%rwg_position2%
+```
+----
+
 - ### **[RedProtect](http://otmc.org/resources/15841/)**
 > NO DOWNLOAD COMMAND
 
@@ -3282,8 +3652,20 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 ```
 ----
 
+- ### **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
+> NO DOWNLOAD COMMAND
+
+```
+%rp_<name>%
+```
+
+`<name>` is the name you configured in the config.yml of this plugin.  
+[Read More](https://lorenzo0111.gitbook.io/rocekt-plugins/rocketplaceholders/configure)
+
+----
+
 - ### **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
-> Download manually from [here](https://api.extendedclip.com/expansions/rogueparkour-temporary/)
+> /papi ecloud download rogueparkour-temporary
 
 ```
 %RogueParkour-temporary_top_<number>;<type>%
@@ -3314,6 +3696,23 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 ```
 ----
 
+- ### **[Seasons](https://www.spigotmc.org/resources/39298/)**
+> NO DOWNLOAD COMMAND
+
+```
+%seasons_season%
+%seasons_season_[world]%
+%seasons_weather%
+%seasons_weather_[world]%
+%seasons_day%
+%seasons_day_[world]%
+```
+Replace `[world]` with the name of a loaded world.  
+*Placeholders ending in a `[world]` will retrieve information from the specified world 
+instead of the player's current world.*
+
+----
+
 - ### **[SellAll](https://www.spigotmc.org/resources/1221/)**
 > NO DOWNLOAD COMMAND
 
@@ -3333,73 +3732,20 @@ Replace `[variable name]` with the name of the signlink variable
 
 ----
 
-- ### **[SimpleClans](https://www.spigotmc.org/resources/5269/)**
+- ### **[SimpleClans](https://www.spigotmc.org/resources/71242/)**
+> NO DOWNLOAD COMMAND
+
+You can find an up-to-date list of the placeholders in [their wiki](https://simpleclans.gitbook.io/simpleclans/other/placeholderapi-support).
+
+----
+
+- ### **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)
 > NO DOWNLOAD COMMAND
 
 ```
-%simpleclans_neutral_kills%
-%simpleclans_rival_kills%
-%simpleclans_civilian_kills%
-%simpleclans_total_kills%
-%simpleclans_weighted_kills%
-%simpleclans_deaths%
-%simpleclans_kdr%
-%simpleclans_in_clan%
-%simpleclans_is_leader%
-%simpleclans_is_trusted%
-%simpleclans_is_member%
-%simpleclans_is_bb_enabled%
-%simpleclans_is_usechatshortcut%
-%simpleclans_is_allychat%
-%simpleclans_is_clanchat%
-%simpleclans_is_globalchat%
-%simpleclans_is_cape_enabled%
-%simpleclans_is_tag_enabled%
-%simpleclans_is_friendlyfire_on%
-%simpleclans_is_muted%
-%simpleclans_is_mutedally%
-%simpleclans_join_date%
-%simpleclans_inactive_days%
-%simpleclans_lastseen%
-%simpleclans_lastseendays%
-%simpleclans_tag%
-%simpleclans_tag_label%
-%simpleclans_rank%
-%simpleclans_clan_total_neutral%
-%simpleclans_clan_total_civilian%
-%simpleclans_clan_total_rival%
-%simpleclans_clan_total_kills%
-%simpleclans_clan_total_deaths%
-%simpleclans_clan_total_kdr%
-%simpleclans_clan_average_wk%
-%simpleclans_clan_leader_size%
-%simpleclans_clan_balance%
-%simpleclans_clan_allow_withdraw%
-%simpleclans_clan_allow_deposit%
-%simpleclans_clan_size%
-%simpleclans_clan_name%
-%simpleclans_clan_color_tag%
-%simpleclans_clan_tag%
-%simpleclans_clan_founded%
-%simpleclans_clan_friendly_fire%
-%simpleclans_clan_is_unrivable%
-%simpleclans_clan_is_anyonline%
-%simpleclans_clan_is_verified%
-%simpleclans_clan_capeurl%
-%simpleclans_clan_inactivedays%
-%simpleclans_clan_onlinemembers_count%
-%simpleclans_clan_allies_count%
-%simpleclans_clan_rivals_count%
-%simpleclans_clanchat_player_color%
-%simpleclans_allychat_player_color%
-%simpleclans_rank_displayname%
-%simpleclans_topclans_<POSITION>_color_tag%
-%simpleclans_topclans_<POSITION>_kdr%
-%simpleclans_topclans_<POSITION>_total_kills%
+%simplecoins_balane%
+%simplecoins_currency_name%
 ```
-
-- `<POSITION>` - The top rank position you want.
-
 ----
 
 - ### **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
@@ -3455,7 +3801,7 @@ Replace `[variable name]` with the name of the signlink variable
 %skillapi_skill_req_<skillName>%
 ```
 
-The following placeholders are the same as above but instead of specifying the skillName, you can specify a number from 1 to pretty much infinity <amount of skills a player has> which will show the information related to the players 1st, 2nd, 3rd skill and so on...
+The following placeholders are the same as above but instead of specifying the skillName, you can specify a number from 1 to pretty much infinity (amount of skills a player has) which will show the information related to the players 1st, 2nd, 3rd skill and so on...  
 ```
 %skillapi_player_skill_points_<#>%
 %skillapi_player_skill_level_<#>%
@@ -3466,6 +3812,14 @@ The following placeholders are the same as above but instead of specifying the s
 %skillapi_player_skill_type_<#>%
 %skillapi_player_skill_can_autolevel_<#>%
 %skillapi_player_skill_can_cast_<#>%
+```
+----
+
+- ### **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
+> /papi ecloud download SkinsRestorer
+
+```
+%skinsrestorer_getSkinName%
 ```
 ----
 
@@ -3656,6 +4010,21 @@ The following placeholders are the same as above but instead of specifying the s
 %statz_villager_trades%
 %statz_villager_trades_<item_name>%
 %statz_xp_gained%
+```
+----
+
+- ### **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
+> NO DOWNLOAD COMMAND
+
+```
+%streamingdrops_dropsamount%
+%streamingdrops_generaldropsamount%
+%streamingdrops_globallivetag%
+%streamingdrops_nextdroptime%
+%streamingdrops_senddrops%
+%streamingdrops_streamerlivetag%
+%streamingdrops_topdropsprefix%
+%streamingdrops_twitch%
 ```
 ----
 
@@ -3884,11 +4253,13 @@ Per Player/Event placeholders:
 ----
 
 - ### **[ThemePark](https://www.spigotmc.org/resources/48648/)**
-> NO DOWNLOAD COMMAND
+> /papi ecloud download ThemePark
 
 ```
 %tp_name:<AttractionID>%
 %tp_status:<AttractionID>%
+%tp_ridecount%
+%tp_ridecount:<AttractionID>%
 ```
 ----
 
@@ -3900,6 +4271,17 @@ Per Player/Event placeholders:
 ```
 ----
 
+- ### **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
+> NO DOWNLOAD COMMAND
+
+```
+%ticketgui_blacklist_points_current%
+%ticketgui_blacklist_points_max%
+%ticketgui_tickets_handled%
+%ticketgui_tickets_sent%
+```
+----
+
 - ### **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
 > NO DOWNLOAD COMMANDS
 
@@ -3907,6 +4289,23 @@ Per Player/Event placeholders:
 %trs_claimed_<reward>%
 %trs_time_remaining_<reward>%
 %trs_name_<reward>%
+```
+----
+
+- ### **[TimeManager](https://www.spigotmc.org/resources/44344/)**
+> NO DOWNLOAD COMMANDS
+
+```
+%tm_currentday%
+%tm_daypart%
+%tm_dd%
+%tm_elapseddays%
+%tm_mm%
+%tm_monthname%
+%tm_time%
+%tm_yearweek%
+%tm_yy%
+%tm_yyyy%
 ```
 ----
 
@@ -3929,13 +4328,31 @@ Per Player/Event placeholders:
 > NO DOWNLOAD COMMANDS
 
 ```
-%tntrun_played%
-%tntrun_wins%
-%tntrun_losses%
-%tntrun_version%
+%tntrun_allplayers_<arena>%
 %tntrun_arena_count%
+%tntrun_currency_<arena>%
+%tntrun_current_arena%
+%tntrun_doublejumps%
+%tntrun_joinfee_<arena>%
+%tntrun_leaderboard_losses_player_<position>%
+%tntrun_leaderboard_losses_score_<position>%
+%tntrun_leaderboard_played_player_<position>%
+%tntrun_leaderboard_played_score_<position>%
+%tntrun_leaderboard_wins_player_<position>%
+%tntrun_leaderboard_wins_score_<position>%
+%tntrun_losses%
+%tntrun_nopvp_arena_count%
+%tntrun_nopvp_player_count%
+%tntrun_played%
+%tntrun_players_<arena>%
 %tntrun_player_count%
-%tntrun_leaderboard_<position>%
+%tntrun_player_count_<arena>%
+%tntrun_pvp_arena_count%
+%tntrun_pvp_player_count%
+%tntrun_spectators_<arena>%
+%tntrun_status_<arena>%
+%tntrun_version%
+%tntrun_wins%
 ```
 ----
 
@@ -4178,6 +4595,16 @@ Replace `XXX` with the enchantment.
 ```
 %viaversion_player_protocol_id%
 %viaversion_player_protocol_version%
+```
+----
+
+- ### **[VKAutoPickup](https://polymart.org/resource/vkautopickup.153)**
+> /papi ecloud download VKAutoPickup
+
+```
+%vkautopickup_pickup%
+%vkautopickup_autosell%
+%vkautopickup_autoplanting%
 ```
 ----
 

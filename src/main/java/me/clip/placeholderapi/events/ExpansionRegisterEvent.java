@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Indicates that a {@link PlaceholderExpansion} has been registered by
+ * PlaceholderAPI.
+ */
 public final class ExpansionRegisterEvent extends Event implements Cancellable {
 
   @NotNull
@@ -42,7 +46,12 @@ public final class ExpansionRegisterEvent extends Event implements Cancellable {
   public static HandlerList getHandlerList() {
     return HANDLERS;
   }
-
+  
+  /**
+   * The {@link PlaceholderExpansion expansion} that was registered.
+   * 
+   * @return The {@link PlaceholderExpansion} instance.
+   */
   @NotNull
   public PlaceholderExpansion getExpansion() {
     return expansion;
