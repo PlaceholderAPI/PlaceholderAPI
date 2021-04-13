@@ -162,7 +162,7 @@ public final class PlaceholderAPI {
    * @return String containing all translated placeholders
    */
   public static List<String> setBracketPlaceholders(Player player, List<String> text) {
-    return setPlaceholders((OfflinePlayer) player, text);
+    return setBracketPlaceholders((OfflinePlayer) player, text);
   }
 
   /**
