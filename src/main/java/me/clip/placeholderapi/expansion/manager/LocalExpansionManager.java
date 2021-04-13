@@ -22,6 +22,7 @@ package me.clip.placeholderapi.expansion.manager;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
+import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
@@ -326,7 +327,12 @@ public final class LocalExpansionManager implements Listener {
 
   @NotNull
   public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
-    return Arrays.stream(folder.listFiles((dir, name) -> name.endsWith(".jar")))
+    File[] files = folder.listFiles(((dir, name) -> name.endsWith(".jar")));
+    if (files == null) {
+      files = new File[0]; // listFiles can be null, so we create an empty array.
+    }
+    
+    return Arrays.stream(files)
         .map(this::findExpansionInFile)
         .collect(Futures.collector());
   }

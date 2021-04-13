@@ -171,7 +171,7 @@ public class CloudExpansion {
     this.versions = versions;
   }
 
-  public class Version {
+  public static class Version {
 
     private String url, version, release_notes;
 

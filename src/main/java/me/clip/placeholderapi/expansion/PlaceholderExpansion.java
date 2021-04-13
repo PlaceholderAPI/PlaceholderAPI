@@ -22,7 +22,6 @@ package me.clip.placeholderapi.expansion;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
@@ -276,7 +275,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @param def The default boolean to return when the ConfigurationSection is null
    * @return boolean from the provided path or the default one provided
    */
-  @NotNull
   public final boolean getBoolean(@NotNull final String path, final boolean def) {
     final ConfigurationSection section = getConfigSection();
     return section == null ? def : section.getBoolean(path, def);
