@@ -49,6 +49,49 @@ public final class CharsReplacer implements Replacer {
 
     for (int i = 0; i < chars.length; i++) {
       final char l = chars[i];
+      
+      if (l == '&' && ++i < chars.length) {
+        final char c = Character.toLowerCase(chars[i]);
+
+        if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
+            && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
+            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' && c != 'r'
+            && c != 'x') {
+          builder.append(l).append(chars[i]);
+        } else {
+          builder.append(ChatColor.COLOR_CHAR);
+
+          if (c != 'x') {
+            builder.append(chars[i]);
+            continue;
+          }
+
+          if ((i > 1 && chars[i - 2] == '\\') /*allow escaping &x*/) {
+            builder.setLength(builder.length() - 2);
+            builder.append('&').append(chars[i]);
+            continue;
+          }
+
+          builder.append(c);
+
+          int j = 0;
+          while (++j <= 6) {
+            if (i + j >= chars.length) {
+              break;
+            }
+
+            final char x = chars[i + j];
+            builder.append(ChatColor.COLOR_CHAR).append(x);
+          }
+
+          if (j == 7) {
+            i += 6;
+          } else {
+            builder.setLength(builder.length() - (j * 2)); // undo &x parsing
+          }
+        }
+        continue;
+      }
 
       if (l != closure.head || i + 1 >= chars.length) {
         builder.append(l);
@@ -59,7 +102,6 @@ public final class CharsReplacer implements Replacer {
       boolean invalid = true;
       boolean hadSpace = false;
 
-      // Little setup to check if the placeholder is %identified_values%
       while (++i < chars.length) {
         final char p = chars[i];
 
