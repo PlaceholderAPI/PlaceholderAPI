@@ -99,7 +99,7 @@ public final class CharsReplacer implements Replacer {
       }
 
       boolean identified = false;
-      boolean invalid = true;
+      boolean oopsitsbad = true;
       boolean hadSpace = false;
 
       while (++i < chars.length) {
@@ -110,7 +110,7 @@ public final class CharsReplacer implements Replacer {
           break;
         }
         if (p == closure.tail) {
-          invalid = false;
+          oopsitsbad = false;
           break;
         }
 
@@ -132,7 +132,7 @@ public final class CharsReplacer implements Replacer {
       identifier.setLength(0);
       parameters.setLength(0);
 
-      if (invalid) {
+      if (oopsitsbad) {
         builder.append(closure.head).append(identifierString);
 
         if (identified) {
