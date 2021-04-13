@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -50,58 +50,16 @@ public final class CharsReplacer implements Replacer {
     for (int i = 0; i < chars.length; i++) {
       final char l = chars[i];
 
-      if (l == '&' && ++i < chars.length) {
-        final char c = Character.toLowerCase(chars[i]);
-
-        if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6'
-            && c != '7' && c != '8' && c != '9' && c != 'a' && c != 'b' && c != 'c' && c != 'd'
-            && c != 'e' && c != 'f' && c != 'k' && c != 'l' && c != 'm' && c != 'n' && c != 'o' && c != 'r'
-            && c != 'x') {
-          builder.append(l).append(chars[i]);
-        } else {
-          builder.append(ChatColor.COLOR_CHAR);
-
-          if (c != 'x') {
-            builder.append(chars[i]);
-            continue;
-          }
-
-          if ((i > 1 && chars[i - 2] == '\\') /*allow escaping &x*/) {
-            builder.setLength(builder.length() - 2);
-            builder.append('&').append(chars[i]);
-            continue;
-          }
-
-          builder.append(c);
-
-          int j = 0;
-          while (++j <= 6) {
-            if (i + j >= chars.length) {
-              break;
-            }
-
-            final char x = chars[i + j];
-            builder.append(ChatColor.COLOR_CHAR).append(x);
-          }
-
-          if (j == 7) {
-            i += 6;
-          } else {
-            builder.setLength(builder.length() - (j * 2)); // undo &x parsing
-          }
-        }
-        continue;
-      }
-
       if (l != closure.head || i + 1 >= chars.length) {
         builder.append(l);
         continue;
       }
 
       boolean identified = false;
-      boolean oopsitsbad = true;
+      boolean invalid = true;
       boolean hadSpace = false;
 
+      // Little setup to check if the placeholder is %identified_values%
       while (++i < chars.length) {
         final char p = chars[i];
 
@@ -110,7 +68,7 @@ public final class CharsReplacer implements Replacer {
           break;
         }
         if (p == closure.tail) {
-          oopsitsbad = false;
+          invalid = false;
           break;
         }
 
@@ -132,7 +90,7 @@ public final class CharsReplacer implements Replacer {
       identifier.setLength(0);
       parameters.setLength(0);
 
-      if (oopsitsbad) {
+      if (invalid) {
         builder.append(closure.head).append(identifierString);
 
         if (identified) {
