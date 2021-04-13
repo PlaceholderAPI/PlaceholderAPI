@@ -41,7 +41,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[Server](#server)**
 - **[Shortcut](#shortcut)**
 - **[Sound](#sound)**
-- **[Spectators](#spectators)**
 - **[SpeedPerSec](#speedpersec)**
 - **[Statistic](#statistic)**
 - **[Team](#team)**
@@ -949,23 +948,15 @@ This placeholder is for all players on the server.
 - ### **SpeedPerSec**
 > /papi ecloud download SpeedPerSec
 
+Note: Clicking is supported in left click only
 ```
-%speedpersec_blockBreak%
-%speedpersec_blockPlace%
+%speedpersec_blockbreak%
+%speedpersec_blockplace%
 %speedpersec_speed%
-%speedpersec_expCollected%
+%speedpersec_expcollected%
 %speedpersec_damaging%
 %speedpersec_hurting%
-```
-----
-
-- ### **Spectators**
-> /papi ecloud download Spectators
-
-```
-%spectator_isSpectating%
-%spectator_lookFrom%
-%spectator_infoFrom_health%
+%speedpersec_clicking%
 ```
 ----
 
@@ -1082,26 +1073,28 @@ Download from [here](https://www.spigotmc.org/resources/74959/)
 - ### **World**
 > /papi ecloud download world
 
-For the totalBalance placeholder, you must have a service provider plugin (eg. EssentialsX)
+For the totalbalance placeholder, you must have a service provider plugin (eg. EssentialsX) to work
 ```
-%world_animalAllowed_<world>%
 %world_biome%
-%world_canPvP_<world>%
-%world_difficulty_<world>%
-%world_isgamerule_<gamerule>_<world>%
-%world_monsterAllowed_<world>%
-%world_name_<world>%
 %world_nearbyEntities_<radius>%
-%world_playerexist_<world>%
+%world_total%
+%world_name_<world>%
+%world_seed_<world>%
+%world_sealevel_<world>%
+%world_time_<world>%
+%world_timein12_<world>%
+%world_canpvp_<world>%
+%world_thunder_<world>%
+%world_animalallowed_<world>%
+%world_monsterallowed_<world>%
+%world_difficulty_<world>%
 %world_players_<world>%
 %world_players_<group>_<world>%
+%world_haspermission_<permission>_<world>%
+%world_playerexist_<player>_<world>%
+%world_isgamerule_<gamerule>_<world>%
 %world_recentjoin_<world>%
 %world_recentquit_<world>%
-%world_sealevel_<world>%
-%world_seed_<world>%
-%world_thunder_<world>%
-%world_time_<world>%
-%world_total%
 %world_totalbalance_<world>%
 ```
 ----
