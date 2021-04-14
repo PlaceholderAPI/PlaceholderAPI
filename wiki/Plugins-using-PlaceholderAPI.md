@@ -936,6 +936,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[UltimateBossBar](https://www.spigotmc.org/resources/19303/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.
+- **[UltimateClaims](https://songoda.com/marketplace/product/65)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultimateclaims]]**]
 - **[UltimateSigns](https://www.spigotmc.org/resources/72462/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.

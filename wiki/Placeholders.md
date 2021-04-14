@@ -305,6 +305,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 ## **U**
 - **[USkyBlock](#uskyblock)**
 - **[UltimateChat](#ultimatechat)**
+- **[UltimateClaims](#ultimateclaims)**
 - **[UltimateVotes](#ultimatevotes)**
 - **[UnityGen](#unitygen)**
 
@@ -4574,6 +4575,19 @@ Replace `XXX` with the enchantment.
 ```
 *Add "rel_" before placeholder and tag to support relational placeholder
 
+----
+
+- ### **[UltimateClaims](https://songoda.com/marketplace/product/65)**
+> NO DOWNLOAD COMMAND
+
+```
+%ultimateclaims_claims%
+%ultimateclaims_owner%
+%ultimateclaims_bans%
+%ultimateclaims_totalpower%
+%ultimateclaims_remainingpower%
+%ultimateclaims_totalchunks%
+```
 ----
 
 - ### **[UltimateVotes](https://www.spigotmc.org/resources/516)**
