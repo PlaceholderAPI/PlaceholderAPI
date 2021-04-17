@@ -1683,8 +1683,17 @@ Note: You have to download the jar from the linked Spigot page.
 %clanspro_clan_pvp_mode%
 %clanspro_clan_balance%
 %clanspro_clan_power%
+%clanspro_clan_top_slot_#%
+%clanspro_clan_top_slot_#_power%
+%clanspro_clan_top_slot_#_color%
+%clanspro_clan_war_active%
+%clanspro_clan_war_score%
+%clanspro_clan_war_hours%
+%clanspro_clan_war_minutes%
+%clanspro_clan_war_seconds%
 %clanspro_clan_members_online%
 %clanspro_member_rank%
+%clanspro_member_rank_short%
 %clanspro_member_bio%
 %clanspro_raidshield_status%
 ```
