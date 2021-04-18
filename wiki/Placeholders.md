@@ -4456,28 +4456,8 @@ Replace `XXX` with the enchantment.
 - ### **[Towny](https://github.com/TownyAdvanced/Towny)**
 > NO DOWNLOAD COMMAND
 
-```
-%townyadvanced_town%
-%townyadvanced_town_formatted%
-%townyadvanced_nation%
-%townyadvanced_nation_formatted%
-%townyadvanced_town_balance%
-%townyadvanced_nation_balance%
-%townyadvanced_town_tag%
-%townyadvanced_town_tag_override%
-%townyadvanced_nation_tag%
-%townyadvanced_nation_tag_override%
-%townyadvanced_towny_tag%
-%townyadvanced_towny_tag_override%
-%townyadvanced_towny_tag_formatted%
-%townyadvanced_title%
-%townyadvanced_surname%
-%townyadvanced_towny_name_prefix%
-%townyadvanced_towny_name_postfix%
-%townyadvanced_towny_prefix%
-%townyadvanced_towny_postfix%
-%townyadvanced_towny_colour%
-```
+You can find an up-to-date list of the placeholders on the [Towny wiki](https://github.com/TownyAdvanced/Towny/wiki/Placeholders).
+
 ----
 
 - ### **[TownyChat](https://github.com/TownyAdvanced/TownyChat)**
