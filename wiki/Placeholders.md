@@ -4456,7 +4456,7 @@ Replace `XXX` with the enchantment.
 - ### **[Towny](https://github.com/TownyAdvanced/Towny)**
 > NO DOWNLOAD COMMAND
 
-You can find an up-to-date list of the placeholders on the [Towny wiki](https://github.com/TownyAdvanced/Towny/wiki/Placeholders)
+You can find an up-to-date list of the placeholders on the [Towny wiki](https://github.com/TownyAdvanced/Towny/wiki/Placeholders).
 
 ----
 
