@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -51,6 +51,7 @@ public final class CharsReplacer implements Replacer {
       // Character is not %, { or } or text is less than or only 5 characters long
       if (chr != closure.head || i + 5 >= text.length()) {
         builder.append(chr);
+
         continue;
       }
       
