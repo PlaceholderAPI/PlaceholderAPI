@@ -20,10 +20,17 @@
 
 package me.clip.placeholderapi.util;
 
+import com.google.common.io.CharStreams;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -31,11 +38,6 @@ import java.util.concurrent.CompletionException;
 import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -49,9 +51,6 @@ import java.util.concurrent.CompletableFuture;
 public class PasteUtil {
 
   @NotNull
-  private static final OkHttpClient CLIENT = new OkHttpClient();
-
-  @NotNull
   private static final String URL = "https://paste.helpch.at/";
 
   @NotNull
@@ -61,44 +60,35 @@ public class PasteUtil {
       .withZone(ZoneId.of("UTC"));
 
   public static CompletableFuture<String> postDump(@NotNull final PlaceholderAPIPlugin plugin) {
-    final RequestBody requestBody = RequestBody.create(generateDump(plugin), null);
-    
-    return post(requestBody);
+    return post(generateDump(plugin));
   }
   
   public static CompletableFuture<String> postLogs(@NotNull final PlaceholderAPIPlugin plugin) {
-    final RequestBody requestBody = RequestBody.create(generateLogDump(plugin), null);
-    
-    return post(requestBody);
+    return post(generateLogDump(plugin));
   }
   
-  private static CompletableFuture<String> post(@NotNull final RequestBody requestBody) {
+  private static CompletableFuture<String> post(@NotNull final String data) {
     return CompletableFuture.supplyAsync(() -> {
-      final Request request = new Request.Builder()
-          .url(URL + "documents")
-          .post(requestBody)
-          .addHeader("Content-Type", "text/plain; charset=utf-8")
-          .build();
-
-      try (Response response = CLIENT.newCall(request).execute()){
-        if (!response.isSuccessful()) {
-          throw new IOException(URL + " unavailable");
-        }
-
-        ResponseBody body = response.body();
+      try {
+        final HttpURLConnection connection = ((HttpURLConnection) new URL(URL + "documents")
+            .openConnection());
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+        connection.setDoOutput(true);
         
-        if (body == null) {
-          throw new IOException("Received Body was null");
+        connection.connect();
+        
+        try (final OutputStream stream = connection.getOutputStream()) {
+          stream.write(data.getBytes(StandardCharsets.UTF_8));
         }
         
-        String json = body.string();
-        
-        if (json.isEmpty()) {
-          throw new IOException("Received Body was empty");
+        try (final InputStream stream = connection.getInputStream()) {
+          // noinspection UnstableApiUsage
+          final String json = CharStreams
+              .toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
+          return URL + JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
         }
-        
-        return URL + JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
-      } catch (IOException ex) {
+      } catch (final IOException ex) {
         throw new CompletionException(ex);
       }
     });
@@ -143,7 +133,7 @@ public class PasteUtil {
         .getExpansionsFolder()
         .list(((dir, name) -> name.toLowerCase().endsWith(".jar")));
 
-    if (jars != null) {
+    if (jars != null && jars.length > 0) { // Check that there are actual jars to add
       for (final String jar : jars) {
         builder.append("\n  ")
             .append(jar);
