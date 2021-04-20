@@ -62,6 +62,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[ajParkour](https://www.spigotmc.org/resources/60909/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ajparkour]]**]
+- **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#alonsolevels]]**]
 - **[AnimatedBoard](https://www.spigotmc.org/resources/13632/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -86,6 +89,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[AsyncKeepAlive](https://www.spigotmc.org/resources/64676/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#asynckeepalive]]**]
+- **[Ath](https://www.spigotmc.org/resources/87124/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ath]]**]
 - **[AutoCommandsPlus](https://www.spigotmc.org/resources/11083/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -116,6 +122,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#bentobox]]**]
+- **[BetonQuest](https://www.spigotmc.org/resources/2117/)
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#betonquest]]**]
 - **[Big Doors Opener](https://www.spigotmc.org/resources/80805/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -134,6 +143,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[BossVote](https://www.spigotmc.org/resources/16497/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Boxing](https://www.spigotmc.org/resources/83879/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#boxing]]**]
 - **[Broadcaster Plugin](https://dev.bukkit.org/projects/broadcaster-plugin)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -188,9 +200,12 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Clans](https://www.spigotmc.org/resources/34696/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#clans]]**]
-- **[Clans](https://www.spigotmc.org/resources/78415/)**
+- **[ClansFree](https://www.spigotmc.org/resources/78415/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#clans-1]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#clansfree]]**]
+- **[ClansPro](https://www.spigotmc.org/resources/87515/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#clanspro]]**]
 - **[ClicksPerSecond](https://www.spigotmc.org/resources/57214/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
@@ -259,7 +274,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Provides own placeholders. [Link]
 - **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
   - [x] Supports placeholders.
-  - [ ] Provides own placeholders. [Link]
+  - [x] Provides own placeholders. [**[[Link|Placeholder#deluxemenus]]**]
 - **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#deluxetags]]**]
@@ -389,6 +404,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[HoloBlock](https://www.spigotmc.org/resources/43192/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#holoblock]]**]
+- **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[HPWizard](https://www.spigotmc.org/resources/26821/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#hpwizard]]**]
@@ -401,6 +419,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[InteractionVisualizer](https://www.spigotmc.org/resources/77050/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#interactionvisualizer]]**]
+- **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#interactivechat]]**]
 - **[IslandRate (ASkyBlock Addon)](https://www.spigotmc.org/resources/53519/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#islandrate-askyblock-addon]]**]
@@ -536,6 +557,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Nameless Plugin](https://www.spigotmc.org/resources/59032/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#nameless-plugin]]**]
+- **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders##namemc-api-serversmc]]**]
 - **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#nicknamer]]**]
@@ -606,11 +630,14 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
 - **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
-  - [ ] Supports placeholders.
+  - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#powerranks]]**]
 - **[PremiumVanish](https://www.spigotmc.org/resources/14404/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#premiumvanish]]**]
+- **[Prison](https://www.spigotmc.org/resources/1223/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#prison]]**]
 - **[PrisonMines](https://www.spigotmc.org/resources/4046/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#prisonmines]]**]
@@ -675,12 +702,18 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RankedHelp](https://www.spigotmc.org/resources/61919/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[RankJoin](https://www.spigotmc.org/resources/67551/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[Rankup](https://www.spigotmc.org/resources/17933/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rankup]]**]
 - **[RawMSG](https://www.spigotmc.org/resources/35864/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.
+- **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#realisticworldgenerator]]**]
 - **[RecentFind (Treasures Add-on)](https://www.spigotmc.org/resources/33366/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#recentfind]]**]
@@ -693,6 +726,12 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RestrictedDimensions](http://spigotmc.org/resources/80574/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#restricteddimensions]]**]
+- **[RocketJoin](https://www.spigotmc.org/resources/82520/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
+- **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#rocketplaceholders]]**]
 - **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rogueparkour]]**]
@@ -720,6 +759,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Skellett (Skript Add-on)](https://forums.skunity.com/resources/24/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Seasons](https://www.spigotmc.org/resources/39298/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#seasons]]**]
 - **[SellAll](https://www.spigotmc.org/resources/1221/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#sellall]]**]
@@ -738,6 +780,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[SimpleClans](https://www.spigotmc.org/resources/5269/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#simpleclans]]**]
+- **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#simplecoins]]**]
 - **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#simplecoinsapi]]**]
@@ -753,6 +798,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[SkillAPI](https://www.spigotmc.org/resources/4824/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#skillapi]]**]
+- **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#skinsrestorer]]**]
 - **[Skript](https://github.com/bensku/Skript)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#skript]]**]
@@ -789,6 +837,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#statz]]**]
+- **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#streaming-drops]]**]
 - **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#strikepractice-2]]**]
@@ -825,9 +876,15 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Thirst](https://www.spigotmc.org/resources/3316/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#thirst]]**]
+- **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ticketgui]]**]
 - **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#timed-rewards]]**]
+- **[TimeManager](https://www.spigotmc.org/resources/44344/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#timemanager]]**]
 - **[Time Tokens](https://www.spigotmc.org/resources/75441/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#time-tokens]]**]
@@ -849,6 +906,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[TownyChat](https://github.com/TownyAdvanced/TownyChat)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#townychat]]**]
+- **[TpLogin](https://www.spigotmc.org/resources/21692/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[TransmuteIt](https://www.spigotmc.org/resources/76287/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#transmuteIt]]**]

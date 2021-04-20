@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/Adp7xdh.png" alt="PlaceholderAPI">
+  <img src="https://raw.githubusercontent.com/PlaceholderAPI/PlaceholderAPI/docs/wiki/wiki/img/icon.png" alt="PlaceholderAPI">
 </p>
 
 **[[Main page|Home]]**
@@ -49,7 +49,10 @@
   - [[Server|Placeholders#server]]
   - [[Sound|Placeholders#sound]]
   - [[Spectators|Placeholders#spectators]]
+  - [[SpeedPerSec|Placeholders#speedpersec]]
   - [[Statistic|Placeholders#statistic]]
+  - [[Team|Placeholders#team]]
+  - [[World|Placeholders#world]]
   
 - [[Plugin-placeholders|Placeholders#plugin-placeholders-1]]
   - [[A|Placeholders#a]]

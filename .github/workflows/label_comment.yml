@@ -5,7 +5,7 @@ on:
     types:
     - labeled
     - unlabeled
-  pull_request:
+  pull_request_target:
     types:
     - labeled
     - unlabeled
