@@ -52,7 +52,7 @@ public class CommandReport extends PlaceholderCommand {
         "&7Generating Report. Please wait...");
     
     Map<String, String> urls = new HashMap<>();
-    CompletableFuture<String> dump = PasteUtil.postDump(plugin)
+    CompletableFuture<String> dump = PasteUtil.postDump(plugin, sender.getName())
         .whenComplete((url, ex) -> { 
           if (ex != null) { 
             urls.put("dump", null);
@@ -61,7 +61,7 @@ public class CommandReport extends PlaceholderCommand {
           
           urls.put("dump", url); 
         });
-    CompletableFuture<String> log = PasteUtil.postLogs(plugin)
+    CompletableFuture<String> log = PasteUtil.postLogs(plugin, sender.getName())
         .whenComplete((url, ex) -> {
           if (ex != null) {
             urls.put("log", null);

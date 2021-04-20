@@ -59,12 +59,14 @@ public class PasteUtil {
       .withLocale(Locale.US)
       .withZone(ZoneId.of("UTC"));
 
-  public static CompletableFuture<String> postDump(@NotNull final PlaceholderAPIPlugin plugin) {
-    return post(generateDump(plugin));
+  public static CompletableFuture<String> postDump(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull String name) {
+    return post(generateDump(plugin, name));
   }
   
-  public static CompletableFuture<String> postLogs(@NotNull final PlaceholderAPIPlugin plugin) {
-    return post(generateLogDump(plugin));
+  public static CompletableFuture<String> postLogs(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull String name) {
+    return post(generateLogDump(plugin, name));
   }
   
   private static CompletableFuture<String> post(@NotNull final String data) {
@@ -94,8 +96,9 @@ public class PasteUtil {
     });
   }
 
-  private static String generateDump(PlaceholderAPIPlugin plugin) {
-    final StringBuilder builder = getHeader(plugin);
+  private static String generateDump(@NotNull PlaceholderAPIPlugin plugin,
+      @NotNull String name) {
+    final StringBuilder builder = getHeader(plugin, name);
 
     builder.append("Expansions Registered:");
 
@@ -108,10 +111,10 @@ public class PasteUtil {
 
     int size = 0;
 
-    for (final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier)
+    for (final String identifier : expansions.stream().map(PlaceholderExpansion::getIdentifier)
         .collect(Collectors.toList())) {
-      if (name.length() > size) {
-        size = name.length();
+      if (identifier.length() > size) {
+        size = identifier.length();
       }
     }
 
@@ -131,7 +134,7 @@ public class PasteUtil {
 
     final String[] jars = plugin.getLocalExpansionManager()
         .getExpansionsFolder()
-        .list(((dir, name) -> name.toLowerCase().endsWith(".jar")));
+        .list(((dir, fileName) -> fileName.toLowerCase().endsWith(".jar")));
 
     if (jars != null && jars.length > 0) { // Check that there are actual jars to add
       for (final String jar : jars) {
@@ -158,10 +161,10 @@ public class PasteUtil {
 
     size = 0;
 
-    for (final String name : plugins.stream().map(Plugin::getName)
+    for (final String pluginName : plugins.stream().map(Plugin::getName)
         .collect(Collectors.toList())) {
-      if (name.length() > size) {
-        size = name.length();
+      if (pluginName.length() > size) {
+        size = pluginName.length();
       }
     }
 
@@ -176,8 +179,9 @@ public class PasteUtil {
     return builder.toString();
   }
   
-  private static String generateLogDump(@NotNull final PlaceholderAPIPlugin plugin) {
-    final StringBuilder builder = getHeader(plugin);
+  private static String generateLogDump(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull String name) {
+    final StringBuilder builder = getHeader(plugin, name);
     
     builder.append("========== START OF LOG ==========")
         .append("\n");
@@ -204,11 +208,14 @@ public class PasteUtil {
     return builder.toString();
   }
 
-  private static StringBuilder getHeader(@NotNull final PlaceholderAPIPlugin plugin) {
+  private static StringBuilder getHeader(@NotNull final PlaceholderAPIPlugin plugin,
+      @NotNull String name) {
     final StringBuilder builder = new StringBuilder();
 
     builder.append("Generated: ")
         .append(DATE_FORMAT.format(Instant.now()))
+        .append(" by ")
+        .append(name)
         .append("\n\n");
 
     builder.append("PlaceholderAPI: ")

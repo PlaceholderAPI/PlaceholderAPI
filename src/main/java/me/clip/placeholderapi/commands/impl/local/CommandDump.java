@@ -41,7 +41,7 @@ public final class CommandDump extends PlaceholderCommand {
       @NotNull final CommandSender sender, @NotNull final String alias,
       @NotNull @Unmodifiable final List<String> params) {
 
-    PasteUtil.postDump(plugin).whenComplete((key, exception) -> {
+    PasteUtil.postDump(plugin, sender.getName()).whenComplete((key, exception) -> {
       if (exception != null) {
         plugin.getLogger().log(Level.WARNING, "Failed to post dump details", exception);
         
