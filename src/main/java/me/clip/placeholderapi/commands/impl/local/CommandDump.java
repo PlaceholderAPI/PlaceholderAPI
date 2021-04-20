@@ -21,7 +21,6 @@
 package me.clip.placeholderapi.commands.impl.local;
 
 import java.util.List;
-import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
@@ -40,18 +39,8 @@ public final class CommandDump extends PlaceholderCommand {
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
       @NotNull @Unmodifiable final List<String> params) {
-
-    PasteUtil.postDump(plugin, sender.getName()).whenComplete((key, exception) -> {
-      if (exception != null) {
-        plugin.getLogger().log(Level.WARNING, "Failed to post dump details", exception);
-        
-        Msg.msg(sender,
-            "&cFailed to post dump details, check console.");
-        return;
-      }
-      
-      Msg.msg(sender,
-          "&aSuccessfully posted dump: &f" + key);
-    });
+    Msg.msg(sender,
+        "&7Generating Dump. Please wait...");
+    PasteUtil.createDump(plugin, sender);
   }
 }
