@@ -226,9 +226,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **I**
     - **[InteractionVisualizer](#interactionvisualizer)**
     - **[InteractiveChat](#interactivechat)**
-    - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border-askyblock--bentobox--uskyblock--acidisland)**
+    - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border)**
     - **[IslandRate (ASkyBlock Addon)](#islandrate)**
-    - **[IslandRate (AcidIsland Addon)](#islandrate)**
     - **[IslandWorld](#islandworld)**
 
   - ### **J**
