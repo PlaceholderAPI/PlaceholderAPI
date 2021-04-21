@@ -81,16 +81,15 @@ body:
   attributes:
     label: "Console Log"
     description: |-
-      Share the content of your `latest.log` here.
-      It's recommended to use https://paste.helpch.at to share the logs.
+      Get the latest content of your `latest.log` file an upload it to https://paste.helpch.at
+      Take the generated URL and paste it into this field.
     placeholder: "https://paste.helpch.at/latest.log"
 - type: input
   id: "error"
   attributes:
     label: "Errors"
     description: |-
-      Please share any exceptions, errors and stack traces that PlaceholderAPI may print in the console.
-      For smaller errors can you use code blocks but it's recommended to use either https://paste.helpch.at, https://paste.gg or another hastebin/pastebin site for larger errors.
+      Upload any errors you find to https://paste.helpch.at and post the link in the field below.
     placeholder: "https://paste.helpch.at/error.log"
 - type: textarea
   attributes:
