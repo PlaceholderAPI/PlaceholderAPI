@@ -29,43 +29,46 @@ Each entry on this page follows a specific format that you need to follow:
   - [?] Provides own placeholders. [:link]
 ```
 
-| Key     | Description                                                                                                                                                                              |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:name` | The name of the Plugin. Plugins are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                     |
-| `:url`  | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/            |
-| `?`     | Should be replaced with either an `x` or a space, depending on if the option is supported. So the result is either `[x]` or `[ ]`                                                        |
-| `:link` | If your plugin also provides own placeholders should you add it to the [Placeholders] page. In such a case should you use `[**[[Link\|Placeholders#:name]]**]` otherwhise just `[Link]` |
+| Key     | Description                                                                                                                                                                 |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:name` | The name of the Plugin. Plugins are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.        |
+| `:url`  | This should be a URL to either the Spigot page of the plugin, to the GitHub Repository or similar. You can leave the URL away and only use `:name` if there isn't any link. |
+| `?`     | Should be replaced with either an `x` or a space, depending on if the option is supported. So the result is either `[x]` or `[ ]`                                           |
+| `:link` | Should be replaced with either `**[[Link\|Placeholders#:name]]**` or just `Link` depending on if your resource has own Placeholders listed in the [[Placeholders]] page.    |                                                 |
 
 ### [Placeholders]
-This step is required if you either have a plugin or an expansion that provides their own placeholders. You should add your resource to the Placeholders page of the wiki.  
-This page is split up into two sections: PAPI Placeholders and Plugin Placeholders.
+If you either have an Expansion that provides placeholders, or your plugin provides its own to use in other plugins, should you add it to this page.
 
-PAPI Placeholders are extensions that don't require an external plugin or other dependency to function normally. Common examples are the Player or Server extensions.  
-The Plugin Placeholders are extensions that require a plugin or other dependency to function. They are often used to provide values from one pluging (e.g. Vault) to another plugin through the help of PlaceholderAPI.
-
-The syntax used for each entry is the same:
+Each entry in the page follows the same general syntax:  
 ````markdown
 - ### **[:name](:url)**
-> :command
-
-```
-:placeholders
-```
-----
+  > :command
+  
+  :description
+  
+  ```
+  :placeholders
+  ```
 ````
 
-| Key             | Description                                                                                                                                                                                        |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:name`         | The name of the resource. Resources are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                           |
-| `:url`          | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/                      |
-| `:command`      | The download command. When your resource is an expansion on the ecloud would you need to add `/papi ecloud download :name`. If it isn't an expansion should you put `NO DOWNLOAD COMMAND` instead. |
-| `:placeholders` | List of placeholders your plugin/expansion offers. The list should stay in alphabetical order. You can use `<>` and `[]` to indicate required and optional variables.                              |
+Please take note of the indent, which is 2 spaces.  
+This aligns the content with the list's indent to make it look better.
 
-#### Extra notes
+| Key             | Description                                                                                                                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `:name`         | The name to show. This should either be the plugin's name, or the name used on the eCloud.                                                                                                 |
+| `:url`          | This should be a URL to either the Spigot page of the plugin, to the GitHub Repository or similar. You can leave the URL away and only use `:name` if there isn't any link.                |
+| `:command`      | The command to use for downloading the expansion.<br>If your expansion is hardcoded into the plugin or the jar is downloaded on a different place can you put `NO DOWNLOAD COMMAND` there. |
+| `:description`  | Optional. A brief description about the Expansion. You can also link to any page explaining the placeholders in more detail.                                                               |
+| `:placeholders` | List of placeholders provided by the expansion. The placeholders should be in alphabetical order and you can use `<>` and `[]` to indicate required and optional parameters respectively.  |
 
-- If your entry has another one below it will you need to add an empty line, followed by for hypthons (`----`) at the bottom of your entry to separate it.
-- You are allowed to add a description between the `> :command` and the placeholder list. Keep in mind to keep an empty line after the command line to prevent wrong formatting. A description is only useful/required if your expansion/plugin offers specific placeholder values and/or features.
-- Always add your entry's name to the list at the top of the page in the format `- [:name](#:name)`. Note that if your entry shares the same name as another one on the page and you added it below it, that you will need to append a `-1`, `-2`, ... to the name in the brackets, depending on how many entries with the same name there are.
+### Special Notes
+- When linking to a resource page of Spigot will you need to use the following URL format, where you replace `:id` with the resource ID:  
+  https://spigotmc.org/resources/:id
+- On the Placeholders page, if your Entry has other Entries before or after it will you need to add four hyphens (`----`) surrounded by an empty line before and after it, depending on whether there is another entry before/after yours.
+- You need to add your Entry in the list at the top of the Placeholders page.  
+  The format is `- **[:name](#:header)**` where `:name` is the same as in the entry and `:header` is the lowercase version of it.  
+  When there are more than one Expansion with the same name will you need to add yours **below** the existing one and add `-1` to the header.
 
 ----
 ## Other Wiki pages
