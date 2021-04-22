@@ -241,6 +241,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[KP-PVP](#kp-pvp)**
 
   - ### **L**
+    - **[Lands](#lands)**
     - **[LastLoginAPI](#lastloginapi)**
     - **[LeaderHeads](#leaderheads)**
     - **[LegendQuest](#legendquest)**
@@ -2778,6 +2779,61 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %kp-pvp_player_kit%
   %kp-pvp_player_level%
   %kp-pvp_player_xp%
+  ```
+
+----
+
+- ### **[Lands](https://www.spigotmc.org/resources/53313/)**
+  > NO DOWNLOAD COMMAND
+  
+  A Description of the placeholders can be found on the [Lands Wiki](https://github.com/Angeschossen/Lands/wiki/PlaceholderAPI-Placeholders#placeholders).
+  
+  ```
+  # General
+  %lands_next_tax%
+  %lands_next_upkeep%
+  %lands_affiliation%
+  
+  # Land
+  %lands_land_name%
+  %lands_land_owner%
+  %lands_land_role%
+  %lands_land_members%
+  %lands_land_balance%
+  %lands_land_chunks%
+  %lands_land_chunks_max%
+  %lands_land_chunks_remaining%
+  %lands_land_tax%
+  %lands_land_upkeep%
+  %lands_land_balance%
+  %lands_land_chunk_cost_next%
+  
+  # Nation
+  %lands_nation_name%
+  
+  # War
+  %lands_war_enemy%
+  %lands_war_time%
+  %lands_war_state%
+  
+  # Top Lands
+  %lands_top_balance_NUMBER_name%
+  %lands_top_balance_NUMBER_owner%
+  %lands_top_balance_NUMBER_balance%
+  %lands_top_balance_NUMBER_size%
+  %lands_top_balance_NUMBER_members%
+  
+  %lands_top_chunks_NUMBER_name%
+  %lands_top_chunks_NUMBER_owner%
+  %lands_top_chunks_NUMBER_balance%
+  %lands_top_chunks_NUMBER_size%
+  %lands_top_chunks_NUMBER_members%
+  
+  %lands_top_members_NUMBER_name%
+  %lands_top_members_NUMBER_owner%
+  %lands_top_members_NUMBER_balance%
+  %lands_top_members_NUMBER_size%
+  %lands_top_members_NUMBER_members%
   ```
 
 ----

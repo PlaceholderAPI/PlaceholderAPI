@@ -461,6 +461,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 
 ----
 ## L
+- **[Lands](https://www.spigotmc.org/resources/53313/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#lands]]**]
 - **[LastLoginAPI](https://www.spigotmc.org/resources/66348/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#lastloginapi]]**]
