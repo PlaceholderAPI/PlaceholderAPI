@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
     - development
+    paths:
+    - "src/**"
+    - "build.gradle"
 
 jobs:
   testBuilds:
