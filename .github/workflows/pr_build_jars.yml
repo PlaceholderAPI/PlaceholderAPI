@@ -1,0 +1,31 @@
+name: "Build Jars on Java 8, 9, 10 and 11"
+
+on:
+  pull_request:
+    branches:
+    - development
+    paths:
+    - "src/**"
+    - "build.gradle"
+
+jobs:
+  testBuilds:
+    name: "Build Jars against Java 8, 9, 10 and 11"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        java-version: [8, 9, 10, 11]
+    steps:
+    - name: "Checkout Code"
+      uses: actions/checkout@v2
+    - name: "Prepare Java ${{ matrix.java-version }}"
+      uses: actions/setup-java@v2
+      with:
+        distribution: "zulu"
+        java-version: "${{ matrix.java-version }}"
+    - name: "Make build.gradle executable"
+      run: "chmod +x gradlew"
+    - name: "Build jar"
+      run: "./gradlew shadowJar"
