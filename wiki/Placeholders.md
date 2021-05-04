@@ -3998,7 +3998,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
 
   `<name>` is the name you configured in the config.yml of this plugin.  
-  [Read More](https://lorenzo0111.gitbook.io/rocekt-plugins/rocketplaceholders/configure)
+  [Read More](https://docs.rocketplugins.space/rocketplaceholders/configure)
 
 ----
 
