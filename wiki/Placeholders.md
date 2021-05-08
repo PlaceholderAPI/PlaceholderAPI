@@ -976,6 +976,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   More info about the expansion can be found on the [GitHub-Repository](https://github.com/Kqliber/Expansion-RNG).
   
   ```
+  %rng_online_player%
   %rng_random%
   %rng_<minimum>,<maximum>%
   ```
