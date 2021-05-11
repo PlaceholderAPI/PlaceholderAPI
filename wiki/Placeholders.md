@@ -25,6 +25,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[BungeeCord](#bungeecord)**
   
   - ### **C**
+    - **[CalculateNumbers](#calculatenumbers)**
     - **[CheckItem](#checkitem)**
     - **[CooldownBar](#cooldownbar)**
   
@@ -488,6 +489,20 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   ```
   %bungee_total%
   %bungee_<servername>%
+  ```
+
+----
+
+- ### **CalculateNumbers**
+  > NO DOWNLOAD COMMAND
+  
+  Download the jar from [broken1arrow/CalculateNumbers/releases](https://github.com/broken1arrow/CalculateNumbers/releases)
+  
+  ```
+  %number_numbervalue,tool:{a placeholder from your ranking plugin}%
+  %number_numbervalue,decimal,tool:{a placeholder from your ranking plugin}%
+  %number_numbervalue,armor:{a placeholder from your ranking plugin}%
+  %number_numbervalue,decimal,armor:{a placeholder from your ranking plugin}%
   ```
 
 ----
