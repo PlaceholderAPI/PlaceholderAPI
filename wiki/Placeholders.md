@@ -20,21 +20,21 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Animations](#animations)**
     - **[Armor](#armor)**
     - **[ASCII](#ascii)**
-  
+
   - ### **B**
     - **[BungeeCord](#bungeecord)**
-  
+
   - ### **C**
     - **[CalculateNumbers](#calculatenumbers)**
     - **[CheckItem](#checkitem)**
     - **[CooldownBar](#cooldownbar)**
-  
+
   - ### **D**
     - *No Expansions*
-  
+
   - ### **E**
     - *No Expansions*
-  
+
   - ### **F**
     - **[Formatter](#formatter)**
 
@@ -46,17 +46,17 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **I**
     - *No Expansions*
-  
+
   - ### **J**
     - **[Javascript](#javascript)**
 
   - ### **K**
     - *No Expansions*
-  
+
   - ### **L**
     - **[ListPlayers](#listplayers)**
     - **[LocalTime](#localtime)**
-  
+
   - ### **M**
     - **[Math](#math)**
     - **[MVdW placeholders](#mvdw-placeholders)**
@@ -65,10 +65,10 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **N**
     - *No Expansions*
-  
+
   - ### **O**
     - **[OtherPlayer](#otherplayer)**
-  
+
   - ### **P**
     - **[ParseNear](#parsenear)**
     - **[ParseOther](#parseother)**
@@ -80,14 +80,14 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **Q**
     - *No Expansions*
-  
+
   - ### **R**
     - **[RainbowColor](#rainbowcolor)**
     - **[RandomColor](#randomcolor)**
     - **[RedisBungee](#redisbungee)**
     - **[RelCon](#relcon)**
     - **[RNG](#rng)**
-  
+
   - ### **S**
     - **[ScoreboardObjectives](#scoreboardobjectives)**
     - **[Server](#server)**
@@ -95,7 +95,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Sound](#sound)**
     - **[SpeedPerSec](#speedpersec)**
     - **[Statistic](#statistic)**
-  
+
   - ### **T**
     - **[Team](#team)**
     - **[Teams](#teams)**
@@ -105,7 +105,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **V**
     - *No Expansions*
-  
+
   - ### **W**
     - **[World](#world)**
 
@@ -410,9 +410,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Advancements**
   > /papi ecloud download Advancements
-  
+
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/matahombres/Advancements).
-  
+
   ```
   %Advancements_<advancement>%
   %Advancements_player_<player>;<advancement>%
@@ -436,28 +436,28 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Animations**
   > /papi ecloud download Animations
-  
+
   ```html
   %animations_<tag>Text</tag>%
   %animations_<tag option>Text</tag>%
   %animations_<tag option=:value>Text</tag>%
   ```
-  
+
   Please note: When using placeholders within the animation text, you must use the bracket variant.  
   Use `{player_name}` instead of `%player_name%` within the `<tag> </tag>` tags.
-  
+
   Please visit the [dedicated wiki](https://github.com/Niall7459/KiteBoard-Documentation/wiki/Animations-and-Modifiers) for all available tags.
 
 ----
 
 - ### **Armor**
   > /papi ecloud download Armor
-  
+
   Gives you info about your armor
-  
+
   ```
   Chose one value that's inside () and replace SLOT with one of the following: helmet, chestplate, leggings, boots.
-  
+
   %armor_amount_SLOT%
   %armor_color_(red/green/blue/hex)_SLOT%
   %armor_durability_(left/max)_SLOT%
@@ -470,22 +470,22 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **ASCII**
   > /papi ecloud download ASCII
-  
+
   Returns the [ASCII Value](http://www.asciitable.com/) based on input
-  
+
   ```
   %ascii_<value>%
   ```
-  
+
   Ex: `%ascii_37%` returns `%`
 
 ----
 
 - ### **BungeeCord**
   > /papi ecloud download Bungee
-  
+
   Allows you to show, how many players are online on the entire network, or just on a specific server.
-  
+
   ```
   %bungee_total%
   %bungee_<servername>%
@@ -495,9 +495,17 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **CalculateNumbers**
   > NO DOWNLOAD COMMAND
-  
+  (Will fix download command)
+
   Download the jar from [broken1arrow/CalculateNumbers/releases](https://github.com/broken1arrow/CalculateNumbers/releases)
-  
+
+  The idea with this expansion is that you should be able to charge dynamically,
+  for example in the deluxe menu. For tools, weapons and armor when players need to
+  repair their belongings. Has also added optional so you can also combine it with
+  rank plugin if you have one.
+
+  Use decimal,to get two decimal digits.
+
   ```
   %number_numbervalue,tool:{a placeholder from your ranking plugin}%
   %number_numbervalue,decimal,tool:{a placeholder from your ranking plugin}%
@@ -509,16 +517,16 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **CheckItem**
   > /papi ecloud download CheckItem
-  
+
   Allows you to check the inventory of a player for a certain item.
-  
+
   ```
   %checkitem_<modifier1>,<modifier2>,<...>%        - Returns if user has the item
   %checkitem_amount_<modifier1>,<modifier2>,<...>% - Returns amount of items the user has
   %checkitem_remove_<modifier1>,<modifier2>,<...>% - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. `%checkitem_amount_remove_<...>%`) Please be careful as it does REMOVE ITEMS FOR GOOD
   %checkitem_give_<modifier1>,<modifier2>,<...>%   - Gives the player items. Returns true if successful, returns the number of items NOT given if unsuccessful. (When unsuccessful items can still be given, it just might not be all of them)
   ```
-  
+
   **Modifiers**  
   You can combine different modifiers to check for different values.  
   Available modifiers are:
@@ -559,7 +567,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
   - `inhand`  
     Check if the item is in the player's hand (Also checks off-hand)
-  
+
   **Notes:**  
   - * means case-sensitive
   - ** means only one can be used
@@ -571,9 +579,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **CooldownBar**
   > /papi ecloud download CooldownBar
-  
+
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/aBo0oDyy/CooldownBar-Expansion).
-  
+
   ```
   %cooldownbar_{placeholder}%
   %cooldownbar_{placeholder}_p:<PassedTimeSymbol>%
@@ -593,13 +601,13 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Formatter**
   > /papi ecloud download Formatter
-  
+
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
-  
+
   ```
   %formatter_number_format_<number>%
   %formatter_number_format_[locale]:[format]_<number>%
-  
+
   %formatter_number_time_<number>%
   %formatter_number_time_seconds_<number>% # Handles number as seconds
   %formatter_number_time_secs_<number>%    # Handles number as seconds
@@ -607,7 +615,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %formatter_number_time_mins_<number>%    # Handles number as minutes
   %formatter_number_time_hours_<number>%   # Handles number as hours
   %formatter_number_time_hrs_<number>%     # Handles number as hours
-  
+
   %formatter_replace_<target>_<replacement>_<text>%
   %formatter_text_substring_<start:end>_<text>%
   %formatter_text_uppercase_<text>%
@@ -618,9 +626,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Javascript**
   > /papi ecloud download Javascript
-  
+
   Gives you a way, to use javascript, to give a different output, depending on conditions.
-  
+
   ```
   %javascript_<your placeholder identifier>%
   ```
@@ -629,9 +637,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **ListPlayers**
   > /papi ecloud download ListPlayers
-  
+
   Lists players with a certain permission or in a certain world... 'nuf said.
-  
+
   ```
   %listplayers_with_perm_<permission>%
   %listplayers_in_world_<worldname>%
@@ -641,27 +649,27 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **LocalTime**
   > /papi ecloud download LocalTime
-  
+
   ```
   %localtime_time%
   %localtime_time_<SimpleDateFormat>%
   %localtime_timezone_<TimeZoneID>%
   %localtime_timezone_<TimeZoneID>,<SimpleDateFormat>%
   ```
-  
+
   Please read the [SimpleDateFormat] Javadoc page about possible formats and [this post][TimeZoneIDs] about available time zone IDs for `<TimeZoneID>`.
 
 ----
 
 - ### **Math**
   > /papi ecloud download Math
-  
+
   Lets you make simple or advanced calculations.  
   Any placeholder that returns a number is supported (Use `{placeholder}` instead of `%placeholder%`)
-  
+
   Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx).
   Note that the `%` can't be used within the placeholder and that you have to use `[prc]` instead.
-  
+
   ```
   %math_<math expression>%
   %math_[precision]:[rounding]_<expression>%
@@ -671,11 +679,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **MVdW Placeholders**
   > /papi ecloud download MVdW
-  
+
   Lets you use placeholders from [MVdWPlaceholderAPI](https://www.spigotmc.org/resources/11182/).  
   MVdWPlaceholderAPI and one of **[Maxims plugins](https://www.spigotmc.org/resources/2691/)**, that use it, are required!  
   A list of his placeholders can be found [here](https://www.spigotmc.org/wiki/mvdw-placeholders/)
-  
+
   ```
   %mvdw_<placeholder without {}>%
   ```
@@ -704,9 +712,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **OtherPlayer**
   > /papi ecloud download OtherPlayer
-  
+
   Lets you get placeholders for other players. (Not the one that triggers the action)
-  
+
   ```
   %otherplayer_displayname_<player>%
   %otherplayer_gamemode_<player>%
@@ -730,9 +738,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **ParseNear**
   > /papi ecloud download ParseNear
-  
+
   Lets you parse any placeholder for the closest player. Will return blank if no player is found.
-  
+
   ```
   %parsenear_<placeholder_without_percent_signs>%          # Parses placeholder for closest player
   %parsenear_<radius>_<placeholder_without_percent_signs>% # Parses placeholder for closest player in a radius
@@ -742,11 +750,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **ParseOther**
   > /papi ecloud download ParseOther
-  
+
   Lets you parse any placeholder for another player.  
   You can use placeholders in place of `username`.  
   Make sure to include the `{}` brackets, as it won't work without them.
-  
+
   ```
   %parseother_{username}_{placeholder_without_percent_signs}%
   ```
@@ -755,12 +763,12 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Pinger**
   > /papi ecloud download Pinger
-  
+
   Lets you ping a server through an IP or domain (with port), to check the online-status and to receive some information.  
   The placeholders have a "warmup" time of around one or two minutes after installing the expansion.  
-  
+
   **Note**: These placeholders have a separate update-delay in the config.yml of PlaceholderAPI
-  
+
   Replace `testplugins.com:25565` with your own server/IP.  
   ```
   %pinger_gameversion_testplugins.com:25565%
@@ -778,9 +786,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Player**
   > /papi ecloud download Player
-  
+
   Gives you various placeholders for the player, that triggers the action.
-  
+
   ```
   %player_allow_flight%
   %player_bed_x%
@@ -853,33 +861,33 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### PlayerList
   > /papi ecloud download playerlist
-  
+
   Returns the player list matching the specified syntax
-  
+
   ```
   %playerlist_<type>,<subtype>,<include>,<output>,<subtype_value>%
   ```
-  
+
   **Type:**
   - `all` - Matches all players
   - `online` - Matches online players
   - `offline` - Matches offline players
-  
+
   **Subtypes:**
   - `normal` - Matches all players. Requires no `<subtype_value>`
   - `perm` - Matches all players that match the permission defined by `<subtype_value>`. Supports multiple permissions separated by `+` (`perm.1+perm.2`)
   - `world` - Matches all players in the world defined by `<subtype_value>`. Supports multiple worlds separated by `+` (`world+world_nether`)
   - `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
-  
+
   **Include:**
   - `yes` - Include the player
   - `no` - Exclude the player
-  
+
   **Output:**
   - `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.*
   - `amount` - Returns amount of players matched
   - `<integer>` - Returns the player at the specified index
-  
+
   **Examples:**
   ```
   %playerlist_all,normal,yes,list%                          # Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare
@@ -889,9 +897,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %playerlist_online,nearby,no,list,5%                      # Tanguygab, clip
   %playerlist_online,nearby,no,list--,20%                   # Tanguygab-clip-Terfs
   ```
-  
+
   *You can also use `[placeholder]` for papi placeholders in addition to the javascript `{placeholder}`*
-  
+
   *Note: `Offline` and `All` only support the `Normal` subtype.*  
   **Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.**
 
@@ -899,9 +907,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Plugin**
   > /papi ecloud download Plugin
-  
+
   Returns information about the specified plugin.
-  
+
   ```
   %plugin_isenabled_<plugin name>%
   %plugin_isdisabled_<plugin name>%
@@ -912,9 +920,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Progress**
   > /papi ecloud download progress
-  
+
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/aBo0oDyy/Progress-Expansion).
-  
+
   ```
   %progress_bar_{placeholder}%
   %progress_bar_{placeholder}_c:<completed Symbol>%
@@ -923,7 +931,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %progress_bar_{placeholder}_l:<max length>%
   %progress_bar_{placeholder}_m:<max value>%
   %progress_bar_{placeholder}_fullbar:<text>%
-  
+
   # Example
   %progress_bar_{placeholder}_c:&a■_p:&e■_r:&7■_l:10_m:100_fullbar:&aCompleted!%
   ```
@@ -932,13 +940,13 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **RainbowColor**
   > /papi ecloud download RainbowColor
-  
+
   More info about the expansion can be found on the [GitHub-Repository](https://github.com/aBo0oDyy/RainbowColor-Expansion).
-  
+
   ```
   %RainbowColor_<Text>%
   %RainbowColor_custom_<Color 1>,<Color 2>,<etc>_<Text>%
-  
+
   e.g. %RainbowColor_custom_a,f,e,b_This is an example%
   ```
 
@@ -946,9 +954,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **RandomColor**
   > /papi ecloud download RandomColor
-  
+
   More info about the expansion can be found on the [GitHub-Repository](https://github.com/Andre601/RandomColor).
-  
+
   ```
   %randomcolor_all%
   %randomcolor_color%
@@ -961,9 +969,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **RedisBungee**
   > /papi ecloud download RedisBungee
-  
+
   Same like the [BungeeCord-placeholders](#bungeecord), but for RedisBungee
-  
+
   ```
   %redisbungee_total%
   %redisbungee_<servername>%
@@ -973,9 +981,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **RelCon**
   > /papi ecloud download RelCon
-  
+
   More info about the expansion can be found on the [GitHub-Repository](https://github.com/PlaceholderAPI/RelCon-Expansion).
-  
+
   ```
   %rel_relcon_player_<permission>_<text1>_[text2]%
   %rel_relcon_player_<permission>_<text1>%
@@ -987,9 +995,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **RNG**
   > /papi ecloud download RNG
-  
+
   More info about the expansion can be found on the [GitHub-Repository](https://github.com/Kqliber/Expansion-RNG).
-  
+
   ```
   %rng_online_player%
   %rng_random%
@@ -1000,23 +1008,23 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **ScoreboardObjectives**
   > /papi ecloud download ScoreboardObjectives
-  
+
   Get info from a scoreboard objective.
-  
+
   ```
   %objective_score_<obj-name>%
   %objective_score_<obj-name>_[otherEntry]%
   ```
-  
+
   **Note**: `[otherEntry]` can be another player name, Offline Player name, or non-player Entry
 
 ----
 
 - ### **Server**
   > /papi ecloud download Server
-  
+
   Lets you get information about the server.
-  
+
   ```
   %server_name%
   %server_online%
@@ -1044,35 +1052,35 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %server_countdown_<SimpleDateFormat>_<time>%
   e.g. %server_countdown_dd.MM.yyyy_01.01.2020%
   ```
-  
+
   `<time>` is the date and time for the countdown. **It needs to match the `<SimpleDateTime>`**
-  
+
   Please read the [SimpleDateFormat] Javadoc page about possible formats.
 
 ----
 
 - ### **Shortcut**
   > /papi ecloud download Shortcut
-  
+
   Allows the parsing of large text with placeholders by having them in TXT files stored.
-  
+
   ```
   %shortcut_<filename without .txt>%
   ```
-  
+
   The file needs to be a TXT and has to be inside `plugins/PlaceholderAPI/shortcuts`.
 
 ----
 
 - ### **Sound**
   > /papi ecloud download Sound
-  
+
   Plays a sound, when parsed.
-  
+
   ```
   # Player who triggered it
   %sound_<sound>-<volume>-<pitch>%
-  
+
   # All players
   %sound_all_<sound>-<volume>-<pitch>%
   ```
@@ -1081,9 +1089,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **SpeedPerSec**
   > /papi ecloud download SpeedPerSec
-  
+
   Note: Clicking is supported in left click only
-  
+
   ```
   %speedpersec_blockbreak%
   %speedpersec_blockplace%
@@ -1098,9 +1106,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **Statistic**
   > /papi ecloud download Statistic
-  
+
   Supports all statistics in [SpigotAPI](https://helpch.at/docs/1.13.1/org/bukkit/Statistic.html). `%statistic_<StatisticType>%`
-  
+
   For specific blocks, items, entities, ...
   ```
   # Blocks, items, entities, ...
@@ -1110,7 +1118,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %statistic_craft_item:<Item Material>%
   %statistic_kill_entity:<MobType>%
   %statistic_entity_killed_by:<MobType>%
-  
+
   # Other statistics
   %statistic_mob_kills%
   %statistic_mine_block%
@@ -1186,9 +1194,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **[Team](https://www.spigotmc.org/resources/74959/)**
   > NO DOWNLOAD COMMAND
-  
+
   Download from [here](https://www.spigotmc.org/resources/74959/)
-  
+
   ```
   %team_color%
   %team_prefix%
@@ -1198,7 +1206,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **[Teams](https://www.spigotmc.org/resources/90773/)**
   > /papi ecloud download teams
-  
+
   ```
   %team_color%
   %team_prefix%
@@ -1210,9 +1218,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### **World**
   > /papi ecloud download world
-  
+
   For the `totalbalance` placeholder, you must have a service provider plugin (eg. EssentialsX) to work.
-  
+
   ```
   %world_biome%
   %world_nearbyEntities_<radius>%
@@ -1247,7 +1255,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AAC](https://www.spigotmc.org/resources/6442/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %aac_ping%
   %aac_player%
@@ -1255,7 +1263,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %aac_world%
   %aac_vl_<check>%
   ```
-  
+
   Available `<check>` values:
   - `criticals`
   - `fastbow`
@@ -1278,7 +1286,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AbstractMenus](https://www.spigotmc.org/resources/75107/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %hanim_:<animation_name>:<unique_id>%
   %var_:<variable_name>[:<default_value>]%
@@ -1287,14 +1295,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %vart_:<variable_name>%
   %varpt_:<variable_name>%
   ```
-  
+
   All information about these placeholders can be found [here](https://gitlab.com/spigotplugindevs/abstractmenuscommon/-/wikis/Variables#getval).
 
 ----
 
-- ### **[AcidIsland](https://www.spigotmc.org/resources/581/)** 
+- ### **[AcidIsland](https://www.spigotmc.org/resources/581/)**
   > /papi ecloud download AcidIsland  
-  
+
   ```
   %acidisland_level%  
   %acidisland_island_x%  
@@ -1321,7 +1329,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Advanced Abilities](https://www.spigotmc.org/resources/21983/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %advancedabilities_<ability_name>_level%  
   %advancedabilities_<ability_name>_bar%
@@ -1336,7 +1344,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AdvancedAFK](https://www.spigotmc.org/resources/60761/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %aafk_prefix_tablist%
   %aafk_prefix_playertag%
@@ -1346,7 +1354,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AdvancedCustomMenu+](https://www.spigotmc.org/resources/47945/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %advancedcustommenu_total%  
   %advancedcustommenu_name%  
@@ -1357,7 +1365,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AdvancedLottery](https://www.spigotmc.org/resources/43668/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %advancedlottery_time%
   %advancedlottery_tickets_bought%
@@ -1368,7 +1376,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AdvancedModReq](https://www.spigotmc.org/resources/40528/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %advancedmodreq_flagged%
   %advancedmodreq_flagged_closed%
@@ -1389,9 +1397,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ajLeaderboards](https://www.spigotmc.org/resources/85548/)**
   > NO DOWNLOAD COMMAND
-  
+
   [Description of placeholders](https://wiki.ajg0702.us/ajleaderboards/setup/placeholders)
-  
+
   ```
   %ajleaderboards_board_<board>_<number>_name%
   %ajleaderboards_board_<board>_<number>_value%
@@ -1405,9 +1413,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ajParkour](https://www.spigotmc.org/resources/60909/)**
   > NO DOWNLOAD COMMAND
-  
+
   [Description of placeholders](https://wiki.ajg0702.us/ajparkour/setup/placeholders)
-  
+
   ```
   %ajpk_stats_top_name_<number>%
   %ajpk_stats_top_name_<number>_<area>%
@@ -1424,7 +1432,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %alonsolevels_developer%
   %alonsolevels_empty_progress_bar%
@@ -1451,13 +1459,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Animated Menu](https://www.spigotmc.org/resources/4690/)**
   > NO DOWNLOAD COMMAND
-   
+
   ```
   %animatedmenu_motd_<ip>[_port]%  
   %animatedmenu_status_<ip>[_port]_<onlinemessage>_<offlinemessage>%  
   ```
-  
-  **Examples:** 
+
+  **Examples:**
   ```
   %animatedmenu_status_testplugins.com_&aOnline_&cOffline%  
   %animatedmenu_status_testplugins.com_25565_&aOnline_&cOffline%  
@@ -1467,7 +1475,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AParkour](https://www.spigotmc.org/resources/30923/)**
   > /papi ecloud download AParkour
-  
+
   ```
   %aparkour_ct% - Shows current time in seconds
   %aparkour_ctf% - Shows current time formatted
@@ -1481,7 +1489,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ASkyBlock](https://www.spigotmc.org/resources/1220/)**
   > /papi ecloud download ASkyBlock
-  
+
   ```
   %askyblock_level%
   %askyblock_island_y%
@@ -1497,7 +1505,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AsyncKeepAlive](https://www.spigotmc.org/resources/64676/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %asynckeepalive_ping%
   ```
@@ -1506,7 +1514,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Ath](https://www.spigotmc.org/resources/87124/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %ath_date%
   %ath_count%
@@ -1516,7 +1524,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AutoRank](https://www.spigotmc.org/resources/3239/)**
   > /papi ecloud download AutoRank
-  
+
   ```
   %autorank_total_time_of_player%
   %autorank_total_time_of_player_formatted%
@@ -1539,7 +1547,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[AutoSell](https://www.spigotmc.org/resources/2157/)**
   > /papi ecloud download AutoSell
-  
+
   ```
   %autosell_in_autosell_mode%
   %autosell_in_autoblocks_mode%
@@ -1557,7 +1565,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BankSystem](https://www.spigotmc.org/resources/61580/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %banksystem_name%
   %banksystem_balance%
@@ -1570,7 +1578,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BattleLevels](https://www.spigotmc.org/resources/2218/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %battlelevels_level%
   %battlelevels_score%
@@ -1589,7 +1597,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BeautyQuests](https://www.spigotmc.org/resources/39255/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %beautyquests_player_inprogress_amount%
   %beautyquests_player_finished_amount%
@@ -1601,7 +1609,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BedWars1058](https://www.spigotmc.org/resources/50942/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   # Player
   %bw1058_player_level%
@@ -1611,7 +1619,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %bw1058_player_team%
   %bw1058_player_xp%
   %bw1058_player_xp_formatted%
-  
+
   # Statistics
   %bw1058_stats_bedsdestroyed%
   %bw1058_stats_deaths%
@@ -1623,7 +1631,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %bw1058_stats_lastplay%
   %bw1058_stats_losses%
   %bw1058_stats_wins%
-  
+
   # Other placeholders
   %bw1058_arena_status_[arena]%
   %bw1058_arena_count_[arena]%
@@ -1635,16 +1643,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
   > NO DOWNLOAD COMMAND
-  
+
   Check out [BentoBox placeholders docs](https://docs.bentobox.world/en/latest/BentoBox/Placeholders/) for more placeholders.
-  
+
   Replace `[gamemode]` with one of the following options:
   - `acidisland`
   - `bskyblock`
   - `caveblock`
   - `skygrid`
   - `aoneblock`
-  
+
   ```
   %[gamemode]_world_friendly_name%
   %[gamemode]_island_distance%
@@ -1653,7 +1661,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %[gamemode]_island_creation_date%
   %[gamemode]_island_center%
   %[gamemode]_island_name%
-  
+
   # Level Add-on
   %Level_[gamemode]_island_level%
   %Level_[gamemode]_top_value_#RANK#%
@@ -1664,9 +1672,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BetonQuest](https://www.spigotmc.org/resources/2117/)**
   > NO DOWNLOAD COMMAND
-  
+
   Please refer to the [official documentation](https://betonquest.github.io/BetonQuest/versions/dev/User-Documentation/Compatibility/#placeholderapi) for more info.
-  
+
   ```
   %betonquest_<variable>%
   %betonquest_<package>:<variable>%
@@ -1676,7 +1684,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BlockParty](https://www.spigotmc.org/resources/7264/)**
   > /papi ecloud download BlockParty
-  
+
   ```
   %blockparty_wins%
   %blockparty_points%
@@ -1687,7 +1695,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BlockQuest](https://www.spigotmc.org/resources/32729/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %blockquest_blocksfound%
   %blockquest_blocksleft%
@@ -1698,7 +1706,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Boxing](https://www.spigotmc.org/resources/83879/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %boxing_losses%
   %boxing_times_played%
@@ -1709,7 +1717,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BuildBattlePro](https://www.spigotmc.org/resources/49587/)**
   > /papi ecloud download BuildBattlePro
-  
+
   ```
   %buildbattlepro_wins%
   %buildbattlepro_played%
@@ -1724,7 +1732,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BungeePerms](https://www.spigotmc.org/resources/25/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %bungeeperms_groups%
   %bungeeperms_primary_group_name%
@@ -1740,9 +1748,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[BuyCraft](https://www.spigotmc.org/resources/82261/)**
   > NO DOWNLOAD COMMAND
-  
+
   Download the jar [here](https://www.spigotmc.org/resources/82261/).
-  
+
   ```
   %buycraftAPI_recent_currency_<number>%
   %buycraftAPI_recent_name_<number>%
@@ -1756,7 +1764,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[CarlTheCreeper](https://www.spigotmc.org/resources/18008/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %carlthecreeper_cooldown_<reward>%
   %carlthecreeper_statistic_rewards_claimed%
@@ -1765,8 +1773,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[ChatColor+](https://www.spigotmc.org/resources/1546/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %chatcolorplus_chatcolor%
   %chatcolorplus_namecolor%
@@ -1775,14 +1783,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[ChatColor+ Premium](https://www.spigotmc.org/resources/54093/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %chatcolorpluspremium_chat_color%
   %chatcolorpluspremium_tab_color%
   %chatcolorpluspremium_sign_color%
   %chatcolorpluspremium_font%
-  
+
   %chatcolorpluspremium_chat_color_name%
   %chatcolorpluspremium_sign_color_name%
   %chatcolorpluspremium_name_color_name%
@@ -1794,7 +1802,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ChatReaction](https://www.spigotmc.org/resources/3748/)**
   > /papi ecloud download ChatReaction
-  
+
   ```
   %chatreaction_wins% - Chat reaction wins (Requires MySQL)
   %chatreaction_wins_<playername>% - Chat reactions wins for a certain player (Requires MySQL)
@@ -1814,7 +1822,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[CheckNameHistory](https://www.spigotmc.org/resources/3768/)**
   > /papi ecloud download CheckNameHistory
-  
+
   ```
   %checknamehistory_previous_name_<#>%
   %checknamehistory_previous_name_date_<#>%
@@ -1823,8 +1831,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[Clans](https://www.spigotmc.org/resources/22304/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %clans_clan_tag%
   %clans_colored_clan_tag%
@@ -1834,7 +1842,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ClansFree](https://www.spigotmc.org/resources/78415/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %clans_name%
   %clans_raidshield%
@@ -1844,8 +1852,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %clantagprovider_clantag_custom_design%
   %clantagprovider_clantag%
@@ -1855,7 +1863,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ClansPro](https://www.spigotmc.org/resources/87515/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %clanspro_clan_name%
   %clanspro_clan_description%
@@ -1881,8 +1889,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[ClanSystem](https://www.spigotmc.org/resources/34696/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %clansystem_clan%
   %clansystem_clan_level%
@@ -1898,7 +1906,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[CombatLogX](https://www.spigotmc.org/resources/31689/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %combatlogx_time_left%
   %combatlogx_enemy_name%
@@ -1912,8 +1920,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[Compassance](https://www.spigotmc.org/resources/18327/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %compassance_p_string%
   %compassance_p_selectedtheme%
@@ -1927,7 +1935,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Country on Join](https://www.spigotmc.org/resources/34275/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %countryonjoin_player_country_code%
   %countryonjoin_player_country_name%
@@ -1937,11 +1945,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[CraftConomy](https://www.spigotmc.org/resources/2395/)**
   > /papi ecloud download CraftConomy
-  
+
   ```
   %craftconomy_<currency>[option]%
   ```
-  
+
   **Options:**
   - `_@<number>`
     Return `<currency>` times `<number>`. I.e. `%craftconomy_currency_@10%` returns `100` for `10 currency`
@@ -1951,8 +1959,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[CraftingStore.net](https://www.spigotmc.org/resources/31331/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %craftingstore_donator%
   %craftingstore_donator_1%
@@ -1960,7 +1968,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %craftingstore_donator_3%
   %craftingstore_donator_4%
   %craftingstore_donator_5%
-  
+
   %craftingstore_payment%
   %craftingstore_payment_1%
   %craftingstore_payment_2%
@@ -1973,7 +1981,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[CursedVIP](https://www.spigotmc.org/resources/67068/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %cursedvip_is_vip%
   %cursedvip_active_vip%
@@ -1985,7 +1993,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Custom Items](https://www.spigotmc.org/resources/63848/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %cui_version%
   %customitems_version%
@@ -1995,7 +2003,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Daily Rewards](https://www.spigotmc.org/resources/16708)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %dailyrewards_remaining_time%
   %dailyrewards_remaining_hours%
@@ -2009,8 +2017,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[DeliveryMan](https://www.spigotmc.org/resources/14131/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %deliveryman_prizes_all%
   %deliveryman_prizes_from:<menu_id>%
@@ -2021,7 +2029,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[DeluxeChat](https://www.spigotmc.org/resources/1277/)**
   > /papi ecloud download DeluxeChat
-  
+
   ```
   %deluxechat_is_pm_toggled%
   %deluxechat_pm_recipient%
@@ -2031,8 +2039,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[DeluxeCombat](https://www.spigotmc.org/resources/63970/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %deluxecombat_ranking_points%
   %deluxecombat_ranking_kills%
@@ -2048,7 +2056,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %deluxecombat_ranking_<StatsType>_<Rank>%
   %deluxecombat_ranking_<StatsType>_<Rank>_<Group>%
   ```
-  
+
   - StatsType: `kills`, `deaths`, `combatlogs`, `points`.
   - Rank: A number between 1 to the pull limit.
   - Group: The _servergroup_.
@@ -2056,12 +2064,12 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %deluxemenus_meta_<key>_<dataType>_<default_value>%
   ```
-  
+
   - Key: The key of the meta you want to check
   - Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
     *If the given key has a different data type, an error will occur.*
@@ -2071,7 +2079,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[DeluxePM](https://www.spigotmc.org/resources/52599/)**
   > /papi ecloud download DeluxePM
-  
+
   ```
   %deluxepm_status%
   ```
@@ -2080,7 +2088,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
   > /papi ecloud download DeluxeTags
-  
+
   ```
   %deluxetags_tag%
   %deluxetags_identifier%
@@ -2094,8 +2102,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[Denizen](https://www.spigotmc.org/resources/21039/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %denizen_<denizen-tag>% (EX: %denizen_<player.flag[MyFlag]>% )
   ```
@@ -2103,15 +2111,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[DiscordSRV](https://www.spigotmc.org/resources/18494/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   You can find an up-to-date list of placeholders on the [DiscordSRV Wiki](https://github.com/DiscordSRV/DiscordSRV/wiki/PAPI-Placeholders#placeholders).
 
 ----
 
 - ### **[Disease](https://www.spigotmc.org/resources/3911/)**
   > /papi ecloud download Disease
-  
+
   ```
   %disease_disease%
   %disease_sickness%
@@ -2121,8 +2129,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **DonateParty**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %donateparty_goal%
   %donateparty_goal_needed%
@@ -2132,7 +2140,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Donations Holograms](https://www.spigotmc.org/resources/1956/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %donationsHolograms_percentage%
   %donationsHolograms_progressBar%
@@ -2144,7 +2152,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[DragonSlayer](https://www.spigotmc.org/resources/36250/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %dragonslayer_prefix%
   %dragonslayer_timer%
@@ -2157,14 +2165,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %dragonslayer_place_<n>_score%
   %dragonslayer_slayer%
   ```
-  
+
   Replace `<n>` with a number from 1 to whatever.
 
 ----
 
 - ### **[DungeonsXL](https://www.spigotmc.org/resources/9488/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %dxl_floor_player_count%
   %dxl_dungeon_name%
@@ -2181,8 +2189,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[Economy Bank](https://www.spigotmc.org/resources/7674/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %economybank_balance%
   ```
@@ -2191,7 +2199,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Enjin & DonationCraft 2.x](https://dev.bukkit.org/projects/emp)**
   > /papi ecloud download Enjin
-  
+
   ```
   %enjin_points%
   ```
@@ -2200,7 +2208,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Envoys](https://www.spigotmc.org/resources/20357/)**
   > /papi ecloud download Envoys
-  
+
   ```
   %envoys_time_until_refill%
   ```
@@ -2208,8 +2216,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[EpicFriends](https://www.spigotmc.org/resources/11294/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %epicfriends_friendcount%
   %epicfriends_friendcount_online%
@@ -2218,8 +2226,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[EpicLevels](https://songoda.com/marketplace/product/44)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %epiclevels_level%
   %epiclevels_experience%
@@ -2242,8 +2250,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[essCore](https://www.spigotmc.org/resources/37766/)**
-  > NO DOWNLOAD COMMAND 
-  
+  > NO DOWNLOAD COMMAND
+
   ```
   %esscore_flight%
   %esscore_is_nicked%
@@ -2257,9 +2265,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Essentials](https://ci.ender.zone/job/EssentialsX/)**
   > /papi ecloud download Essentials
-  
+
   This expansion works with both Essentials and [EssentialsX](https://essentialsx.net) (Second one is recommended).
-  
+
   ```
   %essentials_is_teleport_enabled%
   %essentials_is_pay_enabled%
@@ -2289,7 +2297,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[EZBlocks](https://www.spigotmc.org/resources/1499/)**
   > /papi ecloud download EZBlocks
-  
+
   ```
   %ezblocks_broken%
   ```
@@ -2298,7 +2306,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[EZPrestige](https://www.spigotmc.org/resources/1794/)**
   > /papi ecloud download EZPrestige
-  
+
   ```
   %ezprestige_prestige%
   %ezprestige_prestigetag%
@@ -2310,7 +2318,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[EZRanksPro](https://www.spigotmc.org/resources/10731/)**
   > /papi ecloud download EZRanksPro
-  
+
   ```
   %ezrankspro_player%
   %ezrankspro_displayname%
@@ -2359,14 +2367,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[FactionsUUID](https://www.spigotmc.org/resources/1035/)**
   > NO DOWNLOAD COMMAND
-  
+
   You can find an up-to-date list of placeholders on the [FactionsUUID Wiki](https://factions.support/placeholderapi/).
 
 ----
 
 - ### **Factions relation placeholders**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rel_[factions/factionsuuid]_relation%
   %rel_[factions/factionsuuid]_relation_color%
@@ -2378,7 +2386,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[FunnyGuilds](https://github.com/FunnyGuilds/FunnyGuilds)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %funnyguilds_guilds%
   %funnyguilds_users%
@@ -2413,7 +2421,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **GAListener**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %galistener_votes%
   ```
@@ -2422,7 +2430,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[GangsPlus](https://www.spigotmc.org/resources/2604/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %gangsplus_in_gang%
   %gangsplus_gang_name%
@@ -2448,7 +2456,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[GemsEconomy](https://www.spigotmc.org/resources/19655/)**
   > /papi ecloud download GemsEconomy
-  
+
   ```
   %gemseconomy_balance_default%
   %gemseconomy_balance_default_formatted%
@@ -2460,31 +2468,31 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[GriefDefender](https://www.spigotmc.org/resources/68900/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %griefdefender_blocks_left%
   %griefdefender_blocks_total%
-  %griefdefender_claim_admin%	
-  %griefdefender_claim_basic%	
-  %griefdefender_claim_subdivision%	
-  %griefdefender_claim_town%	
-  %griefdefender_claims_admin%	
-  %griefdefender_claims_basic%	
-  %griefdefender_claims_subdivision%	
-  %griefdefender_claims_town%	
-  %griefdefender_claim_name%	
-  %griefdefender_claim_owner%	
-  %griefdefender_claim_trust%	
-  %griefdefender_claim_type%	
-  %griefdefender_claim_for_sale%	
-  %griefdefender_pvp%	
+  %griefdefender_claim_admin%
+  %griefdefender_claim_basic%
+  %griefdefender_claim_subdivision%
+  %griefdefender_claim_town%
+  %griefdefender_claims_admin%
+  %griefdefender_claims_basic%
+  %griefdefender_claims_subdivision%
+  %griefdefender_claims_town%
+  %griefdefender_claim_name%
+  %griefdefender_claim_owner%
+  %griefdefender_claim_trust%
+  %griefdefender_claim_type%
+  %griefdefender_claim_for_sale%
+  %griefdefender_pvp%
   ```
 
 ----
 
 - ### **[GriefPrevention](https://www.spigotmc.org/resources/1884/)**
   > /papi ecloud download GriefPrevention
-  
+
   ```
   %griefprevention_claims%
   %griefprevention_claims_formatted%
@@ -2501,7 +2509,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Guilds](https://www.spigotmc.org/resources/48920/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %guilds_name%
   %guilds_master%
@@ -2528,7 +2536,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[GuiRedeemMCMMO](https://www.spigotmc.org/resources/6784/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %guiredeemmcmmo_credits%
   ```
@@ -2537,7 +2545,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Head Database](https://www.spigotmc.org/resources/14280/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %hdb_amount%
   %hdb_amount_formatted%
@@ -2549,7 +2557,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Heroes](https://www.spigotmc.org/resources/305/)**
   > /papi ecloud download Heroes
-  
+
   ```
   %heroes_skill_level_<skillname>%
   %heroes_main_class_name%
@@ -2573,7 +2581,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[HoloBlock](https://www.spigotmc.org/resources/43192/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %holoblock_maxowned%
   %holoblock_maxline%
@@ -2590,7 +2598,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[HPWizard](https://www.spigotmc.org/resources/26821/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %hpw_house%
   %hpw_house_coloured%
@@ -2607,7 +2615,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Hugs](https://www.spigotmc.org/resources/39722/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %hugs_total%
   %hugs_player_total_given%
@@ -2618,7 +2626,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[InteractionVisualizer](https://www.spigotmc.org/resources/77050/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %interactionvisualizer_itemstand%
   %interactionvisualizer_itemdrop%
@@ -2629,7 +2637,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %interactivechat_mentiontoggle%
   %interactivechat_invdisplaylayout%
@@ -2639,9 +2647,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Island Border](https://www.spigotmc.org/resources/56320/)**
   > NO DOWNLOAD COMMAND
-  
+
   Supports ASkyBlock, BentoBox, uSkyBlock and AcidIsland.
-  
+
   ```
   %isborder_status%
   %isborder_size%
@@ -2652,9 +2660,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[IslandRate](https://www.spigotmc.org/resources/53519/)**
   > NO DOWNLOAD COMMAND
-  
+
   Supports ASkyBlock.
-  
+
   ```
   %islandrate_top_rated_player%
   %islandrate_top_rated_amount%
@@ -2666,7 +2674,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **IslandWorld**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %islandworld_points_with_party%
   %islandworld_points_without_party%
@@ -2680,7 +2688,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Jobs Reborn](https://www.spigotmc.org/resources/4216/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %jobsr_user_id%
   %jobsr_user_bstandcount%
@@ -2724,7 +2732,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Karma](https://www.spigotmc.org/resources/71156/)**
   > /papi ecloud download Karma
-  
+
   ```
   %karma_alignment%
   %karma_aligned_name%
@@ -2737,7 +2745,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[KillStats](http://dev.bukkit.org/bukkit-plugins/killstats-v1-0/)**
   > /papi ecloud download KillStats
-  
+
   ```
   %killstats_kills%
   %killstats_killrank%
@@ -2753,7 +2761,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[KitPvP](https://www.spigotmc.org/resources/27107/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %kitpvp_stats_kills%
   %kitpvp_stats_deaths%
@@ -2768,7 +2776,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Kingdoms+](https://www.spigotmc.org/resources/11833/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %kingdoms_kingdom%
   %kingdoms_haskingdom%
@@ -2784,7 +2792,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[KP-PVP](https://www.spigotmc.org/resources/50969/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %kp-pvp_player_kills%
   %kp-pvp_player_deaths%
@@ -2801,15 +2809,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Lands](https://www.spigotmc.org/resources/53313/)**
   > NO DOWNLOAD COMMAND
-  
+
   A Description of the placeholders can be found on the [Lands Wiki](https://github.com/Angeschossen/Lands/wiki/PlaceholderAPI-Placeholders#placeholders).
-  
+
   ```
   # General
   %lands_next_tax%
   %lands_next_upkeep%
   %lands_affiliation%
-  
+
   # Land
   %lands_land_name%
   %lands_land_owner%
@@ -2823,28 +2831,28 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lands_land_upkeep%
   %lands_land_balance%
   %lands_land_chunk_cost_next%
-  
+
   # Nation
   %lands_nation_name%
-  
+
   # War
   %lands_war_enemy%
   %lands_war_time%
   %lands_war_state%
-  
+
   # Top Lands
   %lands_top_balance_NUMBER_name%
   %lands_top_balance_NUMBER_owner%
   %lands_top_balance_NUMBER_balance%
   %lands_top_balance_NUMBER_size%
   %lands_top_balance_NUMBER_members%
-  
+
   %lands_top_chunks_NUMBER_name%
   %lands_top_chunks_NUMBER_owner%
   %lands_top_chunks_NUMBER_balance%
   %lands_top_chunks_NUMBER_size%
   %lands_top_chunks_NUMBER_members%
-  
+
   %lands_top_members_NUMBER_name%
   %lands_top_members_NUMBER_owner%
   %lands_top_members_NUMBER_balance%
@@ -2856,7 +2864,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LastLoginAPI](https://www.spigotmc.org/resources/66348/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %lastloginapi_name%
   %lastloginapi_last_login_date%
@@ -2869,11 +2877,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LeaderHeads](https://www.spigotmc.org/resources/2079/)**
   > NO DOWNLOAD COMMAND
-  
+
   More info about these placeholders can be found [here](https://panoply.tech/leaderheads#placeholderapi-and-mvdwplaceholderapi-placeholders).
-  
+
   ```
-  %leaderheads_name_<statistic>_<time>_<rank>% 
+  %leaderheads_name_<statistic>_<time>_<rank>%
   %leaderheads_value_<statistic>_<time>_<rank>%
   ```
 
@@ -2881,7 +2889,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LegendQuest](https://www.spigotmc.org/resources/2120/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %legendquest_race%
   %legendquest_mastered%
@@ -2918,7 +2926,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LemonMobCoins](https://www.spigotmc.org/resources/59402/)**
   > /papi ecloud download lemonmobcoins
-  
+
   ```
   %lemonmobcoins_balance%
   %lemonmobcoins_balance_fixed%
@@ -2929,14 +2937,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
   > /papi ecloud download LuckPerms
-  
+
   You can find an up-to-date list of placeholders on the [LuckPerms wiki](https://luckperms.net/wiki/Placeholders).
 
 ----
 
 - ### **LWC**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %lwc_locks%
   ```
@@ -2945,14 +2953,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Marcely's Bedwars](https://www.spigotmc.org/resources/13622/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mbedwars_arena-<arena>-maxplayers%
   %mbedwars_arena-<arena>-players%
   %mbedwars_arena-<arena>-status%
   %mbedwars_arena-<arena>-teams%
   %mbedwars_arena-<arena>-teamsize%
-  
+
   %mbedwars_playerarena-current-team%
   %mbedwars_playerarena-current-team-color%
   %mbedwars_playerarena-maxplayers%
@@ -2961,7 +2969,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %mbedwars_playerarena-status%
   %mbedwars_playerarena-teams%
   %mbedwars_playerarena-teamsize%
-  
+
   %mbedwars_stats-beds_destroyed%
   %mbedwars_stats-deaths%
   %mbedwars_stats-kd%
@@ -2978,7 +2986,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Marriage](https://www.spigotmc.org/resources/81807/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %marriage_gender%
   %marriage_gender_color%
@@ -3003,7 +3011,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Marriage (reloaded)](https://www.spigotmc.org/resources/18998/)**
   > /papi ecloud download marriage
-  
+
   ```
   %marriage_is_married%
   %marriage_is_priest%
@@ -3022,7 +3030,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MarriageMaster](http://dev.bukkit.org/bukkit-plugins/marriage-master/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %marriagemaster_StatusHeart%
   %marriagemaster_MagicHeart%
@@ -3037,7 +3045,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %marriagemaster_HomeY%
   %marriagemaster_HomeZ%
   %marriagemaster_HomeWorld%
-  
+
   # Supported with multiple partners enabled
   %marriagemaster_NearestPartnerName%
   %marriagemaster_NearestPartnerDisplayName%
@@ -3056,7 +3064,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[McInfected](https://www.spigotmc.org/resources/2133/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mcinfected_lobby_name%
   %mcinfected_lobby_time%
@@ -3072,7 +3080,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[McJobs](https://dev.bukkit.org/projects/mcjobs/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mcjobs_jobslist%
   %mcjobs_playerjobs%
@@ -3093,7 +3101,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[McMMO](https://www.spigotmc.org/resources/2445/)**
   > /papi ecloud download McMMO
-  
+
   ```
   %mcmmo_level_<skillname>%
   %mcmmo_rank_<skillname>%
@@ -3113,7 +3121,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MineChess](https://www.spigotmc.org/resources/74178/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %minechess_wins%
   %minechess_loses%
@@ -3127,7 +3135,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Minecord](https://www.spigotmc.org/resources/44055/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %minecord_servers%
   %minecord_view%
@@ -3140,7 +3148,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MineCrates](https://www.spigotmc.org/resources/4685/)**
   > /papi ecloud download MineCrates
-  
+
   ```
   %minecrates_area_handler_type%
   %minecrates_area_name%
@@ -3155,7 +3163,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MobHunting](https://www.spigotmc.org/resources/3582/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mobhunting_rank%             (Only updated when leaderboards is updated)
   %mobhunting_total_kills%      (Number of killed mobs (for the player))
@@ -3169,7 +3177,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Multiverse-Core](https://www.spigotmc.org/resources/390/)**
   > /papi ecloud download multiverse
-  
+
   ```
   %multiverse_world_alias%
   %multiverse_world_all_property_names%
@@ -3203,7 +3211,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MyCommand](http://dev.bukkit.org/bukkit-plugins/mycommand/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mycommand_playerdata_<variable_name>%
   ```
@@ -3212,7 +3220,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MyPet](https://www.spigotmc.org/resources/12725/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %mypet_name%
   %mypet_level%
@@ -3233,7 +3241,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[MyPrefixSystem](https://www.spigotmc.org/resources/46244/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %myprefixsystem_rank_name%
   %myprefixsystem_rank_prefix%
@@ -3245,7 +3253,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Nameless Plugin](https://www.spigotmc.org/resources/59032/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %namelessmc_notifications%
   ```
@@ -3254,21 +3262,21 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %namemcapi_prefix%
   %namemcapi_namemcweb%
   %namemcapi_ip%
   %namemcapi_player%
   ```
-  
+
   You can find more information on the [Wiki](https://github.com/HappyRogelio7/NameMC-API-ServersMC/wiki).
 
 ----
 
 - ### **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
   > /papi ecloud download Nicknamer
-  
+
   ```
   %nicknamer_has_nickname%
   %nicknamer_has_skin%
@@ -3279,7 +3287,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[NickReloaded](https://www.spigotmc.org/resources/46335/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %nickreloaded_nick%
   %nickreloaded_skin%
@@ -3289,7 +3297,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Nicky](https://www.spigotmc.org/resources/590/)**
   > /papi ecloud download Nicky
-  
+
   ```
   %nicky_nickname%
   ```
@@ -3298,7 +3306,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[OnePlayerSleep](https://www.spigotmc.org/resources/76534/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %oneplayersleep_sleeping_player_count%
   %oneplayersleep_total_player_count%
@@ -3308,7 +3316,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[OnTime](http://dev.bukkit.org/bukkit-plugins/ontime/)**
   > /papi ecloud download OnTime
-  
+
   ```
   %ontime_last_login%
   %ontime_last_vote%
@@ -3331,14 +3339,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[OreAnnouncer](https://www.spigotmc.org/resources/33464/)**
   > NO DOWNLOAD COMMAND
-  
+
   You can find an up-to-date list of placeholders on the [OreAnnouncer Wiki](https://alessiodp.com/docs/oreannouncer/placeholders#outside).
 
 ----
 
 - ### **[Outpost](https://www.spigotmc.org/resources/38657/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %outpost_data_id_<outpost>%
   %outpost_data_name_<outpost>%
@@ -3355,7 +3363,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Paintball Battle](https://www.spigotmc.org/resources/76676/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %paintball_wins%
   %paintball_loses%
@@ -3368,7 +3376,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Parkour](https://www.spigotmc.org/resources/23685/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %parkour_course_completed_<course>%
   %parkour_course_completions_<course>%
@@ -3417,7 +3425,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Parties](https://www.spigotmc.org/resources/3709/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %parties_color_code%
   %parties_color_command%
@@ -3434,7 +3442,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Party and Friends](https://www.spigotmc.org/resources/11633/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %friendsapi_friendcount%
   %friendsapi_friendrequestcount%
@@ -3445,7 +3453,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PermissionTimer](https://www.mc-market.org/resources/14050/)**
   > /papi ecloud download PermissionTimer
-  
+
   ```
   %pt_all%
   %pt_perm_#%
@@ -3456,7 +3464,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PixelVip](https://www.spigotmc.org/resources/30438/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %pixelvip_expiration_millis%
   %pixelvip_expiration_desc%
@@ -3467,16 +3475,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Plan](https://www.spigotmc.org/resources/plan-player-analytics.32536/)**
   > NO DOWNLOAD COMMAND
-  
+
   The plugin provides placeholders for statistics stored in the plugin for players and the server.
-  
+
   Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/PlaceholderAPI) for the placeholders list.
 
 ----
 
 - ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
   > /papi ecloud download PlayTime
-  
+
   ```
   %playtime_player%
   %playtime_time%
@@ -3488,7 +3496,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
   > /papi ecloud download PlayerPoints
-  
+
   ```
   %playerpoints_points%
   ```
@@ -3497,7 +3505,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PlotSquared](https://www.spigotmc.org/resources/77506/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %plotsquared_currentplot_alias%
   %plotsquared_currentplot_owner%
@@ -3525,7 +3533,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PointsAPI](https://www.spigotmc.org/resources/13957/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %pointsapi_points%
   ```
@@ -3534,7 +3542,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %powerranks_rank%
   %powerranks_prefix%
@@ -3552,7 +3560,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PremiumVanish](https://www.spigotmc.org/resources/14404/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %premiumvanish_isvanished%
   %premiumvanish_vanishedplayers%
@@ -3564,20 +3572,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %premiumvanish_uselevel%
   %premiumvanish_seelevel%
   ```
-  
+
   `<server>` is the name of the server it should show the player count of.
 
 ----
 
 - ### **[Prison](https://www.spigotmc.org/resources/1223/)**
   > NO DOWNLOAD COMMAND
-  
-  Each placeholder has a shorter alias, which follows the primary placeholder below. 
-  
+
+  Each placeholder has a shorter alias, which follows the primary placeholder below.
+
   **Player rank placeholders:**  
   Must be used directly with a player, such as with player chat prefixes.  
   These placeholders can return zero, one, or more rank related values depending upon how many ladders the player is on.
-  
+
   ```
   %prison_rank%
   %prison_r%
@@ -3600,11 +3608,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_rankup_rank_tag%
   %prison_rrt%
   ```
-  
+
   **Player rank placeholders for individual ladders:**  
   Must be used directly with a player.  
   Use the ladder name, all lowercase, in place of `<laddername>`, and it will return zero or one rank related values.
-    
+
   ```
   %prison_rank_<laddername>%
   %prison_r_<laddername>%
@@ -3631,10 +3639,10 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_player_balance_<laddername>%
   %prison_pb_<laddername>%
   ```
-  
+
   **Mine relate placeholders:**  
   Use the name of the mine, all lowercase, in place of `<minename>`.
-    
+
   ```
   %prison_mines_name_<minename>%
   %prison_mn_<minename>%
@@ -3665,11 +3673,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_mines_reset_count_<minename>%
   %prison_mrc_<minename>%
   ```
-  
+
   **Player-mine related placeholders:**  
   Must be used with a player.  
   These placeholders will only return non-blank values when the player is in a mine, and the results will be for that mine.
-  
+
   ```
   %prison_mines_name_playermines%
   %prison_mn_pm%
@@ -3705,7 +3713,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PrisonMines](https://www.spigotmc.org/resources/4046/)**
   > /papi ecloud download PrisonMines
-  
+
   ```
   # Mine-specific placeholders
   %prisonmines_blocks_mined_<mine name>%
@@ -3714,7 +3722,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prisonmines_time_until_reset_<mine name>%
   %prisonmines_has_timed_reset_<mine name>%
   %prisonmines_has_percentage_reset_<mine name>%
-  
+
   # Player specific placeholders (Use Mine at the player's location)
   %prisonmines_name%
   %prisonmines_blocks_mined%
@@ -3729,7 +3737,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PrisonRanksX](https://www.spigotmc.org/resources/55899)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %prisonranksx_currentrank_name%
   %prisonranksx_currentrank_displayname%
@@ -3751,7 +3759,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ProCosmetics](https://www.spigotmc.org/resources/49106/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %procosmetics_coins%
   %procosmetics_cosmetics_activated%
@@ -3762,7 +3770,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ProfessionalBans](https://www.spigotmc.org/resources/63657/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %professionalbans_onlinetime%
   %professionalbans_firstjoin%
@@ -3773,7 +3781,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ProQuest](https://www.spigotmc.org/resources/18249/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %proquests_completed_quests%
   %proquests_active_quests%
@@ -3788,14 +3796,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ProtectionStones](https://www.spigotmc.org/resources/61797/)**
   > NO DOWNLOAD COMMAND
-  
+
   You can find an up-to-date list of placeholders in the [ProtectionStones Wiki](https://github.com/espidev/ProtectionStones/wiki/Placeholders).
 
 ----
 
 - ### **[PvPLevels](https://www.spigotmc.org/resources/20807/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %pvplevels_kills%
   %pvplevels_deaths%
@@ -3814,7 +3822,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PVP Stats](http://dev.bukkit.org/bukkit-plugins/pvp-stats/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %pvpstats_kills%
   %pvpstats_deaths%
@@ -3827,7 +3835,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[PvPStats Plugin](https://www.spigotmc.org/resources/69984/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %pvpstats_kills%
   %pvpstats_deaths%
@@ -3839,7 +3847,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Quests](https://www.spigotmc.org/resources/3711/)**
   > /papi ecloud download Quests
-  
+
   ```
   %quests_player_quest_points%
   %quests_player_has_journal%
@@ -3860,7 +3868,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[QuestCreator](https://www.spigotmc.org/resources/38734/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %questcreator_status_[model id]%
   %questcreator_completion_[model id]%
@@ -3876,7 +3884,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[QuickSell](https://www.spigotmc.org/resources/6107/)**
   > /papi ecloud download QuickSell
-  
+
   ```
   %quicksell_booster%
   %quicksell_booster_time%
@@ -3886,7 +3894,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RecentFind (Treasures Add-on)](https://www.spigotmc.org/resources/33366/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %treasuresrecentfind_find_number_<number>%
   %treasuresrecentfind_from_first_<number>%
@@ -3897,7 +3905,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RabbitsVSPenguins](https://www.spigotmc.org/resources/65277/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rvp_arenaplayers_count_< arena >%
   %rvp_arena_status_< arena >%
@@ -3911,7 +3919,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RageMode](https://www.spigotmc.org/resources/69169/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %ragemode_kills%
   %ragemode_axe_kills%
@@ -3936,7 +3944,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Rankup](https://www.spigotmc.org/resources/17933/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rankup_current_rank%
   %rankup_next_rank% 	
@@ -3950,7 +3958,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %rankup_money_left_formatted% 	
   %rankup_percent_left%
   %rankup_percent_left_formatted% 	
-  %rankup_percent_done_formatted%	
+  %rankup_percent_done_formatted%
   %rankup_requirement_<requirement>[_<left/percent_left/percent_done>]%
   %rankup_rank_requirement_<rank>_<requirement>[_<left/percent_left/percent_done>]%
   %rankup_rank_money_<rank>%
@@ -3962,7 +3970,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rwg_schematicAmount%
   %rwg_schematics%
@@ -3975,7 +3983,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RedProtect](http://otmc.org/resources/15841/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %redprotect_player_in_region%
   %redprotect_player_used_claims%
@@ -3989,7 +3997,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ReferralSystem](https://www.spigotmc.org/resources/29709/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rs_points%
   %rs_referrals%
@@ -3999,7 +4007,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RestrictedDimensions](https://www.spigotmc.org/resources/80574/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %restricteddimensions_has_access_<dimension>%
   ```
@@ -4008,7 +4016,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rp_<name>%
   ```
@@ -4020,7 +4028,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
   > /papi ecloud download rogueparkour-temporary
-  
+
   ```
   %RogueParkour-temporary_top_<number>;<type>%
   %RogueParkour-temporary_get_<player>%
@@ -4030,7 +4038,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RoyalCommands](https://www.spigotmc.org/resources/4113/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %royalcommands_nickname%
   ```
@@ -4039,7 +4047,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %rpginv_damage_bonus%
   %rpginv_bow_damage_bonus%
@@ -4055,7 +4063,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Seasons](https://www.spigotmc.org/resources/39298/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %seasons_season%
   %seasons_season_[world]%
@@ -4064,7 +4072,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %seasons_day%
   %seasons_day_[world]%
   ```
-  
+
   Replace `[world]` with the name of a loaded world.  
   *Placeholders ending in a `[world]` will retrieve information from the specified world instead of the player's current world.*
 
@@ -4072,7 +4080,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SellAll](https://www.spigotmc.org/resources/1221/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %sellall_multiplier%
   %sellall_multitime%
@@ -4082,11 +4090,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SignLink](https://www.spigotmc.org/resources/39593/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %sl_[variable name]%
   ```
-  
+
   Replace `[variable name]` with the name of the signlink variable.
 
 ----
@@ -4100,7 +4108,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %simplecoins_balane%
   %simplecoins_currency_name%
@@ -4110,7 +4118,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %simplecoinsapi_coins%
   ```
@@ -4119,7 +4127,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SimpleKillTracker](https://www.spigotmc.org/resources/17651/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %simplekilltracker_kills%
   %simplekilltracker_deaths%
@@ -4130,7 +4138,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SimplePrefix](http://dev.bukkit.org/bukkit-plugins/simple-prefix/)**
   > /papi ecloud download SimplePrefix
-  
+
   ```
   %simpleprefix_prefix%
   %simpleprefix_suffix%
@@ -4140,7 +4148,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Simple Suffix](http://dev.bukkit.org/bukkit-plugins/simple-suffix/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %simplesuffix_prefix%
   %simplesuffix_suffix%
@@ -4150,7 +4158,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SkillAPI](https://www.spigotmc.org/resources/4824/)**
   > /papi ecloud download SkillAPI
-  
+
   ```
   %skillapi_attribute_points%
   %skillapi_mana%
@@ -4164,7 +4172,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %skillapi_skill_type_<skillName>%
   %skillapi_skill_req_<skillName>%
   ```
-  
+
   The following placeholders are the same as above but instead of specifying the skillName, you can specify a number from 1 to pretty much infinity (amount of skills a player has) which will show the information related to the players 1st, 2nd, 3rd skill and so on...  
   ```
   %skillapi_player_skill_points_<#>%
@@ -4182,7 +4190,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
   > /papi ecloud download SkinsRestorer
-  
+
   ```
   %skinsrestorer_getSkinName%
   ```
@@ -4191,7 +4199,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Skript](https://github.com/bensku/Skript)**
   > /papi ecloud download skript
-  
+
   ```
   %skript_<variable name>%
   ```
@@ -4200,7 +4208,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SkyWars](hhttps://www.spigotmc.org/resources/6525/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %skywars_coins%
   %skywars_stats_deaths%
@@ -4223,7 +4231,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SkyWars X](hhttps://www.spigotmc.org/resources/28120/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %skywars_players_count%
   %skywars_parties_count%
@@ -4255,7 +4263,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SkywarsReloaded](https://www.spigotmc.org/resources/3796/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   # Deprecated in old versions
   %skywarsreloaded_score%
@@ -4271,7 +4279,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %skywarsreloaded_time_vote%
   %skywarsreloaded_opvote%
   %skywarsreloaded_op_vote%
-  
+
   # Tested on version (5.4.2)
   %swr_wins%
   %swr_losses%
@@ -4288,7 +4296,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Spark](https://github.com/lucko/spark)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %spark_tps%
   %spark_tps_5s%
@@ -4313,7 +4321,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SQLPerms](https://www.spigotmc.org/resources/1462/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %sqlperms_rank_<channel>%
   %sqlperms_prefix_<chanel>%
@@ -4323,7 +4331,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SQLTokens](https://www.spigotmc.org/resources/3482/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %sqltokens_tokens%
   ```
@@ -4332,7 +4340,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Staff Facilities](https://www.spigotmc.org/resources/13097/)**
   > /papi ecloud download StaffFacilities
-  
+
   ```
   %stafffacilities_bungeetotal%
   %stafffacilities_staffonline%
@@ -4362,7 +4370,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Statz](https://www.spigotmc.org/resources/25969/)**
   > /papi ecloud download Statz
-  
+
   ```
   %statz_deaths%
   %statz_blocks_broken%
@@ -4401,7 +4409,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %streamingdrops_dropsamount%
   %streamingdrops_generaldropsamount%
@@ -4417,7 +4425,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %strikepractice_players%
   %strikepractice_next_event_name%
@@ -4429,7 +4437,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %strikepractice_online_staff%
   %strikepractice_tps%
   %strikepractice_time%
-  
+
   # Per Player/Event placeholders
   %strikepractice_ping%
   %strikepractice_kills%
@@ -4497,7 +4505,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %strikepractice_rankeds_left%
   %strikepractice_rank%
   %strikepractice_unrankeds_left%
-   
+
   %strikepractice_top_[stats][number]%
   %strikepractice_top_[stats][number]_value%
   ```
@@ -4506,7 +4514,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[stTitles](https://www.spigotmc.org/resources/8310/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %sttitles_name%
   %sttitles_id%
@@ -4518,7 +4526,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SubServers](https://github.com/ME1312/SubServers-2)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %subservers_proxies()%
   %subservers_proxy.displayname(<Proxy>)%
@@ -4528,7 +4536,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %subservers_proxy.subdata.channels(<Proxy>)%
   %subservers_proxy.subdata.subchannels(<Proxy>)%
   %subservers_proxy.signature(<Proxy>)%
-  
+
   %subservers_hosts()%
   %subservers_host.displayname(<Host>)%
   %subservers_host.available(<Host>)_{Available, Unavailable}%
@@ -4546,7 +4554,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %subservers_host.subdata.channels(<Host>)%
   %subservers_host.subdata.subchannels(<Host>)%
   %subservers_host.signature(<Host>)%
-  
+
   %subservers_servers()%
   %subservers_server.displayname(<Server>)%
   %subservers_server.type(<Server>)_{Subserver, Server}%
@@ -4560,7 +4568,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %subservers_server.subdata.channels(<Server>)%
   %subservers_server.subdata.subchannels(<Server>)%
   %subservers_server.signature(<Server>)%
-  
+
   %subservers_subservers()%
   %subservers_subserver.displayname(<Subserver>)%
   %subservers_subserver.available(<Subserver>)_{Available, Unavailable}%
@@ -4596,7 +4604,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SuperbVote](https://www.spigotmc.org/resources/11626/)**
   > /papi ecloud download SuperbVote
-  
+
   ```
   %superbvote_votes%
   ```
@@ -4605,7 +4613,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SuperCredits](https://www.spigotmc.org/resources/31074/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %scredits_value%
   ```
@@ -4614,7 +4622,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[SuperVanish](https://www.spigotmc.org/resources/1331/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %supervanish_isvanished%
   %supervanish_vanishedplayers%
@@ -4625,7 +4633,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[The Time](https://www.spigotmc.org/resources/25146/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %thetime_date_tick%
   %thetime_date_second%
@@ -4646,7 +4654,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ThemePark](https://www.spigotmc.org/resources/48648/)**
   > /papi ecloud download ThemePark
-  
+
   ```
   %tp_name:<AttractionID>%
   %tp_status:<AttractionID>%
@@ -4658,7 +4666,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Thirst](https://www.spigotmc.org/resources/3316/)**
   > /papi ecloud download Thirst
-  
+
   ```
   %thirst_level%
   ```
@@ -4667,7 +4675,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %ticketgui_blacklist_points_current%
   %ticketgui_blacklist_points_max%
@@ -4679,7 +4687,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %trs_claimed_<reward>%
   %trs_time_remaining_<reward>%
@@ -4690,7 +4698,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TimeManager](https://www.spigotmc.org/resources/44344/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %tm_currentday%
   %tm_daypart%
@@ -4708,7 +4716,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Time Tokens](https://www.spigotmc.org/resources/75441/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %timetokens_time_played%
   %timetokens_token_name_plural%
@@ -4724,7 +4732,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TNTRun_Reloaded](https://www.spigotmc.org/resources/53359/)**
   > NO DOWNLOAD COMMANDS
-  
+
   ```
   %tntrun_allplayers_<arena>%
   %tntrun_arena_count%
@@ -4757,7 +4765,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TokenEnchant](https://www.spigotmc.org/resources/2287/)**
   > /papi ecloud download TokenEnchant
-  
+
   ```
   %tokenenchant_token%
   %tokenenchant_token_long%
@@ -4767,7 +4775,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %tokenenchant_<enchantment>_cost%
   %tokenenchant_<enchantment>_cost_long%
   %tokenenchant_<enchantment>_max%
-  %tokenenchant_<enchantment>_description% 
+  %tokenenchant_<enchantment>_description%
   %tokenenchant_<enchantment>_version%
   %tokenenchant_<enchantment>_fullrefund%
   %tokenenchant_<enchantment>_fullrefund_long%
@@ -4784,7 +4792,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TokenManager](https://www.spigotmc.org/resources/8610/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %tm_tokens%
   %tm_tokens_commas%
@@ -4798,7 +4806,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Tokens](https://www.spigotmc.org/resources/71941/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %tokens_getTokens%
   ```
@@ -4807,7 +4815,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %tokensplus_tokens%
   %tokensplus_tokens_commas%
@@ -4825,7 +4833,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TownyChat](https://github.com/TownyAdvanced/TownyChat)**
   > /papi ecloud download TownyChat
-  
+
   ```
   %townychat_channel_tag%
   %townychat_channel_name%
@@ -4857,7 +4865,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TransmuteIt](https://www.spigotmc.org/resources/76287/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %transmuteit_emc%
   %transmuteit_discoveries%
@@ -4869,7 +4877,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Treasures](https://www.spigotmc.org/resources/14178/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %treasures_keys_<treasure name>%
   %treasures_canbuy_treasure_<treasure name>-<config file>%
@@ -4880,7 +4888,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Trey's Double Jump](https://www.spigotmc.org/resources/19630/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %tdj_cooldown%
   %tdj_flightenabled%
@@ -4893,7 +4901,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[TrickOrTreat](https://www.spigotmc.org/resources/61370/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %trickortreat_sweets%
   %trickortreat_doors_found%
@@ -4910,7 +4918,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[USkyBlock](https://www.spigotmc.org/resources/2280/)**
   > /papi ecloud download uSkyBlock
-  
+
   ```
   %uskyblock_island_rank%
   %uskyblock_island_level%
@@ -4920,7 +4928,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[UltimateChat](https://www.spigotmc.org/resources/23767/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %uchat_player_channel_name%
   %uchat_player_channel_alias%
@@ -4930,14 +4938,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %uchat_placeholder_<some uchat placeholder>%
   %uchat_tag_<uchat tag name>%
   ```
-  
+
   *Add `rel_` before placeholder and tag to support relational placeholder
 
 ----
 
 - ### **[UltimateClaims](https://songoda.com/marketplace/product/65)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %ultimateclaims_claims%
   %ultimateclaims_owner%
@@ -4951,7 +4959,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[UltimateVotes](https://www.spigotmc.org/resources/516)**
   > /papi ecloud download UltimateVotes
-  
+
   ```
   %ultimatevotes_monthlyvotes%
   %ultimatevotes_totalvotes%
@@ -4962,7 +4970,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[UnityGen](https://www.spigotmc.org/resources/26218/)**
   > /papi ecloud download UnityGen
-  
+
   ```
   %unitygen_userlimit%
   %unitygen_usergens%
@@ -4972,7 +4980,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Vault](http://dev.bukkit.org/bukkit-plugins/vault/)**
   > /papi ecloud download Vault
-  
+
   #### Economy
   ```
   %vault_eco_balance%
@@ -4986,7 +4994,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %vault_eco_top_player_#%
   %vault_eco_top_rank%
   ```
-  
+
   #### Permissions
   ```
   %vault_rank%
@@ -5006,7 +5014,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[ViaVersion](https://www.spigotmc.org/resources/19254/)**
   > /papi ecloud download ViaVersion
-  
+
   ```
   %viaversion_player_protocol_id%
   %viaversion_player_protocol_version%
@@ -5016,7 +5024,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[VKAutoPickup](https://polymart.org/resource/vkautopickup.153)**
   > /papi ecloud download VKAutoPickup
-  
+
   ```
   %vkautopickup_pickup%
   %vkautopickup_autosell%
@@ -5029,7 +5037,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[VoteParty](https://www.spigotmc.org/resources/987/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %voteparty_votes_recorded%
   %voteparty_votes_required_party%
@@ -5041,7 +5049,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[VoteRoulette](http://dev.bukkit.org/bukkit-plugins/voteroulette/)**
   > /papi ecloud download VoteRoulette
-  
+
   ```
   %voteroulette_votes_lifetime%
   %voteroulette_votes_day%
@@ -5058,7 +5066,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[VotingPlugin](https://www.spigotmc.org/resources/15358/)**
   > /papi ecloud download VotingPlugin
-  
+
   ```
   %VotingPlugin_CanVote%
   %VotingPlugin_Next_SITENAME%
@@ -5099,7 +5107,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[WickedSkyWars](https://www.spigotmc.org/resources/556/)**
   > NO DOWNLOAD COMMAND
-  
+
   ```
   %wickedskywars_score%
   %wickedskywars_kills%
@@ -5112,7 +5120,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **WorldBorder**
   > /papi ecloud download WorldBorder
-  
+
   ```
   %worldborder_size%
   %worldborder_center_z%
@@ -5127,7 +5135,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[WorldGuard](https://dev.bukkit.org/bukkit-plugins/worldguard/)**
   > /papi ecloud download WorldGuard
-  
+
   ```
   %worldguard_region_name%
   %worldguard_region_name_capitalized%
@@ -5151,7 +5159,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[XLTournaments](https://www.spigotmc.org/resources/70630/)**
   > /papi ecloud download XLTournaments
-  
+
   ```
   %xlt_{tournamentId}_top1name%
   %xlt_{tournamentId}_top2name%
