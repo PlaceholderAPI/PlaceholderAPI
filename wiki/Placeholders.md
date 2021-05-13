@@ -1,4 +1,4 @@
-[SimpleDateFormat]: http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+﻿[SimpleDateFormat]: http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
 [TimeZoneIDs]: https://garygregory.wordpress.com/2013/06/18/what-are-the-java-timezone-ids/
 
 [list]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/510
@@ -497,6 +497,15 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   > NO DOWNLOAD COMMAND
   
   Download the jar from [broken1arrow/CalculateNumbers/releases](https://github.com/broken1arrow/CalculateNumbers/releases)
+
+  The idea with this expansion is that you should be able to charge dynamically,
+  for example in the deluxe menu. For tools, weapons 
+  and armor when players need to
+  repair their   belongings. Has also added optional so you can also combine it with
+  rank plugin if 
+  you have one.
+
+  Use decimal,to get two decimal digits.
   
   ```
   %number_numbervalue,tool:{a placeholder from your ranking plugin}%
