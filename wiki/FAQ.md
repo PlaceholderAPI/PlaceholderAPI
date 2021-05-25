@@ -5,16 +5,16 @@ Here are frequently asked questions about stuff related to PlaceholderAPI.
 ## It only shows `%placeholder%` and not the variable
 When a plugin or `/papi parse me %placeholder%` only returns the placeholder itself and no value should you check for the following things:
 
-### The expansion is actually installed.
+### The expansion is actually installed
 In many cases is the cause that the expansion of the placeholder is missing.  
 Just execute `/papi ecloud download <name of expansion>` followed by `/papi reload` to activate it. You can find a list of Expansions and their Placeholders [[on this page|Placeholders]].
 
 **NOTE!**  
 Not all placeholders come in their own expansion. Some plugins *hardcode* them in and load them on startup, when hooking into PlaceholderAPI.
 
-### Plugin actualls supports PlaceholderAPI
-It can happen that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case check, if the parse command returns the actual value of a placeholder.  
-If that is the case while the plugin is still displaying the placeholder, can this be an indicator of the plugin not supporting PlaceholderAPI.
+### Plugin actually supports PlaceholderAPI
+It is possible that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case, check if the parse command returns the actual value of a placeholder.  
+If that is the case while the plugin is still displaying the placeholder, this can be an indicator of the plugin not supporting PlaceholderAPI.
 
 You can find a list of plugins supporting PlaceholderAPI [[here|Plugins-using-PlaceholderAPI]].  
 Just make sure that "Supports placeholders" has a check mark in front of it.
