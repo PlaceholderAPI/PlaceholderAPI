@@ -792,11 +792,20 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   
   ```
   %player_allow_flight%
+  %player_armor_helmet_name%
+  %player_armor_helmet_data%
+  %player_armor_chestplate_name%
+  %player_armor_chestplate_data%
+  %player_armor_leggings_name%
+  %player_armor_leggings_data%
+  %player_armor_boots_name%
+  %player_armor_boots_data%
   %player_bed_x%
   %player_bed_y%
   %player_bed_z%
   %player_bed_world%
   %player_biome%
+  %player_biome_capitalized%
   %player_can_pickup_items%
   %player_colored_ping%
   %player_compass_world%
@@ -804,22 +813,36 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_compass_y%
   %player_compass_z%
   %player_custom_name%
+  %player_current_exp%
   %player_direction%
+  %player_direction_xz%
   %player_displayname%
   %player_exp%
   %player_exp_to_level%
   %player_first_join_date%
+  %player_first_played%
+  %player_first_join%
+  %player_first_played_formatted%
   %player_fly_speed%
   %player_food_level%
   %player_gamemode%
   %player_has_empty_slot%
+  %player_has_played_before%
   %player_empty_slots%
+  %player_has_potioneffect_<effect>%
   %player_has_permission_<permission>%
   %player_health%
   %player_health_rounded%
   %player_health_scale%
   %player_ip%
   %player_online%
+  %player_is_whitelisted%
+  %player_is_banned%
+  %player_is_flying%
+  %player_is_sneaking%
+  %player_is_sprinting%
+  %player_is_sleeping%
+  %player_is_inside_vehicle%
   %player_is_op%
   %player_item_in_hand%
   %player_item_in_hand_name%
@@ -829,8 +852,18 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_item_in_offhand_name%
   %player_item_in_offhand_data%
   %player_item_in_offhand_level_<enchantment>%
+  %player_locale%
+  %player_locale_display_name%
+  %player_locale_short%
+  %player_locale_country%
+  %player_locale_display_country%
   %player_last_damage%
+  %player_last_played%
+  %player_last_join%
+  %player_last_played_formatted%
+  %player_last_join_date%
   %player_level%
+  %player_light_level%
   %player_max_air%
   %player_max_health%
   %player_max_health_rounded%
@@ -844,18 +877,23 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_saturation%
   %player_seconds_lived%
   %player_sleep_ticks%
+  %player_thunder_duration%
   %player_ticks_lived%
   %player_time%
   %player_time_offset%
   %player_total_exp%
   %player_uuid%
   %player_walk_speed%
+  %player_weather_duration%
   %player_world%
+  %player_world_type%
   %player_world_time_12%
   %player_world_time_24%
   %player_x%
   %player_y%
   %player_z%
+  %player_yaw%
+  %player_pitch%
   ```
 
 ----
