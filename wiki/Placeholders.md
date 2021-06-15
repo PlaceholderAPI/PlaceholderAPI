@@ -4413,7 +4413,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
 > /papi ecloud download staffplusplus
 
-All placeholders listed here: https://wiki.staffplusplus.org/integrations/papi-expansion
+All placeholders are listed here: https://wiki.staffplusplus.org/integrations/papi-expansion
 
 ----
 
