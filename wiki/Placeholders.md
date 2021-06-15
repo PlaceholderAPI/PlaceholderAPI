@@ -343,6 +343,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[SQLPerms](#sqlperms)**
     - **[SQLTokens](#sqltokens)**
     - **[Staff Facilities](#staff-facilities)**
+    - **[Staff++](#staffplusplus)**
     - **[Statz](#statz)**
     - **[Streaming Drops](#streaming-drops)**
     - **[StrikePractice 2](#strikepractice-2)**
@@ -4406,6 +4407,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %stafffacilities_tab_staffvanish%
   %stafffacilities_tab_vanish%
   ```
+
+----
+
+- ### **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
+> /papi ecloud download staffplusplus
+
+All placeholders are listed here: https://wiki.staffplusplus.org/integrations/papi-expansion
 
 ----
 
