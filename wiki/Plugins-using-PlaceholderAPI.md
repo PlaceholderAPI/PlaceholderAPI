@@ -837,6 +837,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Staff Facilities](https://www.spigotmc.org/resources/13097/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#staff-facilities]]**]
+- **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#staffplusplus]]**]
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#statz]]**]
