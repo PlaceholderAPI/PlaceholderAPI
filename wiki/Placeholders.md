@@ -247,6 +247,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[LeaderHeads](#leaderheads)**
     - **[LegendQuest](#legendquest)**
     - **[LemonMobCoins](#lemonmobcoins)**
+    - **[LevelledMobs](#levelledmobs)**
     - **[LuckPerms](#luckperms)**
     - **[LWC](#lwc)**
 
