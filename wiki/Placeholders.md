@@ -2609,6 +2609,14 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 ```
 ----
 
+- ### **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
+> NO DOWNLOAD COMMAND
+```
+%levelledmobs_level%
+%levelledmobs_displayname%
+```
+----
+
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
 > /papi ecloud download LuckPerms
 
