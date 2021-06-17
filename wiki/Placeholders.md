@@ -2977,7 +2977,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
+- ### **[LevelledMobs](https://www.spigotmc.org/resources/74304/)**
   > NO DOWNLOAD COMMAND
   ```
   %levelledmobs_level%
