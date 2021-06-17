@@ -479,6 +479,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[LemonMobCoins](https://www.spigotmc.org/resources/59402/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#lemonmobcoins]]**]
+- **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#levelledmobs]]**]
 - **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#luckperms]]**]

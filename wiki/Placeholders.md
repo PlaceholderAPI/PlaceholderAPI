@@ -2977,6 +2977,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[LevelledMobs](https://www.spigotmc.org/resources/74304/)**
+  > NO DOWNLOAD COMMAND
+  ```
+  %levelledmobs_level%
+  %levelledmobs_displayname%
+  ```
+----
+
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
   > /papi ecloud download LuckPerms
   
