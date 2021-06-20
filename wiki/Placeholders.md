@@ -569,7 +569,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   - `strict`  
     Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
   - `inhand`  
-    Check if the item is in the player's hand (Also checks off-hand)
+    Check if the item is in the player's hand. `inhand` will check *both* hands. You can add `:main` or `:off` to specify. (Ex: `inhand:main`)
   - `inslot`  
     Check if the item is in a specific slot ([Click here for valid slots](https://proxy.spigotmc.org/d3e11b631e22f45fc07c3fcd1c7000b2245fed78?url=http%3A%2F%2Fi.imgur.com%2F3YCrfC8.png))
   
