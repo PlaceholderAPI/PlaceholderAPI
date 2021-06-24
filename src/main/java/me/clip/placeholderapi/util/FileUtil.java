@@ -67,8 +67,11 @@ public class FileUtil {
         }
       }
     }
-
-    return classes.isEmpty() ? null : classes.get(0);
+    if (classes.isEmpty()) {
+        loader.close();
+        return null;
+    }
+    return classes.get(0);
   }
 
 }
