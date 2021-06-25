@@ -1,4 +1,4 @@
-name: "Build Jars on Java 8, 9, 10 and 11"
+name: "Test compiling against Java 8, 11 and 16"
 
 on:
   pull_request:
@@ -10,22 +10,22 @@ on:
 
 jobs:
   testBuilds:
-    name: "Build Jars against Java 8, 9, 10 and 11"
+    name: "Test-compile against Java 8, 11 and 16"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       max-parallel: 4
       matrix:
-        java-version: [8, 9, 10, 11]
+        java-version: [8, 11, 16]
     steps:
     - name: "Checkout Code"
       uses: actions/checkout@v2
     - name: "Prepare Java ${{ matrix.java-version }}"
       uses: actions/setup-java@v2
       with:
-        distribution: "zulu"
+        distribution: "adobt"
         java-version: "${{ matrix.java-version }}"
     - name: "Make build.gradle executable"
       run: "chmod +x gradlew"
-    - name: "Build jar"
+    - name: "Build jar with Java ${{ matrix.java-version }}"
       run: "./gradlew shadowJar"
