@@ -1716,7 +1716,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[BetonQuest](https://www.spigotmc.org/resources/2117/)**
   > NO DOWNLOAD COMMAND
   
-  Please refer to the [official documentation](https://betonquest.github.io/BetonQuest/versions/dev/User-Documentation/Compatibility/#placeholderapi) for more info.
+  Please refer to the [official documentation](https://docs.betonquest.org/RELEASE/User-Documentation/Compatibility/#placeholderapi) for more info.
   
   ```
   %betonquest_<variable>%
