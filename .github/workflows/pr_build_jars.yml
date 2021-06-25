@@ -23,7 +23,7 @@ jobs:
     - name: "Prepare Java ${{ matrix.java-version }}"
       uses: actions/setup-java@v2
       with:
-        distribution: "adobt"
+        distribution: "adopt"
         java-version: "${{ matrix.java-version }}"
     - name: "Make build.gradle executable"
       run: "chmod +x gradlew"
