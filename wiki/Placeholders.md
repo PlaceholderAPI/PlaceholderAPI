@@ -249,6 +249,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[LemonMobCoins](#lemonmobcoins)**
     - **[LevelledMobs](#levelledmobs)**
     - **[LuckPerms](#luckperms)**
+    - **[LevelUp](#levelup)**
     - **[LWC](#lwc)**
 
   - ### **M**
@@ -2991,6 +2992,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   You can find an up-to-date list of placeholders on the [LuckPerms wiki](https://luckperms.net/wiki/Placeholders).
 
+----
+
+- ### **[LevelUp](https://polymart.org/resource/levelup.457/)**
+> /papi ecloud download levelup
+
+```
+%levelup_item_level%
+%levelup_player_level%
+```
 ----
 
 - ### **LWC**
