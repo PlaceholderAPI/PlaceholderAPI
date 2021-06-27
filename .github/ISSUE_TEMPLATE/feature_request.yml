@@ -43,8 +43,9 @@ body:
   attributes:
     label: "Code Example"
     description: |-
-      Do you have any Code Snippets that you want to share with us?
-      Remember to use Code blocks for smaller snippets and https://paste.helpch.at for larger ones.
+      Do you have any Code Snippets that you want to share with us? Paste it here!
+      Note that the input will automatically be rendered as Java code, so you won't need to put it into a code block yourself.
+    render: java
 - type: input
   attributes:
     label: "Jar file"
