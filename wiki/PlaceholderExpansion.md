@@ -354,7 +354,7 @@ public class SomeExpansion extends PlaceholderExpansion implements Relational {
             if(plugin.areFriends(one, two))
                 return ChatColor.GREEN + one.getName() + " and " + two.getName() + " are friends!";
             else
-                return ChatColor.GREEN + one.getName() + " and " + two.getName() + " are friends!";
+                return ChatColor.GREEN + one.getName() + " and " + two.getName() + " are not friends!";
         }
         
         return null; // Placeholder is unknown by the Expansion
