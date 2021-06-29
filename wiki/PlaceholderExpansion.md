@@ -58,18 +58,26 @@ public class SomeExpansion extends PlaceholderExpansion {
 Let's quickly break down the different methods you had to import.
 
 - #### getAuthor
-  Through this method can you set the name of who created the expansion.
+  Through this method you can set the name of who created the expansion.
 - #### getIdentifier
   The name that should be used to identify the placeholders for this expansion.  
   The Identifier is the first text after the `%` and before the first `_` (`%identifier_values%`) and can therefore not contain any `_` in it.
   
   If you want to use `_` in your Expansion's name can you override the optional `getName()` method.
 - #### getVersion
-  This is a String, which means it doesn't has to be a number in itself. The String is used to determine if a new update is available or not, when the expansion is shared on the eCloud.  
-  For Expansions that are part of a plugin does this not really matter.
+  This is a String, which means it doesn't have to be a number in itself. The String is used to determine if a new update is available or not, when the expansion is shared on the eCloud.  
+  For Expansions that are part of another plugin does this does not really matter.
 
 Those are all the neccessary parts for your PlaceholderExpansion.  
 Any other methods that are part of the [`PlaceholderExpansion`][placeholderexpansion] class are optional and will usually not be used, or default to a specific value. Please read the Javadoc comments of those methods for more information.
+
+There are two specific methods which are options, but you should use at least one of them:
+
+- #### onRequest(OfflinePlayer, String)
+  If not set this method will default to calling [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).  
+  This method is recommended to use as it allows the usage of `null` and can therefore be used in placeholders that don't need a valid player to be used.
+- #### onPlaceholderRequest(Player, String)
+  If not set this method will return `null` which PlaceholderAPI sees as invalid placeholder.
 
 ----
 ## Without a Plugin
@@ -81,10 +89,8 @@ Common examples of such Expansions are:
 - [Server Expansion][serverexpansion]
 - [Math Expansion][mathexpansion]
 
-These kinds of Expansions don't need much more to properly work.  
-In fact is the only thing they need to have added the `onRequest(OfflinePlayer, String)` or `onPlaceholderRequest(Player, String)` methods.
-
-It is recommended to use the `onRequest(OfflinePlayer, String)` method as OfflinePlayers can also be used for normal players, but also allow to have no Player provided.
+These kinds of Expansions don't require any additional plugins to function.  
+When creating such an expansion is it recommended to use [`onRequest(OfflinePlayer, String)`](#onrequestofflineplayer-string).
 
 #### Full Example
 Please see the [Common parts](#common-parts) section for info on the other methods.
@@ -130,7 +136,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ----
 ## With a Plugin (External Jar)
-If your Expansion relies on a Plugin to provide its placeholder values will you need to override a few more methods to make everything work as it should.
+If your Expansion relies on a Plugin to provide its placeholder values you will need to override a few more methods to make sure everything will work as it should.
 
 Your expansion will need to override the `getRequiredPlugin()` method to return the name of the plugin your expansion depends on.  
 PlaceholderAPI does by default check, if this method either returns null, or the name defined results in a Not-null plugin being available.
