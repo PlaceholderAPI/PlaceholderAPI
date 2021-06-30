@@ -98,7 +98,9 @@ public class UpdateChecker implements Listener {
       return true;
     } else if ((plV[1] < spV[1])) {
       return true;
-    } else return plV[2] < spV[2];
+    } else {
+      return plV[2] < spV[2];
+    }
   }
 
   private int[] toReadable(String version) {
