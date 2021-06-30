@@ -18,7 +18,7 @@ You can download Expansions either directly from the eCloud yourself, or downloa
   - [Common Parts](#common-parts)
 - [Without a Plugin](#without-a-plugin)
 - [With a Plugin (External Jar)](#with-a-plugin-external-jar)
-- [With a Plugin (Internal Jar)](#with-a-plugin-internal-jar)
+- [With a Plugin (Internal Class)](#with-a-plugin-internal-class)
   - [Register the Expansion](#register-the-expansion)
 - [Relational Placeholders](#relational-placeholders)
   - [Notes about Relational Placeholders](#notes-about-relational-placeholders)
@@ -210,7 +210,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 ```
 
 ----
-## With a Plugin (Internal Jar)
+## With a Plugin (Internal Class)
 The way expansions are handled when they are part of the plugin itself is fairly similar to when you [make an expansion without a plugin dependency](#without-a-plugin).
 
 In fact, you don't even have to override the `getRequiredPlugin()` and `canRegister()` methods as it is always guaranteed that the plugin is available.  
