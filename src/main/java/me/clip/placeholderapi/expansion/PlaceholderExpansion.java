@@ -367,19 +367,4 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   public String getLink() {
     return null;
   }
-
-  @Override
-  public int hashCode() {
-    if (this.getIdentifier() == null) {
-      throw new NullPointerException("Identifier must not be null! Error occurred in: " + this.getClass().getName());
-    }
-    if (this.getAuthor() == null) {
-      throw new NullPointerException("Author must not be null! Error occurred in: " + this.getClass().getName());
-    }
-    if (this.getVersion() == null) {
-      throw new NullPointerException("Version must not be null! Error occurred in: " + this.getClass().getName());
-    }
-
-    return super.hashCode();
-  }
 }
