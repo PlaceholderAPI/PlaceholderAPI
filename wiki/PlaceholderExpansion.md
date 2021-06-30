@@ -62,7 +62,7 @@ Let's quickly break down the different methods you have to implement.
   This method allows you to set the name of the expansion's author.
 - #### getIdentifier
   The name that should be used to identify the placeholders for this expansion.  
-  The Identifier is the first text after the `%` and before the first `_` (`%identifier_values%`) and can therefore not contain any `_` in it.
+  The identifier is the string after the starting `%` and before the first `_` (`%identifier_values%`) and, therefore, cannot contain any `_`s.
   
   If you want to use `_` in your expansion's name, you can override the optional `getName()` method.
 - #### getVersion
