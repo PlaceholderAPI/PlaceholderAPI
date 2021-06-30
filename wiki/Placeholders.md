@@ -2671,9 +2671,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
-  %interactionvisualizer_itemstand%
-  %interactionvisualizer_itemdrop%
-  %interactionvisualizer_hologram%
+  %interactionvisualizer_itemstand_<entry>%
+  %interactionvisualizer_itemdrop_<entry>%
+  %interactionvisualizer_hologram_<entry>%
   ```
 
 ----
