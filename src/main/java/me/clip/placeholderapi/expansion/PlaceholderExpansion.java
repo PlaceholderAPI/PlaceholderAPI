@@ -22,7 +22,6 @@ package me.clip.placeholderapi.expansion;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
@@ -46,7 +45,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return placeholder identifier that is associated with this expansion
    */
-  @NotNull
   public abstract String getIdentifier();
 
   /**
@@ -54,7 +52,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return name of the author for this expansion
    */
-  @NotNull
   public abstract String getAuthor();
 
   /**
@@ -62,7 +59,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return current version of this expansion
    */
-  @NotNull
   public abstract String getVersion();
 
   /**
@@ -70,7 +66,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return {@link #getIdentifier()} by default, name of this expansion if specified
    */
-  @NotNull
   public String getName() {
     return getIdentifier();
   }
@@ -90,7 +85,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return placeholder list that this expansion provides
    */
-  @NotNull
   public List<String> getPlaceholders() {
     return Collections.emptyList();
   }
@@ -369,4 +363,18 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     return null;
   }
 
+  @Override
+  public int hashCode() {
+    if (this.getIdentifier() == null) {
+      throw new NullPointerException("Identifier must not be null! Error occurred in: " + this.getClass().getName());
+    }
+    if (this.getAuthor() == null) {
+      throw new NullPointerException("Author must not be null! Error occurred in: " + this.getClass().getName());
+    }
+    if (this.getVersion() == null) {
+      throw new NullPointerException("Version must not be null! Error occurred in: " + this.getClass().getName());
+    }
+
+    return super.hashCode();
+  }
 }
