@@ -45,6 +45,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return placeholder identifier that is associated with this expansion
    */
+  @NotNull
   public abstract String getIdentifier();
 
   /**
@@ -52,6 +53,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return name of the author for this expansion
    */
+  @NotNull
   public abstract String getAuthor();
 
   /**
@@ -59,6 +61,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return current version of this expansion
    */
+  @NotNull
   public abstract String getVersion();
 
   /**
@@ -66,6 +69,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return {@link #getIdentifier()} by default, name of this expansion if specified
    */
+  @NotNull
   public String getName() {
     return getIdentifier();
   }
@@ -85,6 +89,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *
    * @return placeholder list that this expansion provides
    */
+  @NotNull
   public List<String> getPlaceholders() {
     return Collections.emptyList();
   }
