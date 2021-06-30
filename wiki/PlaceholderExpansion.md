@@ -9,7 +9,7 @@
 ## Overview
 This page will cover how you can create your own [`PlaceholderExpansion`][placeholderexpansion] which you can either [[Upload to the eCloud|Expansion cloud]] or integrate into your own plugin.
 
-Something to note here is, that PlaceholderAPI relies on Expansions to be installed. PlaceholderAPI is acting as the core while the Expansions are what allows other plugins to use placeholders in various messages.  
+It's worth noting that PlaceholderAPI relies on expansions being installed. PlaceholderAPI only acts as the core replacing utility while the expansions allow other plugins to use any installed placeholder in their own messages.
 You can download Expansions either directly from the eCloud yourself, or download them through the [[download command of PlaceholderAPI|Commands#papi-ecloud-download]].
 
 ## Table of Contents
@@ -24,11 +24,12 @@ You can download Expansions either directly from the eCloud yourself, or downloa
   - [Notes about Relational Placeholders](#notes-about-relational-placeholders)
 
 ## Getting started
-To get started, first choose what type of [`PlaceholderExpansion`][placeholderexpansion] you want to create. There are various ways you can create a [`PlaceholderExpansion`][placeholderexpansion] from which this page will cover the most common ones.
+For starters, you need to decide what type of [`PlaceholderExpansion`][placeholderexpansion] you want to create. There are various ways to create an expansion. This page will cover the most common ones.
 
 ### Common Parts
-All shown examples will share the same, common parts that belong to the [`PlaceholderExpansion`][placeholderexpansion] class.  
-To not repeat the same basic info for each method throughout this page will we cover the most basic/neccessary ones here.
+All shown examples will share the same common parts that belong to the [`PlaceholderExpansion`][placeholderexpansion] class.  
+In order to not repeat the same basic info for each method throughout this page, and to greatly reduce its overall length, we will cover the most basic/necessary ones here.
+``
 
 #### Basic PlaceholderExpansion Structure
 ```java
@@ -55,33 +56,33 @@ public class SomeExpansion extends PlaceholderExpansion {
     }
 }
 ```
-Let's quickly break down the different methods you had to import.
+Let's quickly break down the different methods you have to implement.
 
 - #### getAuthor
-  Through this method you can set the name of who created the expansion.
+  This method allows you to set the name of the expansion's author.
 - #### getIdentifier
   The name that should be used to identify the placeholders for this expansion.  
   The Identifier is the first text after the `%` and before the first `_` (`%identifier_values%`) and can therefore not contain any `_` in it.
   
-  If you want to use `_` in your Expansion's name can you override the optional `getName()` method.
+  If you want to use `_` in your expansion's name, you can override the optional `getName()` method.
 - #### getVersion
-  This is a String, which means it doesn't have to be a number in itself. The String is used to determine if a new update is available or not, when the expansion is shared on the eCloud.  
-  For Expansions that are part of another plugin does this does not really matter.
+  This is a string, which means it can contain more than just a number. This is used to determine if a new update is available or not when the expansion is shared on the eCloud.
+  For expansions that are part of a plugin, this does not really matter.
 
 Those are all the neccessary parts for your PlaceholderExpansion.  
-Any other methods that are part of the [`PlaceholderExpansion`][placeholderexpansion] class are optional and will usually not be used, or default to a specific value. Please read the Javadoc comments of those methods for more information.
+Any other methods that are part of the [`PlaceholderExpansion`][placeholderexpansion] class are optional and will usually not be used, or will default to a specific value. Please read the Javadoc comments of those methods for more information.
 
-There are two specific methods which are options, but you should use at least one of them:
+You must choose between one of these two methods for handling the actual parsing of placeholders:
 
 - #### onRequest(OfflinePlayer, String)
-  If not set this method will default to calling [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).  
-  This method is recommended to use as it allows the usage of `null` and can therefore be used in placeholders that don't need a valid player to be used.
+  If not explicitly set, this will automatically call [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).
+  This method is recommended as it allows the usage of `null` and can therefore be used in placeholders that don't require a valid player to be used.
 - #### onPlaceholderRequest(Player, String)
-  If not set this method will return `null` which PlaceholderAPI sees as invalid placeholder.
+  If not set, this method will return `null` which PlaceholderAPI sees as an invalid placeholder.
 
 ----
 ## Without a Plugin
-A PlaceholderExpansion may not need a plugin to rely on, if the placeholders it provides can return values from just the server itself or some other source (i.e. Java itself).
+An expansion does not always need a plugin to rely on. If the placeholders it provides can return values from just the server itself or some other source (i.e. Java itself), then it can work independently.
 
 Common examples of such Expansions are:
 
@@ -89,7 +90,7 @@ Common examples of such Expansions are:
 - [Server Expansion][serverexpansion]
 - [Math Expansion][mathexpansion]
 
-These kinds of Expansions don't require any additional plugins to function.  
+These kinds of expansions don't require any additional plugins to function.  
 When creating such an expansion is it recommended to use [`onRequest(OfflinePlayer, String)`](#onrequestofflineplayer-string).
 
 #### Full Example
@@ -136,12 +137,12 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ----
 ## With a Plugin (External Jar)
-If your Expansion relies on a Plugin to provide its placeholder values you will need to override a few more methods to make sure everything will work as it should.
+If your expansion relies on a plugin to provide its placeholder values, you will need to override a few more methods to make sure everything will work correctly.
 
 Your expansion will need to override the `getRequiredPlugin()` method to return the name of the plugin your expansion depends on.  
-PlaceholderAPI does by default check, if this method either returns null, or the name defined results in a Not-null plugin being available.
+PlaceholderAPI automatically checks if this method will either return null, or if the name defined results in a non-null plugin.
 
-Something worth noting is, that it is a bit more difficult to make a separate Jar file that depends on a plugin, as it will require the plugin to have some sort of accessible API to use in order to get the values needed.  
+It is worth noting that it is a bit more difficult to make a separate jar file that depends on a plugin, as it will require the plugin to have some sort of accessible API in order to get the required values.
 One way to bypass this is to override the `canRegister()` method with the following code:
 
 ```java
@@ -153,8 +154,8 @@ public boolean canregister(){
     return (plugin = (SomePlugin) Bukkit.getPluginManager().getPlugin(getRequiredPlugin())) != null;
 }
 ```
-With this code-snippet can you get a direct instance of the Plugin and access things such as config values.  
-With that said is it recommended to instead use an API if available, as this kind of plugin access is not really a good approach.
+Using this code-snippet, you can get a direct instance of the plugin and access things such as config values.  
+With that said, it is recommended instead to use an API if one is available, as this kind of plugin access is a relatively poor approach.
 
 #### Full Example
 Please see the [Common parts](#common-parts) section for info on the other methods.
@@ -203,20 +204,20 @@ public class SomeExpansion extends PlaceholderExpansion {
         if(params.equalsIgnoreCase("placeholder2")){
             return plugin.getConfig().getString("placeholders.placeholder2", "default2");
         
-        return null; // Placeholder is unknown by the Expansion
+        return null; // Placeholder is unknown by the expansion
     }
 }
 ```
 
 ----
 ## With a Plugin (Internal Jar)
-The way Expansions are handled when they are part of the plugin itself is fairly similar to when you [make a Jar without a plugin dependency](#without-a-plugin)
+The way expansions are handled when they are part of the plugin itself is fairly similar to when you [make an expansion without a plugin dependency](#without-a-plugin).
 
 In fact, you don't even have to override the `getRequiredPlugin()` and `canRegister()` methods as it is always guaranteed that the plugin is available.  
-Something worth noting is, that you need to override the `persist()` method and make it return true. This ensures that the Expansion won't be unregistered by PlaceholderAPI whenever it is reloaded.
+Something worth noting, however, is that you need to override the `persist()` method and make it return true. This ensures that the expansion won't be unregistered by PlaceholderAPI whenever it is reloaded.
 
-Finally, can you also use Dependency Injection for a more easy way to access a plugin's methods.  
-Here is a small code example of how this Dependency Injection may look like:
+Finally, you can also use dependency injection as an easier way to access a plugin's methods.
+Here is a small code example of how dependency injection may look:
 
 ```java
 public class SomeExpansion extends PlaceholderExpansion {
@@ -241,7 +242,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class SomeExpansion extends PlaceholderExpansion {
 
-    SomePlugin plugin;
+private SomePlugin plugin;
     
     public SomeExpansion(SomePlugin plugin){
         this.plugin = plugin;
@@ -281,8 +282,8 @@ public class SomeExpansion extends PlaceholderExpansion {
 ```
 
 ### Register the Expansion
-To now register the expansion will you need to call the `register()` method yourself.  
-This should be done in your plugin's `onEnable()` void after you made sure that PlaceholderAPI is installed and enabled.
+To register the expansion, you will need to call the `register()` method yourself.
+This should be done in your plugin's `onEnable()` method after you make sure that PlaceholderAPI is installed and enabled.
 
 ```java
 package at.helpch.placeholderapi.example
@@ -305,14 +306,14 @@ public class SomePlugin extends JavaPlugin{
 ----
 ## Relational Placeholders
 Relational Placeholders are a bit more specific compared to the previous examples.  
-While they do use the same [common parts](#common-parts) like the other examples do they have a different method to return placeholders.
+While they do use the same [common parts](#common-parts) that the other examples do, they have a different method to return placeholders.
 
-In order to use the relational placeholders feature will you need to implement the [`Relational`][relational] interface, which in return adds the `onPlaceholderRequest(Player, Player, String)` method to use.
+In order to use the relational placeholders feature, you will need to implement the [`Relational`][relational] interface, which in return adds the `onPlaceholderRequest(Player, Player, String)` method to use.
 
 #### Full Example
 Please see the [Common parts](#common-parts) section for info on the other methods.
 
-In this Example do we use the [Internal class setup](#with-a-plugin-internal-jar) and `SomePlugin` has a `areFriends(Player, Player)` method that returns true or false based on if the Players are friends.
+In this example, we use the [Internal class setup](#with-a-plugin-internal-jar) and `SomePlugin` has an `areFriends(Player, Player)` method that returns true or false based on if the given players are friends.
 
 ```java
 package at.helpch.placeholderapi.example.expansions;
@@ -369,5 +370,5 @@ public class SomeExpansion extends PlaceholderExpansion implements Relational {
 ```
 
 ### Notes about Relational Placeholders
-Relational Placeholders will always start with `%rel_` to properly identify them as such.  
-So for the above example to work will the full placeholder need to look like `%rel_example_friend%`.
+Relational placeholders will always start with `%rel_` to properly identify them.  
+So in the above example, the full placeholder will look like `%rel_example_friend%`.
