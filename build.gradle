@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id "java"
     id "maven-publish"
@@ -6,7 +8,7 @@ plugins {
 }
 
 group "me.clip"
-version "2.10.10-DEV-${System.getProperty("BUILD_NUMBER")}"
+version "2.10.10-DEV"
 
 description "An awesome placeholder provider!"
 
@@ -33,7 +35,7 @@ dependencies {
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
-        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+        filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
     }
 }
 
@@ -75,7 +77,7 @@ license {
     }
 
     ext {
-        year = 2020
+        year = 2021
     }
 }
 
@@ -91,7 +93,7 @@ sourceSets {
 publishing {
     repositories {
         maven {
-            if (version.contains("-DEV-")) {
+            if (version.contains("-DEV")) {
                 url = uri("https://repo.extendedclip.com/content/repositories/dev/")
             } else {
                 url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
