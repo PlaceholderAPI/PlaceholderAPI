@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -22,7 +22,6 @@ package me.clip.placeholderapi.expansion;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
@@ -368,5 +367,4 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   public String getLink() {
     return null;
   }
-
 }

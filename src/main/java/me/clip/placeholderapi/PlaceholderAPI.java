@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -162,7 +162,7 @@ public final class PlaceholderAPI {
    * @return String containing all translated placeholders
    */
   public static List<String> setBracketPlaceholders(Player player, List<String> text) {
-    return setPlaceholders((OfflinePlayer) player, text);
+    return setBracketPlaceholders((OfflinePlayer) player, text);
   }
 
   /**

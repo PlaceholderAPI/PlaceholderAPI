@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id "java"
     id "maven-publish"
@@ -18,8 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.google.code.gson:gson:2.8.6"
-    implementation "org.bstats:bstats-bukkit:2.2.1"
+    implementation "org.bstats:bstats-bukkit:1.5"
 
     compileOnly "org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT"
     compileOnly "org.jetbrains:annotations:19.0.0"
@@ -32,7 +33,9 @@ dependencies {
 }
 
 processResources {
-    filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
+    }
 }
 
 java {
@@ -58,7 +61,6 @@ shadowJar {
     archiveClassifier.set("")
 
     relocate "org.bstats", "me.clip.placeholderapi.metrics"
-    relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
 }
 
 license {
@@ -73,7 +75,7 @@ license {
     }
 
     ext {
-        year = 2020
+        year = 2021
     }
 }
 
@@ -90,7 +92,7 @@ configurations {
 publishing {
     repositories {
         maven {
-            if (version.contains("-DEV-")) {
+            if (version.contains("-DEV")) {
                 url = uri("https://repo.extendedclip.com/content/repositories/dev/")
             } else {
                 url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")

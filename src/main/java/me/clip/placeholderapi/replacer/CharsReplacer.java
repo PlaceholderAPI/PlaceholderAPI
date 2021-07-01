@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -49,7 +49,7 @@ public final class CharsReplacer implements Replacer {
 
     for (int i = 0; i < chars.length; i++) {
       final char l = chars[i];
-
+      
       if (l == '&' && ++i < chars.length) {
         final char c = Character.toLowerCase(chars[i]);
 

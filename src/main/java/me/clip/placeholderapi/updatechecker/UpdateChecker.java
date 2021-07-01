@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -23,6 +23,7 @@ package me.clip.placeholderapi.updatechecker;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.util.Msg;
@@ -90,17 +91,24 @@ public class UpdateChecker implements Listener {
       return false;
     }
 
-    String plV = toReadable(pluginVersion);
-    String spV = toReadable(spigotVersion);
-    return plV.compareTo(spV) < 0;
+    int[] plV = toReadable(pluginVersion);
+    int[] spV = toReadable(spigotVersion);
+
+    if (plV[0] < spV[0]) {
+      return true;
+    } else if ((plV[1] < spV[1])) {
+      return true;
+    } else {
+      return plV[2] < spV[2];
+    }
   }
 
-  private String toReadable(String version) {
-    if (version.contains("-DEV-")) {
-      version = version.split("-DEV-")[0];
+  private int[] toReadable(String version) {
+    if (version.contains("-DEV")) {
+      version = version.split("-DEV")[0];
     }
 
-    return version.replaceAll("\\.", "");
+    return Arrays.stream(version.split("\\.")).mapToInt(Integer::parseInt).toArray();
   }
 
   @EventHandler(priority = EventPriority.MONITOR)
