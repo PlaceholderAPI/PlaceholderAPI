@@ -3,8 +3,8 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     id "java"
     id "maven-publish"
-    id "net.minecrell.licenser" version "0.4.1"
-    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "org.cadixdev.licenser" version "0.6.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 group "me.clip"
@@ -20,22 +20,21 @@ repositories {
 }
 
 dependencies {
-    implementation "org.bstats:bstats-bukkit:1.5"
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "org.bstats:bstats-bukkit:2.2.1"
 
-    compileOnly "org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT"
     compileOnly "org.jetbrains:annotations:19.0.0"
 
     testImplementation "org.openjdk.jmh:jmh-core:1.23"
     testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.23"
 
-    testCompile "org.junit.jupiter:junit-jupiter-engine:5.6.2"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
-    }
+    filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 }
 
 java {
@@ -83,9 +82,10 @@ test {
     useJUnitPlatform()
 }
 
-sourceSets {
-    test.compileClasspath += configurations.compileOnly
-    test.runtimeClasspath += configurations.compileOnly
+configurations {
+    testImplementation {
+        extendsFrom(compileOnly)
+    }
 }
 
 publishing {

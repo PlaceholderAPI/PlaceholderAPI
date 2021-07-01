@@ -1,0 +1,62 @@
+name: Feature Request
+description: Suggest a new Feature for PlaceholderAPI
+labels:
+- "Type: Enhancement"
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Thank you for taking the time in creating this Feature Request.
+      In order to process your feature request as fast and efficiently as possible do we ask you to fill out any required fields (Indicated with a red asterisk (`*`)) with the requested information.
+      
+      If you have any further questions should you either [join our Discord Server](https://helpch.at/discord) or [ask in our Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions).
+- type: checkboxes
+  attributes:
+    label: Confirmation
+    description: Please make sure to have followed the following checks.
+    options:
+      - label: I checked the Issues and Pull request tab for any existing issues or PRs.
+        required: true
+      - label: My Feature Request is for **PlaceholderAPI** and not any expansion or other plugin.
+        required: true
+- type: dropdown
+  attributes:
+    label: "Type"
+    description: "What type is your Suggestion? Select all that match."
+    multiple: true
+    options:
+      - "New API feature"
+      - "New config option"
+      - "Minor Code improvement (Won't affect Servers)"
+      - "Major Code improvement (Will affect Servers)"
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Description"
+    description: |-
+      Give a detailed explanation about your Feature request and why it would be beneficial for PlaceholderAPI.
+      Just saying "It's cool!" or "I need it" don't count as valid reasons. It needs to have a clear benefit for **other** players too.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Code Example"
+    description: |-
+      Do you have any Code Snippets that you want to share with us? Paste it here!
+      Note that the input will automatically be rendered as Java code, so you won't need to put it into a code block yourself.
+    render: java
+- type: input
+  attributes:
+    label: "Jar file"
+    description: |-
+      If you already have a PlaceholderAPI Jar with the requested changes would we love to get a download link for it.
+      If you don't have a download link can you leave this field empty or provide "N/A" as a response.
+    placeholder: "https://cdn.discordapp.com/..."
+- type: textarea
+  attributes:
+    label: "Additional Information"
+    description: |-
+      Add any extra info you think is nessesary for this Feature request.
+      - When you selected `Major Code improvement (Will affect Servers)` should you mention what will break when people update.
+    placeholder: "Put any extra info you like into this field..."
