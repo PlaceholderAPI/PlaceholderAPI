@@ -34,9 +34,7 @@ dependencies {
 }
 
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
-    }
+    filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 }
 
 java {
