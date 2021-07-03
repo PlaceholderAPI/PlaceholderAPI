@@ -2312,28 +2312,37 @@ Please see [this discussion][list] for a list of all expansions officially maint
   This expansion works with both Essentials and [EssentialsX](https://essentialsx.net) (Second one is recommended).
   
   ```
-  %essentials_is_teleport_enabled%
-  %essentials_is_pay_enabled%
-  %essentials_is_pay_confirm%
-  %essentials_nickname%
-  %essentials_godmode%
-  %essentials_jailed%
-  %essentials_kit_last_use_<kitname>%
-  %essentials_has_kit_<kitname>%
-  %essentials_kit_is_available_<kitname>%
-  %essentials_kit_time_until_available_<kitname>%
-  %essentials_pm_recipient%
   %essentials_afk%
   %essentials_afk_reason%
-  %essentials_vanished%
   %essentials_fly%
-  %essentials_is_muted%
-  %essentials_unique%
-  %essentials_msg_ignore%
+  %essentials_godmode%
+  %essentials_has_kit_<kitname>%
+  %essentials_home_<number>
+  %essentials_home_<number>_<x|y|z>%
   %essentials_homes_set%
   %essentials_homes_max%
+  %essentials_is_muted%
+  %essentials_is_pay_confirm%
+  %essentials_is_pay_enabled%
+  %essentials_is_teleport_enabled%
+  %essentials_jailed%
+  %essentials_jailed_time_remaining%
+  %essentials_kit_is_available_<kitname>%
+  %essentials_kit_last_use_<kitname>%
+  %essentials_kit_time_until_available_<kitname>%
+  %essentials_kit_time_until_available_raw_<kitname>%
+  %essentials_msg_ignore%
+  %essentials_nickname%
+  %essentials_nickname_stripped%
+  %essentials_pm_recipient%
   %essentials_safe_online%
+  %essentials_unique%
+  %essentials_vanished%
+  %essentials_world_date%
+  %essentials_world_time%
+  %essentials_world_time_24%
   %essentials_worth%
+  %essentials_worth:<item>%
   ```
 
 ----
