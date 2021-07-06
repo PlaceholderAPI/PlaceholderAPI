@@ -43,9 +43,11 @@ import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.configuration.ExpansionSort;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.libs.JSONMessage;
 import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -136,73 +138,93 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
         .append('\n');
   }
 
-  @NotNull
-  private static JSONMessage getMessage(@NotNull final List<CloudExpansion> expansions,
-      final int page, final int limit, @NotNull final String target) {
+  private static Component getMessage(@NotNull final List<CloudExpansion> expansions,
+                                                           final int page, final int limit, @NotNull final String target) {
     final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
 
-    final StringBuilder tooltip = new StringBuilder();
-    final JSONMessage message = JSONMessage.create();
+    // Overall being send
+    final StringBuilder sb = new StringBuilder();
 
     for (int index = 0; index < expansions.size(); index++) {
       final CloudExpansion expansion = expansions.get(index);
 
-      tooltip.append("&bClick to download this expansion!")
+      // Hover desc per expansion
+      final StringBuilder desc = new StringBuilder();
+
+      desc.append("<blue>Click to download this expansion!")
           .append('\n')
           .append('\n')
-          .append("&bAuthor: &f")
+          .append("<blue>Author: <white>")
           .append(expansion.getAuthor())
           .append('\n')
-          .append("&bVerified: ")
-          .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
+          .append("<blue>Verified: ")
+          .append(expansion.isVerified() ? "<green><bold✔</bold></green>" : "<red><bold>❌</bold></red>")
           .append('\n')
-          .append("&bLatest Version: &f")
+          .append("<blue>Latest Version: <white>")
           .append(expansion.getLatestVersion())
           .append('\n')
-          .append("&bReleased: &f")
+          .append("<blue>Released: <white>")
           .append(format.format(expansion.getLastUpdate()));
 
       final String description = expansion.getDescription();
       if (description != null && !description.isEmpty()) {
-        tooltip.append('\n')
+        desc.append('\n')
             .append('\n')
-            .append("&f")
+            .append("<white>")
             .append(description.replace("\r", "").trim());
       }
 
-      message.then(Msg.color(
-          "&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6"
-              : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+      StringBuilder content = new StringBuilder();
 
-      message.tooltip(Msg.color(tooltip.toString()));
-      message.suggestCommand("/papi ecloud download " + expansion.getName());
+      content.append("<dark_gray>")
+              .append(index + ((page - 1) * PAGE_SIZE) + 1)
+              .append(".</dark_gray> ")
+              .append(expansion.shouldUpdate() ? "<gold>" : expansion.hasExpansion() ? "<green>" : "<gray>")
+              .append(expansion.getName());
+
+//      message.append(Component.text(Msg.color(
+//          "&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6"
+//              : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+
+      sb.append("<click:suggest_command:/papi ecloud download ")
+              .append(expansion.getName())
+              .append("><hover:show_text:'")
+              .append(desc)
+              .append("'>")
+              .append(content)
+              .append("</hover>");
+
+     // message.tooltip(Msg.color(tooltip.toString()));
+     // message.suggestCommand("/papi ecloud download " + expansion.getName());
 
       if (index < expansions.size() - 1) {
-        message.newline();
+        sb.append("\n");
       }
 
-      tooltip.setLength(0);
+      //tooltip.setLength(0);
     }
 
     if (limit > 1) {
-      message.newline();
+    //  message.newline();
+      sb.append("\n");
 
-      message.then("◀")
-          .color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+    //  message.then("◀").color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+      sb.append(page > 1 ? "<gray>" : "<dark_gray>").append("◀");
       if (page > 1) {
-        message.runCommand("/papi ecloud list " + target + " " + (page - 1));
+     //   message.runCommand("/papi ecloud list " + target + " " + (page - 1));
       }
 
-      message.then(" " + page + " ").color(ChatColor.GREEN);
+     // message.then(" " + page + " ").color(ChatColor.GREEN);
+      sb.append("<green> " + page + " </green>");
 
-      message.then("▶")
-          .color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+    //  message.then("▶").color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+      sb.append(page < limit ? "<gray>" : "<dark_gray>").append("▶");
       if (page < limit) {
-        message.runCommand("/papi ecloud list " + target + " " + (page + 1));
+    //    message.runCommand("/papi ecloud list " + target + " " + (page + 1));
       }
     }
 
-    return message;
+    return MiniMessage.get().parse(sb.toString());
   }
 
   private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions,
@@ -321,8 +343,9 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
-    final JSONMessage message = getMessage(values, page, limit, params.get(0));
-    message.send(((Player) sender));
+    final Component message = getMessage(values, page, limit, params.get(0));
+    plugin.adventure().player((Player) sender).sendMessage(message);
+    //message.send(((Player) sender));
   }
 
   @Override
