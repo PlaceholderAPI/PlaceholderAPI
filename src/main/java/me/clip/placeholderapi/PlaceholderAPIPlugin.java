@@ -75,7 +75,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final LocalExpansionManager localExpansionManager = new LocalExpansionManager(this);
   @NotNull
   private final CloudExpansionManager cloudExpansionManager = new CloudExpansionManager(this);
-  @NotNull
+
   private BukkitAudiences adventure;
 
   /**
@@ -143,7 +143,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     setupMetrics();
     setupExpansions();
 
-    this.adventure = BukkitAudiences.create(this);
+    adventure = BukkitAudiences.create(this);
 
     if (config.isCloudEnabled()) {
       getCloudExpansionManager().load();
@@ -162,6 +162,9 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     HandlerList.unregisterAll(this);
 
     Bukkit.getScheduler().cancelTasks(this);
+
+    adventure.close();
+    adventure = null;
 
     instance = null;
   }
@@ -191,11 +194,12 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   @NotNull
-  public BukkitAudiences adventure() {
-    if(this.adventure == null) {
+  public BukkitAudiences getAdventure() {
+    if(adventure == null) {
       throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
     }
-    return this.adventure;
+
+    return adventure;
   }
 
   /**

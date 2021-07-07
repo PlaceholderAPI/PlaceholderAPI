@@ -26,14 +26,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -47,12 +40,23 @@ import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
+import net.minecraft.network.chat.ChatMessageType;
+import net.minecraft.network.chat.IChatBaseComponent;
+import net.minecraft.network.protocol.game.PacketPlayOutChat;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
+import org.w3c.dom.Text;
+
+import static net.kyori.adventure.text.Component.*;
+import static net.kyori.adventure.text.format.NamedTextColor.*;
 
 public final class CommandECloudExpansionList extends PlaceholderCommand {
 
@@ -139,92 +143,58 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
   }
 
   private static Component getMessage(@NotNull final List<CloudExpansion> expansions,
-                                                           final int page, final int limit, @NotNull final String target) {
+      final int page, final int limit, @NotNull final String target) {
     final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
 
-    // Overall being send
-    final StringBuilder sb = new StringBuilder();
+    final TextComponent.Builder message = text();
 
     for (int index = 0; index < expansions.size(); index++) {
       final CloudExpansion expansion = expansions.get(index);
+      final TextComponent.Builder line = text();
 
-      // Hover desc per expansion
-      final StringBuilder desc = new StringBuilder();
+      final int expansionNumber = index + ((page - 1) * PAGE_SIZE) + 1;
+      line.append(text(expansionNumber + ". ", DARK_GRAY));
 
-      desc.append("<blue>Click to download this expansion!")
-          .append('\n')
-          .append('\n')
-          .append("<blue>Author: <white>")
-          .append(expansion.getAuthor())
-          .append('\n')
-          .append("<blue>Verified: ")
-          .append(expansion.isVerified() ? "<green><bold✔</bold></green>" : "<red><bold>❌</bold></red>")
-          .append('\n')
-          .append("<blue>Latest Version: <white>")
-          .append(expansion.getLatestVersion())
-          .append('\n')
-          .append("<blue>Released: <white>")
-          .append(format.format(expansion.getLastUpdate()));
+      final NamedTextColor expansionColour;
 
-      final String description = expansion.getDescription();
-      if (description != null && !description.isEmpty()) {
-        desc.append('\n')
-            .append('\n')
-            .append("<white>")
-            .append(description.replace("\r", "").trim());
+      if (expansion.shouldUpdate()) {
+        expansionColour = GOLD;
+      } else {
+        if (expansion.hasExpansion()) {
+          expansionColour = GREEN;
+        } else {
+          expansionColour = GRAY;
+        }
       }
 
-      StringBuilder content = new StringBuilder();
+      line.append(text(expansion.getName(), expansionColour));
 
-      content.append("<dark_gray>")
-              .append(index + ((page - 1) * PAGE_SIZE) + 1)
-              .append(".</dark_gray> ")
-              .append(expansion.shouldUpdate() ? "<gold>" : expansion.hasExpansion() ? "<green>" : "<gray>")
-              .append(expansion.getName());
+      line.clickEvent(ClickEvent.suggestCommand("/papi ecloud download " + expansion.getName()));
 
-//      message.append(Component.text(Msg.color(
-//          "&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6"
-//              : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+      final TextComponent.Builder hoverText = text("Click to download this expansion!", AQUA)
+              .append(newline()).append(newline())
+              .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
+              .append(newline())
+              .append(text("Verified: ", AQUA)).append(text(expansion.isVerified() ? "✔" : "❌", expansion.isVerified() ? GREEN : RED, TextDecoration.BOLD))
+              .append(newline())
+              .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
+              .toBuilder();
 
-      sb.append("<click:suggest_command:/papi ecloud download ")
-              .append(expansion.getName())
-              .append("><hover:show_text:'")
-              .append(desc)
-              .append("'>")
-              .append(content)
-              .append("</hover>");
+      Optional.ofNullable(expansion.getDescription())
+              .filter(description -> !description.isEmpty())
+              .ifPresent(description -> hoverText.append(newline()).append(newline())
+                      .append(text(description.replace("\r", "").trim(), WHITE))
+              );
 
-     // message.tooltip(Msg.color(tooltip.toString()));
-     // message.suggestCommand("/papi ecloud download " + expansion.getName());
+      line.hoverEvent(HoverEvent.showText(hoverText.build()));
+      line.append(newline());
 
-      if (index < expansions.size() - 1) {
-        sb.append("\n");
-      }
-
-      //tooltip.setLength(0);
+      message.append(line.build());
     }
 
-    if (limit > 1) {
-    //  message.newline();
-      sb.append("\n");
+    message.append(text("test").hoverEvent(HoverEvent.showText(text("testtt"))));
 
-    //  message.then("◀").color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
-      sb.append(page > 1 ? "<gray>" : "<dark_gray>").append("◀");
-      if (page > 1) {
-     //   message.runCommand("/papi ecloud list " + target + " " + (page - 1));
-      }
-
-     // message.then(" " + page + " ").color(ChatColor.GREEN);
-      sb.append("<green> " + page + " </green>");
-
-    //  message.then("▶").color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
-      sb.append(page < limit ? "<gray>" : "<dark_gray>").append("▶");
-      if (page < limit) {
-    //    message.runCommand("/papi ecloud list " + target + " " + (page + 1));
-      }
-    }
-
-    return MiniMessage.get().parse(sb.toString());
+    return message.build();
   }
 
   private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions,
@@ -344,7 +314,9 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
     final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
     final Component message = getMessage(values, page, limit, params.get(0));
-    plugin.adventure().player((Player) sender).sendMessage(message);
+//    plugin.getAdventure().player((Player) sender).sendMessage(message);
+    System.out.println(GsonComponentSerializer.gson().serialize(message));
+    ((CraftPlayer) sender).getHandle().b.sendPacket(new PacketPlayOutChat(IChatBaseComponent.ChatSerializer.a(GsonComponentSerializer.gson().serialize(message)), ChatMessageType.a, ((CraftPlayer) sender).getUniqueId()));
     //message.send(((Player) sender));
   }
 
