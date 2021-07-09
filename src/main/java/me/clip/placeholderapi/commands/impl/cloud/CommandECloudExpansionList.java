@@ -44,16 +44,10 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
-import net.minecraft.network.chat.ChatMessageType;
-import net.minecraft.network.chat.IChatBaseComponent;
-import net.minecraft.network.protocol.game.PacketPlayOutChat;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
-import org.w3c.dom.Text;
 
 import static net.kyori.adventure.text.Component.*;
 import static net.kyori.adventure.text.format.NamedTextColor.*;
@@ -138,8 +132,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     builder.append(" &bPage&7: &a")
         .append(page)
-        .append("&r")
-        .append('\n');
+        .append("&r");
   }
 
   private static Component getMessage(@NotNull final List<CloudExpansion> expansions,
@@ -187,12 +180,31 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
               );
 
       line.hoverEvent(HoverEvent.showText(hoverText.build()));
-      line.append(newline());
+
+      if (index != expansions.size() - 1) {
+        line.append(newline());
+      }
 
       message.append(line.build());
     }
 
-    message.append(text("test").hoverEvent(HoverEvent.showText(text("testtt"))));
+    if (limit > 1) {
+      message.append(newline());
+
+      final TextComponent.Builder left = text("◀", page > 1 ? GRAY : DARK_GRAY).toBuilder();
+
+      if (page > 1) {
+        left.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page - 1)));
+      }
+
+      final TextComponent.Builder right = text("▶", page < limit ? GRAY : DARK_GRAY).toBuilder();
+
+      if (page < limit) {
+        right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
+      }
+
+      message.append(left, text(" " + page + " ", GREEN), right);
+    }
 
     return message.build();
   }
@@ -314,10 +326,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
     final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
     final Component message = getMessage(values, page, limit, params.get(0));
-//    plugin.getAdventure().player((Player) sender).sendMessage(message);
-    System.out.println(GsonComponentSerializer.gson().serialize(message));
-    ((CraftPlayer) sender).getHandle().b.sendPacket(new PacketPlayOutChat(IChatBaseComponent.ChatSerializer.a(GsonComponentSerializer.gson().serialize(message)), ChatMessageType.a, ((CraftPlayer) sender).getUniqueId()));
-    //message.send(((Player) sender));
+    plugin.getAdventure().player((Player) sender).sendMessage(message);
   }
 
   @Override
