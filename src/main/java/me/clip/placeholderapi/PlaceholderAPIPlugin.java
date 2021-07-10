@@ -32,6 +32,8 @@ import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.serializer.craftbukkit.MinecraftComponentSerializer;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bstats.charts.SimplePie;
@@ -74,6 +76,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final LocalExpansionManager localExpansionManager = new LocalExpansionManager(this);
   @NotNull
   private final CloudExpansionManager cloudExpansionManager = new CloudExpansionManager(this);
+
+  private BukkitAudiences adventure;
 
   /**
    * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
@@ -140,6 +144,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     setupMetrics();
     setupExpansions();
 
+    adventure = BukkitAudiences.create(this);
+
     if (config.isCloudEnabled()) {
       getCloudExpansionManager().load();
     }
@@ -157,6 +163,9 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     HandlerList.unregisterAll(this);
 
     Bukkit.getScheduler().cancelTasks(this);
+
+    adventure.close();
+    adventure = null;
 
     instance = null;
   }
@@ -183,6 +192,15 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @NotNull
   public CloudExpansionManager getCloudExpansionManager() {
     return cloudExpansionManager;
+  }
+
+  @NotNull
+  public BukkitAudiences getAdventure() {
+    if(adventure == null) {
+      throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
+    }
+
+    return adventure;
   }
 
   /**
