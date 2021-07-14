@@ -275,7 +275,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @param def The default boolean to return when the ConfigurationSection is null
    * @return boolean from the provided path or the default one provided
    */
-  @NotNull
   public final boolean getBoolean(@NotNull final String path, final boolean def) {
     final ConfigurationSection section = getConfigSection();
     return section == null ? def : section.getBoolean(path, def);

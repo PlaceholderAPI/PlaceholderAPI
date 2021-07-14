@@ -25,7 +25,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class PlaceholderHook {
-
+  
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {
       return onPlaceholderRequest((Player) player, params);
