@@ -3404,6 +3404,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[OreMarket](https://www.spigotmc.org/resources/91015/)
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %oremarket_change_<slot>%
+  %oremarket_cost_<slot>%
+  %oremarket_name_<slot>%
+  %oremarket_percent_<slot>%
+  %oremarket_stock_<slot>%
+  %oremarket_value_<slot>%
+  ```
+
+----
+
 - ### **[Outpost](https://www.spigotmc.org/resources/38657/)**
   > NO DOWNLOAD COMMAND
   
