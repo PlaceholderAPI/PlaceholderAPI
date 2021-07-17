@@ -3405,7 +3405,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[OreMarket](https://www.spigotmc.org/resources/91015/)
+- ### **[OreMarket](https://www.spigotmc.org/resources/91015/)**
   > NO DOWNLOAD COMMAND
   
   ```
