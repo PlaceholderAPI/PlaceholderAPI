@@ -279,6 +279,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[OnePlayerSleep](#oneplayersleep)**
     - **[OnTime](#ontime)**
     - **[OreAnnouncer](#oreannouncer)**
+    - **[OreMarket](#oremarket)**
     - **[Outpost](#outpost)**
 
   - ### **P**
