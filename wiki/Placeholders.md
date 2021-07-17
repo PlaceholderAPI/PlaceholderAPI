@@ -208,6 +208,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[OnePlayerSleep](#oneplayersleep)**
 - **[OnTime](#ontime)**
 - **[OreAnnouncer](#oreannouncer)**
+- **[OreMarket](#oremarket
 - **[Outpost](#outpost)**
 
 ## **P**
@@ -3013,6 +3014,19 @@ You can find more information on the [Wiki!](https://github.com/HappyRogelio7/Na
 
 You can find an up-to-date list of the placeholders in [their wiki](https://alessiodp.com/docs/oreannouncer/placeholders#outside).
 
+----
+
+- ### **[OreMarket](https://www.spigotmc.org/resources/91015/)**
+> NO DOWNLOAD COMMAND
+
+```
+%oremarket_name_{item-slot}%
+%oremarket_stock_{item-slot}%
+%oremarket_value_{item-slot}%
+%oremarket_cost_{item-slot}%
+%oremarket_change_{item-slot}%
+%oremarket_percent_{item-slot}%
+```
 ----
 
 - ### **[Outpost](https://www.spigotmc.org/resources/38657/)**
