@@ -590,6 +590,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[OreAnnouncer](https://www.spigotmc.org/resources/33464/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#oreannouncer]]**]
+- **[OreMarket](https://www.spigotmc.org/resources/91015/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#oremarket]]**]
 - **[Outpost](https://www.spigotmc.org/resources/38657/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#outpost]]**]
