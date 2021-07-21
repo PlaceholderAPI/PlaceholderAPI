@@ -7,10 +7,12 @@
 ### Setup
 **[[Hook into PlaceholderAPI]]**
 - [[First steps|Hook-into-PlaceholderAPI#first-steps]]
-- [[Adding placeholders to PlaceholderAPI|Hook-into-PlaceholderAPI#adding-placeholders-to-placeholderapi]]
-  - [[PlaceholderExpansion]]
-    - [[Without an external plugin|PlaceholderExpansion#without-an-external-plugin]]
-    - [[With external plugin|PlaceholderExpansion#with-external-plugin]]
+- [[Adding placeholders to PlaceholderAPI|PlaceholderExpansion]]
+  - [[Common Parts|PlaceholderExpansion#common-parts]]
+  - [[Without an external plugin|PlaceholderExpansion#without-a-plugin]]
+  - [[With an external Plugin (Separate Jar)|PlaceholderExpansion#with-a-plugin-external-jar]]
+  - [[With an external Plugin (Internal class)|PlaceholderExpansion#with-a-plugin-internal-class]]
+  - [[Relational Placeholders|PlaceholderExpansion#relational-placeholders]]
 - [[Setting placeholders in your plugin|Hook-into-PlaceholderAPI#setting-placeholders-in-your-plugin]]
 
 ### Other
