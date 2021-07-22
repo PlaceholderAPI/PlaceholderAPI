@@ -306,6 +306,18 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   /**
+   * Logs the provided message and Throwable with the provided Level in the console.
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param level The Level at which the message should be logged with
+   * @param msg The message to log
+   * @param throwable The Throwable to log
+   */
+  public void log(Level level, String msg, Throwable throwable) {
+    getPlaceholderAPI().getLogger().log(level, msg, throwable);
+  }
+
+  /**
    * Logs the provided message with Level "info".
    * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
    *
@@ -333,6 +345,17 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    */
   public void severe(String msg) {
     log(Level.SEVERE, msg);
+  }
+
+  /**
+   * Logs the provided message and Throwable with Level "severe" (error).
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param msg The message to log
+   * @param throwable The Throwable to log
+   */
+  public void severe(String msg, Throwable throwable) {
+    log(Level.SEVERE, msg, throwable);
   }
   
   
