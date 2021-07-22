@@ -5099,7 +5099,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 
 ----
 
-- ### **[VenturaCalendar](https://www.spigotmc.org/resources/venturacalendar-your-own-custom-calendar.94096/)**
+- ### **[VenturaCalendar](https://www.spigotmc.org/resources/94096/)**
   > NO DOWNLOAD COMMAND
 
   ```
