@@ -610,20 +610,24 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
   
+  `[]` is optional and `<>` is required.
+  
   ```
   %formatter_number_format_<number>%
   %formatter_number_format_[locale]:[format]_<number>%
   
-  %formatter_number_time_<number>%
-  %formatter_number_time_seconds_<number>% # Handles number as seconds
-  %formatter_number_time_secs_<number>%    # Handles number as seconds
-  %formatter_number_time_minutes_<number>% # Handles number as minutes
-  %formatter_number_time_mins_<number>%    # Handles number as minutes
-  %formatter_number_time_hours_<number>%   # Handles number as hours
-  %formatter_number_time_hrs_<number>%     # Handles number as hours
+  %formatter_number_from:<timeunit>_to:<timeunit>_<number>% # Converts <number> from one time unit to another
   
-  %formatter_replace_<target>_<replacement>_<text>%
-  %formatter_text_substring_<start:end>_<text>%
+  %formatter_number_time_<number>%
+  %formatter_number_time_fromSeconds_<number>% # Handles number as seconds
+  %formatter_number_time_fromSecs_<number>%    # Handles number as seconds
+  %formatter_number_time_fromMinutes_<number>% # Handles number as minutes
+  %formatter_number_time_fromMins_<number>%    # Handles number as minutes
+  %formatter_number_time_fromHours_<number>%   # Handles number as hours
+  %formatter_number_time_fromHrs_<number>%     # Handles number as hours
+  
+  %formatter_text_replace_<target>_<replacement>_<text>%
+  %formatter_text_substring_[start]:[end]_<text>%
   %formatter_text_uppercase_<text>%
   %formatter_text_lowercase_<text>%
   ```
