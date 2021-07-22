@@ -41,17 +41,17 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 public class SomeExpansion extends PlaceholderExpansion {
 
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return "someauthor";
     }
     
     @Override
-    public String getIdentifier(){
+    public String getIdentifier() {
         return "example";
     }
 
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return "1.0.0";
     }
 }
@@ -105,30 +105,33 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 public class SomeExpansion extends PlaceholderExpansion {
 
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return "someauthor";
     }
     
     @Override
-    public String getIdentifier(){
+    public String getIdentifier() {
         return "example";
     }
 
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return "1.0.0";
     }
     
     @Override
-    public String onRequest(OfflinePlayer player, String params){
-        if(params.equalsIgnoreCase("name")){
+    public String onRequest(OfflinePlayer player, String params) {
+        if(params.equalsIgnoreCase("name")) {
             return player == null ? null : player.getName(); // "name" requires the player to be valid
-    
-        if(params.equalsIgnoreCase("placeholder1")){
+        }
+        
+        if(params.equalsIgnoreCase("placeholder1")) {
             return "Placeholder Text 1";
-    
-        if(params.equalsIgnoreCase("placeholder2")){
+        }
+        
+        if(params.equalsIgnoreCase("placeholder2")) {
             return "Placeholder Text 2";
+        }
         
         return null; // Placeholder is unknown by the Expansion
     }
@@ -149,7 +152,7 @@ One way to bypass this is to override the `canRegister()` method with the follow
 SomePlugin plugin; // This would be the plugin your expansion depends on
 
 @Override
-public boolean canregister(){
+public boolean canregister() {
     // This sets plugin to the SomePlugin instance you get through the PluginManager
     return (plugin = (SomePlugin) Bukkit.getPluginManager().getPlugin(getRequiredPlugin())) != null;
 }
@@ -172,37 +175,39 @@ public class SomeExpansion extends PlaceholderExpansion {
     SomePlugin plugin; // This instance is assigned in canRegister()
     
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return "someauthor";
     }
     
     @Override
-    public String getIdentifier(){
+    public String getIdentifier() {
         return "example";
     }
 
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return "1.0.0";
     }
     
     @Override
-    public String getRequiredPlugin(){
+    public String getRequiredPlugin() {
         return "SomePlugin";
     }
     
     @Override
-    public boolean canRegister(){
+    public boolean canRegister() {
         return (plugin = (SomePlugin) Bukkit.getPluginManager().getPlugin(getRequiredPlugin())) != null;
     }
     
     @Override
-    public String onRequest(OfflinePlayer player, String params){
+    public String onRequest(OfflinePlayer player, String params) {
         if(params.equalsIgnoreCase("placeholder1")){
             return plugin.getConfig().getString("placeholders.placeholder1", "default1");
-    
+        }
+        
         if(params.equalsIgnoreCase("placeholder2")){
             return plugin.getConfig().getString("placeholders.placeholder2", "default2");
+        }
         
         return null; // Placeholder is unknown by the expansion
     }
@@ -223,7 +228,7 @@ Here is a small code example of how dependency injection may look:
 public class SomeExpansion extends PlaceholderExpansion {
     final SomePlugin plugin; // The instance is created in the constructor and won't be modified, so it can be final
     
-    public SomeExpansion(SomePlugin plugin){
+    public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
     }
 }
@@ -244,37 +249,39 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 private SomePlugin plugin;
     
-    public SomeExpansion(SomePlugin plugin){
+    public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
     }
     
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return "someauthor";
     }
     
     @Override
-    public String getIdentifier(){
+    public String getIdentifier() {
         return "example";
     }
 
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return "1.0.0";
     }
     
     @Override
-    public boolean persist(){
+    public boolean persist() {
         return true; // This is required or else PlaceholderAPI will unregister the Expansion on reload
     }
     
     @Override
-    public String onRequest(OfflinePlayer player, String params){
+    public String onRequest(OfflinePlayer player, String params) {
         if(params.equalsIgnoreCase("placeholder1")){
             return plugin.getConfig().getString("placeholders.placeholder1", "default1");
-    
-        if(params.equalsIgnoreCase("placeholder2")){
+        }
+        
+        if(params.equalsIgnoreCase("placeholder2")) {
             return plugin.getConfig().getString("placeholders.placeholder2", "default2");
+        }
         
         return null; // Placeholder is unknown by the Expansion
     }
@@ -291,12 +298,12 @@ package at.helpch.placeholderapi.example
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class SomePlugin extends JavaPlugin{
+public class SomePlugin extends JavaPlugin {
     
     @Override
-    public void onEnable(){
+    public void onEnable() {
         // Small check to make sure that PlaceholderAPI is installed
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
               new SomeExpansion(this).register();
         }
     }
@@ -328,40 +335,41 @@ public class SomeExpansion extends PlaceholderExpansion implements Relational {
 
     SomePlugin plugin;
     
-    public SomeExpansion(SomePlugin plugin){
+    public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
     }
     
     @Override
-    public String getAuthor(){
+    public String getAuthor() {
         return "someauthor";
     }
     
     @Override
-    public String getIdentifier(){
+    public String getIdentifier() {
         return "example";
     }
 
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return "1.0.0";
     }
     
     @Override
-    public boolean persist(){
+    public boolean persist() {
         return true; // This is required or else PlaceholderAPI will unregister the Expansion on reload
     }
     
     @Override
-    public String onPlaceholderRequest(Player one, Player two, String identifier){
+    public String onPlaceholderRequest(Player one, Player two, String identifier) {
         if(one == null || two == null)
             return null; // We require both Players to be online
             
-        if(params.equalsIgnoreCase("friend")){
-            if(plugin.areFriends(one, two))
+        if(params.equalsIgnoreCase("friend")) {
+            if(plugin.areFriends(one, two)) {
                 return ChatColor.GREEN + one.getName() + " and " + two.getName() + " are friends!";
-            else
+            } else {
                 return ChatColor.GREEN + one.getName() + " and " + two.getName() + " are not friends!";
+            }
         }
         
         return null; // Placeholder is unknown by the Expansion
