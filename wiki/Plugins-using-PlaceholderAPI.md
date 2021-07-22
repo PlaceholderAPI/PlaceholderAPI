@@ -990,6 +990,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[VentureChat](https://www.spigotmc.org/resources/771/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[VenturahCalendar](https://www.spigotmc.org/resources/94096/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#venturacalendar]]**]
 - **[ViaVersion](https://www.spigotmc.org/resources/19254/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#viaversion]]**]

@@ -386,6 +386,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Vault](#vault)**
       - [Economy](#economy)
       - [Permissions](#permissions)
+    - **[VenturaCalendar](#venturacalendar)**
     - **[ViaVersion](#viaversion)**
     - **[VKAutoPickup](#vkautopickup)**
     - **[VoteParty](#voteparty)**
@@ -5094,6 +5095,27 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %vault_ranksuffix%
   %vault_ranksuffix_#%
   %vault_prefix_color%
+  ```
+
+----
+
+- ### **[VenturaCalendar](https://www.spigotmc.org/resources/94096/)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %venturacalendar_date_tick%
+  %venturacalendar_date_second%
+  %venturacalendar_date_minute%
+  %venturacalendar_date_hour%
+  %venturacalendar_date_day%
+  %venturacalendar_date_day_name%
+  %venturacalendar_date_dayofweek%
+  %venturacalendar_date_week%
+  %venturacalendar_date_month%
+  %venturacalendar_date_month_name%
+  %venturacalendar_date_year%
+  %venturacalendar_date_era%
+  %venturacalendar_date_era_name%
   ```
 
 ----
