@@ -532,7 +532,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %changeoutput_<options>_<input>_<matcher>_<output-if-matched>_<output-if-not-matched>%
   ```
   
-  * \<options>
+  * `<options>`
     * equals - match the input exactly
     * ignorecase - match the input while ignoring cases
     * ignorecolor - match the input while ignoring colour codes
@@ -541,10 +541,10 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     * \> - check if the input is larger than the matcher
     * <= - check if the input is less than or equal to the matcher
     * < - check if the input is less than the matcher
-  * \<input> - this is your text that you wish to replace
-  * \<match> - this is the text we will be looking for to meet the conditions
-  * \<output-if-matched> - if the input meets the condition, this text will be displayed
-  * \<output-if-not-matched> - if the input does not meet the condition, this text will be displayed instead
+  * `<input>` - this is your text that you wish to replace
+  * `<match>` - this is the text we will be looking for to meet the conditions
+  * `<output-if-matched>` - if the input meets the condition, this text will be displayed
+  * `<output-if-not-matched>` - if the input does not meet the condition, this text will be displayed instead
 
   *All arguments can be replaced with other placeholders, wrapped in* `{}`
 
