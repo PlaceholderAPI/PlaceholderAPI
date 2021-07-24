@@ -84,6 +84,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **R**
     - **[RainbowColor](#rainbowcolor)**
     - **[RandomColor](#randomcolor)**
+    - **[RandomNumber](#randomnumber)**
     - **[RedisBungee](#redisbungee)**
     - **[RelCon](#relcon)**
     - **[RNG](#rng)**
@@ -248,6 +249,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[LegendQuest](#legendquest)**
     - **[LemonMobCoins](#lemonmobcoins)**
     - **[LevelledMobs](#levelledmobs)**
+    - **[LevelUp](#levelup)**
     - **[LuckPerms](#luckperms)**
     - **[LWC](#lwc)**
 
@@ -1012,6 +1014,20 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %randomcolor_combined%
   %randomcolor_format%
   %randomcolor_selected_<option1,option2,option3,...>%
+  ```
+
+----
+
+- ### **RandomNumber**
+  > /papi ecloud download RandomNumber
+  
+  It returns a auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer number, the returned random number will also be an integer.
+  
+  ```
+  %randomnumber_number%
+  %randomnumber_number_scale%
+  %randomnumber_number_min_max%
+  %randomnumber_number_min_max_scale%
   ```
 
 ----
@@ -2998,6 +3014,35 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %levelledmobs_level%
   %levelledmobs_displayname%
+  ```
+----
+
+- ### **[LevelUp](https://polymart.org/resource/levelup.457/)**
+  > /papi ecloud download LevelUp
+  ```
+  %levelup_item_level%
+  %levelup_player_level%
+  %levelup_pickaxe_level%
+  %levelup_pickaxe_level_percentage%
+  %levelup_pickaxe_level_meter%
+  %levelup_pickaxe_xp%
+  %levelup_pickaxe_xp_percentage%
+  %levelup_pickaxe_xp_meter%
+  %levelup_pickaxe_xp_to_next%
+  %levelup_sword_level%
+  %levelup_sword_level_percentage%
+  %levelup_sword_level_meter%
+  %levelup_sword_xp%
+  %levelup_sword_xp_percentage%
+  %levelup_sword_xp_meter%
+  %levelup_sword_xp_to_next%
+  %levelup_bow_level%
+  %levelup_bow_level_percentage%
+  %levelup_bow_level_meter%
+  %levelup_bow_xp%
+  %levelup_bow_xp_percentage%
+  %levelup_bow_xp_meter%
+  %levelup_bow_xp_to_next%
   ```
 ----
 
