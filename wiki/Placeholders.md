@@ -26,6 +26,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   
   - ### **C**
     - **[CalculateNumbers](#calculatenumbers)**
+    - **[ChangeOutput](#changeoutput)**
     - **[CheckItem](#checkitem)**
     - **[CooldownBar](#cooldownbar)**
   
@@ -519,6 +520,33 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %number_numbervalue,armor:{a placeholder from your ranking plugin}%
   %number_numbervalue,decimal,armor:{a placeholder from your ranking plugin}%
   ```
+
+----
+
+- ### **ChangeOutput**
+  > /papi ecloud download changeitem
+
+  Alows you to change the output based on what other placeholders return
+  
+  ```
+  %changeoutput_<options>_<input>_<matcher>_<output-if-matched>_<output-if-not-matched>%
+  ```
+  
+  * `<options>`
+    * equals - match the input exactly
+    * ignorecase - match the input while ignoring cases
+    * ignorecolor - match the input while ignoring colour codes
+    * contains - check if the match contains input
+    * \>= - check if the input is larger than or equal to the matcher
+    * \> - check if the input is larger than the matcher
+    * <= - check if the input is less than or equal to the matcher
+    * < - check if the input is less than the matcher
+  * `<input>` - this is your text that you wish to replace
+  * `<match>` - this is the text we will be looking for to meet the conditions
+  * `<output-if-matched>` - if the input meets the condition, this text will be displayed
+  * `<output-if-not-matched>` - if the input does not meet the condition, this text will be displayed instead
+
+  *All arguments can be replaced with other placeholders, wrapped in* `{}`
 
 ----
 
