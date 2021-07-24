@@ -3017,7 +3017,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
 ----
 
-- ### **[LevelUp](https://polymart.org/resource/levelup.457/)**
+- ### **[LevelUp](https://polymart.org/resource/457/)**
   > /papi ecloud download LevelUp
   ```
   %levelup_item_level%
@@ -3044,6 +3044,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %levelup_bow_xp_meter%
   %levelup_bow_xp_to_next%
   ```
+  
 ----
 
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
