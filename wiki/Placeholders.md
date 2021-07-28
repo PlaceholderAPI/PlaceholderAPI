@@ -3050,6 +3050,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %levelup_item_level%
   %levelup_player_level%
+  %levelup_pickaxe_block_count%
   %levelup_pickaxe_level%
   %levelup_pickaxe_level_percentage%
   %levelup_pickaxe_level_meter%
@@ -3057,6 +3058,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %levelup_pickaxe_xp_percentage%
   %levelup_pickaxe_xp_meter%
   %levelup_pickaxe_xp_to_next%
+  %levelup_sword_kill_count%
   %levelup_sword_level%
   %levelup_sword_level_percentage%
   %levelup_sword_level_meter%
@@ -3064,6 +3066,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %levelup_sword_xp_percentage%
   %levelup_sword_xp_meter%
   %levelup_sword_xp_to_next%
+  %levelup_bow_kill_count%
   %levelup_bow_level%
   %levelup_bow_level_percentage%
   %levelup_bow_level_meter%
