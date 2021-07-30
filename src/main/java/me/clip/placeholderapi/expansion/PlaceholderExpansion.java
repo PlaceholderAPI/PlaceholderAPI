@@ -314,7 +314,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @param throwable The Throwable to log
    */
   public void log(Level level, String msg, Throwable throwable) {
-    getPlaceholderAPI().getLogger().log(level, msg, throwable);
+    getPlaceholderAPI().getLogger().log(level, "[" + getName() + "] " + msg, throwable);
   }
 
   /**
