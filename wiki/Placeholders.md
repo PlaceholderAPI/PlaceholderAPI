@@ -240,7 +240,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Karma](#karma)**
     - **[KillStats](#killstats)**
     - **[KitPvP](#kitpvp)**
-    - **[KingdomsX](#kingdoms)**
+    - **[KingdomsX](#kingdomsx)**
     - **[KP-PVP](#kp-pvp)**
 
   - ### **L**
@@ -2879,7 +2879,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[KingdomsX](https://www.spigotmc.org/resources/77670/)**
   > NO DOWNLOAD COMMAND
   
-You can find an up-to-date list of placeholders on the [KingdomsX wiki](https://github.com/CryptoMorin/KingdomsX/wiki/Placeholders).
+  You can find an up-to-date list of placeholders on the [KingdomsX wiki](https://github.com/CryptoMorin/KingdomsX/wiki/Placeholders).
 
 ----
 
