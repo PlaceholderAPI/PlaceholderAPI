@@ -90,4 +90,9 @@ public final class PlaceholderAPIConfig {
     return plugin.getConfig().getString("boolean.false", "false");
   }
 
+  @NotNull
+  public String stringNull(){
+  	return plugin.getConfig().getString("nullString", "null");
+  }
+
 }
