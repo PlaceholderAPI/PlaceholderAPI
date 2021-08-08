@@ -4934,13 +4934,17 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_version%
   %tokenenchant_<enchantment>_fullrefund%
   %tokenenchant_<enchantment>_fullrefund_long%
-  %tokenenthcnat_<enchantment>_refund_Y%
-  %tokenenthcnat_<enchantment>_refund_Y_long%
+  %tokenenchnat_<enchantment>_refund_Y%
+  %tokenenchnat_<enchantment>_refund_Y_long%
+  %tokenenchant_tokenmultiplier%
+  %tokenenchant_<enchantment>_occurrencemultiplier%
   %tokenenchant_repair_cost%
   %tokenenchant_repair_cost_long%
   %tokenenchant_repair_cost_num%
   %tokenenchant_repair_cost_num_long%
   %tokenenchant_enchantments%
+  %tokenenchant_baltop_<X>_name% : The name of X-th baltop player
+  %tokenenchant_baltop_<X>_balance% : The balance of X-th baltop player
   ```
 
 ----
