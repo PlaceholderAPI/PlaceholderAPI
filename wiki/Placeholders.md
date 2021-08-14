@@ -97,6 +97,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Sound](#sound)**
     - **[SpeedPerSec](#speedpersec)**
     - **[Statistic](#statistic)**
+    - **[String](#string)**
   
   - ### **T**
     - **[Team](#team)**
@@ -1285,6 +1286,32 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 ----
 
+- ### **String**
+  > /papi ecloud download String
+  
+  More info about the expansion can be found on the [GitHub-Repository](https://github.com/BlitzOffline/StringExpansion).
+  
+  ```
+  %string_equals_<string>_<match>%
+  %string_equalsIgnoreCase_<string>_<match>%
+  %string_contains_<string>_<match>%
+  %string_containsIgnoreCase_<string>_<match>%
+  %string_indexOf_<string>_<match>%
+  %string_lastIndexOf_<string>_<match>%
+  %string_substring_<startIndex>_<string>%
+  %string_substring_<startIndex>,<endIndex>_<string>%
+  %string_charAt_<index>_<string>%
+  %string_shuffle_<string>%
+  %string_uppercase_<string>%
+  %string_lowercase_<string>%
+  %string_length_<string>%
+  %string_random_<string1>_<string2>_<string3>_<etc>%
+  ```
+  
+  Supports placeholders using brackets: `{placeholder}`
+
+----
+L
 - ### **[Team](https://www.spigotmc.org/resources/74959/)**
   > NO DOWNLOAD COMMAND
   
