@@ -27,7 +27,9 @@ This page shows all commands, including with a detailed description of what ever
 
 - **[Other Commands](#other-commands)**
   - [`/papi dump`](#papi-dump)
+  - [`/papi help`](#papi-help)
   - [`/papi reload`](#papi-reload)
+  - [`/papi version`](#papi-version)
 
 ----
 
@@ -223,7 +225,15 @@ These are other commands of PlaceholderAPI that don't fit any of the above categ
   **Description**:  
   Pastes useful information from PlaceholderAPI such as plugin version, server version and installed expansions to https://paste.helpch.at for simple sharing and support.
 
+- #### `/papi help`
+  **Description**:  
+  Displays all the commands PlaceholderAPI currently offers.
+
 - #### `/papi reload`
   **Description**:  
   Reloads the config settings.  
   You need to use this command after [downloading Expansions](#papi-ecloud-download) from the eCloud or they won't be properly registered.
+
+- #### `/papi version`
+  **Description**:  
+  Shows the current version and authors of PlaceholderAPI.
