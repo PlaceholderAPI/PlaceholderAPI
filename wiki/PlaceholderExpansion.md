@@ -29,7 +29,6 @@ For starters, you need to decide what type of [`PlaceholderExpansion`][placehold
 ### Common Parts
 All shown examples will share the same common parts that belong to the [`PlaceholderExpansion`][placeholderexpansion] class.  
 In order to not repeat the same basic info for each method throughout this page, and to greatly reduce its overall length, we will cover the most basic/necessary ones here.
-``
 
 #### Basic PlaceholderExpansion Structure
 ```java
@@ -62,9 +61,9 @@ Let's quickly break down the different methods you have to implement.
   This method allows you to set the name of the expansion's author.
 - #### getIdentifier
   The name that should be used to identify the placeholders for this expansion.  
-  The identifier is the string after the starting `%` and before the first `_` (`%identifier_values%`) and, therefore, cannot contain any `_`s.
+  The identifier is the string after the starting `%` and before the first `_` (`%identifier_values%`) and, therefore, cannot contain `_`, `%` or spaces.
   
-  If you want to use `_` in your expansion's name, you can override the optional `getName()` method.
+  If you still want to use the previously mentioned symbols can you override the `getName()` method to change the Expansion's displayname.
 - #### getVersion
   This is a string, which means it can contain more than just a number. This is used to determine if a new update is available or not when the expansion is shared on the eCloud.
   For expansions that are part of a plugin, this does not really matter.
