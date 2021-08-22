@@ -4947,6 +4947,8 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 
 - ### **[TokenEnchant](https://www.spigotmc.org/resources/2287/)**
   > /papi ecloud download TokenEnchant
+
+  If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
   
   ```
   %tokenenchant_token%
@@ -4954,8 +4956,11 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_token_num%
   %tokenenchant_token_num_long%
   %tokenenchant_<enchantment>_level%
-  %tokenenchant_<enchantment>_cost%
-  %tokenenchant_<enchantment>_cost_long%
+  %tokenenchant_<enchantment>_cost% : cost to increment the enchantmnt level by one from the current level
+  %tokenenchant_<enchantment>_costmax% : cost to increment the enchantmnt level to its maax one from the current level 
+  %tokenenchant_<enchantment>_cost_<X>% : cost to increment the enchantmnt level by <X> from the current level
+  %tokenenchant_<enchantment>_fullcostmax% : cost to enchant the max level from 0 level
+  %tokenenchant_<enchantment>_fullcost_<X>% : cost to enchant the <X> level from 0 level
   %tokenenchant_<enchantment>_max%
   %tokenenchant_<enchantment>_description% 
   %tokenenchant_<enchantment>_version%
