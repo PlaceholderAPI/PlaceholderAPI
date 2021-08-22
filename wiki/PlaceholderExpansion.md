@@ -148,7 +148,7 @@ It is worth noting that it is a bit more difficult to make a separate jar file t
 One way to bypass this is to override the `canRegister()` method with the following code:
 
 ```java
-SomePlugin plugin; // This would be the plugin your expansion depends on
+private SomePlugin plugin = null; // This would be the plugin your expansion depends on
 
 @Override
 public boolean canregister() {
@@ -171,7 +171,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class SomeExpansion extends PlaceholderExpansion {
 
-    SomePlugin plugin; // This instance is assigned in canRegister()
+    private SomePlugin plugin; // This instance is assigned in canRegister()
     
     @Override
     public String getAuthor() {
@@ -225,7 +225,7 @@ Here is a small code example of how dependency injection may look:
 
 ```java
 public class SomeExpansion extends PlaceholderExpansion {
-    final SomePlugin plugin; // The instance is created in the constructor and won't be modified, so it can be final
+    private final SomePlugin plugin; // The instance is created in the constructor and won't be modified, so it can be final
     
     public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
@@ -246,7 +246,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 
 public class SomeExpansion extends PlaceholderExpansion {
 
-private SomePlugin plugin;
+    private final SomePlugin plugin;
     
     public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
@@ -332,7 +332,7 @@ import me.clip.placeholderapi.expansion.Relational;
 
 public class SomeExpansion extends PlaceholderExpansion implements Relational {
 
-    SomePlugin plugin;
+    private final SomePlugin plugin;
     
     public SomeExpansion(SomePlugin plugin) {
         this.plugin = plugin;
