@@ -936,6 +936,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[TrickOrTreat](https://www.spigotmc.org/resources/61370/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#trickortreat]]**]
+- **[Two Factor Authentication](https://www.spigotmc.org/resources/85594/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#twofactorauthentication]]**]
 
 ----
 ## U
