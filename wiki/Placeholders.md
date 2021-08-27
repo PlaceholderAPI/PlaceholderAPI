@@ -378,6 +378,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Treasures](#treasures)**
     - **[Trey's Double Jump](#treys-double-jump)**
     - **[TrickOrTreat](#trickortreat)**
+    - **[Two Factor Authentication](#twofactorauthentication)**
 
   - ### **U**
     - **[USkyBlock](#uskyblock)**
@@ -5103,6 +5104,18 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %trickortreat_chestplate%
   %trickortreat_leggings%
   %trickortreat_boots%
+  ```
+
+----
+
+- ### **[Two Factor Authentication](https://www.spigotmc.org/resources/85594/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %2fa_is_enabled%
+  %2fa_time_since_enabled%
+  %2fa_key%
+  %2fa_is_required%
   ```
 
 ----
