@@ -130,6 +130,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[AcidIsland](#acidisland)**
     - **[AcidIslandRate](#acidislandrate)**
     - **[Advanced Abilities](#advanced-abilities)**
+    - **[Advanced Achievements](#advanced-achievements)**
     - **[AdvancedAFK](#advancedafk)**
     - **[AdvancedCustomMenu+](#advancedcustommenu)**
     - **[AdvancedLottery](#advancedlottery)**
@@ -1459,6 +1460,131 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %advancedabilities_max_mana%
   %advancedabilities_max_abilities_limit%
   %advancedabilities_selected_abilities%
+  ```
+
+----
+
+- ### **[Advanced Achievements](https://www.spigotmc.org/resources/83466/)**
+  > NO DOWNLOAD COMMAND
+  
+  Global achievement placeholders:
+  ```
+  %aach_achievements% - Return the total unlocked achievements (number)
+  %aach_achievements_percentage% - Return the total unlocked achievements (%)
+  %aach_total_achievements% - Return the total achievements (number)
+  ```
+  Normal achievement placeholders for individual player statistics:
+  ```
+  %aach_connections%
+  %aach_deaths%
+  %aach_arrows%
+  %aach_snowballs%
+  %aach_eggs%
+  %aach_fish%
+  %aach_treasures%
+  %aach_itembreaks%
+  %aach_eatenitems%
+  %aach_shear%
+  %aach_milk%
+  %aach_lavabuckets%
+  %aach_waterbuckets%
+  %aach_trades%
+  %aach_anvilsused%
+  %aach_enchantments%
+  %aach_beds%
+  %aach_maxlevel%
+  %aach_consumedpotions%
+  %aach_playedtime%
+  %aach_itemdrops%
+  %aach_itempickups%
+  %aach_hoeplowings%
+  %aach_fertilising%
+  %aach_taming%
+  %aach_brewing%
+  %aach_fireworks%
+  %aach_musicdiscs%
+  %aach_enderpearls%
+  %aach_smelting%
+  %aach_petmastergive%
+  %aach_petmasterreceive%
+  %aach_distancefoot%
+  %aach_distancepig%
+  %aach_distancehorse%
+  %aach_distanceminecart%
+  %aach_distanceboat%
+  %aach_distancegliding%
+  %aach_distancellama%
+  %aach_distancesneaking%
+  %aach_raidswon%
+  %aach_riptides%
+  %aach_advancementscompleted%
+  ```
+  Multiple Achievement Placeholders for individual player statistics:
+  ```
+  %aach_places_[blockname]% - example: %aach_places_dirt%
+  %aach_breaks_[blockname]% - example: %aach_breaks_stone%
+  %aach_kills_[entityname]% - example: %aach_kills_zombie%
+  %aach_targetsshot_[targetname]% - example: %aach_targetsshot_zombie%
+  %aach_crafts_[itemname]% - example: %aach_crafts_bread%
+  %aach_breeding_[entityname]% - example: %aach_breeding_pig%
+  %aach_playercommands_[command]% - example: %aach_playercommands_aach list%
+  %aach_custom_[customname]% - example: %aach_custom_votes%
+  %aach_jobsreborn_[job]% - example: %aach_jobsreborn_hunter%
+  ```
+  Placeholders for total category achievements:
+  ```
+  %aach_total_connections%
+  %aach_total_deaths%
+  %aach_total_arrows%
+  %aach_total_snowballs%
+  %aach_total_eggs%
+  %aach_total_fish%
+  %aach_total_treasures%
+  %aach_total_itembreaks%
+  %aach_total_eatenitems%
+  %aach_total_shear%
+  %aach_total_milk%
+  %aach_total_lavabuckets%
+  %aach_total_waterbuckets%
+  %aach_total_trades%
+  %aach_total_anvilsused%
+  %aach_total_enchantments%
+  %aach_total_beds%
+  %aach_total_maxlevel%
+  %aach_total_consumedpotions%
+  %aach_total_playedtime%
+  %aach_total_itemdrops%
+  %aach_total_itempickups%
+  %aach_total_hoeplowings%
+  %aach_total_fertilising%
+  %aach_total_taming%
+  %aach_total_brewing%
+  %aach_total_fireworks%
+  %aach_total_musicdiscs%
+  %aach_total_enderpearls%
+  %aach_total_smelting%
+  %aach_total_petmastergive%
+  %aach_total_petmasterreceive%
+  %aach_total_distancefoot%
+  %aach_total_distancepig%
+  %aach_total_distancehorse%
+  %aach_total_distanceminecart%
+  %aach_total_distanceboat%
+  %aach_total_distancegliding%
+  %aach_total_distancellama%
+  %aach_total_distancesneaking%
+  %aach_total_raidswon%
+  %aach_total_riptides%
+  %aach_total_advancementscompleted%
+  %aach_total_places%
+  %aach_total_breaks%
+  %aach_total_kills%
+  %aach_total_targetsshot%
+  %aach_total_crafts%
+  %aach_total_breeding%
+  %aach_total_playercommands%
+  %aach_total_custom%
+  %aach_total_jobsreborn%
   ```
 
 ----
