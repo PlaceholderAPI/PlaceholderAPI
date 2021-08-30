@@ -1464,7 +1464,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[Advanced Achievements](https://www.spigotmc.org/resources/advanced-achievements.83466/)**
+- ### **[Advanced Achievements](https://www.spigotmc.org/resources/83466/)**
   > NO DOWNLOAD COMMAND
   
   Global achievement placeholders:
