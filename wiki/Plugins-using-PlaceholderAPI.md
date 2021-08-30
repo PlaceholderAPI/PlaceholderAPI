@@ -41,7 +41,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Advanced Abilities](https://www.spigotmc.org/resources/21983/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#advanced-abilities]]**]
-- **[Advanced Achievements](https://www.spigotmc.org/resources/advanced-achievements.83466/)**
+- **[Advanced Achievements](https://www.spigotmc.org/resources/83466/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#advanced-achievements]]**]
 - **[AdvancedAFK](https://www.spigotmc.org/resources/60761/)**
