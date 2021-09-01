@@ -738,9 +738,6 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RoyalCommands](https://www.spigotmc.org/resources/4113/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#royalcommands]]**]
-- **[RTP](https://www.spigotmc.org/resources/rtp.94812/)**
-  - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#rtp]]**]
 - **[ReferralSystem](https://www.spigotmc.org/resources/29709/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#referralsystem]]**]
@@ -750,6 +747,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rpginventory]]**]
+- **[RTP](https://www.spigotmc.org/resources/rtp.94812/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#rtp]]**]
 
 ----
 ## S

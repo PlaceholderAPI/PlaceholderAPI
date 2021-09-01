@@ -252,6 +252,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 - **[RogueParkour](#rogueparkour)**
 - **[RoyalCommands](#royalcommands)**
 - **[RPGInventory](#rpginventory)**
+- **[RTP](#rtp)**
 
 ## **S**
 - **[Seasons](#seasons)**
@@ -3681,17 +3682,6 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 ```
 ----
 
-- ### **[RTP](https://www.spigotmc.org/resources/rtp.94812/)**
-> NO DOWNLOAD COMMAND
-
-```
-%rtp_player_status%
-%rtp_total_queue_length%
-%rtp_public_queue_length%
-%rtp_personal_queue_length%
-```
-----
-
 - ### **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
 > NO DOWNLOAD COMMAND
 
@@ -3704,6 +3694,17 @@ You can find an up-to-date list of the placeholders in [their wiki](https://gith
 %rpginv_armor_bonus%
 %rpginv_speed_bonus%
 %rpginv_jump_bonus%
+```
+----
+
+- ### **[RTP](https://www.spigotmc.org/resources/rtp.94812/)**
+> NO DOWNLOAD COMMAND
+
+```
+%rtp_player_status%
+%rtp_total_queue_length%
+%rtp_public_queue_length%
+%rtp_personal_queue_length%
 ```
 ----
 
