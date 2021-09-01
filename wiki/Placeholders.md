@@ -329,6 +329,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[RogueParkour](#rogueparkour)**
     - **[RoyalCommands](#royalcommands)**
     - **[RPGInventory](#rpginventory)**
+	- **[RTP](#rtp)**
 
   - ### **S**
     - **[Seasons](#seasons)**
@@ -4360,6 +4361,18 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %rpginv_speed_bonus%
   %rpginv_jump_bonus%
   ```
+
+----
+
+- ### **[RTP](https://www.spigotmc.org/resources/rtp.94812/)**
+  > NO DOWNLOAD COMMAND
+
+```
+%rtp_player_status%
+%rtp_total_queue_length%
+%rtp_public_queue_length%
+%rtp_personal_queue_length%
+```
 
 ----
 
