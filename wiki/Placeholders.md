@@ -4372,6 +4372,10 @@ Please see [this discussion][list] for a list of all expansions officially maint
 %rtp_total_queue_length%
 %rtp_public_queue_length%
 %rtp_personal_queue_length%
+%rtp_teleport_world%
+%rtp_teleport_x%
+%rtp_teleport_y%
+%rtp_teleport_z%
 ```
 
 ----
