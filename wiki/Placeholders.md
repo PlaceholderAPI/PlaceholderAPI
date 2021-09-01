@@ -329,7 +329,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[RogueParkour](#rogueparkour)**
     - **[RoyalCommands](#royalcommands)**
     - **[RPGInventory](#rpginventory)**
-	- **[RTP](#rtp)**
+    - **[RTP](#rtp)**
 
   - ### **S**
     - **[Seasons](#seasons)**
