@@ -1,4 +1,4 @@
-﻿[SimpleDateFormat]: http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
+[SimpleDateFormat]: http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
 [TimeZoneIDs]: https://garygregory.wordpress.com/2013/06/18/what-are-the-java-timezone-ids/
 
 [list]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/510
@@ -329,6 +329,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[RogueParkour](#rogueparkour)**
     - **[RoyalCommands](#royalcommands)**
     - **[RPGInventory](#rpginventory)**
+    - **[RTP](#rtp)**
 
   - ### **S**
     - **[Seasons](#seasons)**
@@ -4359,6 +4360,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %rpginv_armor_bonus%
   %rpginv_speed_bonus%
   %rpginv_jump_bonus%
+  ```
+
+----
+
+- ### **[RTP](https://www.spigotmc.org/resources/94812/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %rtp_player_status%
+  %rtp_total_queue_length%
+  %rtp_public_queue_length%
+  %rtp_personal_queue_length%
+  %rtp_teleport_world%
+  %rtp_teleport_x%
+  %rtp_teleport_y%
+  %rtp_teleport_z%
   ```
 
 ----

@@ -756,6 +756,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rpginventory]]**]
+- **[RTP](https://www.spigotmc.org/resources/94812/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#rtp]]**]
 
 ----
 ## S
