@@ -3814,9 +3814,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %plotsquared_currentplot_owner%
   %plotsquared_currentplot_members%
   %plotsquared_currentplot_members_added%
+  %plotsquared_currentplot_members_added_list%
   %plotsquared_currentplot_members_trusted%
+  %plotsquared_currentplot_members_trusted_list%
   %plotsquared_currentplot_members_denied%
-  %plotsquared_world_name%
+  %plotsquared_currentplot_members_denied_list%
+  %plotsquared_currentplot_world_name%
+  %plotsquared_currentplot_can_build%
   %plotsquared_has_plot_<world>%
   %plotsquared_currentplot_x%
   %plotsquared_currentplot_y%
@@ -3830,6 +3834,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %plotsquared_allowed_plot_count%
   %plotsquared_currentplot_localflag_<flag>%
   %plotsquared_currentplot_flag_<flag>%
+  %plotsquared_currentplot_creationdate%
   ```
 
 ----
