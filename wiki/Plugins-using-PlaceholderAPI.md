@@ -587,6 +587,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[OnTime](http://dev.bukkit.org/bukkit-plugins/ontime/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ontime]]**]
+- **[OpEconomy](https://www.spigotmc.org/resources/95674)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#opeconomy]]**]
 - **[OreAnnouncer](https://www.spigotmc.org/resources/33464/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#oreannouncer]]**]
