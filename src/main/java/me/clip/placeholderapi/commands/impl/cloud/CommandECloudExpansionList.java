@@ -2,9 +2,9 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -26,14 +26,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -43,14 +36,21 @@ import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.configuration.ExpansionSort;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
-import me.clip.placeholderapi.libs.JSONMessage;
 import me.clip.placeholderapi.util.Format;
 import me.clip.placeholderapi.util.Msg;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
+
+import static net.kyori.adventure.text.Component.*;
+import static net.kyori.adventure.text.format.NamedTextColor.*;
 
 public final class CommandECloudExpansionList extends PlaceholderCommand {
 
@@ -132,77 +132,81 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     builder.append(" &bPage&7: &a")
         .append(page)
-        .append("&r")
-        .append('\n');
+        .append("&r");
   }
 
-  @NotNull
-  private static JSONMessage getMessage(@NotNull final List<CloudExpansion> expansions,
+  private static Component getMessage(@NotNull final List<CloudExpansion> expansions,
       final int page, final int limit, @NotNull final String target) {
     final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
 
-    final StringBuilder tooltip = new StringBuilder();
-    final JSONMessage message = JSONMessage.create();
+    final TextComponent.Builder message = text();
 
     for (int index = 0; index < expansions.size(); index++) {
       final CloudExpansion expansion = expansions.get(index);
+      final TextComponent.Builder line = text();
 
-      tooltip.append("&bClick to download this expansion!")
-          .append('\n')
-          .append('\n')
-          .append("&bAuthor: &f")
-          .append(expansion.getAuthor())
-          .append('\n')
-          .append("&bVerified: ")
-          .append(expansion.isVerified() ? "&a&l✔&r" : "&c&l❌&r")
-          .append('\n')
-          .append("&bLatest Version: &f")
-          .append(expansion.getLatestVersion())
-          .append('\n')
-          .append("&bReleased: &f")
-          .append(format.format(expansion.getLastUpdate()));
+      final int expansionNumber = index + ((page - 1) * PAGE_SIZE) + 1;
+      line.append(text(expansionNumber + ". ", DARK_GRAY));
 
-      final String description = expansion.getDescription();
-      if (description != null && !description.isEmpty()) {
-        tooltip.append('\n')
-            .append('\n')
-            .append("&f")
-            .append(description.replace("\r", "").trim());
+      final NamedTextColor expansionColour;
+
+      if (expansion.shouldUpdate()) {
+        expansionColour = GOLD;
+      } else {
+        if (expansion.hasExpansion()) {
+          expansionColour = GREEN;
+        } else {
+          expansionColour = GRAY;
+        }
       }
 
-      message.then(Msg.color(
-          "&8" + (index + ((page - 1) * PAGE_SIZE) + 1) + ".&r " + (expansion.shouldUpdate() ? "&6"
-              : expansion.hasExpansion() ? "&a" : "&7") + expansion.getName()));
+      line.append(text(expansion.getName(), expansionColour));
 
-      message.tooltip(Msg.color(tooltip.toString()));
-      message.suggestCommand("/papi ecloud download " + expansion.getName());
+      line.clickEvent(ClickEvent.suggestCommand("/papi ecloud download " + expansion.getName()));
 
-      if (index < expansions.size() - 1) {
-        message.newline();
+      final TextComponent.Builder hoverText = text("Click to download this expansion!", AQUA)
+              .append(newline()).append(newline())
+              .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
+              .append(newline())
+              .append(text("Verified: ", AQUA)).append(text(expansion.isVerified() ? "✔" : "❌", expansion.isVerified() ? GREEN : RED, TextDecoration.BOLD))
+              .append(newline())
+              .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
+              .toBuilder();
+
+      Optional.ofNullable(expansion.getDescription())
+              .filter(description -> !description.isEmpty())
+              .ifPresent(description -> hoverText.append(newline()).append(newline())
+                      .append(text(description.replace("\r", "").trim(), WHITE))
+              );
+
+      line.hoverEvent(HoverEvent.showText(hoverText.build()));
+
+      if (index != expansions.size() - 1) {
+        line.append(newline());
       }
 
-      tooltip.setLength(0);
+      message.append(line.build());
     }
 
     if (limit > 1) {
-      message.newline();
+      message.append(newline());
 
-      message.then("◀")
-          .color(page > 1 ? ChatColor.GRAY : ChatColor.DARK_GRAY);
+      final TextComponent.Builder left = text("◀", page > 1 ? GRAY : DARK_GRAY).toBuilder();
+
       if (page > 1) {
-        message.runCommand("/papi ecloud list " + target + " " + (page - 1));
+        left.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page - 1)));
       }
 
-      message.then(" " + page + " ").color(ChatColor.GREEN);
+      final TextComponent.Builder right = text("▶", page < limit ? GRAY : DARK_GRAY).toBuilder();
 
-      message.then("▶")
-          .color(page < limit ? ChatColor.GRAY : ChatColor.DARK_GRAY);
       if (page < limit) {
-        message.runCommand("/papi ecloud list " + target + " " + (page + 1));
+        right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
       }
+
+      message.append(left, text(" " + page + " ", GREEN), right);
     }
 
-    return message;
+    return message.build();
   }
 
   private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions,
@@ -321,8 +325,8 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
-    final JSONMessage message = getMessage(values, page, limit, params.get(0));
-    message.send(((Player) sender));
+    final Component message = getMessage(values, page, limit, params.get(0));
+    plugin.getAdventure().player((Player) sender).sendMessage(message);
   }
 
   @Override

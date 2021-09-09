@@ -1,8 +1,10 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id "java"
     id "maven-publish"
-    id "net.minecrell.licenser" version "0.4.1"
-    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "org.cadixdev.licenser" version "0.6.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 group "me.clip"
@@ -11,30 +13,32 @@ version "2.10.10-DEV-${System.getProperty("BUILD_NUMBER")}"
 description "An awesome placeholder provider!"
 
 repositories {
+    maven({ url = "https://oss.sonatype.org/content/repositories/snapshots/" })
+
     mavenCentral()
+    mavenLocal()
 
     maven({ url = "https://repo.codemc.org/repository/maven-public" })
     maven({ url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" })
 }
 
 dependencies {
-    implementation "com.google.code.gson:gson:2.8.6"
-    implementation "org.bstats:bstats-bukkit:1.5"
+    implementation "org.bstats:bstats-bukkit:2.2.1"
 
-    compileOnly "org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT"
+    implementation "net.kyori:adventure-platform-bukkit:4.0.0-SNAPSHOT"
+
+    compileOnly "org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT"
     compileOnly "org.jetbrains:annotations:19.0.0"
 
     testImplementation "org.openjdk.jmh:jmh-core:1.23"
     testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.23"
 
-    testCompile "org.junit.jupiter:junit-jupiter-engine:5.6.2"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.2"
 }
 
 processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
-    }
+    filter ReplaceTokens, tokens: [name: rootProject.name, version: project.version.toString(), description: project.description]
 }
 
 java {
@@ -60,7 +64,7 @@ shadowJar {
     archiveClassifier.set("")
 
     relocate "org.bstats", "me.clip.placeholderapi.metrics"
-    relocate "com.google.gson", "me.clip.placeholderapi.libs.gson"
+    relocate "net.kyori", "me.clip.placeholderapi.libs.kyori"
 }
 
 license {
@@ -70,12 +74,8 @@ license {
         header = file('config/headers/main.txt')
     }
 
-    matching('**/JSONMessage.java') {
-        header = file('config/headers/jsonmessage.txt')
-    }
-
     ext {
-        year = 2020
+        year = 2021
     }
 }
 
@@ -83,15 +83,16 @@ test {
     useJUnitPlatform()
 }
 
-sourceSets {
-    test.compileClasspath += configurations.compileOnly
-    test.runtimeClasspath += configurations.compileOnly
+configurations {
+    testImplementation {
+        extendsFrom(compileOnly)
+    }
 }
 
 publishing {
     repositories {
         maven {
-            if (version.contains("-DEV-")) {
+            if (version.contains("-DEV")) {
                 url = uri("https://repo.extendedclip.com/content/repositories/dev/")
             } else {
                 url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")

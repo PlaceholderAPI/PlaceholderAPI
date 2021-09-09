@@ -2,9 +2,9 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -46,18 +46,25 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.io.File;
+import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public final class LocalExpansionManager implements Listener {
 
   @NotNull
   private static final String EXPANSIONS_FOLDER_NAME = "expansions";
 
+  @NotNull
+  private static final Set<MethodSignature> ABSTRACT_EXPANSION_METHODS = Arrays.stream(PlaceholderExpansion.class.getDeclaredMethods())
+          .filter(method -> Modifier.isAbstract(method.getModifiers()))
+          .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
+          .collect(Collectors.toSet());
 
   @NotNull
   private final File folder;
@@ -153,20 +160,33 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final Class<? extends PlaceholderExpansion> clazz) {
     try {
       final PlaceholderExpansion expansion = createExpansionInstance(clazz);
-      if (expansion == null || !expansion.register()) {
+
+      Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
+      Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
+      Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
+
+      if (!expansion.register()) {
         return Optional.empty();
       }
 
       return Optional.of(expansion);
-    } catch (final LinkageError ex) {
-      plugin.getLogger().severe("Failed to load Expansion class " + clazz.getSimpleName() +
-          " (Is a dependency missing?)");
-      plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
+    } catch (LinkageError | NullPointerException ex) {
+      final String reason;
+
+      if (ex instanceof LinkageError) {
+        reason = " (Is a dependency missing?)";
+      } else {
+        reason = " - One of its properties is null which is not allowed!";
+      }
+
+      plugin.getLogger().severe("Failed to load expansion class " + clazz.getSimpleName() +
+              reason);
+      plugin.getLogger().log(Level.SEVERE, "", ex);
     }
 
     return Optional.empty();
   }
-  
+
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase();
@@ -341,6 +361,16 @@ public final class LocalExpansionManager implements Listener {
         if (expansionClass == null) {
           plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
                   " a class which extends PlaceholderExpansion.");
+          return null;
+        }
+
+        Set<MethodSignature> expansionMethods = Arrays.stream(expansionClass.getDeclaredMethods())
+                .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
+                .collect(Collectors.toSet());
+        if (!expansionMethods.containsAll(ABSTRACT_EXPANSION_METHODS)) {
+          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have the" +
+                  " required methods declared for a PlaceholderExpansion.");
+          return null;
         }
 
         return expansionClass;
@@ -365,8 +395,8 @@ public final class LocalExpansionManager implements Listener {
       if (ex.getCause() instanceof LinkageError) {
         throw ((LinkageError) ex.getCause());
       }
-      
-      plugin.getLogger().warning("There was an issue with loading an expansion");
+
+      plugin.getLogger().warning("There was an issue with loading an expansion.");
       
       return null;
     }

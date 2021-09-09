@@ -2,9 +2,9 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -21,7 +21,17 @@
 package me.clip.placeholderapi.commands.impl.local;
 
 import com.google.common.io.CharStreams;
-import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.util.Msg;
+import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,19 +51,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.commands.PlaceholderCommand;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Unmodifiable;
 
 public final class CommandDump extends PlaceholderCommand {
 
   @NotNull
   private static final String URL = "https://paste.helpch.at/";
+
+  @NotNull
+  private static final Gson gson = new Gson();
 
   @NotNull
   private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter
@@ -102,9 +107,8 @@ public final class CommandDump extends PlaceholderCommand {
 
         try (final InputStream stream = connection.getInputStream()) {
           //noinspection UnstableApiUsage
-          final String json = CharStreams
-              .toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
-          return JsonParser.parseString(json).getAsJsonObject().get("key").getAsString();
+          final String json = CharStreams.toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
+          return gson.fromJson(json, JsonObject.class).get("key").getAsString();
         }
       } catch (final IOException ex) {
         throw new CompletionException(ex);

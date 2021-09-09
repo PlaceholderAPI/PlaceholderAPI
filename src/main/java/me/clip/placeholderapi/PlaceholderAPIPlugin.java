@@ -2,9 +2,9 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2020 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI free software: you can redistribute it and/or modify
+ * PlaceholderAPI is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -32,7 +32,11 @@ import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.serializer.craftbukkit.MinecraftComponentSerializer;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.AdvancedPie;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
@@ -72,6 +76,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final LocalExpansionManager localExpansionManager = new LocalExpansionManager(this);
   @NotNull
   private final CloudExpansionManager cloudExpansionManager = new CloudExpansionManager(this);
+
+  private BukkitAudiences adventure;
 
   /**
    * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
@@ -138,6 +144,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     setupMetrics();
     setupExpansions();
 
+    adventure = BukkitAudiences.create(this);
+
     if (config.isCloudEnabled()) {
       getCloudExpansionManager().load();
     }
@@ -155,6 +163,9 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     HandlerList.unregisterAll(this);
 
     Bukkit.getScheduler().cancelTasks(this);
+
+    adventure.close();
+    adventure = null;
 
     instance = null;
   }
@@ -183,6 +194,15 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     return cloudExpansionManager;
   }
 
+  @NotNull
+  public BukkitAudiences getAdventure() {
+    if(adventure == null) {
+      throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
+    }
+
+    return adventure;
+  }
+
   /**
    * Obtain the configuration class for PlaceholderAPI.
    *
@@ -205,14 +225,13 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   private void setupMetrics() {
-    final Metrics metrics = new Metrics(this);
-    metrics.addCustomChart(new Metrics.SimplePie("using_expansion_cloud",
+    final Metrics metrics = new Metrics(this, 438);
+    metrics.addCustomChart(new SimplePie("using_expansion_cloud",
         () -> getPlaceholderAPIConfig().isCloudEnabled() ? "yes" : "no"));
 
-    metrics.addCustomChart(
-        new Metrics.SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
+    metrics.addCustomChart(new SimplePie("using_spigot", () -> getServerVersion().isSpigot() ? "yes" : "no"));
 
-    metrics.addCustomChart(new Metrics.AdvancedPie("expansions_used", () -> {
+    metrics.addCustomChart(new AdvancedPie("expansions_used", () -> {
       final Map<String, Integer> values = new HashMap<>();
 
       for (final PlaceholderExpansion expansion : getLocalExpansionManager().getExpansions()) {
