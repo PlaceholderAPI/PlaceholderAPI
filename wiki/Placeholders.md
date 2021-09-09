@@ -283,6 +283,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **O**
     - **[OnePlayerSleep](#oneplayersleep)**
     - **[OnTime](#ontime)**
+    - **[OpEconomy](#opeconomy)**
     - **[OreAnnouncer](#oreannouncer)**
     - **[OreMarket](#oremarket)**
     - **[Outpost](#outpost)**
@@ -3622,6 +3623,24 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %ontime_time_played_week%
   %ontime_referrals_week%
   %ontime_votes_week%
+  
+  ```
+----
+- ### **[OpEconomy](https://www.spigotmc.org/resources/95674)**
+  > NO DOWNLOAD COMMAND
+  
+  [Description and usage for placeholders](https://github.com/ThisKarolGajda/OpEconomy/wiki/PlaceholderAPI)
+
+  ```
+  %opeconomy_money_<player_name>% - Gets custom player money
+  %opeconomy_money% - Gets money
+  %opeconomy_baltop_number_<number>% - Gets player's name
+  %opeconomy_baltop_player_position_<player_name>% - Gets player's position
+  %opeconomy_currency% - Shows active currency
+  %opeconomy_is_active_code_<code>% - Boolean, if code is active
+  %opeconomy_max_uses_code_<code>% - Shows max uses for code
+  %opeconomy_uses_code_<code>% - Shows uses for code
+  %opeconomy_reward_code_<code>% - Shows reward for entering code
   ```
 
 ----
