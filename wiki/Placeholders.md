@@ -3636,6 +3636,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %opeconomy_money% - Gets money
   %opeconomy_baltop_number_<number>% - Gets player's name
   %opeconomy_baltop_player_position_<player_name>% - Gets player's position
+  %opeconomy_baltop_player_position% - Getting position of player
   %opeconomy_currency% - Shows active currency
   %opeconomy_is_active_code_<code>% - Boolean, if code is active
   %opeconomy_max_uses_code_<code>% - Shows max uses for code
