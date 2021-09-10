@@ -159,6 +159,20 @@ Here are the following rules:
   - If your plugin provides own Placeholders for other plugins to use can you set `**[[Link|Placeholders#:name]]**` where `:name` is the title you set in the placeholders page.
   - If your plugin does not provide own placeholders will you need to set `Link`.
 
+### Make a Pull request
+After you made your changes is it time to make a Pull request.
+
+When you go to the upstream repository, should GitHub already show you a notification that you have commits to PR. Click the `Compare & pull request` button to proceed.
+
+![image](https://user-images.githubusercontent.com/11576465/132784030-c2ffd5e0-fb95-44de-bd77-97a965cc6dbd.png)
+
+By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `docs/wiki` branch.
+
+![image](https://user-images.githubusercontent.com/11576465/132784142-8f752697-7dd7-4afb-bbdc-dc66c570dc3c.png)
+
+Finally, fill out the Pull request template and submit the Pull request.  
+Congratulations! You've successfully made a Pull request for the wiki.
+
 ### Questions?
 If you have any questions, do not hesitate to ask in the [HelpChat Discord][discord] or [open a new discussion][discussion] in this repository. We will be happy to help you.
 
