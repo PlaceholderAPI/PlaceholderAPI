@@ -60,10 +60,10 @@ Let's quickly break down the different methods you have to implement.
 - #### getAuthor
   This method allows you to set the name of the expansion's author.
 - #### getIdentifier
-  The name that should be used to identify the placeholders for this expansion.  
-  The identifier is the string after the starting `%` and before the first `_` (`%identifier_values%`) and, therefore, cannot contain `_`, `%` or spaces.
+  The identifier is the part in the placeholder that is between the first `%` (Or `{` if bracket placeholders are used) and the first `_`.  
+  Because of that can you not use `%`, `{`, `}` or `_` in youd identifier.
   
-  If you still want to use the previously mentioned symbols can you override the `getName()` method to change the Expansion's displayname.
+  If you still want to use those symbols can you override the `getName()` method to display a different name.
 - #### getVersion
   This is a string, which means it can contain more than just a number. This is used to determine if a new update is available or not when the expansion is shared on the eCloud.
   For expansions that are part of a plugin, this does not really matter.
