@@ -103,7 +103,7 @@ There are a few extra rules you need to also keep in mind:
 **Note:**  
 When your Expansion's entry is after and/or before other entries will you need to add `----` before or after it to separate it from other entries.
 
-Example:  
+##### Example:  
 ````markdown
 - ### SomeExpansion
   > NO DOWNLOAD COMMAND
