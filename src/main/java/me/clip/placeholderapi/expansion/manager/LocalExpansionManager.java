@@ -259,7 +259,8 @@ public final class LocalExpansionManager implements Listener {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
     }
 
-    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier());
+    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier() + 
+        " [" + expansion.getVersion() + "]");
 
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
@@ -319,18 +320,35 @@ public final class LocalExpansionManager implements Listener {
         plugin.getLogger().log(Level.SEVERE, "failed to load class files of expansions", exception);
         return;
       }
-
-      final long registered = classes.stream()
+      
+      final List<PlaceholderExpansion> registered = classes.stream()
           .filter(Objects::nonNull)
           .map(this::register)
           .filter(Optional::isPresent)
+          .map(Optional::get)
+          .collect(Collectors.toList());
+
+      final long needsUpdate = registered.stream()
+          .map(expansion -> plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
+          .filter(Objects::nonNull)
+          .filter(CloudExpansion::shouldUpdate)
           .count();
 
-      Msg.msg(sender,
-          registered == 0 ? "&6No expansions were registered!"
-              : registered + "&a placeholder hooks successfully registered!");
+      StringBuilder message = new StringBuilder(registered.size() == 0 ? "&6" : "&a")
+          .append(registered.size())
+          .append(' ')
+          .append("placeholder hook(s) registered!");
+      
+      if (needsUpdate > 0) {
+        message.append("&6")
+            .append(needsUpdate)
+            .append(" placeholder hook(s) have an update available.");
+      }
+      
+      
+      Msg.msg(sender, message.toString());
 
-      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent());
+      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
     });
   }
 

@@ -21,9 +21,11 @@
 package me.clip.placeholderapi.expansion;
 
 /**
- * This interface allows a class which extends a {@link PlaceholderExpansion} to have the clear
- * method called when the implementing expansion is unregistered from PlaceholderAPI. This is useful
- * if we want to do things when the implementing hook is unregistered
+ * Classes implementing this interface will have a {@link #clear() clear void} that is called
+ * by PlaceholderAPI whenever the {@link me.clip.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}
+ * is unregistered.
+ * 
+ * <p>This allows you to execute things such as clearing internal caches, saving data to files, etc.
  *
  * @author Ryan McCarthy
  */
