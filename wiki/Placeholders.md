@@ -1586,6 +1586,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %aach_total_breeding%
   %aach_total_playercommands%
   %aach_total_custom%
+  %aach_total_commands%
   %aach_total_jobsreborn%
   ```
 
