@@ -3,7 +3,6 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     id "java"
     id "maven-publish"
-    id "org.cadixdev.licenser" version "0.6.0"
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
@@ -65,18 +64,6 @@ shadowJar {
 
     relocate "org.bstats", "me.clip.placeholderapi.metrics"
     relocate "net.kyori", "me.clip.placeholderapi.libs.kyori"
-}
-
-license {
-    include '**/*.java'
-
-    matching('**/*.java') {
-        header = file('config/headers/main.txt')
-    }
-
-    ext {
-        year = 2021
-    }
 }
 
 test {
