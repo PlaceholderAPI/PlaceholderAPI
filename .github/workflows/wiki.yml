@@ -31,6 +31,6 @@ jobs:
         env:
           WIKI_DIR: wiki/
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_MAIL: 'actions@github.com'
+          GH_EMAIL: 'actions@github.com'
           GH_NAME: 'github-actions[bot]'
           EXCLUDED_FILES: 'README.md'
