@@ -49,6 +49,7 @@ It also has a list with all available placeholders (Work in progress).
   - [[X|Placeholders#x]]
   - [[Y|Placeholders#y]]
   - [[Z|Placeholders#z]]
+
 - [[Plugin-placeholders|Placeholders#plugin-placeholders-1]]
   - [[A|Placeholders#a-1]]
   - [[B|Placeholders#b-1]]
