@@ -274,7 +274,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Provides own placeholders. [Link]
 - **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
   - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholder#deluxemenus]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#deluxemenus]]**]
 - **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#deluxetags]]**]
