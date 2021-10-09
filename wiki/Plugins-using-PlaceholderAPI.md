@@ -578,6 +578,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 
 ----
 ## O
+- **[OneBlock](https://www.spigotmc.org/resources/83215/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#oneblock]]**]
 - **[OnePlayerSleep](https://www.spigotmc.org/resources/76534/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#oneplayersleep]]**]

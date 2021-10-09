@@ -281,6 +281,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Nicky](#nicky)**
 
   - ### **O**
+    - **[OneBlock](#oneblock)**
     - **[OnePlayerSleep](#oneplayersleep)**
     - **[OnTime](#ontime)**
     - **[OpEconomy](#opeconomy)**
@@ -3591,6 +3592,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %nicky_nickname%
+  ```
+
+----
+
+- ### **[OneBlock](https://www.spigotmc.org/resources/83215/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %ob_lvl%
+  %ob_lvl_name%
+  %ob_break_on_this_lvl%
+  %ob_need_to_lvl_up%
+  %ob_ver%
   ```
 
 ----
