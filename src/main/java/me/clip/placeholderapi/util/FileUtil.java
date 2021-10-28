@@ -45,6 +45,9 @@ public class FileUtil {
 
     JarFile jar = new JarFile(file);
     Enumeration<? extends ZipEntry> entries = jar.entries();
+    if (!entries.hasMoreElements()) {
+      return null;
+    }
     List<Class<? extends T>> classes = new ArrayList<>();
     try (URLClassLoader loader =
         new URLClassLoader(new URL[] {file.toURI().toURL()}, clazz.getClassLoader())) {
