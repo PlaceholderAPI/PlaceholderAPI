@@ -409,7 +409,7 @@ public final class LocalExpansionManager implements Listener {
       }
 
       plugin.getLogger().warning("There was an issue with loading an expansion.");
-
+      
       return null;
     }
   }
