@@ -104,6 +104,10 @@ public final class CloudExpansionManager {
 
   public void kill() {
     clean();
+    ASYNC_EXECUTOR.shutdown();
+    try {
+      ASYNC_EXECUTOR.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+    } catch (InterruptedException ignored) {}
   }
 
   @NotNull
@@ -167,10 +171,6 @@ public final class CloudExpansionManager {
 
     await.values().forEach(future -> future.cancel(true));
     await.clear();
-    ASYNC_EXECUTOR.shutdown();
-    try {
-      ASYNC_EXECUTOR.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-    } catch (InterruptedException ignored) {}
   }
 
   public void fetch(final boolean allowUnverified) {
