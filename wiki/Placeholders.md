@@ -4324,7 +4324,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[RedProtect](http://otmc.org/resources/15841/)**
+- ### **[RedProtect](http://www.spigotmc.org/resources/15841/)**
   > NO DOWNLOAD COMMAND
   
   ```
