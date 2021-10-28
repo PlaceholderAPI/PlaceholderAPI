@@ -340,17 +340,19 @@ public final class LocalExpansionManager implements Listener {
   }
 
   private void unregisterAll() {
+    Collection<PlaceholderExpansion> expansionsCopy;
     expansionsLock.lock();
     try {
-      for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
-        if (expansion.persist()) {
-          continue;
-        }
-
-        expansion.unregister();
-      }
+      expansionsCopy = Sets.newHashSet(expansions.values());
     } finally {
       expansionsLock.unlock();
+    }
+    for (final PlaceholderExpansion expansion : expansionsCopy) {
+      if (expansion.persist()) {
+        continue;
+      }
+
+      expansion.unregister();
     }
   }
 
