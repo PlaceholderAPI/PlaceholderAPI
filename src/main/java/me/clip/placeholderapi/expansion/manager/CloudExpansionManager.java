@@ -45,6 +45,7 @@ import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collector;
@@ -166,6 +167,10 @@ public final class CloudExpansionManager {
 
     await.values().forEach(future -> future.cancel(true));
     await.clear();
+    ASYNC_EXECUTOR.shutdown();
+    try {
+      ASYNC_EXECUTOR.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+    } catch (InterruptedException ignored) {}
   }
 
   public void fetch(final boolean allowUnverified) {
