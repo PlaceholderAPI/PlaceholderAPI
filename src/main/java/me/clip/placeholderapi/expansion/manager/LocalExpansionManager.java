@@ -394,7 +394,7 @@ public final class LocalExpansionManager implements Listener {
       } catch (final Exception ex) {
         throw new CompletionException(ex);
       }
-    });
+    }, CloudExpansionManager.ASYNC_EXECUTOR);
   }
 
 

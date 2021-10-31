@@ -67,7 +67,7 @@ public class FileUtil {
           if (clazz.isAssignableFrom(loaded)) {
             classes.add(loaded.asSubclass(clazz));
           }
-        } catch (NoClassDefFoundError ignored) {
+        } catch (final NoClassDefFoundError ignored) {
         }
       }
     }
@@ -76,4 +76,5 @@ public class FileUtil {
     }
     return classes.get(0);
   }
+
 }
