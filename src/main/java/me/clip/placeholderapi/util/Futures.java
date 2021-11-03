@@ -71,7 +71,6 @@ public final class Futures {
   @NotNull
   private static <T> List<T> awaitCompletion(
       @NotNull final Collection<CompletableFuture<T>> futures) {
-    // TODO: Calling CompletableFuture#join is bad. Find a way to optimise this whole class
     return futures.stream().map(CompletableFuture::join).collect(Collectors.toList());
   }
 
