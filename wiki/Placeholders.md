@@ -5133,7 +5133,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 
 ----
 
-- ### **[TokenEnchant](https://www.spigotmc.org/resources/2287/)**
+- ### **[TokenEnchant](https://polymart.org/resource/155)**
   > /papi ecloud download TokenEnchant
 
   If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
@@ -5150,6 +5150,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_fullcostmax% : cost to enchant the max level from 0 level
   %tokenenchant_<enchantment>_fullcost_<X>% : cost to enchant the <X> level from 0 level
   %tokenenchant_<enchantment>_max%
+  %tokenenchant_<enchantment>_playermax% : the max enchant level for the player - based on the permission.
   %tokenenchant_<enchantment>_description% 
   %tokenenchant_<enchantment>_version%
   %tokenenchant_<enchantment>_fullrefund%
