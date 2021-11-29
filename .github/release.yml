@@ -1,0 +1,24 @@
+#
+# This file is used to automatically draft new release changelogs in GitHub.
+# Read more: https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+#
+changelog:
+  exclude:
+    labels:
+    - 'Action: No Changelog'
+  categories:
+  - title: 'Breaking Changes'
+    labels:
+    - 'Type: Breaking'
+  - title: 'Additions'
+    labels:
+    - 'Type: New Feature'
+  - title: 'Changes'
+    labels:
+    - 'Type: Enhancement'
+  - title: 'Fixes'
+    labels:
+    - 'Type: Bugfix'
+  - title: 'Other changes'
+    labels:
+    - '*' # Catch every other PR not labeled with an "exclude" label.
