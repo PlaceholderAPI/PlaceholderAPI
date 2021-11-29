@@ -4977,6 +4977,9 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   
   ```
   %superbvote_votes%
+  %superbvote_has_voted%
+  %superbvote_top_voter_name_<index>%
+  %superbvote_top_voter_votes_<index>%
   ```
 
 ----
