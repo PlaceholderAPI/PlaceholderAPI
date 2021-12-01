@@ -160,7 +160,11 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final Class<? extends PlaceholderExpansion> clazz) {
     try {
       final PlaceholderExpansion expansion = createExpansionInstance(clazz);
-
+      
+      if(expansion == null){
+        return Optional.empty();
+      }
+      
       Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
       Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
       Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
@@ -340,9 +344,11 @@ public final class LocalExpansionManager implements Listener {
           .append("placeholder hook(s) registered!");
       
       if (needsUpdate > 0) {
-        message.append("&6")
+        message.append(' ')
+            .append("&6")
             .append(needsUpdate)
-            .append(" placeholder hook(s) have an update available.");
+            .append(' ')
+            .append("placeholder hook(s) have an update available.");
       }
       
       
