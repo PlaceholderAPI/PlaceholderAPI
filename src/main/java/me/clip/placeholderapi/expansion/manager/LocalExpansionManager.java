@@ -372,7 +372,7 @@ public final class LocalExpansionManager implements Listener {
   public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
     File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
     if(files == null){
-      return CompletableFuture.supplyAsync(Collections::emptyList);
+      return CompletableFuture.completedFuture(Collections.emptyList());
     }
     
     return Arrays.stream(files)
