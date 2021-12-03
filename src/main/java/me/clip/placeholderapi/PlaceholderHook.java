@@ -23,9 +23,11 @@ package me.clip.placeholderapi;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class PlaceholderHook {
 
+  @Nullable
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {
       return onPlaceholderRequest((Player) player, params);
@@ -34,6 +36,7 @@ public abstract class PlaceholderHook {
     return onPlaceholderRequest(null, params);
   }
 
+  @Nullable
   public String onPlaceholderRequest(final Player player, @NotNull final String params) {
     return null;
   }
