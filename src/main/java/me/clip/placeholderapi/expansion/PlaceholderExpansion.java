@@ -27,7 +27,6 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -82,7 +81,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    */
   @Nullable
   public String getRequiredPlugin() {
-    return getPlugin();
+    return null;
   }
 
   /**
@@ -396,40 +395,5 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   public final String toString() {
     return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s']", getName(),
         getAuthor(), getVersion());
-  }
-
-  // === Deprecated API ===
-
-  /**
-   * @deprecated As of versions greater than 2.8.7, use {@link #getRequiredPlugin()}
-   *
-   * @return The plugin name.
-   */
-  @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
-  public String getPlugin() {
-    return null;
-  }
-
-  /**
-   * @deprecated As of versions greater than 2.8.7, use the expansion cloud to show a description
-   *
-   * @return The description of the expansion.
-   */
-  @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
-  public String getDescription() {
-    return null;
-  }
-
-  /**
-   * @deprecated As of versions greater than 2.8.7, use the expansion cloud to display a link
-   *
-   * @return The link for the expansion.
-   */
-  @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
-  public String getLink() {
-    return null;
   }
 }
