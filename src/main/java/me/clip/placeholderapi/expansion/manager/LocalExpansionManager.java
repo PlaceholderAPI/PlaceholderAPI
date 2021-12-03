@@ -160,7 +160,11 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final Class<? extends PlaceholderExpansion> clazz) {
     try {
       final PlaceholderExpansion expansion = createExpansionInstance(clazz);
-
+      
+      if(expansion == null){
+        return Optional.empty();
+      }
+      
       Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
       Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
       Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
@@ -259,7 +263,8 @@ public final class LocalExpansionManager implements Listener {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
     }
 
-    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier());
+    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier() + 
+        " [" + expansion.getVersion() + "]");
 
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
@@ -319,18 +324,37 @@ public final class LocalExpansionManager implements Listener {
         plugin.getLogger().log(Level.SEVERE, "failed to load class files of expansions", exception);
         return;
       }
-
-      final long registered = classes.stream()
+      
+      final List<PlaceholderExpansion> registered = classes.stream()
           .filter(Objects::nonNull)
           .map(this::register)
           .filter(Optional::isPresent)
+          .map(Optional::get)
+          .collect(Collectors.toList());
+
+      final long needsUpdate = registered.stream()
+          .map(expansion -> plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
+          .filter(Objects::nonNull)
+          .filter(CloudExpansion::shouldUpdate)
           .count();
 
-      Msg.msg(sender,
-          registered == 0 ? "&6No expansions were registered!"
-              : registered + "&a placeholder hooks successfully registered!");
+      StringBuilder message = new StringBuilder(registered.size() == 0 ? "&6" : "&a")
+          .append(registered.size())
+          .append(' ')
+          .append("placeholder hook(s) registered!");
+      
+      if (needsUpdate > 0) {
+        message.append(' ')
+            .append("&6")
+            .append(needsUpdate)
+            .append(' ')
+            .append("placeholder hook(s) have an update available.");
+      }
+      
+      
+      Msg.msg(sender, message.toString());
 
-      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent());
+      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
     });
   }
 
@@ -346,7 +370,12 @@ public final class LocalExpansionManager implements Listener {
 
   @NotNull
   public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
-    return Arrays.stream(folder.listFiles((dir, name) -> name.endsWith(".jar")))
+    File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
+    if(files == null){
+      return CompletableFuture.completedFuture(Collections.emptyList());
+    }
+    
+    return Arrays.stream(files)
         .map(this::findExpansionInFile)
         .collect(Futures.collector());
   }

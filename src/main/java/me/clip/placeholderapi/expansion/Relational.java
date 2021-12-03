@@ -22,7 +22,22 @@ package me.clip.placeholderapi.expansion;
 
 import org.bukkit.entity.Player;
 
+/**
+ * Implementing this interface allows your {@link me.clip.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}
+ * to be used as a relational placeholder expansion.
+ * 
+ * <p>Relational placeholders take two Players as input and are always prefixed with {@code rel_},
+ * so {@code %foo_bar%} becomes {@code %rel_foo_bar%}
+ */
 public interface Relational {
 
+  /**
+   * This method is called whenever a placeholder starting with {@code rel_} is called.
+   * 
+   * @param one The first player used for the placeholder.
+   * @param two The second player used for the placeholder.
+   * @param identifier The text right after the expansion's name (%expansion_<b>identifier</b>%)
+   * @return Parsed String from the expansion.
+   */
   String onPlaceholderRequest(Player one, Player two, String identifier);
 }
