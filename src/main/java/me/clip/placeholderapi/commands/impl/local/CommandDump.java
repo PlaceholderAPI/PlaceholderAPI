@@ -179,6 +179,10 @@ public final class CommandDump extends PlaceholderCommand {
         .append(plugin.getServer().getBukkitVersion())
         .append('/')
         .append(plugin.getServer().getVersion())
+        .append("\n");
+
+    builder.append("Java Version: ")
+        .append(System.getProperty("java.version"))
         .append("\n\n");
 
     builder.append("Plugin Info:")
