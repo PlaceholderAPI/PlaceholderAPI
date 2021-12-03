@@ -23,9 +23,11 @@ package me.clip.placeholderapi.expansion;
 import org.bukkit.entity.Player;
 
 /**
- * This interface allows a class which extends a {@link PlaceholderExpansion} to have the cleanup
- * method called every time a player leaves the server. This is useful if we want to clean up after
- * the player
+ * Classes implementing this interface will have a {@link #cleanup(Player) cleanup void} that is
+ * called by PlaceholderAPI whenever a Player leaves the server.
+ * 
+ * <p>This can be useful for cases where you keep data of the player in a cache or similar
+ * and want to free up space whenever they leave.
  *
  * @author Ryan McCarthy
  */

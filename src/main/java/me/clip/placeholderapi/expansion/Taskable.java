@@ -20,18 +20,24 @@
 
 package me.clip.placeholderapi.expansion;
 
-
+/**
+ * Implementing this interface adds the {@link #start() start} and {@link #stop() stop} void
+ * methods to your {@link me.clip.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}.
+ * 
+ * <p>This can be used to execute methods and tasks whenever the PlaceholderExpansion has been
+ * successfully (un)registered.
+ */
 public interface Taskable {
 
   /**
-   * Called when the implementing class has successfully been registered to the placeholder map
-   * Tasks that need to be performed when this expansion is registered should go here
+   * Called when the implementing class has successfully been registered to the placeholder map.
+   * <br>Tasks that need to be performed when this expansion is registered should go here
    */
   void start();
 
   /**
-   * Called when the implementing class has been unregistered from PlaceholderAPI Tasks that need to
-   * be performed when this expansion has unregistered should go here
+   * Called when the implementing class has been unregistered from PlaceholderAPI.
+   * <br>Tasks that need to be performed when this expansion has unregistered should go here
    */
   void stop();
 }

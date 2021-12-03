@@ -22,6 +22,7 @@ package me.clip.placeholderapi.expansion;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
@@ -275,7 +276,6 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @param def The default boolean to return when the ConfigurationSection is null
    * @return boolean from the provided path or the default one provided
    */
-  @NotNull
   public final boolean getBoolean(@NotNull final String path, final boolean def) {
     final ConfigurationSection section = getConfigSection();
     return section == null ? def : section.getBoolean(path, def);
@@ -293,6 +293,71 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     final ConfigurationSection section = getConfigSection();
     return section != null && section.contains(path);
   }
+
+  /**
+   * Logs the provided message with the provided Level in the console.
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   * 
+   * @param level The Level at which the message should be logged with
+   * @param msg The message to log
+   */
+  public void log(Level level, String msg) {
+    getPlaceholderAPI().getLogger().log(level, "[" + getName() + "] " + msg);
+  }
+
+  /**
+   * Logs the provided message and Throwable with the provided Level in the console.
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param level The Level at which the message should be logged with
+   * @param msg The message to log
+   * @param throwable The Throwable to log
+   */
+  public void log(Level level, String msg, Throwable throwable) {
+    getPlaceholderAPI().getLogger().log(level, "[" + getName() + "] " + msg, throwable);
+  }
+
+  /**
+   * Logs the provided message with Level "info".
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param msg The message to log
+   */
+  public void info(String msg) {
+    log(Level.INFO, msg);
+  }
+
+  /**
+   * Logs the provided message with Level "warning".
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param msg The message to log
+   */
+  public void warning(String msg) {
+    log(Level.WARNING, msg);
+  }
+
+  /**
+   * Logs the provided message with Level "severe" (error).
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param msg The message to log
+   */
+  public void severe(String msg) {
+    log(Level.SEVERE, msg);
+  }
+
+  /**
+   * Logs the provided message and Throwable with Level "severe" (error).
+   * <br>The message will be prefixed with {@link #getName() <code>[&lt;expansion name&gt;]</code>}
+   *
+   * @param msg The message to log
+   * @param throwable The Throwable to log
+   */
+  public void severe(String msg, Throwable throwable) {
+    log(Level.SEVERE, msg, throwable);
+  }
+  
   
   /**
    * Whether the provided Object is an instance of this PlaceholderExpansion.
