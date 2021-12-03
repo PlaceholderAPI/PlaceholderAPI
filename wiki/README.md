@@ -1,104 +1,181 @@
-[Wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
-[Placeholders]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
-[Plugins using PlaceholderAPI]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Plugins-using-PlaceholderAPI
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+
+[placeholders]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+[using_papi]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Plugins-using-PlaceholderAPI
+
+[discord]: https://discord.gg/HelpChat
+[discussion]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
+
+[andre]: https://github.com/Andre601
+[andrew]: https://github.com/Andrew-Chen-Wang
+[action]: https://github.com/Andrew-Chen-Wang/github-wiki-action
+
+<!-- Images -->
+[branch-selector]: https://user-images.githubusercontent.com/11576465/132779328-8571458a-d63d-4c25-b920-96aa16ae0058.png
+[upstream_up-to-date]: https://user-images.githubusercontent.com/11576465/132779917-96f19239-077d-44ed-98e7-6a76f305b33a.png
+[upstream_needs_update]: https://user-images.githubusercontent.com/11576465/132779798-1fe3dc72-a6c2-41eb-a8bc-95793671f384.png
+[create_branch]: https://user-images.githubusercontent.com/11576465/132780127-45599156-1400-40c9-b865-351574786873.png
 
 # Wiki
-This is the wiki folder. It contains all pages that you can find in our [Wiki].  
-It allows you to suggest changes through Pull request while keeping a simple way for us to maintain the wiki, without granting everyone push rights to it.
+Welcome to the Wiki folder!
 
-If you want to contribute towards the wiki would we highly recommend to follow the below contributing Guidelines, to keep the overal style of the wiki intact.
+This folder contains all the files of the [PlaceholderAPI Wiki][wiki].  
+It allows you to contribute towards the wiki and us to have more control about what changes are commited to it.
 
-## Target branch
-The wiki is handled on a separate branch called `docs/wiki`.  
-When making a Pull request, make sure to target this specific branch. Any PR not targeting this branch may either be closed or the target changed.
+## Contrbuting to the wiki
+If you want to contribute towards the wiki, will you need to follow the below instructions to not get your Pull request closed without a warning.
 
-## Adding your resource(s)
-When you either have a plugin, which adds and/or uses placeholders or an expansion and you want to add it to the wiki should you follow the below steps.
+### Fork the Repository (Not wiki!)
+> Already having a fork? Skip to the [next Step](#select-target-branch)!
 
-- [Plugins using PlaceholderAPI](#plugins-using-placeholderapi)
-- [Placeholders](#placeholders)
+You need to make a fork of the PlaceholderAPI Repository to contribute towards the wiki.  
+To do this, click the "Fork" button on the top-right corner of the site and select the account you want your fork to be created on. This will also show you any already existing forks of this Repository that you may have.
 
-### [Plugins using PlaceholderAPI]
-This is only required for plugins.  
-If your plugin supports placeholders of other plugins and/or provides own placeholders through PlaceholderAPI should you always add it the the `Plugins using PlaceholderAPI` page.
+The forking process should only take a few seconds and you should be redirected to your fork afterwards.
 
-Each entry on this page follows a specific format that you need to follow:  
-```markdown
-- **[:name](:url)**
-  - [?] Supports placeholders.
-  - [?] Provides own placeholders. [:link]
-```
+### Select target branch
+All main changes to the wiki are made on the dedicated `docs/wiki` branch.  
+Before you try to make any changes should you make sure that you have the `docs/wiki` branch selected. To do that, check the button next to the `X branches` text. If it says anything other than `docs/wiki` will you need to click it and select the right branch.
 
-| Key     | Description                                                                                                                                                                              |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:name` | The name of the Plugin. Plugins are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                     |
-| `:url`  | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/            |
-| `?`     | Should be replaced with either an `x` or a space, depending on if the option is supported. So the result is either `[x]` or `[ ]`                                                        |
-| `:link` | If your plugin also provides own placeholders should you add it to the [Placeholders] page. In such a case should you use `[**[[Link\|Placeholders#:name]]**]` otherwhise just `[Link]` |
+![branch-selector]
 
-### [Placeholders]
-This step is required if you either have a plugin or an expansion that provides their own placeholders. You should add your resource to the Placeholders page of the wiki.  
-This page is split up into two sections: PAPI Placeholders and Plugin Placeholders.
+### Fetch Changes from Upstream
+This is only required when you already had a fork and didn't update it for some time.
 
-PAPI Placeholders are extensions that don't require an external plugin or other dependency to function normally. Common examples are the Player or Server extensions.  
-The Plugin Placeholders are extensions that require a plugin or other dependency to function. They are often used to provide values from one pluging (e.g. Vault) to another plugin through the help of PlaceholderAPI.
+While you're on the `docs/wiki` branch, click the `Fetch upstream` text located right below the green `Code` button.  
+Depending on the status of your branch can the prompt show different outcomes:
 
-The syntax used for each entry is the same:
+- `This branch is not behind the upstream PlaceholderAPI:docs/wiki`  
+  Your fork's `docs/wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
+  ![upstream_up-to-date]
+- `Fetch and merge <number> upstream commits from PlaceholderAPI:docs/wiki`  
+  This is shown when your fork's branch is outdated and upstream (This Repository) has changes. Click the `Fetch and merge` button to fetch the latest commits and update your fork's `docs/wiki` branch.  
+  ![upstream_needs_update]
+
+### Commit changes
+To commit changes will you need to choose, if you want to directly commit to your fork's `docs/wiki` branch, or make a dedicated branch for it.
+
+#### Make separate branch (Optional)
+If you want to have a dedicated branch for it, will you need to click the button saying `docs/wiki`, type in the small text field the name of the branch you want to use and click the text saying `Create branch: <branch> from 'docs/wiki'`
+
+![create_branch]
+
+After that should you now have a separate branch that is based of the `docs/wiki` branch and you can finally commit changes to it.
+
+#### Formatting
+The wiki uses normal Markdown formatting with some special design-rules you need to keep in mind.  
+These rules are as follows:
+
+- Unordered lists need to start with a `-` and not `*`. This is to not get it confused with *italic text* which uses single `*` characters.
+- New lines in lists need to keep their indends. This means you need to add two spaces at the start to keep the text in the same line.  
+  Example:  
+  ```markdown
+  - Line 1  
+    Line 2
+  ```
+- Use the `[[Page]]` and `[[Text|Page]]` format to link to other wiki pages. While those aren't rendered in the wiki folder will they render in the final wiki pages.
+- External links should be set as Refernce Links, which means they are set as `[text]: link` at the top of the page and then used either through `[text]` or `[display text][text]` througout the page.
+
+#### Adding new Expansion
+When you add a new expansion to the wiki's [Placeholder page][placeholders] will you need to follow the following format:  
 ````markdown
-- ### **[:name](:url)**
-> :command
-
-```
-:placeholders
-```
-----
+- ### [:name](:link)
+  > :command
+  
+  :text
+  
+  ```
+  :placeholders
+  ```
 ````
 
-| Key             | Description                                                                                                                                                                                        |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:name`         | The name of the resource. Resources are ordered by alphabet and if your plugin shares the same name as another one will you need to add it **below** the other resource.                           |
-| `:url`          | The URL to your plugin. Spigot URLs should only contain the ID. E.g. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/                      |
-| `:command`      | The download command. When your resource is an expansion on the ecloud would you need to add `/papi ecloud download :name`. If it isn't an expansion should you put `NO DOWNLOAD COMMAND` instead. |
-| `:placeholders` | List of placeholders your plugin/expansion offers. The list should stay in alphabetical order. You can use `<>` and `[]` to indicate required and optional variables.                              |
+There are a few extra rules you need to also keep in mind:
 
-#### Extra notes
+- `:name` would be the name of your Expansion, not the plugin (Unless it is integrated into your plugin).
+  - Only embed a link, if your Expansion requires a plugin to function.
+  - When linking to a Spigot page, make sure to sanitze the link.  
+    This means that f.e. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/
+- `:command` should be replaced with either the PlaceholderAPI command to download your expansion from the eCloud (`/papi ecloud download :name`) or with `NO DOWNLOAD COMMAND` if no separate download is available.
+- `:text` is optional and should only be provided to link to additional documentation, your own placeholder list, or explain more complicated placeholders/features.
+- `:placeholders` will be the list of placeholders your expansion provides.  
+  Please avoid specific examples (i.e. `%placeholder_player_user123%`) and instead use `<>` and `[]` to mark required and optional options respecively (`%placeholder_player_<player>%`)
 
-- If your entry has another one below it will you need to add an empty line, followed by for hypthons (`----`) at the bottom of your entry to separate it.
-- You are allowed to add a description between the `> :command` and the placeholder list. Keep in mind to keep an empty line after the command line to prevent wrong formatting. A description is only useful/required if your expansion/plugin offers specific placeholder values and/or features.
-- Always add your entry's name to the list at the top of the page in the format `- [:name](#:name)`. Note that if your entry shares the same name as another one on the page and you added it below it, that you will need to append a `-1`, `-2`, ... to the name in the brackets, depending on how many entries with the same name there are.
+**Note:**  
+When your Expansion's entry is after and/or before other entries will you need to add `----` before or after it to separate it from other entries.
 
-----
-## Other Wiki pages
-Please follow these general guidelines when editing any other pages.
-
-### Links
-The wiki uses 3 types of links:
-
-- [Reference Links](#reference-links)
-- [Wiki Links](#wiki-links)
-- [Header Links](#header-links)
-
-#### Reference Links
-Reference Links are in the format `[:text]: :url` where `:text` is the name to use as reference and `:url` is the url.  
-These types of links are usually put at the top of the page and allow us easier updating of these links, by just altering the URL without the need to replace them in the entire file.
-
-To use a reference link, either use `[:text]` or `[:displayed_text][:text]` to link with a differently shown text.
-
-For example: With `[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki` will `[wiki]` become [wiki] and `[to the wiki][wiki]` becomes [to the wiki][wiki].
-
-Always use reference links for URLs that point outside of the Wiki. Only exceptions are Links in the [Placeholders] and [Plugins using PlaceholderAPI] page (See above for details).
-
-#### Wiki Links
-Wiki links are used to link to other pages on the wiki.  
-These types of links are in the format `[[:pagename]]` or `[[:text|:pagename]]` to display a different text. `:pagename` is case-sensitive.
-
-If you want to link to a header in another wiki page can you use `[[:text|:pagename#:header]]`.
-
-#### Header Links
-Header links are used to link to a section within the same wiki page.  
-The format is `[:text](#:header)`. The header name is case-insensitive but it's recommended to keep it lowercase.
+##### Example:  
+````markdown
+- ### SomeExpansion
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %someexpansion_placeholder%
+  ```
 
 ----
-### Lists
-Lists should always be started with a hyphen (`-`) to better distinguish it from other formatting characters like the asterisk (`*`) used for bold or italic text.
 
+- ### YourExpansion
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %yourexpansion_placeholder%
+  ```
+
+----
+
+- ### AnotherExpansion
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %anotherexpansion_placeholder%
+  ```
+````
+
+After you added your expansion to this page will you also need to add an entry to the list at the top of the page.  
+You do so by adding `- **[:text](#:name)**` to the list, where `:text` is the text to display (Usually the name you set) and `:name` is the name you just set. If your expansion shares the exact same name as another entry on the page will you need to make sure that your expansion is listed **after** the other one AND that the list-entry has a `-1` appended to `#:name` (So f.e. `#expansion` becomes `#expansion-1`).
+
+Finally can you now commit your changes and move forward to the [Plugins using PlaceholderAPI][using_papi] page in the wiki folder.
+
+#### Adding new plugin
+This step is only required if you either add a new plugin to the list, or you added an Expansion that is included in your own plugin.
+
+Similar to the [Placeholders page][placeholders] does this page follow a specific format which we will explain real quick.
+
+```markdown
+- [:name](:link)
+  - [?] Supports placeholders.
+  - [?] Provides own placeholders. [:page]
+```
+
+Here are the following rules:
+
+- `:name` needs to be replaced with the Name of your plugin.
+- `:link` needs to be the link of the plugin's resource page.
+  - If no resource page is available can a GitHub repository be linked (if available) or the link omited altogether)
+  - When linking to a Spigot page, make sure to sanitze the link.  
+    This means that f.e. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/
+- `[?]` needs to be replaced with either `[ ]` or `[x]` depending on whether the mentioned option is supported or not.
+- `:page` needs to replace with the right value, depending on the conditions.
+  - If your plugin provides own Placeholders for other plugins to use can you set `**[[Link|Placeholders#:name]]**` where `:name` is the title you set in the placeholders page.
+  - If your plugin does not provide own placeholders will you need to set `Link`.
+
+### Make a Pull request
+After you made your changes is it time to make a Pull request.
+
+When you go to the upstream repository, should GitHub already show you a notification that you have commits to PR. Click the `Compare & pull request` button to proceed.
+
+![image](https://user-images.githubusercontent.com/11576465/132784030-c2ffd5e0-fb95-44de-bd77-97a965cc6dbd.png)
+
+By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `docs/wiki` branch.
+
+![image](https://user-images.githubusercontent.com/11576465/132784142-8f752697-7dd7-4afb-bbdc-dc66c570dc3c.png)
+
+Finally, fill out the Pull request template and submit the Pull request.  
+Congratulations! You've successfully made a Pull request for the wiki.
+
+### Questions?
+If you have any questions, do not hesitate to ask in the [HelpChat Discord][discord] or [open a new discussion][discussion] in this repository. We will be happy to help you.
+
+### Credits
+- The Wiki is maintained by [Andre601][andre].
+- We use the [GitHub Wiki Action][action] by [Andrew-Chen-Wang][andrew] to update the PlaceholderAPI wiki through GitHub Actions.
