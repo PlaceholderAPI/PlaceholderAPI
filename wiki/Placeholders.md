@@ -5454,12 +5454,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 - ### **[VoteParty](https://www.spigotmc.org/resources/987/)**
   > NO DOWNLOAD COMMAND
   
-  ```
-  %voteparty_votes_recorded%
-  %voteparty_votes_required_party%
-  %voteparty_votes_required_total%
-  %voteparty_player_votes%
-  ```
+  You can find an up-to-date list of placeholders on the [VoteParty wiki](https://wiki.helpch.at/glares-plugins/voteparty/placeholders).
 
 ----
 
