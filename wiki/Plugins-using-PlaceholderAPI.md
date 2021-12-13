@@ -41,9 +41,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Advanced Abilities](https://www.spigotmc.org/resources/21983/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#advanced-abilities]]**]
-- **[Advanced Achievements](https://www.spigotmc.org/resources/6239/)**
-  - [x] Supports placeholders.
-  - [ ] Provides own placeholders. [Link]
+- **[Advanced Achievements](https://www.spigotmc.org/resources/83466/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#advanced-achievements]]**]
 - **[AdvancedAFK](https://www.spigotmc.org/resources/60761/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#advancedafk]]**]
@@ -461,6 +461,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 
 ----
 ## L
+- **[Lands](https://www.spigotmc.org/resources/53313/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#lands]]**]
 - **[LastLoginAPI](https://www.spigotmc.org/resources/66348/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#lastloginapi]]**]
@@ -476,6 +479,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[LemonMobCoins](https://www.spigotmc.org/resources/59402/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#lemonmobcoins]]**]
+- **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#levelledmobs]]**]
 - **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#luckperms]]**]
@@ -581,9 +587,15 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[OnTime](http://dev.bukkit.org/bukkit-plugins/ontime/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ontime]]**]
+- **[OpEconomy](https://www.spigotmc.org/resources/95674)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#opeconomy]]**]
 - **[OreAnnouncer](https://www.spigotmc.org/resources/33464/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#oreannouncer]]**]
+- **[OreMarket](https://www.spigotmc.org/resources/91015/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#oremarket]]**]
 - **[Outpost](https://www.spigotmc.org/resources/38657/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#outpost]]**]
@@ -730,7 +742,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
 - **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
-  - [ ] Supports placeholders.
+  - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rocketplaceholders]]**]
 - **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
   - [ ] Supports placeholders.
@@ -747,6 +759,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#rpginventory]]**]
+- **[RTP](https://www.spigotmc.org/resources/94812/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#rtp]]**]
 
 ----
 ## S
@@ -834,6 +849,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Staff Facilities](https://www.spigotmc.org/resources/13097/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#staff-facilities]]**]
+- **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#staffplusplus]]**]
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#statz]]**]
@@ -900,6 +918,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Tokens](https://www.spigotmc.org/resources/71941/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#tokens]]**]
+- **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#tokensplus]]**]
 - **[Towny](https://github.com/TownyAdvanced/Towny)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#towny]]**]
@@ -921,6 +942,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[TrickOrTreat](https://www.spigotmc.org/resources/61370/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#trickortreat]]**]
+- **[Two Factor Authentication](https://www.spigotmc.org/resources/85594/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#twofactorauthentication]]**]
 
 ----
 ## U
@@ -933,6 +957,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[UltimateBossBar](https://www.spigotmc.org/resources/19303/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.
+- **[UltimateClaims](https://songoda.com/marketplace/product/65)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultimateclaims]]**]
 - **[UltimateSigns](https://www.spigotmc.org/resources/72462/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.
@@ -972,6 +999,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[VentureChat](https://www.spigotmc.org/resources/771/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[VenturahCalendar](https://www.spigotmc.org/resources/94096/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#venturacalendar]]**]
 - **[ViaVersion](https://www.spigotmc.org/resources/19254/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#viaversion]]**]
