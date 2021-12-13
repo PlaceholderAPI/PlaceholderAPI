@@ -50,7 +50,7 @@ public final class Format {
   }
 
   @NotNull
-  private static String buildFormat(@NotNull final Align align, @NotNull final int[] spacing) {
+  private static String buildFormat(@NotNull final Align align, final int[] spacing) {
     return stream(spacing)
         .mapToObj(space -> "%" + (align == Align.LEFT ? "-" : "") + (space + 2) + "s")
         .collect(joining());

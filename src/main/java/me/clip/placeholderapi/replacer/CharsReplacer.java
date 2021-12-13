@@ -133,7 +133,7 @@ public final class CharsReplacer implements Replacer {
       parameters.setLength(0);
 
       if (oopsitsbad) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(identifier);
 
         if (identified) {
           builder.append('_').append(parametersString);

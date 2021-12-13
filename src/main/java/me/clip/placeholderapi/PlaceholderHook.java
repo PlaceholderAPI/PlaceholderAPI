@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class PlaceholderHook {
-
   @Nullable
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {

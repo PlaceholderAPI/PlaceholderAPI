@@ -81,7 +81,7 @@ public final class PlaceholderAPI {
    */
   @NotNull
   public static List<String> setPlaceholders(final OfflinePlayer player,
-      @NotNull final List<@NotNull String> text) {
+      @NotNull final List<String> text) {
     return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
   }
 
@@ -136,7 +136,7 @@ public final class PlaceholderAPI {
    */
   @NotNull
   public static List<String> setBracketPlaceholders(final OfflinePlayer player,
-      @NotNull final List<@NotNull String> text) {
+      @NotNull final List<String> text) {
     return text.stream().map(line -> setBracketPlaceholders(player, line))
         .collect(Collectors.toList());
   }

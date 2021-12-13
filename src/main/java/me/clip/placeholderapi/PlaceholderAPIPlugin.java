@@ -33,7 +33,6 @@ import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import net.kyori.adventure.text.serializer.craftbukkit.MinecraftComponentSerializer;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bstats.charts.SimplePie;
@@ -249,7 +248,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     try {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
-    } catch (final ExceptionInInitializerError | ClassNotFoundException ignored) {
+    } catch (final ClassNotFoundException ignored) {
       Bukkit.getScheduler()
           .runTaskLater(this, () -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
     }
