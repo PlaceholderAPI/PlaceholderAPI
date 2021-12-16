@@ -126,6 +126,7 @@ public final class CharsReplacer implements Replacer {
         }
       }
 
+      final String normalIdentifier = identifier.toString();//no lower case
       final String identifierString = identifier.toString().toLowerCase();
       final String parametersString = parameters.toString();
 
@@ -133,7 +134,7 @@ public final class CharsReplacer implements Replacer {
       parameters.setLength(0);
 
       if (oopsitsbad) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(normalIdentifier);
 
         if (identified) {
           builder.append('_').append(parametersString);
@@ -147,7 +148,7 @@ public final class CharsReplacer implements Replacer {
 
       final PlaceholderExpansion placeholder = lookup.apply(identifierString);
       if (placeholder == null) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(normalIdentifier);
 
         if (identified) {
           builder.append('_');
@@ -159,7 +160,7 @@ public final class CharsReplacer implements Replacer {
 
       final String replacement = placeholder.onRequest(player, parametersString);
       if (replacement == null) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(normalIdentifier);
 
         if (identified) {
           builder.append('_');
