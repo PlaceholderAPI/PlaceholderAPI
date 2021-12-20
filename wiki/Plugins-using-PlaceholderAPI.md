@@ -644,6 +644,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Potatoes](https://www.spigotmc.org/resources/12353/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[PowerBoard](https://www.spigotmc.org/resources/73854)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#powerboard]]**]
 - **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#powerranks]]**]

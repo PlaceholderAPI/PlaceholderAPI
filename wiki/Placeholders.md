@@ -301,6 +301,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PlayerPoints](#playerpoints)**
     - **[PlotSquared](#plotsquared)**
     - **[PointsAPI](#pointsapi)**
+    - **[PowerBoard](#powerboard)**
     - **[PowerRanks](#powerranks)**
     - **[PremiumVanish](#premiumvanish)**
     - **[Prison](#prison)**
@@ -3883,6 +3884,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %pointsapi_points%
+  ```
+
+----
+
+- ### **[PowerBoard](https://www.spigotmc.org/resources/73854/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %powerboard_prefix%
+  %powerboard_suffix%
+  %powerboard_chat_prefix%
+  %powerboard_display_name%
+  %powerboard_tps%
   ```
 
 ----
