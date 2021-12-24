@@ -126,14 +126,15 @@ public final class CharsReplacer implements Replacer {
         }
       }
 
-      final String identifierString = identifier.toString().toLowerCase();
+      final String identifierString = identifier.toString();
+      final String lowercaseIdentifierString = identifierString.toLowerCase();
       final String parametersString = parameters.toString();
 
       identifier.setLength(0);
       parameters.setLength(0);
 
       if (oopsitsbad) {
-        builder.append(closure.head).append(identifier);
+        builder.append(closure.head).append(identifierString);
 
         if (identified) {
           builder.append('_').append(parametersString);
@@ -145,9 +146,9 @@ public final class CharsReplacer implements Replacer {
         continue;
       }
 
-      final PlaceholderExpansion placeholder = lookup.apply(identifierString);
+      final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
       if (placeholder == null) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(lowercaseIdentifierString);
 
         if (identified) {
           builder.append('_');
@@ -159,7 +160,7 @@ public final class CharsReplacer implements Replacer {
 
       final String replacement = placeholder.onRequest(player, parametersString);
       if (replacement == null) {
-        builder.append(closure.head).append(identifierString);
+        builder.append(closure.head).append(lowercaseIdentifierString);
 
         if (identified) {
           builder.append('_');
