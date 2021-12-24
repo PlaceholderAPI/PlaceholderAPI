@@ -8,7 +8,7 @@ plugins {
 }
 
 group "me.clip"
-version "2.11.1"
+version "2.11.1-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description "An awesome placeholder provider!"
 
@@ -32,7 +32,7 @@ dependencies {
     testImplementation "org.openjdk.jmh:jmh-core:1.32"
     testImplementation "org.openjdk.jmh:jmh-generator-annprocess:1.32"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.8.2"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
 }
 
