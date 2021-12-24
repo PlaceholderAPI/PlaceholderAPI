@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI is free software: you can redistribute it and/or modify
+ * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -292,14 +292,14 @@ public final class PlaceholderAPI {
   // === Deprecated API ===
 
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean registerExpansion(PlaceholderExpansion expansion)
   {
     return expansion.register();
   }
 
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean unregisterExpansion(PlaceholderExpansion expansion)
   {
     return expansion.unregister();
@@ -313,7 +313,7 @@ public final class PlaceholderAPI {
    * @return Map of registered placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static Map<String, PlaceholderHook> getPlaceholders() {
     return PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()
         .getExpansions().stream()
@@ -329,7 +329,7 @@ public final class PlaceholderAPI {
    * @return always false
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean registerPlaceholderHook(Plugin plugin, PlaceholderHook placeholderHook) {
     PlaceholderAPIPlugin.getInstance().getLogger().warning(plugin.getName()
         + " is attempting to register placeholders via a PlaceholderHook class which is no longer supported!"
@@ -347,7 +347,7 @@ public final class PlaceholderAPI {
    * @return always false
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean registerPlaceholderHook(String identifier,
       PlaceholderHook placeholderHook) {
     PlaceholderAPIPlugin.getInstance().getLogger().warning(identifier
@@ -363,7 +363,7 @@ public final class PlaceholderAPI {
    * @return always false
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean unregisterPlaceholderHook(Plugin plugin) {
     PlaceholderAPIPlugin.getInstance().getLogger().warning(plugin.getName()
         + " is attempting to unregister placeholders via the PlaceholderAPI class which is no longer supported!"
@@ -380,7 +380,7 @@ public final class PlaceholderAPI {
    * @return always false
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean unregisterPlaceholderHook(String identifier) {
     PlaceholderAPIPlugin.getInstance().getLogger().warning(identifier
         + " is attempting to unregister placeholders through the PlaceholderAPI class which is no longer supported!");
@@ -393,7 +393,7 @@ public final class PlaceholderAPI {
    * @return Set of registered identifiers
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static Set<String> getRegisteredPlaceholderPlugins() {
     return getRegisteredIdentifiers();
   }
@@ -404,7 +404,7 @@ public final class PlaceholderAPI {
    * @return always null
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static Set<String> getExternalPlaceholderPlugins() {
     return null;
   }
@@ -419,7 +419,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setPlaceholders(OfflinePlayer player,
       String text, Pattern pattern, boolean colorize) {
     return setPlaceholders(player, text);
@@ -435,7 +435,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setPlaceholders(OfflinePlayer player,
       List<String> text, Pattern pattern, boolean colorize) {
     return setPlaceholders(player, text);
@@ -450,7 +450,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setPlaceholders(OfflinePlayer player, List<String> text,
       boolean colorize) {
     return setPlaceholders(player, text);
@@ -465,7 +465,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setPlaceholders(OfflinePlayer player, List<String> text,
       Pattern pattern) {
     return setPlaceholders(player, text);
@@ -479,7 +479,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setPlaceholders(Player player, String text, boolean colorize) {
     return setPlaceholders(player, text);
   }
@@ -493,7 +493,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setPlaceholders(Player player, List<String> text, boolean colorize) {
     return setPlaceholders(player, text);
   }
@@ -507,7 +507,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setPlaceholders(OfflinePlayer player, String text, boolean colorize) {
     return setPlaceholders(player, text);
   }
@@ -521,7 +521,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setPlaceholders(OfflinePlayer player, String text, Pattern pattern) {
     return setPlaceholders(player, text);
   }
@@ -535,7 +535,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setBracketPlaceholders(OfflinePlayer player, List<String> text,
       boolean colorize) {
     return setBracketPlaceholders(player, text);
@@ -550,7 +550,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setBracketPlaceholders(OfflinePlayer player, String text, boolean colorize) {
     return setBracketPlaceholders(player, text);
   }
@@ -564,7 +564,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setBracketPlaceholders(Player player, String text, boolean colorize) {
     return setBracketPlaceholders(player, text);
   }
@@ -578,7 +578,7 @@ public final class PlaceholderAPI {
    * @return String with the parsed placeholders
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setBracketPlaceholders(Player player, List<String> text,
       boolean colorize) {
     return setBracketPlaceholders(player, text);
@@ -596,7 +596,7 @@ public final class PlaceholderAPI {
    * @deprecated Use {@link #setPlaceholders(OfflinePlayer, String)} instead.
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static String setRelationalPlaceholders(Player one, Player two, String text,
       boolean colorize) {
     return setRelationalPlaceholders(one, two, text);
@@ -614,7 +614,7 @@ public final class PlaceholderAPI {
    * @deprecated Use {@link #setRelationalPlaceholders(Player, Player, List)} instead.
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text,
       boolean colorize) {
     return setRelationalPlaceholders(one, two, text);

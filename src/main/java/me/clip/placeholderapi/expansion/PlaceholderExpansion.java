@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI is free software: you can redistribute it and/or modify
+ * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -406,7 +406,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @return The plugin name.
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public String getPlugin() {
     return null;
   }
@@ -417,7 +417,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @return The description of the expansion.
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public String getDescription() {
     return null;
   }
@@ -428,7 +428,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @return The link for the expansion.
    */
   @Deprecated
-  @ApiStatus.ScheduledForRemoval(inVersion = "2.11.0")
+  @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public String getLink() {
     return null;
   }

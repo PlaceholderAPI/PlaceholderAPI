@@ -4,7 +4,7 @@
  * PlaceholderAPI
  * Copyright (c) 2015 - 2021 PlaceholderAPI Team
  *
- * PlaceholderAPI is free software: you can redistribute it and/or modify
+ * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
@@ -31,15 +31,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.impl.cloud.CommandECloud;
-import me.clip.placeholderapi.commands.impl.local.CommandDump;
-import me.clip.placeholderapi.commands.impl.local.CommandExpansionRegister;
-import me.clip.placeholderapi.commands.impl.local.CommandExpansionUnregister;
-import me.clip.placeholderapi.commands.impl.local.CommandHelp;
-import me.clip.placeholderapi.commands.impl.local.CommandInfo;
-import me.clip.placeholderapi.commands.impl.local.CommandList;
-import me.clip.placeholderapi.commands.impl.local.CommandParse;
-import me.clip.placeholderapi.commands.impl.local.CommandReload;
-import me.clip.placeholderapi.commands.impl.local.CommandVersion;
+import me.clip.placeholderapi.commands.impl.local.*;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
