@@ -45,7 +45,7 @@ As an open source project are we welcoming all contributions to improve Placehol
 ### Code contributions
 > **Source and Target Branch:** [`master`][master]
 
-When contributing towards the code of PlaceholderAPI, be it new features or just bug fixes, should your changes follow the general code styling used in the project.  
+When contributing towards the code of PlaceholderAPI, be it new features or just bug fixes, your changes should follow the general code styling used in the project.  
 You can find the necessary files in the [`config/style`][style] directory of this repository.
 
 ### Javadocs contributions
