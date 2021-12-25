@@ -48,9 +48,6 @@ As an open source project are we welcoming all contributions to improve Placehol
 When contributing towards the code of PlaceholderAPI, be it new features or just bug fixes, should your changes follow the general code styling used in the project.  
 You can find the necessary files in the [`config/style`][style] directory of this repository.
 
-Any contributions to PlaceholderAPI's code should be done towards the [`development`][dev] branch. Targeting the `master` branch in your Pull request may get it closed without warning.  
-Additionally should you follow the project's codestyle which you can find in the [`config/style`][style] directory.
-
 ### Javadocs contributions
 > **Source and Target Branch:** [`master`][master]*
 
