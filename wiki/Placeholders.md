@@ -5174,6 +5174,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_fullrefund_long%
   %tokenenchnat_<enchantment>_refund_Y%
   %tokenenchnat_<enchantment>_refund_Y_long%
+  %tokenenchant_<enchantment>_alias%
   %tokenenchant_tokenmultiplier%
   %tokenenchant_<enchantment>_occurrencemultiplier%
   %tokenenchant_repair_cost%
