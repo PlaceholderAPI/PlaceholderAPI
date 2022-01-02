@@ -3607,8 +3607,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %ob_lvl%
   %ob_lvl_name%
+  %ob_next_lvl%
+  %ob_next_lvl_name%
   %ob_break_on_this_lvl%
   %ob_need_to_lvl_up%
+  %ob_player_count%
   %ob_ver%
   ```
 
