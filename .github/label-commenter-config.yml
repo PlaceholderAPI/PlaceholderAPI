@@ -84,6 +84,7 @@ labels:
           
           Pull requests targeting the wiki need to be based of and target the `docs/wiki` branch of this repository.
           More information can be found on the [Wiki README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki/README.md).
+        action: close
   - name: 'Target: Wiki'
     labeled:
       issue:
