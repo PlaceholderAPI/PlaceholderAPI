@@ -1110,13 +1110,20 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   > /papi ecloud download ScoreboardObjectives
   
   Get info from a scoreboard objective.
+
+  More info about the expansion can be found on the [Spigot Page](https://www.spigotmc.org/resources/placeholderapi-scoreboard-objectives-placeholder.48236/)
   
   ```
-  %objective_score_<obj-name>%
-  %objective_score_<obj-name>_[otherEntry]%
+  %objective_displayname_{<obj-name>}%
+  %objective_score_{<obj-name>}%
+  %objective_score_{<obj-name>}_{[otherEntry]}%
+  %objective_scorep_{<obj-name>}%
+  %objective_scorep_{<obj-name>}_{[otherPlayer]}%
+  %objective_scoreposhigh_{<obj-name>}_{<#>}%
+  %objective_scoreposlow_{<obj-name>}_{<#>}%
+  %objective_entryposhigh_{<obj-name>}_{<#>}%
+  %objective_entryposlow_{<obj-name>}_{<#>}%
   ```
-  
-  **Note**: `[otherEntry]` can be another player name, Offline Player name, or non-player Entry
 
 ----
 
