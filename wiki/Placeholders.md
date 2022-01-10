@@ -225,6 +225,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Head Database](#head-database)**
     - **[Heroes](#heroes)**
     - **[HoloBlock](#holoblock)**
+    - **[HoloMobHealth](#holomobhealth)**
     - **[HPWizard](#hpwizard)**
     - **[Hugs](#hugs)**
 
@@ -2864,6 +2865,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %holoblock_isColor:<player>%
   %holoblock_isCustomSkin:<player>%
   %holoblock_isItemLine:<player>%
+  ```
+
+----
+
+- ### **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %holomobhealth_displaytoggle%
   ```
 
 ----
