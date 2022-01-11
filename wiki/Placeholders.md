@@ -566,46 +566,47 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   ```
   %checkitem_<modifier1>,<modifier2>,<...>%        - Returns if user has the item
   %checkitem_amount_<modifier1>,<modifier2>,<...>% - Returns amount of items the user has
-  %checkitem_remove_<modifier1>,<modifier2>,<...>% - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. `%checkitem_amount_remove_<...>%`) Please be careful as it does REMOVE ITEMS FOR GOOD
+  %checkitem_remove_<modifier1>,<modifier2>,<...>% - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. %checkitem_amount_remove_<...>%) Please be careful as it does REMOVE ITEMS FOR GOOD
   %checkitem_give_<modifier1>,<modifier2>,<...>%   - Gives the player items. Returns true if successful, returns the number of items NOT given if unsuccessful. (When unsuccessful items can still be given, it just might not be all of them)
+  %checkitem_getinfo:<slot>_<modifier1>,<modifier2>,<...>% - Returns information about an item in a slot. Returns information in the same order listed on this wiki. List is seperated via " &r" (Ex. %checkitem_getinfo:0_mat:)
   ```
   
   **Modifiers**  
   You can combine different modifiers to check for different values.  
   Available modifiers are:
   - `namecontains:<text>`  
-    Checks if the item's display name contains `<text>`* \*\*
+    Checks if the item's display name contains `<text>`* \*\* ~
   - `namestartswith:<text>`  
-    Checks if the item's display name starts with `<text>`* \*\*
+    Checks if the item's display name starts with `<text>`* \*\* ~
   - `nameequals:<text>`  
-    Checks if the item's display name equals `<text>`* \*\* ^
+    Checks if the item's display name equals `<text>`* \*\* ^ ~
   - `mat:<material>`  
-    Checks if the item is `<material>` (For example: `STONE`) ^
+    Checks if the item is `<material>` (For example: `STONE`) ^ ~
   - `amt:<number>`  
-    Checks if the player has `<number>` of items ^
+    Checks if the player has `<number>` of items ^ ~
   - `data:<number>`  
     Checks if the item has data `<number>` (Example: Red wool has `14` as data (`WOOL:14`)).  
-    This is only for 1.12 and older! ^
+    This is only for 1.12 and older! ^ ~
   - `custommodeldata:<number>`  
     Checks if the item has CustomModelData `<number>`  
-    This is only for 1.14 and newer! ^
+    This is only for 1.14 and newer! ^ ~
   - `lorecontains:<text>`  
-    Checks if the item's lore contains `<text>`*
+    Checks if the item's lore contains `<text>`* ~
   - `loreequals:<text>`  
-    Checks if the item's lore equals `<text>` Lines are separated by `|` ^
+    Checks if the item's lore equals `<text>` Lines are separated by `|` ^ ~
   - `matcontains:<text>`  
     Checks if the item's material contains `<text>`*
   - `enchantments:<enchantment=lvl>;<enchantment>`  
     Checks if the item's enchantments contains `<enchantment>` with an optional `=level`  
-    Uses vanilla minecraft enchantment names ^
+    Uses vanilla minecraft enchantment names ^ ~
   - `enchanted`  
-    Checks if the item is enchanted (with anything)
+    Checks if the item is enchanted (with anything) ~
   - `potiontype:<potiontype>`  
-    Checks if the item has the potiontype ([Click here for potion types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)) ^
+    Checks if the item has the potiontype ([Click here for potion types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)) ^ ~
   - `potionextended:<boolean>`  
-    Checks if a potion is extended ^
+    Checks if a potion is extended ^ ~
   - `potionupgraded:<boolean>`  
-    Checks if a potion is upgraded ^
+    Checks if a potion is upgraded ^ ~
   - `strict`  
     Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
   - `inhand`  
@@ -617,6 +618,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   - * means case-sensitive
   - ** means only one can be used
   - ^ means that the modifier supports the `give` placeholder
+  - ~ means that the modifier works with the `getinfo` placeholder
   - To use Commas in strings you must escape them using `\` (Ex: `loreequals:Milk\, Eggs\, Bread`)
   - **Placeholders are supported, but they need to be in brackets! (Ex: `%player_name%` would be `{player_name}`**
 
