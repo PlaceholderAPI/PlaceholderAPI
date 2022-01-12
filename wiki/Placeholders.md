@@ -3837,11 +3837,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
-  > /papi ecloud download PlayerPoints
+- ### **[PlayerPoints](https://www.spigotmc.org/resources/80745/)**
+  > NO DOWNLOAD COMMAND
   
   ```
   %playerpoints_points%
+  %playerpoints_points_formatted%
+  %playerpoints_points_shorthand%
   ```
 
 ----
