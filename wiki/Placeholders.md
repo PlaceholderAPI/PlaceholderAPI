@@ -531,7 +531,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **ChangeOutput**
-  > /papi ecloud download changeitem
+  > /papi ecloud download changeoutput
 
   Alows you to change the output based on what other placeholders return
   
