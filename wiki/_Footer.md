@@ -15,7 +15,7 @@
 [versionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
 [plugin-page]: https://spigotmc.org/resources/6245
 
-> © 2015 - 2021 [PlaceholderAPI Team][papi]  
+> © 2015 - 2022 [PlaceholderAPI Team][papi]  
 > Thanks for using PlaceholderAPI.
 >
 > **[Plugin-page]** | **[[Placeholders]]** | **[[Plugins using PlaceholderAPI]]** | **[[Hook into PlaceholderAPI]]**
