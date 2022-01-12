@@ -533,7 +533,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **ChangeOutput**
-  > /papi ecloud download changeitem
+  > /papi ecloud download changeoutput
 
   Alows you to change the output based on what other placeholders return
   
@@ -3860,11 +3860,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
-  > /papi ecloud download PlayerPoints
+- ### **[PlayerPoints](https://www.spigotmc.org/resources/80745/)**
+  > NO DOWNLOAD COMMAND
   
   ```
   %playerpoints_points%
+  %playerpoints_points_formatted%
+  %playerpoints_points_shorthand%
   ```
 
 ----
