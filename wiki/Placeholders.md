@@ -572,6 +572,8 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %checkitem_getinfo:<slot>_<modifier1>,<modifier2>,<...>% - Returns information about an item in a slot. Returns information in the same order listed on this wiki. List is seperated via " &r" (Ex. %checkitem_getinfo:0_mat:)
   ```
   
+  *Note: `mainhand` and `offhand` work in `getinfo:<slot>`*
+  
   **Modifiers**  
   You can combine different modifiers to check for different values.  
   Available modifiers are:
