@@ -286,7 +286,7 @@ public final class LocalExpansionManager implements Listener {
 
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
-    if (expansions.remove(expansion.getIdentifier()) == null) {
+    if (expansions.remove(expansion.getIdentifier().toLowerCase()) == null) {
       return false;
     }
 
