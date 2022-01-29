@@ -654,7 +654,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#premiumvanish]]**]
 - **[Prison](https://www.spigotmc.org/resources/1223/)**
-  - [ ] Supports placeholders.
+  - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#prison]]**]
 - **[PrisonMines](https://www.spigotmc.org/resources/4046/)**
   - [ ] Supports placeholders.
