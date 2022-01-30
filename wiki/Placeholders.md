@@ -5326,8 +5326,11 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   ```
   %tp_name:<AttractionID>%
   %tp_status:<AttractionID>%
+  %tp_region:<AttractionID>%
   %tp_ridecount%
   %tp_ridecount:<AttractionID>%
+  %tp_ridecounttop_name:<AttractionID>:<Position>%
+  %tp_ridecounttop_value:<AttractionID>:<Position>%
   ```
 
 ----
