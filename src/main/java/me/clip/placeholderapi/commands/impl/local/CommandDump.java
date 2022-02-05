@@ -106,7 +106,6 @@ public final class CommandDump extends PlaceholderCommand {
         }
 
         try (final InputStream stream = connection.getInputStream()) {
-          //noinspection UnstableApiUsage
           final String json = CharStreams.toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
           return gson.fromJson(json, JsonObject.class).get("key").getAsString();
         }
@@ -134,8 +133,10 @@ public final class CommandDump extends PlaceholderCommand {
     final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
         .getExpansions()
         .stream()
-        .sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
-        .sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
+        .sorted(
+            Comparator.comparing(PlaceholderExpansion::getIdentifier)
+                      .thenComparing(PlaceholderExpansion::getAuthor)
+        )
         .collect(Collectors.toList());
 
     int size = 0;
@@ -167,10 +168,15 @@ public final class CommandDump extends PlaceholderCommand {
         .getExpansionsFolder()
         .list((dir, name) -> name.toLowerCase().endsWith(".jar"));
 
-    for (final String jar : jars) {
-      builder.append("  ")
-          .append(jar)
-          .append('\n');
+
+    if (jars == null) {
+      builder.append("  WARN: Jars array was empty!");
+    } else {
+      for (final String jar : jars) {
+        builder.append("  ")
+            .append(jar)
+            .append('\n');
+      }
     }
 
     builder.append('\n');
