@@ -27,11 +27,20 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.impl.cloud.CommandECloud;
-import me.clip.placeholderapi.commands.impl.local.*;
+import me.clip.placeholderapi.commands.impl.local.CommandDump;
+import me.clip.placeholderapi.commands.impl.local.CommandExpansionRegister;
+import me.clip.placeholderapi.commands.impl.local.CommandExpansionUnregister;
+import me.clip.placeholderapi.commands.impl.local.CommandHelp;
+import me.clip.placeholderapi.commands.impl.local.CommandInfo;
+import me.clip.placeholderapi.commands.impl.local.CommandList;
+import me.clip.placeholderapi.commands.impl.local.CommandParse;
+import me.clip.placeholderapi.commands.impl.local.CommandReload;
+import me.clip.placeholderapi.commands.impl.local.CommandVersion;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -87,7 +96,7 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
       return true;
     }
 
-    final String search = args[0].toLowerCase();
+    final String search = args[0].toLowerCase(Locale.ROOT);
     final PlaceholderCommand target = commands.get(search);
 
     if (target == null) {
@@ -113,10 +122,10 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
     final List<String> suggestions = new ArrayList<>();
 
     if (args.length > 1) {
-      final PlaceholderCommand target = this.commands.get(args[0].toLowerCase());
+      final PlaceholderCommand target = this.commands.get(args[0].toLowerCase(Locale.ROOT));
 
       if (target != null) {
-        target.complete(plugin, sender, args[0].toLowerCase(),
+        target.complete(plugin, sender, args[0].toLowerCase(Locale.ROOT),
             Arrays.asList(Arrays.copyOfRange(args, 1, args.length)), suggestions);
       }
 

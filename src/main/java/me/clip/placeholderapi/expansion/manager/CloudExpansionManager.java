@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -88,7 +89,7 @@ public final class CloudExpansionManager {
 
   @NotNull
   private static String toIndexName(@NotNull final String name) {
-    return name.toLowerCase().replace(' ', '_');
+    return name.toLowerCase(Locale.ROOT).replace(' ', '_');
   }
 
   @NotNull

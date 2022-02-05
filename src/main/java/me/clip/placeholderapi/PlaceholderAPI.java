@@ -22,6 +22,7 @@ package me.clip.placeholderapi;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -185,7 +186,7 @@ public final class PlaceholderAPI {
         continue;
       }
 
-      String identifier = format.substring(0, index).toLowerCase();
+      String identifier = format.substring(0, index).toLowerCase(Locale.ROOT);
       String params = format.substring(index + 1);
       final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance()
           .getLocalExpansionManager().getExpansion(identifier);

@@ -128,7 +128,7 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
     installed.removeIf(expansion -> !expansion.shouldUpdate());
 
     if (!installed.isEmpty() && (params.isEmpty() || "all"
-        .startsWith(params.get(0).toLowerCase()))) {
+        .startsWith(params.get(0).toLowerCase(Locale.ROOT)))) {
       suggestions.add("all");
     }
 

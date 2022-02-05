@@ -125,7 +125,7 @@ public final class LocalExpansionManager implements Listener {
   public PlaceholderExpansion getExpansion(@NotNull final String identifier) {
     expansionsLock.lock();
     try {
-      return expansions.get(identifier.toLowerCase());
+      return expansions.get(identifier.toLowerCase(Locale.ROOT));
     } finally {
       expansionsLock.unlock();
     }
@@ -193,7 +193,7 @@ public final class LocalExpansionManager implements Listener {
 
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
-    final String identifier = expansion.getIdentifier().toLowerCase();
+    final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
 
     if (!expansion.canRegister()) {
       return false;

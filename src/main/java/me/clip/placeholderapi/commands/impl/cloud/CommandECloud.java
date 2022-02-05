@@ -100,7 +100,7 @@ public final class CommandECloud extends PlaceholderCommand {
       return;
     }
 
-    final String search = params.get(0).toLowerCase();
+    final String search = params.get(0).toLowerCase(Locale.ROOT);
     final PlaceholderCommand target = commands.get(search);
 
     if (target == null) {
@@ -136,7 +136,7 @@ public final class CommandECloud extends PlaceholderCommand {
       return; // send sub commands
     }
 
-    final String search = params.get(0).toLowerCase();
+    final String search = params.get(0).toLowerCase(Locale.ROOT);
     final PlaceholderCommand target = commands.get(search);
 
     if (target == null) {
