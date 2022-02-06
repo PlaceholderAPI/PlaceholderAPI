@@ -616,9 +616,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     Check if the item is in the player's hand. `inhand` will check *both* hands. You can add `:main` or `:off` to specify. (Ex: `inhand:main`)
   - `inslot`  
     Check if the item is in a specific slot ([Click here for valid slots](https://proxy.spigotmc.org/d3e11b631e22f45fc07c3fcd1c7000b2245fed78?url=http%3A%2F%2Fi.imgur.com%2F3YCrfC8.png))
-  - `nbtStrings:<key>=<value>;<key>=<value>`  
+  - `nbtstrings:<key>=<value>;<key>=<value>`  
     Checks if the item's nbtStrings contains `<key>` with the value of `<value>`. * ^ ~
-  - `nbtInts:<key>=<value>;<key>=<value>`  
+  - `nbtints:<key>=<value>;<key>=<value>`  
     Checks if the item's nbtInts contains `<key>` with the value of `<value>`. * ^ ~
     
   **Notes:**  
