@@ -4025,7 +4025,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_rankup_cost_remaining_formatted%
   %prison_rcrf%
   %prison_rankup_cost_remaining_percent%
-  %prison_rcrp
+  %prison_rcrp%
   %prison_rankup_cost_remaining_bar%
   %prison_rcrb%
   %prison_rankup_rank%
@@ -4212,7 +4212,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_r_pcb_<rankname>%
   ```
 
-  **MINES placeholders (34, 17 aliases):**
+  **MINES placeholders (32, 16 aliases):**
 
   MINES placeholder provides stats for the given mine.
 
@@ -4247,8 +4247,6 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_mbm_<minename>%
   %prison_mines_reset_count_<minename>%
   %prison_mrc_<minename>%
-  %prison_player_blocks_total_<minename>%
-  %prison_pbtm
 
   %prison_top_mine_block_line_header_<minename>%
   %prison_tmbl_header_<minename>%
@@ -4259,13 +4257,18 @@ Please see [this discussion][list] for a list of all expansions officially maint
   Note: The placeholders `%prison_top_mine_block_line_header_<minename>%` and `%prison_top_mine_block_line_totals_<minename>%` are used with the STATSMINES placeholders and provide the headers and total details for the given mines.
 
 
-  **MINEPLAYERS placeholders (28, 14 aliases):**
+  **MINEPLAYERS placeholders (32, 16 aliases):**
 
   MINEPLAYERS placeholders are tied to a player and dynamically shows the details of the mine the player is in, or blanks when not in a mine. These are ideal for use in scoreboards or chat prefixes.
 
   Must be used with a player.
 
   ```
+  %prison_player_blocks_total_<minename>%
+  %prison_pbt_<minename>%
+  %prison_player_blocks_raw_total_<minename>%
+  %prison_pbtr_<minename>%
+
   %prison_mines_name_playermines%
   %prison_mn_pm%
   %prison_mines_tag_playermines%
@@ -4294,6 +4297,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_mbm_pm%
   %prison_mines_reset_count_playermines%
   %prison_mrc_pm%
+  ```
+
+
+  **PLAYERBLOCKS placeholders (4, 2 aliases):**
+
+  PLAYERBLOCKS placeholders are tied to a player, but through the mines modules. The placeholders that are supported are one for each block type that is defined in all mines.
+
+  Must be used with a player.  The use of `<blockname>` is the name of the block as provided with the command `/mines block search help`, but all lowercase and any ":" should use "-" instead.  These placeholders will return a value of 0 or more.  If the block name is invalid it will return a blank.
+
+  Examples: `prison_player_total_blocks__cobblestone` `prison_player_total_blocks__customitems-compressedcobblestone`
+
+  ```
+  %prison_player_total_blocks__<blockname>%
+  %prison_ptb__<blockname>%
+  %prison_player_total_blocks_raw__<blockname>%
+  %prison_ptbr__<blockname>%
   ```
 
 
