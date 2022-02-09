@@ -147,6 +147,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **B**
     - **[BankSystem](#banksystem)**
+    - **[BasicInfo](#basicinfo)**
     - **[BattleLevels](#battlelevels)**
     - **[BeautyQuests](#beautyquests)**
     - **[BedWars1058](#bedwars1058)**
@@ -1845,6 +1846,23 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %banksystem_pocket%
   %banksystem_total%
   %banksystem_currency%
+  ```
+
+----
+
+- ### **[BasicInfo](https://www.spigotmc.org/resources/81287)**
+  > NO DOWNLOAD COMMAND
+  
+  For more info, read the description on the plugin page: https://www.spigotmc.org/resources/basicinfo.81287/
+
+  ```
+  %basicinfo_all%  
+  %basicinfo_website%  
+  %basicinfo_forums%  
+  %basicinfo_discord%  
+  %basicinfo_store%  
+  %basicinfo_application%  
+  %basicinfo_appeal%
   ```
 
 ----
