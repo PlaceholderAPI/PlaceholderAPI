@@ -110,6 +110,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[BannerBoard](https://www.spigotmc.org/resources/20435/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[BasicInfo](https://www.spigotmc.org/resources/basicinfo.81287/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. **[[Link|Placeholders#basicinfo]]**
 - **[BattleLevels](https://www.spigotmc.org/resources/2218/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#battlelevels]]**]
