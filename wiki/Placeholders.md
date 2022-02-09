@@ -3637,6 +3637,10 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %ob_next_lvl_name%
   %ob_break_on_this_lvl%
   %ob_need_to_lvl_up%
+  %ob_owner_name%
+  %ob_top_(number)_name%  (1 - 10)
+  %ob_top_(number)_lvl%   (1 - 10)
+  %ob_number_of_invited%
   %ob_player_count%
   %ob_ver%
   ```
