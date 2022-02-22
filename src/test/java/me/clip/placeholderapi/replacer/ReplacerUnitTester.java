@@ -88,12 +88,4 @@ public final class ReplacerUnitTester {
     assertEquals(text, Values.CHARS_REPLACER.apply(text, null, Values.PLACEHOLDERS::get));
   }
 
-  @Test
-  void testCharsReplacerHandlesEscapedHex() {
-    final String text = "\\&xffffffThis should not change.";
-
-    assertEquals(text.substring(1),
-        Values.CHARS_REPLACER.apply(text, null, Values.PLACEHOLDERS::get));
-  }
-
 }
