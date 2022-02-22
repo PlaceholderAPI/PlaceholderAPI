@@ -21,6 +21,8 @@
 package me.clip.placeholderapi.commands.impl.cloud;
 
 import java.util.List;
+import java.util.Locale;
+
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
