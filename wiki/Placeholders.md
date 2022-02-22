@@ -1670,16 +1670,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   [Description of placeholders](https://wiki.ajg0702.us/ajleaderboards/setup/placeholders)
   
   ```
-  %ajlb_position_<board>%
-  %ajlb_value_<board>%
-  %ajlb_value_<board>_formatted%
-  %ajlb_lb_<board>_<number>_name%
-  %ajlb_lb_<board>_<number>_value%
-  %ajlb_lb_<board>_<number>_rawvalue%
-  %ajlb_lb_<board>_<number>_value_formatted%
-  %ajlb_lb_<board>_<number>_prefix%
-  %ajlb_lb_<board>_<number>_suffix%
-  %ajlb_lb_<board>_<number>_color%
+  %ajlb_position_<board>_<type>%
+  %ajlb_value_<board>_<type>%
+  %ajlb_value_<board>_<type>_formatted%
+  %ajlb_value_<board>_<type>_time%
+  %ajlb_value_<board>_<type>_raw%
+  %ajlb_lb_<board>_<number>_<type>_name%
+  %ajlb_lb_<board>_<number>_<type>_value%
+  %ajlb_lb_<board>_<number>_<type>_time%
+  %ajlb_lb_<board>_<number>_<type>_rawvalue%
+  %ajlb_lb_<board>_<number>_<type>_value_formatted%
+  %ajlb_lb_<board>_<number>_<type>_prefix%
+  %ajlb_lb_<board>_<number>_<type>_suffix%
+  %ajlb_lb_<board>_<number>_<type>_color%
   ```
 
 ----
