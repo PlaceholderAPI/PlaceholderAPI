@@ -23,6 +23,7 @@ package me.clip.placeholderapi.commands;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -61,7 +62,7 @@ public abstract class PlaceholderCommand {
     if (parameter == null) {
       possible.forEach(suggestions::add);
     } else {
-      possible.filter(suggestion -> suggestion.toLowerCase().startsWith(parameter.toLowerCase()))
+      possible.filter(suggestion -> suggestion.toLowerCase(Locale.ROOT).startsWith(parameter.toLowerCase(Locale.ROOT)))
           .forEach(suggestions::add);
     }
   }

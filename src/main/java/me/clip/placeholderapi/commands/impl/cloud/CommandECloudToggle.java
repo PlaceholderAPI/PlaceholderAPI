@@ -41,7 +41,7 @@ public final class CommandECloudToggle extends PlaceholderCommand {
     final boolean desiredState;
     final boolean currentState = plugin.getPlaceholderAPIConfig().isCloudEnabled();
 
-    switch (alias.toLowerCase()) {
+    switch (alias.toLowerCase(Locale.ROOT)) {
       case "enable":
         desiredState = true;
         break;

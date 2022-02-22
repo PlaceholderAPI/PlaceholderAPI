@@ -165,7 +165,7 @@ public final class CommandDump extends PlaceholderCommand {
 
     final String[] jars = plugin.getLocalExpansionManager()
         .getExpansionsFolder()
-        .list((dir, name) -> name.toLowerCase().endsWith(".jar"));
+        .list((dir, name) -> name.toLowerCase(Locale.ROOT).endsWith(".jar"));
 
     for (final String jar : jars) {
       builder.append("  ")

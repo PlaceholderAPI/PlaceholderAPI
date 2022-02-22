@@ -24,6 +24,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -100,7 +101,7 @@ public final class CommandECloud extends PlaceholderCommand {
       return;
     }
 
-    final String search = params.get(0).toLowerCase();
+    final String search = params.get(0).toLowerCase(Locale.ROOT);
     final PlaceholderCommand target = commands.get(search);
 
     if (target == null) {
@@ -136,7 +137,7 @@ public final class CommandECloud extends PlaceholderCommand {
       return; // send sub commands
     }
 
-    final String search = params.get(0).toLowerCase();
+    final String search = params.get(0).toLowerCase(Locale.ROOT);
     final PlaceholderCommand target = commands.get(search);
 
     if (target == null) {

@@ -87,7 +87,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
   @NotNull
   private static Collection<CloudExpansion> getExpansions(@NotNull final String target,
       @NotNull final PlaceholderAPIPlugin plugin) {
-    switch (target.toLowerCase()) {
+    switch (target.toLowerCase(Locale.ROOT)) {
       case "all":
         return plugin.getCloudExpansionManager().getCloudExpansions().values();
       case "installed":
@@ -112,7 +112,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
   public static void addExpansionTitle(@NotNull final StringBuilder builder,
       @NotNull final String target, final int page) {
-    switch (target.toLowerCase()) {
+    switch (target.toLowerCase(Locale.ROOT)) {
       case "all":
         builder.append("&bAll Expansions");
         break;

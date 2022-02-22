@@ -22,6 +22,7 @@ package me.clip.placeholderapi.commands.impl.local;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -49,7 +50,7 @@ public final class CommandParse extends PlaceholderCommand {
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
       @NotNull @Unmodifiable final List<String> params) {
-    switch (alias.toLowerCase()) {
+    switch (alias.toLowerCase(Locale.ROOT)) {
       case "parserel":
         evaluateParseRelation(sender, params);
         break;
@@ -69,7 +70,7 @@ public final class CommandParse extends PlaceholderCommand {
   public void complete(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
       @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-    switch (alias.toLowerCase()) {
+    switch (alias.toLowerCase(Locale.ROOT)) {
       case "parserel":
         completeParseRelation(params, suggestions);
         break;
@@ -92,7 +93,7 @@ public final class CommandParse extends PlaceholderCommand {
       return;
     }
 
-    @NotNull final OfflinePlayer player;
+    OfflinePlayer player;
 
     if ("me".equalsIgnoreCase(params.get(0))) {
       if (!(sender instanceof Player)) {
@@ -101,6 +102,8 @@ public final class CommandParse extends PlaceholderCommand {
       }
 
       player = ((Player) sender);
+    } else if ("--null".equalsIgnoreCase(params.get(0))) {
+      player = null;
     } else {
       final OfflinePlayer target = resolvePlayer(params.get(0));
       if (target == null) {
@@ -161,10 +164,14 @@ public final class CommandParse extends PlaceholderCommand {
       @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
     if (params.size() <= 1) {
       if (sender instanceof Player && (params.isEmpty() || "me"
-          .startsWith(params.get(0).toLowerCase()))) {
+          .startsWith(params.get(0).toLowerCase(Locale.ROOT)))) {
         suggestions.add("me");
       }
-
+      
+      if ("--null".startsWith(params.get(0).toLowerCase(Locale.ROOT))) {
+        suggestions.add("--null");
+      }
+      
       final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
       suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 
