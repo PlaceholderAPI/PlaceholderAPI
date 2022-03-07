@@ -267,6 +267,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[MineChess](#minechess)**
     - **[MineCord](#minecord)**
     - **[MineCrates](#minecrates)**
+    - **[MineResetLite](#mineresetlite)**
     - **[MobHunting](#mobhunting)**
     - **[Multiverse-Core](#multiverse-core)**
     - **[MyCommand](#mycommand)**
@@ -3457,6 +3458,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
 
 ----
+
+- ### **[MineResetLite](https://polymart.org/resource/137/)**
+  > /papi ecloud download MineResetLite
+  
+  ```
+  %mineresetlite_time%
+  %mineresetlite_time_remaining%
+  %mineresetlite_precentage%
+  %mineresetlite_blocks_mined%
+  %mineresetlite_percentage_mined%
+  %mineresetlite_percentage_remaining%
+  ```
+
+---
 
 - ### **[MobHunting](https://www.spigotmc.org/resources/3582/)**
   > NO DOWNLOAD COMMAND
