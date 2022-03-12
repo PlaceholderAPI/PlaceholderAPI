@@ -3,9 +3,9 @@ This page shows all commands, including with a detailed description of what ever
 ## Overview
 
 - **[Parse Commands](#parse-commands)**
-  - [`/papi bcparse <player|me> <string>`](#papi-bcparse)
+  - [`/papi bcparse <player|me|--null> <string>`](#papi-bcparse)
   - [`/papi cmdparse <player|me> <string>`](#papi-cmdparse)
-  - [`/papi parse <player|me> <string>`](#papi-parse)
+  - [`/papi parse <player|me|--null> <string>`](#papi-parse)
   - [`/papi parserel <player> <player> <string>`](#papi-parserel)
 
 - **[eCloud Commands](#ecloud-commands)**
@@ -41,7 +41,7 @@ These commands are used to parse placeholders into their respective values. Usef
   Parses placeholders of a String and broadcasts the result to all players.
   
   **Arguments**:
-  * `<player|me>` - The Player to parse values of the placeholder (Use `me` for yourself).
+  * `<player|me|--null>` - The Player to parse values of the placeholder. Use `me` for yourself or `--null` for no Player.
   * `<Text with placeholders>` - The text to parse.
   
   **Example**:  
@@ -67,7 +67,7 @@ These commands are used to parse placeholders into their respective values. Usef
   Parses the placeholders in a given text and shows the result.
   
   **Arguments**:
-  * `<player|me>` - The Player to parse values of the placeholder (Use `me` for yourself).
+  * `<player|me|--null>` - The Player to parse values of the placeholder. Use `me` for yourself or `--null` for no Player.
   * `<Text with placeholders>` - The text to parse.
   
   **Example**:  
