@@ -38,8 +38,9 @@ labels:
           - Currently used Versions of your server and PlaceholderAPI
           - Currently installed Expansions
           - Currently installed Plugins
+          - Any additional information requested by users in this issue.
           
-          The easiest way to provide those information is through the `/papi dumb` command which posts the required information to https://paste.helpch.at and gives a URL to share.
+          The easiest way to provide those information is through the `/papi dump` command which posts the required information to https://paste.helpch.at and gives a URL to share.
     unlabeled:
       issue:
         body: |-
