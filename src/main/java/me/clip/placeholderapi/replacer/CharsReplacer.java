@@ -106,7 +106,7 @@ public final class CharsReplacer implements Replacer {
 
       final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
       if (placeholder == null) {
-        builder.append(closure.head).append(lowercaseIdentifierString);
+        builder.append(closure.head).append(identifierString);
 
         if (identified) {
           builder.append('_');
@@ -118,7 +118,7 @@ public final class CharsReplacer implements Replacer {
 
       final String replacement = placeholder.onRequest(player, parametersString);
       if (replacement == null) {
-        builder.append(closure.head).append(lowercaseIdentifierString);
+        builder.append(closure.head).append(identifierString);
 
         if (identified) {
           builder.append('_');
