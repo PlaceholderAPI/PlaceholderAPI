@@ -71,7 +71,7 @@ labels:
           
           Here is a small summary of what you should know:
           
-          - Pull requests for PlaceholderAPI should target the `development` branch.
+          - Pull requests for PlaceholderAPI should target the `master` branch.
           - Pull requests for the Wiki should target the `docs/wiki` branch.
           
           Don't hesitate to ask us any questions.
