@@ -4892,6 +4892,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %skinsrestorer_getSkinName%
+  %skinsrestorer_getTextureUrl_Or_PlayerName%
+  %skinsrestorer_getTextureUrl_Or_Empty%
+  %skinsrestorer_getTextureUrl_Or_Null%
+  %skinsrestorer_getTextureUrl_Or_Steve%
+  %skinsrestorer_getTextureUrl_Or_Alex%
   ```
 
 ----
