@@ -1329,7 +1329,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %string_uppercase_<string>%
   %string_lowercase_<string>%
   %string_length_<string>%
-  %string_random_<string1>_<string2>_<string3>_<etc>%
+  %string_random_<string1>,<string2>,<string3>,<etc>%
   ```
   
   Supports placeholders using brackets: `{placeholder}`
