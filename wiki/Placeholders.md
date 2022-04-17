@@ -40,7 +40,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Formatter](#formatter)**
 
   - ### **G**
-    - *No Expansions*
+    - **[GraalJS](#graaljs)**
 
   - ### **H**
     - *No Expansions*
@@ -679,6 +679,19 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %formatter_text_substring_[start]:[end]_<text>%
   %formatter_text_uppercase_<text>%
   %formatter_text_lowercase_<text>%
+  ```
+
+----
+
+- ### **[GraalJS](https://github.com/ruViolence/GraalJS-Expansion)**
+  > /papi ecloud download GraalJS
+
+  More info about this expansion can be found on the [GitHub-Repository](https://github.com/ruViolence/GraalJS-Expansion).
+
+  ```
+  %graaljs_<your_placeholder_identifier>%
+  %graaljs_<your_placeholder_identifier>_arg1%
+  %graaljs_<your_placeholder_identifier>_arg1,arg2,arg3%
   ```
 
 ----
