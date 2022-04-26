@@ -401,9 +401,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   }
 
   /**
-   * PlaceholderAPI will call this method whenever a valid placeholder pattern with a matching
-   * PlaceholderExpansion is found.
-   * <br>The provided Player can be one of 3 possible states:
+   * This method is called first whenever PlaceholderAPI finds a valid placeholder with a matching expansion.
+   * <br>When called, the provided OfflinePlayer instance can be one of 3 possible states:
    * 
    * <ul>
    *   <li>Not null and online</li>
@@ -411,32 +410,50 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    *   <li>Null</li>
    * </ul>
    * 
-   * By default will PlaceholderAPI check if the OfflinePlayer is both not null and online.
-   * <br>If both checks return true will it call {@link #parsePlaceholders(Player, String) parsePlaceholder(Player, String)}
-   * with the provided OfflinePlayer casted to a Player. Otherwise will the same method be called,
-   * but with {@code null} as Player value.
+   * When not overridden by the called expansion will the method as of now call
+   * {@link PlaceholderHook#onRequest(OfflinePlayer, String) PlaceholderHook#onRequest(OfflinePlayer, String)}.
+   * <br>This behaviour will change in a future version to call {@link #parsePlaceholders(Player, String) parsePlaceholders(Player, String)}
+   * with the OfflinePlayer either being casted to a Player (When online), or {@link null}.
    * 
-   * <p>To use this method in your PlaceholderExpansion, override it.
-   * 
-   * <p>When {@code null} is returned will PlaceholderAPI see this as "invalid placeholder" and
-   * return the placeholder as-is in the final String.
+   * <p>To use this method in your PlaceholderExpansion, override it and return either a String or {@code null}.
+   * <br>When {@code null} is returned will PlaceholderAPI see it as an "invalid placeholder" and return
+   * the content as-is in the final String.
    * 
    * @param player The OfflinePlayer to use.
-   * @param params The params from {@code %<expansion>_<params>%}
-   * @return Parsed placeholder, or null, depending on the Expansion's handling of it.
+   * @param params The parameters of the placeholder, right after the first underscore.
+   * @return Parsed placeholder, or null depending on the Expansion's handling of it.
    */
   @Nullable
-  public String parsePlaceholders(OfflinePlayer player, String params) {
-    if (player != null && player.isOnline()) {
-      this.onPlaceholderRequest((Player) player, params);
-    }
-    
-    return parsePlaceholders(null, params);
-  }
-  
-  @Nullable
-  public String parsePlaceholders(Player player, String params){
+  public String parsePlaceholders(@Nullable OfflinePlayer player, @NotNull String params) {
     return this.onRequest(player, params);
+  }
+
+  /**
+   * This method is called whenever PlaceholderAPI finds a valid placeholder with a matching expansion
+   * AND {@link #parsePlaceholders(OfflinePlayer, String) parsePlaceholder(OfflinePlayer, String)} isn't
+   * overridden by the expansion in question.
+   * <br>When called, the provided Player instance can be one of 2 possible states:
+   * 
+   * <ul>
+   *   <li>Not null and online</li>
+   *   <li>Null</li>
+   * </ul>
+   *
+   * When not overridden by the called expansion will the method as of now call
+   * {@link PlaceholderHook#onPlaceholderRequest(Player, String) PlaceholderHook#onPlaceholderRequest(Player, String)}.
+   * <br>This behaviour will change in a future version to instead return {@code null}.
+   * 
+   * <p>To use this method in your PlaceholderExpansion, override it and return either a String or {@code null}.
+   * <br>When {@code null} is returned will PlaceholderAPI see it as an "invalid placeholder" and return
+   * the content as-is in the final String.
+   * 
+   * @param player The Player to use. May be null
+   * @param params The parameters of the placeholder, right after the first underscore.
+   * @return Parsed placeholder, or null depending on the Expansion's handling of it.
+   */
+  @Nullable
+  public String parsePlaceholders(@Nullable Player player, @NotNull String params){
+    return this.onPlaceholderRequest(player, params);
   }
   
   // === Deprecated API ===
