@@ -61,7 +61,7 @@ public final class RegexReplacer implements Replacer {
         continue;
       }
 
-      final String requested = expansion.onRequest(player, parameters);
+      final String requested = expansion.parsePlaceholders(player, parameters);
       matcher.appendReplacement(builder, requested != null ? requested : matcher.group(0));
     }
     while (matcher.find());

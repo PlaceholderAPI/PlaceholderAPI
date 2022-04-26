@@ -21,23 +21,29 @@
 package me.clip.placeholderapi.expansion;
 
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * Implementing this interface allows your {@link me.clip.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}
- * to be used as a relational placeholder expansion.
+ * This interface should be used when your {@link me.clip.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}
+ * should support relational placeholders.
  * 
- * <p>Relational placeholders take two Players as input and are always prefixed with {@code rel_},
- * so {@code %foo_bar%} becomes {@code %rel_foo_bar%}
+ * <p>The difference between relational placeholders and normal ones is, that relational ones start
+ * with a {@code rel_} prefix and have two Players provided, instead of one.
+ * <br>The main purpose is to return a String based on the "relationship" between the two players
+ * (i.e. if both are within the same world).
  */
 public interface Relational {
 
   /**
-   * This method is called whenever a placeholder starting with {@code rel_} is called.
+   * This method will be called whenever a valid placeholder in the format {@code %rel_<expansion>_<identifier>%}
+   * is found.
    * 
-   * @param one The first player used for the placeholder.
-   * @param two The second player used for the placeholder.
-   * @param identifier The text right after the expansion's name (%expansion_<b>identifier</b>%)
-   * @return Parsed String from the expansion.
+   * @param one The first player to use for comparison.
+   * @param two The second player to use for comparison
+   * @param identifier String right after {@code %rel_<expansion>_} and before the second percent symbol.
+   * @return Possibly-null String, depending on what the expansion returns.
    */
-  String onPlaceholderRequest(Player one, Player two, String identifier);
+  @Nullable
+  String onPlaceholderRequest(Player one, Player two, @NotNull String identifier);
 }

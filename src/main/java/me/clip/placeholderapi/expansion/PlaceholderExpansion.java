@@ -26,7 +26,9 @@ import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -398,6 +400,45 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
         getAuthor(), getVersion());
   }
 
+  /**
+   * PlaceholderAPI will call this method whenever a valid placeholder pattern with a matching
+   * PlaceholderExpansion is found.
+   * <br>The provided Player can be one of 3 possible states:
+   * 
+   * <ul>
+   *   <li>Not null and online</li>
+   *   <li>Not null and offline</li>
+   *   <li>Null</li>
+   * </ul>
+   * 
+   * By default will PlaceholderAPI check if the OfflinePlayer is both not null and online.
+   * <br>If both checks return true will it call {@link #parsePlaceholders(Player, String) parsePlaceholder(Player, String)}
+   * with the provided OfflinePlayer casted to a Player. Otherwise will the same method be called,
+   * but with {@code null} as Player value.
+   * 
+   * <p>To use this method in your PlaceholderExpansion, override it.
+   * 
+   * <p>When {@code null} is returned will PlaceholderAPI see this as "invalid placeholder" and
+   * return the placeholder as-is in the final String.
+   * 
+   * @param player The OfflinePlayer to use.
+   * @param params The params from {@code %<expansion>_<params>%}
+   * @return Parsed placeholder, or null, depending on the Expansion's handling of it.
+   */
+  @Nullable
+  public String parsePlaceholders(OfflinePlayer player, String params) {
+    if (player != null && player.isOnline()) {
+      this.onPlaceholderRequest((Player) player, params);
+    }
+    
+    return parsePlaceholders(null, params);
+  }
+  
+  @Nullable
+  public String parsePlaceholders(Player player, String params){
+    return this.onRequest(player, params);
+  }
+  
   // === Deprecated API ===
 
   /**

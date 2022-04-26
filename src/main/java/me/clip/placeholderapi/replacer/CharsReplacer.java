@@ -116,7 +116,7 @@ public final class CharsReplacer implements Replacer {
         continue;
       }
 
-      final String replacement = placeholder.onRequest(player, parametersString);
+      final String replacement = placeholder.parsePlaceholders(player, parametersString);
       if (replacement == null) {
         builder.append(closure.head).append(identifierString);
 
