@@ -76,10 +76,10 @@ Any other methods that are part of the [`PlaceholderExpansion`][placeholderexpan
 You must choose between one of these two methods for handling the actual parsing of placeholders:
 
 - #### onRequest(OfflinePlayer, String)
-  If not explicitly set, this will automatically call [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).
-  This method is recommended as it allows the usage of `null` and can therefore be used in placeholders that don't require a valid player to be used.
+  If not explicitly set, this will automatically call [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).  
+  This method is recommendet for expansions that do not require a Player to be online on the Server when parsing placeholders.
 - #### onPlaceholderRequest(Player, String)
-  If not set, this method will return `null` which PlaceholderAPI sees as an invalid placeholder.
+  If not set, this method will return `null` which PlaceholderAPI sees as an invalid placeholder. Receiving this method means, that the provided Player is (or was) online at the time this method is called.
 
 ----
 ## Without a Plugin
