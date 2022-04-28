@@ -27,7 +27,7 @@ jobs:
       - name: 'Checkout Code'
         uses: actions/Checkout@v2
       - name: 'Update Wiki'
-        uses: Andrew-Chen-Wang/github-wiki-action@v2
+        uses: Andrew-Chen-Wang/github-wiki-action@v3
         env:
           WIKI_DIR: wiki/
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
