@@ -61,10 +61,11 @@ Let's quickly break down the different methods you have to implement.
   This method allows you to set the name of the expansion's author.
   
 - #### getIdentifier
-  This is the part of the placeholder that connects it to a particular PlaceholderExpansion.  
-  The Identifier can only consist of lowercase alphanummeric characters and cannot contain `%`, `{`, `}`, `-` or `_`
+  This is the part of the placeholder that comes right after the `%` (or `{`) and before the first `_`.  
+  It allows PlaceholderAPI to find a matching PlaceholderExpansion for a found placeholder pattern.  
+  Because of how PlaceholderAPI handles and finds placeholders are only alphanummeric characters (`a-z` and `0-9`) allowed.
   
-  If you want to use the not allowed characters in your Expansions name should you override the `getName()` method to achieve this.
+  You can override the `getName()` method of the PlaceholderExpansion class to change the Expansion's displayed name and use the not allowed characters.
   
 - #### getVersion
   This is a string, which means it can contain more than just a number. This is used to determine if a new update is available or not when the expansion is shared on the eCloud.
