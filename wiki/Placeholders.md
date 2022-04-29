@@ -2590,6 +2590,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_world_time_24%
   %essentials_worth%
   %essentials_worth:<item>%
+  %essentials_baltop_balance_fixed_<rank>%
+  %essentials_baltop_balance_formatted_<rank>%
+  %essentials_baltop_balance_commas_<rank>%
+  %essentials_baltop_balance_<rank>%
+  %essentials_baltop_player_<rank>%
+  %essentials_baltop_rank%
+  %essentials_baltop_player_stripped_<num>%
   ```
 
 ----
