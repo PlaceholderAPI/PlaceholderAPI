@@ -170,7 +170,7 @@ public final class CommandDump extends PlaceholderCommand {
 
 
     if (jars == null) {
-      builder.append("  WARN: Jars array was empty!");
+      builder.append("  ¨[Warning]: Could not load jar files from expansions folder.");
     } else {
       for (final String jar : jars) {
         builder.append("  ")
