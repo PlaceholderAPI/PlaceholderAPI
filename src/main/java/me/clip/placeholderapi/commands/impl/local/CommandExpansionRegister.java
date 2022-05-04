@@ -23,11 +23,9 @@ package me.clip.placeholderapi.commands.impl.local;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
@@ -60,31 +58,31 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
       return;
     }
 
-    Futures.onMainThread(plugin, manager.findExpansionInFile(file), (clazz, exception) -> {
+    Futures.onMainThread(plugin, manager.findExpansion(file), (expansion, exception) -> {
       if (exception != null) {
         Msg.msg(sender,
-            "&cFailed to find expansion in file: &f" + file);
+            "&cFailed to find expansion in file: &f" + file.getName());
 
         plugin.getLogger()
-            .log(Level.WARNING, "failed to find expansion in file: " + file, exception);
+            .log(Level.WARNING, "failed to find expansion in file: " + file.getName(), exception);
         return;
       }
 
-      if (clazz == null) {
+      if (expansion == null) {
         Msg.msg(sender,
-            "&cNo expansion class found in file: &f" + file);
+            "&cNo expansion class found in file: &f" + file.getName());
         return;
       }
-
-      final Optional<PlaceholderExpansion> expansion = manager.register(clazz);
-      if (!expansion.isPresent()) {
+      
+      
+      if (!manager.addToQueue(expansion)) {
         Msg.msg(sender,
             "&cFailed to register expansion from &f" + params.get(0));
         return;
       }
 
       Msg.msg(sender,
-          "&aSuccessfully registered expansion: &f" + expansion.get().getName());
+          "&aSuccessfully registered expansion: &f" + expansion.getIdentifier());
 
     });
   }

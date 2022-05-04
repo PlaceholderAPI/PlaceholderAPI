@@ -53,6 +53,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @NotNull
   private static final Version VERSION;
   private static PlaceholderAPIPlugin instance;
+  private boolean loaded = false;
 
   static {
     final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
@@ -167,6 +168,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     adventure = null;
 
     instance = null;
+    loaded = false;
   }
 
   public void reloadConf(@NotNull final CommandSender sender) {
@@ -212,6 +214,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     return config;
   }
 
+  public boolean isLoaded() {
+    return loaded;
+  }
+
   private void setupCommand() {
     final PluginCommand pluginCommand = getCommand("placeholderapi");
     if (pluginCommand == null) {
@@ -245,6 +251,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private void setupExpansions() {
     Bukkit.getPluginManager().registerEvents(getLocalExpansionManager(), this);
 
+    this.loaded = true;
     try {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);

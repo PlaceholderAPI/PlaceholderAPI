@@ -136,7 +136,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * @return true if this expansion is now registered with PlaceholderAPI
    */
   public boolean register() {
-    return getPlaceholderAPI().getLocalExpansionManager().register(this);
+    return getPlaceholderAPI().getLocalExpansionManager().addToQueue(this);
   }
 
   /**

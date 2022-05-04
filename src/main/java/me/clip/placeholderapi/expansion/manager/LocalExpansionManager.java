@@ -22,11 +22,33 @@ package me.clip.placeholderapi.expansion.manager;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
+import java.io.File;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
-import me.clip.placeholderapi.expansion.*;
+import me.clip.placeholderapi.expansion.Cacheable;
+import me.clip.placeholderapi.expansion.Cleanable;
+import me.clip.placeholderapi.expansion.Configurable;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.Taskable;
+import me.clip.placeholderapi.expansion.Version;
+import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
 import me.clip.placeholderapi.util.Futures;
@@ -45,16 +67,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
-import java.io.File;
-import java.lang.reflect.Modifier;
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
-
 public final class LocalExpansionManager implements Listener {
 
   @NotNull
@@ -65,6 +77,8 @@ public final class LocalExpansionManager implements Listener {
           .filter(method -> Modifier.isAbstract(method.getModifiers()))
           .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
           .collect(Collectors.toSet());
+  @NotNull
+  private final List<PlaceholderExpansion> expansionQueue = new ArrayList<>();
 
   @NotNull
   private final File folder;
@@ -74,7 +88,8 @@ public final class LocalExpansionManager implements Listener {
   @NotNull
   private final Map<String, PlaceholderExpansion> expansions = new ConcurrentHashMap<>();
   private final ReentrantLock expansionsLock = new ReentrantLock();
-
+  
+  private boolean loaded = false;
 
   public LocalExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
     this.plugin = plugin;
@@ -154,8 +169,8 @@ public final class LocalExpansionManager implements Listener {
       @NotNull final String identifier) {
     return Optional.ofNullable(getExpansion(identifier));
   }
-
-
+  
+  
   public Optional<PlaceholderExpansion> register(
       @NotNull final Class<? extends PlaceholderExpansion> clazz) {
     try {
@@ -190,98 +205,19 @@ public final class LocalExpansionManager implements Listener {
 
     return Optional.empty();
   }
-
+  
   @ApiStatus.Internal
-  public boolean register(@NotNull final PlaceholderExpansion expansion) {
-    final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
-
+  public boolean addToQueue(@NotNull final PlaceholderExpansion expansion) {
     if (!expansion.canRegister()) {
       return false;
     }
-
-    if (expansion instanceof Configurable) {
-      Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
-      String pre = "expansions." + identifier + ".";
-      FileConfiguration cfg = plugin.getConfig();
-      boolean save = false;
-
-      if (defaults != null) {
-        for (Map.Entry<String, Object> entries : defaults.entrySet()) {
-          if (entries.getKey() == null || entries.getKey().isEmpty()) {
-            continue;
-          }
-
-          if (entries.getValue() == null) {
-            if (cfg.contains(pre + entries.getKey())) {
-              save = true;
-              cfg.set(pre + entries.getKey(), null);
-            }
-          } else {
-            if (!cfg.contains(pre + entries.getKey())) {
-              save = true;
-              cfg.set(pre + entries.getKey(), entries.getValue());
-            }
-          }
-        }
-      }
-
-      if (save) {
-        plugin.saveConfig();
-        plugin.reloadConfig();
-      }
+    
+    if (loaded) {
+      return loadExpansion(expansion);
     }
-
-    if (expansion instanceof VersionSpecific) {
-      VersionSpecific nms = (VersionSpecific) expansion;
-      if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
-        plugin.getLogger().warning("Your server version is not compatible with expansion " +
-            expansion.getIdentifier() + " " + expansion.getVersion());
-        return false;
-      }
-    }
-
-    final PlaceholderExpansion removed = getExpansion(identifier);
-    if (removed != null && !removed.unregister()) {
-      return false;
-    }
-
-    final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
-    Bukkit.getPluginManager().callEvent(event);
-
-    if (event.isCancelled()) {
-      return false;
-    }
-
-    expansionsLock.lock();
-    try {
-      expansions.put(identifier, expansion);
-    } finally {
-      expansionsLock.unlock();
-    }
-
-    if (expansion instanceof Listener) {
-      Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
-    }
-
-    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier() + 
-        " [" + expansion.getVersion() + "]");
-
-    if (expansion instanceof Taskable) {
-      ((Taskable) expansion).start();
-    }
-
-    if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
-      final Optional<CloudExpansion> cloudExpansionOptional =
-          plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
-      if (cloudExpansionOptional.isPresent()) {
-        CloudExpansion cloudExpansion = cloudExpansionOptional.get();
-        cloudExpansion.setHasExpansion(true);
-        cloudExpansion.setShouldUpdate(
-            !cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
-      }
-    }
-
-    return true;
+    
+    plugin.getLogger().info("Adding " + expansion.getIdentifier() + " to Expansion Queue...");
+    return expansionQueue.add(expansion);
   }
 
   @ApiStatus.Internal
@@ -315,21 +251,113 @@ public final class LocalExpansionManager implements Listener {
     return true;
   }
 
+  private boolean loadExpansion(@NotNull final PlaceholderExpansion expansion) {
+    final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
+
+    if (expansion instanceof Configurable) {
+      Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
+      String pre = "expansions." + identifier + ".";
+      FileConfiguration cfg = plugin.getConfig();
+      boolean save = false;
+
+      if (defaults != null) {
+        for (Map.Entry<String, Object> entry : defaults.entrySet()) {
+          if (entry.getKey() == null || entry.getKey().isEmpty()) {
+            continue;
+          }
+
+          if (entry.getValue() == null) {
+            if (cfg.contains(pre + entry.getKey())) {
+              save = true;
+              cfg.set(pre + entry.getKey(), null);
+            }
+          } else {
+            if (!cfg.contains(pre + entry.getKey())) {
+              save = true;
+              cfg.set(pre + entry.getKey(), entry.getValue());
+            }
+          }
+        }
+      }
+
+      if (save) {
+        plugin.saveConfig();
+        plugin.reloadConfig();
+      }
+    }
+    
+    if (expansion instanceof VersionSpecific) {
+      VersionSpecific nms = (VersionSpecific) expansion;
+      Version serverVersion = PlaceholderAPIPlugin.getServerVersion();
+      if (!nms.isCompatibleWith(serverVersion)) {
+        plugin.getLogger().warning("PlaceholderExpansion " + expansion.getIdentifier() +
+            " is incompatible with your server version (" + serverVersion.getVersion() + ").");
+        return false;
+      }
+    }
+    
+    final PlaceholderExpansion removed = getExpansion(identifier);
+    if (removed != null && !removed.unregister()) {
+      plugin.getLogger().warning("PlaceholderExpansion " + expansion.getIdentifier() +
+          "could not be registered as it has been already loaded and couldn't be unloaded.");
+      return false;
+    }
+    
+    final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
+    Bukkit.getPluginManager().callEvent(event);
+    
+    if (event.isCancelled()) {
+      return false;
+    }
+    
+    expansionsLock.lock();
+    try {
+      expansions.put(identifier, expansion);
+    } finally {
+      expansionsLock.unlock();
+    }
+    
+    if (expansion instanceof Listener) {
+      plugin.getLogger().info("PlaceholderExpansion " + expansion.getIdentifier() +
+          " registered as a Listener for Events.");
+      Bukkit.getPluginManager().registerEvents((Listener) expansion, plugin);
+    }
+    
+    plugin.getLogger().info("Successfully registered " + expansion.getIdentifier() +
+        " [" + expansion.getVersion() + "]");
+    
+    if (expansion instanceof Taskable) {
+      ((Taskable) expansion).start();
+    }
+    
+    if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
+      final Optional<CloudExpansion> optionalCloudExpansion = plugin.getCloudExpansionManager()
+          .findCloudExpansionByName(identifier);
+      if (optionalCloudExpansion.isPresent()) {
+        CloudExpansion cloudExpansion = optionalCloudExpansion.get();
+        cloudExpansion.setHasExpansion(true);
+        cloudExpansion.setShouldUpdate(
+            !cloudExpansion.getLatestVersion().equals(expansion.getVersion())
+        );
+      }
+    }
+    
+    return true;
+  }
 
   private void registerAll(@NotNull final CommandSender sender) {
     plugin.getLogger().info("Placeholder expansion registration initializing...");
-
-    Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
+    loaded = true;
+    
+    Futures.onMainThread(plugin, collectExpansions(), (expansions, exception) -> {
       if (exception != null) {
         plugin.getLogger().log(Level.SEVERE, "failed to load class files of expansions", exception);
         return;
       }
       
-      final List<PlaceholderExpansion> registered = classes.stream()
+      final List<PlaceholderExpansion> registered = expansions.stream()
           .filter(Objects::nonNull)
-          .map(this::register)
-          .filter(Optional::isPresent)
-          .map(Optional::get)
+          .filter(this::loadExpansion)
           .collect(Collectors.toList());
 
       final long needsUpdate = registered.stream()
@@ -351,7 +379,6 @@ public final class LocalExpansionManager implements Listener {
             .append("placeholder hook(s) have an update available.");
       }
       
-      
       Msg.msg(sender, message.toString());
 
       Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
@@ -367,51 +394,58 @@ public final class LocalExpansionManager implements Listener {
       expansion.unregister();
     }
   }
-
+  
   @NotNull
-  public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
+  public CompletableFuture<@NotNull List<@Nullable PlaceholderExpansion>> collectExpansions() {
     File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
-    if(files == null){
-      return CompletableFuture.completedFuture(Collections.emptyList());
+    if (files == null) {
+      return CompletableFuture.completedFuture(expansionQueue);
     }
     
-    return Arrays.stream(files)
-        .map(this::findExpansionInFile)
-        .collect(Futures.collector());
-  }
-
-  @NotNull
-  public CompletableFuture<@Nullable Class<? extends PlaceholderExpansion>> findExpansionInFile(
-      @NotNull final File file) {
     return CompletableFuture.supplyAsync(() -> {
-      try {
-        final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);
-
-        if (expansionClass == null) {
-          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
-                  " a class which extends PlaceholderExpansion.");
-          return null;
-        }
-
-        Set<MethodSignature> expansionMethods = Arrays.stream(expansionClass.getDeclaredMethods())
-                .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
-                .collect(Collectors.toSet());
-        if (!expansionMethods.containsAll(ABSTRACT_EXPANSION_METHODS)) {
-          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have the" +
-                  " required methods declared for a PlaceholderExpansion.");
-          return null;
-        }
-
-        return expansionClass;
-      } catch (final VerifyError ex) {
-        plugin.getLogger().severe("Failed to load Expansion class " + file.getName() +
-            " (Is a dependency missing?)");
-        plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
-        return null;
-      } catch (final Exception ex) {
-        throw new CompletionException(ex);
-      }
+      Arrays.stream(files)
+          .map(this::findExpansions)
+          .forEach(expansionQueue::add);
+      
+      return expansionQueue;
     });
+  }
+  
+  @Nullable
+  public PlaceholderExpansion findExpansions(@NotNull File file) {
+    try {
+      final Class<? extends PlaceholderExpansion> expansion = FileUtil.findClass(file,
+          PlaceholderExpansion.class);
+
+      if (expansion == null) {
+        plugin.getLogger()
+            .severe("Failed to load Expansion " + file.getName() + ". File does not have " +
+                "a class which extends PlaceholderExpansion.");
+        return null;
+      }
+
+      Set<MethodSignature> expansionMethods = Arrays.stream(expansion.getDeclaredMethods())
+          .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
+          .collect(Collectors.toSet());
+      if (!expansionMethods.containsAll(ABSTRACT_EXPANSION_METHODS)) {
+        plugin.getLogger()
+            .severe("Failed to load Expansion " + file.getName() + ". File does not have " +
+                "the required methods declared for a PlaceholderExpansion.");
+        return null;
+      }
+
+      return expansion.getDeclaredConstructor().newInstance();
+    } catch (Exception ex) {
+      plugin.getLogger()
+          .severe("Failed to load Expansion " + file.getName() + ". (Is a dependency missing?)");
+      plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
+      return null;
+    }
+  }
+  
+  @NotNull
+  public CompletableFuture<@Nullable PlaceholderExpansion> findExpansion(@NotNull final File file) {
+    return CompletableFuture.supplyAsync(() -> findExpansions(file));
   }
 
 

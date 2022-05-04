@@ -60,7 +60,7 @@ public final class CommandInfo extends PlaceholderCommand {
         .append(expansion.getName())
         .append('\n')
         .append("&7Status: &r")
-        .append(expansion.isRegistered() ? "&aRegistered" : "7cNotRegistered")
+        .append(expansion.isRegistered() ? "&aRegistered" : "&cNot Registered")
         .append('\n');
 
     final String author = expansion.getAuthor();

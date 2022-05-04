@@ -50,7 +50,7 @@ public class FileUtil {
       JarEntry entry;
       while ((entry = stream.getNextJarEntry()) != null) {
         final String name = entry.getName();
-        if (name.isEmpty() || !name.endsWith(".class")) {
+        if (!name.endsWith(".class")) {
           continue;
         }
 

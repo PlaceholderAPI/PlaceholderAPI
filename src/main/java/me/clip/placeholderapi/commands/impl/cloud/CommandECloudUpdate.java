@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
@@ -48,12 +47,12 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
     super("update");
   }
 
-  private static CompletableFuture<List<@Nullable Class<? extends PlaceholderExpansion>>> downloadAndDiscover(
+  private static CompletableFuture<List<@Nullable PlaceholderExpansion>> downloadAndDiscover(
       @NotNull final List<CloudExpansion> expansions, @NotNull final PlaceholderAPIPlugin plugin) {
     return expansions.stream()
         .map(expansion -> plugin.getCloudExpansionManager()
             .downloadExpansion(expansion, expansion.getVersion()))
-        .map(future -> future.thenCompose(plugin.getLocalExpansionManager()::findExpansionInFile))
+        .map(future -> future.thenCompose(plugin.getLocalExpansionManager()::findExpansion))
         .collect(Futures.collector());
   }
 
@@ -104,9 +103,7 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
 
       final String message = classes.stream()
           .filter(Objects::nonNull)
-          .map(plugin.getLocalExpansionManager()::register)
-          .filter(Optional::isPresent)
-          .map(Optional::get)
+          .filter(plugin.getLocalExpansionManager()::addToQueue)
           .map(expansion -> "  &a" + expansion.getName() + " &f" + expansion.getVersion())
           .collect(Collectors.joining("\n"));
 
