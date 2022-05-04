@@ -104,7 +104,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Teams](#teams)**
 
   - ### **U**
-    - *No Expansions*
+    - **[Unicode](#unicode)**
 
   - ### **V**
     - *No Expansions*
@@ -1370,6 +1370,17 @@ L
   %team_suffix%
   %team_name%
   ```
+
+----
+
+- ### **Unicode**
+  > /papi ecloud download unicode
+  
+  ```
+  %unicode_<value>%
+  ```
+  
+  Example: `%unicode_1000%` would show `က`
 
 ----
 
