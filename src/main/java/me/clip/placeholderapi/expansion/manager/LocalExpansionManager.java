@@ -170,42 +170,6 @@ public final class LocalExpansionManager implements Listener {
     return Optional.ofNullable(getExpansion(identifier));
   }
   
-  
-  public Optional<PlaceholderExpansion> register(
-      @NotNull final Class<? extends PlaceholderExpansion> clazz) {
-    try {
-      final PlaceholderExpansion expansion = createExpansionInstance(clazz);
-      
-      if(expansion == null){
-        return Optional.empty();
-      }
-      
-      Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
-      Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
-      Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
-
-      if (!expansion.register()) {
-        return Optional.empty();
-      }
-
-      return Optional.of(expansion);
-    } catch (LinkageError | NullPointerException ex) {
-      final String reason;
-
-      if (ex instanceof LinkageError) {
-        reason = " (Is a dependency missing?)";
-      } else {
-        reason = " - One of its properties is null which is not allowed!";
-      }
-
-      plugin.getLogger().severe("Failed to load expansion class " + clazz.getSimpleName() +
-              reason);
-      plugin.getLogger().log(Level.SEVERE, "", ex);
-    }
-
-    return Optional.empty();
-  }
-  
   @ApiStatus.Internal
   public boolean addToQueue(@NotNull final PlaceholderExpansion expansion) {
     if (!expansion.canRegister()) {
@@ -447,24 +411,6 @@ public final class LocalExpansionManager implements Listener {
   public CompletableFuture<@Nullable PlaceholderExpansion> findExpansion(@NotNull final File file) {
     return CompletableFuture.supplyAsync(() -> findExpansions(file));
   }
-
-
-  @Nullable
-  public PlaceholderExpansion createExpansionInstance(
-      @NotNull final Class<? extends PlaceholderExpansion> clazz) throws LinkageError {
-    try {
-      return clazz.getDeclaredConstructor().newInstance();
-    } catch (final Exception ex) {
-      if (ex.getCause() instanceof LinkageError) {
-        throw ((LinkageError) ex.getCause());
-      }
-
-      plugin.getLogger().warning("There was an issue with loading an expansion.");
-      
-      return null;
-    }
-  }
-
 
   @EventHandler
   public void onQuit(@NotNull final PlayerQuitEvent event) {
