@@ -139,14 +139,9 @@ public final class CommandDump extends PlaceholderCommand {
         )
         .collect(Collectors.toList());
 
-    int size = 0;
-
-    for (final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier)
-        .collect(Collectors.toList())) {
-      if (name.length() > size) {
-        size = name.length();
-      }
-    }
+    int size = expansions.stream().map(e -> e.getIdentifier().length())
+        .max(Integer::compareTo)
+        .orElse(0);
 
     for (final PlaceholderExpansion expansion : expansions) {
       builder.append("  ")
@@ -197,13 +192,10 @@ public final class CommandDump extends PlaceholderCommand {
     List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
         .sorted(Comparator.comparing(Plugin::getName))
         .collect(Collectors.toList());
-
-    for (final String pluginName : plugins.stream().map(Plugin::getName)
-        .collect(Collectors.toList())) {
-      if (pluginName.length() > size) {
-        size = pluginName.length();
-      }
-    }
+    
+    size = plugins.stream().map(pl -> pl.getName().length())
+        .max(Integer::compareTo)
+        .orElse(0);
 
     for (final Plugin other : plugins) {
       builder.append("  ")
