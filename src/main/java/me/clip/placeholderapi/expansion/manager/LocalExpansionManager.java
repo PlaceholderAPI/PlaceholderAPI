@@ -89,7 +89,7 @@ public final class LocalExpansionManager implements Listener {
   private final Map<String, PlaceholderExpansion> expansions = new ConcurrentHashMap<>();
   private final ReentrantLock expansionsLock = new ReentrantLock();
   
-  private boolean loaded = false;
+  private boolean pluginLoaded = false;
 
   public LocalExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
     this.plugin = plugin;
@@ -176,7 +176,7 @@ public final class LocalExpansionManager implements Listener {
       return false;
     }
     
-    if (loaded) {
+    if (pluginLoaded) {
       return loadExpansion(expansion);
     }
     
@@ -311,7 +311,7 @@ public final class LocalExpansionManager implements Listener {
 
   private void registerAll(@NotNull final CommandSender sender) {
     plugin.getLogger().info("Placeholder expansion registration initializing...");
-    loaded = true;
+    pluginLoaded = true;
     
     Futures.onMainThread(plugin, collectExpansions(), (expansions, exception) -> {
       if (exception != null) {
@@ -357,6 +357,7 @@ public final class LocalExpansionManager implements Listener {
 
       expansion.unregister();
     }
+    pluginLoaded = false;
   }
   
   @NotNull
