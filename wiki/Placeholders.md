@@ -3897,7 +3897,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
-  > /papi ecloud download PlayTime
+  > NO DOWNLOAD COMMAND
   
   ```
   %playtime_player%
