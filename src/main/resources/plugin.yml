@@ -6,6 +6,9 @@ author: HelpChat
 
 api-version: "1.13"
 description: "@description@"
+softdepend:
+  - Luckperms
+  - ViaVersion
 
 commands:
   placeholderapi:
