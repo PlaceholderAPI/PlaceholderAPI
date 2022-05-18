@@ -22,11 +22,32 @@ package me.clip.placeholderapi.expansion.manager;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
+import java.io.File;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
-import me.clip.placeholderapi.expansion.*;
+import me.clip.placeholderapi.expansion.Cacheable;
+import me.clip.placeholderapi.expansion.Cleanable;
+import me.clip.placeholderapi.expansion.Configurable;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.Taskable;
+import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
 import me.clip.placeholderapi.util.Futures;
@@ -44,16 +65,6 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
-
-import java.io.File;
-import java.lang.reflect.Modifier;
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 public final class LocalExpansionManager implements Listener {
 
@@ -81,7 +92,7 @@ public final class LocalExpansionManager implements Listener {
     this.folder = new File(plugin.getDataFolder(), EXPANSIONS_FOLDER_NAME);
 
     if (!this.folder.exists() && !folder.mkdirs()) {
-      plugin.getLogger().log(Level.WARNING, "failed to create expansions folder!");
+      Msg.warn("Failed to create expansions folder!");
     }
   }
 
@@ -168,8 +179,17 @@ public final class LocalExpansionManager implements Listener {
       Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
       Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
       Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
-
+      
       if (!expansion.register()) {
+        if (expansion.getRequiredPlugin() != null && !expansion.getRequiredPlugin().isEmpty()) {
+          if (!Bukkit.getPluginManager().isPluginEnabled(expansion.getRequiredPlugin())) {
+            Msg.warn("Cannot load expansion %s due to a missing plugin: %s",
+                expansion.getIdentifier(), expansion.getRequiredPlugin());
+            return Optional.empty();
+          }
+        }
+        
+        Msg.warn("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
         return Optional.empty();
       }
 
@@ -182,10 +202,8 @@ public final class LocalExpansionManager implements Listener {
       } else {
         reason = " - One of its properties is null which is not allowed!";
       }
-
-      plugin.getLogger().severe("Failed to load expansion class " + clazz.getSimpleName() +
-              reason);
-      plugin.getLogger().log(Level.SEVERE, "", ex);
+      
+      Msg.severe("Failed to load expansion class %s%s", ex, clazz.getSimpleName(), reason);
     }
 
     return Optional.empty();
@@ -234,8 +252,8 @@ public final class LocalExpansionManager implements Listener {
     if (expansion instanceof VersionSpecific) {
       VersionSpecific nms = (VersionSpecific) expansion;
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
-        plugin.getLogger().warning("Your server version is not compatible with expansion " +
-            expansion.getIdentifier() + " " + expansion.getVersion());
+        Msg.warn("Your server version is incompatible with expansion %s %s",
+            expansion.getIdentifier(), expansion.getVersion());
         return false;
       }
     }
@@ -262,9 +280,9 @@ public final class LocalExpansionManager implements Listener {
     if (expansion instanceof Listener) {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
     }
-
-    plugin.getLogger().info("Successfully registered expansion: " + expansion.getIdentifier() + 
-        " [" + expansion.getVersion() + "]");
+    
+    Msg.info("Successfully registered expansion: %s [%s]", expansion.getIdentifier(),
+        expansion.getVersion());
 
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
@@ -315,13 +333,12 @@ public final class LocalExpansionManager implements Listener {
     return true;
   }
 
-
   private void registerAll(@NotNull final CommandSender sender) {
-    plugin.getLogger().info("Placeholder expansion registration initializing...");
+    Msg.info("Placeholder expansion registratuib initializing...");
 
     Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
       if (exception != null) {
-        plugin.getLogger().log(Level.SEVERE, "failed to load class files of expansions", exception);
+        Msg.severe("Failed to load class files of expansion.", exception);
         return;
       }
       
@@ -388,8 +405,8 @@ public final class LocalExpansionManager implements Listener {
         final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);
 
         if (expansionClass == null) {
-          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have" +
-                  " a class which extends PlaceholderExpansion.");
+          Msg.severe("Failed to load Expansion %s, as it does not have a class which" 
+              + " extends PlaceholderExpansion", file.getName());
           return null;
         }
 
@@ -397,16 +414,15 @@ public final class LocalExpansionManager implements Listener {
                 .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
                 .collect(Collectors.toSet());
         if (!expansionMethods.containsAll(ABSTRACT_EXPANSION_METHODS)) {
-          plugin.getLogger().severe("Failed to load Expansion: " + file.getName() + ", as it does not have the" +
-                  " required methods declared for a PlaceholderExpansion.");
+          Msg.severe("Failed to load Expansion %s, as it does not have the required" 
+              + " methods declared for a PlaceholderExpansion.", file.getName());
           return null;
         }
 
         return expansionClass;
       } catch (final VerifyError ex) {
-        plugin.getLogger().severe("Failed to load Expansion class " + file.getName() +
-            " (Is a dependency missing?)");
-        plugin.getLogger().severe("Cause: " + ex.getClass().getSimpleName() + " " + ex.getMessage());
+        Msg.severe("Failed to load Expansion class %s (Is a dependency missing?", file.getName());
+        Msg.severe("Cause: %s %s", ex.getClass().getSimpleName(), ex.getMessage());
         return null;
       } catch (final Exception ex) {
         throw new CompletionException(ex);
@@ -424,9 +440,8 @@ public final class LocalExpansionManager implements Listener {
       if (ex.getCause() instanceof LinkageError) {
         throw ((LinkageError) ex.getCause());
       }
-
-      plugin.getLogger().warning("There was an issue with loading an expansion.");
       
+      Msg.warn("There was an issue with loading an Expansion.");
       return null;
     }
   }
@@ -456,7 +471,8 @@ public final class LocalExpansionManager implements Listener {
       }
 
       expansion.unregister();
-      plugin.getLogger().info("Unregistered placeholder expansion: " + expansion.getName());
+      Msg.info("Unregistered placeholder Expansion %s", expansion.getIdentifier());
+      Msg.info("Reason: Required plugin %s was disabled.", name);
     }
   }
 

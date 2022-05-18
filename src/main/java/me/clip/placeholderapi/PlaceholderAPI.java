@@ -332,10 +332,9 @@ public final class PlaceholderAPI {
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean registerPlaceholderHook(Plugin plugin, PlaceholderHook placeholderHook) {
-    PlaceholderAPIPlugin.getInstance().getLogger().warning(plugin.getName()
-        + " is attempting to register placeholders via a PlaceholderHook class which is no longer supported!"
-        + " Please reach out to " + plugin.getDescription().getAuthors().toString()
-        + " and let them know that they need to update ASAP!");
+    Msg.warn("Nag author(s) %s of plugin %s about their usage of the deprecated PlaceholderHook" 
+        + " class! This class will be removed in v2.13.0!", plugin.getDescription().getAuthors(),
+        plugin.getName());
     return false;
   }
 
@@ -351,8 +350,8 @@ public final class PlaceholderAPI {
   @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean registerPlaceholderHook(String identifier,
       PlaceholderHook placeholderHook) {
-    PlaceholderAPIPlugin.getInstance().getLogger().warning(identifier
-        + " is attempting to register placeholders via a PlaceholderHook class which is no longer supported!");
+    Msg.warn("%s is attempting to register placeholders via deprecated PlaceholderHook class." 
+        + " This class is no longer supported and will be removed in v2.13.0!", identifier);
     return false;
   }
 
@@ -366,10 +365,9 @@ public final class PlaceholderAPI {
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean unregisterPlaceholderHook(Plugin plugin) {
-    PlaceholderAPIPlugin.getInstance().getLogger().warning(plugin.getName()
-        + " is attempting to unregister placeholders via the PlaceholderAPI class which is no longer supported!"
-        + " Please reach out to " + plugin.getDescription().getAuthors().toString()
-        + " and let them know that they need to update ASAP!");
+    Msg.warn("Nag author(s) %s of plugin %s about their usage of the PlaceholderAPI class."
+            + " This way of unregistering placeholders is no longer supported and will be removed" 
+            + " in v2.13.0!", plugin.getDescription().getAuthors(), plugin.getName());
     return false;
   }
 
@@ -383,8 +381,9 @@ public final class PlaceholderAPI {
   @Deprecated
   @ApiStatus.ScheduledForRemoval(inVersion = "2.13.0")
   public static boolean unregisterPlaceholderHook(String identifier) {
-    PlaceholderAPIPlugin.getInstance().getLogger().warning(identifier
-        + " is attempting to unregister placeholders through the PlaceholderAPI class which is no longer supported!");
+    Msg.warn("%s is attempting to unregister placeholders via PlaceholderAPI class."
+        + " This way of unregistering placeholders is no longer supported and will be removed"
+        + " in v2.13.0!", identifier);
     return false;
   }
 
