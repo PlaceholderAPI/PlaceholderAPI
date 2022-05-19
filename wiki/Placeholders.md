@@ -7,7 +7,7 @@ This is a list of all available placeholders.
 A download-command for the extension can be found at the area of the placeholder.  
 If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, then it means, that the plugin actually has the placeholders hard-coded into them and doesn't require a manual download of any expansion.
 
-> ## Notes (Please read)  
+> **Note**  
 > We only add and/or update placeholders on request.  
 > We aren't responsible, to keep the placeholders of your plugin(s) up to date.  
 > If anything about your expansion/plugin has changed, consider [making a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls) to commit the changes yourself.
