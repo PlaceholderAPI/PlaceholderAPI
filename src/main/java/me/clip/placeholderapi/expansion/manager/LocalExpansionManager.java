@@ -180,15 +180,15 @@ public final class LocalExpansionManager implements Listener {
       Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
       Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
       
-      if (!expansion.register()) {
-        if (expansion.getRequiredPlugin() != null && !expansion.getRequiredPlugin().isEmpty()) {
-          if (!Bukkit.getPluginManager().isPluginEnabled(expansion.getRequiredPlugin())) {
-            Msg.warn("Cannot load expansion %s due to a missing plugin: %s",
-                expansion.getIdentifier(), expansion.getRequiredPlugin());
-            return Optional.empty();
-          }
+      if (expansion.getRequiredPlugin() != null && !expansion.getRequiredPlugin().isEmpty()) {
+        if (!Bukkit.getPluginManager().isPluginEnabled(expansion.getRequiredPlugin())) {
+          Msg.warn("Cannot load expansion %s due to a missing Plugin: %s", expansion.getIdentifier(),
+              expansion.getRequiredPlugin());
+          return Optional.empty();
         }
-        
+      }
+      
+      if (!expansion.register()) {
         Msg.warn("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
         return Optional.empty();
       }
