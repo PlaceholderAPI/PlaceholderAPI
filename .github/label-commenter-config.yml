@@ -1,6 +1,7 @@
 comment:
   footer: "\
     ----\n\n
+    > **Note**\n
     > *This is an automated response created by a **GitHub Action***\n
     > *Mentioning the bot won't have any effect!*
     "
