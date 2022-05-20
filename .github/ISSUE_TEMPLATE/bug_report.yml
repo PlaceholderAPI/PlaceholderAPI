@@ -12,7 +12,8 @@ body:
       
       Also, always make sure to use the latest Release from [Spigot](https://www.spigotmc.org/resources/6245/) or the latest Development Build from our [Jenkins Server](http://ci.extendedclip.com/job/PlaceholderAPI/) to make sure that your issue isn't already fixed.
       
-      **DO NOT REPORT ISSUES WITH EXPANSIONS AND/OR PLACEHOLDERS. USE THE APPROPRIATE ISSUE TRACKER FOR THOSE!**
+      > **Warning**  
+      > **DO NOT REPORT ISSUES WITH EXPANSIONS AND/OR PLACEHOLDERS. USE THE APPROPRIATE ISSUE TRACKER FOR THOSE!**
 - type: checkboxes
   attributes:
     label: Confirmation
