@@ -622,8 +622,10 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   - `nbtints:<key>=<value>;<key>=<value>`  
     Checks if the item's nbtInts contains `<key>` with the value of `<value>`. * ^ ~
     
+    *For nbt data you can use compounds by putting `..` inside your string Example (`%checkitem_nbtstrings:PublicBukkitValues..executableitems:ei-id=Free_Money%`)* ^
+    
   **Notes:**  
-  - * means case-sensitive
+  - \* means case-sensitive
   - ** means only one can be used
   - ^ means that the modifier supports the `give` placeholder
   - ~ means that the modifier works with the `getinfo` placeholder
