@@ -78,6 +78,7 @@ These rules are as follows:
 - External links should be set as Refernce Links, which means they are set as `[text]: link` at the top of the page and then used either through `[text]` or `[display text][text]` througout the page.
 
 #### Adding new Expansion
+> **Note**  
 > We have a [Generator][placeholders_generator] that you can use for creating an entry in the Placeholders page.
 
 When you add a new expansion to the wiki's [Placeholder page][placeholders] will you need to follow the following format:  
