@@ -632,6 +632,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[PlayTime](https://www.spigotmc.org/resources/26016/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#playtime]]**]
+- **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#playtimerewards]]**]
 - **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#playerpoints]]**]
