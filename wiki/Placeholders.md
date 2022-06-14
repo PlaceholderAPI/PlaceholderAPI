@@ -300,6 +300,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PixelVip](#pixelvip)**
     - **[Plan](#plan)**
     - **[PlayTime](#playtime)**
+    - **[PlaytimeRewards](#playtimerewards)**
     - **[PlayerPoints](#playerpoints)**
     - **[PlotSquared](#plotsquared)**
     - **[PointsAPI](#pointsapi)**
@@ -3917,6 +3918,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %playtime_time%
   %playtime_timesjoined%
   %playtime_serveruptime%
+  ```
+  
+----
+
+- ### **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %ptr_playtime%
+  %ptr_sessiontime%
   ```
 
 ----
