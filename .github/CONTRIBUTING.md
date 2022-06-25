@@ -2,7 +2,8 @@
 [discord]: https://helpch.at/discord
 [code of conduct]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/CODE_OF_CONDUCT.md
 [wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki
-[dev]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/development
+[master]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master
+[docs-wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki
 [style]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/config/style
 
 # Contributing Guidelines
@@ -37,15 +38,30 @@ PlaceholderAPI provides a feature to have expansions (separate jar files) for pl
 In those cases should you report the issue to the issue tracker of the expansion or plugin.
 
 ## Pull requests
-As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code like bug fixes or new features, or contributions to its documentation such as the [Wiki] or the Javadoc.
+As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code, or contributions to its documentation such as the [Wiki] or the Javadocs.
+
+**When contributing, make sure to both base of and target the mentioned branch. Pull requests targeting the wrong branch may get closed without a warning.**
 
 ### Code contributions
-Any contributions to PlaceholderAPI's code should be done towards the [`development`][dev] branch. Targeting the `master` branch in your Pull request may get it closed without warning.  
-Additionally should you follow the project's codestyle which you can find in the [`config/style`][style] directory.
+> **Source and Target Branch:** [`master`][master]
 
-### Wiki/Javadoc contributions
-If your pull request only targets the [wiki] or only changes the javadoc comments of PlaceholderAPI (And not its actual code), it should be to `docs/wiki` branch.  
-The develop branch should only be targeted when you also change some of PlaceholderAPI's code.
+When contributing towards the code of PlaceholderAPI, be it new features or just bug fixes, your changes should follow the general code styling used in the project.  
+You can find the necessary files in the [`config/style`][style] directory of this repository.
+
+### Javadocs contributions
+> **Source and Target Branch:** [`master`][master]*
+
+Javadocs changes should usually be combined with [code contributions](#code-contributions) when possible, but if not, make sure the changes are significant enough to warrant a new build on our CI server.
+
+\*This branch may change in the future.
+
+### Wiki contributions
+> **Source and Target Branch:** [`docs/wiki`][docs-wiki]
+
+The Wiki of PlaceholderAPI has a unique quirk by having a dedicated [`wiki` folder][wiki] hosting the pages found on the actual wiki itself.  
+If you find outdated information, want to add missing expansions/plugins or just like to correct some wrong spelling should you both base of and target your contributions on the `docs/wiki` branch.
+
+**Please only PR changes for the `wiki` folder on the `docs/wiki` branch! Pull requests not following this guidelines will be closed unnanounced.**
 
 ## Code of Conduct
 We have a [Code of Conduct] to maintain a welcoming atmosphere in this project.  
