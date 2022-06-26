@@ -5765,33 +5765,36 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 - ### **[Vault](http://dev.bukkit.org/bukkit-plugins/vault/)**
   > /papi ecloud download Vault
   
-  #### Economy
   ```
+  # Economy placeholders
   %vault_eco_balance%
-  %vault_eco_balance_commas%
-  %vault_eco_balance_fixed%
-  %vault_eco_balance_formatted%
-  %vault_eco_top_balance_#%
-  %vault_eco_top_balance_fixed_#%
-  %vault_eco_top_balance_formatted_#%
-  %vault_eco_top_balance_commas_#%
-  %vault_eco_top_player_#%
-  %vault_eco_top_rank%
-  ```
+  %vault_eco_balance_<number>dp%
+  %vault_eco_commas%
+  %vault_eco_fixed%
+  %vault_eco_formatted%
   
-  #### Permissions
-  ```
+  # Permission/Group placeholders
+  %vault_group%
+  %vault_group_capital%
+  %vault_groupprefix%
+  %vault_groupprefix_<position>%
+  %vault_groups%
+  %vault_groupsuffix%
+  %vault_groupsuffix_<position>%
+  %vault_hasgroup_<group>%
+  %vault_inprimarygroup_<group>%
+  %vault_prefix%
+  %vault_prefix_color%
   %vault_rank%
   %vault_rank_capital%
-  %vault_ranks%
-  %vault_ranks_capital%
-  %vault_prefix%
   %vault_rankprefix%
-  %vault_rankprefix_#%
+  %vault_rankprefix_<position>%
+  %vault_ranks%
+  %vault_ranksuffix_<position>%
   %vault_suffix%
-  %vault_ranksuffix%
-  %vault_ranksuffix_#%
-  %vault_prefix_color%
+  %vault_suffix_color%
+  %vault_user_prefix_color%
+  %vault_user_suffix_color%
   ```
 
 ----
