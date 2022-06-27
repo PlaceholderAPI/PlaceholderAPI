@@ -294,6 +294,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **P**
     - **[Paintball Battle](#paintball-battle)**
     - **[Parkour](#parkour)**
+    - **[ParkPlusMC](#parkplusmc)**
     - **[Parties](#parties)**
     - **[Party and Friends](#party-and-friends)**
     - **[PermissionTimer](#permissiontimer)**
@@ -3851,7 +3852,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[ParkPlus](https://polymart.org/resource/parkplusmc.2317)**
+- ### **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
   > NO DOWNLOAD COMMAND
   
   ```
