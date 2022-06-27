@@ -611,6 +611,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Parkour](https://www.spigotmc.org/resources/23685/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#parkour]]**]
+- **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#parkplusmc]]**]
 - **[Parties](https://www.spigotmc.org/resources/3709/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#parties]]**]
