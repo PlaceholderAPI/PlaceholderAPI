@@ -5419,9 +5419,12 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tp_region:<AttractionID>%
   %tp_ridecount%
   %tp_ridecount:<AttractionID>%
-  %tp_ridecounttop_name:<AttractionID>:<Position>%
-  %tp_ridecounttop_value:<AttractionID>:<Position>%
+  %tp_ridecounttop_name:<AttractionID>:<Position>[:Type]%
+  %tp_ridecounttop_value:<AttractionID>:<Position>[:Type]%
   ```
+  
+  Replace `<AttractionID>` with the ID of your attraction. Replace `<Position>` with the ridecount position.
+  Replace `[Type]` with the top type. Supported values: `DAILY, WEEKLY, MONTHLY, YEARLY, TOTAL`
 
 ----
 
