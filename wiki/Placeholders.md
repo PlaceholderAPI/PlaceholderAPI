@@ -3851,6 +3851,24 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[ParkPlus](https://polymart.org/resource/parkplusmc.2317)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %pp_name:<AttractionID>%
+  %pp_status:<AttractionID>%
+  %pp_region:<AttractionID>%
+  %pp_ridecount%
+  %pp_ridecount:<AttractionID>%
+  %pp_ridecounttop_name:<AttractionID>:<Position>[:Type]%
+  %pp_ridecounttop_value:<AttractionID>:<Position>[:Type]%
+  ```
+  
+  Replace `<AttractionID>` with the ID of your attraction. Replace `<Position>` with the ridecount position.
+  Replace `[Type]` with the top type. Supported values: `DAILY, WEEKLY, MONTHLY, YEARLY, TOTAL`
+
+----
+
 - ### **[Parties](https://www.spigotmc.org/resources/3709/)**
   > NO DOWNLOAD COMMAND
   
