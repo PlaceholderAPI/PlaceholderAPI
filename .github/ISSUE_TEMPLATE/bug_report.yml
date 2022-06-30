@@ -24,6 +24,8 @@ body:
         required: true
       - label: The issue isn't already fixed in a Spigot Release or Development Build.
         required: true
+      - label: The [Common Issues](https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Common-Issues) page doesn't mention this issue.
+        required: true
 - type: dropdown
   attributes:
     label: "Type"
