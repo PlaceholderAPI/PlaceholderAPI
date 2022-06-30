@@ -11,10 +11,6 @@
 [action]: https://github.com/Andrew-Chen-Wang/github-wiki-action
 
 <!-- Images -->
-[branch-selector]: https://user-images.githubusercontent.com/11576465/132779328-8571458a-d63d-4c25-b920-96aa16ae0058.png
-[upstream_up-to-date]: https://user-images.githubusercontent.com/11576465/132779917-96f19239-077d-44ed-98e7-6a76f305b33a.png
-[upstream_needs_update]: https://user-images.githubusercontent.com/11576465/132779798-1fe3dc72-a6c2-41eb-a8bc-95793671f384.png
-[create_branch]: https://user-images.githubusercontent.com/11576465/132780127-45599156-1400-40c9-b865-351574786873.png
 
 # Wiki
 Welcome to the Wiki folder!
@@ -29,38 +25,40 @@ If you want to contribute towards the wiki, will you need to follow the below in
 > Already having a fork? Skip to the [next Step](#select-target-branch)!
 
 You need to make a fork of the PlaceholderAPI Repository to contribute towards the wiki.  
-To do this, click the "Fork" button on the top-right corner of the site and select the account you want your fork to be created on. This will also show you any already existing forks of this Repository that you may have.
+To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and click "Create fork".
+
+![fork repo](./img/readme/fork.png)
 
 The forking process should only take a few seconds and you should be redirected to your fork afterwards.
 
 ### Select target branch
-All main changes to the wiki are made on the dedicated `docs/wiki` branch.  
-Before you try to make any changes should you make sure that you have the `docs/wiki` branch selected. To do that, check the button next to the `X branches` text. If it says anything other than `docs/wiki` will you need to click it and select the right branch.
+All main changes to the wiki are made on the dedicated `wiki` branch.  
+Before you try to make any changes should you make sure that you have the `wiki` branch selected. To do that, check the button next to the `X branches` text. If it says anything other than `wiki` will you need to click it and select the right branch.
 
-![branch-selector]
+![select branch](./img/readme/select-branch.png)
 
 ### Fetch Changes from Upstream
 This is only required when you already had a fork and didn't update it for some time.
 
-While you're on the `docs/wiki` branch, click the `Fetch upstream` text located right below the green `Code` button.  
+While you're on the `wiki` branch, click the `Fetch upstream` text located right below the green `Code` button.  
 Depending on the status of your branch can the prompt show different outcomes:
 
-- `This branch is not behind the upstream PlaceholderAPI:docs/wiki`  
-  Your fork's `docs/wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
-  ![upstream_up-to-date]
-- `Fetch and merge <number> upstream commits from PlaceholderAPI:docs/wiki`  
-  This is shown when your fork's branch is outdated and upstream (This Repository) has changes. Click the `Fetch and merge` button to fetch the latest commits and update your fork's `docs/wiki` branch.  
-  ![upstream_needs_update]
+- `This branch is not behind the upstream PlaceholderAPI:wiki`  
+  Your fork's `wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
+  ![upstream up-to-date](./img/readme/up-to-date.png)
+- `Fetch and merge <number> upstream commits from PlaceholderAPI:wiki`  
+  This is shown when your fork's branch is outdated and upstream (This Repository) has changes. Click the `Fetch and merge` button to fetch the latest commits and update your fork's `wiki` branch.  
+  ![upstream needs update](./img/readme/needs-update.png)
 
 ### Commit changes
-To commit changes will you need to choose, if you want to directly commit to your fork's `docs/wiki` branch, or make a dedicated branch for it.
+To commit changes will you need to choose, if you want to directly commit to your fork's `wiki` branch, or make a dedicated branch for it.
 
 #### Make separate branch (Optional)
-If you want to have a dedicated branch for it, will you need to click the button saying `docs/wiki`, type in the small text field the name of the branch you want to use and click the text saying `Create branch: <branch> from 'docs/wiki'`
+If you want to have a dedicated branch for it, will you need to click the button saying `wiki`, type in the small text field the name of the branch you want to use and click the text saying `Create branch: <branch> from 'wiki'`
 
-![create_branch]
+![create branch](./img/readme/new-branch.png)
 
-After that should you now have a separate branch that is based of the `docs/wiki` branch and you can finally commit changes to it.
+After that should you now have a separate branch that is based of the `wiki` branch and you can finally commit changes to it.
 
 #### Formatting
 The wiki uses normal Markdown formatting with some special design-rules you need to keep in mind.  
@@ -164,11 +162,11 @@ After you made your changes is it time to make a Pull request.
 
 When you go to the upstream repository, should GitHub already show you a notification that you have commits to PR. Click the `Compare & pull request` button to proceed.
 
-![image](https://user-images.githubusercontent.com/11576465/132784030-c2ffd5e0-fb95-44de-bd77-97a965cc6dbd.png)
+![pr prompt](./img/readme/pr-prompt.png)
 
-By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `docs/wiki` branch.
+By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `wiki` branch.
 
-![image](https://user-images.githubusercontent.com/11576465/132784142-8f752697-7dd7-4afb-bbdc-dc66c570dc3c.png)
+![create pr](./img/readme/create-pr.png)
 
 Finally, fill out the Pull request template and submit the Pull request.  
 Congratulations! You've successfully made a Pull request for the wiki.
