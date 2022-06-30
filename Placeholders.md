@@ -7,7 +7,7 @@ This is a list of all available placeholders.
 A download-command for the extension can be found at the area of the placeholder.  
 If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, then it means, that the plugin actually has the placeholders hard-coded into them and doesn't require a manual download of any expansion.
 
-> ## Notes (Please read)  
+> **Note**  
 > We only add and/or update placeholders on request.  
 > We aren't responsible, to keep the placeholders of your plugin(s) up to date.  
 > If anything about your expansion/plugin has changed, consider [making a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls) to commit the changes yourself.
@@ -40,7 +40,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Formatter](#formatter)**
 
   - ### **G**
-    - *No Expansions*
+    - **[GraalJS](#graaljs)**
 
   - ### **H**
     - *No Expansions*
@@ -104,7 +104,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Teams](#teams)**
 
   - ### **U**
-    - *No Expansions*
+    - **[Unicode](#unicode)**
 
   - ### **V**
     - *No Expansions*
@@ -225,6 +225,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Head Database](#head-database)**
     - **[Heroes](#heroes)**
     - **[HoloBlock](#holoblock)**
+    - **[HoloMobHealth](#holomobhealth)**
     - **[HPWizard](#hpwizard)**
     - **[Hugs](#hugs)**
 
@@ -267,6 +268,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[MineChess](#minechess)**
     - **[MineCord](#minecord)**
     - **[MineCrates](#minecrates)**
+    - **[MineResetLite](#mineresetlite)**
     - **[MobHunting](#mobhunting)**
     - **[Multiverse-Core](#multiverse-core)**
     - **[MyCommand](#mycommand)**
@@ -281,6 +283,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Nicky](#nicky)**
 
   - ### **O**
+    - **[OneBlock](#oneblock)**
     - **[OnePlayerSleep](#oneplayersleep)**
     - **[OnTime](#ontime)**
     - **[OpEconomy](#opeconomy)**
@@ -291,15 +294,18 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **P**
     - **[Paintball Battle](#paintball-battle)**
     - **[Parkour](#parkour)**
+    - **[ParkPlusMC](#parkplusmc)**
     - **[Parties](#parties)**
     - **[Party and Friends](#party-and-friends)**
     - **[PermissionTimer](#permissiontimer)**
     - **[PixelVip](#pixelvip)**
     - **[Plan](#plan)**
     - **[PlayTime](#playtime)**
+    - **[PlaytimeRewards](#playtimerewards)**
     - **[PlayerPoints](#playerpoints)**
     - **[PlotSquared](#plotsquared)**
     - **[PointsAPI](#pointsapi)**
+    - **[PowerBoard](#powerboard)**
     - **[PowerRanks](#powerranks)**
     - **[PremiumVanish](#premiumvanish)**
     - **[Prison](#prison)**
@@ -333,6 +339,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[RTP](#rtp)**
 
   - ### **S**
+    - **[Sack](#sack)**
     - **[Seasons](#seasons)**
     - **[SellAll](#sellall)**
     - **[SignLink](#signlink)**
@@ -529,7 +536,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **ChangeOutput**
-  > /papi ecloud download changeitem
+  > /papi ecloud download changeoutput
 
   Alows you to change the output based on what other placeholders return
   
@@ -563,57 +570,67 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   ```
   %checkitem_<modifier1>,<modifier2>,<...>%        - Returns if user has the item
   %checkitem_amount_<modifier1>,<modifier2>,<...>% - Returns amount of items the user has
-  %checkitem_remove_<modifier1>,<modifier2>,<...>% - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. `%checkitem_amount_remove_<...>%`) Please be careful as it does REMOVE ITEMS FOR GOOD
+  %checkitem_remove_<modifier1>,<modifier2>,<...>% - Removes the items from the players inventory - Can be used with amount, it just has to be after. (Ex. %checkitem_amount_remove_<...>%) Please be careful as it does REMOVE ITEMS FOR GOOD
   %checkitem_give_<modifier1>,<modifier2>,<...>%   - Gives the player items. Returns true if successful, returns the number of items NOT given if unsuccessful. (When unsuccessful items can still be given, it just might not be all of them)
+  %checkitem_getinfo:<slot>_<modifier1>,<modifier2>,<...>% - Returns information about an item in a slot. Returns information in the same order listed on this wiki. List is seperated via " &r" (Ex. %checkitem_getinfo:0_mat:)
   ```
+  
+  *Note: `mainhand` and `offhand` work in `getinfo:<slot>`*
   
   **Modifiers**  
   You can combine different modifiers to check for different values.  
   Available modifiers are:
   - `namecontains:<text>`  
-    Checks if the item's display name contains `<text>`* \*\*
+    Checks if the item's display name contains `<text>`* \*\* ~
   - `namestartswith:<text>`  
-    Checks if the item's display name starts with `<text>`* \*\*
+    Checks if the item's display name starts with `<text>`* \*\* ~
   - `nameequals:<text>`  
-    Checks if the item's display name equals `<text>`* \*\* ^
+    Checks if the item's display name equals `<text>`* \*\* ^ ~
   - `mat:<material>`  
-    Checks if the item is `<material>` (For example: `STONE`) ^
+    Checks if the item is `<material>` (For example: `STONE`) ^ ~
   - `amt:<number>`  
-    Checks if the player has `<number>` of items ^
+    Checks if the player has `<number>` of items ^ ~
   - `data:<number>`  
     Checks if the item has data `<number>` (Example: Red wool has `14` as data (`WOOL:14`)).  
-    This is only for 1.12 and older! ^
+    This is only for 1.12 and older! ^ ~
   - `custommodeldata:<number>`  
     Checks if the item has CustomModelData `<number>`  
-    This is only for 1.14 and newer! ^
+    This is only for 1.14 and newer! ^ ~
   - `lorecontains:<text>`  
-    Checks if the item's lore contains `<text>`*
+    Checks if the item's lore contains `<text>`* ~
   - `loreequals:<text>`  
-    Checks if the item's lore equals `<text>` Lines are separated by `|` ^
+    Checks if the item's lore equals `<text>` Lines are separated by `|` ^ ~
   - `matcontains:<text>`  
     Checks if the item's material contains `<text>`*
   - `enchantments:<enchantment=lvl>;<enchantment>`  
     Checks if the item's enchantments contains `<enchantment>` with an optional `=level`  
-    Uses vanilla minecraft enchantment names ^
+    Uses vanilla minecraft enchantment names ^ ~
   - `enchanted`  
-    Checks if the item is enchanted (with anything)
+    Checks if the item is enchanted (with anything) ~
   - `potiontype:<potiontype>`  
-    Checks if the item has the potiontype ([Click here for potion types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)) ^
+    Checks if the item has the potiontype ([Click here for potion types](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)) ^ ~
   - `potionextended:<boolean>`  
-    Checks if a potion is extended ^
+    Checks if a potion is extended ^ ~
   - `potionupgraded:<boolean>`  
-    Checks if a potion is upgraded ^
+    Checks if a potion is upgraded ^ ~
   - `strict`  
     Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
   - `inhand`  
     Check if the item is in the player's hand. `inhand` will check *both* hands. You can add `:main` or `:off` to specify. (Ex: `inhand:main`)
   - `inslot`  
     Check if the item is in a specific slot ([Click here for valid slots](https://proxy.spigotmc.org/d3e11b631e22f45fc07c3fcd1c7000b2245fed78?url=http%3A%2F%2Fi.imgur.com%2F3YCrfC8.png))
-  
+  - `nbtstrings:<key>=<value>;<key>=<value>`  
+    Checks if the item's nbtStrings contains `<key>` with the value of `<value>`. * ^ ~
+  - `nbtints:<key>=<value>;<key>=<value>`  
+    Checks if the item's nbtInts contains `<key>` with the value of `<value>`. * ^ ~
+    
+    *For nbt data you can use compounds by putting `..` inside your string Example (`%checkitem_nbtstrings:PublicBukkitValues..executableitems:ei-id=Free_Money%`)* ^
+    
   **Notes:**  
-  - * means case-sensitive
+  - \* means case-sensitive
   - ** means only one can be used
   - ^ means that the modifier supports the `give` placeholder
+  - ~ means that the modifier works with the `getinfo` placeholder
   - To use Commas in strings you must escape them using `\` (Ex: `loreequals:Milk\, Eggs\, Bread`)
   - **Placeholders are supported, but they need to be in brackets! (Ex: `%player_name%` would be `{player_name}`**
 
@@ -666,6 +683,19 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %formatter_text_substring_[start]:[end]_<text>%
   %formatter_text_uppercase_<text>%
   %formatter_text_lowercase_<text>%
+  ```
+
+----
+
+- ### **[GraalJS](https://github.com/ruViolence/GraalJS-Expansion)**
+  > /papi ecloud download GraalJS
+
+  More info about this expansion can be found on the [GitHub-Repository](https://github.com/ruViolence/GraalJS-Expansion).
+
+  ```
+  %graaljs_<your_placeholder_identifier>%
+  %graaljs_<your_placeholder_identifier>_arg1%
+  %graaljs_<your_placeholder_identifier>_arg1,arg2,arg3%
   ```
 
 ----
@@ -1108,13 +1138,20 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   > /papi ecloud download ScoreboardObjectives
   
   Get info from a scoreboard objective.
+
+  More info about the expansion can be found on the [Spigot Page](https://www.spigotmc.org/resources/placeholderapi-scoreboard-objectives-placeholder.48236/)
   
   ```
-  %objective_score_<obj-name>%
-  %objective_score_<obj-name>_[otherEntry]%
+  %objective_displayname_{<obj-name>}%
+  %objective_score_{<obj-name>}%
+  %objective_score_{<obj-name>}_{[otherEntry]}%
+  %objective_scorep_{<obj-name>}%
+  %objective_scorep_{<obj-name>}_{[otherPlayer]}%
+  %objective_scoreposhigh_{<obj-name>}_{<#>}%
+  %objective_scoreposlow_{<obj-name>}_{<#>}%
+  %objective_entryposhigh_{<obj-name>}_{<#>}%
+  %objective_entryposlow_{<obj-name>}_{<#>}%
   ```
-  
-  **Note**: `[otherEntry]` can be another player name, Offline Player name, or non-player Entry
 
 ----
 
@@ -1309,7 +1346,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %string_uppercase_<string>%
   %string_lowercase_<string>%
   %string_length_<string>%
-  %string_random_<string1>_<string2>_<string3>_<etc>%
+  %string_random_<string1>,<string2>,<string3>,<etc>%
   ```
   
   Supports placeholders using brackets: `{placeholder}`
@@ -1337,6 +1374,17 @@ L
   %team_suffix%
   %team_name%
   ```
+
+----
+
+- ### **Unicode**
+  > /papi ecloud download unicode
+  
+  ```
+  %unicode_<value>%
+  ```
+  
+  Example: `%unicode_1000%` would show `က`
 
 ----
 
@@ -1651,12 +1699,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   [Description of placeholders](https://wiki.ajg0702.us/ajleaderboards/setup/placeholders)
   
   ```
-  %ajleaderboards_board_<board>_<number>_name%
-  %ajleaderboards_board_<board>_<number>_value%
-  %ajleaderboards_position_<board>%
-  %ajleaderboards_board_<board>_<number>_prefix%
-  %ajleaderboards_board_<board>_<number>_suffix%
-  %ajleaderboards_board_<board>_<number>_color%
+  %ajlb_position_<board>_<type>%
+  %ajlb_value_<board>_<type>%
+  %ajlb_value_<board>_<type>_formatted%
+  %ajlb_value_<board>_<type>_time%
+  %ajlb_value_<board>_<type>_raw%
+  %ajlb_lb_<board>_<number>_<type>_name%
+  %ajlb_lb_<board>_<number>_<type>_value%
+  %ajlb_lb_<board>_<number>_<type>_time%
+  %ajlb_lb_<board>_<number>_<type>_rawvalue%
+  %ajlb_lb_<board>_<number>_<type>_value_formatted%
+  %ajlb_lb_<board>_<number>_<type>_prefix%
+  %ajlb_lb_<board>_<number>_<type>_suffix%
+  %ajlb_lb_<board>_<number>_<type>_color%
   ```
 
 ----
@@ -2550,6 +2605,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_world_time_24%
   %essentials_worth%
   %essentials_worth:<item>%
+  %essentials_baltop_balance_fixed_<rank>%
+  %essentials_baltop_balance_formatted_<rank>%
+  %essentials_baltop_balance_commas_<rank>%
+  %essentials_baltop_balance_<rank>%
+  %essentials_baltop_player_<rank>%
+  %essentials_baltop_rank%
+  %essentials_baltop_player_stripped_<num>%
   ```
 
 ----
@@ -2851,6 +2913,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %holoblock_isColor:<player>%
   %holoblock_isCustomSkin:<player>%
   %holoblock_isItemLine:<player>%
+  ```
+
+----
+
+- ### **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %holomobhealth_displaytoggle%
   ```
 
 ----
@@ -3452,6 +3523,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[MineResetLite](https://polymart.org/resource/137/)**
+  > /papi ecloud download MineResetLite
+  
+  ```
+  %mineresetlite_time%
+  %mineresetlite_time_remaining%
+  %mineresetlite_precentage%
+  %mineresetlite_blocks_mined%
+  %mineresetlite_percentage_mined%
+  %mineresetlite_percentage_remaining%
+  ```
+
+---
+
 - ### **[MobHunting](https://www.spigotmc.org/resources/3582/)**
   > NO DOWNLOAD COMMAND
   
@@ -3591,6 +3676,26 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %nicky_nickname%
+  ```
+
+----
+
+- ### **[OneBlock](https://www.spigotmc.org/resources/83215/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %ob_lvl%
+  %ob_lvl_name%
+  %ob_next_lvl%
+  %ob_next_lvl_name%
+  %ob_break_on_this_lvl%
+  %ob_need_to_lvl_up%
+  %ob_owner_name%
+  %ob_top_(number)_name%  (1 - 10)
+  %ob_top_(number)_lvl%   (1 - 10)
+  %ob_number_of_invited%
+  %ob_player_count%
+  %ob_ver%
   ```
 
 ----
@@ -3747,6 +3852,24 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %pp_name:<AttractionID>%
+  %pp_status:<AttractionID>%
+  %pp_region:<AttractionID>%
+  %pp_ridecount%
+  %pp_ridecount:<AttractionID>%
+  %pp_ridecounttop_name:<AttractionID>:<Position>[:Type]%
+  %pp_ridecounttop_value:<AttractionID>:<Position>[:Type]%
+  ```
+  
+  Replace `<AttractionID>` with the ID of your attraction. Replace `<Position>` with the ridecount position.
+  Replace `[Type]` with the top type. Supported values: `DAILY, WEEKLY, MONTHLY, YEARLY, TOTAL`
+
+----
+
 - ### **[Parties](https://www.spigotmc.org/resources/3709/)**
   > NO DOWNLOAD COMMAND
   
@@ -3807,7 +3930,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
-  > /papi ecloud download PlayTime
+  > NO DOWNLOAD COMMAND
   
   ```
   %playtime_player%
@@ -3815,14 +3938,26 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %playtime_timesjoined%
   %playtime_serveruptime%
   ```
+  
+----
+
+- ### **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %ptr_playtime%
+  %ptr_sessiontime%
+  ```
 
 ----
 
-- ### **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
-  > /papi ecloud download PlayerPoints
+- ### **[PlayerPoints](https://www.spigotmc.org/resources/80745/)**
+  > NO DOWNLOAD COMMAND
   
   ```
   %playerpoints_points%
+  %playerpoints_points_formatted%
+  %playerpoints_points_shorthand%
   ```
 
 ----
@@ -3869,6 +4004,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[PowerBoard](https://www.spigotmc.org/resources/73854/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %powerboard_prefix%
+  %powerboard_suffix%
+  %powerboard_chat_prefix%
+  %powerboard_display_name%
+  %powerboard_tps%
+  ```
+
+----
+
 - ### **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
   > NO DOWNLOAD COMMAND
   
@@ -3906,20 +4054,49 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+
 - ### **[Prison](https://www.spigotmc.org/resources/1223/)**
   > NO DOWNLOAD COMMAND
-  
-  Each placeholder has a shorter alias, which follows the primary placeholder below. 
-  
-  **Player rank placeholders:**  
-  Must be used directly with a player, such as with player chat prefixes.  
-  These placeholders can return zero, one, or more rank related values depending upon how many ladders the player is on.
-  
+
+  Each placeholder has a shorter alias, which follows the primary placeholder below.
+
+  Prison uses PlaceholderAPI to support any plugin placeholders within the GUI Ranks Lore and the GUI Mine Lore.
+
+
+  **Prison Placeholder Attributes:**
+
+  Prison supports Placeholder Attributes which allows an infinite way to customize most placeholders, such as numeric formatting, hex colors, and reductions. Can customize any bar-graph for character codes, colors, and size.
+
+  Simple examples using placeholder attributes with the results following each example. Colors are not shown.
+
+  ```
+  %prison_mines_size_mine5::nFormat:#,##0%
+  654,321
+  %prison_mines_size_mine5::nFormat:#,##0.00:1:kmg%
+  654.32 k
+  %prison_mines_size_mine5::nFormat:'#af33ff'#,##0.00:1:binary:hex%
+  638.99 KB
+  %prison_mines_timeleft_bar_mine5::bar:40:&2:O:&d:x:debug%
+  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOxxxxxxxx
+
+  ```
+
+
+  **PLAYER placeholders (110, 55 aliases):**
+
+  PLAYER placeholders are used directly with a player, such as with player chat prefixes and scoreboards.
+
+  Rank related placeholders apply to all ranks that a player may have, and may return more than one value.  Use the LADDER placeholders to control the order that is displayed. Rank based placeholder can return zero, one, or more rank related values depending upon how many ladders the player is on.
+
   ```
   %prison_rank%
   %prison_r%
+  %prison_rank_number%
+  %prison_rn%
   %prison_rank_tag%
   %prison_rt%
+  %prison_rank_ladder_position%
+  %prison_rlp%
   %prison_rankup_cost%
   %prison_rc%
   %prison_rankup_cost_formatted%
@@ -3932,21 +4109,114 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_rcr%
   %prison_rankup_cost_remaining_formatted%
   %prison_rcrf%
+  %prison_rankup_cost_remaining_percent%
+  %prison_rcrp%
+  %prison_rankup_cost_remaining_bar%
+  %prison_rcrb%
   %prison_rankup_rank%
   %prison_rr%
   %prison_rankup_rank_tag%
   %prison_rrt%
+  %prison_player_balance%
+  %prison_pb%
+  %prison_player_balance_formatted%
+  %prison_pbf%
+  %prison_player_balance_earnings_per_minute%
+  %prison_pb_epm%
+  %prison_player_balance_earnings_per_minute_formatted%
+  %prison_pb_epmf%
+  %prison_player_token_balance%
+  %prison_ptb%
+  %prison_player_token_balance_formatted%
+  %prison_ptbf%
+  %prison_player_token_balance_formatted_metric%
+  %prison_ptbfm%
+  %prison_player_token_balance_formatted_kmbt%
+  %prison_ptbfk%
+  %prison_player_token_balance_earnings_per_minute%
+  %prison_ptb_epm%
+  %prison_player_token_balance_earnings_per_minute_formatted%
+  %prison_ptb_epmf%
+  %prison_player_sellall_multiplier%
+  %prison_psm%
+  %prison_player_blocks_total%
+  %prison_pbt%
+  %prison_player_blocks_total_formatted%
+  %prison_pbtf%
+  %prison_player_tool_id%
+  %prison_ptid%
+  %prison_player_tool_name%
+  %prison_ptn%
+  %prison_player_tool_type%
+  %prison_ptt%
+  %prison_player_tool_material_type%
+  %prison_ptmt%
+  %prison_player_tool_data%
+  %prison_ptdata%
+  %prison_player_tool_lore%
+  %prison_ptlore%
+  %prison_player_tool_durability_used%
+  %prison_ptdu%
+  %prison_player_tool_durability_max%
+  %prison_ptdm%
+  %prison_player_tool_durability_remaining%
+  %prison_ptdr%
+  %prison_player_tool_durability_percent%
+  %prison_ptdp%
+  %prison_player_tool_durability_bar%
+  %prison_ptdb%
+  %prison_player_tool_enchantment_fortune%
+  %prison_ptef%
+  %prison_player_tool_enchantment_efficency%
+  %prison_ptee%
+  %prison_player_tool_enchantment_silktouch%
+  %prison_ptes%
+  %prison_player_tool_enchantment_unbreaking%
+  %prison_pteu%
+  %prison_player_tool_enchantment_mending%
+  %prison_ptem%
+  %prison_player_tool_enchantment_luck%
+  %prison_ptel%
+  %prison_player_health%
+  %prison_ph%
+  %prison_player_health_max%
+  %prison_phm%
+  %prison_player_air_max%
+  %prison_pam%
+  %prison_player_air_remaining%
+  %prison_par%
+  %prison_player_food_level%
+  %prison_pfl%
+  %prison_player_food_saturation%
+  %prison_pfs%
+  %prison_player_food_exhaustion%
+  %prison_pfe%
+  %prison_player_xp%
+  %prison_pxp%
+  %prison_player_xp_to_level%
+  %prison_pxptl%
+  %prison_player_level%
+  %prison_pl%
+  %prison_player_walk_speed%
+  %prison_pws%
   ```
-  
-  **Player rank placeholders for individual ladders:**  
-  Must be used directly with a player.  
+
+
+  **LADDERS placeholders (32, 16 aliases):**
+
+  Must be used directly with a player, and returns the information related to their active rank on the specified ladder.
+
   Use the ladder name, all lowercase, in place of `<laddername>`, and it will return zero or one rank related values.
-    
+
   ```
   %prison_rank_<laddername>%
   %prison_r_<laddername>%
+  %prison_rank_number_<laddername>%
+  %prison_rn_<laddername>%
   %prison_rank_tag_<laddername>%
   %prison_rt_<laddername>%
+  %prison_rank_ladder_position_<laddername>%
+  %prison_rlp_<laddername>%
   %prison_rankup_cost_<laddername>%
   %prison_rc_<laddername>%
   %prison_rankup_cost_formatted_<laddername>%
@@ -3959,19 +4229,80 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_rcr_<laddername>%
   %prison_rankup_cost_remaining_formatted_<laddername>%
   %prison_rcrf_<laddername>%
+  %prison_rankup_cost_remaining_percent_<laddername>%
+  %prison_rcrp_<laddername>%
+  %prison_rankup_cost_remaining_bar_<laddername>%
+  %prison_rcrb_<laddername>%
   %prison_rankup_rank_<laddername>%
   %prison_rr_<laddername>%
   %prison_rankup_rank_tag_<laddername>%
   %prison_rrt_<laddername>%
-  %prison_player_balance%
-  %prison_pb%
   %prison_player_balance_<laddername>%
   %prison_pb_<laddername>%
+  %prison_player_balance_formatted_<laddername>%
+  %prison_pbf_<laddername>%
   ```
-  
-  **Mine relate placeholders:**  
-  Use the name of the mine, all lowercase, in place of `<minename>`.
-    
+
+
+  **RANKS placeholders (22, 11 aliases):**
+
+  RANKS placeholders deal directly with specific rank information.
+
+  Use the rank name in place of `<rankname>`, and may return zero or one value.
+
+  ```
+  %prison_rank__name_<rankname>%
+  %prison_r_n_<rankname>%
+  %prison_rank__tag_<rankname>%
+  %prison_r_t_<rankname>%
+  %prison_rank__ladder_<rankname>%
+  %prison_r_l_<rankname>%
+  %prison_rank__ladder_position_<rankname>%
+  %prison_r_lp_<rankname>%
+  %prison_rank__cost_<rankname>%
+  %prison_r_c_<rankname>%
+  %prison_rank__cost_formatted_<rankname>%
+  %prison_r_cf_<rankname>%
+  %prison_rank__cost_multiplier_<rankname>%
+  %prison_r_cm_<rankname>%
+  %prison_rank__currency_<rankname>%
+  %prison_r_cu_<rankname>%
+  %prison_rank__id_<rankname>%
+  %prison_r_id_<rankname>%
+  %prison_rank__player_count_<rankname>%
+  %prison_r_pc_<rankname>%
+  %prison_rank__linked_mines_<rankname>%
+  %prison_r_lm_<rankname>%
+  ```
+
+
+  **RANKPLAYERS placeholders (12, 6 aliases):**
+
+  RANKPLAYERS placeholders are used with players and shows what their adjusted costs are for the specified rank. These placeholders are ideal for showing a player how much each rank will cost using their personal rank cost multipliers.
+
+  Use the rank name in place of `<rankname>`, and may return zero or one value.
+
+  ```
+  %prison_rank__player_cost_<rankname>%
+  %prison_r_pcst_<rankname>%
+  %prison_rank__player_cost_formatted_<rankname>%
+  %prison_r_pcf_<rankname>%
+  %prison_rank__player_cost_remaining_<rankname>%
+  %prison_r_pcf_<rankname>%
+  %prison_rank__player_cost_remaining_formatted_<rankname>%
+  %prison_r_pcf_<rankname>%
+  %prison_rank__player_cost_percent_<rankname>%
+  %prison_r_pcp_<rankname>%
+  %prison_rank__player_cost_bar_<rankname>%
+  %prison_r_pcb_<rankname>%
+  ```
+
+  **MINES placeholders (32, 16 aliases):**
+
+  MINES placeholder provides stats for the given mine.
+
+  Use the mine name in place of `<minename>`, and may return zero or one value.
+
   ```
   %prison_mines_name_<minename>%
   %prison_mn_<minename>%
@@ -4001,13 +4332,28 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_mbm_<minename>%
   %prison_mines_reset_count_<minename>%
   %prison_mrc_<minename>%
+
+  %prison_top_mine_block_line_header_<minename>%
+  %prison_tmbl_header_<minename>%
+  %prison_top_mine_block_line_totals_<minename>%
+  %prison_tmbl_totals_<minename>%
   ```
-  
-  **Player-mine related placeholders:**  
-  Must be used with a player.  
-  These placeholders will only return non-blank values when the player is in a mine, and the results will be for that mine.
-  
+
+  Note: The placeholders `%prison_top_mine_block_line_header_<minename>%` and `%prison_top_mine_block_line_totals_<minename>%` are used with the STATSMINES placeholders and provide the headers and total details for the given mines.
+
+
+  **MINEPLAYERS placeholders (32, 16 aliases):**
+
+  MINEPLAYERS placeholders are tied to a player and dynamically shows the details of the mine the player is in, or blanks when not in a mine. These are ideal for use in scoreboards or chat prefixes.
+
+  Must be used with a player.
+
   ```
+  %prison_player_blocks_total_<minename>%
+  %prison_pbt_<minename>%
+  %prison_player_blocks_raw_total_<minename>%
+  %prison_pbtr_<minename>%
+
   %prison_mines_name_playermines%
   %prison_mn_pm%
   %prison_mines_tag_playermines%
@@ -4036,6 +4382,62 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %prison_mbm_pm%
   %prison_mines_reset_count_playermines%
   %prison_mrc_pm%
+  ```
+
+
+  **PLAYERBLOCKS placeholders (4, 2 aliases):**
+
+  PLAYERBLOCKS placeholders are tied to a player, but through the mines modules. The placeholders that are supported are one for each block type that is defined in all mines.
+
+  Must be used with a player.  The use of `<blockname>` is the name of the block as provided with the command `/mines block search help`, but all lowercase and any ":" should use "-" instead.  These placeholders will return a value of 0 or more.  If the block name is invalid it will return a blank.
+
+  Examples: `prison_player_total_blocks__cobblestone` `prison_player_total_blocks__customitems-compressedcobblestone`
+
+  ```
+  %prison_player_total_blocks__<blockname>%
+  %prison_ptb__<blockname>%
+  %prison_player_total_blocks_raw__<blockname>%
+  %prison_ptbr__<blockname>%
+  ```
+
+
+  **STATSMINES placeholders (14, 7 aliases):**
+
+  The STATSMINES placeholders represents the blocks that in the specified mine. The value `nnn` should be replaced with a number starting with a `1`, or `001` and refers to one block. The "_line_ placeholder is composed of the other placeholders and can simplify the use of these placeholders. See the headers and footer totals within the MINES placeholders.
+
+  Use the mine name in place of `<minename>`, and may return zero or one value.  Invalid values for `_nnn_` will return blanks.
+
+  ```
+  %prison_top_mine_block_line_nnn_<minename>%
+  %prison_tmbl_nnn_<minename>%
+  %prison_top_mine_block_name_nnn_<minename>%
+  %prison_tmbn_nnn_<minename>%
+  %prison_top_mine_block_chance_nnn_<minename>%
+  %prison_tmbc_nnn_<minename>%
+  %prison_top_mine_block_placed_nnn_<minename>%
+  %prison_tmbpl_nnn_<minename>%
+  %prison_top_mine_block_remaing_nnn_<minename>%
+  %prison_tmbr_nnn_<minename>%
+  %prison_top_mine_block_remaing_bar_nnn_<minename>%
+  %prison_tmbrb_nnn_<minename>%
+  %prison_top_mine_block_total_nnn_<minename>%
+  %prison_tmbt_nnn_<minename>%
+  ```
+
+
+  **STATSRANKS placeholders (6, 3 aliases)**
+
+  The STATSRANKS placeholders represents the top-n players for a given rank. The value `nnn` should be replaced with a number starting with a `1`, or `001` and refers to a given player.
+
+  Use the mine name in place of `<rankname>`, and may return zero or one value.  Invalid values for `_nnn_` will return blanks.
+
+  ```
+  %prison_top_rank_balance_name_nnn_<rankname>%
+  %prison_trbn_nnn_<rankname>%
+  %prison_top_rank_balance_score_nnn_<rankname>%
+  %prison_trbs_nnn_<rankname>%
+  %prison_top_rank_balance_balance_nnn_<rankname>%
+  %prison_trbb_nnn_<rankname>%
   ```
 
 ----
@@ -4310,7 +4712,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[RedProtect](http://otmc.org/resources/15841/)**
+- ### **[RedProtect](http://www.spigotmc.org/resources/15841/)**
   > NO DOWNLOAD COMMAND
   
   ```
@@ -4404,6 +4806,21 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %rtp_teleport_z%
   ```
 
+----
+
+- ### **[Sack](https://polymart.org/resource/493/)**
+  > /papi ecloud download Sack
+  
+  ```
+  %sack_name% : the name of the sack you're holding.
+  %sack_slots% : the number of slots available for the sack you're holding.
+  %sack_num_of_sacks% : the number of sacks the palyer currently has in its inventory.
+  %sack_empty_slots% : the number of empty slots in the sack you're holding.
+  %sack_filled_slots% : the number of slots, which have some items.
+  %sack_total_slots% : the total number of slots for all sacks in your inventory.
+  %sack_total_item_count% : the total number of items held in all sacks in your inventory.
+  ```
+  
 ----
 
 - ### **[Seasons](https://www.spigotmc.org/resources/39298/)**
@@ -4538,6 +4955,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %skinsrestorer_getSkinName%
+  %skinsrestorer_getTextureUrl_Or_PlayerName%
+  %skinsrestorer_getTextureUrl_Or_Empty%
+  %skinsrestorer_getTextureUrl_Or_Null%
+  %skinsrestorer_getTextureUrl_Or_Steve%
+  %skinsrestorer_getTextureUrl_Or_Alex%
   ```
 
 ----
@@ -4959,6 +5381,9 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   
   ```
   %superbvote_votes%
+  %superbvote_has_voted%
+  %superbvote_top_voter_name_<index>%
+  %superbvote_top_voter_votes_<index>%
   ```
 
 ----
@@ -5010,9 +5435,15 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   ```
   %tp_name:<AttractionID>%
   %tp_status:<AttractionID>%
+  %tp_region:<AttractionID>%
   %tp_ridecount%
   %tp_ridecount:<AttractionID>%
+  %tp_ridecounttop_name:<AttractionID>:<Position>[:Type]%
+  %tp_ridecounttop_value:<AttractionID>:<Position>[:Type]%
   ```
+  
+  Replace `<AttractionID>` with the ID of your attraction. Replace `<Position>` with the ridecount position.
+  Replace `[Type]` with the top type. Supported values: `DAILY, WEEKLY, MONTHLY, YEARLY, TOTAL`
 
 ----
 
@@ -5115,7 +5546,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 
 ----
 
-- ### **[TokenEnchant](https://www.spigotmc.org/resources/2287/)**
+- ### **[TokenEnchant](https://polymart.org/resource/155)**
   > /papi ecloud download TokenEnchant
 
   If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
@@ -5132,12 +5563,14 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_fullcostmax% : cost to enchant the max level from 0 level
   %tokenenchant_<enchantment>_fullcost_<X>% : cost to enchant the <X> level from 0 level
   %tokenenchant_<enchantment>_max%
+  %tokenenchant_<enchantment>_playermax% : the max enchant level for the player - based on the permission.
   %tokenenchant_<enchantment>_description% 
   %tokenenchant_<enchantment>_version%
   %tokenenchant_<enchantment>_fullrefund%
   %tokenenchant_<enchantment>_fullrefund_long%
   %tokenenchnat_<enchantment>_refund_Y%
   %tokenenchnat_<enchantment>_refund_Y_long%
+  %tokenenchant_<enchantment>_alias%
   %tokenenchant_tokenmultiplier%
   %tokenenchant_<enchantment>_occurrencemultiplier%
   %tokenenchant_repair_cost%
@@ -5354,33 +5787,36 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 - ### **[Vault](http://dev.bukkit.org/bukkit-plugins/vault/)**
   > /papi ecloud download Vault
   
-  #### Economy
   ```
+  # Economy placeholders
   %vault_eco_balance%
-  %vault_eco_balance_commas%
-  %vault_eco_balance_fixed%
-  %vault_eco_balance_formatted%
-  %vault_eco_top_balance_#%
-  %vault_eco_top_balance_fixed_#%
-  %vault_eco_top_balance_formatted_#%
-  %vault_eco_top_balance_commas_#%
-  %vault_eco_top_player_#%
-  %vault_eco_top_rank%
-  ```
+  %vault_eco_balance_<number>dp%
+  %vault_eco_commas%
+  %vault_eco_fixed%
+  %vault_eco_formatted%
   
-  #### Permissions
-  ```
+  # Permission/Group placeholders
+  %vault_group%
+  %vault_group_capital%
+  %vault_groupprefix%
+  %vault_groupprefix_<position>%
+  %vault_groups%
+  %vault_groupsuffix%
+  %vault_groupsuffix_<position>%
+  %vault_hasgroup_<group>%
+  %vault_inprimarygroup_<group>%
+  %vault_prefix%
+  %vault_prefix_color%
   %vault_rank%
   %vault_rank_capital%
-  %vault_ranks%
-  %vault_ranks_capital%
-  %vault_prefix%
   %vault_rankprefix%
-  %vault_rankprefix_#%
+  %vault_rankprefix_<position>%
+  %vault_ranks%
+  %vault_ranksuffix_<position>%
   %vault_suffix%
-  %vault_ranksuffix%
-  %vault_ranksuffix_#%
-  %vault_prefix_color%
+  %vault_suffix_color%
+  %vault_user_prefix_color%
+  %vault_user_suffix_color%
   ```
 
 ----
@@ -5432,12 +5868,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 - ### **[VoteParty](https://www.spigotmc.org/resources/987/)**
   > NO DOWNLOAD COMMAND
   
-  ```
-  %voteparty_votes_recorded%
-  %voteparty_votes_required_party%
-  %voteparty_votes_required_total%
-  %voteparty_player_votes%
-  ```
+  You can find an up-to-date list of placeholders on the [VoteParty wiki](https://wiki.helpch.at/glares-plugins/voteparty/placeholders).
 
 ----
 

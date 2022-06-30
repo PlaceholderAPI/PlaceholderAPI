@@ -1,5 +1,5 @@
 This here is a list of all plugins supporting PlaceholderAPI by either having their own placeholders added, or just allowing other placeholders to be used.  
-If your plugin isn't shown here and you want it to be added, [open an issue](/PlaceholderAPI/PlaceholderAPI/issues/new?template=change_request_wiki.md) and we will add it!
+If your plugin isn't shown here and you want it to be added, [read the Wiki README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md) on how you can submit your changes.
 
 ## Plugins
 * **[A](#a)**
@@ -274,7 +274,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Provides own placeholders. [Link]
 - **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
   - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholder#deluxemenus]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#deluxemenus]]**]
 - **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#deluxetags]]**]
@@ -406,7 +406,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [x] Provides own placeholders. [**[[Link|Placeholders#holoblock]]**]
 - **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
   - [x] Supports placeholders.
-  - [ ] Provides own placeholders. [Link]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#holomobhealth]]**]
 - **[HPWizard](https://www.spigotmc.org/resources/26821/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#hpwizard]]**]
@@ -578,6 +578,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 
 ----
 ## O
+- **[OneBlock](https://www.spigotmc.org/resources/83215/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#oneblock]]**]
 - **[OnePlayerSleep](https://www.spigotmc.org/resources/76534/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#oneplayersleep]]**]
@@ -608,6 +611,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Parkour](https://www.spigotmc.org/resources/23685/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#parkour]]**]
+- **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#parkplusmc]]**]
 - **[Parties](https://www.spigotmc.org/resources/3709/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#parties]]**]
@@ -629,6 +635,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[PlayTime](https://www.spigotmc.org/resources/26016/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#playtime]]**]
+- **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#playtimerewards]]**]
 - **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#playerpoints]]**]
@@ -641,6 +650,9 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
 - **[Potatoes](https://www.spigotmc.org/resources/12353/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[PowerBoard](https://www.spigotmc.org/resources/73854)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#powerboard]]**]
 - **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#powerranks]]**]
@@ -648,7 +660,7 @@ If your plugin isn't shown here and you want it to be added, [open an issue](/Pl
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#premiumvanish]]**]
 - **[Prison](https://www.spigotmc.org/resources/1223/)**
-  - [ ] Supports placeholders.
+  - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#prison]]**]
 - **[PrisonMines](https://www.spigotmc.org/resources/4046/)**
   - [ ] Supports placeholders.
