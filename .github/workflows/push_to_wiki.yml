@@ -1,0 +1,39 @@
+#
+# This is a GitHub Action that allows us to auto-update the wiki
+# when a Pull request changes specific files in the wiki branch.
+#
+name: Update Wiki from Repository
+
+on:
+  push:
+    #
+    # Only trigger when the push changes any files in the wiki-folder.
+    #
+    branches:
+      - 'wiki'
+    #
+    # Ignore changes to the README.md file
+    #
+    paths-ignore:
+      - 'README.md'
+    #
+    # Releases cause this action to also fire.
+    # Using this prevents this problem.
+    #
+    tags-ignore:
+      - '**'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Code'
+        uses: actions/Checkout@v3
+      - name: 'Update Wiki'
+        uses: Andrew-Chen-Wang/github-wiki-action@v3
+        env:
+          WIKI_DIR: '.'
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_MAIL: 'actions@github.com'
+          GH_NAME: 'github-actions[bot]'
+          EXCLUDED_FILES: 'README.md'
