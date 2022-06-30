@@ -26,7 +26,9 @@ import java.util.logging.Level;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.PlaceholderHook;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -398,6 +400,62 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
         getAuthor(), getVersion());
   }
 
+  /**
+   * This method is called first whenever PlaceholderAPI finds a valid placeholder with a matching expansion.
+   * <br>When called, the provided OfflinePlayer instance can be one of 3 possible states:
+   * 
+   * <ul>
+   *   <li>Not null and online</li>
+   *   <li>Not null and offline</li>
+   *   <li>Null</li>
+   * </ul>
+   * 
+   * When not overridden by the called expansion will the method as of now call
+   * {@link PlaceholderHook#onRequest(OfflinePlayer, String) PlaceholderHook#onRequest(OfflinePlayer, String)}.
+   * <br>This behaviour will change in a future version to call {@link #parsePlaceholders(Player, String) parsePlaceholders(Player, String)}
+   * with the OfflinePlayer either being casted to a Player (When online), or {@link null}.
+   * 
+   * <p>To use this method in your PlaceholderExpansion, override it and return either a String or {@code null}.
+   * <br>When {@code null} is returned will PlaceholderAPI see it as an "invalid placeholder" and return
+   * the content as-is in the final String.
+   * 
+   * @param player The OfflinePlayer to use.
+   * @param params The parameters of the placeholder, right after the first underscore.
+   * @return Parsed placeholder, or null depending on the Expansion's handling of it.
+   */
+  @Nullable
+  public String parsePlaceholders(@Nullable OfflinePlayer player, @NotNull String params) {
+    return this.onRequest(player, params);
+  }
+
+  /**
+   * This method is called whenever PlaceholderAPI finds a valid placeholder with a matching expansion
+   * AND {@link #parsePlaceholders(OfflinePlayer, String) parsePlaceholder(OfflinePlayer, String)} isn't
+   * overridden by the expansion in question.
+   * <br>When called, the provided Player instance can be one of 2 possible states:
+   * 
+   * <ul>
+   *   <li>Not null and online</li>
+   *   <li>Null</li>
+   * </ul>
+   *
+   * When not overridden by the called expansion will the method as of now call
+   * {@link PlaceholderHook#onPlaceholderRequest(Player, String) PlaceholderHook#onPlaceholderRequest(Player, String)}.
+   * <br>This behaviour will change in a future version to instead return {@code null}.
+   * 
+   * <p>To use this method in your PlaceholderExpansion, override it and return either a String or {@code null}.
+   * <br>When {@code null} is returned will PlaceholderAPI see it as an "invalid placeholder" and return
+   * the content as-is in the final String.
+   * 
+   * @param player The Player to use. May be null
+   * @param params The parameters of the placeholder, right after the first underscore.
+   * @return Parsed placeholder, or null depending on the Expansion's handling of it.
+   */
+  @Nullable
+  public String parsePlaceholders(@Nullable Player player, @NotNull String params){
+    return this.onPlaceholderRequest(player, params);
+  }
+  
   // === Deprecated API ===
 
   /**

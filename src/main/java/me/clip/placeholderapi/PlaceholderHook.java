@@ -25,8 +25,22 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Deprecated
 public abstract class PlaceholderHook {
+
+  /**
+   * Please see {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#parsePlaceholders(OfflinePlayer, String) PlaceholderExpansion#parsePlaceholder(OfflinePlayer, String)}
+   * for a full description of what this method is used for.
+   * 
+   * @param player Possibly-null OfflinePlayer instance to use.
+   * @param params String after {@code %<expansion>_} and before the second percent symbol.
+   * @return Possibly-null String depending on the Expansions returned value.
+   * @deprecated Planned for removal in 2.14.0
+   *             <br>Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#parsePlaceholders(OfflinePlayer, String) parsePlaceholders(OfflinePlayer, String)}
+   *             instead
+   */
   @Nullable
+  @Deprecated
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {
       return onPlaceholderRequest((Player) player, params);
@@ -35,7 +49,20 @@ public abstract class PlaceholderHook {
     return onPlaceholderRequest(null, params);
   }
 
+  /**
+   * Please see {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#parsePlaceholders(Player, String) PlaceholderExpansion#parsePlaceholder(Player, String)}
+   * for a full description of what this method is used for.
+   *
+   * @param player Possibly-null Player instance to use.
+   * @param params String after {@code %<expansion>_} and before the second percent symbol.
+   * @return Possibly-null String depending on the Expansions returned value.
+   * 
+   * @deprecated Planned for removal in 2.14.0
+   *             <br>Please use {@link me.clip.placeholderapi.expansion.PlaceholderExpansion#parsePlaceholders(Player, String) parsePlaceholders(Player, String)}
+   *             instead
+   */
   @Nullable
+  @Deprecated
   public String onPlaceholderRequest(final Player player, @NotNull final String params) {
     return null;
   }
