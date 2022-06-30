@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/PlaceholderAPI/PlaceholderAPI/master/wiki/img/wiki-logo.png" alt="PlaceholderAPI">
+  <img src="https://raw.githubusercontent.com/PlaceholderAPI/PlaceholderAPI/wiki/img/wiki-logo.png" alt="PlaceholderAPI">
 </p>  
 This wiki gives you information on how to create placeholders in your plugin that can be used in other plugins, how to use other placeholders inside your plugin, or how to make an expansion.  
 It also has a list with all available placeholders (Work in progress).
