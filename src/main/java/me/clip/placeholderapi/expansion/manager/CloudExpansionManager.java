@@ -46,6 +46,8 @@ import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collector;
@@ -76,10 +78,12 @@ public final class CloudExpansionManager {
 
   @NotNull
   private final Map<String, CloudExpansion> cache = new HashMap<>();
+  private final ReentrantLock cacheLock = new ReentrantLock();
   @NotNull
   private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
+  private final ReentrantLock awaitLock = new ReentrantLock();
 
-  private final ExecutorService ASYNC_EXECUTOR =
+  static final ExecutorService ASYNC_EXECUTOR =
       Executors.newCachedThreadPool(
           new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
 
@@ -104,44 +108,68 @@ public final class CloudExpansionManager {
 
   public void kill() {
     clean();
+    ASYNC_EXECUTOR.shutdown();
+    try {
+      ASYNC_EXECUTOR.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+    } catch (InterruptedException ignored) {}
   }
 
   @NotNull
   @Unmodifiable
   public Map<String, CloudExpansion> getCloudExpansions() {
-    return ImmutableMap.copyOf(cache);
+    cacheLock.lock();
+    try {
+      return ImmutableMap.copyOf(cache);
+    } finally {
+      cacheLock.unlock();
+    }
   }
 
   @NotNull
   @Unmodifiable
   public Map<String, CloudExpansion> getCloudExpansionsInstalled() {
-    if (cache.isEmpty()) {
-      return Collections.emptyMap();
-    }
+    cacheLock.lock();
+    try {
+      if (cache.isEmpty()) {
+        return Collections.emptyMap();
+      }
 
-    return cache.values()
-        .stream()
-        .filter(CloudExpansion::hasExpansion)
-        .collect(INDEXED_NAME_COLLECTOR);
+      return cache.values()
+          .stream()
+          .filter(CloudExpansion::hasExpansion)
+          .collect(INDEXED_NAME_COLLECTOR);
+    } finally {
+      cacheLock.unlock();
+    }
   }
 
   @NotNull
   @Unmodifiable
   public Map<String, CloudExpansion> getCloudExpansionsByAuthor(@NotNull final String author) {
-    if (cache.isEmpty()) {
-      return Collections.emptyMap();
-    }
+    cacheLock.lock();
+    try {
+      if (cache.isEmpty()) {
+        return Collections.emptyMap();
+      }
 
-    return cache.values()
-        .stream()
-        .filter(expansion -> author.equalsIgnoreCase(expansion.getAuthor()))
-        .collect(INDEXED_NAME_COLLECTOR);
+      return cache.values()
+          .stream()
+          .filter(expansion -> author.equalsIgnoreCase(expansion.getAuthor()))
+          .collect(INDEXED_NAME_COLLECTOR);
+    } finally {
+      cacheLock.unlock();
+    }
   }
 
   @NotNull
   @Unmodifiable
   public Set<String> getCloudExpansionAuthors() {
-    return cache.values().stream().map(CloudExpansion::getAuthor).collect(Collectors.toSet());
+    cacheLock.lock();
+    try {
+      return cache.values().stream().map(CloudExpansion::getAuthor).collect(Collectors.toSet());
+    } finally {
+      cacheLock.unlock();
+    }
   }
 
   public int getCloudExpansionAuthorCount() {
@@ -159,14 +187,29 @@ public final class CloudExpansionManager {
 
   @NotNull
   public Optional<CloudExpansion> findCloudExpansionByName(@NotNull final String name) {
-    return Optional.ofNullable(cache.get(toIndexName(name)));
+    cacheLock.lock();
+    try {
+      return Optional.ofNullable(cache.get(toIndexName(name)));
+    } finally {
+      cacheLock.unlock();
+    }
   }
 
   public void clean() {
-    cache.clear();
+    cacheLock.lock();
+    try {
+      cache.clear();
+    } finally {
+      cacheLock.unlock();
+    }
 
-    await.values().forEach(future -> future.cancel(true));
-    await.clear();
+    awaitLock.lock();
+    try {
+      await.values().forEach(future -> future.cancel(true));
+      await.clear();
+    } finally {
+      awaitLock.unlock();
+    }
   }
 
   public void fetch(final boolean allowUnverified) {
@@ -227,7 +270,12 @@ public final class CloudExpansionManager {
                           }
                         }
 
-                        cache.put(toIndexName(expansion), expansion);
+                        cacheLock.lock();
+                        try {
+                          cache.put(toIndexName(expansion), expansion);
+                        } finally {
+                          cacheLock.unlock();
+                        }
                       }
                     } catch (Throwable e) {
                       // ugly swallowing of every throwable, but we have to be defensive
@@ -240,13 +288,24 @@ public final class CloudExpansionManager {
   }
 
   public boolean isDownloading(@NotNull final CloudExpansion expansion) {
-    return await.containsKey(toIndexName(expansion));
+    awaitLock.lock();
+    try {
+      return await.containsKey(toIndexName(expansion));
+    } finally {
+      awaitLock.unlock();
+    }
   }
 
   @NotNull
   public CompletableFuture<File> downloadExpansion(@NotNull final CloudExpansion expansion,
       @NotNull final CloudExpansion.Version version) {
-    final CompletableFuture<File> previous = await.get(toIndexName(expansion));
+    CompletableFuture<File> previous;
+    awaitLock.lock();
+    try {
+      previous = await.get(toIndexName(expansion));
+    } finally {
+      awaitLock.unlock();
+    }
     if (previous != null) {
       return previous;
     }
@@ -265,7 +324,12 @@ public final class CloudExpansionManager {
     }, ASYNC_EXECUTOR);
 
     download.whenCompleteAsync((value, exception) -> {
-      await.remove(toIndexName(expansion));
+      awaitLock.lock();
+      try {
+        await.remove(toIndexName(expansion));
+      } finally {
+        awaitLock.unlock();
+      }
 
       if (exception != null) {
         plugin.getLogger().log(Level.SEVERE,
@@ -273,7 +337,12 @@ public final class CloudExpansionManager {
       }
     }, ASYNC_EXECUTOR);
 
-    await.put(toIndexName(expansion), download);
+    awaitLock.lock();
+    try {
+      await.put(toIndexName(expansion), download);
+    } finally {
+      awaitLock.unlock();
+    }
 
     return download;
   }

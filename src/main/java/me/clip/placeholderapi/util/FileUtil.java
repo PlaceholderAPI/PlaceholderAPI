@@ -28,9 +28,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
 
 public class FileUtil {
 
@@ -41,25 +43,27 @@ public class FileUtil {
       return null;
     }
 
-    final URL jar = file.toURI().toURL();
-    final URLClassLoader loader = new URLClassLoader(new URL[]{jar}, clazz.getClassLoader());
-    final List<String> matches = new ArrayList<>();
-    final List<Class<? extends T>> classes = new ArrayList<>();
-
-    try (final JarInputStream stream = new JarInputStream(jar.openStream())) {
-      JarEntry entry;
-      while ((entry = stream.getNextJarEntry()) != null) {
-        final String name = entry.getName();
-        if (name.isEmpty() || !name.endsWith(".class")) {
+    JarFile jar = new JarFile(file);
+    Enumeration<? extends ZipEntry> entries = jar.entries();
+    if (!entries.hasMoreElements()) {
+      return null;
+    }
+    List<Class<? extends T>> classes = new ArrayList<>();
+    try (URLClassLoader loader =
+        new URLClassLoader(new URL[] {file.toURI().toURL()}, clazz.getClassLoader())) {
+      while (entries.hasMoreElements()) {
+        ZipEntry zip = entries.nextElement();
+        JarEntry entry = jar.getJarEntry(zip.getName());
+        if (entry == null) {
           continue;
         }
-
-        matches.add(name.substring(0, name.lastIndexOf('.')).replace('/', '.'));
-      }
-
-      for (final String match : matches) {
+        String name = entry.getName();
+        if (!name.endsWith(".class")) {
+          continue;
+        }
+        name = name.substring(0, name.indexOf('.')).replace('/', '.');
         try {
-          final Class<?> loaded = loader.loadClass(match);
+          Class<?> loaded = loader.loadClass(name);
           if (clazz.isAssignableFrom(loaded)) {
             classes.add(loaded.asSubclass(clazz));
           }
@@ -68,8 +72,7 @@ public class FileUtil {
       }
     }
     if (classes.isEmpty()) {
-        loader.close();
-        return null;
+      return null;
     }
     return classes.get(0);
   }

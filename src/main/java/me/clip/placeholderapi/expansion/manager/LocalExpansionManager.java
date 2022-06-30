@@ -286,8 +286,13 @@ public final class LocalExpansionManager implements Listener {
 
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
-    if (expansions.remove(expansion.getIdentifier()) == null) {
-      return false;
+    expansionsLock.lock();
+    try {
+      if (expansions.remove(expansion.getIdentifier()) == null) {
+        return false;
+      }
+    } finally {
+      expansionsLock.unlock();
     }
 
     Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
@@ -359,7 +364,14 @@ public final class LocalExpansionManager implements Listener {
   }
 
   private void unregisterAll() {
-    for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
+    Collection<PlaceholderExpansion> expansionsCopy;
+    expansionsLock.lock();
+    try {
+      expansionsCopy = Sets.newHashSet(expansions.values());
+    } finally {
+      expansionsLock.unlock();
+    }
+    for (final PlaceholderExpansion expansion : expansionsCopy) {
       if (expansion.persist()) {
         continue;
       }
@@ -411,7 +423,7 @@ public final class LocalExpansionManager implements Listener {
       } catch (final Exception ex) {
         throw new CompletionException(ex);
       }
-    });
+    }, CloudExpansionManager.ASYNC_EXECUTOR);
   }
 
 
