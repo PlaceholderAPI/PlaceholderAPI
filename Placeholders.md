@@ -399,8 +399,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **V**
     - **[Vault](#vault)**
-      - [Economy](#economy)
-      - [Permissions](#permissions)
     - **[VenturaCalendar](#venturacalendar)**
     - **[ViaVersion](#viaversion)**
     - **[VKAutoPickup](#vkautopickup)**
