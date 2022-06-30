@@ -84,8 +84,8 @@ labels:
         body: |-
           Your Wiki Pull request has been marked as **invalid**.
           
-          Pull requests targeting the wiki need to be based of and target the `docs/wiki` branch of this repository.
-          More information can be found on the [Wiki README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md).
+          Pull requests targeting the Wiki need to target the `wiki` branch.
+          More information can be found on the [Wiki README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md).
         action: close
   - name: 'Target: Wiki'
     labeled:
@@ -94,12 +94,11 @@ labels:
           Hello @{{ issue.user.login }},
           
           Thank you for reaching out to us about the wiki.
-          We would like to inform you, that you are now able to directly commit your changes to the wiki through a Pull request.
+          We would like to inform you, that you are able to directly commit your changes to the wiki through a Pull request.
           When doing so, make sure you follow these steps:
           
-          - The Pull request is based on AND targets the [`docs/wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki) branch of the Repository.
-          - You only made changes to the files inside the [`wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki/wiki) folder.
-          - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md) file.
+          - The Pull request is based on AND targets the [`wiki`](https://github.com/PlaceholderAPI/PlaceholderAPI/tree/wiki) branch of the Repository.
+          - You followed the general Styling Guidelines mentioned in the wiki's [README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md) file.
           
           If you have any questions about submitting a PR for the wiki or have any other questions don't hesitate to ask us about it.
   - name: 'Type: Not a bug'
@@ -123,7 +122,7 @@ labels:
           The issue has been marked as **inactive** which means it didn't recieve any responses from the Author ({{ issue.user.login }}) for a long period of time.
           To keep the issue-tracker clean and up to date do we close issues that haven't received any responses for a long time.
           
-          If you're the Author of this issue and the reported problem is still present, make sure to respond with additional info to this issue.
+          If you're the Author of this issue and the reported problem is still present, make sure to respond with additional info to this issue, so that we can reopen it.
           **Do not create a new issue for the same problem!**
         action: close
     unlabeled:
@@ -137,7 +136,7 @@ labels:
           Hello @{{ issue.user.login }},
           
           Thank you for reaching out to us for getting Support with PlaceholderAPI.
-          We would like to inform you, that we now have [Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions) that you can use for asking questions.
+          We would like to inform you, that we have [Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions) that you can use for asking questions.
           Just head over there and click the "New discussion" button to create a new post.
           
           Remember to first read the [READ ME](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions/507) post to not face any issues.
