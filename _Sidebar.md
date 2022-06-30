@@ -19,6 +19,7 @@
 **[[Commands]]**  
 **[[Expansion cloud]]**  
 **[[FAQ]]**  
+**[[Common Issues]]**  
 **[[Plugins using PlaceholderAPI]]**  
 **[[Placeholders]]**
 - [[Standalone|Placeholders#standalone]]

@@ -19,6 +19,7 @@ It also has a list with all available placeholders (Work in progress).
 **[[Commands]]**  
 **[[Expansion cloud]]**  
 **[[FAQ]]**  
+**[[Common Issues]]**  
 **[[Plugins using PlaceholderAPI]]**  
 **[[Placeholders]]**
 - [[Standalone|Placeholders#standalone]]
