@@ -12,7 +12,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 > We aren't responsible, to keep the placeholders of your plugin(s) up to date.  
 > If anything about your expansion/plugin has changed, consider [making a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls) to commit the changes yourself.
 >
-> You can find a comprehensive guide on how to do this on the [Wiki's README file](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md).
+> You can find a comprehensive guide on how to do this on the [Wiki's README file](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md).
 
 - [Standalone](#standalone)
   - ### **A**
