@@ -106,7 +106,6 @@ public final class CommandDump extends PlaceholderCommand {
         }
 
         try (final InputStream stream = connection.getInputStream()) {
-          //noinspection UnstableApiUsage
           final String json = CharStreams.toString(new InputStreamReader(stream, StandardCharsets.UTF_8));
           return gson.fromJson(json, JsonObject.class).get("key").getAsString();
         }
@@ -134,18 +133,15 @@ public final class CommandDump extends PlaceholderCommand {
     final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
         .getExpansions()
         .stream()
-        .sorted(Comparator.comparing(PlaceholderExpansion::getIdentifier))
-        .sorted(Comparator.comparing(PlaceholderExpansion::getAuthor))
+        .sorted(
+            Comparator.comparing(PlaceholderExpansion::getIdentifier)
+                      .thenComparing(PlaceholderExpansion::getAuthor)
+        )
         .collect(Collectors.toList());
 
-    int size = 0;
-
-    for (final String name : expansions.stream().map(PlaceholderExpansion::getIdentifier)
-        .collect(Collectors.toList())) {
-      if (name.length() > size) {
-        size = name.length();
-      }
-    }
+    int size = expansions.stream().map(e -> e.getIdentifier().length())
+        .max(Integer::compareTo)
+        .orElse(0);
 
     for (final PlaceholderExpansion expansion : expansions) {
       builder.append("  ")
@@ -167,10 +163,15 @@ public final class CommandDump extends PlaceholderCommand {
         .getExpansionsFolder()
         .list((dir, name) -> name.toLowerCase(Locale.ROOT).endsWith(".jar"));
 
-    for (final String jar : jars) {
-      builder.append("  ")
-          .append(jar)
-          .append('\n');
+
+    if (jars == null) {
+      builder.append("  ¨[Warning]: Could not load jar files from expansions folder.");
+    } else {
+      for (final String jar : jars) {
+        builder.append("  ")
+            .append(jar)
+            .append('\n');
+      }
     }
 
     builder.append('\n');
@@ -191,13 +192,10 @@ public final class CommandDump extends PlaceholderCommand {
     List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
         .sorted(Comparator.comparing(Plugin::getName))
         .collect(Collectors.toList());
-
-    for (final String pluginName : plugins.stream().map(Plugin::getName)
-        .collect(Collectors.toList())) {
-      if (pluginName.length() > size) {
-        size = pluginName.length();
-      }
-    }
+    
+    size = plugins.stream().map(pl -> pl.getName().length())
+        .max(Integer::compareTo)
+        .orElse(0);
 
     for (final Plugin other : plugins) {
       builder.append("  ")
