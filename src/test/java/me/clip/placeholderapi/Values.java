@@ -23,7 +23,6 @@ package me.clip.placeholderapi;
 import com.google.common.collect.ImmutableMap;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.replacer.CharsReplacer;
-import me.clip.placeholderapi.replacer.RegexReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +39,6 @@ public interface Values {
 
 
   Replacer CHARS_REPLACER = new CharsReplacer(Replacer.Closure.PERCENT);
-  Replacer REGEX_REPLACER = new RegexReplacer(Replacer.Closure.PERCENT);
 
 
   final class MockPlayerPlaceholderExpansion extends PlaceholderExpansion {
