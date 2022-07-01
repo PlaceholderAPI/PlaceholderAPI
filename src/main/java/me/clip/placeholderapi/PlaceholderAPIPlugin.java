@@ -23,7 +23,6 @@ package me.clip.placeholderapi;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -32,6 +31,7 @@ import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
+import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
@@ -121,7 +121,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     try {
       return new SimpleDateFormat(getInstance().getPlaceholderAPIConfig().dateFormat());
     } catch (final IllegalArgumentException ex) {
-      getInstance().getLogger().log(Level.WARNING, "configured date format is invalid", ex);
+      Msg.warn("Configured Date format ('%s') is invalid! Defaulting to 'MM/dd/yy HH:mm:ss'",
+          ex, getInstance().getPlaceholderAPIConfig().dateFormat());
       return new SimpleDateFormat("MM/dd/yy HH:mm:ss");
     }
   }
