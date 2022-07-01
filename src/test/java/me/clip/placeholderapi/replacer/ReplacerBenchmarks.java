@@ -31,18 +31,8 @@ public class ReplacerBenchmarks {
   }
 
   @Benchmark
-  public void measureRegexReplacerSmallText() {
-    Values.REGEX_REPLACER.apply(Values.SMALL_TEXT, null, Values.PLACEHOLDERS::get);
-  }
-
-  @Benchmark
   public void measureCharsReplacerLargeText() {
     Values.CHARS_REPLACER.apply(Values.LARGE_TEXT, null, Values.PLACEHOLDERS::get);
-  }
-
-  @Benchmark
-  public void measureRegexReplacerLargeText() {
-    Values.REGEX_REPLACER.apply(Values.LARGE_TEXT, null, Values.PLACEHOLDERS::get);
   }
 
 }
