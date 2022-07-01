@@ -61,7 +61,7 @@ Let's quickly break down the different methods you have to implement.
   This method allows you to set the name of the expansion's author.
 - #### getIdentifier
   The identifier is the part in the placeholder that is between the first `%` (Or `{` if bracket placeholders are used) and the first `_`.  
-  Because of that can you not use `%`, `{`, `}` or `_` in youd identifier.
+  Because of that can you not use `%`, `{`, `}` or `_` in your identifier.
   
   If you still want to use those symbols can you override the `getName()` method to display a different name.
 - #### getVersion
@@ -75,9 +75,10 @@ You must choose between one of these two methods for handling the actual parsing
 
 - #### onRequest(OfflinePlayer, String)
   If not explicitly set, this will automatically call [`onPlaceholderRequest(Player, String)`](#onplaceholderrequestplayer-string).
-  This method is recommended as it allows the usage of `null` and can therefore be used in placeholders that don't require a valid player to be used.
+  This method is recommended as it allows the usage of offline players, meaning the player doesn't need to be online to get certain information (i.e. name).
 - #### onPlaceholderRequest(Player, String)
-  If not set, this method will return `null` which PlaceholderAPI sees as an invalid placeholder.
+  If not set, this method will return `null` which PlaceholderAPI sees as an invalid placeholder.  
+  The `Player` can be `null`, so keep that in mind when handling your placeholders.
 
 ----
 ## Without a Plugin
