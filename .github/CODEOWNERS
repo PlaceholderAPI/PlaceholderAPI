@@ -1,9 +1,9 @@
 #
 # Assigns extendedclip and PiggyPiglet for any PR unless a check below matches.
 #
-*      @extendedclip @PiggyPiglet
+*    @PiggyPiglet @darbyjack
 
 #
 # Assigns Andre601 to any PR that targets the wiki folder.
 #
-/wiki/ @Andre601
+*.md @Andre601
