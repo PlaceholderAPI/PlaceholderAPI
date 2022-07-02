@@ -121,7 +121,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     try {
       return new SimpleDateFormat(getInstance().getPlaceholderAPIConfig().dateFormat());
     } catch (final IllegalArgumentException ex) {
-      Msg.warn("Configured Date format ('%s') is invalid! Defaulting to 'MM/dd/yy HH:mm:ss'",
+      Msg.warn("Configured date format ('%s') is invalid! Defaulting to 'MM/dd/yy HH:mm:ss'",
           ex, getInstance().getPlaceholderAPIConfig().dateFormat());
       return new SimpleDateFormat("MM/dd/yy HH:mm:ss");
     }
