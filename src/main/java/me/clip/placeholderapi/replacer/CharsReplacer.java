@@ -128,7 +128,7 @@ public final class CharsReplacer implements Replacer {
         continue;
       }
 
-      builder.append(ChatColor.translateAlternateColorCodes('&', replacement));
+      builder.append(replacement);
     }
 
     return builder.toString();

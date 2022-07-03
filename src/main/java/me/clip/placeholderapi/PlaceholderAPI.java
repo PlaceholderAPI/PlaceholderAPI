@@ -202,7 +202,7 @@ public final class PlaceholderAPI {
       }
     }
 
-    return Msg.color(text);
+    return text;
   }
 
   /**
