@@ -36,9 +36,9 @@ labels:
           Your issue unfortunately lacks certain information that we require in order to help you with your issue.
           Please make sure you provide the following information:
           
-          - Currently used Versions of your server and PlaceholderAPI
-          - Currently installed Expansions
-          - Currently installed Plugins
+          - Currently used Versions of your server (`/version`) and PlaceholderAPI (`/version PlaceholderAPI`)
+          - Currently installed Expansions (`/papi list`)
+          - Currently installed Plugins (`/pl`)
           - Any additional information requested by users in this issue.
           
           The easiest way to provide those information is through the `/papi dump` command which posts the required information to https://paste.helpch.at and gives a URL to share.
@@ -52,18 +52,18 @@ labels:
       issue:
         body: |-
           Your issue has beeen marked as invalid.
-          This means that it either doesn't follow any provided template, or isn't related to PlaceholderAPI in any way.
+          This means that it either doesn't follow any provided template, or isn't related to PlaceholderAPI.
           
           Please make sure to use one of the issue templates and provide the requested information.
           Currently available Templates are:
           
-          - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=bug_report.md)
-          - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?template=feature_request.md)
+          - [Bug Report](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?labels=Type%3A+Issue+%28Unconfirmed%29&template=bug_report.yml)
+          - [Feature Request](https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new?labels=Type%3A+Enhancement&template=feature_request.yml)
           
           If you want changes to be made towards the Wiki, would we encourage you to [Make a Pull request](https://github.com/PlaceholderAPI/PlaceholderAPI/pulls).  
-          You can find more information about this process on the [Wiki's Readme](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/wiki/README.md).
+          You can find more information about this process on the [Wiki's Readme](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md).
           
-          It is recommended to [join our Discord Server](https://helpch.at/discord) as you often receive faster response compared to the issue tracker here.
+          It is recommended to [join our Discord Server](https://helpch.at/discord) as you often receive a faster response compared to the issue tracker here.
           Questions about PlaceholderAPI should be asked in our [Discussions](https://github.com/PlaceholderAPI/PlaceholderAPI/discussions).
         action: close
       pr:
@@ -74,7 +74,7 @@ labels:
           Here is a small summary of what you should know:
           
           - Pull requests for PlaceholderAPI should target the `master` branch.
-          - Pull requests for the Wiki should target the `docs/wiki` branch.
+          - Pull requests for the Wiki should target the `wiki` branch.
           
           Don't hesitate to ask us any questions.
         action: close
