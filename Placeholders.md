@@ -867,18 +867,23 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_allow_flight%
   %player_armor_helmet_name%
   %player_armor_helmet_data%
+  %player_armor_helmet_durability%
   %player_armor_chestplate_name%
   %player_armor_chestplate_data%
+  %player_armor_chestplate_durability%
   %player_armor_leggings_name%
   %player_armor_leggings_data%
+  %player_armor_leggings_durability%
   %player_armor_boots_name%
   %player_armor_boots_data%
+  %player_armor_boots_durability%
   %player_bed_x%
   %player_bed_y%
   %player_bed_z%
   %player_bed_world%
   %player_biome%
   %player_biome_capitalized%
+  %player_block_underneath%
   %player_can_pickup_items%
   %player_colored_ping%
   %player_compass_world%
@@ -890,6 +895,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_direction%
   %player_direction_xz%
   %player_displayname%
+  %player_list_name%
   %player_exp%
   %player_exp_to_level%
   %player_first_join_date%
@@ -920,10 +926,12 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_item_in_hand%
   %player_item_in_hand_name%
   %player_item_in_hand_data%
+  %player_item_in_hand_durability%
   %player_item_in_hand_level_<enchantment>%
   %player_item_in_offhand%
   %player_item_in_offhand_name%
   %player_item_in_offhand_data%
+  %player_item_in_offhand_durability%
   %player_item_in_offhand_level_<enchantment>%
   %player_locale%
   %player_locale_display_name%
@@ -967,6 +975,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_z%
   %player_yaw%
   %player_pitch%
+  %player_absorption%
   ```
 
 ----
