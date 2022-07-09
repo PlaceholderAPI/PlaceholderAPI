@@ -320,6 +320,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PvPStats Plugin](#pvpstats-plugin)**
 
   - ### **Q**
+    - **[QualityArmory](#qualityarmory)**
     - **[Quests](#quests)**
     - **[QuestCreator](#questcreator)**
     - **[QuickSell](#quicksell)**
@@ -4579,6 +4580,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %pvpstats_deaths%
   %pvpstats_killstreak%
   %pvpstats_kdr%
+  ```
+
+----
+
+- ### **[QualityArmory](https://www.spigotmc.org/resources/47561/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %qualityarmory_ammo_type%
+  %qualityarmory_ammo_amount%
   ```
 
 ----
