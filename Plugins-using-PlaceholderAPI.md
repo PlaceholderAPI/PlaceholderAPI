@@ -701,6 +701,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 
 ----
 ## Q
+- **[QualityArmory](https://www.spigotmc.org/resources/6107/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#qualityarmory]]**]
 - **[Quests](https://www.spigotmc.org/resources/3711/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#quests]]**]
