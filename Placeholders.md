@@ -537,10 +537,12 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **ChangeOutput**
   > /papi ecloud download changeoutput
 
-  Alows you to change the output based on what other placeholders return
+  Allows you to change the output based on what other placeholders return. 
+
+  More information can be found on the [GitHub Repository](https://github.com/Kqliber/Expansion-ChangeOutput)
   
   ```
-  %changeoutput_<options>_<input>_<matcher>_<output-if-matched>_<output-if-not-matched>%
+  %changeoutput_<options>_input:<input>_matcher:<matcher>_ifmatch:<output-if-matched>_else:<output-if-not-matched>%
   ```
   
   * `<options>`
