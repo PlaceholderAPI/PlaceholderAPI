@@ -5851,6 +5851,9 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   # Economy placeholders
   %vault_eco_balance%
   %vault_eco_balance_<number>dp%
+  %vault_eco_balance_fixed%
+  %vault_eco_balance_formatted%
+  %vault_eco_balance_commas%
   %vault_eco_commas%
   %vault_eco_fixed%
   %vault_eco_formatted%
