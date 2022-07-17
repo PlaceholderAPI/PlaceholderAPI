@@ -392,11 +392,16 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Two Factor Authentication](#twofactorauthentication)**
 
   - ### **U**
-    - **[USkyBlock](#uskyblock)**
     - **[UltimateChat](#ultimatechat)**
     - **[UltimateClaims](#ultimateclaims)**
     - **[UltimateVotes](#ultimatevotes)**
+    - **[Ultra Economy](#ultraeconomy)**
+    - **[Ultra Motd](#ultramotd)**
+    - **[Ultra Permissions](#ultrapermissions)**
+    - **[Ultra Punishments](#ultrapunishments)**
+    - **[Ultra Regions](#ultraregions)**
     - **[UnityGen](#unitygen)**
+    - **[USkyBlock](#uskyblock)**
 
   - ### **V**
     - **[Vault](#vault)**
@@ -5791,6 +5796,41 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %ultimatevotes_totalvotes%
   %ultimatevotes_hasvoted%
   ```
+
+----
+
+- ### **[Ultra Economy](https://www.spigotmc.org/resources/83374/)**
+  > NO DOWNLOAD COMMAND
+
+  You can find an up-to-date list of placeholders in the [Ultra Economy Wiki](https://ultraeconomy.com/wiki/overview/placeholders).
+
+----
+
+- ### **[Ultra Motd](https://www.spigotmc.org/resources/100883/)**
+  > NO DOWNLOAD COMMAND
+
+  You can find an up-to-date list of placeholders in the [Ultra Motd Wiki](https://ultramotd.com/wiki/overview/placeholders).
+
+----
+
+- ### **[Ultra Permissions](https://www.spigotmc.org/resources/42678/)**
+  > NO DOWNLOAD COMMAND
+
+  You can find an up-to-date list of placeholders in the [Ultra Permissions Wiki](https://ultrapermissions.com/wiki/overview/placeholders).
+
+----
+
+- ### **[Ultra Punishments](https://www.spigotmc.org/resources/63511/)**
+  > NO DOWNLOAD COMMAND
+
+  You can find an up-to-date list of placeholders in the [Ultra Punishments Wiki](https://ultrapunishments.com/wiki/overview/placeholders).
+
+----
+
+- ### **[Ultra Regions](https://www.spigotmc.org/resources/58317/)**
+  > NO DOWNLOAD COMMAND
+
+  You can find an up-to-date list of placeholders in the [Ultra Regions Wiki](https://ultraregions.com/wiki/overview/placeholders).
 
 ----
 
