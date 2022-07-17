@@ -984,7 +984,25 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[UltraMenu](https://www.spigotmc.org/resources/27856/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[Ultra Customizer](https://www.spigotmc.org/resources/49330/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
+- **[Ultra Economy](https://www.spigotmc.org/resources/83374/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultraeconomy]]**]
+- **[Ultra Motd](https://www.spigotmc.org/resources/100883/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultramotd]]**]
 - **[Ultra Permissions](https://www.spigotmc.org/resources/42678/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultrapermissions]]**]
+- **[Ultra Punishments](https://www.spigotmc.org/resources/63511/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultrapunishments]]**]
+- **[Ultra Regions](https://www.spigotmc.org/resources/58317/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultraregions]]**]
+- **[Ultra Scoreboards](https://www.spigotmc.org/resources/93726/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
 - **[Ultra Simple Staff Chat](https://www.spigotmc.org/resources/22064/)**
