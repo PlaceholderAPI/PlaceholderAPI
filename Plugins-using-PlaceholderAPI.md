@@ -989,19 +989,19 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
   - [ ] Provides own placeholders. [Link]
 - **[Ultra Economy](https://www.spigotmc.org/resources/83374/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#ultraeconomy]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultra-economy]]**]
 - **[Ultra Motd](https://www.spigotmc.org/resources/100883/)**
   - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#ultramotd]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultra-motd]]**]
 - **[Ultra Permissions](https://www.spigotmc.org/resources/42678/)**
   - [x] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#ultrapermissions]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultra-permissions]]**]
 - **[Ultra Punishments](https://www.spigotmc.org/resources/63511/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#ultrapunishments]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultra-punishments]]**]
 - **[Ultra Regions](https://www.spigotmc.org/resources/58317/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#ultraregions]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultra-regions]]**]
 - **[Ultra Scoreboards](https://www.spigotmc.org/resources/93726/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
