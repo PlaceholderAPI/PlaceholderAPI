@@ -395,11 +395,11 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[UltimateChat](#ultimatechat)**
     - **[UltimateClaims](#ultimateclaims)**
     - **[UltimateVotes](#ultimatevotes)**
-    - **[Ultra Economy](#ultraeconomy)**
-    - **[Ultra Motd](#ultramotd)**
-    - **[Ultra Permissions](#ultrapermissions)**
-    - **[Ultra Punishments](#ultrapunishments)**
-    - **[Ultra Regions](#ultraregions)**
+    - **[Ultra Economy](#ultra-economy)**
+    - **[Ultra Motd](#ultra-motd)**
+    - **[Ultra Permissions](#ultra-permissions)**
+    - **[Ultra Punishments](#ultra-punishments)**
+    - **[Ultra Regions](#ultra-regions)**
     - **[UnityGen](#unitygen)**
     - **[USkyBlock](#uskyblock)**
 
