@@ -61,7 +61,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.PluginDisableEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -337,48 +336,43 @@ public final class LocalExpansionManager implements Listener {
   private void registerAll(@NotNull final CommandSender sender) {
     Msg.info("Placeholder expansion registration initializing...");
 
-    new BukkitRunnable() {
-      @Override
-      public void run() {
-        Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
-          if (exception != null) {
-            Msg.severe("Failed to load class files of expansion.", exception);
-            return;
-          }
-
-          final List<PlaceholderExpansion> registered = classes.stream()
-                  .filter(Objects::nonNull)
-                  .map(LocalExpansionManager.this::register)
-                  .filter(Optional::isPresent)
-                  .map(Optional::get)
-                  .collect(Collectors.toList());
-
-          final long needsUpdate = registered.stream()
-                  .map(expansion -> plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
-                  .filter(Objects::nonNull)
-                  .filter(CloudExpansion::shouldUpdate)
-                  .count();
-
-          StringBuilder message = new StringBuilder(registered.size() == 0 ? "&6" : "&a")
-                  .append(registered.size())
-                  .append(' ')
-                  .append("placeholder hook(s) registered!");
-
-          if (needsUpdate > 0) {
-            message.append(' ')
-                    .append("&6")
-                    .append(needsUpdate)
-                    .append(' ')
-                    .append("placeholder hook(s) have an update available.");
-          }
-
-
-          Msg.msg(sender, message.toString());
-
-          Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
-        });
+    Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
+      if (exception != null) {
+        Msg.severe("Failed to load class files of expansion.", exception);
+        return;
       }
-    }.runTaskLater(plugin, 20L);
+      
+      final List<PlaceholderExpansion> registered = classes.stream()
+          .filter(Objects::nonNull)
+          .map(this::register)
+          .filter(Optional::isPresent)
+          .map(Optional::get)
+          .collect(Collectors.toList());
+
+      final long needsUpdate = registered.stream()
+          .map(expansion -> plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
+          .filter(Objects::nonNull)
+          .filter(CloudExpansion::shouldUpdate)
+          .count();
+
+      StringBuilder message = new StringBuilder(registered.size() == 0 ? "&6" : "&a")
+          .append(registered.size())
+          .append(' ')
+          .append("placeholder hook(s) registered!");
+      
+      if (needsUpdate > 0) {
+        message.append(' ')
+            .append("&6")
+            .append(needsUpdate)
+            .append(' ')
+            .append("placeholder hook(s) have an update available.");
+      }
+      
+      
+      Msg.msg(sender, message.toString());
+
+      Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
+    });
   }
 
   private void unregisterAll() {
