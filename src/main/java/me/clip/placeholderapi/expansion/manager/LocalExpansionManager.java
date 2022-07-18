@@ -378,7 +378,7 @@ public final class LocalExpansionManager implements Listener {
           Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
         });
       }
-    }.runTaskLater(plugin, 20L);
+    }.runTaskLater(plugin, 1L);
   }
 
   private void unregisterAll() {
