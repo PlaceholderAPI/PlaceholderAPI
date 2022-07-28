@@ -3806,7 +3806,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[P-LifeSteal](https://www.spigotmc.org/resources/%E2%9A%A1-p-lifesteal-1-19-support-%E2%9C%85-smp-ready-%E2%9C%85-revive-book-%E2%9C%85-highly-configurable-%E2%9C%85.101967/)**
+- ### **[P-LifeSteal](https://www.spigotmc.org/resources/101967/)**
   > NO DOWNLOAD COMMAND
 
   ```
