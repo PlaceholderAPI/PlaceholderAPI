@@ -292,6 +292,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Outpost](#outpost)**
 
   - ### **P**
+    - **[P-LifeSteal](#p-lifesteal)**
     - **[Paintball Battle](#paintball-battle)**
     - **[Parkour](#parkour)**
     - **[ParkPlusMC](#parkplusmc)**
@@ -3801,6 +3802,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %outpost_conqueror_percentage_<outpost>%
   %outpost_perks_money_<outpost>%
   %outpost_perks_exp_<outpost>%
+  ```
+
+----
+
+- ### **[P-LifeSteal](https://www.spigotmc.org/resources/101967/)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %ls_hearts_<player-nick>%
+  %ls_health_<player-nick>%
   ```
 
 ----
