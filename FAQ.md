@@ -1,4 +1,4 @@
-[readme]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki/README.md
+[readme]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md
 
 Here are frequently asked questions about stuff related to PlaceholderAPI.
 
