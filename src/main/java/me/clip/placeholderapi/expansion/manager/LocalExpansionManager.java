@@ -216,6 +216,12 @@ public final class LocalExpansionManager implements Listener {
     if (!expansion.canRegister()) {
       return false;
     }
+    
+    if (expansions.containsKey(identifier)) {
+      Msg.warn("Failed to load expansion %s. Identifier is already registered.",
+          expansion.getIdentifier());
+      return false;
+    }
 
     if (expansion instanceof Configurable) {
       Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
@@ -388,7 +394,7 @@ public final class LocalExpansionManager implements Listener {
   @NotNull
   public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
     File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
-    if(files == null){
+    if (files == null) {
       return CompletableFuture.completedFuture(Collections.emptyList());
     }
     
