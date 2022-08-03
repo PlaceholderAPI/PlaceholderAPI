@@ -147,6 +147,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 
   - ### **B**
     - **[BankSystem](#banksystem)**
+    - **[BasicQuests](#basicquests)**
     - **[BattleLevels](#battlelevels)**
     - **[BeautyQuests](#beautyquests)**
     - **[BedWars1058](#bedwars1058)**
@@ -1893,6 +1894,25 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %banksystem_pocket%
   %banksystem_total%
   %banksystem_currency%
+  ```
+
+----
+
+- ### **[BasicQuests](https://www.spigotmc.org/resources/87972/)**
+  > NO DOWNLOAD COMMAND
+
+  Find examples of how the placeholders can be used on [signs](https://github.com/Tonnanto/BasicQuests/tree/v0.3.2#signs) and [scoreboards](https://github.com/Tonnanto/BasicQuests/tree/v0.3.2#scoreboards).
+
+  ```
+  %bquests% - (formatted, multiline) list of a players quests
+  %bquests_detail% - (formatted, multiline) list of a players quests and rewards
+  %bquests_count% - Amount of quests a player has
+  %bquests_<index>% - Formatted quest at the given index
+  %bquests_<index>_title% - Title of the quest at the given index
+  %bquests_<index>_progress% - Progress of the quest at the given index
+  %bquests_<index>_left% - Amount of (actions) left to complete the quest at the given index
+  %bquests_<index>_<linenumber>% - Title of a given quest split into 4 lines that fit on a sign.
+  %bquests_<index>_reward_<linenumber>% - Reward of a given quest split into 2 lines. Handy for Scoreboards
   ```
 
 ----
