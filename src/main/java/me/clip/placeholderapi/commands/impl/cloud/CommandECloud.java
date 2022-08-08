@@ -79,8 +79,6 @@ public final class CommandECloud extends PlaceholderCommand {
       Msg.msg(sender,
           "&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
           " ",
-          "&b/papi &fenable/disable/toggle",
-          "  &7&oEnable or disable the eCloud",
           "&b/papi &fecloud status",
           "  &7&oView status of the eCloud",
           "&b/papi &fecloud list <all/{author}/installed> {page}",
