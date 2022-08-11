@@ -2,29 +2,35 @@
 
 Here are frequently asked questions about stuff related to PlaceholderAPI.
 
+## What is an Expansion?
+An expansion (aka PlaceholderExpansion) usualy refers to a separate jar file that is added to PlaceholderAPI's `expansion` folder to add extra placeholders to use in other plugins.  
+External PlaceholderExpansions are downloaded from PlaceholderAPI's eCloud through the [[`/papi ecloud download <expansion>`|Commands#papi-ecloud-dpwnload]] command.
+
+Some plugins may provide their PlaceholderExpansion directly without any external jar file being used.
+
 ## It only shows `%placeholder%` and not the variable
 When a plugin or `/papi parse me %placeholder%` only returns the placeholder itself and no value should you check for the following things:
 
-### The expansion is actually installed.
-In many cases is the cause that the expansion of the placeholder is missing.  
-Just execute `/papi ecloud download <name of expansion>` followed by `/papi reload` to activate it. You can find a list of Expansions and their Placeholders [[on this page|Placeholders]].
-
-**NOTE!**  
-Not all placeholders come in their own expansion. Some plugins *hardcode* them in and load them on startup, when hooking into PlaceholderAPI.
-
-### Plugin actualls supports PlaceholderAPI
-It can happen that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case check, if the parse command returns the actual value of a placeholder.  
-If that is the case while the plugin is still displaying the placeholder, can this be an indicator of the plugin not supporting PlaceholderAPI.
-
-You can find a list of plugins supporting PlaceholderAPI [[here|Plugins-using-PlaceholderAPI]].  
-Just make sure that "Supports placeholders" has a check mark in front of it.
-
-### No typo in the placeholder
-Double-check that the placeholder you set doesn't contain a typo. You can use `/papi ecloud placeholders <expansion>` (replace `<expansion>` with the name of the expansion) to get a list of all the placeholders the expansion may have.  
-Keep in mind that this only works for separate expansions on the eCloud and not for those that are loaded by plugins.
-
-### Plugin is enabled
-If an expansion depends on a plugin, make sure you have the plugin installed and that it is enabled (Shows green in `/pl`).
+- ### The expansion is actually installed.
+  In many cases is the cause that the expansion of the placeholder is missing.  
+  Just execute `/papi ecloud download <name of expansion>` followed by `/papi reload` to activate it. You can find a list of Expansions and their Placeholders [[on this page|Placeholders]].
+  
+  **NOTE!**  
+  Not all placeholders come in their own expansion. Some plugins *hardcode* them in and load them on startup, when hooking into PlaceholderAPI.
+  
+- ### Plugin actualls supports PlaceholderAPI
+  It can happen that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case check, if the parse command returns the actual value of a placeholder.  
+  If that is the case while the plugin is still displaying the placeholder, can this be an indicator of the plugin not supporting PlaceholderAPI.
+  
+  You can find a list of plugins supporting PlaceholderAPI [[here|Plugins-using-PlaceholderAPI]].  
+  Just make sure that "Supports placeholders" has a check mark in front of it.
+  
+- ### No typo in the placeholder
+  Double-check that the placeholder you set doesn't contain a typo. You can use `/papi ecloud placeholders <expansion>` (replace `<expansion>` with the name of the expansion) to get a list of all the placeholders the expansion may have.  
+  Keep in mind that this only works for separate expansions on the eCloud and not for those that are loaded by plugins.
+  
+- ### Plugin is enabled
+  If an expansion depends on a plugin, make sure you have the plugin installed and that it is enabled (Shows green in `/pl`).
 
 ## I can't download the expansion
 Make sure, that the connection to the cloud (https://api.extendedclip.com) isn't blocked by a firewall or similar.  
