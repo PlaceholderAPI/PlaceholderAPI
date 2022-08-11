@@ -4,7 +4,7 @@ Here are frequently asked questions about stuff related to PlaceholderAPI.
 
 ## What is an Expansion?
 An expansion (aka PlaceholderExpansion) usualy refers to a separate jar file that is added to PlaceholderAPI's `expansion` folder to add extra placeholders to use in other plugins.  
-External PlaceholderExpansions are downloaded from PlaceholderAPI's eCloud through the [[`/papi ecloud download <expansion>`|Commands#papi-ecloud-dpwnload]] command.
+External PlaceholderExpansions are downloaded from PlaceholderAPI's eCloud through the [[`/papi ecloud download <expansion>`|Commands#papi-ecloud-download]] command.
 
 Some plugins may provide their PlaceholderExpansion directly without any external jar file being used.
 
