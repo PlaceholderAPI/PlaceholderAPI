@@ -302,6 +302,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PermissionTimer](#permissiontimer)**
     - **[PixelVip](#pixelvip)**
     - **[Plan](#plan)**
+    - **[PlayerStats](#playerstats)**
     - **[PlayTime](#playtime)**
     - **[PlaytimeRewards](#playtimerewards)**
     - **[PlayerPoints](#playerpoints)**
@@ -3973,6 +3974,45 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   Check [Plan Wiki](https://github.com/plan-player-analytics/Plan/wiki/PlaceholderAPI) for the placeholders list.
 
+----
+
+- ### **[PlayerStats](https://www.spigotmc.org/resources/102347/)**
+  > /papi ecloud download playerstats
+  
+  For more information and all the placeholder-options, see the [PlayerStatsExpansion GitHub](https://github.com/Artemis-the-gr8/PlayerStatsExpansion/tree/main).
+  
+  ```
+  %playerstats_prefix% 
+  %playerstats_prefixtitle% 
+  %playerstats_rainbowprefix% 
+  %playerstats_rainbowprefixtitle% 
+  
+  %playerstats_top:n,statistic% 
+  %playerstats_top:n,statistic:item/block% 
+  %playerstats_top:n,statistic:entity% 
+  %playerstats_top:n,statistic,number% 
+  %playerstats_top:n,statistic,number:raw% 
+  
+  %playerstats_player:player-name,statistic% 
+  %playerstats_player:player-name,statistic:item/block% 
+  %playerstats_player:player-name,statistic:entity% 
+  %playerstats_player:player-name,statistic,number% 
+  %playerstats_player:player-name,statistic,number:raw% 
+  
+  %playerstats_server,statistic% 
+  %playerstats_server,statistic:item/block% 
+  %playerstats_server,statistic:entity% 
+  %playerstats_server,statistic,number% 
+  %playerstats_server,statistic,number:raw% 
+  
+  %playerstats_title,statistic% 
+  %playerstats_title:n,statistic% 
+  %playerstats_title:n,statistic:item/block% 
+  %playerstats_title:n,statistic:entity% 
+  %playerstats_title:n,statistic,number% 
+  %playerstats_title:n,statistic,number:raw%
+  ```
+  
 ----
 
 - ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
