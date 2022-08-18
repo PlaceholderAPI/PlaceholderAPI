@@ -640,7 +640,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
   - [ ] Provides own placeholders. [Link]
 - **[PlayerStats](https://www.spigotmc.org/resources/102347/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [Link]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#playerstats]]**]
 - **[PlayTime](https://www.spigotmc.org/resources/26016/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#playtime]]**]
