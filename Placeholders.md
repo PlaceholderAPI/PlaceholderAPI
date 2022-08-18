@@ -302,10 +302,10 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PermissionTimer](#permissiontimer)**
     - **[PixelVip](#pixelvip)**
     - **[Plan](#plan)**
+    - **[PlayerStats](#playerstats)**
     - **[PlayTime](#playtime)**
     - **[PlaytimeRewards](#playtimerewards)**
     - **[PlayerPoints](#playerpoints)**
-    - **[PlayerStats](#playerstats)**
     - **[PlotSquared](#plotsquared)**
     - **[PointsAPI](#pointsapi)**
     - **[PowerBoard](#powerboard)**
@@ -3976,39 +3976,6 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %playtime_player%
-  %playtime_time%
-  %playtime_timesjoined%
-  %playtime_serveruptime%
-  ```
-  
-----
-
-- ### **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %ptr_playtime%
-  %ptr_sessiontime%
-  ```
-
-----
-
-- ### **[PlayerPoints](https://www.spigotmc.org/resources/80745/)**
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %playerpoints_points%
-  %playerpoints_points_formatted%
-  %playerpoints_points_shorthand%
-  ```
-
-----
-
 - ### **[PlayerStats](https://www.spigotmc.org/resources/102347/)**
   > /papi ecloud download playerstats
   
@@ -4046,6 +4013,39 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %playerstats_title:n,statistic,number:raw%
   ```
   
+----
+
+- ### **[PlayTime](https://www.spigotmc.org/resources/26016/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %playtime_player%
+  %playtime_time%
+  %playtime_timesjoined%
+  %playtime_serveruptime%
+  ```
+  
+----
+
+- ### **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %ptr_playtime%
+  %ptr_sessiontime%
+  ```
+
+----
+
+- ### **[PlayerPoints](https://www.spigotmc.org/resources/80745/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %playerpoints_points%
+  %playerpoints_points_formatted%
+  %playerpoints_points_shorthand%
+  ```
+
 ----
 
 - ### **[PlotSquared](https://www.spigotmc.org/resources/77506/)**
