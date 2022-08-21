@@ -3987,30 +3987,29 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %playerstats_rainbowprefix% 
   %playerstats_rainbowprefixtitle% 
   
-  %playerstats_top:n,statistic% 
-  %playerstats_top:n,statistic:item/block% 
-  %playerstats_top:n,statistic:entity% 
-  %playerstats_top:n,statistic,number% 
-  %playerstats_top:n,statistic,number:raw% 
+  %playerstats_top:<n>,<statistic>% 
+  %playerstats_top:<n>,<statistic:item/block>% 
+  %playerstats_top:<n>,<statistic:entity>% 
+  %playerstats_top:<n>,<statistic>,only:number% 
+  %playerstats_top:<n>,<statistic>,only:number_raw%
+  %playerstats_top:<n>,<statistic>,only:player_name% 
   
-  %playerstats_player:player-name,statistic% 
-  %playerstats_player:player-name,statistic:item/block% 
-  %playerstats_player:player-name,statistic:entity% 
-  %playerstats_player:player-name,statistic,number% 
-  %playerstats_player:player-name,statistic,number:raw% 
+  %playerstats_player:<player-name>,<statistic>% 
+  %playerstats_player:<player-name>,<statistic:item/block>% 
+  %playerstats_player:<player-name>,<statistic:entity>% 
+  %playerstats_player:<player-name>,<statistic>,only:number% 
+  %playerstats_player:<player-name>,<statistic>,only:number_raw% 
   
-  %playerstats_server,statistic% 
-  %playerstats_server,statistic:item/block% 
-  %playerstats_server,statistic:entity% 
-  %playerstats_server,statistic,number% 
-  %playerstats_server,statistic,number:raw% 
+  %playerstats_server,<statistic>% 
+  %playerstats_server,<statistic:item/block>% 
+  %playerstats_server,<statistic:entity>% 
+  %playerstats_server,<statistic>,only:number% 
+  %playerstats_server,<statistic>,only:number_raw% 
   
-  %playerstats_title,statistic% 
-  %playerstats_title:n,statistic% 
-  %playerstats_title:n,statistic:item/block% 
-  %playerstats_title:n,statistic:entity% 
-  %playerstats_title:n,statistic,number% 
-  %playerstats_title:n,statistic,number:raw%
+  %playerstats_title,<statistic>% 
+  %playerstats_title:[n],<statistic>% 
+  %playerstats_title:[n],<statistic:item/block>% 
+  %playerstats_title:[n],<statistic:entity>% 
   ```
   
 ----
