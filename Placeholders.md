@@ -3669,6 +3669,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %namelessmc_notifications%
+  %namelessmc_store_last_payment_received_username%
+  %namelessmc_store_last_payment_paid_username%
+  %namelessmc_store_last_payment_amount%
+  %namelessmc_store_last_payment_currency%
+  %namelessmc_store_last_payment_date%
   ```
 
 ----
