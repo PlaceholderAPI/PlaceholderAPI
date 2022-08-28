@@ -3836,8 +3836,9 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
 
   ```
-  %ls_hearts_<player-nick>%
-  %ls_health_<player-nick>%
+  %ls_hearts%
+  %ls_health%
+  %ls_banned%
   ```
 
 ----
