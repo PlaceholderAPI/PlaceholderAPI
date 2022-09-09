@@ -511,7 +511,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Attribute**
   > /papi ecloud download Attribute
   
-  Adds placeholders to access [Attributes](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/attribute/Attribute.htm). ([Minecraft wiki](https://minecraft.fandom.com/wiki/Attribute)]  
+  Adds placeholders to access [Attributes](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/attribute/Attribute.html). ([Minecraft wiki](https://minecraft.fandom.com/wiki/Attribute)]  
   **The expansion can be used only on 1.9+**
   
   ```
