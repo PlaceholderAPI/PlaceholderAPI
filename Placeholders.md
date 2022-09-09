@@ -20,6 +20,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Animations](#animations)**
     - **[Armor](#armor)**
     - **[ASCII](#ascii)**
+    - **[Attribute](#attribute)**
   
   - ### **B**
     - **[BungeeCord](#bungeecord)**
@@ -501,6 +502,26 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   
   ```
   %ascii_<value>%
+  ```
+  
+  Ex: `%ascii_37%` returns `%`
+
+----
+
+- ### **Attribute**
+  > /papi ecloud download Attribute
+  
+  Adds placeholders to access [Attributes](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/attribute/Attribute.htm). ([Minecraft wiki](https://minecraft.fandom.com/wiki/Attribute)]  
+  **The expansion can be used only on 1.9+**
+  
+  ```
+  // Available for all game versions
+  %attribute_player_has_<attribute>%          - whether the player has a certain attribute
+  %attribute_player_baseValue_<attribute>%    - returns the base value of an attribute
+  %attribute_player_value_<attribute>%        - returns the value of an attribute with all the modifiers applied
+
+  // 1.11+
+  %attribute_player_defaultValue_<attribute>% - returns the default value of an attribute
   ```
   
   Ex: `%ascii_37%` returns `%`
