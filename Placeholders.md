@@ -523,8 +523,6 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   // 1.11+
   %attribute_player_defaultValue_<attribute>% - returns the default value of an attribute
   ```
-  
-  Ex: `%ascii_37%` returns `%`
 
 ----
 
