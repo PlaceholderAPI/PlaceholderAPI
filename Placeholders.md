@@ -297,6 +297,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[P-LifeSteal](#p-lifesteal)**
     - **[Paintball Battle](#paintball-battle)**
     - **[Parkour](#parkour)**
+    - **[Parkour Maker](#parkour-maker)**
     - **[ParkPlusMC](#parkplusmc)**
     - **[Parties](#parties)**
     - **[Party and Friends](#party-and-friends)**
@@ -3922,6 +3923,24 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %parkour_topten_<course>_<position>%
   ```
 
+----
+
+- ### **[Parkour Maker](https://www.spigotmc.org/resources/21424/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %parkour_maker_player_name%
+  %parkour_maker_parkour_name%
+  %parkour_maker_current_checkpoint%
+  %parkour_maker_current_checkpoint_position%
+  %parkour_maker_join_cooldown%
+  %parkour_maker_reward_cooldown%
+  %parkour_maker_start_message%
+  %parkour_maker_finish_message%
+  %parkour_maker_map_join_cooldown%
+  %parkour_maker_map_reward_cooldown%
+  ```
+  
 ----
 
 - ### **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
