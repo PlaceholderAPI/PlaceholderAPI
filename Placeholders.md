@@ -5712,6 +5712,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_alias%
   %tokenenchant_tokenmultiplier%
   %tokenenchant_<enchantment>_occurrencemultiplier%
+  %tokenenchant_<enchantment>_occurrence_<X>% : the activation chance (in %) for the <enchatnment> at the level <X>.  If <X> == 0, chance of the current level will be returned.
   %tokenenchant_repair_cost%
   %tokenenchant_repair_cost_long%
   %tokenenchant_repair_cost_num%
