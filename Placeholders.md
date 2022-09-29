@@ -3929,17 +3929,23 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
-  %parkour_maker_player_name%
-  %parkour_maker_parkour_name%
-  %parkour_maker_current_checkpoint%
-  %parkour_maker_current_checkpoint_position%
-  %parkour_maker_join_cooldown%
-  %parkour_maker_reward_cooldown%
-  %parkour_maker_start_message%
-  %parkour_maker_finish_message%
-  %parkour_maker_map_join_cooldown%
-  %parkour_maker_map_reward_cooldown%
+  %parkourmaker_player_name%
+  %parkourmaker_parkour_name%
+  %parkourmaker_current_checkpoint%
+  %parkourmaker_current_checkpoint_position%
+  %parkourmaker_join_cooldown%
+  %parkourmaker_reward_cooldown%
+  %parkourmaker_start_message%
+  %parkourmaker_finish_message%
+  %parkourmaker_map_join_cooldown%
+  %parkourmaker_map_reward_cooldown%
+  %parkourmaker_best-time_<map_name>.<player_name>%
+  %parkourmaker_leaderboard_<map_name>.<position>%  
   ```
+  
+  Replace `<map_name>` with name of the map you wish to get time for.<br>
+  Replace `<player_name>` with name of the player you wish to display time for.<br>
+  Replace `<position>` with number that coresponds to the position you want to display.
   
 ----
 
