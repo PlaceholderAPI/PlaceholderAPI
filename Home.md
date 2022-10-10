@@ -5,6 +5,7 @@ This wiki gives you information on how to create placeholders in your plugin tha
 It also has a list with all available placeholders (Work in progress).
 
 ### Setup
+**[[Using Placeholders]]**
 **[[Hook into PlaceholderAPI]]**
 - [[First steps|Hook-into-PlaceholderAPI#first-steps]]
 - [[Adding placeholders to PlaceholderAPI|PlaceholderExpansion]]
