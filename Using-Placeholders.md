@@ -16,8 +16,7 @@ If the plugin isn't listed, can you usually check its plugin page, or any other 
 
 ### Proper Internet connection
 PlaceholderAPI connects towards an eCloud located under https://api.extendedclip.com to retrieve information about placeholder expansions, but also to download said expansions from it.  
-Make sure that your server is allowing external connectsion to the above URL. If it doesn, and you're using a host, contact their support and ask them to whitelist this URL.  
-If you're using a dedicated VPS or similar, should you make sure, to put the URL and/or IPs behind it into your firewall's whitelist.
+Make sure that your server is allowing external connections to the above URL. If it doesn't, and you're using a host, contact their support and ask them to whitelist this URL.
 
 ## Download/Get Expansion
 The way PlaceholderAPI's system works, allows a Placeholder Expansion and its corresponding placeholders to either be included within a plugin (If placeholder requires said plugin) or to be available as a separate jar file on the eCloud of PlaceholderAPI.  
