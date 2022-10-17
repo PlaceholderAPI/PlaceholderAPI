@@ -5,6 +5,7 @@
 **[[Main page|Home]]**
 
 ### Setup
+**[[Using Placeholders]]**  
 **[[Hook into PlaceholderAPI]]**
 - [[First steps|Hook-into-PlaceholderAPI#first-steps]]
 - [[Adding placeholders to PlaceholderAPI|PlaceholderExpansion]]
