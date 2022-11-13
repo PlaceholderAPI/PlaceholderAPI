@@ -1235,13 +1235,13 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Shortcut**
   > /papi ecloud download Shortcut
   
-  Allows the parsing of large text with placeholders by having them in TXT files stored.
+  Allows to parse large amounts of text, including placeholders from PlaceholderAPI.  
+  Please visit the [GitHub Repository](https://github.com/Andre601/Shortcut-Expansion) for details and usage.
   
   ```
-  %shortcut_<filename without .txt>%
+  %shortcut_<filename>%
+  %shortcut_<filename>:<replacement1>:replacement2>:...%
   ```
-  
-  The file needs to be a TXT and has to be inside `plugins/PlaceholderAPI/shortcuts`.
 
 ----
 
