@@ -43,7 +43,7 @@ Before you try to make any changes should you make sure that you have the `wiki`
 ### Fetch Changes from Upstream
 This is only required when you already had a fork and didn't update it for some time.
 
-While you're on the `wiki` branch, click the `Fetch upstream` text located right below the green `Code` button.  
+While you're on the `wiki` branch, click the `Sync Fork` text located right below the green `Code` button.  
 Depending on the status of your branch can the prompt show different outcomes:
 
 - `This branch is not behind the upstream PlaceholderAPI:wiki`  
