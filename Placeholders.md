@@ -230,6 +230,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[HoloMobHealth](#holomobhealth)**
     - **[HPWizard](#hpwizard)**
     - **[Hugs](#hugs)**
+    - **[HyacinthHello](#hyacinthhello)**
 
   - ### **I**
     - **[InteractionVisualizer](#interactionvisualizer)**
@@ -3008,6 +3009,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %hugs_player_total_given%
   %hugs_player_total_received%
   ```
+  
+  ----
+
+- ### **[HyacinthHello](https://www.spigotmc.org/resources/104434/)**
+  > NO DOWNLOAD COMMAND
+  
+  You can find an up-to-date list of placeholders in the [HyacinthHello wiki](https://github.com/livelaughlemon/hyacinthhello/wiki#placeholders).
 
 ----
 
