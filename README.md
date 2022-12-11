@@ -27,6 +27,9 @@ If you want to contribute towards the wiki, will you need to follow the below in
 You need to make a fork of the PlaceholderAPI Repository to contribute towards the wiki.  
 To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and click "Create fork".
 
+> **Note**  
+> It's important that "Copy the `master` branch only" has been unchecked! Otherwise will only the master branch be copied over, which is not what you want here.
+
 ![fork repo](./img/readme/fork.png)
 
 The forking process should only take a few seconds and you should be redirected to your fork afterwards.
