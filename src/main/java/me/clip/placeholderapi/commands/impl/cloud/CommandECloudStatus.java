@@ -54,7 +54,7 @@ public final class CommandECloudStatus extends PlaceholderCommand {
 
     if (updateCount > 0) {
       builder.append("&eYou have &f").append(updateCount)
-          .append(updateCount > 1 ? "&e expansions" : "&e expansion").append("installed that ")
+          .append(updateCount > 1 ? "&e expansions" : "&e expansion").append(" installed that ")
           .append(updateCount > 1 ? "have an" : "has an").append(" update available.");
     }
 
