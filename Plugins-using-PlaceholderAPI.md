@@ -665,6 +665,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#powerranks]]**]
+- **[PrefiX](https://www.spigotmc.org/resources/70359/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#prefix]]**]
 - **[PremiumVanish](https://www.spigotmc.org/resources/14404/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#premiumvanish]]**]
