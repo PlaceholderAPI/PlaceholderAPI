@@ -313,6 +313,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PointsAPI](#pointsapi)**
     - **[PowerBoard](#powerboard)**
     - **[PowerRanks](#powerranks)**
+    - **[PrefiX](#prefix)**
     - **[PremiumVanish](#premiumvanish)**
     - **[Prison](#prison)**
     - **[PrisonMines](#prisonmines)**
@@ -4174,6 +4175,29 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %powerranks_usertag%
   %powerranks_world%
   %powerranks_playtime%
+  ```
+
+----
+
+- ### **[PrefiX](https://www.spigotmc.org/resources/70359/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %prefix_prefix%
+  %prefix_startcolor%
+  %prefix_startchar%
+  %prefix_tagcolor%
+  %prefix_tag%
+  %prefix_endchar%
+  %prefix_namecolor%
+
+  %suffix_suffix%
+  %suffix_startcolor%
+  %suffix_startchar%
+  %suffix_tagcolor%
+  %suffix_tag%
+  %suffix_endchar%
+  %suffix_namecolor%
   ```
 
 ----
