@@ -826,12 +826,14 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   
   %nf_4X_tokenenchant_token_long% will return 43B,
 
-  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321.
+  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321
+  %nf_#,##0.0#:IT_tokenenchant_token_long% will return 43.535.709.321,0
+
   
   `[]` is optional and `<>` is required.
   
   ```
-  %nf_<format>_<other_placeholder>% # Converts a number produced by %other_placeholder% to a number using the specified format.
+  %nf_<format>[:locale]_<other_placeholder>% # Converts a number produced by %other_placeholder% to a number using the specified format.
   ```
 
 ----
