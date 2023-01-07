@@ -66,7 +66,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[MySQLTokens](#mysqltokens)**
 
   - ### **N**
-    - *No Expansions*
+    - **[NumberFormatter](#numberformatter)**
   
   - ### **O**
     - **[OtherPlayer](#otherplayer)**
@@ -813,6 +813,29 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
   ```
   %mysqltokens_tokens%
+  ```
+
+----
+
+- ### **NumberFormatter**
+  > /papi ecloud download NumberFormatter
+  
+  More info about this expansion can be found on the [PAPI-NumberFormatter](https://polymart.org/resource/3316)).
+  
+  For instance:
+  
+  if %tokenenchant_token_long% returns 43535709321
+  
+  %nf_4X_tokenenchant_token_long% will return 43B,
+
+  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321
+  %nf_#,##0.0#:IT_tokenenchant_token_long% will return 43.535.709.321,0
+
+  
+  `[]` is optional and `<>` is required.
+  
+  ```
+  %nf_<format>[:locale]_<other_placeholder>% # Converts a number produced by %other_placeholder% to a number using the specified format.
   ```
 
 ----
@@ -5729,10 +5752,11 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
   
   ```
-  %tokenenchant_token%
-  %tokenenchant_token_long%
-  %tokenenchant_token_num%
-  %tokenenchant_token_num_long%
+  %tokenenchant_tokens% : Returns the token balance as a double. For formatting, use NumberFormat placeholder %nf_%.
+  %tokenenchant_token% : Deprecated. (use %tokenenchant_tokens%)
+  %tokenenchant_token_long% : Deprecated. (use %tokenenchant_tokens%) 
+  %tokenenchant_token_num% : Deprecated. (use %tokenenchant_tokens%)
+  %tokenenchant_token_num_long% : Deprecated. (use %tokenenchant_tokens%)
   %tokenenchant_<enchantment>_level%
   %tokenenchant_<enchantment>_cost% : cost to increment the enchantmnt level by one from the current level
   %tokenenchant_<enchantment>_costmax% : cost to increment the enchantmnt level to its maax one from the current level 
@@ -5744,17 +5768,17 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_<enchantment>_description% 
   %tokenenchant_<enchantment>_version%
   %tokenenchant_<enchantment>_fullrefund%
-  %tokenenchant_<enchantment>_fullrefund_long%
+  %tokenenchant_<enchantment>_fullrefund_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
   %tokenenchnat_<enchantment>_refund_Y%
-  %tokenenchnat_<enchantment>_refund_Y_long%
+  %tokenenchnat_<enchantment>_refund_Y_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
   %tokenenchant_<enchantment>_alias%
   %tokenenchant_tokenmultiplier%
   %tokenenchant_<enchantment>_occurrencemultiplier%
   %tokenenchant_<enchantment>_occurrence_<X>% : the activation chance (in %) for the <enchatnment> at the level <X>.  If <X> == 0, chance of the current level will be returned.
   %tokenenchant_repair_cost%
-  %tokenenchant_repair_cost_long%
+  %tokenenchant_repair_cost_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
   %tokenenchant_repair_cost_num%
-  %tokenenchant_repair_cost_num_long%
+  %tokenenchant_repair_cost_num_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
   %tokenenchant_enchantments%
   %tokenenchant_baltop_<X>_name% : The name of X-th baltop player
   %tokenenchant_baltop_<X>_balance% : The balance of X-th baltop player
