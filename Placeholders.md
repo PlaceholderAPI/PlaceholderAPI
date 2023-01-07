@@ -819,7 +819,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   > /papi ecloud download NumberFormatter
   
   More info about this expansion can be found on the [PAPI-NumberFormatter](https://polymart.org/resource/3316)).
+  
   For instance:
+  
   if %tokenenchant_token_long% returns 43535709321
   
   %nf_4X_tokenenchant_token_long% will return 43B,
