@@ -66,7 +66,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[MySQLTokens](#mysqltokens)**
 
   - ### **N**
-    - *No Expansions*
+    - **[NumberFormatter](#numberformatter)**
   
   - ### **O**
     - **[OtherPlayer](#otherplayer)**
@@ -811,6 +811,25 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
   ```
   %mysqltokens_tokens%
+  ```
+
+----
+
+- ### **NumberFormatter**
+  > /papi ecloud download NumberFormatter
+  
+  More info about this expansion can be found on the [PAPI-NumberFormatter](https://polymart.org/resource/3316)).
+  For instance:
+  if %tokenenchant_token_long% returns 43535709321
+  
+  %nf_4X_tokenenchant_token_long% will return 43B,
+
+  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321.
+  
+  `[]` is optional and `<>` is required.
+  
+  ```
+  %nf_<format>_<other_placeholder>% # Converts a number produced by %other_placeholder% to a number using the specified format.
   ```
 
 ----
