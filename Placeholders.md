@@ -4113,22 +4113,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %ptr_playtime%
-  %ptr_sessiontime%
   %ptr_playtime_days%
-  %ptr_playtime_hours%
-  %ptr_playtime_minutes%
-  %ptr_playtime_seconds%
-  %ptr_sessiontime_days%
-  %ptr_sessiontime_hours%
-  %ptr_sessiontime_minutes%
-  %ptr_sessiontime_seconds%
   %ptr_playtime_days_trimmed%
+  %ptr_playtime_hours%
   %ptr_playtime_hours_trimmed%
+  %ptr_playtime_minutes%
   %ptr_playtime_minutes_trimmed%
+  %ptr_playtime_seconds%
   %ptr_playtime_seconds_trimmed%
+  %ptr_sessiontime%
+  %ptr_sessiontime_days%
   %ptr_sessiontime_days_trimmed%
+  %ptr_sessiontime_hours%
   %ptr_sessiontime_hours_trimmed%
+  %ptr_sessiontime_minutes%
   %ptr_sessiontime_minutes_trimmed%
+  %ptr_sessiontime_seconds%
   %ptr_sessiontime_seconds_trimmed%
   ```
 
