@@ -257,6 +257,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[LemonMobCoins](#lemonmobcoins)**
     - **[LevelledMobs](#levelledmobs)**
     - **[LevelUp](#levelup)**
+    - **[LotterySix](#lotterysix)**
     - **[LuckPerms](#luckperms)**
     - **[LWC](#lwc)**
 
@@ -3384,6 +3385,73 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %levelup_bow_xp_to_next%
   ```
   
+----
+
+- ### **[LotterySix](https://www.spigotmc.org/resources/107573/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %lotterysix_currentgame_Date%
+  %lotterysix_currentgame_PricePerBet%
+  %lotterysix_currentgame_TotalBets%
+  %lotterysix_currentgame_PrizePool%
+  %lotterysix_currentgame_FIRSTOdds%
+  %lotterysix_currentgame_SECONDOdds%
+  %lotterysix_currentgame_THIRDOdds%
+  %lotterysix_currentgame_FOURTHOdds%
+  %lotterysix_currentgame_FIFTHOdds%
+  %lotterysix_currentgame_SIXTHOdds%
+  %lotterysix_currentgame_SEVENTHOdds%
+  %lotterysix_lastgame_Date%
+  %lotterysix_lastgame_PricePerBet%
+  %lotterysix_lastgame_TotalBets%
+  %lotterysix_lastgame_TotalPrizes%
+  %lotterysix_lastgame_FirstToThirdPlaceWinnersCount%
+  %lotterysix_lastgame_FirstNumber%
+  %lotterysix_lastgame_SecondNumber%
+  %lotterysix_lastgame_ThirdNumber%
+  %lotterysix_lastgame_FourthNumber%
+  %lotterysix_lastgame_FifthNumber%
+  %lotterysix_lastgame_SixthNumber%
+  %lotterysix_lastgame_FirstNumberOrdered%
+  %lotterysix_lastgame_SecondNumberOrdered%
+  %lotterysix_lastgame_ThirdNumberOrdered%
+  %lotterysix_lastgame_FourthNumberOrdered%
+  %lotterysix_lastgame_FifthNumberOrdered%
+  %lotterysix_lastgame_SixthNumberOrdered%
+  %lotterysix_lastgame_SpecialNumber%
+  %lotterysix_currentgame_FIRSTOdds%
+  %lotterysix_currentgame_SECONDOdds%
+  %lotterysix_currentgame_THIRDOdds%
+  %lotterysix_currentgame_FOURTHOdds%
+  %lotterysix_currentgame_FIFTHOdds%
+  %lotterysix_currentgame_SIXTHOdds%
+  %lotterysix_currentgame_SEVENTHOdds%
+  %lotterysix_currentgame_FIRSTPrize%
+  %lotterysix_currentgame_SECONDPrize%
+  %lotterysix_currentgame_THIRDPrize%
+  %lotterysix_currentgame_FOURTHPrize%
+  %lotterysix_currentgame_FIFTHPrize%
+  %lotterysix_currentgame_SIXTHPrize%
+  %lotterysix_currentgame_SEVENTHPrize%
+  %lotterysix_currentgame_FIRSTPrizeCount%
+  %lotterysix_currentgame_SECONDPrizeCount%
+  %lotterysix_currentgame_THIRDPrizeCount%
+  %lotterysix_currentgame_FOURTHPrizeCount%
+  %lotterysix_currentgame_FIFTHPrizeCount%
+  %lotterysix_currentgame_SIXTHPrizeCount%
+  %lotterysix_currentgame_SEVENTHPrizeCount%
+  %lotterysix_preference_hide_titles%
+  %lotterysix_preference_hide_periodic_announcements%
+  %lotterysix_preference_bet_limit_per_round%
+  %lotterysix_stats_total_bets_placed%
+  %lotterysix_stats_total_rounds_participated%
+  %lotterysix_stats_total_winnings%
+  %lotterysix_stats_highest_won_tier%
+  %lotterysix_scheduler_interval%
+  %lotterysix_scheduler_next%
+  ```
+
 ----
 
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**

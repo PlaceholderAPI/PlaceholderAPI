@@ -485,6 +485,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#levelledmobs]]**]
+- **[LotterySix](https://www.spigotmc.org/resources/107573/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#lotterysix]]**]
 - **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#luckperms]]**]
