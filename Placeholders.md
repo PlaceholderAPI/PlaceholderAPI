@@ -3389,6 +3389,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[LotterySix](https://www.spigotmc.org/resources/107573/)**
   > NO DOWNLOAD COMMAND
+  
   ```
   %lotterysix_currentgame_Date%
   %lotterysix_currentgame_PricePerBet%
