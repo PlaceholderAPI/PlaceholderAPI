@@ -2493,7 +2493,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
   > NO DOWNLOAD COMMAND
 
-  Placeholders information can be found on [Gihub](https://github.com/BoBkiNN/DimensionPlaceholders)
+  Placeholders information can be found on [Github](https://github.com/BoBkiNN/DimensionPlaceholders)
   
   ```
   %dimplc_color%
