@@ -188,6 +188,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[DeluxeMenus](#deluxemenus)**
     - **[DeluxePM](#deluxepm)**
     - **[DeluxeTags](#deluxetags)**
+    - **[DimensionPlaceholders](#dimensionplaceholders)**
     - **[Denizen](#denizen)**
     - **[DiscordSRV](#discordsrv)**
     - **[Disease](#disease)**
@@ -2485,6 +2486,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %deluxetags_tag_<TagID>%
   %deluxetags_description_<TagID>%
   %deluxetags_has_tag_<TagID>%
+  ```
+
+----
+
+- ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
+  > NO DOWNLOAD COMMAND
+
+  Placeholders information can be found on [Gihub](https://github.com/BoBkiNN/DimensionPlaceholders)
+  
+  ```
+  %dimplc_color%
+  %dimplc_folder%
+  %dimplc_namespacedkey%
+  %dimplc_namespace%
+  %dimplc_key%
+  %dimplc_loadedchunks%
   ```
 
 ----
