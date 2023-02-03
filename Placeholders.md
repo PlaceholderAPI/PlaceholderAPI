@@ -188,8 +188,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[DeluxeMenus](#deluxemenus)**
     - **[DeluxePM](#deluxepm)**
     - **[DeluxeTags](#deluxetags)**
-    - **[DimensionPlaceholders](#dimensionplaceholders)**
     - **[Denizen](#denizen)**
+    - **[DimensionPlaceholders](#dimensionplaceholders)**
     - **[DiscordSRV](#discordsrv)**
     - **[Disease](#disease)**
     - **[DonateParty](#donateparty)**
@@ -2490,6 +2490,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[Denizen](https://www.spigotmc.org/resources/21039/)**
+  > NO DOWNLOAD COMMAND 
+  
+  ```
+  %denizen_<denizen-tag>% (EX: %denizen_<player.flag[MyFlag]>% )
+  ```
+
 - ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
   > NO DOWNLOAD COMMAND
 
@@ -2502,15 +2509,6 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %dimplc_namespace%
   %dimplc_key%
   %dimplc_loadedchunks%
-  ```
-
-----
-
-- ### **[Denizen](https://www.spigotmc.org/resources/21039/)**
-  > NO DOWNLOAD COMMAND 
-  
-  ```
-  %denizen_<denizen-tag>% (EX: %denizen_<player.flag[MyFlag]>% )
   ```
 
 ----
