@@ -2497,6 +2497,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %denizen_<denizen-tag>% (EX: %denizen_<player.flag[MyFlag]>% )
   ```
 
+----
+
 - ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
   > NO DOWNLOAD COMMAND
 
