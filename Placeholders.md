@@ -189,6 +189,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[DeluxePM](#deluxepm)**
     - **[DeluxeTags](#deluxetags)**
     - **[Denizen](#denizen)**
+    - **[DimensionPlaceholders](#dimensionplaceholders)**
     - **[DiscordSRV](#discordsrv)**
     - **[Disease](#disease)**
     - **[DonateParty](#donateparty)**
@@ -2494,6 +2495,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %denizen_<denizen-tag>% (EX: %denizen_<player.flag[MyFlag]>% )
+  ```
+
+----
+
+- ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
+  > NO DOWNLOAD COMMAND
+
+  Placeholders information can be found on [Github](https://github.com/BoBkiNN/DimensionPlaceholders)
+  
+  ```
+  %dimplc_color%
+  %dimplc_folder%
+  %dimplc_namespacedkey%
+  %dimplc_namespace%
+  %dimplc_key%
+  %dimplc_loadedchunks%
   ```
 
 ----
