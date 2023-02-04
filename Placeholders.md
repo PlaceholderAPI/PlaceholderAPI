@@ -3408,6 +3408,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
+  %lotterysix_currentgame_GameNumber%
   %lotterysix_currentgame_Date%
   %lotterysix_currentgame_PricePerBet%
   %lotterysix_currentgame_TotalBets%
@@ -3419,6 +3420,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_currentgame_FIFTHOdds%
   %lotterysix_currentgame_SIXTHOdds%
   %lotterysix_currentgame_SEVENTHOdds%
+  %lotterysix_currentgame_BetPlayerNames%
+  %lotterysix_lastgame_GameNumber%
   %lotterysix_lastgame_Date%
   %lotterysix_lastgame_PricePerBet%
   %lotterysix_lastgame_TotalBets%
@@ -3437,34 +3440,44 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_lastgame_FifthNumberOrdered%
   %lotterysix_lastgame_SixthNumberOrdered%
   %lotterysix_lastgame_SpecialNumber%
-  %lotterysix_currentgame_FIRSTOdds%
-  %lotterysix_currentgame_SECONDOdds%
-  %lotterysix_currentgame_THIRDOdds%
-  %lotterysix_currentgame_FOURTHOdds%
-  %lotterysix_currentgame_FIFTHOdds%
-  %lotterysix_currentgame_SIXTHOdds%
-  %lotterysix_currentgame_SEVENTHOdds%
-  %lotterysix_currentgame_FIRSTPrize%
-  %lotterysix_currentgame_SECONDPrize%
-  %lotterysix_currentgame_THIRDPrize%
-  %lotterysix_currentgame_FOURTHPrize%
-  %lotterysix_currentgame_FIFTHPrize%
-  %lotterysix_currentgame_SIXTHPrize%
-  %lotterysix_currentgame_SEVENTHPrize%
-  %lotterysix_currentgame_FIRSTPrizeCount%
-  %lotterysix_currentgame_SECONDPrizeCount%
-  %lotterysix_currentgame_THIRDPrizeCount%
-  %lotterysix_currentgame_FOURTHPrizeCount%
-  %lotterysix_currentgame_FIFTHPrizeCount%
-  %lotterysix_currentgame_SIXTHPrizeCount%
-  %lotterysix_currentgame_SEVENTHPrizeCount%
+  %lotterysix_lastgame_BetPlayerNames%
+  %lotterysix_lastgame_FIRSTPlayerNames%
+  %lotterysix_lastgame_SECONDPlayerNames%
+  %lotterysix_lastgame_THIRDPlayerNames%
+  %lotterysix_lastgame_FOURTHPlayerNames%
+  %lotterysix_lastgame_FIFTHPlayerNames%
+  %lotterysix_lastgame_SIXTHPlayerNames%
+  %lotterysix_lastgame_SEVENTHPlayerNames%
+  %lotterysix_lastgame_FIRSTOdds%
+  %lotterysix_lastgame_SECONDOdds%
+  %lotterysix_lastgame_THIRDOdds%
+  %lotterysix_lastgame_FOURTHOdds%
+  %lotterysix_lastgame_FIFTHOdds%
+  %lotterysix_lastgame_SIXTHOdds%
+  %lotterysix_lastgame_SEVENTHOdds%
+  %lotterysix_lastgame_FIRSTPrize%
+  %lotterysix_lastgame_SECONDPrize%
+  %lotterysix_lastgame_THIRDPrize%
+  %lotterysix_lastgame_FOURTHPrize%
+  %lotterysix_lastgame_FIFTHPrize%
+  %lotterysix_lastgame_SIXTHPrize%
+  %lotterysix_lastgame_SEVENTHPrize%
+  %lotterysix_lastgame_FIRSTPrizeCount%
+  %lotterysix_lastgame_SECONDPrizeCount%
+  %lotterysix_lastgame_THIRDPrizeCount%
+  %lotterysix_lastgame_FOURTHPrizeCount%
+  %lotterysix_lastgame_FIFTHPrizeCount%
+  %lotterysix_lastgame_SIXTHPrizeCount%
+  %lotterysix_lastgame_SEVENTHPrizeCount%
   %lotterysix_preference_hide_titles%
   %lotterysix_preference_hide_periodic_announcements%
   %lotterysix_preference_bet_limit_per_round%
+  %lotterysix_preference_reopen_menu_on_purchase%
   %lotterysix_stats_total_bets_placed%
   %lotterysix_stats_total_rounds_participated%
   %lotterysix_stats_total_winnings%
   %lotterysix_stats_highest_won_tier%
+  %lotterysix_stats_pending_transaction%
   %lotterysix_scheduler_interval%
   %lotterysix_scheduler_next%
   ```
