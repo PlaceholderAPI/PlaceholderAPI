@@ -425,6 +425,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[WickedSkyWars](#wickedskywars)**
     - **[WorldBorder](#worldborder)**
     - **[WorldGuard](#worldguard)**
+    - **[Weight-RPG](#weightrpg)**
 
   - ### **X**
     - **[XLTournaments](#xltournaments)**
@@ -6335,6 +6336,18 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   ```
 
 ----
+- ### **[Weight-RPG](https://www.spigotmc.org/resources/105513/)**
+  > NO DOWNLOAD COMMAND
+  ```
+  %weight-rpg_current_weight%
+  %weight-rpg_max_weight%
+  %weight-rpg_armor_weight%
+  %weight-rpg_item_in_main_hand%
+  %weight-rpg_item_in_second_hand%
+  %weight-rpg_weight_level1%
+  %weight-rpg_weight_level2%
+  %weight-rpg_weight_level3%
+  ```
 
 - ### **[XLTournaments](https://www.spigotmc.org/resources/70630/)**
   > /papi ecloud download XLTournaments
