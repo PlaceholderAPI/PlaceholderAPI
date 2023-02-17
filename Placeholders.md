@@ -695,28 +695,33 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Formatter**
   > /papi ecloud download Formatter
   
-  More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
+  More info about this expansion can be found on the [GitHub-Repository](https://codeberg.org/Andre601/Formatter-Expansion).
   
   `[]` is optional and `<>` is required.
   
   ```
   %formatter_number_format_<number>%
-  %formatter_number_format_[locale]:[format]_<number>%
+  %formatter_number_format_[locale]:[pattern]_<number>%
   
   %formatter_number_from:<timeunit>_to:<timeunit>_<number>% # Converts <number> from one time unit to another
   
-  %formatter_number_time_<number>%
-  %formatter_number_time_fromSeconds_<number>% # Handles number as seconds
-  %formatter_number_time_fromSecs_<number>%    # Handles number as seconds
-  %formatter_number_time_fromMinutes_<number>% # Handles number as minutes
-  %formatter_number_time_fromMins_<number>%    # Handles number as minutes
-  %formatter_number_time_fromHours_<number>%   # Handles number as hours
-  %formatter_number_time_fromHrs_<number>%     # Handles number as hours
+  %formatter_number_round_<number>%
+  %formatter_number_[precision]:[roundingmode]_<number>%
   
-  %formatter_text_replace_<target>_<replacement>_<text>%
-  %formatter_text_substring_[start]:[end]_<text>%
-  %formatter_text_uppercase_<text>%
+  %formatter_number_shorten_<number>%
+  
+  %formatter_number_time_<number>%
+  %formatter_number_time_<timeunit>_<number>% # Handles number as <timeunit>
+  
+  %formatter_text_length_<text>%
+  
   %formatter_text_lowercase_<text>%
+  
+  %formatter_text_replace_[target]_[replacement]_<text>%
+  
+  %formatter_text_substring_[start]:[end]_<text>%
+  
+  %formatter_text_uppercase_<text>%
   ```
 
 ----
