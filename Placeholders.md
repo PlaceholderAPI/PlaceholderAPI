@@ -695,7 +695,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Formatter**
   > /papi ecloud download Formatter
   
-  More info about this expansion can be found on the [GitHub-Repository](https://codeberg.org/Andre601/Formatter-Expansion).
+  More info about this expansion can be found on the [Codeberg-Repository](https://codeberg.org/Andre601/Formatter-Expansion).
   
   `[]` is optional and `<>` is required.
   
