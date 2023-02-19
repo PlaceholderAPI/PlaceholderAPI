@@ -2686,10 +2686,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_afk%
   %essentials_afk_reason%
   %essentials_fly%
+  %essentials_geolocation%
   %essentials_godmode%
   %essentials_has_kit_<kitname>%
   %essentials_home_<number>
-  %essentials_home_<number>_<x|y|z>%
+  %essentials_home_<number>_<w|x|y|z>%
   %essentials_homes_set%
   %essentials_homes_max%
   %essentials_is_muted%
@@ -2703,6 +2704,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_kit_time_until_available_<kitname>%
   %essentials_kit_time_until_available_raw_<kitname>%
   %essentials_msg_ignore%
+  %essentials_muted_time_remaining%
   %essentials_nickname%
   %essentials_nickname_stripped%
   %essentials_pm_recipient%
