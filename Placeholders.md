@@ -973,9 +973,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_has_empty_slot%
   %player_has_played_before%
   %player_empty_slots%
+  %player_has_health_boost%
   %player_has_potioneffect_<effect>%
   %player_has_permission_<permission>%
   %player_health%
+  %player_health_boost%
   %player_health_rounded%
   %player_health_scale%
   %player_ip%
