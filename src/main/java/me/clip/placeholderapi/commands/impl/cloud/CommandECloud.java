@@ -22,11 +22,6 @@ package me.clip.placeholderapi.commands.impl.cloud;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Stream;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.util.Msg;
@@ -34,12 +29,17 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Stream;
+
 public final class CommandECloud extends PlaceholderCommand {
 
   @Unmodifiable
   private static final List<PlaceholderCommand> COMMANDS = ImmutableList
       .of(new CommandECloudClear(),
-          new CommandECloudToggle(),
           new CommandECloudStatus(),
           new CommandECloudUpdate(),
           new CommandECloudRefresh(),
@@ -79,8 +79,6 @@ public final class CommandECloud extends PlaceholderCommand {
       Msg.msg(sender,
           "&b&lPlaceholderAPI &8- &7eCloud Help Menu &8- ",
           " ",
-          "&b/papi &fenable/disable/toggle",
-          "  &7&oEnable or disable the eCloud",
           "&b/papi &fecloud status",
           "  &7&oView status of the eCloud",
           "&b/papi &fecloud list <all/{author}/installed> {page}",
@@ -115,10 +113,8 @@ public final class CommandECloud extends PlaceholderCommand {
       return;
     }
 
-    if (!(target instanceof CommandECloudToggle) && !plugin.getPlaceholderAPIConfig()
-        .isCloudEnabled()) {
-      Msg.msg(sender,
-          "&cThe eCloud Manager is not enabled!");
+    if (!plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
+      Msg.msg(sender, "&cThe eCloud Manager is not enabled! To enable it, set 'cloud_enabled' to true and reload the plugin.");
       return;
     }
 
