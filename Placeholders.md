@@ -3419,8 +3419,12 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
+  %lotterysix_currentgame_Now%
   %lotterysix_currentgame_GameNumber%
+  %lotterysix_currentgame_GameNumberRaw%
+  %lotterysix_currentgame_SpecialName%
   %lotterysix_currentgame_Date%
+  %lotterysix_currentgame_NumberOfChoices%
   %lotterysix_currentgame_PricePerBet%
   %lotterysix_currentgame_TotalBets%
   %lotterysix_currentgame_PrizePool%
@@ -3432,8 +3436,14 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_currentgame_SIXTHOdds%
   %lotterysix_currentgame_SEVENTHOdds%
   %lotterysix_currentgame_BetPlayerNames%
+  %lotterysix_currentgame_<number>LastDrawn%
+  %lotterysix_currentgame_<number>TimesDrawn%
+  %lotterysix_lastgame_Now%
   %lotterysix_lastgame_GameNumber%
+  %lotterysix_lastgame_GameNumberRaw%
+  %lotterysix_lastgame_SpecialName%
   %lotterysix_lastgame_Date%
+  %lotterysix_lastgame_NumberOfChoices%
   %lotterysix_lastgame_PricePerBet%
   %lotterysix_lastgame_TotalBets%
   %lotterysix_lastgame_TotalPrizes%
@@ -3480,10 +3490,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_lastgame_FIFTHPrizeCount%
   %lotterysix_lastgame_SIXTHPrizeCount%
   %lotterysix_lastgame_SEVENTHPrizeCount%
+  %lotterysix_lastgame_<number>LastDrawn%
+  %lotterysix_lastgame_<number>TimesDrawn%
   %lotterysix_preference_hide_titles%
   %lotterysix_preference_hide_periodic_announcements%
   %lotterysix_preference_bet_limit_per_round%
   %lotterysix_preference_reopen_menu_on_purchase%
+  %lotterysix_preference_suspend_account_until%
   %lotterysix_stats_total_bets_placed%
   %lotterysix_stats_total_rounds_participated%
   %lotterysix_stats_total_winnings%
