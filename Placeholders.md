@@ -6156,32 +6156,20 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %vault_eco_balance_fixed%
   %vault_eco_balance_formatted%
   %vault_eco_balance_commas%
-  %vault_eco_commas%
-  %vault_eco_fixed%
-  %vault_eco_formatted%
-  
+
   # Permission/Group placeholders
   %vault_group%
   %vault_group_capital%
+  %vault_groups%
+  %vault_groups_capital%
+  %vault_prefix%
+  %vault_suffix%
   %vault_groupprefix%
   %vault_groupprefix_<position>%
-  %vault_groups%
   %vault_groupsuffix%
   %vault_groupsuffix_<position>%
   %vault_hasgroup_<group>%
   %vault_inprimarygroup_<group>%
-  %vault_prefix%
-  %vault_prefix_color%
-  %vault_rank%
-  %vault_rank_capital%
-  %vault_rankprefix%
-  %vault_rankprefix_<position>%
-  %vault_ranks%
-  %vault_ranksuffix_<position>%
-  %vault_suffix%
-  %vault_suffix_color%
-  %vault_user_prefix_color%
-  %vault_user_suffix_color%
   ```
 
 ----
