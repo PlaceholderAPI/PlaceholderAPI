@@ -218,7 +218,7 @@ public final class LocalExpansionManager implements Listener {
     }
     
     if (expansions.containsKey(identifier)) {
-      Msg.warn("Failed to load expansion %s. Identifier is already registered.",
+      Msg.warn("Failed to load expansion %s. Identifier is already in use.",
           expansion.getIdentifier());
       return false;
     }
