@@ -6165,9 +6165,9 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %vault_prefix%
   %vault_suffix%
   %vault_groupprefix%
-  %vault_groupprefix_#%
+  %vault_groupprefix_<position>%
   %vault_groupsuffix%
-  %vault_groupsuffix_#%
+  %vault_groupsuffix_<position>%
   %vault_hasgroup_<group>%
   %vault_inprimarygroup_<group>%
   ```
