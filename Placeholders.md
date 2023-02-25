@@ -174,6 +174,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[ClanSystem](#clansystem)**
     - **[CombatLogX](#combatlogx)**
     - **[Compassance](#compassance)**
+    - **[CoordinateTool](#coordinatetool)**
     - **[Country on Join](#country-on-join)**
     - **[CraftConomy](#craftconomy)**
     - **[CraftingStore.net](#craftingstorenet)**
@@ -2317,6 +2318,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %compassance_p_string_theme_<theme-id>%
   ```
 
+----
+
+- ### **[CoordinateTool](https://github.com/TeamVK/CoordinateTool)**
+  > NO DOWNLOAD COMMAND 
+  
+  ```
+  %coordinatetool_file% : regionfile of the chunk you're currently standing
+  %coordiantetool_chunk% : current chunk
+  %coordiantetool_min_chunk% : minmumchunk
+  %coordiantetool_max_chunk% : maximumchunk
+  %coordiantetool_min_block% : minimumblock
+  %coordiantetool_max_block% : maximumblock
+  ```
+  
 ----
 
 - ### **[Country on Join](https://www.spigotmc.org/resources/34275/)**
