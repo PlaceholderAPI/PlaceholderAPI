@@ -2324,7 +2324,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND 
   
   ```
-  %coordinatetool_file% : regionfile of the chunk you're currently standing
+  %coordinatetool_file% : a region file of the chunk you're currently standing
   %coordiantetool_chunk% : current chunk
   %coordiantetool_min_chunk% : minmumchunk
   %coordiantetool_max_chunk% : maximumchunk
