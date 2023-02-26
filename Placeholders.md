@@ -833,14 +833,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   
   For instance:
   
-  if %tokenenchant_token_long% returns 43535709321
-  
-  %nf_4X_tokenenchant_token_long% will return 43B,
-  %nf_###E0X_tokenenchant_token_long% will return 43.5B,
-
-  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321
-  %nf_#,##0.0#:IT_tokenenchant_token_long% will return 43.535.709.321,0
-
+  if %tokenenchant_token_long% returns 43535709321,<br/> 
+  %nf_4X_tokenenchant_token_long% will return 43B,<br/> 
+  %nf_###E0X_tokenenchant_token_long% will return 43.5B,<br/>
+  %nf_#,##0.#_tokenenchant_token_long% will return 43,535,709,321<br/>
+  %nf_#,##0.0#:IT_tokenenchant_token_long% will return 43.535.709.321,0<br/>
   
   `[]` is optional and `<>` is required.
   
