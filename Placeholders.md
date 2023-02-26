@@ -190,6 +190,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[DeluxePM](#deluxepm)**
     - **[DeluxeTags](#deluxetags)**
     - **[Denizen](#denizen)**
+    - **[DimensionPlaceholders](#dimensionplaceholders)**
     - **[DiscordSRV](#discordsrv)**
     - **[Disease](#disease)**
     - **[DonateParty](#donateparty)**
@@ -231,6 +232,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[HoloMobHealth](#holomobhealth)**
     - **[HPWizard](#hpwizard)**
     - **[Hugs](#hugs)**
+    - **[HyacinthHello](#hyacinthhello)**
 
   - ### **I**
     - **[InteractionVisualizer](#interactionvisualizer)**
@@ -257,6 +259,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[LemonMobCoins](#lemonmobcoins)**
     - **[LevelledMobs](#levelledmobs)**
     - **[LevelUp](#levelup)**
+    - **[LotterySix](#lotterysix)**
     - **[LuckPerms](#luckperms)**
     - **[LWC](#lwc)**
 
@@ -313,6 +316,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PointsAPI](#pointsapi)**
     - **[PowerBoard](#powerboard)**
     - **[PowerRanks](#powerranks)**
+    - **[PrefiX](#prefix)**
     - **[PremiumVanish](#premiumvanish)**
     - **[Prison](#prison)**
     - **[PrisonMines](#prisonmines)**
@@ -419,6 +423,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[VotingPlugin](#votingplugin)**
 
   - ### **W**
+    - **[Weight-RPG](#weightrpg)**
     - **[WickedSkyWars](#wickedskywars)**
     - **[WorldBorder](#worldborder)**
     - **[WorldGuard](#worldguard)**
@@ -647,8 +652,8 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     Requires `mat:` modifier. Strictly checks the name and lore for an item. (If a Stone named `Test` is in your inventory, and you're using `%checkitem_mat:stone,strict%`, it will return false)
   - `inhand`  
     Check if the item is in the player's hand. `inhand` will check *both* hands. You can add `:main` or `:off` to specify. (Ex: `inhand:main`)
-  - `inslot`  
-    Check if the item is in a specific slot ([Click here for valid slots](https://proxy.spigotmc.org/d3e11b631e22f45fc07c3fcd1c7000b2245fed78?url=http%3A%2F%2Fi.imgur.com%2F3YCrfC8.png))
+  - `inslot:<number>`  
+    Check if the item is in a specific slot ([Click here for valid slots](https://i.imgur.com/3YCrfC8.png))
   - `nbtstrings:<key>=<value>;<key>=<value>`  
     Checks if the item's nbtStrings contains `<key>` with the value of `<value>`. * ^ ~
   - `nbtints:<key>=<value>;<key>=<value>`  
@@ -691,28 +696,33 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Formatter**
   > /papi ecloud download Formatter
   
-  More info about this expansion can be found on the [GitHub-Repository](https://github.com/Andre601/Formatter-Expansion).
+  More info about this expansion can be found on the [Codeberg-Repository](https://codeberg.org/Andre601/Formatter-Expansion).
   
   `[]` is optional and `<>` is required.
   
   ```
   %formatter_number_format_<number>%
-  %formatter_number_format_[locale]:[format]_<number>%
+  %formatter_number_format_[locale]:[pattern]_<number>%
   
   %formatter_number_from:<timeunit>_to:<timeunit>_<number>% # Converts <number> from one time unit to another
   
-  %formatter_number_time_<number>%
-  %formatter_number_time_fromSeconds_<number>% # Handles number as seconds
-  %formatter_number_time_fromSecs_<number>%    # Handles number as seconds
-  %formatter_number_time_fromMinutes_<number>% # Handles number as minutes
-  %formatter_number_time_fromMins_<number>%    # Handles number as minutes
-  %formatter_number_time_fromHours_<number>%   # Handles number as hours
-  %formatter_number_time_fromHrs_<number>%     # Handles number as hours
+  %formatter_number_round_<number>%
+  %formatter_number_[precision]:[roundingmode]_<number>%
   
-  %formatter_text_replace_<target>_<replacement>_<text>%
-  %formatter_text_substring_[start]:[end]_<text>%
-  %formatter_text_uppercase_<text>%
+  %formatter_number_shorten_<number>%
+  
+  %formatter_number_time_<number>%
+  %formatter_number_time_<timeunit>_<number>% # Handles number as <timeunit>
+  
+  %formatter_text_length_<text>%
+  
   %formatter_text_lowercase_<text>%
+  
+  %formatter_text_replace_[target]_[replacement]_<text>%
+  
+  %formatter_text_substring_[start]:[end]_<text>%
+  
+  %formatter_text_uppercase_<text>%
   ```
 
 ----
@@ -961,9 +971,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %player_has_empty_slot%
   %player_has_played_before%
   %player_empty_slots%
+  %player_has_health_boost%
   %player_has_potioneffect_<effect>%
   %player_has_permission_<permission>%
   %player_health%
+  %player_health_boost%
   %player_health_rounded%
   %player_health_scale%
   %player_ip%
@@ -1257,13 +1269,13 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### **Shortcut**
   > /papi ecloud download Shortcut
   
-  Allows the parsing of large text with placeholders by having them in TXT files stored.
+  Allows to parse large amounts of text, including placeholders from PlaceholderAPI.  
+  Please visit the [GitHub Repository](https://github.com/Andre601/Shortcut-Expansion) for details and usage.
   
   ```
-  %shortcut_<filename without .txt>%
+  %shortcut_<filename>%
+  %shortcut_<filename>:<replacement1>:replacement2>:...%
   ```
-  
-  The file needs to be a TXT and has to be inside `plugins/PlaceholderAPI/shortcuts`.
 
 ----
 
@@ -2508,6 +2520,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[DimensionPlaceholders](https://www.spigotmc.org/resources/107769/)**
+  > NO DOWNLOAD COMMAND
+
+  Placeholders information can be found on [Github](https://github.com/BoBkiNN/DimensionPlaceholders)
+  
+  ```
+  %dimplc_color%
+  %dimplc_folder%
+  %dimplc_namespacedkey%
+  %dimplc_namespace%
+  %dimplc_key%
+  %dimplc_loadedchunks%
+  ```
+
+----
+
 - ### **[DiscordSRV](https://www.spigotmc.org/resources/18494/)**
   > NO DOWNLOAD COMMAND 
   
@@ -2670,10 +2698,11 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_afk%
   %essentials_afk_reason%
   %essentials_fly%
+  %essentials_geolocation%
   %essentials_godmode%
   %essentials_has_kit_<kitname>%
   %essentials_home_<number>
-  %essentials_home_<number>_<x|y|z>%
+  %essentials_home_<number>_<w|x|y|z>%
   %essentials_homes_set%
   %essentials_homes_max%
   %essentials_is_muted%
@@ -2687,6 +2716,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_kit_time_until_available_<kitname>%
   %essentials_kit_time_until_available_raw_<kitname>%
   %essentials_msg_ignore%
+  %essentials_muted_time_remaining%
   %essentials_nickname%
   %essentials_nickname_stripped%
   %essentials_pm_recipient%
@@ -3044,6 +3074,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %hugs_player_total_given%
   %hugs_player_total_received%
   ```
+  
+  ----
+
+- ### **[HyacinthHello](https://www.spigotmc.org/resources/104434/)**
+  > NO DOWNLOAD COMMAND
+  
+  You can find an up-to-date list of placeholders in the [HyacinthHello wiki](https://github.com/livelaughlemon/hyacinthhello/wiki#placeholders).
 
 ----
 
@@ -3388,6 +3425,99 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %levelup_bow_xp_to_next%
   ```
   
+----
+
+- ### **[LotterySix](https://www.spigotmc.org/resources/107573/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %lotterysix_currentgame_Now%
+  %lotterysix_currentgame_GameNumber%
+  %lotterysix_currentgame_GameNumberRaw%
+  %lotterysix_currentgame_SpecialName%
+  %lotterysix_currentgame_Date%
+  %lotterysix_currentgame_NumberOfChoices%
+  %lotterysix_currentgame_PricePerBet%
+  %lotterysix_currentgame_TotalBets%
+  %lotterysix_currentgame_PrizePool%
+  %lotterysix_currentgame_FIRSTOdds%
+  %lotterysix_currentgame_SECONDOdds%
+  %lotterysix_currentgame_THIRDOdds%
+  %lotterysix_currentgame_FOURTHOdds%
+  %lotterysix_currentgame_FIFTHOdds%
+  %lotterysix_currentgame_SIXTHOdds%
+  %lotterysix_currentgame_SEVENTHOdds%
+  %lotterysix_currentgame_BetPlayerNames%
+  %lotterysix_currentgame_<number>LastDrawn%
+  %lotterysix_currentgame_<number>TimesDrawn%
+  %lotterysix_lastgame_Now%
+  %lotterysix_lastgame_GameNumber%
+  %lotterysix_lastgame_GameNumberRaw%
+  %lotterysix_lastgame_SpecialName%
+  %lotterysix_lastgame_Date%
+  %lotterysix_lastgame_NumberOfChoices%
+  %lotterysix_lastgame_PricePerBet%
+  %lotterysix_lastgame_TotalBets%
+  %lotterysix_lastgame_TotalPrizes%
+  %lotterysix_lastgame_FirstToThirdPlaceWinnersCount%
+  %lotterysix_lastgame_FirstNumber%
+  %lotterysix_lastgame_SecondNumber%
+  %lotterysix_lastgame_ThirdNumber%
+  %lotterysix_lastgame_FourthNumber%
+  %lotterysix_lastgame_FifthNumber%
+  %lotterysix_lastgame_SixthNumber%
+  %lotterysix_lastgame_FirstNumberOrdered%
+  %lotterysix_lastgame_SecondNumberOrdered%
+  %lotterysix_lastgame_ThirdNumberOrdered%
+  %lotterysix_lastgame_FourthNumberOrdered%
+  %lotterysix_lastgame_FifthNumberOrdered%
+  %lotterysix_lastgame_SixthNumberOrdered%
+  %lotterysix_lastgame_SpecialNumber%
+  %lotterysix_lastgame_BetPlayerNames%
+  %lotterysix_lastgame_FIRSTPlayerNames%
+  %lotterysix_lastgame_SECONDPlayerNames%
+  %lotterysix_lastgame_THIRDPlayerNames%
+  %lotterysix_lastgame_FOURTHPlayerNames%
+  %lotterysix_lastgame_FIFTHPlayerNames%
+  %lotterysix_lastgame_SIXTHPlayerNames%
+  %lotterysix_lastgame_SEVENTHPlayerNames%
+  %lotterysix_lastgame_FIRSTOdds%
+  %lotterysix_lastgame_SECONDOdds%
+  %lotterysix_lastgame_THIRDOdds%
+  %lotterysix_lastgame_FOURTHOdds%
+  %lotterysix_lastgame_FIFTHOdds%
+  %lotterysix_lastgame_SIXTHOdds%
+  %lotterysix_lastgame_SEVENTHOdds%
+  %lotterysix_lastgame_FIRSTPrize%
+  %lotterysix_lastgame_SECONDPrize%
+  %lotterysix_lastgame_THIRDPrize%
+  %lotterysix_lastgame_FOURTHPrize%
+  %lotterysix_lastgame_FIFTHPrize%
+  %lotterysix_lastgame_SIXTHPrize%
+  %lotterysix_lastgame_SEVENTHPrize%
+  %lotterysix_lastgame_FIRSTPrizeCount%
+  %lotterysix_lastgame_SECONDPrizeCount%
+  %lotterysix_lastgame_THIRDPrizeCount%
+  %lotterysix_lastgame_FOURTHPrizeCount%
+  %lotterysix_lastgame_FIFTHPrizeCount%
+  %lotterysix_lastgame_SIXTHPrizeCount%
+  %lotterysix_lastgame_SEVENTHPrizeCount%
+  %lotterysix_lastgame_<number>LastDrawn%
+  %lotterysix_lastgame_<number>TimesDrawn%
+  %lotterysix_preference_hide_titles%
+  %lotterysix_preference_hide_periodic_announcements%
+  %lotterysix_preference_bet_limit_per_round%
+  %lotterysix_preference_reopen_menu_on_purchase%
+  %lotterysix_preference_suspend_account_until%
+  %lotterysix_stats_total_bets_placed%
+  %lotterysix_stats_total_rounds_participated%
+  %lotterysix_stats_total_winnings%
+  %lotterysix_stats_highest_won_tier%
+  %lotterysix_stats_pending_transaction%
+  %lotterysix_scheduler_interval%
+  %lotterysix_scheduler_next%
+  ```
+
 ----
 
 - ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
@@ -3965,17 +4095,23 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
-  %parkour_maker_player_name%
-  %parkour_maker_parkour_name%
-  %parkour_maker_current_checkpoint%
-  %parkour_maker_current_checkpoint_position%
-  %parkour_maker_join_cooldown%
-  %parkour_maker_reward_cooldown%
-  %parkour_maker_start_message%
-  %parkour_maker_finish_message%
-  %parkour_maker_map_join_cooldown%
-  %parkour_maker_map_reward_cooldown%
+  %parkourmaker_player_name%
+  %parkourmaker_parkour_name%
+  %parkourmaker_current_checkpoint%
+  %parkourmaker_current_checkpoint_position%
+  %parkourmaker_join_cooldown%
+  %parkourmaker_reward_cooldown%
+  %parkourmaker_start_message%
+  %parkourmaker_finish_message%
+  %parkourmaker_map_join_cooldown%
+  %parkourmaker_map_reward_cooldown%
+  %parkourmaker_best-time_<map_name>.<player_name>%
+  %parkourmaker_leaderboard_<map_name>.<position>%  
   ```
+  
+  Replace `<map_name>` with name of the map you wish to get time for.<br>
+  Replace `<player_name>` with name of the player you wish to display time for.<br>
+  Replace `<position>` with number that coresponds to the position you want to display.
   
 ----
 
@@ -4111,7 +4247,23 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %ptr_playtime%
+  %ptr_playtime_days%
+  %ptr_playtime_days_trimmed%
+  %ptr_playtime_hours%
+  %ptr_playtime_hours_trimmed%
+  %ptr_playtime_minutes%
+  %ptr_playtime_minutes_trimmed%
+  %ptr_playtime_seconds%
+  %ptr_playtime_seconds_trimmed%
   %ptr_sessiontime%
+  %ptr_sessiontime_days%
+  %ptr_sessiontime_days_trimmed%
+  %ptr_sessiontime_hours%
+  %ptr_sessiontime_hours_trimmed%
+  %ptr_sessiontime_minutes%
+  %ptr_sessiontime_minutes_trimmed%
+  %ptr_sessiontime_seconds%
+  %ptr_sessiontime_seconds_trimmed%
   ```
 
 ----
@@ -4196,6 +4348,29 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %powerranks_usertag%
   %powerranks_world%
   %powerranks_playtime%
+  ```
+
+----
+
+- ### **[PrefiX](https://www.spigotmc.org/resources/70359/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %prefix_prefix%
+  %prefix_startcolor%
+  %prefix_startchar%
+  %prefix_tagcolor%
+  %prefix_tag%
+  %prefix_endchar%
+  %prefix_namecolor%
+
+  %suffix_suffix%
+  %suffix_startcolor%
+  %suffix_startchar%
+  %suffix_tagcolor%
+  %suffix_tag%
+  %suffix_endchar%
+  %suffix_namecolor%
   ```
 
 ----
@@ -6006,32 +6181,20 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %vault_eco_balance_fixed%
   %vault_eco_balance_formatted%
   %vault_eco_balance_commas%
-  %vault_eco_commas%
-  %vault_eco_fixed%
-  %vault_eco_formatted%
-  
+
   # Permission/Group placeholders
   %vault_group%
   %vault_group_capital%
+  %vault_groups%
+  %vault_groups_capital%
+  %vault_prefix%
+  %vault_suffix%
   %vault_groupprefix%
   %vault_groupprefix_<position>%
-  %vault_groups%
   %vault_groupsuffix%
   %vault_groupsuffix_<position>%
   %vault_hasgroup_<group>%
   %vault_inprimarygroup_<group>%
-  %vault_prefix%
-  %vault_prefix_color%
-  %vault_rank%
-  %vault_rank_capital%
-  %vault_rankprefix%
-  %vault_rankprefix_<position>%
-  %vault_ranks%
-  %vault_ranksuffix_<position>%
-  %vault_suffix%
-  %vault_suffix_color%
-  %vault_user_prefix_color%
-  %vault_user_suffix_color%
   ```
 
 ----
@@ -6143,6 +6306,20 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %VotingPlugin_VotePartyVotesRequired%
   ```
 
+----
+- ### **[Weight-RPG](https://www.spigotmc.org/resources/105513/)**
+  > NO DOWNLOAD COMMAND
+  ```
+  %weight-rpg_current_weight%
+  %weight-rpg_max_weight%
+  %weight-rpg_armor_weight%
+  %weight-rpg_item_in_main_hand%
+  %weight-rpg_item_in_second_hand%
+  %weight-rpg_weight_level1%
+  %weight-rpg_weight_level2%
+  %weight-rpg_weight_level3%
+  ```
+  
 ----
 
 - ### **[WickedSkyWars](https://www.spigotmc.org/resources/556/)**

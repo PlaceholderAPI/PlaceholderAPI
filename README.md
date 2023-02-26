@@ -6,6 +6,8 @@
 [discord]: https://discord.gg/HelpChat
 [discussion]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
 
+[expansion-generator]: https://www.andre601.ch/Expansion-Wiki-Generator/
+
 [andre]: https://github.com/Andre601
 [andrew]: https://github.com/Andrew-Chen-Wang
 [action]: https://github.com/Andrew-Chen-Wang/github-wiki-action
@@ -25,7 +27,8 @@ If you want to contribute towards the wiki, will you need to follow the below in
 > Already having a fork? Skip to the [next Step](#select-target-branch)!
 
 You need to make a fork of the PlaceholderAPI Repository to contribute towards the wiki.  
-To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and click "Create fork".
+To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and make sure to have "Copy the `master` branch only" unchecked, so that the `wiki` branch is copied too.  
+After this, click "Create fork".
 
 ![fork repo](./img/readme/fork.png)
 
@@ -40,14 +43,14 @@ Before you try to make any changes should you make sure that you have the `wiki`
 ### Fetch Changes from Upstream
 This is only required when you already had a fork and didn't update it for some time.
 
-While you're on the `wiki` branch, click the `Fetch upstream` text located right below the green `Code` button.  
+While you're on the `wiki` branch, click the `Sync Fork` text located right below the green `Code` button.  
 Depending on the status of your branch can the prompt show different outcomes:
 
 - `This branch is not behind the upstream PlaceholderAPI:wiki`  
   Your fork's `wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
   ![upstream up-to-date](./img/readme/up-to-date.png)
-- `Fetch and merge <number> upstream commits from PlaceholderAPI:wiki`  
-  This is shown when your fork's branch is outdated and upstream (This Repository) has changes. Click the `Fetch and merge` button to fetch the latest commits and update your fork's `wiki` branch.  
+- `This branch is out-of-date`  
+  Your fork's `wiki` branch is outdated and should be updated. Press the "Update branch" button to do so.  
   ![upstream needs update](./img/readme/needs-update.png)
 
 ### Commit changes
@@ -160,11 +163,16 @@ Here are the following rules:
 ### Make a Pull request
 After you made your changes is it time to make a Pull request.
 
-When you go to the upstream repository, should GitHub already show you a notification that you have commits to PR. Click the `Compare & pull request` button to proceed.
+When you made changes to the branch should GitHub show you a prompt with a button saying "Compare & pull request". This prompt also shows up when you visit the upstream Repository while having changes on your fork.  
+Press the button to proceed.
 
 ![pr prompt](./img/readme/pr-prompt.png)
 
 By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `wiki` branch.
+
+> **Note**  
+> When the branch selection only shows branches and not the actual repositories does it mean that you're prompted to PR to your own fork.  
+> To fix this, press the "compare across forks" text shown, select `PlaceholderAPI/PlaceholderAPI` as the target repository (left side) and your fork as the source. Then select the wiki branch as mentioned above.
 
 ![create pr](./img/readme/create-pr.png)
 
@@ -173,6 +181,9 @@ Congratulations! You've successfully made a Pull request for the wiki.
 
 ### Questions?
 If you have any questions, do not hesitate to ask in the [HelpChat Discord][discord] or [open a new discussion][discussion] in this repository. We will be happy to help you.
+
+### Tools
+A simple [online-tool][expansion-generator] is provided by Andre601 that allows you to create new entries for expansions in the wiki.
 
 ### Credits
 - The Wiki is maintained by [Andre601][andre].
