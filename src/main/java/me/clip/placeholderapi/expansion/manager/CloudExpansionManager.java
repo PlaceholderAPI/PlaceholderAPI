@@ -220,7 +220,7 @@ public final class CloudExpansionManager {
                             plugin.getLocalExpansionManager().findExpansionByName(name);
                         if (localOpt.isPresent()) {
                           PlaceholderExpansion local = localOpt.get();
-                          if (local.isRegistered()) {
+                          if (local.isRegistered() && !local.persist()) {
                             expansion.setHasExpansion(true);
                             expansion.setShouldUpdate(
                                 !local.getVersion().equalsIgnoreCase(expansion.getLatestVersion()));
