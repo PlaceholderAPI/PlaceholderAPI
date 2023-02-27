@@ -632,9 +632,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     Checks if the item has CustomModelData `<number>`  
     This is only for 1.14 and newer! ^ ~
   - `lorecontains:<text>`  
-    Checks if the item's lore contains `<text>`* ~
+    Checks if the item's lore contains `<text>`* ~  
+    ***Combined with `getinfo` you can specify a number for `<text>` and the specific lore line will be returned***
   - `loreequals:<text>`  
-    Checks if the item's lore equals `<text>` Lines are separated by `|` ^ ~
+    Checks if the item's lore equals `<text>` Lines are separated by `|` ^ ~  
+    ***Combined with `getinfo` you can specify a number for `<text>` and the specific lore line will be returned***
   - `matcontains:<text>`  
     Checks if the item's material contains `<text>`*
   - `enchantments:<enchantment=lvl>;<enchantment>`  
