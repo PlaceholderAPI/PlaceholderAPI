@@ -4197,33 +4197,34 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[PlayerStats](https://www.spigotmc.org/resources/102347/)**
   > /papi ecloud download playerstats
   
-  For more information and all the placeholder-options, see the [PlayerStatsExpansion GitHub](https://github.com/Artemis-the-gr8/PlayerStatsExpansion/tree/main).
+  For more information and usage examples, see the [PlayerStatsExpansion GitHub](https://github.com/Artemis-the-gr8/PlayerStatsExpansion/tree/main).
   
   ```
   %playerstats_prefix% 
   %playerstats_prefixtitle% 
   %playerstats_rainbowprefix% 
   %playerstats_rainbowprefixtitle% 
-  
   %playerstats_top:<n>,<statistic>% 
   %playerstats_top:<n>,<statistic:item/block>% 
   %playerstats_top:<n>,<statistic:entity>% 
   %playerstats_top:<n>,<statistic>,only:number% 
   %playerstats_top:<n>,<statistic>,only:number_raw%
   %playerstats_top:<n>,<statistic>,only:player_name% 
-  
   %playerstats_player:<player-name>,<statistic>% 
   %playerstats_player:<player-name>,<statistic:item/block>% 
   %playerstats_player:<player-name>,<statistic:entity>% 
   %playerstats_player:<player-name>,<statistic>,only:number% 
   %playerstats_player:<player-name>,<statistic>,only:number_raw% 
-  
+  %playerstats_me,<statistic>% 
+  %playerstats_me,<statistic:item/block>% 
+  %playerstats_me,<statistic:entity>% 
+  %playerstats_me,<statistic>,only:number% 
+  %playerstats_me,<statistic>,only:number_raw% 
   %playerstats_server,<statistic>% 
   %playerstats_server,<statistic:item/block>% 
   %playerstats_server,<statistic:entity>% 
   %playerstats_server,<statistic>,only:number% 
   %playerstats_server,<statistic>,only:number_raw% 
-  
   %playerstats_title,<statistic>% 
   %playerstats_title:[n],<statistic>% 
   %playerstats_title:[n],<statistic:item/block>% 
