@@ -6274,39 +6274,57 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   > /papi ecloud download VotingPlugin
   
   ```
-  %VotingPlugin_CanVote%
-  %VotingPlugin_Next_SITENAME%
-  %VotingPlugin_Last_SITENAME%
-  %VotingPlugin_Points%
-  %VotingPlugin_VotePartyVotesNeeded%
-  %VotingPlugin_LastMonthTotal%
+  %VotingPlugin_total%
+  %VotingPlugin_alltimetotal%
+  %VotingPlugin_lastmonthtotal%
+  %VotingPlugin_DisableBroadcast%
+  %VotingPlugin_MilestoneCount%
+  %VotingPlugin_VoteShopLimit_VOTESHOP%
   %VotingPlugin_Total_AllTime%
   %VotingPlugin_Total_Monthly%
-  %VotingPlugin_Total_Weekly%
+  %VotingPlugin_Total_Weekl%
   %VotingPlugin_Total_Daily%
-  %VotingPlugin_top_all_#%
-  %VotingPlugin_top_month_#%
-  %VotingPlugin_top_week_#%
-  %VotingPlugin_top_daily_#%
-  %VotingPlugin_top_all_position%
-  %VotingPlugin_top_month_position%
-  %VotingPlugin_top_week_position%
-  %VotingPlugin_top_daily_position%
   %VotingPlugin_BestDailyTotal%
   %VotingPlugin_BestWeeklyTotal%
   %VotingPlugin_BestMonthlyTotal%
   %VotingPlugin_DailyVoteStreak%
   %VotingPlugin_WeeklyVoteStreak%
-  %VotingPlugin_MonthlyVoteStreak%
+  %VotingPlugin_MonthVoteStreak%
   %VotingPlugin_BestDailyVoteStreak%
   %VotingPlugin_BestWeeklyVoteStreak%
-  %VotingPlugin_BestMonthlyVoteStreak%
-  %VotingPlugin_top_all_#_votes%
-  %VotingPlugin_top_month_#_votes%
-  %VotingPlugin_top_week_#_votes%
-  %VotingPlugin_top_daily_#_votes%
+  %VotingPlugin_BestMonthVoteStreak%
+  %VotingPlugin_Points%
+  %VotingPlugin_Points_Format%
+  %VotingPlugin_CanVote%
+  %VotingPlugin_CanVoteSite%
+  %VotingPlugin_Next_AnySite%
+  %VotingPlugin_Next_VOTESITE%
+  %VotingPlugin_Last_VOTESITE%
+  %VotingPlugin_CanVote_VOTESITE%
+  %VotingPlugin_Top_All_Position%
+  %VotingPlugin_Top_Month_Position%
+  %VotingPlugin_Top_Week_Position%
+  %VotingPlugin_Top_Daily_Position%
+  %VotingPlugin_VotePartyContributedVotes%
+  %VotingPlugin_Top_AllVotes_#%
+  %VotingPlugin_Top_All_#%
+  %VotingPlugin_Top_Month_#%
+  %VotingPlugin_Top_MonthVotes_#%
+  %VotingPlugin_Top_Week_#%
+  %VotingPlugin_Top_WeekVotes_#%
+  %VotingPlugin_Top_Daily_#%
+  %VotingPlugin_Top_DailyVotes_#%
   %VotingPlugin_VotePartyVotesCurrent%
+  %VotingPlugin_VotePartyVotesNeeded%
   %VotingPlugin_VotePartyVotesRequired%
+  %VotingPlugin_BungeeVotePartyVotesCurrent%
+  %VotingPlugin_BungeeVotePartyVotesNeeded%
+  %VotingPlugin_BungeeVotePartyVotesRequired%
+  %VotingPlugin_GlobalMonthTotal%
+  %VotingPlugin_GlobalAllTimeTotal%
+  %VotingPlugin_GlobalWeeklyTotal%
+  %VotingPlugin_GlobalDailyTotal%
+  %VotingPlugin_TimeUntilDayReset%
   ```
 
 ----
