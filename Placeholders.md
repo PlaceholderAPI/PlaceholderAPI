@@ -2499,7 +2499,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
-  > /papi ecloud download DeluxeTags
+  > NO DOWNLOAD COMMAND
   
   ```
   %deluxetags_tag%
