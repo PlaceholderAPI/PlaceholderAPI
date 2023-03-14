@@ -5912,6 +5912,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %tokenenchant_token_num_long% : Deprecated. (use %tokenenchant_tokens%)
   %tokenenchant_<enchantment>_level%
   %tokenenchant_<enchantment>_affordablelevel% : the maximum level the player can afford based on the the item holding and his/her token balance.
+  %tokenenchant_<enchantment>_affordablecost% : the cost to reach the affordable enchantment level based on the item holding and his/her token balance.
   %tokenenchant_<enchantment>_cost% : cost to increment the enchantmnt level by one from the current level
   %tokenenchant_<enchantment>_costmax% : cost to increment the enchantmnt level to its maax one from the current level 
   %tokenenchant_<enchantment>_cost_<X>% : cost to increment the enchantmnt level by <X> from the current level
