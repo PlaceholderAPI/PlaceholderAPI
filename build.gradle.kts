@@ -1,10 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.apache.tools.ant.filters.ReplaceTokens
+import org.gradle.internal.impldep.com.amazonaws.util.XpathUtils.asNode
 
 plugins {
     java
     `maven-publish`
-    id("com.github.hierynomus.license") version "0.15.0"
+    id("com.github.hierynomus.license") version "0.16.1"
     id("com.github.johnrengelman.shadow") version "7.1.0"
 }
 
@@ -37,6 +38,30 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+license {
+    header = rootProject.file("config/headers/main.txt")
+
+    include("**/*.java")
+    mapping("java", "JAVADOC_STYLE")
+
+    encoding = "UTF-8"
+
+    ext {
+        set("year", 2021)
+    }
+}
+
+val javaComponent: SoftwareComponent = components["java"]
+
 tasks {
     processResources {
         eachFile { expand("version" to project.version) }
@@ -66,24 +91,49 @@ tasks {
     test {
         useJUnitPlatform()
     }
-}
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                artifactId = "placeholderapi"
 
-    withJavadocJar()
-    withSourcesJar()
-}
+                from(javaComponent)
 
-license {
-    header = rootProject.file("config/headers/main.txt")
-    include("**/*.java")
-    encoding = "UTF-8"
+                pom {
+                    withXml {
+                        // some are having issues with bstats, so we might need to add that to the pom as well
+                        with(asNode()) {
+                            appendNode("packaging", "jar")
+                            remove(get("dependencies"))
 
-    ext {
-        set("year", 2021)
+                            val dependenciesNode = appendNode("dependencies")
+                            val jetbrainsAnnotations = dependenciesNode.appendNode("dependency")
+                            jetbrainsAnnotations.appendNode("groupId", "org.jetbrains")
+                            jetbrainsAnnotations.appendNode("artifactId", "annotations")
+                            jetbrainsAnnotations.appendNode("version", "19.0.0")
+                        }
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                if ("-DEV" in version.toString()) {
+                    url = uri("https://repo.extendedclip.com/content/repositories/dev/")
+                } else {
+                    url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+                }
+
+                credentials {
+                    username = System.getenv("JENKINS_USER")
+                    password = System.getenv("JENKINS_PASS")
+                }
+            }
+        }
     }
+
+    publish.get().setDependsOn(listOf(clean.get(), test.get(), jar.get()))
 }
 
 configurations {
@@ -91,45 +141,3 @@ configurations {
         extendsFrom(compileOnly.get())
     }
 }
-
-//publishing {
-//    repositories {
-//        maven {
-//            if (version.contains("-DEV")) {
-//                url = uri("https://repo.extendedclip.com/content/repositories/dev/")
-//            } else {
-//                url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-//            }
-//
-//            credentials {
-//                username = System.getenv("JENKINS_USER")
-//                password = System.getenv("JENKINS_PASS")
-//            }
-//        }
-//    }
-//
-//    publications {
-//        mavenJava(MavenPublication) {
-//            artifactId = "placeholderapi"
-//
-//            from components.java
-//
-//            pom.withXml {
-//
-//                // some are having issues with bstats so we might need to add that to the pom as well
-//
-//                asNode().appendNode("packaging", "jar")
-//                asNode().remove(asNode().get("dependencies"))
-//
-//                def dependenciesNode = asNode().appendNode("dependencies")
-//                // jetbrains annotations
-//                def jetbrainsAnnotations = dependenciesNode.appendNode("dependency")
-//                jetbrainsAnnotations.appendNode("groupId", "org.jetbrains")
-//                jetbrainsAnnotations.appendNode("artifactId", "annotations")
-//                jetbrainsAnnotations.appendNode("version", "19.0.0")
-//            }
-//        }
-//    }
-//}
-//
-//publish.dependsOn clean, test, jar
