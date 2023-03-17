@@ -430,7 +430,7 @@ public final class LocalExpansionManager implements Listener {
         Msg.severe("Failed to load expansion %s (is a dependency missing?)", e, file.getName());
         return null;
       } catch (Exception e) {
-        throw new CompletionException(e.getMessage() + "(expansion file: " + file.getAbsolutePath() + ")", e);
+        throw new CompletionException(e.getMessage() + " (expansion file: " + file.getAbsolutePath() + ")", e);
       }
     });
   }
