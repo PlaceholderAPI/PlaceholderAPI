@@ -1,12 +1,10 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.apache.tools.ant.filters.ReplaceTokens
-import org.gradle.internal.impldep.com.amazonaws.util.XpathUtils.asNode
 
 plugins {
     `java-library`
     `maven-publish`
     id("com.github.hierynomus.license") version "0.16.1"
-    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("com.github.johnrengelman.shadow") version "8.1.0"
 }
 
 group = "me.clip"
@@ -25,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.0")
 
     compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
