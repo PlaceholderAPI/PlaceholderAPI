@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import org.gradle.internal.impldep.com.amazonaws.util.XpathUtils.asNode
 
 plugins {
-    java
+    `java-library`
     `maven-publish`
     id("com.github.hierynomus.license") version "0.16.1"
     id("com.github.johnrengelman.shadow") version "7.1.0"
@@ -29,7 +29,7 @@ dependencies {
     implementation("net.kyori:adventure-platform-bukkit:4.3.0")
 
     compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
-    compileOnly("org.jetbrains:annotations:23.0.0")
+    compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
     testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
@@ -96,24 +96,7 @@ tasks {
         publications {
             create<MavenPublication>("maven") {
                 artifactId = "placeholderapi"
-
                 from(javaComponent)
-
-                pom {
-                    withXml {
-                        // some are having issues with bstats, so we might need to add that to the pom as well
-                        with(asNode()) {
-                            appendNode("packaging", "jar")
-                            remove(get("dependencies"))
-
-                            val dependenciesNode = appendNode("dependencies")
-                            val jetbrainsAnnotations = dependenciesNode.appendNode("dependency")
-                            jetbrainsAnnotations.appendNode("groupId", "org.jetbrains")
-                            jetbrainsAnnotations.appendNode("artifactId", "annotations")
-                            jetbrainsAnnotations.appendNode("version", "19.0.0")
-                        }
-                    }
-                }
             }
         }
 
