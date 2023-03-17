@@ -53,6 +53,7 @@ import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
+import me.clip.placeholderapi.util.Msg;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -268,8 +269,7 @@ public final class CloudExpansionManager {
       await.remove(toIndexName(expansion));
 
       if (exception != null) {
-        plugin.getLogger().log(Level.SEVERE,
-            "failed to download " + expansion.getName() + ":" + version.getVersion(), exception);
+        Msg.severe("Failed to download %s:%s", exception, expansion.getName(), expansion.getVersion());
       }
     }, ASYNC_EXECUTOR);
 
