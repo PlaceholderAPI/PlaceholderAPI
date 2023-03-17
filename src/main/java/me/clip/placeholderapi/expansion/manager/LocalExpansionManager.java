@@ -426,12 +426,11 @@ public final class LocalExpansionManager implements Listener {
         }
 
         return expansionClass;
-      } catch (final VerifyError ex) {
-        Msg.severe("Failed to load expansion class %s (is a dependency missing?", file.getName() + ')');
-        Msg.severe("Cause: %s %s", ex.getClass().getSimpleName(), ex.getMessage());
+      } catch (VerifyError | NoClassDefFoundError e) {
+        Msg.severe("Failed to load expansion %s (is a dependency missing?)", e, file.getName());
         return null;
-      } catch (final Exception ex) {
-        throw new CompletionException(ex);
+      } catch (Exception e) {
+        throw new CompletionException(e.getMessage() + " (expansion file: " + file.getAbsolutePath() + ")", e);
       }
     });
   }
