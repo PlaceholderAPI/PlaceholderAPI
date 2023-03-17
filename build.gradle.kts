@@ -65,6 +65,10 @@ tasks {
         eachFile { expand("version" to project.version) }
     }
 
+    build {
+        dependsOn(named("shadowJar"))
+    }
+
     withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
@@ -114,7 +118,7 @@ tasks {
         }
     }
 
-    publish.get().setDependsOn(listOf(clean.get(), test.get(), jar.get()))
+    publish.get().setDependsOn(listOf(build.get()))
 }
 
 configurations {

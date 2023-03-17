@@ -1,11 +1,11 @@
-name: "@name@"
+name: PlaceholderAPI
 main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
 
-version: "@version@"
+version: ${version}
 author: HelpChat
 
 api-version: "1.13"
-description: "@description@"
+description: "An awesome placeholder provider!"
 
 commands:
   placeholderapi:
