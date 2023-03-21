@@ -140,6 +140,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[ajParkour](#ajparkour)**
     - **[AlonsoLevels](#alonsolevels)**
     - **[Animated Menu](#animated-menu)**
+    - **[AntiCombatLogging](#anticombatlogging)**
     - **[AParkour](#aparkour)**
     - **[ASkyBlock](#askyblock)**
     - **[AsyncKeepAlive](#asynckeepalive)**
@@ -1838,16 +1839,27 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 - ### **[Animated Menu](https://www.spigotmc.org/resources/4690/)**
   > NO DOWNLOAD COMMAND
-   
+
   ```
   %animatedmenu_motd_<ip>[_port]%  
   %animatedmenu_status_<ip>[_port]_<onlinemessage>_<offlinemessage>%  
   ```
-  
-  **Examples:** 
+
+  **Examples:**
   ```
   %animatedmenu_status_testplugins.com_&aOnline_&cOffline%  
   %animatedmenu_status_testplugins.com_25565_&aOnline_&cOffline%  
+  ```
+
+----
+
+- ### **[AntiCombatLogging](https://polymart.org/resource/165/)**
+  > NO DOWNLOAD COMMAND
+   
+  ```
+  %acl_tagged% : compat tag status (True | False) 
+  %acl_remaining% : remaining seconds.
+  %acl_tagged_time% : how many senconds ago this player was tagged.
   ```
 
 ----
