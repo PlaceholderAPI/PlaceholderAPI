@@ -162,7 +162,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    Bukkit.getAsyncScheduler().cancelTasks(this); // this is hopefully temp
 
     adventure.close();
     adventure = null;

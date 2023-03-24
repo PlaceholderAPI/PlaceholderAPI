@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
 import javax.net.ssl.HttpsURLConnection;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.util.Msg;
@@ -54,35 +55,43 @@ public class UpdateChecker implements Listener {
     return spigotVersion;
   }
 
+  //todo: Figure out a better approach for this?
   public void fetch() {
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+    CompletableFuture<Boolean> update = new CompletableFuture<>();
+    CompletableFuture.supplyAsync(() -> {
       try {
         HttpsURLConnection con = (HttpsURLConnection) new URL(
-            "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
+                "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
         con.setRequestMethod("GET");
         spigotVersion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
       } catch (Exception ex) {
         plugin.getLogger().info("Failed to check for updates on spigot.");
-        return;
+        return false;
       }
 
       if (spigotVersion == null || spigotVersion.isEmpty()) {
-        return;
+        plugin.getLogger().info("Failed to check for updates on spigot.");
+        return false;
       }
 
       updateAvailable = spigotIsNewer();
 
       if (!updateAvailable) {
-        return;
+        plugin.getLogger().info("PlaceholderAPI is up to date.");
+        return false;
       }
 
-      Bukkit.getScheduler().runTask(plugin, () -> {
+      return true;
+    });
+
+    update.whenComplete((result, error) -> {
+      if (result) {
         plugin.getLogger()
-            .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
+                .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
         plugin.getLogger()
-            .info("https://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID + "/");
-        Bukkit.getPluginManager().registerEvents(this, plugin);
-      });
+                .info("https://www.spigotmc.org/resources/placeholderapi." + RESOURCE_ID + "/");
+        Bukkit.getPluginManager().registerEvents(UpdateChecker.this, plugin);
+      }
     });
   }
 

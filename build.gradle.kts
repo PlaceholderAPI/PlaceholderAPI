@@ -26,7 +26,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.0")
 
-    compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
+    compileOnlyApi("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT") // this is temp
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
@@ -38,8 +38,8 @@ dependencies {
 
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17 // this is temp
+    targetCompatibility = JavaVersion.VERSION_17 // this is temp
 
     withJavadocJar()
     withSourcesJar()

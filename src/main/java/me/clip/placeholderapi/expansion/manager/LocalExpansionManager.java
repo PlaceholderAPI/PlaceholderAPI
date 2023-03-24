@@ -269,12 +269,13 @@ public final class LocalExpansionManager implements Listener {
       return false;
     }
 
-    final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
-    Bukkit.getPluginManager().callEvent(event);
-
-    if (event.isCancelled()) {
-      return false;
-    }
+// this is temp
+//    final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
+//    Bukkit.getPluginManager().callEvent(event);
+//
+//    if (event.isCancelled()) {
+//      return false;
+//    }
 
     expansionsLock.lock();
     try {

@@ -40,11 +40,7 @@ public final class Futures {
       @NotNull final CompletableFuture<T> future,
       @NotNull final BiConsumer<T, Throwable> consumer) {
     future.whenComplete((value, exception) -> {
-      if (Bukkit.isPrimaryThread()) {
-        consumer.accept(value, exception);
-      } else {
-        Bukkit.getScheduler().runTask(plugin, () -> consumer.accept(value, exception));
-      }
+      consumer.accept(value, exception);
     });
   }
 
