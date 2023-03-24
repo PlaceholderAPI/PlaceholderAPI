@@ -100,7 +100,7 @@ public final class CloudExpansionManager {
 
   public void load() {
     clean();
-    fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
+    fetch();
   }
 
   public void kill() {
@@ -170,7 +170,7 @@ public final class CloudExpansionManager {
     await.clear();
   }
 
-  public void fetch(final boolean allowUnverified) {
+  public void fetch() {
     plugin.getLogger().info("Fetching available expansion information...");
 
     ASYNC_EXECUTOR.submit(
@@ -190,9 +190,6 @@ public final class CloudExpansionManager {
                   || expansion.getVersion(expansion.getLatestVersion()) == null) {
                 toRemove.add(entry.getKey());
               }
-              if (!allowUnverified && !expansion.isVerified()) {
-                toRemove.add(entry.getKey());
-              }
             }
 
             for (String name : toRemove) {
@@ -203,7 +200,7 @@ public final class CloudExpansionManager {
             plugin.getLogger().log(Level.WARNING, "Failed to download expansion information", e);
           }
 
-          // loop thru what's left on the main thread
+          // loop through what's left on the main thread
           plugin
               .getServer()
               .getScheduler()

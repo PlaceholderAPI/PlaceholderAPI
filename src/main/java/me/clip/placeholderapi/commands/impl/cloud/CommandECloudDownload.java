@@ -55,6 +55,12 @@ public final class CommandECloudDownload extends PlaceholderCommand {
       return;
     }
 
+    if (!expansion.isVerified() && !plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions()) {
+      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://api.extendedclip.com");
+      Msg.msg(sender, "&aTo allow the download of unverified expansions set &fcloud_allow_unverified_expansions: true &ain config.yml");
+      return;
+    }
+
     final CloudExpansion.Version version;
     if (params.size() < 2) {
       version = expansion.getVersion(expansion.getLatestVersion());
@@ -86,9 +92,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
                   .getVersion() + "] &ato file: &f" + file.getName(),
               "&aMake sure to type &f/papi reload &ato enable your new expansion!");
 
-          plugin.getCloudExpansionManager().clean();
-          plugin.getCloudExpansionManager()
-              .fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
+          plugin.getCloudExpansionManager().load();
         });
   }
 
