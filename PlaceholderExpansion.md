@@ -16,8 +16,8 @@ You can download Expansions either directly from the eCloud yourself, or downloa
   - [Full Example](#full-example)
   - [Register your Expansion](#register-your-expansion)
 - [Making an external Expansion](#making-an-external-expansion)
-  - [Full Example (Without Dependencies)](#full-example-without-dependencies)
-  - [Full Example (With Dependencies)](#full-example-with-dependencies)
+  - [Full Example (Without Dependency)](#full-example-without-dependency)
+  - [Full Example (With Dependency)](#full-example-with-dependency)
 - [Relational Placeholders](#relational-placeholders)
   - [Quick Notes](#quick-notes)
   - [Adding Relational Placeholders](#adding-relational-placeholders)
@@ -216,7 +216,7 @@ Benefits of this type of expansion are 1) automatic loading through PlaceholderA
 
 Downsides can be a more tedious setup to make sure any required plugin/dependency is loaded before registering the Expansion.
 
-### Full Example (Without dependencies)
+### Full Example (Without Dependency)
 
 > Please read the [`Common Parts`](#common-parts) for details on all the methods.
 
@@ -265,7 +265,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 }
 ```
 
-### Full example (With dependency)
+### Full example (With Dependency)
 
 > Please read the [`Common Parts`](#common-parts) for details on all the methods.
 
