@@ -118,7 +118,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ### Full Example
 
-> Please read the [`Common Parts`](#common-parts) for details on all the methods.
+> Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 Below is a full example of an internal Expansion class. Please note the override of the `persist()` method to guarantee the Expansion isn't unloaded during a `/papi reload` operation.  
 We also use the provided `SomePlugin` instance for information such as the version and authors. This allows us to keep the code clean while not having to deal with updating the expansion's information every time we make changes to the plugin.
@@ -219,7 +219,7 @@ Downsides can be a more tedious setup to make sure any required plugin/dependenc
 
 ### Full Example (Without Dependency)
 
-> Please read the [`Common Parts`](#common-parts) for details on all the methods.
+> Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 Below is a full example of an external PlaceholderExpansion without any dependencies such as plugins.
 
@@ -268,7 +268,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ### Full example (With Dependency)
 
-> Please read the [`Common Parts`](#common-parts) for details on all the methods.
+> Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 The below example shows a possible setup of an external PlaceholderExpansion that depends on a Plugin to be present.
 
@@ -353,7 +353,7 @@ To add relational placeholders will you need to implement the [`Relational`][rel
 
 ### Full Example
 
-> Please read the [`Common Parts`](#common-parts) for details on all the methods.
+> Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 Below is a full example of using Relational Placeholders.  
 For the sake of simplicity are we using parts of the [internal Expansion Example](#making-an-internal-expansion) here.
