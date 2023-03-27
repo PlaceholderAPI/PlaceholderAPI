@@ -211,7 +211,7 @@ They are recommended for the following scenarios:
 - Your Expansion doesn't depend on any Plugin.
 - Your Expansion depends on a Plugin AND you can't directly implement the Class into it.
 
-For Expansions made for a plugin is it recommended to try and use [internal Expansions](#making-an-internal-expansion). If you can't implement it yourself, i.e. because you're not the dev of it and it isn't open source, should you consider alternative solutions (i.e. asking the dev to implement it) before using this method.
+If you'd like to implement PlaceholderAPI expansions for your own plugin consider using the [internal expansion setup](#making-an-internal-expansion) instead.
 
 Benefits of this type of expansion are 1) automatic loading through PlaceholderAPI by adding them to your `expansions` folder and 2) having the option to upload them on the eCloud, allowing it to be downloaded through [[`/papi ecloud download <expansion>`|Commands#papi-ecloud-download]] automatically (After it has been verified).
 
@@ -345,7 +345,7 @@ Relational Placeholders are a special kind of placeholder that allow the usage o
 
 ### Quick Notes
 
-Relational Placeholders are **always** prefixed with `rel_`, meaning that a relational placeholder called `example` with value `friend` looks like `%rel_example_friend%` when used.
+Relational Placeholders are always prefixed with `rel_`, meaning that a relational placeholder with identifier `example` and value `friend` looks like `%rel_example_friend%` when used.
 
 ### Adding Relational Placeholders
 
