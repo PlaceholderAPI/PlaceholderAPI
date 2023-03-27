@@ -84,6 +84,7 @@ You must choose between one of these two methods for handling the actual parsing
   The `Player` can be `null`, so keep that in mind when handling your placeholders.
 
 PlaceholderAPI will **always** call `onRequest(OfflinePlayer, String)` in an expansion.
+
 ----
 
 ## Making an internal Expansion
