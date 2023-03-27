@@ -356,7 +356,7 @@ To add relational placeholders will you need to implement the [`Relational`][rel
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 Below is a full example of using Relational Placeholders.  
-For the sake of simplicity are we using parts of the [internal Expansion Example](#making-an-internal-expansion) here.
+For the sake of simplicity are we using parts of the [internal Expansion Example](#making-an-internal-expansion) here and assume that the `SomePlugin` class offers a `areFriends(Player, Player)` method that returns a boolean value.
 
 ```java
 package at.helpch.placeholderapi.example.expansions;
