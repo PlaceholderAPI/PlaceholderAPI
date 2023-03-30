@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.commands.impl.cloud;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -37,6 +38,16 @@ public final class CommandECloudDownload extends PlaceholderCommand {
     super("download");
   }
 
+  private boolean isBlockedExpansion(String name) {
+    String env = System.getenv("PAPI_BLOCKED_EXPANSIONS");
+    if (env == null) {
+      return false;
+    }
+
+    return Arrays.stream(env.split(","))
+            .anyMatch(s -> s.equalsIgnoreCase(name));
+  }
+
   @Override
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
@@ -44,6 +55,12 @@ public final class CommandECloudDownload extends PlaceholderCommand {
     if (params.isEmpty()) {
       Msg.msg(sender,
           "&cYou must supply the name of an expansion.");
+      return;
+    }
+
+    if (isBlockedExpansion(params.get(0))) {
+      Msg.msg(sender,
+          "&cThis expansion can't be downloaded.");
       return;
     }
 
