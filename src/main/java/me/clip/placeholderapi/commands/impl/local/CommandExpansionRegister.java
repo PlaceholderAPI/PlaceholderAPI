@@ -54,7 +54,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
     final LocalExpansionManager manager = plugin.getLocalExpansionManager();
 
     final File file = new File(manager.getExpansionsFolder(), params.get(0));
-    if (!file.exists()) {
+    if (!file.exists() || !file.getParentFile().equals(manager.getExpansionsFolder())) {
       Msg.msg(sender,
           "&cThe file &f" + file.getName() + "&c doesn't exist!");
       return;
