@@ -1051,46 +1051,12 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 - ### PlayerList
   > /papi ecloud download playerlist
   
-  Returns the player list matching the specified syntax
-  
+  More info about this expansion can be found on the [GitHub-Repository](https://github.com/Tanguygab/PlayerList-PlaceholderAPI-Expansion/wiki).
+
+  Create a list in PAPI's config and retrieve it through placeholders!
   ```
-  %playerlist_<type>,<subtype>,<include>,<output>,<subtype_value>%
+  %playerlist_<listName>_<list|amount|#>%
   ```
-  
-  **Type:**
-  - `all` - Matches all players
-  - `online` - Matches online players
-  - `offline` - Matches offline players
-  
-  **Subtypes:**
-  - `normal` - Matches all players. Requires no `<subtype_value>`
-  - `perm` - Matches all players that match the permission defined by `<subtype_value>`. Supports multiple permissions separated by `+` (`perm.1+perm.2`)
-  - `world` - Matches all players in the world defined by `<subtype_value>`. Supports multiple worlds separated by `+` (`world+world_nether`)
-  - `nearby` - Matches all players in a certain radius defined by `<subtype_value>`
-  
-  **Include:**
-  - `yes` - Include the player
-  - `no` - Exclude the player
-  
-  **Output:**
-  - `list` - Returns a list of players separated by `, `. You can also change the separator with `list-<separator>`.*
-  - `amount` - Returns amount of players matched
-  - `<integer>` - Returns the player at the specified index
-  
-  **Examples:**
-  ```
-  %playerlist_all,normal,yes,list%                          # Tanguygab, cj89898, funnycube, clip, Frcsty, GabyTM, ItsMeGlare
-  %playerlist_online,perm,yes,amount,staff.admin%           # 2
-  %playerlist_online,world,yes,2,buildingworld+spawnworld%` # cj89898, funnycube
-  %playerlist_online,nearby,yes,list,5%                     # Tanguygab, cj89898, clip
-  %playerlist_online,nearby,no,list,5%                      # Tanguygab, clip
-  %playerlist_online,nearby,no,list--,20%                   # Tanguygab-clip-Terfs
-  ```
-  
-  *You can also use `[placeholder]` for papi placeholders in addition to the javascript `{placeholder}`*
-  
-  *Note: `Offline` and `All` only support the `Normal` subtype.*  
-  **Since `,` is used to separate the different parts of the placeholder, use `\.` instead if you want to display a `,`.**
 
 ----
 
