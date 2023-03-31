@@ -1050,6 +1050,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 - ### PlayerList
   > /papi ecloud download playerlist
+  
   More info about this expansion can be found on the [GitHub-Repository](https://github.com/Tanguygab/PlayerList-PlaceholderAPI-Expansion/wiki).
 
   Create a list in PAPI's config and retrieve it through placeholders!
