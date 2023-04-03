@@ -367,6 +367,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Skywars](#skywars)**
     - **[Skywars X](#skywars-x)**
     - **[SkywarsReloaded](#skywarsreloaded)**
+    - **[Soul](#soul)**
     - **[Spark](#spark)**
     - **[SQLPerms](#sqlperms)**
     - **[SQLTokens](#sqltokens)**
@@ -5422,6 +5423,20 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %swr_games_played%
   %swr_kill_death%
   %swr_win_loss%
+  ```
+
+----
+
+- ### **[Soul](https://polymart.org/resource/3759))**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %soul_balance% : balance of souls you gathered.
+  %soul_togal_gather% : the amount of soul you can currently gether based on armors/weapons you currently have.
+  %soul_gather% : the amount of souls you can gather with the item in your hand.
+  %soul_gather_amount% : the base amount of souls you can gather with the item in your hand.
+  %soul_gather_rate% : the base rate of souls you can gather with the item in your hand.
+  %soul_capacity% : the amount of souls you can hold.
   ```
 
 ----
