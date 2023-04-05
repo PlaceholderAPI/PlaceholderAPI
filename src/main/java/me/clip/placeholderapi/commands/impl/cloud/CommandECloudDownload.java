@@ -57,7 +57,6 @@ public final class CommandECloudDownload extends PlaceholderCommand {
 
     if (!expansion.isVerified() && !plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions()) {
       Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://api.extendedclip.com");
-      Msg.msg(sender, "&aTo allow the download of unverified expansions set &fcloud_allow_unverified_expansions: true &ain config.yml");
       return;
     }
 
