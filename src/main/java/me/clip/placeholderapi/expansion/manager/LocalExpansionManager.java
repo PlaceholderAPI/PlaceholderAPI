@@ -320,7 +320,9 @@ public final class LocalExpansionManager implements Listener {
    * that call this method directly. It is the equivalent of {@code register(expansion, false)}
    * @param expansion the expansion to register
    * @return if the expansion was registered
+   * @deprecated use {@link #register(PlaceholderExpansion, boolean)} directly
    */
+  @Deprecated
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     return register(expansion, false);
