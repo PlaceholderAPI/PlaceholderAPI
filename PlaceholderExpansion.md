@@ -58,7 +58,9 @@ public class SomeExpansion extends PlaceholderExpansion {
     }
 }
 ```
-Let's quickly break down the different methods you have to implement.
+
+<details><summary>What are these options?</summary>
+<p>
 
 - #### getAuthor
   This method allows you to set the name of the expansion's author.
@@ -73,6 +75,9 @@ Let's quickly break down the different methods you have to implement.
 
 Those are all the neccessary parts for your PlaceholderExpansion.  
 Any other methods that are part of the [`PlaceholderExpansion`][placeholderexpansion] class are optional and will usually not be used, or will default to a specific value. Please read the Javadoc comments of those methods for more information.
+
+</p>
+</details>
 
 You must choose between one of these two methods for handling the actual parsing of placeholders (Unless you're using [Relational Placeholders](#relational-placeholders)):
 
@@ -116,7 +121,8 @@ public class SomeExpansion extends PlaceholderExpansion {
 }
 ```
 
-### Full Example
+<details><summary><h3 title="Click to Open/Close">Full Example</h3></summary>
+<p>
 
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
@@ -174,6 +180,9 @@ public class SomeExpansion extends PlaceholderExpansion {
 }
 ```
 
+</p>
+</details>
+
 ### Register your expansion
 
 The main downside of an internal expansion is, that it can't be loaded automatically by PlaceholderAPI and instead requires you to manually register it.  
@@ -217,7 +226,8 @@ Benefits of this type of expansion are 1) automatic loading through PlaceholderA
 
 Downsides can be a more tedious setup to make sure any required plugin/dependency is loaded before registering the Expansion.
 
-### Full Example (Without Dependency)
+<details><summary><h3 title="Click to Open/Close">Full Example (Without Dependency)</h3></summary>
+<p>
 
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
@@ -266,7 +276,11 @@ public class SomeExpansion extends PlaceholderExpansion {
 }
 ```
 
-### Full example (With Dependency)
+</p>
+</details>
+
+<details><summary><h3 title="Click to Open/Close">Full Example (With Dependency)</h3></summary>
+<p>
 
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
@@ -337,6 +351,9 @@ public class SomeExpansion extends PlaceholderExpansion {
 }
 ```
 
+</p>
+</details>
+
 ----
 
 ## Relational Placeholders
@@ -351,7 +368,8 @@ Relational Placeholders are always prefixed with `rel_`, meaning that a relation
 
 To add relational placeholders will you need to implement the [`Relational`][relational] interface into your Expansion class and override the `onPlaceholderRequest(Player, Player, String)` method.
 
-### Full Example
+<details><summary><h3 title="Click to Open/Close">Full Example</h3></summary>
+<p>
 
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
@@ -413,3 +431,6 @@ public class SomeExpansion extends PlaceholderExpansion implements Relational {
     }
 }
 ```
+
+</p>
+</details>
