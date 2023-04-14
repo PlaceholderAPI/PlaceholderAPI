@@ -3520,34 +3520,83 @@ Please see [this discussion][list] for a list of all expansions officially maint
 - ### **[Marcely's Bedwars](https://www.spigotmc.org/resources/13622/)**
   > NO DOWNLOAD COMMAND
   
+  All placeholders generally support async access as well. You may also find an official list on the [MBedwars Wiki](https://wiki.mbedwars.com/en/Extensions/Placeholders).
+  
+  These are for available each arena, with `<arena>` being the name of it:
   ```
-  %mbedwars_arena-<arena>-maxplayers%
+  %mbedwars_arena-<arena>-displayname%
+  %mbedwars_arena-<arena>-authors%
   %mbedwars_arena-<arena>-players%
+  %mbedwars_arena-<arena>-maxplayers%
+  %mbedwars_arena-<arena>-minplayers%
   %mbedwars_arena-<arena>-status%
   %mbedwars_arena-<arena>-teams%
   %mbedwars_arena-<arena>-teamsize%
+  ```
   
-  %mbedwars_playerarena-current-team%
-  %mbedwars_playerarena-current-team-color%
-  %mbedwars_playerarena-maxplayers%
+  These depend on the arena in which the player is currently playing within:
+  ```
   %mbedwars_playerarena-name%
+  %mbedwars_playerarena-displayname%
+  %mbedwars_playerarena-authors%
   %mbedwars_playerarena-players%
+  %mbedwars_playerarena-maxplayers%
   %mbedwars_playerarena-status%
   %mbedwars_playerarena-teams%
   %mbedwars_playerarena-teamsize%
-  
-  %mbedwars_stats-beds_destroyed%
-  %mbedwars_stats-deaths%
-  %mbedwars_stats-kd%
-  %mbedwars_stats-kills%
-  %mbedwars_stats-loses%
-  %mbedwars_stats-play_time%
-  %mbedwars_stats-rank%
-  %mbedwars_stats-rounds_played%
-  %mbedwars_stats-wins%
-  %mbedwars_stats-wl%
+  %mbedwars_playerarena-current-team%
+  %mbedwars_playerarena-current-team-color%
+  %mbedwars_playerarena-current-team-initials%
+  %mbedwars_playerarena-team-<team>-size%
+  %mbedwars_playerarena-team-<team>-status%
   ```
-
+  
+  These are the total stats of the player.
+  APIs are able to add their own ones, with their general format being `%mbedwars_stats-<id>%`.
+  The ones that MBedwars provides are the following:
+  ```
+  %mbedwars_stats-rank%
+  %mbedwars_stats-wins%
+  %mbedwars_stats-loses%
+  %mbedwars_stats-win_streak%
+  %mbedwars_stats-top_win_streak%
+  %mbedwars_stats-rounds_played%
+  %mbedwars_stats-wl%
+  %mbedwars_stats-kills%
+  %mbedwars_stats-final_kills%
+  %mbedwars_stats-deaths%
+  %mbedwars_stats-final_deaths%
+  %mbedwars_stats-kd%
+  %mbedwars_stats-beds_destroyed%
+  %mbedwars_stats-beds_lost%
+  %mbedwars_stats-play_time%
+  ```
+  
+  These are the stats of the current match of which the player is a part of.
+  APIs are able to add their own ones, with their general format being `%mbedwars_gamestats-<id>%`.
+  The ones that MBedwars provides are the following:
+  ```
+  %mbedwars_gamestats-kills%
+  %mbedwars_gamestats-final_kills%
+  %mbedwars_gamestats-deaths%
+  %mbedwars_gamestats-kd%
+  %mbedwars_gamestats-beds_destroyed%
+  %mbedwars_gamestats-play_time%
+  ```
+  
+  These display the amount of players per mode. You may add own modes using the `players-in-mode-placeholders` config:
+  ```
+  %mbedwars_players-in-mode-all%
+  %mbedwars_players-in-mode-solos%
+  %mbedwars_players-in-mode-doubles%
+  %mbedwars_players-in-mode-trios%
+  %mbedwars_players-in-mode-quads%
+  ```
+  
+  Miscellaneous placeholders:
+  ```
+  %mbedwars_achievements-earned-count%
+  ```
 ----
 
 - ### **[Marriage](https://www.spigotmc.org/resources/81807/)**
