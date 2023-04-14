@@ -3522,7 +3522,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   All placeholders generally support async access as well. You may also find an official list on the [MBedwars Wiki](https://wiki.mbedwars.com/en/Extensions/Placeholders).
   
-  These are for available each arena, with `<arena>` being the name of it:
+  These are available for each arena, with `<arena>` being the name of it:
   ```
   %mbedwars_arena-<arena>-displayname%
   %mbedwars_arena-<arena>-authors%
