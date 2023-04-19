@@ -43,8 +43,8 @@ import org.jetbrains.annotations.NotNull;
 
 public final class PlaceholderAPI {
 
-  private static final Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
-  private static final Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
+  private static Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
+  private static Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
 
   private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
   private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
