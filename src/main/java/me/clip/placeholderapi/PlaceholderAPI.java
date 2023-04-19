@@ -32,6 +32,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Relational;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.replacer.CharsReplacer;
+import me.clip.placeholderapi.replacer.DelegatorReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
@@ -43,8 +44,8 @@ import org.jetbrains.annotations.NotNull;
 
 public final class PlaceholderAPI {
 
-  private static Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
-  private static Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
+  private static final Replacer REPLACER_PERCENT = new DelegatorReplacer(new CharsReplacer(Closure.PERCENT));
+  private static final Replacer REPLACER_BRACKET = new DelegatorReplacer(new CharsReplacer(Closure.BRACKET));
 
   private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
   private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
