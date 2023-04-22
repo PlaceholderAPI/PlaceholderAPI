@@ -744,8 +744,8 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 ----
 
-- ### **Javascript**
-  > /papi ecloud download Javascript
+- ### **[Javascript](https://api.extendedclip.com/expansions/javascript/)**
+  > NO DOWNLOAD COMMAND
   
   Gives you a way, to use javascript, to give a different output, depending on conditions.
   
