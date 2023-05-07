@@ -18,7 +18,7 @@ repositories {
     mavenCentral()
     mavenLocal()
 
-    maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
 }
 
