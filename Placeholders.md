@@ -3413,10 +3413,12 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %lotterysix_currentgame_Now%
+  %lotterysix_currentgame_Now_<SimpleDateFormat>%
   %lotterysix_currentgame_GameNumber%
   %lotterysix_currentgame_GameNumberRaw%
   %lotterysix_currentgame_SpecialName%
   %lotterysix_currentgame_Date%
+  %lotterysix_currentgame_Date_<SimpleDateFormat>%
   %lotterysix_currentgame_NumberOfChoices%
   %lotterysix_currentgame_PricePerBet%
   %lotterysix_currentgame_TotalBets%
@@ -3432,10 +3434,12 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_currentgame_<number>LastDrawn%
   %lotterysix_currentgame_<number>TimesDrawn%
   %lotterysix_lastgame_Now%
+  %lotterysix_lastgame_Now_<SimpleDateFormat>%
   %lotterysix_lastgame_GameNumber%
   %lotterysix_lastgame_GameNumberRaw%
   %lotterysix_lastgame_SpecialName%
   %lotterysix_lastgame_Date%
+  %lotterysix_lastgame_Date_<SimpleDateFormat>%
   %lotterysix_lastgame_NumberOfChoices%
   %lotterysix_lastgame_PricePerBet%
   %lotterysix_lastgame_TotalBets%
@@ -3494,7 +3498,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %lotterysix_stats_total_rounds_participated%
   %lotterysix_stats_total_winnings%
   %lotterysix_stats_highest_won_tier%
-  %lotterysix_stats_pending_transaction%
+  %lotterysix_stats_notify_balance_change%
+  %lotterysix_stats_account_balance%
   %lotterysix_scheduler_interval%
   %lotterysix_scheduler_next%
   ```
