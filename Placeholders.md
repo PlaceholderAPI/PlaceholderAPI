@@ -181,6 +181,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[CraftingStore.net](#craftingstorenet)**
     - **[CursedVIP](#cursedvip)**
     - **[Custom Items](#custom-items)**
+    - **[Custom Advancements](#custom-advancements)**
 
   - ### **D**
     - **[Daily Rewards](#daily-rewards)**
@@ -2388,6 +2389,24 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %cui_version%
   %customitems_version%
+  ```
+
+----
+
+- ### **[Custom Advancements](https://www.spigotmc.org/resources/91167/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %customadvancements_available_advancements% - Displays the number of available advancements for the player
+  %customadvancements_available_advancements_<tree>% - Displays the number of available advancements for a specific advancement tree
+  %customadvancements_completed_advancements% - Displays the number of completed advancements.
+  %customadvancements_completed_advancements_<tree>% - Displays the number of completed advancements for a specific advancement tree.
+  %customadvancements_active_advancements% - Displays the number of active advancements.
+  %customadvancements_active_advancements_<tree>% - Displays the number of active advancements for a specific advancement tree.
+  %customadvancements_progress_percentage_<path>% - Displays the progression in percentages for a specific path (e.g. example.advancement1).
+  %customadvancements_progress_<path>% - Displays the progress made for a specific advancement path.
+  %customadvancements_max_progress_<path>% - Displays the maximum progress for a specific advancement path.
+  %customadvancements_meet_requirements_<path>% - Displays either true or false depending if the player meets all requirements for a specific advancement path.
   ```
 
 ----
