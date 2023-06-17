@@ -180,8 +180,8 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[CraftConomy](#craftconomy)**
     - **[CraftingStore.net](#craftingstorenet)**
     - **[CursedVIP](#cursedvip)**
-    - **[Custom Items](#custom-items)**
     - **[Custom Advancements](#custom-advancements)**
+    - **[Custom Items](#custom-items)**
 
   - ### **D**
     - **[Daily Rewards](#daily-rewards)**
@@ -2383,16 +2383,6 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[Custom Items](https://www.spigotmc.org/resources/63848/)**
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %cui_version%
-  %customitems_version%
-  ```
-
-----
-
 - ### **[Custom Advancements](https://www.spigotmc.org/resources/91167/)**
   > NO DOWNLOAD COMMAND
   
@@ -2407,6 +2397,16 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %customadvancements_progress_<path>% - Displays the progress made for a specific advancement path.
   %customadvancements_max_progress_<path>% - Displays the maximum progress for a specific advancement path.
   %customadvancements_meet_requirements_<path>% - Displays either true or false depending if the player meets all requirements for a specific advancement path.
+  ```
+
+----
+
+- ### **[Custom Items](https://www.spigotmc.org/resources/63848/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %cui_version%
+  %customitems_version%
   ```
 
 ----
