@@ -3739,7 +3739,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 ----
 
 - ### **[McMMO](https://www.spigotmc.org/resources/2445/)**
-  > /papi ecloud download McMMO
+  > NO DOWNLOAD COMMAND
   
   ```
   %mcmmo_level_<skillname>%
