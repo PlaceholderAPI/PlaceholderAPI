@@ -3749,6 +3749,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %mcmmo_xp_remaining_<skillname>%
   %mcmmo_xp_needed_<skillname>%
   %mcmmo_xp_<skillname>%
+  %mcmmo_xprate_<skillname>%
   %mcmmo_power_level%
   %mcmmo_power_level_cap%
   %mcmmo_in_party%
@@ -3756,6 +3757,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %mcmmo_is_party_leader%
   %mcmmo_party_leader%
   %mcmmo_party_size%
+  %mcmmo_xprate%
+  %mcmmo_is_xp_event_active%
   ```
 
 ----
