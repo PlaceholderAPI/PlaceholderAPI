@@ -203,6 +203,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **E**
     - **[Economy Bank](#economy-bank)**
     - **[Enjin & DonationCraft 2.x](#enjin--donationcraft-2x)**
+    - **[EntityControl](#entitycontrol)**
     - **[Envoys](#envoys)**
     - **[EpicFriends](#epicfriends)**
     - **[EpicLevels](#epiclevels)**
@@ -2630,6 +2631,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %enjin_points%
+  ```
+
+----
+
+- ### **[EntityControl](https://polymart.org/resource/218)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %entitycontrol_limit_for_<bukkit_entityname>% : returns the maximum number of <bukkit_entityname> in the region where you're standing
   ```
 
 ----
