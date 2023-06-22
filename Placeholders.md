@@ -422,6 +422,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Vault](#vault)**
     - **[VenturaCalendar](#venturacalendar)**
     - **[ViaVersion](#viaversion)**
+    - **[VKBackPack](#vkbackpack)**
     - **[VoteParty](#voteparty)**
     - **[VoteRoulette](#voteroulette)**
     - **[VotingPlugin](#votingplugin)**
@@ -5994,7 +5995,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 ----
 
 - ### **[TokenEnchant](https://polymart.org/resource/155)**
-  > /papi ecloud download TokenEnchant
+  > NO DOWNLOAD COMMAND
 
   If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
   
@@ -6325,6 +6326,17 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   ```
   %viaversion_player_protocol_id%
   %viaversion_player_protocol_version%
+  ```
+
+----
+
+- ### **[VKBackPack](https://polymart.org/resource/178)/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %vkbackpack_bpname% : The name of the backpack the player is currently holding
+  %vkbackpack_bpslots% : The number of slots of the backpack the player is currently holding.
+  %vkbackpack_maxbp% : The maximum number of backpacks a player can have.
   ```
 
 ----
