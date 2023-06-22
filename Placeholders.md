@@ -144,6 +144,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[AParkour](#aparkour)**
     - **[ASkyBlock](#askyblock)**
     - **[AsyncKeepAlive](#asynckeepalive)**
+    - **[AutoPickup](#autopickup)**
     - **[AutoRank](#autorank)**
     - **[AutoSell](#autosell)**
 
@@ -421,7 +422,6 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Vault](#vault)**
     - **[VenturaCalendar](#venturacalendar)**
     - **[ViaVersion](#viaversion)**
-    - **[VKAutoPickup](#vkautopickup)**
     - **[VoteParty](#voteparty)**
     - **[VoteRoulette](#voteroulette)**
     - **[VotingPlugin](#votingplugin)**
@@ -1880,6 +1880,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %ath_date%
   %ath_count%
+  ```
+
+----
+
+- ### **[AutoPickup](https://polymart.org/resource/153)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %autopickup_pickup%
+  %autopickup_autosell%
+  %autopickup_autoplanting%
+  %autopickup_autosmelt%
+  %autopickup_autoblock%
   ```
 
 ----
@@ -6312,19 +6325,6 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   ```
   %viaversion_player_protocol_id%
   %viaversion_player_protocol_version%
-  ```
-
-----
-
-- ### **[VKAutoPickup](https://polymart.org/resource/vkautopickup.153)**
-  > /papi ecloud download VKAutoPickup
-  
-  ```
-  %vkautopickup_pickup%
-  %vkautopickup_autosell%
-  %vkautopickup_autoplanting%
-  %vkautopickup_autosmelt%
-  %vkautopickup_autoblock%
   ```
 
 ----
