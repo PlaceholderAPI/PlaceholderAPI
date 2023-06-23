@@ -51,16 +51,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
   private boolean areUnverifiedExpansionsAllowed(@NotNull final PlaceholderAPIPlugin plugin) {
     String env = System.getenv("PAPI_ALLOW_UNVERIFIED_EXPANSIONS");
     if (env != null) {
-      switch (env.toLowerCase()) {
-        case "true":
-        case "yes":
-        case "1":
-          return true;
-        case "false":
-        case "no":
-        case "0":
-          return false;
-      }
+      return env.equalsIgnoreCase("true");
     }
 
     return plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions();
