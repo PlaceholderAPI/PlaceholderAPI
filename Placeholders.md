@@ -144,6 +144,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[AParkour](#aparkour)**
     - **[ASkyBlock](#askyblock)**
     - **[AsyncKeepAlive](#asynckeepalive)**
+    - **[AutoPickup](#autopickup)**
     - **[AutoRank](#autorank)**
     - **[AutoSell](#autosell)**
 
@@ -203,6 +204,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **E**
     - **[Economy Bank](#economy-bank)**
     - **[Enjin & DonationCraft 2.x](#enjin--donationcraft-2x)**
+    - **[EntityControl](#entitycontrol)**
     - **[Envoys](#envoys)**
     - **[EpicFriends](#epicfriends)**
     - **[EpicLevels](#epiclevels)**
@@ -420,7 +422,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[Vault](#vault)**
     - **[VenturaCalendar](#venturacalendar)**
     - **[ViaVersion](#viaversion)**
-    - **[VKAutoPickup](#vkautopickup)**
+    - **[VKBackPack](#vkbackpack)**
     - **[VoteParty](#voteparty)**
     - **[VoteRoulette](#voteroulette)**
     - **[VotingPlugin](#votingplugin)**
@@ -1883,6 +1885,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[AutoPickup](https://polymart.org/resource/153)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %autopickup_pickup%
+  %autopickup_autosell%
+  %autopickup_autoplanting%
+  %autopickup_autosmelt%
+  %autopickup_autoblock%
+  ```
+
+----
+
 - ### **[AutoRank](https://www.spigotmc.org/resources/3239/)**
   > /papi ecloud download AutoRank
   
@@ -2630,6 +2645,15 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %enjin_points%
+  ```
+
+----
+
+- ### **[EntityControl](https://polymart.org/resource/218)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %entitycontrol_limit_for_<bukkit_entityname>% : returns the maximum number of <bukkit_entityname> in the region where you're standing
   ```
 
 ----
@@ -5971,7 +5995,7 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 ----
 
 - ### **[TokenEnchant](https://polymart.org/resource/155)**
-  > /papi ecloud download TokenEnchant
+  > NO DOWNLOAD COMMAND
 
   If you add ```_long``` to the cost related placeholder, it will returne a number without comma/decimal point.
   
@@ -6306,15 +6330,13 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
 
 ----
 
-- ### **[VKAutoPickup](https://polymart.org/resource/vkautopickup.153)**
-  > /papi ecloud download VKAutoPickup
+- ### **[VKBackPack](https://polymart.org/resource/178)/)**
+  > NO DOWNLOAD COMMAND
   
   ```
-  %vkautopickup_pickup%
-  %vkautopickup_autosell%
-  %vkautopickup_autoplanting%
-  %vkautopickup_autosmelt%
-  %vkautopickup_autoblock%
+  %vkbackpack_bpname% : The name of the backpack the player is currently holding
+  %vkbackpack_bpslots% : The number of slots of the backpack the player is currently holding.
+  %vkbackpack_maxbp% : The maximum number of backpacks a player can have.
   ```
 
 ----
