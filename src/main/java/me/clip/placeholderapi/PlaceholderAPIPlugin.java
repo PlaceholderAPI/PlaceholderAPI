@@ -23,6 +23,9 @@ package me.clip.placeholderapi;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.github.Anon8281.universalScheduler.UniversalScheduler;
+import com.github.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -52,6 +55,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @NotNull
   private static final Version VERSION;
+  private static TaskScheduler SCHEDULER;
   private static PlaceholderAPIPlugin instance;
 
   static {
@@ -140,6 +144,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
+    SCHEDULER = UniversalScheduler.getScheduler(this);
+    
     setupCommand();
     setupMetrics();
     setupExpansions();
@@ -162,7 +168,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    PlaceholderAPIPlugin.getScheduler().cancelTasks(this);
 
     adventure.close();
     adventure = null;
@@ -213,6 +219,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     return config;
   }
 
+  public static TaskScheduler getScheduler() {
+    return SCHEDULER;
+  }
+
   private void setupCommand() {
     final PluginCommand pluginCommand = getCommand("placeholderapi");
     if (pluginCommand == null) {
@@ -250,8 +260,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (final ClassNotFoundException ignored) {
-      Bukkit.getScheduler()
-          .runTaskLater(this, () -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
+      PlaceholderAPIPlugin.getScheduler()
+          .runTaskLater(() -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
     }
   }
 
