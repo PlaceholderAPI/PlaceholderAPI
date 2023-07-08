@@ -294,21 +294,24 @@ public final class LocalExpansionManager implements Listener {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
     }
     
-    Msg.info("Successfully registered expansion: %s [%s]", expansion.getIdentifier(),
-        expansion.getVersion());
+    Msg.info(
+            "Successfully registered %s expansion: %s [%s]",
+            expansion.getExpansionType().name().toLowerCase(),
+            expansion.getIdentifier(),
+            expansion.getVersion()
+    );
 
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
     }
 
-    if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
-      final Optional<CloudExpansion> cloudExpansionOptional =
-          plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
+    // Check eCloud for updates only if the expansion is external
+    if (plugin.getPlaceholderAPIConfig().isCloudEnabled() && expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL) {
+      final Optional<CloudExpansion> cloudExpansionOptional = plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
       if (cloudExpansionOptional.isPresent()) {
         CloudExpansion cloudExpansion = cloudExpansionOptional.get();
         cloudExpansion.setHasExpansion(true);
-        cloudExpansion.setShouldUpdate(
-            !cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
+        cloudExpansion.setShouldUpdate(!cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
       }
     }
 
