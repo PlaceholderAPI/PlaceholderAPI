@@ -187,6 +187,8 @@ public final class LocalExpansionManager implements Listener {
           return Optional.empty();
         }
       }
+
+      expansion.setExpansionType(PlaceholderExpansion.Type.EXTERNAL);
       
       if (!expansion.register()) {
         Msg.warn("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
@@ -212,11 +214,10 @@ public final class LocalExpansionManager implements Listener {
   /**
    * Attempt to register a {@link PlaceholderExpansion}
    * @param expansion the expansion to register
-   * @param isExternalExpansion whether the expansion is external (loaded from the {@link LocalExpansionManager#EXPANSIONS_FOLDER_NAME expansions folder})
    * @return if the expansion was registered
    */
   @ApiStatus.Internal
-  public boolean register(@NotNull final PlaceholderExpansion expansion, final boolean isExternalExpansion) {
+  public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
 
     if (!expansion.canRegister()) {
@@ -224,9 +225,8 @@ public final class LocalExpansionManager implements Listener {
     }
 
     // Avoid loading two external expansions with the same identifier
-    if (isExternalExpansion && expansions.containsKey(identifier)) {
-      Msg.warn("Failed to load expansion %s. Identifier is already in use.",
-          expansion.getIdentifier());
+    if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
+      Msg.warn("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
       return false;
     }
 
@@ -313,19 +313,6 @@ public final class LocalExpansionManager implements Listener {
     }
 
     return true;
-  }
-
-  /**
-   * Overload for {@link #register(PlaceholderExpansion, boolean)} to provide backwards compatibility for expansions / plugins
-   * that call this method directly. It is the equivalent of {@code register(expansion, false)}
-   * @param expansion the expansion to register
-   * @return if the expansion was registered
-   * @deprecated use {@link #register(PlaceholderExpansion, boolean)} directly
-   */
-  @Deprecated
-  @ApiStatus.Internal
-  public boolean register(@NotNull final PlaceholderExpansion expansion) {
-    return register(expansion, false);
   }
 
   @ApiStatus.Internal
