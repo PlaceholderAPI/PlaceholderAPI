@@ -35,7 +35,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - *No Expansions*
   
   - ### **E**
-    - *No Expansions*
+    - **[Enchantment](#enchantment)**
   
   - ### **F**
     - **[Formatter](#formatter)**
@@ -698,6 +698,21 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   %cooldownbar_percentage_{placeholder}_c:<MainCooldown>%
   %cooldownbar_percentage_{placeholder}_d:<AmountOfDecimal>%
   %cooldownbar_percentage_{essentials_kit_time_until_available_tools}_c:120_d:0%
+  ```
+
+----
+
+- ### **Enchantment**
+  > /papi ecloud download Enchantment
+
+  `<>` is required.
+  
+  ```
+  %enchantment_list%  # a list of enchantments on the item a player is holding (separated by ',')
+  %enchantment_listLF%  # a list of enchantments on the item a player is holding (separated by '\n')
+  %enchantment_roman_list%  # a list of enchantments on the item a player is holding (separated by ',')
+  %enchantment_roman_listLF%  # a list of enchantments on the item a player is holding (separated by '\n')
+  %enchantment_<enchantment_name>_level% # a level of the specified enchantment on the item a player is holding
   ```
 
 ----
