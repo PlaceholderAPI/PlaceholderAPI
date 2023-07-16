@@ -703,7 +703,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **Enchantment**
-  > /papi ecloud download Enchantment
+  > Download it from [here](https://github.com/TeamVK/PAPI-Enchantment/releases)
+  
+  More info about this expansion can be found on the [GitHub-Repository](https://github.com/TeamVK/PAPI-Enchantment).
 
   `<>` is required.
   
