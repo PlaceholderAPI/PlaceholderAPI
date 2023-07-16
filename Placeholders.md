@@ -853,9 +853,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **NumberFormatter**
-  > /papi ecloud download NumberFormatter
+  > Download it from [here](https://github.com/TeamVK/PAPI-NumberFormatter/releases)
   
-  More info about this expansion can be found on the [PAPI-NumberFormatter](https://polymart.org/resource/3316)).
+  More info about this expansion can be found on the [PAPI-NumberFormatter](https://github.com/TeamVK/PAPI-NumberFormatter).
   
   For instance:
   
