@@ -1146,9 +1146,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **RandomNumber**
-  > /papi ecloud download RandomNumber
+  > Download it from [here](https://github.com/TeamVK/PAPI-RandomNumber/releases)
+
+  More info about the expansion can be found on the [GitHub-Repository](https://github.com/TeamVK/PAPI-RandomNumber).
   
-  It returns a auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer number, the returned random number will also be an integer.
+  It returns an auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer numbers, the returned random number will also be an integer.
   
   ```
   %randomnumber_number%
