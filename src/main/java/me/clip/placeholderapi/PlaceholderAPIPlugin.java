@@ -55,7 +55,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @NotNull
   private static final Version VERSION;
-  private static TaskScheduler SCHEDULER;
+  private static TaskScheduler scheduler;
   private static PlaceholderAPIPlugin instance;
 
   static {
@@ -144,7 +144,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    SCHEDULER = UniversalScheduler.getScheduler(this);
+    scheduler = UniversalScheduler.getScheduler(this);
     
     setupCommand();
     setupMetrics();
@@ -220,7 +220,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   }
 
   public static TaskScheduler getScheduler() {
-    return SCHEDULER;
+    return scheduler;
   }
 
   private void setupCommand() {
