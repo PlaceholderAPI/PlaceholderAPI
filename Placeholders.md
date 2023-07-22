@@ -2665,7 +2665,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[EntityClearer](https://www.spigotmc.org/resources/90802/)
+- ### **[EntityClearer](https://www.spigotmc.org/resources/90802/)**
   > NO DOWNLOAD COMMAND
 
   See Spigot page for placeholder descriptions
