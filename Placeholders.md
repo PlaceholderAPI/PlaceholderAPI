@@ -204,6 +204,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **E**
     - **[Economy Bank](#economy-bank)**
     - **[Enjin & DonationCraft 2.x](#enjin--donationcraft-2x)**
+    - **[EntityClearer](#entityclearer)**
     - **[EntityControl](#entitycontrol)**
     - **[Envoys](#envoys)**
     - **[EpicFriends](#epicfriends)**
@@ -2660,6 +2661,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   
   ```
   %enjin_points%
+  ```
+
+----
+
+- ### **[EntityClearer](https://www.spigotmc.org/resources/90802/)**
+  > NO DOWNLOAD COMMAND
+
+  See Spigot page for placeholder descriptions
+  
+  ```
+  %entityclearer_remaining_minutes%
+  %entityclearer_remaining_seconds%
+  %entityclearer_remaining_seconds_left%
   ```
 
 ----
