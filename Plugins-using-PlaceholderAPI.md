@@ -316,7 +316,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
   - [ ] Provides own placeholders. [Link]
 - **[EntityClearer](https://www.spigotmc.org/resources/90802/)**
   - [ ] Supports placeholders.
-  - [x] Provides own placeholders. [**[[Link|Placeholders#:entityclearer]]**]
+  - [x] Provides own placeholders. [**[[Link|Placeholders#entityclearer]]**]
 - **[Envoys](https://www.spigotmc.org/resources/20357/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#envoys]]**]
