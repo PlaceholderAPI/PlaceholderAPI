@@ -187,6 +187,8 @@ public final class LocalExpansionManager implements Listener {
           return Optional.empty();
         }
       }
+
+      expansion.setExpansionType(PlaceholderExpansion.Type.EXTERNAL);
       
       if (!expansion.register()) {
         Msg.warn("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
@@ -209,6 +211,11 @@ public final class LocalExpansionManager implements Listener {
     return Optional.empty();
   }
 
+  /**
+   * Attempt to register a {@link PlaceholderExpansion}
+   * @param expansion the expansion to register
+   * @return if the expansion was registered
+   */
   @ApiStatus.Internal
   public boolean register(@NotNull final PlaceholderExpansion expansion) {
     final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
@@ -216,10 +223,10 @@ public final class LocalExpansionManager implements Listener {
     if (!expansion.canRegister()) {
       return false;
     }
-    
-    if (expansions.containsKey(identifier)) {
-      Msg.warn("Failed to load expansion %s. Identifier is already in use.",
-          expansion.getIdentifier());
+
+    // Avoid loading two external expansions with the same identifier
+    if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
+      Msg.warn("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
       return false;
     }
 
@@ -287,21 +294,24 @@ public final class LocalExpansionManager implements Listener {
       Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
     }
     
-    Msg.info("Successfully registered expansion: %s [%s]", expansion.getIdentifier(),
-        expansion.getVersion());
+    Msg.info(
+            "Successfully registered %s expansion: %s [%s]",
+            expansion.getExpansionType().name().toLowerCase(),
+            expansion.getIdentifier(),
+            expansion.getVersion()
+    );
 
     if (expansion instanceof Taskable) {
       ((Taskable) expansion).start();
     }
 
-    if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
-      final Optional<CloudExpansion> cloudExpansionOptional =
-          plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
+    // Check eCloud for updates only if the expansion is external
+    if (plugin.getPlaceholderAPIConfig().isCloudEnabled() && expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL) {
+      final Optional<CloudExpansion> cloudExpansionOptional = plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
       if (cloudExpansionOptional.isPresent()) {
         CloudExpansion cloudExpansion = cloudExpansionOptional.get();
         cloudExpansion.setHasExpansion(true);
-        cloudExpansion.setShouldUpdate(
-            !cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
+        cloudExpansion.setShouldUpdate(!cloudExpansion.getLatestVersion().equals(expansion.getVersion()));
       }
     }
 
