@@ -1826,7 +1826,7 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
-- ### **[AngelChest](https://www.spigotmc.org/resources/angelchest-free.60383/)**
+- ### **[AngelChest](https://www.spigotmc.org/resources/60383/)**
   > NO DOWNLOAD COMMAND
 
   ```
