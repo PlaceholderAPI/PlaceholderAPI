@@ -131,6 +131,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[BetonQuest](https://www.spigotmc.org/resources/2117/)
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#betonquest]]**]
+- **[BetterTeams](https://www.spigotmc.org/resources/17129/)**
+  - [ ] Supports placeholders.
+  - [X] Provides own placeholders. [**[[Link|Placeholders#betterteams]]**]  
 - **[Big Doors Opener](https://www.spigotmc.org/resources/80805/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
