@@ -157,6 +157,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[BedWars1058](#bedwars1058)**
     - **[BentoBox](#bentobox)**
     - **[BetonQuest](#betonquest)**
+    - **[BetterTeams](#betterteams)**
     - **[BlockParty](#blockparty)**
     - **[BlockQuest](#blockquest)**
     - **[Boxing](#boxing)**
@@ -2110,6 +2111,22 @@ Please see [this discussion][list] for a list of all expansions officially maint
   ```
   %betonquest_<variable>%
   %betonquest_<package>:<variable>%
+  ```
+
+----
+
+- ### **[BetterTeams](https://github.com/booksaw/BetterTeams/wiki/PlaceholderAPI)**
+  > NO DOWNLOAD COMMAND
+  
+  Please check the [wiki](https://github.com/booksaw/PlaceholderAPI) for more info.
+  
+  ```
+  %betterteams_<variable>%
+  %betterteams_position_<variable>_<rank>%
+  %betterteams_balanceposition_<variable>_<rank>%
+  %betterteams_membersposition_<variable>_<rank>%
+  %betterteams_static_<variable>_<team>%
+  %betterteams_staticplayer_<variable>_<player>%
   ```
 
 ----
