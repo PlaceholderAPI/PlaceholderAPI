@@ -706,7 +706,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **Enchantment**
-  > /papi ecloud download Enchantment
+  > Download it from [here](https://github.com/TeamVK/PAPI-Enchantment/releases)
+  
+  More info about this expansion can be found on the [GitHub-Repository](https://github.com/TeamVK/PAPI-Enchantment).
 
   `<>` is required.
   
@@ -854,9 +856,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **NumberFormatter**
-  > /papi ecloud download NumberFormatter
+  > Download it from [here](https://github.com/TeamVK/PAPI-NumberFormatter/releases)
   
-  More info about this expansion can be found on the [PAPI-NumberFormatter](https://polymart.org/resource/3316)).
+  More info about this expansion can be found on the [PAPI-NumberFormatter](https://github.com/TeamVK/PAPI-NumberFormatter).
   
   For instance:
   
@@ -1147,9 +1149,11 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 ----
 
 - ### **RandomNumber**
-  > /papi ecloud download RandomNumber
+  > Download it from [here](https://github.com/TeamVK/PAPI-RandomNumber/releases)
+
+  More info about the expansion can be found on the [GitHub-Repository](https://github.com/TeamVK/PAPI-RandomNumber).
   
-  It returns a auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer number, the returned random number will also be an integer.
+  It returns an auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer numbers, the returned random number will also be an integer.
   
   ```
   %randomnumber_number%
