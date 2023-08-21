@@ -665,6 +665,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[PlotSquared](https://www.spigotmc.org/resources/1177/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#plotsquared]]**]
+- **[PocketHorses](https://www.spigotmc.org/resources/111158/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#pockethorses]]**]
 - **[PointsAPI](https://www.spigotmc.org/resources/13957/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#pointsapi]]**]
@@ -680,6 +683,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[PrefiX](https://www.spigotmc.org/resources/70359/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#prefix]]**]
+- **[PremiumReports](https://www.spigotmc.org/resources/111482/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#premiumreports]]**]
 - **[PremiumVanish](https://www.spigotmc.org/resources/14404/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#premiumvanish]]**]
@@ -999,6 +1005,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[UltimateClaims](https://songoda.com/marketplace/product/65)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ultimateclaims]]**]
+- **[UltimateServerManager](https://www.spigotmc.org/resources/112006/)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#ultimateservermanager]]**]
 - **[UltimateSigns](https://www.spigotmc.org/resources/72462/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders.
