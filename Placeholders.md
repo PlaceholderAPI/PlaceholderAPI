@@ -320,10 +320,12 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[PlaytimeRewards](#playtimerewards)**
     - **[PlayerPoints](#playerpoints)**
     - **[PlotSquared](#plotsquared)**
+    - **[PocketHorses](#pockethorses)**
     - **[PointsAPI](#pointsapi)**
     - **[PowerBoard](#powerboard)**
     - **[PowerRanks](#powerranks)**
     - **[PrefiX](#prefix)**
+    - **[PremiumReports](#premiumreports)**
     - **[PremiumVanish](#premiumvanish)**
     - **[Prison](#prison)**
     - **[PrisonMines](#prisonmines)**
@@ -412,6 +414,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
   - ### **U**
     - **[UltimateChat](#ultimatechat)**
     - **[UltimateClaims](#ultimateclaims)**
+    - **[UltimateServerManager](#ultimateservermanager)**
     - **[UltimateVotes](#ultimatevotes)**
     - **[Ultra Economy](#ultra-economy)**
     - **[Ultra Motd](#ultra-motd)**
@@ -4467,6 +4470,28 @@ Please see [this discussion][list] for a list of all expansions officially maint
 
 ----
 
+- ### **[PocketHorses](https://www.spigotmc.org/resources/111158/)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %pockethorses_<horse>_id%
+  %pockethorses_<horse>_displayName%
+  %pockethorses_<horse>_color%
+  %pockethorses_<horse>_style%
+  %pockethorses_<horse>_speed%
+  %pockethorses_<horse>_jumpStrength%
+  %pockethorses_<horse>_maxHealth%
+  %pockethorses_<horse>_buyable%
+  %pockethorses_<horse>_price%
+  %pockethorses_<horse>_permission%
+  %pockethorses_<horse>_storage%
+  %pockethorses_<horse>_recyclable%
+  %pockethorses_<horse>_recyclePrice%
+  %pockethorses_<horse>_model%
+  ```
+
+----
+
 - ### **[PointsAPI](https://www.spigotmc.org/resources/13957/)**
   > NO DOWNLOAD COMMAND
   
@@ -4526,6 +4551,19 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %suffix_tag%
   %suffix_endchar%
   %suffix_namecolor%
+  ```
+
+----
+
+- ### **[PremiumReports](https://www.spigotmc.org/resources/111482/)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %premiumreports_points%
+  %premiumreports_blocked%
+  %premiumreports_reports%
+  %premiumreports_validReports%
+  %premiumreports_invalidReports%
   ```
 
 ----
@@ -6282,6 +6320,22 @@ All placeholders are listed here: https://wiki.staffplusplus.org/integrations/pa
   %ultimateclaims_totalpower%
   %ultimateclaims_remainingpower%
   %ultimateclaims_totalchunks%
+  ```
+
+----
+
+- ### **[UltimateServerManager](https://www.spigotmc.org/resources/112006/)**
+  > NO DOWNLOAD COMMAND
+
+  ```
+  %usm_plugins%
+  %usm_uptime%
+  %usm_tps%
+  %usm_allocatedMemory%
+  %usm_maxMemory%
+  %usm_<world>_chunks%
+  %usm_<world>_entities%
+  %usm_<world>_tiles%
   ```
 
 ----
