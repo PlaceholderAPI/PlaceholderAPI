@@ -56,27 +56,61 @@ dependencies {
 ```
 
 ### Set PlaceholderAPI as (soft)depend
-Next step is to go to your plugin.yml and add PlaceholderAPI as a depend or softdepend, depending (no pun intended) on if it is optional or not.
+Next step is to go to your plugin.yml or paper-plugin.yml and add PlaceholderAPI as a depend or softdepend, depending (no pun intended) on if it is optional or not.
 
 **Example Softdepend**:
-```yaml
-name: ExamplePlugin
-version: 1.0
-author: author
-main: your.main.path.here
 
-softdepend: [PlaceholderAPI] # This is used, if your plugin works without PlaceholderAPI.
-```
+- `plugin.yml`
+  ```yaml
+  name: ExamplePlugin
+  version: 1.0
+  author: author
+  main: your.main.path.Here
+  
+  # This sets PlaceholderAPI as an optional dependency for your plugin.
+  softdepend: [PlaceholderAPI]
+  ```
+- `paper-plugin.yml`
+  ```yaml
+  name: ExamplePlugin
+  version: 1.0
+  author: author
+  main: your.main.path.Here
+  
+  dependencies:
+    server:
+      PlaceholderAPI:
+        # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
+        load: BEFORE
+        required: false
+  ```
 
 **Example Depend**:
-```yaml
-name: ExamplePlugin
-version: 1.0
-author: author
-main: your.main.path.here
 
-depend: [PlaceholderAPI] # If your plugin requires PlaceholderAPI, to work, use this.
-```
+- `plugin.yml`
+  ```yaml
+  name: ExamplePlugin
+  version: 1.0
+  author: author
+  main: your.main.path.Here
+  
+  # This sets PlaceholderAPI as an optional dependency for your plugin.
+  depend: [PlaceholderAPI]
+  ```
+- `paper-plugin.yml`
+  ```yaml
+  name: ExamplePlugin
+  version: 1.0
+  author: author
+  main: your.main.path.Here
+  
+  dependencies:
+    server:
+      PlaceholderAPI:
+        # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
+        load: BEFORE
+        required: true
+  ```
 
 ## Adding placeholders to PlaceholderAPI
 
