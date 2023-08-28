@@ -136,8 +136,8 @@ public final class PlaceholderAPI {
    * @return String containing all translated placeholders
    */
   @NotNull
-  public static List<String> setBracketPlaceholders(final OfflinePlayer player,
-      @NotNull final List<String> text) {
+  public static List<@NotNull String> setBracketPlaceholders(final OfflinePlayer player,
+      @NotNull final List<@NotNull String> text) {
     return text.stream().map(line -> setBracketPlaceholders(player, line))
         .collect(Collectors.toList());
   }
