@@ -150,7 +150,8 @@ public final class PlaceholderAPI {
    * @param text Text to set the placeholder values in
    * @return String containing all translated placeholders
    */
-  public static String setBracketPlaceholders(Player player, String text) {
+  @NotNull
+  public static String setBracketPlaceholders(Player player, @NotNull String text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
   
