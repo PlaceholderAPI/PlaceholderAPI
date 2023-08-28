@@ -162,7 +162,8 @@ public final class PlaceholderAPI {
    * @param text List of Strings to set the placeholder values in
    * @return String containing all translated placeholders
    */
-  public static List<String> setBracketPlaceholders(Player player, List<String> text) {
+  @NotNull
+  public static List<String> setBracketPlaceholders(Player player, @NotNull List<String> text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
 
