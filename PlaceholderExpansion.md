@@ -12,10 +12,10 @@ You can download Expansions either directly from the eCloud yourself, or downloa
 
 - [Getting started](#getting-started)
   - [Common Parts](#common-parts)
-- [Making an internal Expansion](#making-an-internal-expansion)
+- [Making an Internal Expansion](#making-an-internal-expansion)
   - [Full Example](#full-example)
-  - [Register your Expansion](#register-your-expansion)
-- [Making an external Expansion](#making-an-external-expansion)
+  - [Register Your Expansion](#register-your-expansion)
+- [Making an External Expansion](#making-an-external-expansion)
   - [Full Example (Without Dependency)](#full-example-without-dependency)
   - [Full Example (With Dependency)](#full-example-with-dependency)
 - [Relational Placeholders](#relational-placeholders)
@@ -92,7 +92,7 @@ PlaceholderAPI will **always** call `onRequest(OfflinePlayer, String)` in an exp
 
 ----
 
-## Making an internal Expansion
+## Making an Internal Expansion
 
 Internal PlaceholderExpansions are classes directly implemented into the plugin they depend on. The main benefit is, that you're not required to do any `canRegister()` check for your own plugin, as it is loaded within it.  
 Another benefit is that you can more easily access plugin data using Dependency Injection should an API not be accessible for the plugin.
@@ -183,7 +183,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 </p>
 </details>
 
-### Register your expansion
+### Register Your Expansion
 
 The main downside of an internal expansion is, that it can't be loaded automatically by PlaceholderAPI and instead requires you to manually register it.  
 To do that, create a new instance of your Expansion class and call the `register()` method of it.
@@ -212,7 +212,7 @@ public class SomePlugin extends JavaPlugin {
 
 ----
 
-## Making an external Expansion
+## Making an External Expansion
 
 External expansions are separate Jar files containing the PlaceholderExpansion extending class.  
 They are recommended for the following scenarios:
@@ -374,7 +374,7 @@ To add relational placeholders will you need to implement the [`Relational`][rel
 > Please read the [`Common Parts` Section](#common-parts) for details on all the methods.
 
 Below is a full example of using Relational Placeholders.  
-For the sake of simplicity are we using parts of the [internal Expansion Example](#making-an-internal-expansion) here and assume that the `SomePlugin` class offers a `areFriends(Player, Player)` method that returns a boolean value.
+For the sake of simplicity are we using parts of the [Internal Expansion Example](#making-an-internal-expansion) here and assume that the `SomePlugin` class offers a `areFriends(Player, Player)` method that returns a boolean value.
 
 ```java
 package at.helpch.placeholderapi.example.expansions;
