@@ -48,6 +48,15 @@ public final class CommandECloudDownload extends PlaceholderCommand {
             .anyMatch(s -> s.equalsIgnoreCase(name));
   }
 
+  private boolean areUnverifiedExpansionsAllowed(@NotNull final PlaceholderAPIPlugin plugin) {
+    String env = System.getenv("PAPI_ALLOW_UNVERIFIED_EXPANSIONS");
+    if (env != null) {
+      return env.equalsIgnoreCase("true");
+    }
+
+    return plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions();
+  }
+
   @Override
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
@@ -72,7 +81,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
       return;
     }
 
-    if (!expansion.isVerified() && !plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions()) {
+    if (!expansion.isVerified() && !this.areUnverifiedExpansionsAllowed(plugin)) {
       Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
       return;
     }
