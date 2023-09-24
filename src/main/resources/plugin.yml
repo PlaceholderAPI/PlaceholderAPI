@@ -37,7 +37,6 @@ permissions:
       placeholderapi.ecloud.info: true
       placeholderapi.ecloud.list: true
       placeholderapi.ecloud.clear: true
-      placeholderapi.ecloud.toggle: true
       placeholderapi.ecloud.status: true
       placeholderapi.ecloud.update: true
       placeholderapi.ecloud.refresh: true
@@ -82,9 +81,6 @@ permissions:
   placeholderapi.ecloud.clear:
     default: "op"
     description: "Allows you to clear the local eCloud expansion cache"
-  placeholderapi.ecloud.toggle:
-    default: "op"
-    description: "Allows you to toggle/enable/disable the eCloud manager"
   placeholderapi.ecloud.status:
     default: "op"
     description: "Allows you to view the status of eCloud expansions"
