@@ -1159,10 +1159,10 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   It returns an auto-scaled random number. If you did not specify the scale, the scale will be automatically computed.  If both min and max are integer numbers, the returned random number will also be an integer.
   
   ```
-  %randomnumber_number%
-  %randomnumber_number_scale%
-  %randomnumber_number_min_max%
-  %randomnumber_number_min_max_scale%
+  %randomnumber_value%
+  %randomnumber_value_scale%
+  %randomnumber_value_min_max%
+  %randomnumber_value_min_max_scale%
   ```
 
 ----
