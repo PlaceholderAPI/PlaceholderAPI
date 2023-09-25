@@ -50,5 +50,5 @@ If you would like to create your own Placeholder Expansion for PlaceholderAPI, t
 - [Placeholder List]
 - [Spigot Page][spigot]
 - [Hangar Page][hangar]
-- [Build By Bit][bbb]
+- [BuildByBit Page][bbb]
 - [Plugin Statistics][statistics]
