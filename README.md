@@ -6,7 +6,7 @@
 [discord]: https://discord.gg/HelpChat
 [discussion]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
 
-[expansion-generator]: https://www.andre601.ch/Expansion-Wiki-Generator/
+[expansion-generator]: https://papi.andre601.ch
 
 [andre]: https://github.com/Andre601
 [andrew]: https://github.com/Andrew-Chen-Wang
