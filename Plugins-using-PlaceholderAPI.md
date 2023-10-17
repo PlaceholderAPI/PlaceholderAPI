@@ -269,6 +269,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Daily Rewards](https://www.spigotmc.org/resources/16708)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#daily-rewards]]**]
+- **[DecentHolograms](https://www.spigotmc.org/resources/96927/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 - **[DeliveryMan](https://www.spigotmc.org/resources/14131/)**
   - [ ] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#deliveryman]]**]
