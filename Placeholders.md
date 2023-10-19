@@ -213,6 +213,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[EpicLevels](#epiclevels)**
     - **[essCore](#esscore)**
     - **[Essentials](#essentials)**
+    - **[EventCore](#eventcore)**
     - **[EZBlocks](#ezblocks)**
     - **[EZPrestige](#ezprestige)**
     - **[EZRanksPro](#ezrankspro)**
@@ -2836,6 +2837,17 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %essentials_baltop_player_<rank>%
   %essentials_baltop_rank%
   %essentials_baltop_player_stripped_<num>%
+  ```
+
+----
+
+- ### **[EventCore](www.spigotmc.org/resources/113142/)**
+  > NO DOWNLOAD COMMAND
+  
+  ```
+  %eventcore_alive%
+  %eventcore_dead%
+  %eventcore_status%
   ```
 
 ----
