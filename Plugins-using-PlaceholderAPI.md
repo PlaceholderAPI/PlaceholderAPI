@@ -347,6 +347,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Essentials](https://ci.ender.zone/job/EssentialsX/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#essentials]]**]
+- **[EventCore](https://www.spigotmc.org/resources/113142/)**
+  - [ ] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#eventcore]]**]
 - **[EZBlocks](https://www.spigotmc.org/resources/1499/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#ezblocks]]**]
