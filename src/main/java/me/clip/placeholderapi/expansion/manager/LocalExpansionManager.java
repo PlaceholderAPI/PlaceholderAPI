@@ -38,6 +38,8 @@ import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
+
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
@@ -52,6 +54,7 @@ import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
 import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
+import me.clip.placeholderapi.util.ValidateUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -175,11 +178,20 @@ public final class LocalExpansionManager implements Listener {
       if(expansion == null){
         return Optional.empty();
       }
-      
+
       Objects.requireNonNull(expansion.getAuthor(), "The expansion author is null!");
       Objects.requireNonNull(expansion.getIdentifier(), "The expansion identifier is null!");
       Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
-      
+
+      if(PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().checkVulnerableExpansions() && ValidateUtil.checkExpansion(expansion)) {
+        Msg.warn("Warning expansion %s contains a security vulnerability!", expansion.getIdentifier());
+        Msg.warn("Please update or remove it to prevent security issues.");
+        Msg.warn("If you think this is an error, disable this warning at config.yml.");
+        if(PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().preventVulnerableExpansions()) {
+          return Optional.empty();
+        }
+      }
+
       if (expansion.getRequiredPlugin() != null && !expansion.getRequiredPlugin().isEmpty()) {
         if (!Bukkit.getPluginManager().isPluginEnabled(expansion.getRequiredPlugin())) {
           Msg.warn("Cannot load expansion %s due to a missing plugin: %s", expansion.getIdentifier(),

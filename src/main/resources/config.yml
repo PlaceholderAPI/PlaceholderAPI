@@ -12,6 +12,8 @@ check_updates: true
 cloud_enabled: true
 cloud_sorting: "name"
 cloud_allow_unverified_expansions: false
+check_vulnerable_expansions: true
+prevent_vulnerable_expansions: true
 boolean:
   'true': 'yes'
   'false': 'no'

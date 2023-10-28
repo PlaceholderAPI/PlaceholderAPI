@@ -57,6 +57,13 @@ public final class PlaceholderAPIConfig {
     return plugin.getConfig().getBoolean("debug", false);
   }
 
+  public boolean checkVulnerableExpansions() {
+    return plugin.getConfig().getBoolean("check_vulnerable_expansions");
+  }
+
+  public boolean preventVulnerableExpansions() {
+    return plugin.getConfig().getBoolean("prevent_vulnerable_expansions");
+  }
 
   public Optional<ExpansionSort> getExpansionSort() {
     final String option = plugin.getConfig()
@@ -89,5 +96,6 @@ public final class PlaceholderAPIConfig {
     //noinspection ConstantConditions (bad spigot annotation)
     return plugin.getConfig().getString("boolean.false", "false");
   }
+
 
 }
