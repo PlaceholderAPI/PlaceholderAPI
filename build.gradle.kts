@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "me.clip"
-version = "2.11.5-DEV-${System.getProperty("BUILD_NUMBER")}"
+version = "2.11.5"
 
 description = "An awesome placeholder provider!"
 
