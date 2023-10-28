@@ -36,7 +36,8 @@ When a plugin or `/papi parse me %placeholder%` only returns the placeholder its
 Make sure, that the connection to the cloud (https://api.extendedclip.com) isn't blocked by a firewall or similar.  
 Next step would be to check if the expansion actually exists on the cloud. Not all plugins provide their placeholders through a separate jar on the cloud. Some have them build in and register them on startup.
 
-If both checks failed, go to the cloud-page and download the jar manually. Put it then in the `expansions` folder of PlaceholderAPI (`/plugins/PlaceholderAPI/expansions`)
+If both checks failed, go to the cloud-page and download the jar manually. Put it then in the `expansions` folder of PlaceholderAPI (`/plugins/PlaceholderAPI/expansions`).  
+Finally execute `/papi reload` to load the expansion.
 
 ## How can other plugins use my placeholders with PlaceholderAPI?
 A tutorial can be found [[here|Hook into PlaceholderAPI]]!
