@@ -30,7 +30,6 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.util.Msg;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -123,13 +122,9 @@ public final class CommandParse extends PlaceholderCommand {
     }
 
     if (broadcast) {
-      Msg.broadcast(message);
+      Bukkit.broadcastMessage(message);
     } else {
-      if (!(sender instanceof Player)) {
-        Msg.msg(sender, message);
-      } else {
-        ((Player) sender).spigot().sendMessage(TextComponent.fromLegacyText(message));
-      }
+      sender.sendMessage(message);
     }
   }
 
@@ -156,7 +151,8 @@ public final class CommandParse extends PlaceholderCommand {
     final String message = PlaceholderAPI
         .setRelationalPlaceholders(((Player) targetOne), ((Player) targetTwo),
             String.join(" ", params.subList(2, params.size())));
-    Msg.msg(sender, message);
+    
+    sender.sendMessage(message);
   }
 
 
