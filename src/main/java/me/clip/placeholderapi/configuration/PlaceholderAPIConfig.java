@@ -38,10 +38,6 @@ public final class PlaceholderAPIConfig {
     return plugin.getConfig().getBoolean("check_updates");
   }
 
-  public boolean cloudAllowUnverifiedExpansions() {
-    return plugin.getConfig().getBoolean("cloud_allow_unverified_expansions");
-  }
-
 
   public boolean isCloudEnabled() {
     return plugin.getConfig().getBoolean("cloud_enabled");
