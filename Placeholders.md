@@ -4024,12 +4024,13 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > NO DOWNLOAD COMMAND
   
   ```
-  %namelessmc_notifications%
-  %namelessmc_store_last_payment_received_username%
-  %namelessmc_store_last_payment_paid_username%
-  %namelessmc_store_last_payment_amount%
-  %namelessmc_store_last_payment_currency%
-  %namelessmc_store_last_payment_date%
+  %nameless_notifications%
+  %nameless_store_last_payment_received_username%
+  %nameless_store_last_payment_paid_username%
+  %nameless_store_last_payment_amount%
+  %nameless_store_last_payment_currency%
+  %nameless_store_last_payment_date%
+  %nameless_store_credits%
   ```
 
 ----
