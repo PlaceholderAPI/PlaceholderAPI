@@ -449,6 +449,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[ItemJoin](https://www.spigotmc.org/resources/12661/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
+- **[ItemRenamerReloaded](https://www.spigotmc.org/resources/52538/)**
+  - [x] Supports placeholders.
+  - [ ] Provides own placeholders. [Link]
 
 ----
 ## J
