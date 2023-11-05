@@ -15,7 +15,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
 > You can find a comprehensive guide on how to do this on the [Wiki's README file](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md).
 
 - [Standalone](#standalone)
-  - ### **A** 
+  - ### **A**
     - **[Advancements](#advancements)**
     - **[Animations](#animations)**
     - **[Armor](#armor)**
