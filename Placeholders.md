@@ -136,6 +136,7 @@ If the command itself isn't there and `NO DOWNLOAD COMMAND` instead is shown, th
     - **[AdvancedCustomMenu+](#advancedcustommenu)**
     - **[AdvancedLottery](#advancedlottery)**
     - **[AdvancedModReq](#advancedmodreq)**
+    - **[AdvancedServerList](#advancedserverlist)**
     - **[ajLeaderboards](#ajleaderboards)**
     - **[ajParkour](#ajparkour)**
     - **[AlonsoLevels](#alonsolevels)**
@@ -1763,6 +1764,23 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %advancedmodreq_unflagged%
   %advancedmodreq_unflagged_closed%
   %advancedmodreq_unflagged_open%
+  ```
+
+----
+
+- ### **[AdvancedServerList](https://modrinth.com/plugin/advancedserverlist)**
+  > NO DOWNLOAD COMMAND
+
+  For more info, visit the [wiki](https://asl.andre601.ch/placeholderapi/#own-placeholders) of the plugin.
+
+  ```
+  %asl_motd%
+  %asl_favicon%
+  %asl_playercount_hover%
+  %asl_playercount_extraplayers%
+  %asl_playercount_maxplayers%
+  %asl_playercount_text%
+  %asl_server_playersmax%
   ```
 
 ----

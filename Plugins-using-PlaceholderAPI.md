@@ -56,6 +56,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[AdvancedModReq](https://www.spigotmc.org/resources/40528/)**
   - [x] Supports placeholders.
   - [x] Provides own placeholders. [**[[Link|Placeholders#advancedmodreq]]**]
+- **[AdvancedServerList](https://modrinth.com/plugin/advancedserverlist)**
+  - [x] Supports placeholders.
+  - [x] Provides own placeholders. [**[[Link|Placeholders#advancedserverlist]]**]
 - **[Advance Tab](https://www.spigotmc.org/resources/21958/)**
   - [x] Supports placeholders.
   - [ ] Provides own placeholders. [Link]
