@@ -94,7 +94,7 @@ Next step is to go to your plugin.yml or paper-plugin.yml and add PlaceholderAPI
   author: author
   main: your.main.path.Here
   
-  # This sets PlaceholderAPI as an optional dependency for your plugin.
+  # This sets PlaceholderAPI as a dependency for your plugin.
   depend: [PlaceholderAPI]
   ```
 - `paper-plugin.yml`
