@@ -2866,6 +2866,8 @@ Please see [this discussion][list] for a list of all expansions officially maint
   %eventcore_alive%
   %eventcore_dead%
   %eventcore_status%
+  %eventcore_revive%
+  %eventcore_revives%
   ```
 
 ----
