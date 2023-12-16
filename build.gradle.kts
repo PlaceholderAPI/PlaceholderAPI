@@ -23,7 +23,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.1")
 
     compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
@@ -35,7 +34,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
-    implementation("cn.handyplus.lib.adapter:FoliaLib:1.0.0")
+    implementation("cn.handyplus.lib.adapter:FoliaLib:1.0.1")
 }
 
 
@@ -88,7 +87,6 @@ tasks {
     withType<ShadowJar> {
         archiveClassifier.set("")
 
-        relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
 
         relocate("cn.handyplus.lib.FoliaLib", "me.clip.placeholderapi.libs.FoliaLib")
