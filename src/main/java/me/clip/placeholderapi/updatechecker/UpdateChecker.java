@@ -25,6 +25,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
+
+import cn.handyplus.lib.adapter.HandySchedulerUtil;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
@@ -55,7 +57,7 @@ public class UpdateChecker implements Listener {
   }
 
   public void fetch() {
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+    HandySchedulerUtil.runTaskAsynchronously(() -> {
       try {
         HttpsURLConnection con = (HttpsURLConnection) new URL(
             "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
@@ -76,7 +78,7 @@ public class UpdateChecker implements Listener {
         return;
       }
 
-      Bukkit.getScheduler().runTask(plugin, () -> {
+      HandySchedulerUtil.runTask(() -> {
         plugin.getLogger()
             .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
         plugin.getLogger()

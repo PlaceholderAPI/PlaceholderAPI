@@ -34,6 +34,8 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+
+    implementation("cn.handyplus.lib.adapter:FoliaLib:1.0.0")
 }
 
 
@@ -88,6 +90,8 @@ tasks {
 
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+
+        relocate("cn.handyplus.lib.FoliaLib", "me.clip.placeholderapi.libs.FoliaLib")
     }
 
     test {

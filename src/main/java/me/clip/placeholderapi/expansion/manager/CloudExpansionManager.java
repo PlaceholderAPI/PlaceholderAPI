@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.expansion.manager;
 
+import cn.handyplus.lib.adapter.HandySchedulerUtil;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Resources;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -201,12 +202,7 @@ public final class CloudExpansionManager {
           }
 
           // loop through what's left on the main thread
-          plugin
-              .getServer()
-              .getScheduler()
-              .runTask(
-                  plugin,
-                  () -> {
+          HandySchedulerUtil.runTask(() -> {
                     try {
                       for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
                         String name = entry.getKey();

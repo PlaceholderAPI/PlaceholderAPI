@@ -23,6 +23,8 @@ package me.clip.placeholderapi;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.handyplus.lib.adapter.HandySchedulerUtil;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
 import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -140,6 +142,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
+    HandySchedulerUtil.init(this);
+
     setupCommand();
     setupMetrics();
     setupExpansions();
@@ -153,6 +157,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     if (config.checkUpdates()) {
       new UpdateChecker(this).fetch();
     }
+
   }
 
   @Override
@@ -162,7 +167,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    HandySchedulerUtil.cancelTask();
 
     adventure.close();
     adventure = null;
@@ -250,8 +255,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (final ClassNotFoundException ignored) {
-      Bukkit.getScheduler()
-          .runTaskLater(this, () -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
+      HandySchedulerUtil.runTaskLater(() -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
     }
   }
 
