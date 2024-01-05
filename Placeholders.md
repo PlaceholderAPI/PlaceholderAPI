@@ -923,12 +923,14 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
   > /papi ecloud download ParseOther
   
   Lets you parse any placeholder for another player.  
-  You can use placeholders in place of `username` or `uuid`.  
+  You must use the unsafe placeholder to parse placeholders for `username` or `uuid`.  
   Make sure to include the `{}` brackets, as it won't work without them.
   
   ```
   %parseother_{username}_{placeholder_without_percent_signs}%
+  %parseother_unsafe_{placeholder_for_username}_{placeholder_without_percent_signs}%
   %parseother_{uuid}_{placeholder_without_percent_signs}%
+  %parseother_unsafe_{placeholder_for_uuid}_{placeholder_without_percent_signs}%
   ```
 
 ----
