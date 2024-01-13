@@ -1,0 +1,67 @@
+#
+# This is a GitHub Action that allows us to build and update the wiki
+# on GitHub Pages using MkDocs.
+#
+name: Update Wiki from Repository
+
+on:
+  workflow_dispatch:
+  push:
+    #
+    # Only trigger when the push changes any files on the wiki branch.
+    #
+    branches:
+      - 'wiki'
+    #
+    # Ignore changes to the README.md file
+    #
+    paths-ignore:
+      - 'README.md'
+    #
+    # Releases cause this action to also fire.
+    # Using this prevents this problem.
+    #
+    tags-ignore:
+      - '**'
+
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  buildSite:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: wiki
+      - name: Setup Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - name: Update Pip and Setuptools
+        run: python -m pip install -U pip setuptools
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Build pages
+        run: mkdocs build
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site/'
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment

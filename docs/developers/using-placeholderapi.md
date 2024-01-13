@@ -1,28 +1,15 @@
-[APIBadge]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
-
-[SpigotBadge]: https://img.shields.io/spiget/version/6245?label=Spigot
-[Spigot]: https://spigotmc.org/resources/6245
-
-[GitHubBadge]: https://img.shields.io/github/v/release/PlaceholderAPI/PlaceholderAPI?label=GitHub%20Release
-[GitHub]: /PlaceholderAPI/PlaceholderAPI/releases/latest
-
-> [![SpigotBadge]][Spigot] [![GitHubBadge]][GitHub]
->
-> ![APIBadge]  
->
-> *The GitHub release may be different from the spigot release*
+# Using PlaceholderAPI
 
 This page is about using PlaceholderAPI in your own plugin, to either let other plugins use your plugin, or just use placeholders from other plugins in your own.
 
 Please note, that the examples in this page are only available for **PlaceholderAPI 2.10.0 or higher**!
 
 ## First steps
+
 Before you can actually make use of PlaceholderAPI, you first have to import it into your project.
 
-### Import with Maven
-To import PlaceholderAPI, simply add the following code to your **pom.xml**  
-Replace `{VERSION}` with the version listed at the top of this page.  
-```xml
+/// tab | :simple-apachemaven: Maven
+```{ .xml title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
@@ -33,17 +20,15 @@ Replace `{VERSION}` with the version listed at the top of this page.
         <dependency>
          <groupId>me.clip</groupId>
           <artifactId>placeholderapi</artifactId>
-          <version>{VERSION}</version>
+          <version>{version}</version>
          <scope>provided</scope>
         </dependency>
     </dependencies>
 ```
+///
 
-### Import with Gradle
-Here is how you can import PlaceholderAPI through gradle.  
-Put this into your **Gradle.build**.  
-Replace `{VERSION}` with the version listed at the top of this page.  
-```gradle
+/// tab | :simple-gradle: Gradle
+```{ .groovy title="build.gradle" data-md-component="api-version" }
 repositories {
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
@@ -51,80 +36,93 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'me.clip:placeholderapi:{VERSION}'
+    compileOnly 'me.clip:placeholderapi:{version}'
 }
 ```
+///
 
 ### Set PlaceholderAPI as (soft)depend
+
 Next step is to go to your plugin.yml or paper-plugin.yml and add PlaceholderAPI as a depend or softdepend, depending (no pun intended) on if it is optional or not.
 
-**Example Softdepend**:
+/// tab | :simple-spigotmc: plugin.yml
 
-- `plugin.yml`
-  ```yaml
-  name: ExamplePlugin
-  version: 1.0
-  author: author
-  main: your.main.path.Here
-  
-  # This sets PlaceholderAPI as an optional dependency for your plugin.
-  softdepend: [PlaceholderAPI]
-  ```
-- `paper-plugin.yml`
-  ```yaml
-  name: ExamplePlugin
-  version: 1.0
-  author: author
-  main: your.main.path.Here
-  
-  dependencies:
-    server:
-      PlaceholderAPI:
-        # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
-        load: BEFORE
-        required: false
-  ```
+//// tab | Optional dependency
+```yaml
+name: ExamplePlugin
+version: 1.0
+author: author
+main: your.main.path.Here
 
-**Example Depend**:
+# This sets PlaceholderAPI as an optional dependency for your plugin.
+softdepend: [PlaceholderAPI]
+```
+////
 
-- `plugin.yml`
-  ```yaml
-  name: ExamplePlugin
-  version: 1.0
-  author: author
-  main: your.main.path.Here
-  
-  # This sets PlaceholderAPI as a dependency for your plugin.
-  depend: [PlaceholderAPI]
-  ```
-- `paper-plugin.yml`
-  ```yaml
-  name: ExamplePlugin
-  version: 1.0
-  author: author
-  main: your.main.path.Here
-  
-  dependencies:
-    server:
-      PlaceholderAPI:
-        # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
-        load: BEFORE
-        required: true
-  ```
+//// tab | Required dependency
+```yaml
+name: ExamplePlugin
+version: 1.0
+author: author
+main: your.main.path.Here
+
+# This sets PlaceholderAPI as a required dependency for your plugin.
+depend: [PlaceholderAPI]
+```
+////
+
+///
+
+/// tab | :fontawesome-regular-paper-plane: paper-plugin.yml
+
+//// tab | Optional dependency
+```yaml
+name: ExamplePlugin
+version: 1.0
+author: author
+main: your.main.path.Here
+
+dependencies:
+  server:
+    PlaceholderAPI:
+      # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
+      load: BEFORE
+      required: false
+```
+////
+
+//// tab | Required dependency
+```yaml
+name: ExamplePlugin
+version: 1.0
+author: author
+main: your.main.path.Here
+
+dependencies:
+  server:
+    PlaceholderAPI:
+      # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
+      load: BEFORE
+      required: true
+```
+////
+
+///
 
 ## Adding placeholders to PlaceholderAPI
 
-A full guide on how to create expansions can be found on the [[PlaceholderExpansion]] page of this wiki.
+A full guide on how to create expansions can be found on the [Creating a PlaceholderExpansion](creating-a-placeholderexpansion.md) page.
 
 ## Setting placeholders in your plugin
+
 PlaceholderAPI offers the ability, to automatically parse placeholders from other plugins within your own plugin, giving the ability for your plugin to support thousands of other placeholders without depending on each plugin individually.  
 To use placeholders from other plugins in our own plugin, we simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
 
 **Example**:  
-Let's assume we want to send an own join message that shows the group a player has.  
-To achieve that, we can do the following:  
+Let's assume we want to send a custom join message that shows the primary group a player has.  
+To achieve this, we can do the following:
 ```java
 package at.helpch.placeholderapi;
 
@@ -166,7 +164,8 @@ public class JoinExample extends JavaPlugin implements Listener {
         /*
          * We parse the placeholders using "setPlaceholders"
          * This would turn %vault_rank% into the name of the Group, that the
-         * joining player has.
+         * joining player has, assuming Vault and the Vault expansion are
+         * on the server.
          */
         joinText = PlaceholderAPI.setPlaceholders(event.getPlayer(), joinText);
 
