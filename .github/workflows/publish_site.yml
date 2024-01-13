@@ -53,7 +53,7 @@ jobs:
       - name: Update Pip and Setuptools
         run: python -m pip install -U pip setuptools
       - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install mkdocs-material
       - name: Build pages
         run: mkdocs build
       - name: Configure GitHub Pages
