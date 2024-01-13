@@ -9,8 +9,7 @@
 [expansion-generator]: https://papi.andre601.ch
 
 [andre]: https://github.com/Andre601
-[andrew]: https://github.com/Andrew-Chen-Wang
-[action]: https://github.com/Andrew-Chen-Wang/github-wiki-action
+[mkdocs]: https://www.mkdocs.org
 
 <!-- Images -->
 
@@ -30,7 +29,7 @@ You need to make a fork of the PlaceholderAPI Repository to contribute towards t
 To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and make sure to have "Copy the `master` branch only" unchecked, so that the `wiki` branch is copied too.  
 After this, click "Create fork".
 
-![fork repo](./img/readme/fork.png)
+![fork repo](docs/assets/img/readme/fork.png)
 
 The forking process should only take a few seconds and you should be redirected to your fork afterwards.
 
@@ -38,7 +37,7 @@ The forking process should only take a few seconds and you should be redirected 
 All main changes to the wiki are made on the dedicated `wiki` branch.  
 Before you try to make any changes should you make sure that you have the `wiki` branch selected. To do that, check the button next to the `X branches` text. If it says anything other than `wiki` will you need to click it and select the right branch.
 
-![select branch](./img/readme/select-branch.png)
+![select branch](docs/assets/img/readme/select-branch.png)
 
 ### Fetch Changes from Upstream
 This is only required when you already had a fork and didn't update it for some time.
@@ -48,10 +47,10 @@ Depending on the status of your branch can the prompt show different outcomes:
 
 - `This branch is not behind the upstream PlaceholderAPI:wiki`  
   Your fork's `wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
-  ![upstream up-to-date](./img/readme/up-to-date.png)
+  ![upstream up-to-date](docs/assets/img/readme/up-to-date.png)
 - `This branch is out-of-date`  
   Your fork's `wiki` branch is outdated and should be updated. Press the "Update branch" button to do so.  
-  ![upstream needs update](./img/readme/needs-update.png)
+  ![upstream needs update](docs/assets/img/readme/needs-update.png)
 
 ### Commit changes
 To commit changes will you need to choose, if you want to directly commit to your fork's `wiki` branch, or make a dedicated branch for it.
@@ -59,7 +58,7 @@ To commit changes will you need to choose, if you want to directly commit to you
 #### Make separate branch (Optional)
 If you want to have a dedicated branch for it, will you need to click the button saying `wiki`, type in the small text field the name of the branch you want to use and click the text saying `Create branch: <branch> from 'wiki'`
 
-![create branch](./img/readme/new-branch.png)
+![create branch](docs/assets/img/readme/new-branch.png)
 
 After that should you now have a separate branch that is based of the `wiki` branch and you can finally commit changes to it.
 
@@ -81,13 +80,13 @@ These rules are as follows:
 When you add a new expansion to the wiki's [Placeholder page][placeholders] will you need to follow the following format:  
 ````markdown
 - ### [:name](:link)
-  > :command
-  
-  :text
-  
-  ```
-  :placeholders
-  ```
+    > :command
+    
+    :text
+    
+    ```
+    :placeholders
+    ```
 ````
 
 There are a few extra rules you need to also keep in mind:
@@ -107,29 +106,29 @@ When your Expansion's entry is after and/or before other entries will you need t
 ##### Example:  
 ````markdown
 - ### SomeExpansion
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %someexpansion_placeholder%
-  ```
+    > NO DOWNLOAD COMMAND
+    
+    ```
+    %someexpansion_placeholder%
+    ```
 
 ----
 
 - ### YourExpansion
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %yourexpansion_placeholder%
-  ```
+    > NO DOWNLOAD COMMAND
+    
+    ```
+    %yourexpansion_placeholder%
+    ```
 
 ----
 
 - ### AnotherExpansion
-  > NO DOWNLOAD COMMAND
-  
-  ```
-  %anotherexpansion_placeholder%
-  ```
+    > NO DOWNLOAD COMMAND
+    
+    ```
+    %anotherexpansion_placeholder%
+    ```
 ````
 
 After you added your expansion to this page will you also need to add an entry to the list at the top of the page.  
@@ -144,8 +143,8 @@ Similar to the [Placeholders page][placeholders] does this page follow a specifi
 
 ```markdown
 - [:name](:link)
-  - [?] Supports placeholders.
-  - [?] Provides own placeholders. [:page]
+    - [?] Supports placeholders.
+    - [?] Provides own placeholders. [:page]
 ```
 
 Here are the following rules:
@@ -157,7 +156,7 @@ Here are the following rules:
     This means that f.e. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/
 - `[?]` needs to be replaced with either `[ ]` or `[x]` depending on whether the mentioned option is supported or not.
 - `:page` needs to replace with the right value, depending on the conditions.
-  - If your plugin provides own Placeholders for other plugins to use can you set `**[[Link|Placeholders#:name]]**` where `:name` is the title you set in the placeholders page.
+  - If your plugin provides own Placeholders for other plugins to use can you set `**[[Link](placeholder-list.md#:name)]**` where `:name` is the title you set in the placeholders page.
   - If your plugin does not provide own placeholders will you need to set `Link`.
 
 ### Make a Pull request
@@ -166,15 +165,15 @@ After you made your changes is it time to make a Pull request.
 When you made changes to the branch should GitHub show you a prompt with a button saying "Compare & pull request". This prompt also shows up when you visit the upstream Repository while having changes on your fork.  
 Press the button to proceed.
 
-![pr prompt](./img/readme/pr-prompt.png)
+![pr prompt](docs/assets/img/readme/pr-prompt.png)
 
 By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `wiki` branch.
 
-> **Note**  
+> [!NOTE]  
 > When the branch selection only shows branches and not the actual repositories does it mean that you're prompted to PR to your own fork.  
 > To fix this, press the "compare across forks" text shown, select `PlaceholderAPI/PlaceholderAPI` as the target repository (left side) and your fork as the source. Then select the wiki branch as mentioned above.
 
-![create pr](./img/readme/create-pr.png)
+![create pr](docs/assets/img/readme/create-pr.png)
 
 Finally, fill out the Pull request template and submit the Pull request.  
 Congratulations! You've successfully made a Pull request for the wiki.
@@ -187,4 +186,4 @@ A simple [online-tool][expansion-generator] is provided by Andre601 that allows 
 
 ### Credits
 - The Wiki is maintained by [Andre601][andre].
-- We use the [GitHub Wiki Action][action] by [Andrew-Chen-Wang][andrew] to update the PlaceholderAPI wiki through GitHub Actions.
+- We use [MkDocs][mkdocs] to turn the Markdown files into static HTML pages that then get uploaded to GitHub Pages through GitHub Actions.

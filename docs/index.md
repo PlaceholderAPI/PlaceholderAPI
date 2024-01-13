@@ -8,11 +8,11 @@ It also has a community-curated list of all available Placeholder expansions and
 ## Navigation
 
 - [Commands](commands.md)
-- User Guide
+- User Guides
     - [Using Placeholders](users/using-placeholders.md)
     - [Placeholder List](users/placeholder-list.md)
     - [Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
-- Dev Guide
+- Dev Guides
     - [Using PlaceholderAPI](developers/using-placeholderapi.md)
     - [Making a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)
     - [eCloud](developers/expansion-cloud.md)

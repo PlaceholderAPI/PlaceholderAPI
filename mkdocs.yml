@@ -6,12 +6,6 @@ site_author: PlaceholderAPI Team and Contributors
 
 site_url: https://docs.andre601.ch/PlaceholderAPI # Temp until final decision and possible push to upstream
 
-copyright: |-
-  &copy; PlaceholderAPI Team and Contributors.<br>
-  All content is licensed under <a href="https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/LICENSE" target="_blank" rel="nofollow">GNU GPL v3.0</a> unless stated otherwise.<br>
-  <br>
-  <a href="#__consent">Manage Cookies</a>
-
 repo_name: PlaceholderAPI/PlaceholderAPI
 repo_url: https://github.com/PlaceholderAPI/PlaceholderAPI
 
@@ -65,6 +59,13 @@ extra:
       - accept
       - reject
       - manage
+  social:
+    - icon: fontawesome/regular/paper-plane
+      link: https://hangar.papermc.io/HelpChat/PlaceholderAPI
+    - icon: simple/spigotmc
+      link: https://www.spigotmc.org/resources/6245/
+    - icon: simple/discord
+      link: https://discord.gg/helpchat
 
 nav:
   - index.md
