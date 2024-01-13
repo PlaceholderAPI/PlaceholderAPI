@@ -26,8 +26,13 @@ In order to do that, you have to follow those steps:
 2. Create an account on the site, or log in, if you already have one.
 3. Click on `Expansions` and then on [`Upload New`](https://api.extendedclip.com/manage/add/).
 4. Fill out the required information. `Source URL` and `Dependency URL` are optional and would link to the source code and any dependency (plugin) of your expansion respectively.
-5. Click on the button that says `Choose an file...` and select the jar of your expansion.   
-    - **Important!** Make sure, that the name of the jar file contains the same version like you set in the version field.
+5. Click on the button that says `Choose an file...` and select the jar of your expansion.
+    
+    /// warning |
+    **Important!**  
+    Make sure, that the name of the jar file contains the same version like you set in the version field.
+    ///
+
 6. Click on `Submit Expansion`
 
 Your expansion is now uploaded and will be reviewed by a moderator.  
@@ -53,7 +58,12 @@ After that, follow those steps:
 2. Click on the button that says `Version`
 3. Click on `Add Version`
 4. Fill out the fields and upload the new jar.
-    - **Important!** Make sure, that the name of the jar file contains the same version like you set in the version-field!
+    
+    /// warning |
+    **Important!**  
+    Make sure, that the name of the jar file contains the same version like you set in the version field.
+    ///
+
 5. Click on `Save Changes`
 
 Your version should now be uploaded to the eCloud. You can now ask a responsible staff member on the [HelpChat Discord](https://discord.gg/helpchat) to review your expansion to get it re-verified. Please remain patient and polite when asking.
