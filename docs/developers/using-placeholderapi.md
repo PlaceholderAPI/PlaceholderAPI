@@ -1,3 +1,7 @@
+---
+description: Guide on how to use PlaceholderAPI in your own plugin.
+---
+
 # Using PlaceholderAPI
 
 This page is about using PlaceholderAPI in your own plugin, to either let other plugins use your plugin, or just use placeholders from other plugins in your own.

@@ -1,3 +1,7 @@
+---
+description: List of frequently asked questions and their answers.
+---
+
 # FAQ
 
 Here are frequently asked questions about stuff related to PlaceholderAPI.

@@ -17,8 +17,8 @@ repo_url: https://github.com/PlaceholderAPI/PlaceholderAPI
 
 theme:
   name: material
-  logo: assets/img/icon.png
-  favicon: assets/img/icon.png
+  custom_dir: '.theme'
+  logo: assets/img/favicons/android-chrome-512x512.png
   icon:
     admonition:
       note: octicons/pencil-16

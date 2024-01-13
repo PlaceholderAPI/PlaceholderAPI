@@ -1,3 +1,7 @@
+---
+description: List of Plugins that support PlaceholderAPI and/or provide their own placeholders to use.
+---
+
 # Plugins using PlaceholderAPI
 
 This here is a list of all plugins supporting PlaceholderAPI by either having their own placeholders added, or just allowing other placeholders to be used.  

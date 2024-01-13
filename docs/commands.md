@@ -1,3 +1,7 @@
+---
+description: Available commands within PlaceholderAPI.
+---
+
 # Commands
 
 This page shows all commands, including with a detailed description of what every command does.

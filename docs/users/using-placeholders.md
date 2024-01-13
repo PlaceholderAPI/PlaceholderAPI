@@ -1,3 +1,7 @@
+---
+description: User Guide on how to use placeholders in a plugin.
+---
+
 # Using Placeholders
 
 This page is intended for server owners or server staff who want to learn how to use placeholders in a plugin.

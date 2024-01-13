@@ -1,3 +1,7 @@
+---
+description: Information about PlaceholderAPI's expansion cloud, including how to submit your own expansion or update it.
+---
+
 # eCloud
 
 ## About

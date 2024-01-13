@@ -1,3 +1,5 @@
+# Welcome
+
 ![placeholderapi_logo](assets/img/wiki-logo.png){ align="center" }
 
 This wiki gives you information on how to create placeholders in your plugin that can be used in other plugins, how to use other placeholders inside your plugin, or how to make an expansion.  

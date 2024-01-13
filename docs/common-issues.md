@@ -1,3 +1,7 @@
+---
+description: List of common issues and how to solve them.
+---
+
 # Common Issues
 
 This page lists common issues you may encounter with PlaceholderAPI and how you can solve them.

@@ -1,3 +1,7 @@
+---
+description: Comprehensive guide on how to create a PlaceholderExpansion for other plugins to use through PlaceholderAPI.
+---
+
 # Creating a PlaceholderExpansion
 
 This page will cover how you can create your own [`PlaceholderExpansion`][placeholderexpansion] which you can either integrate into your own plugin (Recommended) or [upload to the eCloud](expansion-cloud.md).

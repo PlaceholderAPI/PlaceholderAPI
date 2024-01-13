@@ -1,3 +1,7 @@
+---
+description: Community-curated list of available PlaceholderExpansions and their placeholders.
+---
+
 # Placeholder List
 
 This is a list of all available placeholders.
