@@ -116,7 +116,7 @@ Parses a relational placeholder.
 
 ### eCloud Commands
 
-These commands all start with `/papi ecloud` and are used for things related about the [[Expansion Cloud]].
+These commands all start with `/papi ecloud` and are used for things related about the [Expansion Cloud](../developers/expansion-cloud.md).
 
 #### `/papi ecloud clear`
 
