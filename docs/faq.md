@@ -11,16 +11,16 @@ Here are frequently asked questions about stuff related to PlaceholderAPI.
 An expansion (or PlaceholderExpansion) refers to either a jar file or part of a plugin that provides placeholders to use through PlaceholderAPI itself.  
 Whether said expansion is a separate jar file or part of a plugin depends on the expansion itself and its main purpose.
 
-Expansions that are separate jar files can be found on the eCloud and are downloadable through [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) if the expansion is verified.
+Expansions that are separate jar files can be found on the eCloud and are downloadable through [`/papi ecloud download <expansion>`](users/commands.md#papi-ecloud-download) if the expansion is verified.
 
 ## It only shows `%placeholder%` and not the variable
 
-When a plugin or [`/papi parse me %placeholder%`](commands.md#papi-parse) only returns the placeholder itself and no value should you check for the following things:
+When a plugin or [`/papi parse me %placeholder%`](users/commands.md#papi-parse) only returns the placeholder itself and no value should you check for the following things:
 
 - ### The expansion is actually installed.
   
     Some expansions may not be integrated into a plugin or don't even have a plugin to depend on, meaning that they may be their own separate jar file that you have to download.  
-    Such expansions can usually be found on the eCloud of PlaceholderAPI and be downloaded using the [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) command.
+    Such expansions can usually be found on the eCloud of PlaceholderAPI and be downloaded using the [`/papi ecloud download <expansion>`](users/commands.md#papi-ecloud-download) command.
     
     Whether an expansion is available on the eCloud or not can be found out in the [Placeholder List](users/placeholder-list.md) with any expansion displaying a papi command being downlodable.
   
@@ -34,7 +34,7 @@ When a plugin or [`/papi parse me %placeholder%`](commands.md#papi-parse) only r
   
 - ### No typo in the placeholder
     
-    Double-check that the placeholder you set doesn't contain a typo. You can use [`/papi ecloud placeholders <expansion>`](commands.md#papi-ecloud-placeholders) (replace `<expansion>` with the name of the expansion) to get a list of all the placeholders the expansion may have.  
+    Double-check that the placeholder you set doesn't contain a typo. You can use [`/papi ecloud placeholders <expansion>`](users/commands.md#papi-ecloud-placeholders) (replace `<expansion>` with the name of the expansion) to get a list of all the placeholders the expansion may have.  
     Keep in mind that this only works for separate expansions on the eCloud and not for those that are loaded by plugins.
     
     Additionally can the placeholder list from the eCloud be outdated. It is recommended to check the [Placeholder List](users/placeholder-list.md) or see if there is any documentation for the placeholders you want to use.
@@ -52,7 +52,7 @@ Make the following checks:
 3. The expansion is verified. Only verified expansions can be downloaded through PlaceholderAPI's download command. This is a security measure to prevent the spread of malware.
 
 If the above checks are all fine and you still can't get the expansion through the download command, consider downloading it manually.  
-To do that, head to the expansion's page on the ecloud, download the jar file and put it into `/plugins/PlaceholderAPI/expansions/` before using [`/papi reload`](commands.md#papi-reload).
+To do that, head to the expansion's page on the ecloud, download the jar file and put it into `/plugins/PlaceholderAPI/expansions/` before using [`/papi reload`](users/commands.md#papi-reload).
 
 ## How can other plugins use my placeholders with PlaceholderAPI?
 

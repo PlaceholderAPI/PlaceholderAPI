@@ -7,7 +7,7 @@ description: Comprehensive guide on how to create a PlaceholderExpansion for oth
 This page will cover how you can create your own [`PlaceholderExpansion`][placeholderexpansion] which you can either integrate into your own plugin (Recommended) or [upload to the eCloud](expansion-cloud.md).
 
 It's worth noting that PlaceholderAPI relies on expansions being installed. PlaceholderAPI only acts as the core replacing utility while the expansions allow other plugins to use any installed placeholder in their own messages.  
-You can download expansions either directly from the eCloud yourself, or download them through the [download command of PlaceholderAPI](../commands.md#papi-ecloud-download).
+You can download expansions either directly from the eCloud yourself, or download them through the [download command of PlaceholderAPI](../users/commands.md#papi-ecloud-download).
 
 ## Table of contents
 
@@ -231,7 +231,7 @@ It is recommended to only make external Expansions for the following situations.
 
 Should the above cases not match your situation, meaning your expansion is for a plugin you maintain, is the creation of an [internal Expansion](#making-an-internal-expansion) recommended.
 
-Some benefits of an external expansion include automatic (re)loading of your expansion by PlaceholderAPI and having the option to [upload it to the eCloud](expansion-cloud.md) allowing the download of it through the [`/papi ecloud download` command](../commands.md#papi-ecloud-download).  
+Some benefits of an external expansion include automatic (re)loading of your expansion by PlaceholderAPI and having the option to [upload it to the eCloud](expansion-cloud.md) allowing the download of it through the [`/papi ecloud download` command](../users/commands.md#papi-ecloud-download).  
 Downsides include a more tedious setup in terms of checking for a required plugin being present.
 
 /// details | Full Example (Without Dependency)

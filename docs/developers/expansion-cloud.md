@@ -13,7 +13,7 @@ The expansion-cloud can be seen under https://api.extendedclip.com/home
 ## How it works
 
 PlaceholderAPI connects to the ecloud on startup of your server, to check if the cloud is available and how many expansions are available on it.  
-If you run [`/papi ecloud download <expansion>`](../commands.md#papi-ecloud-download), PlaceholderAPI will connect to the site to first check if the specified expansion exists and then downloads it if it does.
+If you run [`/papi ecloud download <expansion>`](../users/commands.md#papi-ecloud-download), PlaceholderAPI will connect to the site to first check if the specified expansion exists and then downloads it if it does.
 
 /// note
 PlaceholderAPI can only download expansions that are verified on the eCloud. Any unverified expansion needs to be downloaded manually.
@@ -82,11 +82,11 @@ Here is how you can do it for each.
 
 This is the easiest of both methods since it requires the least amount of effort.  
 Run the following command in-game or in your console to download a specific version:  
-[`/papi ecloud download <expansion> [version]`](../commands.md#papi-ecloud-download)
+[`/papi ecloud download <expansion> [version]`](../users/commands.md#papi-ecloud-download)
 
-To find out, what versions are available for the expansion, run [`/papi ecloud info <expansion>`](../commands.md#papi-ecloud-info).
+To find out, what versions are available for the expansion, run [`/papi ecloud info <expansion>`](../users/commands.md#papi-ecloud-info).
 
-After you downloaded the specific version, run [`/papi reload`](../commands.md#papi-reload) to refresh the installed expansions.
+After you downloaded the specific version, run [`/papi reload`](../users/commands.md#papi-reload) to refresh the installed expansions.
 
 ### Download manually
 

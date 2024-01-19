@@ -69,9 +69,9 @@ extra:
 
 nav:
   - index.md
-  - commands.md
   - User Guides:
     - users/index.md
+    - users/commands.md
     - users/using-placeholders.md
     - users/placeholder-list.md
     - users/plugins-using-placeholderapi.md

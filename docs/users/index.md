@@ -10,6 +10,14 @@ The pages listed under this section are meant for server owners who want to use 
 
 <div class="grid cards hide-list" markdown>
 
+-   ### Commands
+    
+    ----
+    
+    List of all available commands in PlaceholderAPI.
+    
+    - [:octicons-chevron-right-16: Go to Page](commands.md)
+
 -   ### Using Placeholders
     
     ----
