@@ -7,14 +7,69 @@ It also has a community-curated list of all available Placeholder expansions and
 
 ## Navigation
 
-- [Commands](commands.md)
-- User Guides
-    - [Using Placeholders](users/using-placeholders.md)
-    - [Placeholder List](users/placeholder-list.md)
-    - [Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
-- Dev Guides
-    - [Using PlaceholderAPI](developers/using-placeholderapi.md)
-    - [Making a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)
-    - [eCloud](developers/expansion-cloud.md)
-- [Common Issues](common-issues.md)
-- [FAQ](faq.md)
+<div class="grid cards hide-list" markdown>
+
+-   ### :material-slash-forward: Commands
+    
+    ----
+    
+    List of all available commands in PlaceholderAPI.
+    
+    - [:octicons-chevron-right-16: Go to Page](commands.md)
+
+-   ### :material-account-file-text: User Guides
+    
+    ----
+    
+    Pages aimed at server owners who want to utilize PlaceholderAPI.
+    
+    Available pages:
+    
+    - [:octicons-chevron-right-16: Using Placeholders](users/using-placeholders.md)
+    - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list.md)
+    - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
+
+-   ### :material-file-code: Dev Guides
+    
+    ----
+    
+    Pages aimed at plugin developers who want to use PlaceholderAPI in their own plugin or want to make their own PlaceholderExpansion.
+    
+    Available pages:
+    
+    - [:octicons-chevron-right-16: Using PlaceholderAPI](developers/using-placeholderapi.md)
+    - [:octicons-chevron-right-16: Creating a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)
+    - [:octicons-chevron-right-16: eCloud](developers/expansion-cloud.md)
+
+-   ### :material-alert-circle-outline: Common Issues
+    
+    ----
+    
+    Common problems you may face while using PlaceholderAPI, and how to solve them.
+    
+    - [:octicons-chevron-right-16: Go to Page](common-issues.md)
+
+-   ### :material-chat-question: FAQ
+    
+    ----
+    
+    Frequently Asked Questions and their answers.
+    
+    - [:octicons-chevron-right-16: Go to Page](faq.md)
+
+</div>
+
+
+
+
+- [:material-slash-forward: Commands](commands.md)
+- :material-account-file-text: User Guides
+    - [:material-cog: Using Placeholders](users/using-placeholders.md)
+    - [:material-format-list-bulleted-square: Placeholder List](users/placeholder-list.md)
+    - [:material-graph: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
+- :material-file-code: Dev Guides
+    - [:material-cog: Using PlaceholderAPI](developers/using-placeholderapi.md)
+    - [:material-code-braces: Making a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)
+    - [:material-cloud-braces: eCloud](developers/expansion-cloud.md)
+- [:material-alert-circle-outline: Common Issues](common-issues.md)
+- [:material-chat-question: FAQ](faq.md)

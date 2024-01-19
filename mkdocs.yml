@@ -71,10 +71,12 @@ nav:
   - index.md
   - commands.md
   - User Guides:
+    - users/index.md
     - users/using-placeholders.md
     - users/placeholder-list.md
     - users/plugins-using-placeholderapi.md
   - Dev Guides:
+    - developers/index.md
     - developers/using-placeholderapi.md
     - developers/creating-a-placeholderexpansion.md
     - developers/expansion-cloud.md
@@ -94,6 +96,7 @@ markdown_extensions:
   - toc:
       permalink: true
   - meta
+  - md_in_html
   - pymdownx.superfences
   - pymdownx.magiclink:
       repo_url_shortener: true

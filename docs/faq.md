@@ -8,25 +8,24 @@ Here are frequently asked questions about stuff related to PlaceholderAPI.
 
 ## What is an Expansion?
 
-An expansion (aka PlaceholderExpansion) usualy refers to a separate jar file that is added to PlaceholderAPI's `expansion` folder to add extra placeholders to use in other plugins.  
-External PlaceholderExpansions are downloaded from PlaceholderAPI's eCloud through the [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) command.
+An expansion (or PlaceholderExpansion) refers to either a jar file or part of a plugin that provides placeholders to use through PlaceholderAPI itself.  
+Whether said expansion is a separate jar file or part of a plugin depends on the expansion itself and its main purpose.
 
-Plugins may provide their own PlaceholderExpansion directly without any external jar file being used.
+Expansions that are separate jar files can be found on the eCloud and are downloadable through [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) if the expansion is verified.
 
 ## It only shows `%placeholder%` and not the variable
 
 When a plugin or [`/papi parse me %placeholder%`](commands.md#papi-parse) only returns the placeholder itself and no value should you check for the following things:
 
 - ### The expansion is actually installed.
-    In many cases is the cause that the expansion of the placeholder is missing.  
-    Just execute [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) followed by `/papi reload` to activate it. You can find a list of Expansions and their Placeholders [on the placeholder list](users/placeholder-list.md).
+  
+    Some expansions may not be integrated into a plugin or don't even have a plugin to depend on, meaning that they may be their own separate jar file that you have to download.  
+    Such expansions can usually be found on the eCloud of PlaceholderAPI and be downloaded using the [`/papi ecloud download <expansion>`](commands.md#papi-ecloud-download) command.
     
-    /// note
-    Not all placeholders come in their own expansion. Some plugins *hardcode* them in and load them on startup, when hooking into PlaceholderAPI.  
-    Such expansions may have `NO DOWNLOAD COMMAND` displayed on the Placeholder list.
-    ///
+    Whether an expansion is available on the eCloud or not can be found out in the [Placeholder List](users/placeholder-list.md) with any expansion displaying a papi command being downlodable.
   
 - ### Plugin actually supports PlaceholderAPI
+
     It can happen that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case check, if the parse command returns the actual value of a placeholder.  
     If that is the case while the plugin is still displaying the placeholder, can this be an indicator of the plugin not supporting PlaceholderAPI.
     
@@ -34,19 +33,26 @@ When a plugin or [`/papi parse me %placeholder%`](commands.md#papi-parse) only r
     Just make sure that "Supports placeholders" has a check mark in front of it.
   
 - ### No typo in the placeholder
+    
     Double-check that the placeholder you set doesn't contain a typo. You can use [`/papi ecloud placeholders <expansion>`](commands.md#papi-ecloud-placeholders) (replace `<expansion>` with the name of the expansion) to get a list of all the placeholders the expansion may have.  
     Keep in mind that this only works for separate expansions on the eCloud and not for those that are loaded by plugins.
+    
+    Additionally can the placeholder list from the eCloud be outdated. It is recommended to check the [Placeholder List](users/placeholder-list.md) or see if there is any documentation for the placeholders you want to use.
   
 - ### Plugin is enabled
+    
     If an expansion depends on a plugin, make sure you have the plugin installed and that it is enabled (Shows green in `/pl`).
 
 ## I can't download the expansion
 
-Make sure, that the connection to the cloud (https://api.extendedclip.com) isn't blocked by a firewall or similar.  
-Next step would be to check if the expansion actually exists on the cloud. Not all plugins provide their placeholders through a separate jar on the cloud. Some have them build in and register them on startup.
+Make the following checks:
 
-If both checks failed, go to the cloud-page and download the jar manually. Put it then in the `expansions` folder of PlaceholderAPI (`/plugins/PlaceholderAPI/expansions`).  
-Finally execute `/papi reload` to load the expansion.
+1. The connection to the eCloud (Located at https://api.extendedclip.com) is not blocked through a firewall or your server host.
+2. The expansion you want to use is actually on the eCloud. Some expansions are included in a plugin directly.
+3. The expansion is verified. Only verified expansions can be downloaded through PlaceholderAPI's download command. This is a security measure to prevent the spread of malware.
+
+If the above checks are all fine and you still can't get the expansion through the download command, consider downloading it manually.  
+To do that, head to the expansion's page on the ecloud, download the jar file and put it into `/plugins/PlaceholderAPI/expansions/` before using [`/papi reload`](commands.md#papi-reload).
 
 ## How can other plugins use my placeholders with PlaceholderAPI?
 

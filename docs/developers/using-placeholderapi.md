@@ -124,7 +124,7 @@ To use placeholders from other plugins in our own plugin, we simply have to [(so
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
 
-**Example**:  
+/// example
 Let's assume we want to send a custom join message that shows the primary group a player has.  
 To achieve this, we can do the following:
 ```java
@@ -177,3 +177,4 @@ public class JoinExample extends JavaPlugin implements Listener {
     }
 }
 ```
+///
