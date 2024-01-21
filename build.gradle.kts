@@ -20,12 +20,13 @@ repositories {
 
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven ("https://jitpack.io" )
 }
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.1")
-    implementation("com.github.Anon8281:UniversalScheduler:0.1.3")
+    implementation("com.github.Anon8281:UniversalScheduler:0.1.6")
 
     compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
