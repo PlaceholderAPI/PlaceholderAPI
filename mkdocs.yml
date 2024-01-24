@@ -30,11 +30,15 @@ theme:
   palette:
     - media: '(prefers-color-scheme: light)'
       scheme: default
+      primary: blue grey
+      accent: cyan
       toggle:
         icon: octicons/sun-24
         name: 'Switch to dark theme'
     - media: '(prefers-color-scheme: dark)'
       scheme: slate
+      primary: black
+      accent: cyan
       toggle:
         icon: octicons/moon-24
         name: 'Switch to light theme'
