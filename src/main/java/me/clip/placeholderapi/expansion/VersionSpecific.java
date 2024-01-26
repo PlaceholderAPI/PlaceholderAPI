@@ -27,6 +27,8 @@ package me.clip.placeholderapi.expansion;
  * with that version.
  *
  * @author Ryan McCarthy
+ *
+ * @deprecated Will be removed in a future release.
  */
 @Deprecated
 public interface VersionSpecific {
