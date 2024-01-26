@@ -25,4 +25,4 @@ Closes N/A <!-- If your PR is based on an issue, change "N/A" the the issue ID (
 
 
 <!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
-[Wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+[Wiki]: https://wiki.placeholderapi.com
