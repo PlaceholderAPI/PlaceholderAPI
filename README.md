@@ -63,18 +63,19 @@ If you want to have a dedicated branch for it, will you need to click the button
 After that should you now have a separate branch that is based of the `wiki` branch and you can finally commit changes to it.
 
 #### Formatting
-The wiki uses normal Markdown formatting with some special design-rules you need to keep in mind.  
-These rules are as follows:
+The wiki uses Markdown for formatting. While most markdown is the one you may already be familiar with, are there special cases you need to keep in mind. Namely:
 
-- Unordered lists need to start with a `-` and not `*`. This is to not get it confused with *italic text* which uses single `*` characters.
-- New lines in lists need to keep their indends. This means you need to add two spaces at the start to keep the text in the same line.  
-  Example:  
+- New lines in lists need to be indendet by 4 spaces. Also, two spaces at the end for a line break is also needed.
+  Example:
   ```markdown
   - Line 1  
-    Line 2
+      Line 2
   ```
-- Use the `[[Page]]` and `[[Text|Page]]` format to link to other wiki pages. While those aren't rendered in the wiki folder will they render in the final wiki pages.
-- External links should be set as Refernce Links, which means they are set as `[text]: link` at the top of the page and then used either through `[text]` or `[display text][text]` througout the page.
+
+In addition should you keep the following rules in mind:
+
+- Unordered lists need to start with a `-` and not `*`. This is to not get it confused with *italic text* which uses single `*` characters.
+- Use relative links to point to another page in the wiki and include the file extension too. Editors like VSCode may help you auto-completing the path.
 
 #### Adding new Expansion
 When you add a new expansion to the wiki's [Placeholder page][placeholders] will you need to follow the following format:  
@@ -186,4 +187,4 @@ A simple [online-tool][expansion-generator] is provided by Andre601 that allows 
 
 ### Credits
 - The Wiki is maintained by [Andre601][andre].
-- We use [MkDocs][mkdocs] to turn the Markdown files into static HTML pages that then get uploaded to GitHub Pages through GitHub Actions.
+- We use [MkDocs][mkdocs] to turn the Markdown files into static HTML pages that then get uploaded to GitHub Pages through a GitHub Actions workflow.
