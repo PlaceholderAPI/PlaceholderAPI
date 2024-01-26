@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {% if page and page.meta %}
+    {% set title = config.site_name %}
+    {% if page.meta.title %}
+      <meta property="og:title" content="{{ page.meta.title }} - {{ title }}">
+      <meta name="twitter:title" content="{{ page.meta.title }} - {{ title }}">
+    {% elif page.title and not page.is_homepage %}
+      <meta property="og:title" content="{{ title }} - {{ page.title | striptags }}">
+      <meta name="twitter:title" content="{{ title }} - {{ page.title | striptags }}">
+    {% else %}
+      <meta property="og:title" content="{{ title }}">
+      <meta name="twitter:title" content="{{ title }}">
+    {% endif %}
+    
+    {% if page.meta.description %}
+      <meta property="og:description" content="{{ page.meta.description }}">
+      <meta name="twitter:description" content="{{ page.meta.description }}">
+    {% else %}
+      <meta property="og:description" content="{{ config.site_description }}">
+      <meta name="twitter:description" content="{{ config.site_description }}">
+    {% endif %}
+  {% endif %}
+  
+  <meta name="theme-color" content="#4051b5">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta property="og:image" content="{{ config.site_url | url }}assets/img/favicons/android-chrome-512x512.png">
+  <meta property="og:image:type" content="image/png">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="Chaos League Wiki Team">
+  <meta name="twitter:image" content="{{ config.site_url | url }}assets/img/favicons/android-chrome-512x512.png">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ config.site_url | url }}assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ config.site_url | url }}assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ config.site_url | url }}assets/img/favicons/favicon-16x16.png">
+  <link referrerpolicy="manifest" href="{{ config.site_url | url }}assets/web.manifest">
+{% endblock %}

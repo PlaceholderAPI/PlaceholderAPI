@@ -1,0 +1,132 @@
+site_name: PlaceholderAPI Wiki
+site_description: Wiki of the Spigot Plugin PlaceholderAPI.
+site_author: PlaceholderAPI Team and Contributors
+
+site_url: 'https://wiki.placeholderapi.com'
+
+repo_name: PlaceholderAPI/PlaceholderAPI
+repo_url: https://github.com/PlaceholderAPI/PlaceholderAPI
+
+theme:
+  name: material
+  custom_dir: '.theme'
+  logo: assets/img/favicons/android-chrome-512x512.png
+  icon:
+    admonition:
+      note: octicons/pencil-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/rocket-16
+      success: octicons/check-circle-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/comment-16
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: blue grey
+      accent: cyan
+      toggle:
+        icon: octicons/sun-24
+        name: 'Switch to dark theme'
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: octicons/moon-24
+        name: 'Switch to light theme'
+  features:
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - content.tooltips
+    - content.code.copy
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our wiki and whether users find what
+      they're searching for. With your consent, you're helping us to make our
+      wiki better.
+    actions:
+      - accept
+      - reject
+      - manage
+  social:
+    - icon: fontawesome/regular/paper-plane
+      link: https://hangar.papermc.io/HelpChat/PlaceholderAPI
+    - icon: simple/spigotmc
+      link: https://www.spigotmc.org/resources/6245/
+    - icon: simple/discord
+      link: https://discord.gg/helpchat
+
+nav:
+  - index.md
+  - User Guides:
+    - users/index.md
+    - users/commands.md
+    - users/using-placeholders.md
+    - users/placeholder-list.md
+    - users/plugins-using-placeholderapi.md
+  - Dev Guides:
+    - developers/index.md
+    - developers/using-placeholderapi.md
+    - developers/creating-a-placeholderexpansion.md
+    - developers/expansion-cloud.md
+  - common-issues.md
+  - faq.md
+  - Discord: https://discord.gg/helpchat
+
+extra_javascript:
+  - assets/js/latest-release.js
+
+extra_css:
+  - assets/stylesheets/link-icons.css
+  - assets/stylesheets/styling.css
+
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: true
+  - meta
+  - md_in_html
+  - pymdownx.superfences
+  - pymdownx.magiclink:
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      provider: github
+      user: PlaceholderAPI
+      repo: PlaceholderAPI
+      normalize_issue_symbols: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.blocks.admonition:
+      types:
+        - note
+        - abstract
+        - info
+        - tip
+        - success
+        - question
+        - warning
+        - failure
+        - danger
+        - bug
+        - example
+        - quote
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab:
+      alternate_style: true
+  - pymdownx.tasklist

@@ -1,3 +1,9 @@
+---
+description: List of common issues and how to solve them.
+---
+
+# Common Issues
+
 This page lists common issues you may encounter with PlaceholderAPI and how you can solve them.
 
 If you have more questions, feel free to join the [Discord Server](https://discord.gg/helpchat).
