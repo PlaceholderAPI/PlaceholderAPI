@@ -10,10 +10,11 @@ Please note, that the examples in this page are only available for **Placeholder
 
 ## First steps
 
-Before you can actually make use of PlaceholderAPI, you first have to import it into your project.
+Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
+Use the below code example matching your dependency manager.
 
 /// tab | :simple-apachemaven: Maven
-```{ .xml title="pom.xml" data-md-component="api-version" }
+```{ .xml .annotate title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
@@ -43,6 +44,15 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:{version}'
 }
 ```
+///
+
+/// details | What is `{version}`?
+    type: question
+
+Using Javascript, `{version}` is replaced with the latest available API version of PlaceholderAPI.  
+Should you see the placeholder as-is does it mean that you either block Javascript, or that the version couldn't be obtained in time during page load.
+
+You can always find the latest version matching the API version on the [releases tab](https://github.com/PlaceholderAPI/PlaceholderAPI/releases) of the GitHub Repository.
 ///
 
 ### Set PlaceholderAPI as (soft)depend

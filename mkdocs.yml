@@ -2,9 +2,7 @@ site_name: PlaceholderAPI Wiki
 site_description: Wiki of the Spigot Plugin PlaceholderAPI.
 site_author: PlaceholderAPI Team and Contributors
 
-#site_url: 'https://wiki.placeholderapi.com' # Maybe?
-
-site_url: https://docs.andre601.ch/PlaceholderAPI # Temp until final decision and possible push to upstream
+site_url: 'https://wiki.placeholderapi.com'
 
 repo_name: PlaceholderAPI/PlaceholderAPI
 repo_url: https://github.com/PlaceholderAPI/PlaceholderAPI
