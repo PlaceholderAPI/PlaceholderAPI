@@ -14,7 +14,7 @@ Before you can actually make use of PlaceholderAPI, you first have to import it 
 Use the below code example matching your dependency manager.
 
 /// tab | :simple-apachemaven: Maven
-```{ .xml .annotate title="pom.xml" data-md-component="api-version" }
+```{ .xml title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
