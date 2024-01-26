@@ -1,7 +1,7 @@
-[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki
+[wiki]: https://wiki.placeholderapi.com
 
-[placeholders]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
-[using_papi]: https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Plugins-using-PlaceholderAPI
+[placeholders]: https://wiki.placeholderapi.com/users/placeholder-list/
+[using_papi]: https://wiki.placeholderapi.com/users/plugins-using-placeholderapi/
 
 [discord]: https://discord.gg/HelpChat
 [discussion]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
