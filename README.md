@@ -191,7 +191,7 @@ The following rules apply specifically to entries in the [Placeholder List][plac
 
 ### Plugins using PlaceholderAPI Rules
 
-The following rules apply specifically to entries in the [Plugins using PlaceholderAPI][plugins-using-placeholderpai] page:
+The following rules apply specifically to entries in the [Plugins using PlaceholderAPI][plugins-using-placeholderapi] page:
 
 1. Entries need to be in alphabetical order.
     - Should an entry with the name already exist will you need to add yours after it.
@@ -211,6 +211,8 @@ The following rules apply specifically to entries in the [Plugins using Placehol
      - In case there is one should `[**Link**](placeholder-list.md#<expansion>)`, where `<expansion>` being the name used in the list, be used.
      - In case there is no entry should `Link` be used.
 
+> A [online tool][plugin-list-gen] exists for your convenience to create the markdown for a new entry.
+
 [wiki]: https://wiki.placeholderapi.com
 
 [admo-docs]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/admonition/
@@ -223,3 +225,4 @@ The following rules apply specifically to entries in the [Plugins using Placehol
 [papi-list-gen]: https://papi.andre601.ch/generators/placeholder-list/
 
 [plugins-using-placeholderapi]: https://wiki.placeholderapi.com/users/plugins-using-placeholderapi/
+[plugin-list-gen]: https://papi.andre601.ch/generators/plugin-list/
