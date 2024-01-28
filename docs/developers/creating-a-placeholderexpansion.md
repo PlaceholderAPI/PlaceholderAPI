@@ -384,7 +384,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 Relational Placeholders always start with `rel_` to properly identify them. This means that if you make a relational placeholder called `friends_is_friend` would the full placeholder be `%rel_friends_is_friend%`.
 ///
 
-Relational PlaceholderExpansions are special in that bthey take two players as input, allowing you to give outputs based on their relation to each other.
+Relational PlaceholderExpansions are special in that they take two players as input, allowing you to give outputs based on their relation to each other.
 
 To create a relational expansion you will need to implement the [`Relational`][relational] interface into your expansion. You also still need to extend the [`PlaceholderExpansion`][placeholderexpansion] class.  
 Implementing this interface will add the `onPlaceholderRequest(Player, Player, String)` with the first two arguments being the first and second player to use and the third argument being the content after the second `_` and before the final `%` (Or `}` if bracket placeholders are used) in the placeholder.
