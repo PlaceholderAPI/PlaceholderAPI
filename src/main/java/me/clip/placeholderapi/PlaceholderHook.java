@@ -29,7 +29,7 @@ public abstract class PlaceholderHook {
   @Nullable
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {
-      return onPlaceholderRequest((Player) player, params);
+      return onPlaceholderRequest(player.getPlayer(), params);
     }
 
     return onPlaceholderRequest(null, params);
