@@ -1,190 +1,228 @@
-[wiki]: https://wiki.placeholderapi.com
+# PlaceholderAPI Wiki
 
-[placeholders]: https://wiki.placeholderapi.com/users/placeholder-list/
-[using_papi]: https://wiki.placeholderapi.com/users/plugins-using-placeholderapi/
+Welcome on the Wiki branch!
 
-[discord]: https://discord.gg/HelpChat
-[discussion]: https://github.com/PlaceholderAPI/PlaceholderAPI/discussions
+This branch is home of the [PlaceholderAPI Wiki's][wiki] source.  
+It allows us to properly manage the wiki and it allows you to contribute changes to it.
 
-[expansion-generator]: https://papi.andre601.ch
+## Contributing to the Wiki
 
-[andre]: https://github.com/Andre601
-[mkdocs]: https://www.mkdocs.org
+Contributions to the wiki are always welcome, granted they follow specific rules and guidelines to ensure a consistent styling across all pages.  
+Please read this readme file carefully, as it contains important information on how you contribute to the wiki and what to look out for.
 
-<!-- Images -->
+### Prerequisites
 
-# Wiki
-Welcome to the Wiki folder!
+This readme file will cover the basics of using Git, GitHub and MkDocs, but it is highly recommended to learn about these tools yourself before contributing, to avoid possible issues.  
+If you have questions about any of those, do not hesitate to ask. We will try to assist you as good as we can.
 
-This folder contains all the files of the [PlaceholderAPI Wiki][wiki].  
-It allows you to contribute towards the wiki and us to have more control about what changes are commited to it.
+Before you now start working on the wiki should make sure that the following has been done already:
 
-## Contrbuting to the wiki
-If you want to contribute towards the wiki, will you need to follow the below instructions to not get your Pull request closed without a warning.
+- You installed and configured Git.
+- You installed and configured Python. At least 3.10 is required for MkDocs to work.
+- You installed MkDocs and all required dependencies. You can just install `mkdocs-material` through pip and all necessary dependencies will be included.
 
-### Fork the Repository (Not wiki!)
-> Already having a fork? Skip to the [next Step](#select-target-branch)!
+Should the above be completed can we start with the process of contributing to this wiki.
 
-You need to make a fork of the PlaceholderAPI Repository to contribute towards the wiki.  
-To fork the repository, click the button on the top-right that says "Fork". In the new page, select the account/organisation you want to fork this repository towards and make sure to have "Copy the `master` branch only" unchecked, so that the `wiki` branch is copied too.  
-After this, click "Create fork".
+### 1. Fork the Repository
+
+> **Already have a fork?** Skip to the [next step!](#2-switch-target-branch)
+
+You need to make a fork of the PlaceholderAPI Repository in order to make your changes to it.  
+To create a fork, click the button on the top right that says "Fork". This will open a new page where you can set specific options such as the name of the fork (Defaults to the name of this repository), the account/organization this repo should be forked to and whether only the master branch should be included.
+
+It is crucial to set ``Copy the `master` branch only`` to **not** be checked, or else the wiki branch won't be included in your fork.
 
 ![fork repo](docs/assets/img/readme/fork.png)
 
-The forking process should only take a few seconds and you should be redirected to your fork afterwards.
+Once you confirm the fork will a copy of the repository be created under the user/organization you chose. This process should only take a few seconds and you will be automatically redirected to your fork after it completed.  
+You can now move on to the next step.
 
-### Select target branch
-All main changes to the wiki are made on the dedicated `wiki` branch.  
-Before you try to make any changes should you make sure that you have the `wiki` branch selected. To do that, check the button next to the `X branches` text. If it says anything other than `wiki` will you need to click it and select the right branch.
+### 2. Switch target branch
 
-![select branch](docs/assets/img/readme/select-branch.png)
+By default will you be on the default branch of the repository (`master`). To now get to the wiki branch, click the button that says `master` (Located to the left of the text reading `n Branches`).  
+A dropdown should open with all the branches you included during the forking. Select the `wiki` branch in the list to switch to it.
 
-### Fetch Changes from Upstream
-This is only required when you already had a fork and didn't update it for some time.
+![switch branch](docs/assets/img/readme/select-branch.png)
+
+### 3. Fetch Changes from Upstream
+
+> This step is only required for old forks that haven't been updated in a while.
 
 While you're on the `wiki` branch, click the `Sync Fork` text located right below the green `Code` button.  
-Depending on the status of your branch can the prompt show different outcomes:
+Doing so will show you a box with one of two possible messages:
 
-- `This branch is not behind the upstream PlaceholderAPI:wiki`  
-  Your fork's `wiki` branch is up-to-date with the latest changes from Upstream (This Repository). You don't have to update anything.  
-  ![upstream up-to-date](docs/assets/img/readme/up-to-date.png)
-- `This branch is out-of-date`  
-  Your fork's `wiki` branch is outdated and should be updated. Press the "Update branch" button to do so.  
-  ![upstream needs update](docs/assets/img/readme/needs-update.png)
+- ``This branch is not behind the upstream `PlaceholderAPI/PlaceholderAPI:wiki`.``  
+  This text indicates that your fork is up-to-date with the original repository's wiki branch and does not need any updating.
+  ![fork up-to-date](docs/assets/img/readme/up-to-date.png)
+- `This branch is out-of-date`
+  This text indicates that your fork is outdated and should be updated with the latest changes from the original repository. There should be a button labeled `Update branch` that you can press to update your fork's `wiki` branch.  
+  ![fork outdated](docs/assets/img/readme/needs-update.png)
 
-### Commit changes
-To commit changes will you need to choose, if you want to directly commit to your fork's `wiki` branch, or make a dedicated branch for it.
+### 4. Clone to a local Repository
 
-#### Make separate branch (Optional)
-If you want to have a dedicated branch for it, will you need to click the button saying `wiki`, type in the small text field the name of the branch you want to use and click the text saying `Create branch: <branch> from 'wiki'`
+It is recommended to clone your fork to your PC to utilize tools such as MkDocs' live-preview to see the changes made.  
+To clone your fork to your PC, first choose where it should be cloned towards. Cloning the repository will create a new folder with the repository's content in it, so if you choose to clone into a folder named `GitHub` will this result in `GitHub/PlaceholderAPI` being created.
 
-![create branch](docs/assets/img/readme/new-branch.png)
+Copy the below command and execute it in your git-bash console (Replace `<user>` with the user/organization name of your fork):  
+```sh
+$ git clone -b wiki https://github.com/<user>/PlaceholderAPI
+```
+This will clone the repository onto your PC with the `wiki` branch being selected by default.
 
-After that should you now have a separate branch that is based of the `wiki` branch and you can finally commit changes to it.
+You should now navigate into your cloned repository in the git-bash console using `cd PlaceholderAPI`.
 
-#### Formatting
-The wiki uses Markdown for formatting. While most markdown is the one you may already be familiar with, are there special cases you need to keep in mind. Namely:
+### 5. Create a new branch (Recommended)
 
-- New lines in lists need to be indendet by 4 spaces. Also, two spaces at the end for a line break is also needed.
-  Example:
-  ```markdown
-  - Line 1  
-      Line 2
-  ```
+This step is optional, but recommended to keep the main wiki branch clean from any changes, which avoids possible merge conflicts in the future.
 
-In addition should you keep the following rules in mind:
-
-- Unordered lists need to start with a `-` and not `*`. This is to not get it confused with *italic text* which uses single `*` characters.
-- Use relative links to point to another page in the wiki and include the file extension too. Editors like VSCode may help you auto-completing the path.
-
-#### Adding new Expansion
-When you add a new expansion to the wiki's [Placeholder page][placeholders] will you need to follow the following format:  
-````markdown
-- ### [:name](:link)
-    > :command
-    
-    :text
-    
-    ```
-    :placeholders
-    ```
-````
-
-There are a few extra rules you need to also keep in mind:
-
-- `:name` would be the name of your Expansion, not the plugin (Unless it is integrated into your plugin).
-  - Only embed a link, if your Expansion requires a plugin to function.
-  - When linking to a Spigot page, make sure to sanitze the link.  
-    This means that f.e. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/
-- `:command` should be replaced with either the PlaceholderAPI command to download your expansion from the eCloud (`/papi ecloud download :name`) or with `NO DOWNLOAD COMMAND` if no separate download is available.
-- `:text` is optional and should only be provided to link to additional documentation, your own placeholder list, or explain more complicated placeholders/features.
-- `:placeholders` will be the list of placeholders your expansion provides.  
-  Please avoid specific examples (i.e. `%placeholder_player_user123%`) and instead use `<>` and `[]` to mark required and optional options respecively (`%placeholder_player_<player>%`)
-
-**Note:**  
-When your Expansion's entry is after and/or before other entries will you need to add `----` before or after it to separate it from other entries.
-
-##### Example:  
-````markdown
-- ### SomeExpansion
-    > NO DOWNLOAD COMMAND
-    
-    ```
-    %someexpansion_placeholder%
-    ```
-
-----
-
-- ### YourExpansion
-    > NO DOWNLOAD COMMAND
-    
-    ```
-    %yourexpansion_placeholder%
-    ```
-
-----
-
-- ### AnotherExpansion
-    > NO DOWNLOAD COMMAND
-    
-    ```
-    %anotherexpansion_placeholder%
-    ```
-````
-
-After you added your expansion to this page will you also need to add an entry to the list at the top of the page.  
-You do so by adding `- **[:text](#:name)**` to the list, where `:text` is the text to display (Usually the name you set) and `:name` is the name you just set. If your expansion shares the exact same name as another entry on the page will you need to make sure that your expansion is listed **after** the other one AND that the list-entry has a `-1` appended to `#:name` (So f.e. `#expansion` becomes `#expansion-1`).
-
-Finally can you now commit your changes and move forward to the [Plugins using PlaceholderAPI][using_papi] page in the wiki folder.
-
-#### Adding new plugin
-This step is only required if you either add a new plugin to the list, or you added an Expansion that is included in your own plugin.
-
-Similar to the [Placeholders page][placeholders] does this page follow a specific format which we will explain real quick.
-
-```markdown
-- [:name](:link)
-    - [?] Supports placeholders.
-    - [?] Provides own placeholders. [:page]
+To create a new branch, execute the command below (Replace `<branch>` with the branch name you want to use):  
+```sh
+$ git checkout -b <branch>
 ```
 
-Here are the following rules:
+> [!TIP]
+> In case you already created a branch on GitHub before cloning the repository can you use `git switch <branch>` to switch to this branch.
 
-- `:name` needs to be replaced with the Name of your plugin.
-- `:link` needs to be the link of the plugin's resource page.
-  - If no resource page is available can a GitHub repository be linked (if available) or the link omited altogether)
-  - When linking to a Spigot page, make sure to sanitze the link.  
-    This means that f.e. https://www.spigotmc.org/resources/placeholderapi.6245/ becomes https://www.spigotmc.org/resources/6245/
-- `[?]` needs to be replaced with either `[ ]` or `[x]` depending on whether the mentioned option is supported or not.
-- `:page` needs to replace with the right value, depending on the conditions.
-  - If your plugin provides own Placeholders for other plugins to use can you set `**[[Link](placeholder-list.md#:name)]**` where `:name` is the title you set in the placeholders page.
-  - If your plugin does not provide own placeholders will you need to set `Link`.
+### 6. Make your changes
 
-### Make a Pull request
-After you made your changes is it time to make a Pull request.
+It is now time to make your changes. It is recommended to use MkDocs and its live-preview feature to see your changes applied in real time whenever you save a file.
 
-When you made changes to the branch should GitHub show you a prompt with a button saying "Compare & pull request". This prompt also shows up when you visit the upstream Repository while having changes on your fork.  
-Press the button to proceed.
+To use the live-preview, run `mkdocs serve` in the same folder where the `mkdocs.yml` file is located. This should start a server on `http://127.0.0.1:8000` that you can open in your browser.  
+Should the command not work, check that you actually installed MkDocs and any required dependencies. The easiest way is to just execute `pip install mkdocs-material` to download the Material for MkDocs theme alongside additional dependencies, including MkDocs.
+
+To cancel the live preview, simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the git-bash terminal to shut the live preview server down.
+
+#### Markdown Formatting Rules
+
+> [!IMPORTANT]
+> Please also see the [Wiki Structure](#wiki-structure) section for more details on the formatting!
+
+MkDocs utilizes Python-Markdown, a Python library used for parsing Markdown into HTML. This library follows very specific rules in regards to Makrkdown formattings that you need to keep in mind while editing files.
+
+Here are some noteworthy points:
+
+- Lists require an empty line before themself to be rendered as such. This means that a list cannot start directly after some text, but needs a gap before itself.
+- New lines in lists (No matter if ordered or unordered) need to have an indent of 4 spaces.
+  - This indent also applies to nested list entries.
+  - In certain situations will you also need to keep an empty line between the list entry and the new line.
+- Links to other files should be relative and also include the file name itself. They will be parsed into proper `a` tags pointing to the page when rendered.
+
+In addition are extensions used to further enhance the default markdown formatting with additional features. Such features include:
+
+- Admonition blocks (Also known as callouts. [[Documentation][admo-docs]])
+- Details (`<details>` HTML tag. [[Documentation][details-docs]])
+- Tabs (Way of displaying different content you can toggle between. [[Documentation][tabs-docs]])
+- Automatic linking of issues, PRs, discussions using `!<id>`, `#<id>` and `?<id>` respectively (Uses [MagicLink extension][ml-docs])
+
+### 7. Commit and push your changes
+
+Once you're happy with your changes is it time to commit them back to your fork on GitHub to then PR to the upstream repository.
+
+To commit your changes, you may first need to add the files to commit. To do this, run `git add <file-path>` where `<file-path>` is the path to the modified file relative to the repository's root.  
+As an example, changing `placeholder-list.md` would require you to execute `git add docs/users/placeholder-list.md`.
+
+If you're sure that only files that should be commited got changed can you use `git add .` to add all changed files.
+
+Once this step is done can you execute `git commit`. Doing so will open a text editor where you can write the commit message in. Try to keep it short and simple. You can also append the `-m` argument followed by text inside double quotes to the command to directly set the commit message without having to use a text editor.
+
+Once your changes got committed will you need to execute `git push`. In case you created a new branch in your local repository will you need to add `--set-upstream origin <branch>` with `<branch>` being the name of the branch you want to use on your fork on GitHub.
+
+Your changes should now be on your GitHub Fork.
+
+### 8. Create a Pull request
+
+Your final step now is to make a Pull request to the original repository. GitHub should already give you a prompt regarding recent changes on your branch.
 
 ![pr prompt](docs/assets/img/readme/pr-prompt.png)
 
-By default will GitHub select the `master` branch as the target, which is not what we want. To fix this, click the button saying `base:master` and select the `wiki` branch.
+Clicking the "Compare & pull request" button will open a diff view page showing a comparison between your changes and the branch of the upstream. You can double check that it targets the upstream by checking that there is a `base repository` option pointing to `PlaceholderAPI/PlaceholderAPI`. Should there only be a `base` option does it mean that you target branches on your own repository. To fix this, click the text that says "compare across forks" to toggle. You can then select `PlaceholderAPI/PlaceholderAPI` as the `base repository` and `head repository` to your fork.
 
-> [!NOTE]  
-> When the branch selection only shows branches and not the actual repositories does it mean that you're prompted to PR to your own fork.  
-> To fix this, press the "compare across forks" text shown, select `PlaceholderAPI/PlaceholderAPI` as the target repository (left side) and your fork as the source. Then select the wiki branch as mentioned above.
+By default does GitHub select the `master` branch as the default. Change it to `wiki` while also changing the branch of your fork to whatever you made your changes on (Should be selected by default).
 
 ![create pr](docs/assets/img/readme/create-pr.png)
 
-Finally, fill out the Pull request template and submit the Pull request.  
-Congratulations! You've successfully made a Pull request for the wiki.
+Should there be changes that can be merged will the "Create pull request" button light up, allowing you to make a pull request.  
+Press the button, fill out the title and body of the pull request and create it.
 
-### Questions?
-If you have any questions, do not hesitate to ask in the [HelpChat Discord][discord] or [open a new discussion][discussion] in this repository. We will be happy to help you.
+Congratulations! You made a Pull request for the wiki!
 
-### Tools
-A simple [online-tool][expansion-generator] is provided by Andre601 that allows you to create new entries for expansions in the wiki.
+----
 
-### Credits
-- The Wiki is maintained by [Andre601][andre].
-- We use [MkDocs][mkdocs] to turn the Markdown files into static HTML pages that then get uploaded to GitHub Pages through a GitHub Actions workflow.
+## Wiki Structure
+
+The wiki has specific rules in regards to its own structure. This is to keep a level of consistency across all pages when viewed at in their raw (unparsed) form.
+
+### General Rules
+
+The following rules apply to all pages:
+
+1. Unordered lists always use `-` and not `*` to avoid confusion with `*italic text*`
+2. Links to other pages always need to be relative, meaning they should not start with `/`.
+3. An empty line between a header (Any level) and text should be set.
+
+### Placeholder List Rules
+
+The following rules apply specifically to entries in the [Placeholder List][placeholder-list] page:
+
+1. Entries need to be in alphabetical order.
+    - Should an entry with the name already exist will you need to add yours after it.
+2. An entry follows this specific format:
+   ````markdown
+   - ### [<name>](<link>)
+       > <command>
+       
+       <text>
+
+       ```
+       <placeholders>
+       ```
+   ````
+   - `<name>` is the name of the Placeholder expansion you add.
+   - `<link>` is a link to the plugin this expansion is made for. If the expansion is not for a plugin should no link be added (Only `- ### <name>` be used).
+     - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
+   - `<command>` is the [`/papi ecloud download`][download-command] used to get the expansion. Should the expansion not be on the eCloud will you need to put `NO DOWNLOAD COMMAND` here.
+   - `<text>` is an optional text that can be used to point to extra documentation. Please keep it short and simple.
+   - `<placeholders>` would be all available placeholders. Each entry should be on a new line.
+     - Please avoid explicit examples and instead use `<>` and `[]` to indicate required or optional values (i.e. instead of `%expansion_SomePlayer%` it would be `%expansion_<player>%`)
+3. Make sure to also add an entry to the list at the top of the page, linking to your entry.
+4. Should your entry have entries before and/or after it will you need to add horizontal lines (`----`) to separate yours from these entries. Keep an empty line between the horizontal line and any entry.
+
+> A [online tool][papi-list-gen] exists for your convenience to create the markdown for a new entry.
+
+### Plugins using PlaceholderAPI Rules
+
+The following rules apply specifically to entries in the [Plugins using PlaceholderAPI][plugins-using-placeholderapi] page:
+
+1. Entries need to be in alphabetical order.
+    - Should an entry with the name already exist will you need to add yours after it.
+2. An entry follows this specific format:
+   ````markdown
+   - [<name>](<link>)
+       - [?] Supports placeholders.
+       - [?] Provides own placeholders. [<link>]
+   ````
+   - `<name>` is the name of the Plugin you add.
+   - `<link>` is a link to the Plugin page. Should no plugin page exist can a GitHub repo or no link (Just `- <name>`) be used instead.
+     - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
+   - `[?]` needs to be replaced with either `[x]` or `[ ]` depending on if the statement is true or not.
+     - `Supports placeholders.` means that the Plugin allows the usage of any placeholder through PlaceholderAPI in its messages, settings, etc.
+     - `Provides own placeholders.` means that a Placeholder expansion is available that provides placeholders through PlaceholderAPI for this plugin.
+   - `<link>` should be replaced with one of two possible options, depending on whether there is a placeholder expansion listed in the [Placeholder List][placeholder-list] page.
+     - In case there is one should `[**Link**](placeholder-list.md#<expansion>)`, where `<expansion>` being the name used in the list, be used.
+     - In case there is no entry should `Link` be used.
+
+> A [online tool][plugin-list-gen] exists for your convenience to create the markdown for a new entry.
+
+[wiki]: https://wiki.placeholderapi.com
+
+[admo-docs]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/admonition/
+[details-docs]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
+[tabs-docs]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/tab/
+[ml-docs]: https://facelessuser.github.io/pymdown-extensions/extensions/magiclink/
+
+[placeholder-list]: https://wiki.placeholderapi.com/users/placeholder-list/
+[download-command]: https://wiki.placeholderapi.com/users/commands/#papi-ecloud-download
+[papi-list-gen]: https://papi.andre601.ch/generators/placeholder-list/
+
+[plugins-using-placeholderapi]: https://wiki.placeholderapi.com/users/plugins-using-placeholderapi/
+[plugin-list-gen]: https://papi.andre601.ch/generators/plugin-list/
