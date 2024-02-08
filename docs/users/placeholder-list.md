@@ -241,6 +241,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Heroes](#heroes)**
         - **[HoloBlock](#holoblock)**
         - **[HoloMobHealth](#holomobhealth)**
+        - **[Honeypot](#honeypot)**
         - **[HPWizard](#hpwizard)**
         - **[Hugs](#hugs)**
         - **[HyacinthHello](#hyacinthhello)**
@@ -3196,6 +3197,20 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     
     ```
     %holomobhealth_displaytoggle%
+    ```
+
+----
+
+- ### **[Honeypot](https://www.spigotmc.org/resources/96665)**
+    > NO DOWNLOAD COMMAND
+
+    Get information about your players from Honeypot.
+    Please refer to the [Wiki](https://github.com/TerrorByteTW/Honeypot/wiki#placeholders) for more detailed information.
+
+    ```
+    %honeypot_current_count_broken%
+    %honeypot_breaks_before_action%
+    %honeypot_current_count_broken_<player>%
     ```
 
 ----
