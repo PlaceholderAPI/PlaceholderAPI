@@ -437,6 +437,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#holomobhealth)**]
+- **[Honeypot](https://www.spigotmc.org/resources/96665)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#honeypot)**]
 - **[HPWizard](https://www.spigotmc.org/resources/26821/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#hpwizard)**]
