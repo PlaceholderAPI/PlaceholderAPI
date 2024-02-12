@@ -191,7 +191,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ### Register your Expansion
 
-Due to the PlaceholderExpansion being internal, does PlaceholderAPI not load it automatically, requiring us to do it manually.  
+Due to the PlaceholderExpansion being internal, PlaceholderAPI does not load it automatically, we'll need to do it manually.  
 This is being done by creating a new instance of your PlaceholderExpansion class and calling the `register()` method of it.
 
 Here is a quick example:
