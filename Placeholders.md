@@ -3907,12 +3907,12 @@ Please see [this discussion][list] for a list of all expansions officially maint
   > /papi ecloud download MineResetLite
   
   ```
-  %mineresetlite_time%
-  %mineresetlite_time_remaining%
-  %mineresetlite_precentage%
-  %mineresetlite_blocks_mined%
-  %mineresetlite_percentage_mined%
-  %mineresetlite_percentage_remaining%
+  %mineresetlite_<mine>_time%
+  %mineresetlite_<mine>_time_remaining%
+  %mineresetlite_<mine>_precentage%
+  %mineresetlite_<mine>_blocks_mined%
+  %mineresetlite_<mine>_percentage_mined%
+  %mineresetlite_<mine>_percentage_remaining%
   ```
 
 ---
