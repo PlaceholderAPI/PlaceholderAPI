@@ -12,6 +12,7 @@ theme:
   custom_dir: '.theme'
   logo: assets/img/favicons/android-chrome-512x512.png
   icon:
+    repo: octicons/mark-github-16
     admonition:
       note: octicons/pencil-16
       abstract: octicons/checklist-16
