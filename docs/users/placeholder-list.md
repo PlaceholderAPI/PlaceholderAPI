@@ -1471,7 +1471,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     > /papi ecloud download unicode
     
     ```
-    %unicode_<value>%
+    %unicode_<hex value>%
     ```
     
     Example: `%unicode_1000%` would show `က`
