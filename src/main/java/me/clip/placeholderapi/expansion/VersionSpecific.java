@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,10 @@ package me.clip.placeholderapi.expansion;
  * with that version.
  *
  * @author Ryan McCarthy
+ *
+ * @deprecated Will be removed in a future release.
  */
+@Deprecated
 public interface VersionSpecific {
 
   /**
