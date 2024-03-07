@@ -200,7 +200,9 @@ public final class CommandDump extends PlaceholderCommand {
     for (final Plugin other : plugins) {
       builder.append("  ")
           .append(String.format("%-" + size + "s", other.getName()))
-          .append(" [Version: ")
+          .append(" [Authors: [")
+          .append(String.join(", ", other.getDescription().getAuthors()))
+          .append("], Version: ")
           .append(other.getDescription().getVersion())
           .append("]")
           .append("\n");
