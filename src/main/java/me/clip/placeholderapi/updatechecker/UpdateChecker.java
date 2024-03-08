@@ -55,7 +55,7 @@ public class UpdateChecker implements Listener {
   }
 
   public void fetch() {
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+    PlaceholderAPIPlugin.getFoliaLib().getImpl().runAsync(t -> {
       try {
         HttpsURLConnection con = (HttpsURLConnection) new URL(
             "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
@@ -76,7 +76,7 @@ public class UpdateChecker implements Listener {
         return;
       }
 
-      Bukkit.getScheduler().runTask(plugin, () -> {
+      PlaceholderAPIPlugin.getFoliaLib().getImpl().runNextTick(t1 -> {
         plugin.getLogger()
             .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
         plugin.getLogger()

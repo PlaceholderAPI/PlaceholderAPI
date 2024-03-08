@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi;
 
+import com.tcoded.folialib.FoliaLib;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @NotNull
   private static final Version VERSION;
   private static PlaceholderAPIPlugin instance;
+  private static FoliaLib foliaLib;
 
   static {
     final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
@@ -88,6 +90,15 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @NotNull
   public static PlaceholderAPIPlugin getInstance() {
     return instance;
+  }
+
+  /**
+   * Get the static instance of the FoliaLib class
+   *
+   * @return FoliaLib instance
+   */
+  public static FoliaLib getFoliaLib() {
+    return foliaLib;
   }
 
   /**
@@ -134,6 +145,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   @Override
   public void onLoad() {
     instance = this;
+    foliaLib = new FoliaLib(this);
 
     saveDefaultConfig();
   }
@@ -162,7 +174,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    foliaLib.getImpl().cancelAllTasks();
 
     adventure.close();
     adventure = null;
