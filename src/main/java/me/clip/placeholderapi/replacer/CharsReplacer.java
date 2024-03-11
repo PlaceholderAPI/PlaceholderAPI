@@ -67,8 +67,12 @@ public final class CharsReplacer implements Replacer {
           hadSpace = true;
           break;
         }
-        if (p == closure.tail) {
+        if (p == closure.tail && identified) {
           invalid = false;
+          break;
+        }
+        if (p == closure.tail) {
+          identifier.append(p);
           break;
         }
 

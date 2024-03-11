@@ -30,6 +30,8 @@ import org.jetbrains.annotations.Nullable;
 
 public interface Values {
 
+  String NO_ARGUMENTS_PLACEHOLDER = "%player%";
+  String EMPTY_ARGUMENT_PLACEHOLDER = "%player_%";
   String SMALL_TEXT = "My name is %player_name%";
   String LARGE_TEXT = "My name is %player_name% and my location is (%player_x%, %player_y%, %player_z%), this placeholder is invalid %server_name%";
 
@@ -43,6 +45,7 @@ public interface Values {
 
   final class MockPlayerPlaceholderExpansion extends PlaceholderExpansion {
 
+    public static final String EMPTY_ARGUMENT = "Empty Argument";
     public static final String PLAYER_X = "10";
     public static final String PLAYER_Y = "20";
     public static final String PLAYER_Z = "30";
@@ -83,6 +86,8 @@ public interface Values {
           return PLAYER_Y;
         case "z":
           return PLAYER_Z;
+        case "":
+          return EMPTY_ARGUMENT;
       }
 
       return null;
