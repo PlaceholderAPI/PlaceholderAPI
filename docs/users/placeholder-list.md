@@ -5568,7 +5568,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 ----
 
 - ### **[Skript](https://github.com/bensku/Skript)**
-    > /papi ecloud download skript
+    > [Manual Download](https://api.extendedclip.com/expansions/skippi/)
     
     ```
     %skript_<variable name>%
