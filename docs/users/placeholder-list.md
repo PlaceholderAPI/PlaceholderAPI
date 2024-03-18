@@ -2754,9 +2754,9 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     See Spigot page for placeholder descriptions
     
     ```
-    %entityclearer_remaining_minutes%
-    %entityclearer_remaining_seconds%
-    %entityclearer_remaining_seconds_left%
+    %entityclearer_remaining_minutes_<world>%
+    %entityclearer_remaining_seconds_<world>%
+    %entityclearer_remaining_seconds_left_<world>%
     ```
 
 ----
