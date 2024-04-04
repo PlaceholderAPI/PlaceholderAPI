@@ -737,30 +737,24 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     
     More info about this expansion can be found on the [Codeberg-Repository](https://codeberg.org/Andre601/Formatter-Expansion).
     
-    `[]` is optional and `<>` is required.
+    `[]` is optional and `<>` is required.  
+    Use `{{u}}` for underscores and `{{prc}}` for percent symbols.
     
     ```
     %formatter_number_format_<number>%
     %formatter_number_format_[locale]:[pattern]_<number>%
-    
-    %formatter_number_from:<timeunit>_to:<timeunit>_<number>% # Converts <number> from one time unit to another
-    
+    %formatter_number_from:<timeunit>_to:<timeunit>_<number>%
     %formatter_number_round_<number>%
-    %formatter_number_[precision]:[roundingmode]_<number>%
-    
+    %formatter_number_round_[precision]:[roundingmode]_<number>%
     %formatter_number_shorten_<number>%
-    
     %formatter_number_time_<number>%
     %formatter_number_time_<timeunit>_<number>% # Handles number as <timeunit>
     
+    %formatter_text_capitalize_<text>%
     %formatter_text_length_<text>%
-    
     %formatter_text_lowercase_<text>%
-    
     %formatter_text_replace_[target]_[replacement]_<text>%
-    
     %formatter_text_substring_[start]:[end]_<text>%
-    
     %formatter_text_uppercase_<text>%
     ```
 
@@ -1790,10 +1784,10 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     For more info, visit the [wiki](https://asl.andre601.ch/placeholderapi/#own-placeholders) of the plugin.
     
     ```
-    %asl_motd%
     %asl_favicon%
-    %asl_playercount_hover%
+    %asl_motd%
     %asl_playercount_extraplayers%
+    %asl_playercount_hover%
     %asl_playercount_maxplayers%
     %asl_playercount_text%
     %asl_server_playersmax%
