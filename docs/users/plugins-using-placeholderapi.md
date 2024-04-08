@@ -281,6 +281,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Daily Rewards](https://www.spigotmc.org/resources/16708)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#daily-rewards)**]
+- **[DeathMsgEdit](https://www.spigotmc.org/resources/deathmsgedit.116017/)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders. [Link]
 - **[DecentHolograms](https://www.spigotmc.org/resources/96927/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
