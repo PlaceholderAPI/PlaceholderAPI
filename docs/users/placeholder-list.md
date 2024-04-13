@@ -2745,12 +2745,10 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 - ### **[EntityClearer](https://www.spigotmc.org/resources/90802/)**
     > NO DOWNLOAD COMMAND
     
-    See Spigot page for placeholder descriptions
-    
     ```
-    %entityclearer_remaining_minutes_<world>%
-    %entityclearer_remaining_seconds_<world>%
-    %entityclearer_remaining_seconds_left_<world>%
+    %entityclearer_remaining_minutes_<world>% | The time in minutes until the next clear task is run in the world
+    %entityclearer_remaining_seconds_<world>% | The time in seconds until the next clear task is run in the world
+    %entityclearer_remaining_seconds_left_<world>% | The time in seconds until the next clear task is run in the world, minus the time the minutes placeholder already accounted for
     ```
 
 ----
