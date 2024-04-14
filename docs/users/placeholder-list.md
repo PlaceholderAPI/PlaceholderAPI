@@ -6193,6 +6193,10 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     %tokenenchant_enchantments%
     %tokenenchant_baltop_<X>_name% : The name of X-th baltop player
     %tokenenchant_baltop_<X>_balance% : The balance of X-th baltop player
+    %tokenenchant_<enchantment>_allowed% : true if a palyer's item can have <enchantment>, otherwise false
+    %tokenenchant_<enchantment>_permission_node% : returns the permission node for the <enchantment>
+    %tokenenchant_<enchantment>_has_permission% : true if a player has a permission node for <enchantment>, otherwise false
+    %tokenenchant_<enchantment>_conflict_list% : returns a list of conflicting enchantments
     ```
 
 ----
