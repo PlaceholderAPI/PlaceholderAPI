@@ -52,7 +52,7 @@ While you're on the `wiki` branch, click the `Sync Fork` text located right belo
 Doing so will show you a box with one of two possible messages:
 
 - ``This branch is not behind the upstream `PlaceholderAPI/PlaceholderAPI:wiki`.``  
-  This text indicates that your fork is up-to-date with the original repository's wiki branch and does not need any updating.
+  This text indicates that your fork is up-to-date with the original repository's wiki branch and does not need any updating.  
   ![fork up-to-date](docs/assets/img/readme/up-to-date.png)
 - `This branch is out-of-date`
   This text indicates that your fork is outdated and should be updated with the latest changes from the original repository. There should be a button labeled `Update branch` that you can press to update your fork's `wiki` branch.  
