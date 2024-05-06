@@ -9,9 +9,9 @@ This page shows all commands, including with a detailed description of what ever
 ## Overview
 
 - **[Parse Commands](#parse-commands)**
-    - [`/papi bcparse <player|me> <string>`](#papi-bcparse)
-    - [`/papi cmdparse <player|me> <string>`](#papi-cmdparse)
-    - [`/papi parse <player|me> <string>`](#papi-parse)
+    - [`/papi bcparse <player|me|--null> <string>`](#papi-bcparse)
+    - [`/papi cmdparse <player|me|--null> <string>`](#papi-cmdparse)
+    - [`/papi parse <player|me|--null> <string>`](#papi-parse)
     - [`/papi parserel <player> <player> <string>`](#papi-parserel)
 
 - **[eCloud Commands](#ecloud-commands)**
@@ -51,7 +51,7 @@ Parses placeholders of a String and broadcasts the result to all players.
 
 **Arguments**:  
 
-- `<player|me>` - The Player to parse values of the placeholder (Use `me` for yourself).
+- `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
 - `<Text with placeholders>` - The text to parse.
 
 **Example**:  
@@ -68,7 +68,7 @@ Parses placeholders of a String and executes it as a command.
 
 **Arguments**:
  
- - `<player|me>` - The player to parse placeholders against. Use `me` for yourself.
+- `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
  - `<Command with placeholders>` - The Text to parse and execute as command. Please leave away the `/` of the command.
 
 **Example**:  
@@ -85,7 +85,7 @@ Parses the placeholders in a given text and shows the result.
 
 **Arguments**:
 
-- `<player|me>` - The Player to parse values of the placeholder (Use `me` for yourself).
+- `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
 - `<Text with placeholders>` - The text to parse.
 
 **Example**:  
