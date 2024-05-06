@@ -32,7 +32,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[U](#u)**
 - **[V](#v)**
 - **[W](#w)**
-- **[X](#X)**
+- **[X](#x)**
 - **[Y](#y)**
 - **[Z](#z)**
 
@@ -88,7 +88,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Animated Menu](https://www.spigotmc.org/resources/4690/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#amimated-menu)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#animated-menu)**]
 - **[AnimatedSpecialBar](https://www.spigotmc.org/resources/24654/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -154,7 +154,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#blockparty)**]
 - **[BlockQuests](https://www.spigotmc.org/resources/32729/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#blockquests)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#blockquest)**]
 - **[BookStats](https://www.spigotmc.org/resources/4313/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -199,7 +199,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Chat Format](https://www.spigotmc.org/resources/11780/)**
     - [x] Supports placeholders.
-    - [ ] Provides own placeholders. [**[Link](placeholder-list.md#chat-format)**]
+    - [ ] Provides own placeholders. [Link]
 - **[ChatManager](https://www.spigotmc.org/resources/52245/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -214,7 +214,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[CitizensBooks](https://www.spigotmc.org/resources/37465/)**
     - [x] Supports placeholders.
-    - [ ] Provides own placeholders. [**[Link](placeholder-list.md#citizensbooks)**]
+    - [ ] Provides own placeholders. [Link]
 - **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#clans-api-for-spigotclan-tag-in-chat)**]
@@ -314,9 +314,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Disease](https://www.spigotmc.org/resources/3911/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#disease)**]
-- **DonationParty**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#donationparty)**]
 - **[Donations Holograms](https://www.spigotmc.org/resources/1956/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#donations-holograms)**]
@@ -334,7 +331,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#economy-bank)**]
 - **[Enjin & DonationCraft 2.x](https://dev.bukkit.org/projects/emp)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#enjin--donationcraft-2x)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#enjin-donationcraft-2x)**]
 - **[Enhanced BalTop](https://www.spigotmc.org/resources/20168/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -425,12 +422,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Head Database](https://www.spigotmc.org/resources/14280/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#head-database)**]
-- **[HelpGUI](https://www.spigotmc.org/resources/33245/)**
-    - [x] Supports placeholders.
-    - [ ] Provides own placeholders. [Link]
-- **[HeroChat Premium]()**
-    - [x] Supports placeholders.
-    - [ ] Provides own placeholders. [**[Link](placeholder-list.md#herochat-premium)**]
 - **[Heroes](https://www.spigotmc.org/resources/305/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#heroes)**]
@@ -458,12 +449,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#interactivechat)**]
-- **[IslandRate (ASkyBlock Addon)](https://www.spigotmc.org/resources/53519/)**
+- **[IslandRate](https://www.spigotmc.org/resources/53519/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#islandrate-askyblock-addon)**]
-- **[IslandRate (AcidIsland Addon)](https://www.spigotmc.org/resources/54913/)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#islandrate-acidisland-addon)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#islandrate)**]
 - **[ItemJoin](https://www.spigotmc.org/resources/12661/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -491,9 +479,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[KitPvP](https://www.spigotmc.org/resources/27107/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#kitpvp)**]
-- **[Kingdoms+](https://www.spigotmc.org/resources/11833/)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#kingdoms)**]
 - **[KP-PVP](https://www.spigotmc.org/resources/50969/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#kp-pvp)**]
@@ -548,9 +533,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[MCInfected](https://www.spigotmc.org/resources/2133/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#mcinfected)**]
-- **[MCInfected-Ranks](https://www.spigotmc.org/resources/2826/)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#mcinfected-ranks)**]
 - **[McJobs](https://dev.bukkit.org/projects/mcjobs/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#mcjobs)**]
@@ -593,9 +575,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[MyCommand](http://dev.bukkit.org/bukkit-plugins/mycommand/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#mycommand)**]
-- **[MyPet](https://www.spigotmc.org/resources/12725/) [Premium](https://www.spigotmc.org/resources/17566/)]**
+- **[MyPet](https://www.spigotmc.org/resources/12725/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#mypet-premium)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#mypet)**]
 - **[MyPrefixSystem](https://www.spigotmc.org/resources/46244/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#myprefixsystem)**]
@@ -607,7 +589,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#nameless-plugin)**]
 - **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md##namemc-api-serversmc)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#namemc-api-serversmc)**]
 - **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#nicknamer)**]
@@ -798,9 +780,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#realisticworldgenerator)**]
-- **[RecentFind (Treasures Add-on)](https://www.spigotmc.org/resources/33366/)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#recentfind)**]
 - **[RedProtect](http://spigotmc.org/resources/15841/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#redprotect)**]
@@ -923,7 +902,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#staff-facilities)**]
 - **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#staffplusplus)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#staff)**]
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#statz)**]
@@ -1004,7 +983,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[TransmuteIt](https://www.spigotmc.org/resources/76287/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#transmuteIt)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#transmuteit)**]
 - **[Treasures](https://www.spigotmc.org/resources/14178/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#treasures)**]
@@ -1016,7 +995,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#trickortreat)**]
 - **[Two Factor Authentication](https://www.spigotmc.org/resources/85594/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#twofactorauthentication)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#two-factor-authentication)**]
 
 ----
 ## U
@@ -1029,6 +1008,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[UltimateBossBar](https://www.spigotmc.org/resources/19303/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
+- **[UltimateChat](https://www.spigotmc.org/resources/uchat.23767/)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#ultimatechat)**]
 - **[UltimateClaims](https://songoda.com/marketplace/product/65)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#ultimateclaims)**]
@@ -1038,6 +1020,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[UltimateSigns](https://www.spigotmc.org/resources/72462/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
+- **[UltimateVotes](https://www.spigotmc.org/resources/516)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#ultimatevotes)**]
 - **[UltraChatFormat](https://www.spigotmc.org/resources/57929/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -1071,12 +1056,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[USkyBlock](https://www.spigotmc.org/resources/2280/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#uskyblock)**]
-- **[UltimateChat](https://www.spigotmc.org/resources/uchat.23767/)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#ultimatechat)**]
-- **[UltimateVotes](https://www.spigotmc.org/resources/516)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#ultimatevote)**]
 - **[UnityGen](https://www.spigotmc.org/resources/26218/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#unitygen)**]

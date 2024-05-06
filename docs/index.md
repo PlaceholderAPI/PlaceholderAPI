@@ -17,11 +17,11 @@ It also has a community-curated list of all available Placeholder expansions and
     
     Available pages:
     
-    - [:octicons-chevron-right-16: Commands](users/commands.md)
-    - [:octicons-chevron-right-16: Using Placeholders](users/using-placeholders.md)
-    - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list.md)
+    - [:octicons-chevron-right-16: Commands](users/commands.md)  
+    - [:octicons-chevron-right-16: Using Placeholders](users/using-placeholders.md)  
+    - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list.md)  
     - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
-
+    
 -   ### :material-file-code: Dev Guides
     
     ----
@@ -30,8 +30,8 @@ It also has a community-curated list of all available Placeholder expansions and
     
     Available pages:
     
-    - [:octicons-chevron-right-16: Using PlaceholderAPI](developers/using-placeholderapi.md)
-    - [:octicons-chevron-right-16: Creating a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)
+    - [:octicons-chevron-right-16: Using PlaceholderAPI](developers/using-placeholderapi.md)  
+    - [:octicons-chevron-right-16: Creating a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)  
     - [:octicons-chevron-right-16: eCloud](developers/expansion-cloud.md)
 
 -   ### :material-alert-circle-outline: Common Issues

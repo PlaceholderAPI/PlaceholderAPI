@@ -201,14 +201,13 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[DimensionPlaceholders](#dimensionplaceholders)**
         - **[DiscordSRV](#discordsrv)**
         - **[Disease](#disease)**
-        - **[DonateParty](#donateparty)**
         - **[Donations Holograms](#donations-holograms)**
         - **[DragonSlayer](#dragonslayer)**
         - **[DungeonsXL](#dungeonsxl)**
     
     - **E**
         - **[Economy Bank](#economy-bank)**
-        - **[Enjin & DonationCraft 2.x](#enjin--donationcraft-2x)**
+        - **[Enjin & DonationCraft 2.x](#enjin-donationcraft-2x)**
         - **[EntityClearer](#entityclearer)**
         - **[EntityControl](#entitycontrol)**
         - **[Envoys](#envoys)**
@@ -385,7 +384,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[SQLPerms](#sqlperms)**
         - **[SQLTokens](#sqltokens)**
         - **[Staff Facilities](#staff-facilities)**
-        - **[Staff++](#staffplusplus)**
+        - **[Staff++](#staff)**
         - **[Statz](#statz)**
         - **[Streaming Drops](#streaming-drops)**
         - **[StrikePractice 2](#strikepractice-2)**
@@ -414,7 +413,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Treasures](#treasures)**
         - **[Trey's Double Jump](#treys-double-jump)**
         - **[TrickOrTreat](#trickortreat)**
-        - **[Two Factor Authentication](#twofactorauthentication)**
+        - **[Two Factor Authentication](#two-factor-authentication)**
     
     - **U**
         - **[UltimateChat](#ultimatechat)**
@@ -439,7 +438,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[VotingPlugin](#votingplugin)**
     
     - **W**
-        - **[Weight-RPG](#weightrpg)**
+        - **[Weight-RPG](#weight-rpg)**
         - **[WickedSkyWars](#wickedskywars)**
         - **[WorldBorder](#worldborder)**
         - **[WorldGuard](#worldguard)**
@@ -2660,16 +2659,6 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     %disease_disease%
     %disease_sickness%
     %disease_temperature%
-    ```
-
-----
-
-- ### **DonateParty**
-    > NO DOWNLOAD COMMAND 
-    
-    ```
-    %donateparty_goal%
-    %donateparty_goal_needed%
     ```
 
 ----
@@ -5463,7 +5452,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 
 ----
 
-- ### **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)
+- ### **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)**
     > NO DOWNLOAD COMMAND
     
     ```
@@ -5656,7 +5645,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 
 ----
 
-- ### **[Soul](https://polymart.org/resource/3759))**
+- ### **[Soul](https://polymart.org/resource/3759)**
     > NO DOWNLOAD COMMAND
     
     ```

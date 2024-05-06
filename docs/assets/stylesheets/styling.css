@@ -2,6 +2,6 @@
     height: 3rem;
 }
 
-.hide-list ul > li {
+.md-typeset .grid.cards.hide-list > ul > li > ul > li {
     list-style-type: none;
 }
