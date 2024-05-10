@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,10 @@ public enum NMSVersion {
   SPIGOT_1_19_R1("v1_19_R1"),
   SPIGOT_1_19_R2("v1_19_R2"),
   SPIGOT_1_19_R3("v1_19_R3"),
-  SPIGOT_1_20_R1("v1_20_R1");
+  SPIGOT_1_20_R1("v1_20_R1"),
+  SPIGOT_1_20_R2("v1_20_R2"),
+  SPIGOT_1_20_R3("v1_20_R3"),
+  SPIGOT_1_20_R4("v1_20_R4");
 
   private final String version;
 

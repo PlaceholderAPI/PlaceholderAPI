@@ -56,7 +56,7 @@ license {
     encoding = "UTF-8"
 
     ext {
-        set("year", 2021)
+        set("year", 2024)
     }
 }
 
