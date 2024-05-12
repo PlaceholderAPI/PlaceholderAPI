@@ -3235,6 +3235,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     > NO DOWNLOAD COMMAND
     
     ```
+    %interactionvisualizer_all_<entry>%
     %interactionvisualizer_itemstand_<entry>%
     %interactionvisualizer_itemdrop_<entry>%
     %interactionvisualizer_hologram_<entry>%
