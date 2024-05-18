@@ -728,6 +728,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[PvPLevels](https://www.spigotmc.org/resources/20807/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#pvplevels)**]
+- **[PvPManager](https://www.spigotmc.org/resources/845/)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#pvpmanager)**]
 - **[PvP Stats](http://dev.bukkit.org/bukkit-plugins/pvp-stats/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#pvp-stats)**]
