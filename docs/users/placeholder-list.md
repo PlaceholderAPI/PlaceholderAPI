@@ -339,6 +339,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[ProQuest](#proquest)**
         - **[ProtectionStones](#protectionstones)**
         - **[PVPLevels](#pvplevels)**
+        - **[PvPManager](#pvpmanager)**
         - **[PVP Stats](#pvp-stats)**
         - **[PvPStats Plugin](#pvpstats-plugin)**
     
@@ -5122,6 +5123,31 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     %pvplevels_xp_progress_style%
     %pvplevels_prefix%
     %pvplevels_group%
+    ```
+
+----
+
+- ### **[PvPManager](https://www.spigotmc.org/resources/845/)**
+    > NO DOWNLOAD COMMAND
+    
+    For a description of the placeholders please read the [PvPManager Wiki](https://github.com/ChanceSD/PvPManager/wiki/PlaceHolderAPI)
+
+    ```
+    %pvpmanager_in_combat%
+    %pvpmanager_combat_timeleft%
+    %pvpmanager_combat_prefix%
+    %pvpmanager_pvp_status%
+    %pvpmanager_pvp_status_prefix%
+    %pvpmanager_pvp_command_timeleft%
+    %pvpmanager_is_newbie%
+    %pvpmanager_newbie_timeleft%
+    %pvpmanager_newbie_timeleft_formatted%
+    %pvpmanager_grant_timeleft%
+    %pvpmanager_has_override%
+    %pvpmanager_has_respawn_prot%
+    %pvpmanager_has_teleport_prot%
+    %pvpmanager_current_enemy%
+    %pvpmanager_current_enemy_health%
     ```
 
 ----
