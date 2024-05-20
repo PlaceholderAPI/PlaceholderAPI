@@ -88,6 +88,8 @@ tasks {
 
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+
+        exclude("META-INF/versions/**")
     }
 
     test {
