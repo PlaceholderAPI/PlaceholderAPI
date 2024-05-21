@@ -175,7 +175,7 @@ public final class CommandParse extends PlaceholderCommand {
     }
 
     final String message = PlaceholderAPI
-        .setRelationalPlaceholders(playerOne.getPlayer(), playerTwo.getPlayer(),
+        .setRelationalPlaceholders((Player) playerOne, (Player) playerTwo,
             String.join(" ", params.subList(2, params.size())));
     
     sender.sendMessage(message);
