@@ -173,7 +173,7 @@ public class JoinExample extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
-        String joinText = "%player_name% &ajoined the server! They are rank &f%vault_rank%";
+        String joinText = "%player_name% joined the server! They are rank %vault_rank%";
 
         /*
          * We parse the placeholders using "setPlaceholders"
