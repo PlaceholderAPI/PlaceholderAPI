@@ -70,7 +70,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
       version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
     }
 
-
     boolean isSpigot;
     try {
       Class.forName("org.spigotmc.SpigotConfig");
