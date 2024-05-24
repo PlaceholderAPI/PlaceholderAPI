@@ -87,8 +87,7 @@ public final class CommandParse extends PlaceholderCommand {
       final boolean command) {
     if (params.size() < 2) {
       Msg.msg(sender,
-          "&cYou must provide a target and message: &b/papi "
-              + (command ? "cmdparse" : (broadcast ? "bcparse" : "parse")) 
+          "&cYou must supply a target, and a message: &b/papi " + (broadcast ? "bcparse" : "parse")
               + " &7{target} &a{message}");
       return;
     }
@@ -133,49 +132,24 @@ public final class CommandParse extends PlaceholderCommand {
       @NotNull @Unmodifiable final List<String> params) {
     if (params.size() < 3) {
       Msg.msg(sender,
-          "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} " 
-              + "{target two} &a{message}");
+          "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} {target two} &a{message}");
       return;
     }
-    
-    OfflinePlayer playerOne;
-    
-    if ("me".equalsIgnoreCase(params.get(0))) {
-      if (!(sender instanceof Player)) {
-        Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
-        return;
-      }
-      
-      playerOne = ((Player) sender);
-    } else {
-      playerOne = resolvePlayer(params.get(0));
-    }
-    
-    if (playerOne == null || !playerOne.isOnline()) {
+
+    final OfflinePlayer targetOne = resolvePlayer(params.get(0));
+    if (targetOne == null || !targetOne.isOnline()) {
       Msg.msg(sender, "&cFailed to find player: &f" + params.get(0));
       return;
     }
-    
-    OfflinePlayer playerTwo;
-    
-    if ("me".equalsIgnoreCase(params.get(1))) {
-      if (!(sender instanceof Player)) {
-        Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
-        return;
-      }
-      
-      playerTwo = ((Player) sender);
-    } else {
-      playerTwo = resolvePlayer(params.get(1));
-    }
-    
-    if (playerTwo == null || !playerTwo.isOnline()) {
+
+    final OfflinePlayer targetTwo = resolvePlayer(params.get(1));
+    if (targetTwo == null || !targetTwo.isOnline()) {
       Msg.msg(sender, "&cFailed to find player: &f" + params.get(1));
       return;
     }
 
     final String message = PlaceholderAPI
-        .setRelationalPlaceholders((Player) playerOne, (Player) playerTwo,
+        .setRelationalPlaceholders(((Player) targetOne), ((Player) targetTwo),
             String.join(" ", params.subList(2, params.size())));
     
     sender.sendMessage(message);
