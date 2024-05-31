@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -200,7 +200,9 @@ public final class CommandDump extends PlaceholderCommand {
     for (final Plugin other : plugins) {
       builder.append("  ")
           .append(String.format("%-" + size + "s", other.getName()))
-          .append(" [Version: ")
+          .append(" [Authors: [")
+          .append(String.join(", ", other.getDescription().getAuthors()))
+          .append("], Version: ")
           .append(other.getDescription().getVersion())
           .append("]")
           .append("\n");
