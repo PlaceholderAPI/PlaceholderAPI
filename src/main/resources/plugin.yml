@@ -6,6 +6,7 @@ author: HelpChat
 
 api-version: "1.13"
 description: "An awesome placeholder provider!"
+folia-supported: true
 
 commands:
   placeholderapi:

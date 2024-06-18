@@ -26,6 +26,8 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.2")
 
+    implementation("com.github.Anon8281:UniversalScheduler:0.1.6")
+
     compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
@@ -88,6 +90,7 @@ tasks {
 
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
         relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+        relocate("com.github.Anon8281.universalScheduler", "me.clip.placeholderapi.libs.universalScheduler")
 
         exclude("META-INF/versions/**")
     }
