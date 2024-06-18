@@ -32,7 +32,7 @@
 
 Support for specific plugins are provided either by the plugin itself or through expansions. The expansions may be downloaded in-game through the PAPI Expansion Cloud. There are currently over 240+ expansions that support a wide variety of plugins, such as Essentials, Factions, LuckPerms, and Vault. 
 
-PlaceholderAPI has been downloaded over 1,000,000 times and has been used concurrently on over 40,000 servers, which makes it a must-have for a server of any type or scale.
+PlaceholderAPI has been downloaded over 1,600,000 times and has been used concurrently on over 40,000 servers, which makes it a must-have for a server of any type or scale.
 
 ## Contribute
 If you would like to contribute towards PlaceholderAPI should you take a look at our [Contributing file][contributing] for the ins and outs on how you can do that and what you need to keep in mind.
