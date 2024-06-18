@@ -628,7 +628,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     
     *Notes:*  
     *- `mainhand` and `offhand` work in `getinfo:<slot>`*  
-    *- `give` and `remove` placeholders are **DISABLED** by default. See PlaceholderAPI `config.yml` file to enable.*
+    *- `give` and `remove` placeholders are **DISABLED** by default for **security purposes**. See PlaceholderAPI `config.yml` file to enable.*
     
     **Modifiers**  
     You can combine different modifiers to check for different values.  
