@@ -5332,6 +5332,18 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     %redprotect_player_used_blocks%
     %redprotect_player_total_claims%
     %redprotect_player_total_blocks%
+    %redprotect_player_region_names_leader%
+    %redprotect_player_region_names_admin%
+    %redprotect_player_region_names_member%
+    %redprotect_player_region_names_leader_<world name>%
+    %redprotect_player_region_names_admin_<world name>%
+    %redprotect_player_region_names_member_<world name>%
+    %redprotect_region_value%
+    %redprotect_region_area%
+    %redprotect_region_welcome%
+    %redprotect_region_center_x%
+    %redprotect_region_center_y%
+    %redprotect_region_center_z%
     %redprotect_region_flag_value_<flag name>%
     ```
 
