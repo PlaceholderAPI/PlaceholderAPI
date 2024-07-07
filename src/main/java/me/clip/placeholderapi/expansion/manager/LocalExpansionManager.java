@@ -324,21 +324,17 @@ public final class LocalExpansionManager implements Listener {
 
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
+    if (expansion.getExpansionType() == Type.INTERNAL || expansion.persist()) {
+      if (expansion.getExpansionType() == Type.EXTERNAL && expansion.persist()) {
+        Msg.warn("Nag Author(s) %s about their external expansion %s having persist set to true",
+            expansion.getAuthor(), expansion.getIdentifier());
+      }
+
+      return true;
+    }
+
     if (expansions.remove(expansion.getIdentifier().toLowerCase(Locale.ROOT)) == null) {
       return false;
-    }
-    
-    // Don't unregister expansions that are marked internal or set to be persistent.
-    if (expansion.getExpansionType() == Type.INTERNAL || expansion.persist()) {
-      // Print warning if an external expansion is set to be persistent.
-      if (expansion.getExpansionType() == Type.EXTERNAL && expansion.persist()) {
-        Msg.warn("Nag author(s) %s about their expansion %s being marked as \"external\" " 
-            + "but having persist() set to true!", expansion.getAuthor(), expansion.getIdentifier());
-        Msg.warn("External Expansions should not be set to be persistent! PlaceholderAPI " 
-            + "will respect this setting and skip the unregister of this Expansion...");
-      }
-      
-      return true;
     }
 
     Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
@@ -410,18 +406,6 @@ public final class LocalExpansionManager implements Listener {
 
   private void unregisterAll() {
     for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
-      if (expansion.persist() || expansion.getExpansionType() == Type.INTERNAL) {
-        // Print warning if an external expansion is set to be persistent.
-        if (expansion.getExpansionType() == Type.EXTERNAL && expansion.persist()) {
-          Msg.warn("Nag author(s) %s about their expansion %s being marked as \"external\" "
-              + "but having persist() set to true!", expansion.getAuthor(), expansion.getIdentifier());
-          Msg.warn("External Expansions should not be set to be persistent! PlaceholderAPI "
-              + "will respect this setting and skip the unregister of this Expansion...");
-        }
-        
-        continue;
-      }
-
       expansion.unregister();
     }
   }
