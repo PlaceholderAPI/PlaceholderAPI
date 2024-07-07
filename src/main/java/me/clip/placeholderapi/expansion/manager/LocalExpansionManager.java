@@ -46,6 +46,7 @@ import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion.Type;
 import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -264,6 +265,9 @@ public final class LocalExpansionManager implements Listener {
 
     if (expansion instanceof VersionSpecific) {
       VersionSpecific nms = (VersionSpecific) expansion;
+      Msg.warn("Nag Author(s) %s of expansion %s about their usage of the deprecated " 
+          + "VersionSpecific interface!", expansion.getAuthor(), expansion.getIdentifier());
+      Msg.warn("They should switch to a new method of determining the Server version.");
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
         Msg.warn("Your server version is incompatible with expansion %s %s",
             expansion.getIdentifier(), expansion.getVersion());
@@ -322,6 +326,19 @@ public final class LocalExpansionManager implements Listener {
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
     if (expansions.remove(expansion.getIdentifier().toLowerCase(Locale.ROOT)) == null) {
       return false;
+    }
+    
+    // Don't unregister expansions that are marked internal or set to be persistent.
+    if (expansion.getExpansionType() == Type.INTERNAL || expansion.persist()) {
+      // Print warning if an external expansion is set to be persistent.
+      if (expansion.getExpansionType() == Type.EXTERNAL && expansion.persist()) {
+        Msg.warn("Nag author(s) %s about their expansion %s being marked as \"external\" " 
+            + "but having persist() set to true!", expansion.getAuthor(), expansion.getIdentifier());
+        Msg.warn("External Expansions should not be set to be persistent! PlaceholderAPI " 
+            + "will respect this setting and skip the unregister of this Expansion...");
+      }
+      
+      return true;
     }
 
     Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
@@ -393,7 +410,7 @@ public final class LocalExpansionManager implements Listener {
 
   private void unregisterAll() {
     for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
-      if (expansion.persist()) {
+      if (expansion.persist() || expansion.getExpansionType() == Type.INTERNAL) {
         continue;
       }
 
