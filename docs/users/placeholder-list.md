@@ -5699,7 +5699,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 ----
 
 - ### **[Spark](https://github.com/lucko/spark)**
-    > NO DOWNLOAD COMMAND
+    > /papi ecloud download spark
     
     ```
     %spark_tps%
