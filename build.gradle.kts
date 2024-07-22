@@ -4,7 +4,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.github.hierynomus.license") version "0.16.1"
-    id("com.github.johnrengelman.shadow") version "8.1.0"
+    id("io.github.goooler.shadow") version "8.1.7"
 }
 
 group = "me.clip"
@@ -24,11 +24,13 @@ repositories {
 
 dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
-    implementation("net.kyori:adventure-platform-bukkit:4.3.2")
+    implementation("net.kyori:adventure-platform-bukkit:4.3.3")
+
 
     implementation("com.github.Anon8281:UniversalScheduler:0.1.6")
 
-    compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+    
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
@@ -73,6 +75,7 @@ tasks {
 
     withType<JavaCompile> {
         options.encoding = "UTF-8"
+        options.release = 8
     }
 
     withType<Javadoc> {
