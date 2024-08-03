@@ -2588,12 +2588,16 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     
     ```
     %deluxemenus_meta_<key>_<dataType>_<default_value>%
+    %deluxemenus_meta_has_value_<key>_<dataType>%
+    %deluxemenus_is_in_menu%
+    %deluxemenus_opened_menu%
+    %deluxemenus_last_menu%
     ```
     
-    - Key: The key of the meta you want to check
-    - Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
-      *If the given key has a different data type, an error will occur.*
-    - Default Value: The value returned if nothing is found.
+    -   `<key>`: They key name of the meta you want to check
+    -   `<dataType>`: Data Type to check for. Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG` or `Integer`.
+        *If type of key returned is different than the provided one, an error will occur.*
+    -   `<default_value>`: The default value to return when nothing is found.
 
 ----
 
