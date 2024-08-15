@@ -728,6 +728,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     %enchantment_roman_list%  # a list of enchantments on the item a player is holding (separated by ',')
     %enchantment_roman_listLF%  # a list of enchantments on the item a player is holding (separated by '\n')
     %enchantment_<enchantment_name>_level% # a level of the specified enchantment on the item a player is holding
+    %enchantment_<enchantment_name>_total% # a total level (sum) of the specified enchantment on the item a player is holding and wearing.
     ```
 
 ----
