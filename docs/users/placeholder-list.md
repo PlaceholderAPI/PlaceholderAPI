@@ -174,6 +174,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[ChatColor+ Premium](#chatcolor-premium)**
         - **[ChatReaction](#chatreaction)**
         - **[CheckNameHistory](#checknamehistory)**
+        - **[ClaimChunk](#claimchunk)**
         - **[Clans](#clans)**
         - **[ClansFree](#clansfree)**
         - **[Clans-API for Spigot/Clan tag in chat](#clans-api-for-spigotclan-tag-in-chat)**
@@ -2314,6 +2315,21 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
     ```
     %checknamehistory_previous_name_<#>%
     %checknamehistory_previous_name_date_<#>%
+    ```
+
+----
+
+- ### **[ClaimChunk](https://www.spigotmc.org/resources/44458/)**
+    > NO DOWNLOAD COMMAND 
+    
+    ```
+    %claimchunk_my_name%
+    %claimchunk_my_claims%
+    %claimchunk_my_max_claims%
+    %claimchunk_my_remaining_claims%
+    %claimchunk_am_trusted%
+    %claimchunk_current_owner%
+    %claimchunk_current_name%
     ```
 
 ----
