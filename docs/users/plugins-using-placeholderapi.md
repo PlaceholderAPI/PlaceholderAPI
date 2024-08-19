@@ -215,7 +215,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[CitizensBooks](https://www.spigotmc.org/resources/37465/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
-- **[ClaimChunk](https://www.spigotmc.org/resources/claimchunk.44458/)**
+- **[ClaimChunk](https://www.spigotmc.org/resources/44458/)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#claimchunk)**]
 - **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**

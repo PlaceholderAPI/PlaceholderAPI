@@ -2319,7 +2319,7 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 
 ----
 
-- ### **[ClaimChunk](https://www.spigotmc.org/resources/claimchunk.44458/)**
+- ### **[ClaimChunk](https://www.spigotmc.org/resources/44458/)**
     > NO DOWNLOAD COMMAND 
     
     ```
