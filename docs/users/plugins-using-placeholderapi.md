@@ -217,7 +217,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[ClaimChunk](https://www.spigotmc.org/resources/claimchunk.44458/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](https://github.com/cjburkey01/ClaimChunk/wiki/Placeholder-API-Integration)**]
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#claimchunk)**]
 - **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#clans-api-for-spigotclan-tag-in-chat)**]
