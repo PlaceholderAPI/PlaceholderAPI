@@ -822,8 +822,9 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
     Allows simple and advanced mathematical equations.  
     Any placeholder that returns a number is supported (Use `{placeholder}` instead of `%placeholder%`)
     
-    Supports all calculations you can do with [EvalEx](https://github.com/uklimaschewski/EvalEx).
-    Note that the `%` can't be used within the placeholder and that you have to use `[prc]` instead.
+    Supports all calculations you can do with [EvalEx](https://ezylang.github.io/EvalEx/). Note that the `%` can't be used within the placeholder and that you have to use `[prc]` instead.
+  
+    *More info on [GitHub](https://codeberg.org/Andre601/Math-Expansion)*
     
     ```
     %math_<math expression>%
