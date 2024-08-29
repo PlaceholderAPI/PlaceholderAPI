@@ -127,6 +127,9 @@ markdown_extensions:
         - bug
         - example
         - quote
+        - command
+        - integrated
+        - download
   - pymdownx.blocks.details
   - pymdownx.blocks.tab:
       alternate_style: true

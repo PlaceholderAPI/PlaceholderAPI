@@ -164,28 +164,32 @@ The following rules apply to all pages:
 
 The following rules apply specifically to entries in the [Placeholder List][placeholder-list] page:
 
-1. Entries need to be in alphabetical order.
+1.  Entries need to be in alphabetical order.
     - Should an entry with the name already exist will you need to add yours after it.
-2. An entry follows this specific format:
-   ````markdown
-   - ### [<name>](<link>)
-       > <command>
-       
-       <text>
-
-       ```
-       <placeholders>
-       ```
-   ````
-   - `<name>` is the name of the Placeholder expansion you add.
-   - `<link>` is a link to the plugin this expansion is made for. If the expansion is not for a plugin should no link be added (Only `- ### <name>` be used).
-     - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
-   - `<command>` is the [`/papi ecloud download`][download-command] used to get the expansion. Should the expansion not be on the eCloud will you need to put `NO DOWNLOAD COMMAND` here.
-   - `<text>` is an optional text that can be used to point to extra documentation. Please keep it short and simple.
-   - `<placeholders>` would be all available placeholders. Each entry should be on a new line.
-     - Please avoid explicit examples and instead use `<>` and `[]` to indicate required or optional values (i.e. instead of `%expansion_SomePlayer%` it would be `%expansion_<player>%`)
-3. Make sure to also add an entry to the list at the top of the page, linking to your entry.
-4. Should your entry have entries before and/or after it will you need to add horizontal lines (`----`) to separate yours from these entries. Keep an empty line between the horizontal line and any entry.
+2.  An entry follows this specific format:
+    ````markdown
+    ### [<name>](<link>)
+    /// <command>
+    ///
+    
+    <text>
+    
+    ```
+    <placeholders>
+    ```
+    ````
+    - `<name>` is the name of the Placeholder expansion you add.
+    - `<link>` is a link to the plugin this expansion is made for. If the expansion is not for a plugin should no link be added (Only `- ### <name>` be used).
+        - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
+    - `<command>` needs to be replaced with one of the following values, depending on how the expansion can be added:
+        - Should your expansion be built-in into a Plugin, add `integrated | Built into Plugin`
+        - Should your expansion be obtainable via the [`/papi ecloud download`][download-command] command, add `command | papi ecloud download <name of expansion>`
+        - Should your expansion only be downloadable via external sources (i.e. a GitHub Release), add `download | <link to download>`
+    - `<text>` is an optional text that can be used to point to extra documentation. Please keep it short and simple.
+    - `<placeholders>` would be all available placeholders. Each entry should be on a new line.
+        - Please avoid explicit examples and instead use `<>` and `[]` to indicate required or optional values (i.e. instead of `%expansion_SomePlayer%` it would be `%expansion_<player>%`)
+3.  Make sure to also add an entry to the list at the top of the page, linking to your entry.
+4.  Should your entry have entries before and/or after it will you need to add horizontal lines (`----`) to separate yours from these entries. Keep an empty line between the horizontal line and any entry.
 
 > A [online tool][papi-list-gen] exists for your convenience to create the markdown for a new entry.
 
