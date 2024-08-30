@@ -87,7 +87,7 @@ $ git checkout -b <branch>
 
 It is now time to make your changes. It is recommended to use MkDocs and its live-preview feature to see your changes applied in real time whenever you save a file.
 
-To use the live-preview, run `mkdocs serve` in the same folder where the `mkdocs.yml` file is located. This should start a server on `http://127.0.0.1:8000` that you can open in your browser.  
+To use the live-preview, run `mkdocs serve` in the same folder where the `mkdocs.yml` file is located. This should start a server on `http://127.0.0.1:8000` that you can open in your browser. You can also append the `--open` argument to the command to make MkDocs open the preview directly, avoiding the need of having to open it yourself.  
 Should the command not work, check that you actually installed MkDocs and any required dependencies. The easiest way is to just execute `pip install mkdocs-material` to download the Material for MkDocs theme alongside additional dependencies, including MkDocs.
 
 To cancel the live preview, simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the git-bash terminal to shut the live preview server down.
