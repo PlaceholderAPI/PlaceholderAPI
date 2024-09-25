@@ -10,10 +10,12 @@ document$.subscribe(async => {
     }
     
     async function fetchAPIInfo() {
-        const release = await fetch("https://papi-repo-proxy.vercel.app/repo/latest-release").then(_ => _.json());
+        const release = await fetch("https://repo.extendedclip.com/api/maven/latest/version/releases/me/clip/placeholderapi").then(_ => _.json());
+        
+        console.log(release)
         
         const data = {
-            "version": release.name
+            "version": release.version
         }
         
         __md_set("__api_tag", data, sessionStorage);
