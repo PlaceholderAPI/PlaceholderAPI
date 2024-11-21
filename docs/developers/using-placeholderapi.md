@@ -18,7 +18,7 @@ Use the below code example matching your dependency manager.
     <repositories>
         <repository>
             <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/releases/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -36,7 +36,7 @@ Use the below code example matching your dependency manager.
 ```{ .groovy title="build.gradle" data-md-component="api-version" }
 repositories {
     maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        url = 'https://repo.extendedclip.com/releases/'
     }
 }
 
