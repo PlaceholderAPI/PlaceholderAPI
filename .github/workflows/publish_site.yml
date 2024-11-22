@@ -57,7 +57,7 @@ jobs:
       - name: Build pages
         run: mkdocs build
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
