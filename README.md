@@ -9,7 +9,7 @@
 [spigot]: https://www.spigotmc.org/resources/6245/
 [hangar]: https://hangar.papermc.io/HelpChat/PlaceholderAPI
 [bbb]: https://builtbybit.com/resources/placeholderapi.24306
-[Expansions cloud]: https://api.extendedclip.com/home
+[Expansions cloud]: https://api.placeholderapi.net/home
 [placeholder list]: https://helpch.at/placeholders
 [statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
 
