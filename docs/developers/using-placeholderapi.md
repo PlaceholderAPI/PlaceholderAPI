@@ -18,7 +18,7 @@ Use the below code example matching your dependency manager.
     <repositories>
         <repository>
             <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/releases/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -36,7 +36,7 @@ Use the below code example matching your dependency manager.
 ```{ .groovy title="build.gradle" data-md-component="api-version" }
 repositories {
     maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        url = 'https://repo.extendedclip.com/releases/'
     }
 }
 
@@ -62,27 +62,39 @@ Next step is to go to your plugin.yml or paper-plugin.yml and add PlaceholderAPI
 /// tab | :simple-spigotmc: plugin.yml
 
 //// tab | Optional dependency
-```yaml
+
+///// note |
+Tab the :material-plus-circle: icons in the code block below for additional information.
+/////
+
+```{ .yaml .annotate title="plugin.yml" }
 name: ExamplePlugin
 version: 1.0
 author: author
 main: your.main.path.Here
 
-# This sets PlaceholderAPI as an optional dependency for your plugin.
-softdepend: [PlaceholderAPI]
+softdepend: ["PlaceholderAPI"] # (1)
 ```
+
+1.  This sets PlaceholderAPI as an optional dependency for your plugin.
 ////
 
 //// tab | Required dependency
-```yaml
+
+///// note |
+Tab the :material-plus-circle: icons in the code block below for additional information.
+/////
+
+```{ .yaml .annotate title="plugin.yml" }
 name: ExamplePlugin
 version: 1.0
 author: author
 main: your.main.path.Here
 
-# This sets PlaceholderAPI as a required dependency for your plugin.
-depend: [PlaceholderAPI]
+depend: ["PlaceholderAPI"] # (1)
 ```
+
+1.  This sets PlaceholderAPI as a required dependency for your plugin.
 ////
 
 ///
@@ -90,7 +102,12 @@ depend: [PlaceholderAPI]
 /// tab | :fontawesome-regular-paper-plane: paper-plugin.yml
 
 //// tab | Optional dependency
-```yaml
+
+///// note |
+Tab the :material-plus-circle: icons in the code block below for additional information.
+/////
+
+```{ .yaml .annotate title="paper-plugin.yml" }
 name: ExamplePlugin
 version: 1.0
 author: author
@@ -99,14 +116,21 @@ main: your.main.path.Here
 dependencies:
   server:
     PlaceholderAPI:
-      # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
-      load: BEFORE
+      load: BEFORE # (1) 
       required: false
 ```
+
+1.  Load order is relative to the Dependency.  
+    This means that in this example, PlaceholderAPI is loaded **before** your plugin.
 ////
 
 //// tab | Required dependency
-```yaml
+
+///// note |
+Tab the :material-plus-circle: icons in the code block below for additional information.
+/////
+
+```{ .yaml .annotate title="paper-plugin.yml" }
 name: ExamplePlugin
 version: 1.0
 author: author
@@ -115,10 +139,12 @@ main: your.main.path.Here
 dependencies:
   server:
     PlaceholderAPI:
-      # Load order is relative to the dependency. So here PlaceholderAPI loads before our plugin.
-      load: BEFORE
+      load: BEFORE # (1)
       required: true
 ```
+
+1.  Load order is relative to the Dependency.  
+    This means that in this example, PlaceholderAPI is loaded **before** your plugin.
 ////
 
 ///
@@ -134,10 +160,19 @@ To use placeholders from other plugins in our own plugin, we simply have to [(so
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
 
-/// example
+/// details | Example
+    type: example
+
 Let's assume we want to send a custom join message that shows the primary group a player has.  
 To achieve this, we can do the following:
-```java
+
+//// note |
+The below example assumes a **soft dependency** on PlaceholderAPI to handle PlaceholderAPI not being present more decently.
+
+Tab the :material-plus-circle: icons in the code block below for additional information.
+////
+
+```{ .java .annotate title="JoinExample.java" }
 package at.helpch.placeholderapi;
 
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -155,18 +190,10 @@ public class JoinExample extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
  
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            /*
-             * We register the EventListener here, when PlaceholderAPI is installed.
-             * Since all events are in the main class (this class), we simply use "this"
-             */
-            Bukkit.getPluginManager().registerEvents(this, this);
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            Bukkit.getPluginManager().registerEvents(this, this); // (1)
         } else {
-            /*
-             * We inform about the fact that PlaceholderAPI isn't installed and then
-             * disable this plugin to prevent issues.
-             */
-            getLogger().warn("Could not find PlaceholderAPI! This plugin is required.");
+            getLogger().warn("Could not find PlaceholderAPI! This plugin is required."); // (2)
             Bukkit.getPluginManager().disablePlugin(this);
         }
     }
@@ -175,16 +202,17 @@ public class JoinExample extends JavaPlugin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         String joinText = "%player_name% joined the server! They are rank %vault_rank%";
 
-        /*
-         * We parse the placeholders using "setPlaceholders"
-         * This would turn %vault_rank% into the name of the Group, that the
-         * joining player has, assuming Vault and the Vault expansion are
-         * on the server.
-         */
-        joinText = PlaceholderAPI.setPlaceholders(event.getPlayer(), joinText);
+        joinText = PlaceholderAPI.setPlaceholders(event.getPlayer(), joinText); // (3)
 
         event.setJoinMessage(joinText);
     }
 }
 ```
+
+1.  We check that PlaceholderAPI is present and enabled to then register events to handle (See below).
+2.  In case PlaceholderAPI is not present are we reporting this issue and disable the plugin.
+3.  Using `PlaceholderAPI.setPlaceholders(Player, String)` we can parse `%placeholder%` text in the provided String, should they have a matching expansion and said expansion return a non-null String.  
+    In our example are we providing a text containing `%player_name%` and `%vault_rank%` to be parsed, which require the Player and Vault expansion respectively.
+    
+    Example output: `Notch joined the server! They are rank Admin`
 ///

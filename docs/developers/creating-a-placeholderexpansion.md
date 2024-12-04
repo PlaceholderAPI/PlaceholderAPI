@@ -107,7 +107,7 @@ This method of creating a PlaceholderExpansion is recommended as it has the foll
 Internal PlaceholderExpansions are not automatically registered by PlaceholderAPI, due to them not being a separate jar file located in the expansion folder.  
 Please see the [Regsister your Expansion](#register-your-expansion) section for more details.
 
-You are also required to override and set `persistent()` to `true`. This tells PlaceholderAPI to not unload your expansion during plugin reload, as it would otherwise unregister your expansion, making it no longer work.
+You are also required to override and set `persist()` to `true`. This tells PlaceholderAPI to not unload your expansion during plugin reload, as it would otherwise unregister your expansion, making it no longer work.
 ///
 
 /// details | Full Example

@@ -87,7 +87,7 @@ $ git checkout -b <branch>
 
 It is now time to make your changes. It is recommended to use MkDocs and its live-preview feature to see your changes applied in real time whenever you save a file.
 
-To use the live-preview, run `mkdocs serve` in the same folder where the `mkdocs.yml` file is located. This should start a server on `http://127.0.0.1:8000` that you can open in your browser.  
+To use the live-preview, run `mkdocs serve` in the same folder where the `mkdocs.yml` file is located. This should start a server on `http://127.0.0.1:8000` that you can open in your browser. You can also append the `--open` argument to the command to make MkDocs open the preview directly, avoiding the need of having to open it yourself.  
 Should the command not work, check that you actually installed MkDocs and any required dependencies. The easiest way is to just execute `pip install mkdocs-material` to download the Material for MkDocs theme alongside additional dependencies, including MkDocs.
 
 To cancel the live preview, simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the git-bash terminal to shut the live preview server down.
@@ -164,28 +164,32 @@ The following rules apply to all pages:
 
 The following rules apply specifically to entries in the [Placeholder List][placeholder-list] page:
 
-1. Entries need to be in alphabetical order.
+1.  Entries need to be in alphabetical order.
     - Should an entry with the name already exist will you need to add yours after it.
-2. An entry follows this specific format:
-   ````markdown
-   - ### [<name>](<link>)
-       > <command>
-       
-       <text>
-
-       ```
-       <placeholders>
-       ```
-   ````
-   - `<name>` is the name of the Placeholder expansion you add.
-   - `<link>` is a link to the plugin this expansion is made for. If the expansion is not for a plugin should no link be added (Only `- ### <name>` be used).
-     - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
-   - `<command>` is the [`/papi ecloud download`][download-command] used to get the expansion. Should the expansion not be on the eCloud will you need to put `NO DOWNLOAD COMMAND` here.
-   - `<text>` is an optional text that can be used to point to extra documentation. Please keep it short and simple.
-   - `<placeholders>` would be all available placeholders. Each entry should be on a new line.
-     - Please avoid explicit examples and instead use `<>` and `[]` to indicate required or optional values (i.e. instead of `%expansion_SomePlayer%` it would be `%expansion_<player>%`)
-3. Make sure to also add an entry to the list at the top of the page, linking to your entry.
-4. Should your entry have entries before and/or after it will you need to add horizontal lines (`----`) to separate yours from these entries. Keep an empty line between the horizontal line and any entry.
+2.  An entry follows this specific format:
+    ````markdown
+    ### [<name>](<link>)
+    /// <command>
+    ///
+    
+    <text>
+    
+    ```
+    <placeholders>
+    ```
+    ````
+    - `<name>` is the name of the Placeholder expansion you add.
+    - `<link>` is a link to the plugin this expansion is made for. If the expansion is not for a plugin should no link be added (Only `- ### <name>` be used).
+        - Links to spigot pages need to be sanitized, meaning a link such as `https://www.spigotmc.org/resources/placeholderapi.6245/` becomes `https://www.spigotmc.org/resources/6245/`
+    - `<command>` needs to be replaced with one of the following values, depending on how the expansion can be added:
+        - Should your expansion be built-in into a Plugin, add `integrated | Built into Plugin`
+        - Should your expansion be obtainable via the [`/papi ecloud download`][download-command] command, add `command | papi ecloud download <name of expansion>`
+        - Should your expansion only be downloadable via external sources (i.e. a GitHub Release), add `download | <link to download>`
+    - `<text>` is an optional text that can be used to point to extra documentation. Please keep it short and simple.
+    - `<placeholders>` would be all available placeholders. Each entry should be on a new line.
+        - Please avoid explicit examples and instead use `<>` and `[]` to indicate required or optional values (i.e. instead of `%expansion_SomePlayer%` it would be `%expansion_<player>%`)
+3.  Make sure to also add an entry to the list at the top of the page, linking to your entry.
+4.  Should your entry have entries before and/or after it will you need to add horizontal lines (`----`) to separate yours from these entries. Keep an empty line between the horizontal line and any entry.
 
 > A [online tool][papi-list-gen] exists for your convenience to create the markdown for a new entry.
 

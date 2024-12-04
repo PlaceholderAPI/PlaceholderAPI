@@ -40,10 +40,11 @@ The way PlaceholderAPI's system works, allows a Placeholder Expansion and its co
 Depending on what type you have, will you need to do some extra steps to use the placeholder from the Placeholder Expansion.
 
 One way to find out, if an Expansion is included or separate, is to check the [Placeholder List](placeholder-list.md) page for any entry of it.  
-If it exists on the page, can you check, if the line right after the title says `NO DOWNLOAD COMMAND` or `/papi ecloud download ...` (i.e. `/papi ecloud download Player`).
+If it exists on the page, can you check the infobox right below the title of the Expansion for one of the following cases:
 
-If the line says the former, does it mean, the expansion is part of the plugin and doesn't need any extra steps to be active (Unless the plugin author mentions otherwise).  
-In the case of the later, will you need to download the expansion from the eCloud. Simply copy the command and execute it either in the console, or in-game. Afterwards, reload PlaceholderAPI using `/papi reload`.
+- `papi ecloud download <expansion>`: The expansion is on the ecloud and needs to be downloaded using the [`/papi ecloud download` command](commands.md#papi-ecloud-download).
+- `Built into Plugin`: The expansion is part of the plugin it depends on and doesn't require any steps to install, unless stated otherwise.
+- *A URL*: The Expansion needs to be downloaded from a separate source (i.e. a GitHub Release). You need to manually download and move the jar into the expansions folder.
 
 You can check what expansions are loaded by running `/papi list`.
 
