@@ -176,9 +176,8 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[CheckNameHistory](#checknamehistory)**
         - **[ClaimChunk](#claimchunk)**
         - **[Clans](#clans)**
-        - **[ClansFree](#clansfree)**
+        - **[Clans](#clans)**
         - **[Clans-API for Spigot/Clan tag in chat](#clans-api-for-spigotclan-tag-in-chat)**
-        - **[ClansPro](#clanspro)**
         - **[ClanSystem](#clansystem)**
         - **[CombatLogX](#combatlogx)**
         - **[Compassance](#compassance)**
@@ -2424,14 +2423,32 @@ Please check the [wiki](https://github.com/booksaw/PlaceholderAPI) for more info
 
 ----
 
-### **[ClansFree](https://www.spigotmc.org/resources/78415/)**
+### **[Clans](https://www.spigotmc.org/resources/87515/)**
 /// integrated | Built into Plugin
 ///
 
 ```
-%clans_name%
-%clans_raidshield%
-%clans_rank%
+%clans_land_status% - Get the relation status with the current claim youre in
+%clans_land_chunk_map_line#% - Get relative claim map data in placeholder form replacing # with a number 1-5 for a 5x5 grid.
+%clans_clan_name% - Get the name of the clan of the player
+%clans_clan_description% - Get the description of the clan of the player
+%clans_clan_color% - Get the color of the clan of the player
+%clans_clan_pvp_mode% - Get the pvp mode of the clan of the player
+%clans_clan_balance% - Get the money balance of the clan of the player
+%clans_clan_power% - Get the amount of power points the clan of the player has.
+%clans_clan_top_slot_#% - Get the name of the clan within the specified placement replacing # with the desired ranking.
+%clans_clan_top_slot_#_power% - Get the name of the clan within the specified placement based on clan power replacing # with the desired ranking.
+%clans_clan_top_slot_#_color% - Get the name of the clan within the specified placement but colored with their clan color repalcing # with the desired ranking.
+%clans_clan_war_active% - Get the current active arena status of the player.
+%clans_clan_war_score% - Get the current arena score of the clan for the player.
+%clans_clan_war_hours% - Get how long the players clan has been at battle in the current arena.
+%clans_clan_war_minutes% - Get how long the players clan has been at battle in the current arena.
+%clans_clan_war_seconds% - Get how long the players clan has been at battle in the current arena.
+%clans_clan_members_online% - Get the count of online clan members for the player
+%clans_member_rank% - Get the name of the rank the player currently resides in within their clan
+%clans_member_rank_short% - Get the symbol for the rank the player currently resides in within their clan.
+%clans_member_bio% - Get the players bio for their clan.
+%clans_raidshield_status% - Get the current raidshield status
 ```
 
 ----
@@ -2443,34 +2460,6 @@ Please check the [wiki](https://github.com/booksaw/PlaceholderAPI) for more info
 ```
 %clantagprovider_clantag_custom_design%
 %clantagprovider_clantag%
-```
-
-----
-
-### **[ClansPro](https://www.spigotmc.org/resources/87515/)**
-/// integrated | Built into Plugin
-///
-
-```
-%clanspro_clan_name%
-%clanspro_clan_description%
-%clanspro_clan_color%
-%clanspro_clan_pvp_mode%
-%clanspro_clan_balance%
-%clanspro_clan_power%
-%clanspro_clan_top_slot_#%
-%clanspro_clan_top_slot_#_power%
-%clanspro_clan_top_slot_#_color%
-%clanspro_clan_war_active%
-%clanspro_clan_war_score%
-%clanspro_clan_war_hours%
-%clanspro_clan_war_minutes%
-%clanspro_clan_war_seconds%
-%clanspro_clan_members_online%
-%clanspro_member_rank%
-%clanspro_member_rank_short%
-%clanspro_member_bio%
-%clanspro_raidshield_status%
 ```
 
 ----
