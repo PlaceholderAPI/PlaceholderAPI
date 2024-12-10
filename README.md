@@ -9,14 +9,14 @@
 [spigot]: https://www.spigotmc.org/resources/6245/
 [hangar]: https://hangar.papermc.io/HelpChat/PlaceholderAPI
 [bbb]: https://builtbybit.com/resources/placeholderapi.24306
-[Expansions cloud]: https://api.extendedclip.com/home
+[Expansions cloud]: https://api.placeholderapi.net/home
 [placeholder list]: https://helpch.at/placeholders
 [statistics]: https://bstats.org/plugin/bukkit/PlaceholderAPI
 
 [ci]: http://ci.extendedclip.com/job/PlaceholderAPI/
 [ciImg]: http://ci.extendedclip.com/buildStatus/icon?job=PlaceholderAPI
 
-[APIversionImg]: https://img.shields.io/nexus/placeholderapi/me.clip/placeholderapi?server=https%3A%2F%2Frepo.extendedclip.com&label=API%20Version
+[APIversionImg]: https://repo.extendedclip.com/api/badge/latest/releases/me/clip/placeholderapi?name=API%20Version
 [logo]: https://wiki.placeholderapi.com/assets/img/papi-logo.png
 
 [contributing]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/.github/CONTRIBUTING.md
@@ -32,7 +32,7 @@
 
 Support for specific plugins are provided either by the plugin itself or through expansions. The expansions may be downloaded in-game through the PAPI Expansion Cloud. There are currently over 240+ expansions that support a wide variety of plugins, such as Essentials, Factions, LuckPerms, and Vault. 
 
-PlaceholderAPI has been downloaded over 1,600,000 times and has been used concurrently on over 40,000 servers, which makes it a must-have for a server of any type or scale.
+PlaceholderAPI has been downloaded over 1,700,000 times on Spigot and has been used concurrently on over 45,000 servers, which makes it a must-have for a server of any type or scale.
 
 ## Contribute
 If you would like to contribute towards PlaceholderAPI should you take a look at our [Contributing file][contributing] for the ins and outs on how you can do that and what you need to keep in mind.

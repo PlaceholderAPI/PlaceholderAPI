@@ -60,7 +60,7 @@ import org.jetbrains.annotations.Unmodifiable;
 public final class CloudExpansionManager {
 
   @NotNull
-  private static final String API_URL = "http://api.extendedclip.com/v2/";
+  private static final String API_URL = "http://api.placeholderapi.net/v2/";
 
   @NotNull
   private static final Gson GSON = new Gson();
