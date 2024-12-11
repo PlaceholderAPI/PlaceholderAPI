@@ -9,10 +9,10 @@ This page shows all commands, including with a detailed description of what ever
 ## Overview
 
 - **[Parse Commands](#parse-commands)**
-    - [`/papi bcparse <player|me|--null> <string>`](#papi-bcparse)
-    - [`/papi cmdparse <player|me|--null> <string>`](#papi-cmdparse)
-    - [`/papi parse <player|me|--null> <string>`](#papi-parse)
-    - [`/papi parserel <player> <player> <string>`](#papi-parserel)
+    - [`/papi bcparse <player|me|--null> <text>`](#papi-bcparse)
+    - [`/papi cmdparse <player|me|--null> <text>`](#papi-cmdparse)
+    - [`/papi parse <player|me|--null> <text>`](#papi-parse)
+    - [`/papi parserel <player|me> <player|me> <text>`](#papi-parserel)
 
 - **[eCloud Commands](#ecloud-commands)**
     - [`/papi ecloud clear`](#papi-ecloud-clear)
@@ -52,7 +52,7 @@ Parses placeholders of a String and broadcasts the result to all players.
 **Arguments**:  
 
 - `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
-- `<Text with placeholders>` - The text to parse.
+- `<text>` - Text with placeholders to parse.
 
 **Example**:  
 ```
@@ -69,7 +69,7 @@ Parses placeholders of a String and executes it as a command.
 **Arguments**:
  
 - `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
- - `<Command with placeholders>` - The Text to parse and execute as command. Please leave away the `/` of the command.
+- `<text>` - Text with placeholders to parse and execute as command (Don't include the `/` for the command).
 
 **Example**:  
 ```
@@ -86,7 +86,7 @@ Parses the placeholders in a given text and shows the result.
 **Arguments**:
 
 - `<player|me|--null>` - The Player to parse values of the placeholder (Use `me` for yourself and `--null` to force a null player (Useful for consoles)).
-- `<Text with placeholders>` - The text to parse.
+- `<text>` - Text with placeholders to parse.
 
 **Example**:  
 ```
@@ -102,9 +102,9 @@ Parses a relational placeholder.
 
 **Arguments**:
 
-- `<player1>` - The first player.
-- `<player2>` - the second player to compare with.
-- `<Text with placeholders>` - The actual placeholder to parse.
+- `<player1|me>` - The first player (Use `me` for yourself).
+- `<player2|me>` - the second player to compare with (Use `me` for yourself).
+- `<text>` - Text with placeholders to parse.
 
 **Example**:  
 ```
@@ -116,7 +116,8 @@ Parses a relational placeholder.
 
 ### eCloud Commands
 
-These commands all start with `/papi ecloud` and are used for things related about the [Expansion Cloud](../developers/expansion-cloud.md).
+These commands all start with `/papi ecloud` and are used for things related about the [Expansion Cloud](../developers/expansion-cloud.md).  
+Only executing `/papi ecloud` without any arguments will list all commands available for it.
 
 #### `/papi ecloud clear`
 
@@ -250,7 +251,7 @@ Gives you information about the specified Expansion.
 /// info |
 **Description**:  
 Lists all active/registered expansions.  
-This is different to [/papi ecloud list installed](#papi-ecloud-list) in the fact, that it also includes expansions that were installed through a plugin (That aren't a separate   jar-file) and it also > doesn't show which one have updates available.
+This is different to [/papi ecloud list installed](#papi-ecloud-list) in the fact, that it also includes expansions that were installed through a plugin (That aren't a separate jar-file) and it also doesn't show which one have updates available.
 ///
 
 #### `/papi register`
