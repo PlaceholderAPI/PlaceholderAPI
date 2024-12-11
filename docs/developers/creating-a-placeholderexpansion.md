@@ -37,7 +37,7 @@ In order to not repeat the same basic info for each method throughout this page,
 Tab the :material-plus-circle: icons in the code block below for additional information.
 ///
 
-```{ .java .annotate title="SomeExpansion.java" }
+```java { .annotate title="SomeExpansion.java" }
 package at.helpch.placeholderapi.example.expansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -66,12 +66,12 @@ public class SomeExpansion extends PlaceholderExpansion {
     // You have to override one of them.
     
     @Override
-    public String onRequest(OfflinePlayer player, @NotNull String identifier) {
+    public String onRequest(OfflinePlayer player, @NotNull String params) {
         // (4)
     }
     
     @Override
-    public String onPlaceholderRequest(Player player, @NotNull String identifier) {
+    public String onPlaceholderRequest(Player player, @NotNull String params) {
         // (5)
     }
 }
@@ -90,18 +90,23 @@ public class SomeExpansion extends PlaceholderExpansion {
     PlaceholderAPI uses this String to compare with the latest version on the eCloud (if uploaded to it) to see if a new version is available.  
     If your expansion is included in a plugin, this does not matter.
 
-4.  The first parameter is the Player that the placeholders are parsed against, given as an nullable OfflinePlayer instance.  
-    The second parameter is a non-null String representing the content of the placeholder *after* the first `_` and before the closing `%` (or `}` for bracket placeholders).
+4.  Called by PlaceholderAPI to have placeholder values parsed.  
+    When not overriden will call `onPlaceholderRequest(Player, String)`, converting the OfflinePlayer to a Player if possible or else providing `null`.
+    
+    Using this method is recommended for the usage of the OfflinePlayer, allowing to use data from a player without their precense being required.
+    
+    **Parameters**:
+    
+    - `player` - Nullable OfflinePlayer instance to parse placeholders against.
+    - `params` - Non-null String representing the part of the placeholder after the first `_` and before the closing `%` (or `}` for bracket placeholders).
 
-    PlaceholderAPI calls this method first!  
-    If not explicitly overriden, this method will forward to `onPlaceholderRequest(Player, String)`, converting the OfflinePlayer to a Player if possible or otherwise providing null.
-    Using this method is recommended as its usage of an OfflinePlayer is allowing the parsing of placeholders without the playing having to be online for certain data, such as their UUID.
-
-5.  The first parameter is the Player that the placeholders are parsed against, given as a nullable Player instance.
-    The second parameter is a non-null String representing the content of the placeholder *after* the first `_` and before the closing `%` (or `}` for bracket placeholders).
-
-    This method is called by `onRequest(OfflinePlayer, String)` if said method isn't overriden.
-    If not set itself, this method will return `null` which PlaceholderAPI understands as an invalid placeholder.
+5.  Called by PlaceholderAPI through `onRequest(OfflinePlayer, String)` to have placeholder values parsed.  
+    When not overriden will return `null`, which PlaceholderAPI will understand as an invalid Placeholder.
+    
+    **Parameters**:
+    
+    - `player` - Nullable Player instance to parse placeholders against.
+    - `params` - Non-null String representing the part of the placeholder after the first `_` and before the closing `%` (or `}` for bracket placeholders).
 
 /// note
 Overriding `onRequest(OfflinePlayer, String)` or `onPlaceholderRequest(Player, String)` is not required if you [create relational placeholders](#making-a-relational-expansion).
@@ -134,7 +139,7 @@ Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansio
 Tab the :material-plus-circle: icons in the code block below for additional information.
 ////
 
-```{ .java .annotate title="SomeExpansion.java" }
+```java { .annotate title="SomeExpansion.java" }
 package at.helpch.placeholderapi.example.expansion;
 
 import at.helpch.placeholderapi.example.SomePlugin;
@@ -210,7 +215,7 @@ This is being done by creating a new instance of your PlaceholderExpansion class
 
 Here is a quick example:
 
-```{ .java .annotate title="SomePlugin.java" }
+```java { .annotate title="SomePlugin.java" }
 package at.helpch.placeholderapi.example;
 
 import at.helpch.placeholderapi.example.expansion.SomeExpansion;
@@ -260,7 +265,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 
 This is an example expansion without any plugin dependency.
 
-```{ .java .annotate title="SomeExpansion.java" }
+```java { .annotate title="SomeExpansion.java" }
 package at.helpch.placeholderapi.example.expansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -317,7 +322,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 
 This is an example expansion with a plugin dependency.
 
-```{ .java .annotate title="SomeExpansion.java" }
+```java { .annotate title="SomeExpansion.java" }
 package at.helpch.placeholderapi.example.expansion;
 
 import at.helpch.placeholderapi.example.SomePlugin;
