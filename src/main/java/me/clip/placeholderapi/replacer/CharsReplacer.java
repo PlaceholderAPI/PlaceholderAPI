@@ -46,7 +46,8 @@ public final class CharsReplacer implements Replacer {
   @Override
   public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
       @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
-    if (text.indexOf(closure.head) == -1) { // Fast path - return directly if no placeholders
+    // Fast path: If there's no closure.head or closure.tail, return the text immediately
+    if (text.indexOf(closure.head) == -1 || text.lastIndexOf(closure.tail) == -1 || text.lastIndexOf(closure.tail) < text.indexOf(closure.head)) {
       return text;
     }
     
