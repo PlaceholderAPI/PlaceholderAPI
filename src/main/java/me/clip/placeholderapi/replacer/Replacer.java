@@ -39,11 +39,18 @@ public interface Replacer {
 
 
     public final char head, tail;
+    public final CharsReplacer charsReplacer;
 
     Closure(final char head, final char tail) {
       this.head = head;
       this.tail = tail;
+      this.charsReplacer = new CharsReplacer(this);
     }
+
+    public CharsReplacer getReplacer() {
+      return charsReplacer;
+    }
+
   }
 
 }

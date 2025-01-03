@@ -75,21 +75,10 @@ public class TimeUtil {
     minutes %= 60;
     hours %= 24;
 
-    if (days > 0) {
-      joiner.add(days + "d");
-    }
-
-    if (hours > 0) {
-      joiner.add(hours + "h");
-    }
-
-    if (minutes > 0) {
-      joiner.add(minutes + "m");
-    }
-
-    if (seconds > 0) {
-      joiner.add(seconds + "s");
-    }
+    if (days > 0) joiner.add(days + "d");
+    if (hours > 0) joiner.add(hours + "h");
+    if (minutes > 0) joiner.add(minutes + "m");
+    if (seconds > 0) joiner.add(seconds + "s");
 
     return joiner.toString();
   }
