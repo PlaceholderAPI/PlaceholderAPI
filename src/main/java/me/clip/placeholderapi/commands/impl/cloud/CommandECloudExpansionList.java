@@ -148,17 +148,9 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
       final int expansionNumber = index + ((page - 1) * PAGE_SIZE) + 1;
       line.append(text(expansionNumber + ". ", DARK_GRAY));
 
-      final NamedTextColor expansionColour;
-
-      if (expansion.shouldUpdate()) {
-        expansionColour = GOLD;
-      } else {
-        if (expansion.hasExpansion()) {
-          expansionColour = GREEN;
-        } else {
-          expansionColour = GRAY;
-        }
-      }
+      final NamedTextColor expansionColour = expansion.shouldUpdate()
+              ? GOLD
+              : (expansion.hasExpansion() ? GREEN : GRAY);
 
       line.append(text(expansion.getName(), expansionColour));
 

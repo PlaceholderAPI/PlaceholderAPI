@@ -52,7 +52,8 @@ import org.jetbrains.annotations.Unmodifiable;
 public final class PlaceholderCommandRouter implements CommandExecutor, TabCompleter {
 
   @Unmodifiable
-  private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(new CommandHelp(),
+  private static final List<PlaceholderCommand> COMMANDS = ImmutableList.of(
+      new CommandHelp(),
       new CommandInfo(),
       new CommandList(),
       new CommandDump(),

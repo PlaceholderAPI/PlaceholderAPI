@@ -56,20 +56,15 @@ public final class Msg {
   }
   
   public static void msg(@NotNull final CommandSender sender, @NotNull final String... messages) {
-    if (messages.length == 0) {
-      return;
-    }
+    if (messages.length == 0) return;
 
     sender.sendMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
   }
 
   public static void broadcast(@NotNull final String... messages) {
-    if (messages.length == 0) {
-      return;
-    }
+    if (messages.length == 0) return;
 
-    Bukkit.broadcastMessage(
-        Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
+    Bukkit.broadcastMessage(Arrays.stream(messages).map(Msg::color).collect(Collectors.joining("\n")));
   }
 
   public static String color(@NotNull final String text) {
