@@ -40,7 +40,7 @@ public final class Format {
 
   @NotNull
   public static Optional<List<String>> tablify(@NotNull final Align align,
-      @NotNull final List<List<String>> rows) {
+                                               @NotNull final List<List<String>> rows) {
     return findSpacing(rows)
         .map(spacing -> buildFormat(align, spacing))
         .map(format -> rows.stream()
