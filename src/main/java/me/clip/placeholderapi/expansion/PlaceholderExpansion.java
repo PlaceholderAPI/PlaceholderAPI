@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,14 @@ import org.jetbrains.annotations.Nullable;
  * directory or when the {@link #register()} method is called by said class.
  */
 public abstract class PlaceholderExpansion extends PlaceholderHook {
+
+  /**
+   * The type is {@link Type#INTERNAL} by default.
+   * For external expansions, the type is updated on {@link me.clip.placeholderapi.expansion.manager.LocalExpansionManager#register(Class) register}.
+   * @since 2.11.4
+   */
+  @ApiStatus.Internal
+  protected Type expansionType = Type.INTERNAL;
 
   /**
    * The placeholder identifier of this expansion. May not contain {@literal %},
@@ -159,6 +167,27 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     return PlaceholderAPIPlugin.getInstance();
   }
 
+  /**
+   * Get the type of the expansion
+   *
+   * @return the type of the expansion
+   * @since 2.11.4
+   */
+  @ApiStatus.Internal
+  public Type getExpansionType() {
+    return expansionType;
+  }
+
+  /**
+   * Set the type of the expansion
+   * @param expansionType the new type
+   * @since 2.11.4
+   */
+  @ApiStatus.Internal
+  public void setExpansionType(Type expansionType) {
+    this.expansionType = expansionType;
+  }
+
   // === Configuration ===
   
   /**
@@ -166,7 +195,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * null when not specified.
    * <br>You may use the {@link Configurable} interface to define default values set
    * 
-   * @return ConfigurationSection that this epxpansion has.
+   * @return ConfigurationSection that this expansion has.
    */
   @Nullable
   public final ConfigurationSection getConfigSection() {
@@ -394,8 +423,8 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    */
   @Override
   public final String toString() {
-    return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s']", getName(),
-        getAuthor(), getVersion());
+    return String.format("PlaceholderExpansion[name: '%s', author: '%s', version: '%s', type: '%s']", getName(),
+        getAuthor(), getVersion(), getExpansionType());
   }
 
   // === Deprecated API ===
@@ -432,4 +461,19 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
   public String getLink() {
     return null;
   }
+
+  public enum Type {
+
+    /**
+     * An expansion provided by a plugin is considered internal
+     */
+    INTERNAL,
+
+    /**
+     * An expansion loaded from the expansions folder is considered external
+     */
+    EXTERNAL
+
+  }
+
 }

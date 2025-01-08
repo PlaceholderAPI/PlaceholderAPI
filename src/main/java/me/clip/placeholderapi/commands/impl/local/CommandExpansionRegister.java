@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
     final LocalExpansionManager manager = plugin.getLocalExpansionManager();
 
     final File file = new File(manager.getExpansionsFolder(), params.get(0));
-    if (!file.exists()) {
+    if (!file.exists() || !file.getParentFile().equals(manager.getExpansionsFolder())) {
       Msg.msg(sender,
           "&cThe file &f" + file.getName() + "&c doesn't exist!");
       return;

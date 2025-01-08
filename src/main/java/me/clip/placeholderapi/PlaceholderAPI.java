@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -136,8 +136,8 @@ public final class PlaceholderAPI {
    * @return String containing all translated placeholders
    */
   @NotNull
-  public static List<String> setBracketPlaceholders(final OfflinePlayer player,
-      @NotNull final List<String> text) {
+  public static List<@NotNull String> setBracketPlaceholders(final OfflinePlayer player,
+      @NotNull final List<@NotNull String> text) {
     return text.stream().map(line -> setBracketPlaceholders(player, line))
         .collect(Collectors.toList());
   }
@@ -150,7 +150,8 @@ public final class PlaceholderAPI {
    * @param text Text to set the placeholder values in
    * @return String containing all translated placeholders
    */
-  public static String setBracketPlaceholders(Player player, String text) {
+  @NotNull
+  public static String setBracketPlaceholders(Player player, @NotNull String text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
   
@@ -162,7 +163,8 @@ public final class PlaceholderAPI {
    * @param text List of Strings to set the placeholder values in
    * @return String containing all translated placeholders
    */
-  public static List<String> setBracketPlaceholders(Player player, List<String> text) {
+  @NotNull
+  public static List<String> setBracketPlaceholders(Player player, @NotNull List<String> text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
 

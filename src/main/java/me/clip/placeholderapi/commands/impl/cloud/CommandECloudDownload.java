@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.commands.impl.cloud;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -37,6 +38,16 @@ public final class CommandECloudDownload extends PlaceholderCommand {
     super("download");
   }
 
+  private boolean isBlockedExpansion(String name) {
+    String env = System.getenv("PAPI_BLOCKED_EXPANSIONS");
+    if (env == null) {
+      return false;
+    }
+
+    return Arrays.stream(env.split(","))
+            .anyMatch(s -> s.equalsIgnoreCase(name));
+  }
+
   @Override
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
@@ -47,11 +58,22 @@ public final class CommandECloudDownload extends PlaceholderCommand {
       return;
     }
 
+    if (isBlockedExpansion(params.get(0))) {
+      Msg.msg(sender,
+          "&cThis expansion can't be downloaded.");
+      return;
+    }
+
     final CloudExpansion expansion = plugin.getCloudExpansionManager()
         .findCloudExpansionByName(params.get(0)).orElse(null);
     if (expansion == null) {
       Msg.msg(sender,
           "&cFailed to find an expansion named: &f" + params.get(0));
+      return;
+    }
+
+    if (!expansion.isVerified()) {
+      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
       return;
     }
 
@@ -86,9 +108,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
                   .getVersion() + "] &ato file: &f" + file.getName(),
               "&aMake sure to type &f/papi reload &ato enable your new expansion!");
 
-          plugin.getCloudExpansionManager().clean();
-          plugin.getCloudExpansionManager()
-              .fetch(plugin.getPlaceholderAPIConfig().cloudAllowUnverifiedExpansions());
+          plugin.getCloudExpansionManager().load();
         });
   }
 

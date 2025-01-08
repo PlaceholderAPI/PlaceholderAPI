@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2021 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 package me.clip.placeholderapi;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
@@ -55,7 +56,17 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private static PlaceholderAPIPlugin instance;
 
   static {
-    final String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+    String version = Bukkit.getServer().getBukkitVersion().split("-")[0];
+    String suffix;
+    if (version.chars()
+            .filter(c -> c == '.')
+            .count() == 1) {
+      suffix = "R1";
+      version = 'v' + version.replace('.', '_') + '_' + suffix;
+    } else {
+      int minor = Integer.parseInt(version.split("\\.")[2].charAt(0) + "");
+      version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
+    }
 
     boolean isSpigot;
     try {
@@ -127,6 +138,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     }
   }
 
+  @Deprecated
   public static Version getServerVersion() {
     return VERSION;
   }

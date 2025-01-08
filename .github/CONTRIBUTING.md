@@ -1,7 +1,7 @@
 [issue]: https://github.com/PlaceholderAPI/PlaceholderAPI/issues/new
 [discord]: https://helpch.at/discord
 [code of conduct]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/master/CODE_OF_CONDUCT.md
-[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/docs/wiki/wiki
+[wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki
 [master]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master
 [docs-wiki]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/docs/wiki
 [style]: https://github.com/PlaceholderAPI/PlaceholderAPI/tree/master/config/style
@@ -40,7 +40,8 @@ In those cases should you report the issue to the issue tracker of the expansion
 ## Pull requests
 As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code, or contributions to its documentation such as the [Wiki] or the Javadocs.
 
-**When contributing, make sure to both base of and target the mentioned branch. Pull requests targeting the wrong branch may get closed without a warning.**
+> [!IMPORTANT]
+> When contributing, make sure to both base of and target the mentioned branch. Pull requests targeting the wrong branch may get closed without a warning.
 
 ### Code contributions
 > **Source and Target Branch:** [`master`][master]
@@ -56,12 +57,10 @@ Javadocs changes should usually be combined with [code contributions](#code-cont
 \*This branch may change in the future.
 
 ### Wiki contributions
-> **Source and Target Branch:** [`docs/wiki`][docs-wiki]
+> **Source and Target Branch:** [`wiki`][docs-wiki]
 
-The Wiki of PlaceholderAPI has a unique quirk by having a dedicated [`wiki` folder][wiki] hosting the pages found on the actual wiki itself.  
-If you find outdated information, want to add missing expansions/plugins or just like to correct some wrong spelling should you both base of and target your contributions on the `docs/wiki` branch.
-
-**Please only PR changes for the `wiki` folder on the `docs/wiki` branch! Pull requests not following this guidelines will be closed unnanounced.**
+The Wiki of PlaceholderAPI is located on its own dedicated branch, hosting all the assets and files that get used to create it through the usage of GitHub Actions and GitHub Pages.  
+We welcome contributions that update outdated information, add new expansions/plugins supporting PlaceholderAPI or even correct spelling mistakes and typos.
 
 ## Code of Conduct
 We have a [Code of Conduct] to maintain a welcoming atmosphere in this project.  
