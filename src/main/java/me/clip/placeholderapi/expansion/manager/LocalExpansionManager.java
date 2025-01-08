@@ -37,6 +37,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
@@ -65,6 +66,8 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
+
+import javax.swing.text.html.Option;
 
 public final class LocalExpansionManager implements Listener {
 
@@ -440,7 +443,8 @@ public final class LocalExpansionManager implements Listener {
         Msg.severe("Failed to load expansion %s (is a dependency missing?)", e, file.getName());
         return null;
       } catch (Exception e) {
-        throw new CompletionException(e.getMessage() + " (expansion file: " + file.getAbsolutePath() + ")", e);
+        plugin.getLogger().log(Level.SEVERE, "Failed to load expansion file: " + file.getAbsolutePath(), e);
+        return null;
       }
     });
   }
