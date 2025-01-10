@@ -3707,7 +3707,7 @@ More info about these placeholders can be found [here](https://panoply.tech/lead
 ----
 
 ### **[LevelUp](https://polymart.org/resource/457/)**
-/// command | papi ecloud download LevelUp
+/// integrated | Built into Plugin
 ///
 
 ```
@@ -4574,7 +4574,7 @@ Replace `[Type]` with the top type. Supported values: `DAILY, WEEKLY, MONTHLY, Y
 ----
 
 ### **[PermissionTimer](https://www.mc-market.org/resources/14050/)**
-/// command | papi ecloud download PermissionTimer
+/// integrated | Built into Plugin
 ///
 
 ```
@@ -5695,7 +5695,7 @@ For a description of the placeholders please read the [PvPManager Wiki](https://
 ----
 
 ### **[Sack](https://polymart.org/resource/493/)**
-/// command | papi ecloud download Sack
+/// integrated | Built into Plugin
 ///
 
 ```
