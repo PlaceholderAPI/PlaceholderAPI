@@ -4132,7 +4132,7 @@ Miscellaneous placeholders:
 ----
 
 ### **[MineResetLite](https://polymart.org/resource/137/)**
-/// command | papi ecloud download MineResetLite
+/// integrated | Built into Plugin
 ///
 
 ```
