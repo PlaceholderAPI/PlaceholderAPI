@@ -26,7 +26,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.1")
     implementation("net.kyori:adventure-platform-bukkit:4.3.0")
 
-    compileOnlyApi("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT") // this is temp
+    compileOnlyApi("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT") // this is temp
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.32")
