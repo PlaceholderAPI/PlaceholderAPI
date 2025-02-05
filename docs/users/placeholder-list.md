@@ -246,6 +246,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[HyacinthHello](#hyacinthhello)**
     
     - **I**
+        - **[ImageFrame](#imageframe)**
         - **[InteractionVisualizer](#interactionvisualizer)**
         - **[InteractiveChat](#interactivechat)**
         - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border)**
@@ -3374,6 +3375,19 @@ Please refer to the [Wiki](https://github.com/TerrorByteTW/Honeypot/wiki#placeho
 ///
 
 You can find an up-to-date list of placeholders in the [HyacinthHello wiki](https://github.com/livelaughlemon/hyacinthhello/wiki#placeholders).
+
+----
+
+### **[ImageFrame](https://www.spigotmc.org/resources/106031/)**
+/// integrated | Built into Plugin
+///
+
+```
+%imageframe_"<player>:<imagemap>"_playback_bar_<length>_[character]_[current_section_prefix]_[remaining_section_prefix]%
+%imageframe_"<player>:<imagemap>"_playback_current%
+%imageframe_"<player>:<imagemap>"_playback_total%
+%imageframe_"<player>:<imagemap>"_playback_pause%
+```
 
 ----
 

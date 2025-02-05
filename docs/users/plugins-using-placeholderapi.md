@@ -446,6 +446,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 
 ----
 ## I
+- **[ImageFrame](https://www.spigotmc.org/resources/106031/)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#imageframe)**]
 - **[InteractionVisualizer](https://www.spigotmc.org/resources/77050/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#interactionvisualizer)**]
