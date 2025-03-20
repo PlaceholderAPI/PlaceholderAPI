@@ -759,10 +759,12 @@ Use `{{u}}` for underscores and `{{prc}}` for percent symbols.
 %formatter_number_round_<number>%
 %formatter_number_round_[precision]:[roundingmode]_<number>%
 %formatter_number_shorten_<number>%
+%formatter_number_shorten_<rounding_mode>_<number>%
 %formatter_number_time_<number>%
 %formatter_number_time_<timeunit>_<number>% # Handles number as <timeunit>
 
 %formatter_text_capitalize_<text>%
+%formatter_text_capitalize_<option>_<text>%
 %formatter_text_length_<text>%
 %formatter_text_lowercase_<text>%
 %formatter_text_replace_[target]_[replacement]_<text>%
