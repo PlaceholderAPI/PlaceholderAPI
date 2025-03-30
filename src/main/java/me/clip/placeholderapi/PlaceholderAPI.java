@@ -43,19 +43,49 @@ import org.jetbrains.annotations.NotNull;
 
 public final class PlaceholderAPI {
 
-  private static final Replacer REPLACER_PERCENT = new CharsReplacer(Closure.PERCENT);
-  private static final Replacer REPLACER_BRACKET = new CharsReplacer(Closure.BRACKET);
-
   private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("[%]([^%]+)[%]");
   private static final Pattern BRACKET_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
   private static final Pattern RELATIONAL_PLACEHOLDER_PATTERN = Pattern
       .compile("[%](rel_)([^%]+)[%]");
 
 
-  private PlaceholderAPI() {
-  }
+  private PlaceholderAPI() {}
 
   // === Current API ===
+
+
+  /**
+   * Translates all placeholders into their corresponding values.
+   * <br>The pattern of a valid placeholder depends on the {@link Closure} type provided.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text Text to set the placeholder values in
+   * @param closure Closure defining the placeholder type and parsing logic
+   * @return String containing all translated placeholders
+   */
+  @NotNull
+  public static String getWithPlaceholders(final OfflinePlayer player,
+                                           @NotNull final String text,
+                                           Closure closure) {
+    return closure.getReplacer().apply(text, player,
+            PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+  }
+
+  /**
+   * Translates all placeholders into their corresponding values for a list of strings.
+   * <br>The pattern of a valid placeholder depends on the {@link Closure} type provided.
+   *
+   * @param player Player to parse the placeholders against
+   * @param text List of strings to set the placeholder values in
+   * @param closure Closure defining the placeholder type and parsing logic
+   * @return List of strings containing all translated placeholders
+   */
+  @NotNull
+  public static List<String> getWithPlaceholders(final OfflinePlayer player,
+                                                 @NotNull final List<String> text,
+                                                 Closure closure) {
+    return text.stream().map(line -> getWithPlaceholders(player, line, closure)).collect(Collectors.toList());
+  }
 
   /**
    * Translates all placeholders into their corresponding values.
@@ -67,10 +97,10 @@ public final class PlaceholderAPI {
    */
   @NotNull
   public static String setPlaceholders(final OfflinePlayer player,
-      @NotNull final String text) {
-    return REPLACER_PERCENT.apply(text, player,
-        PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+                                       @NotNull final String text) {
+    return getWithPlaceholders(player, text, Closure.PERCENT);
   }
+
 
   /**
    * Translates all placeholders into their corresponding values.
@@ -78,13 +108,14 @@ public final class PlaceholderAPI {
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
-   * @return String containing all translated placeholders
+   * @return List of strings containing all translated placeholders
    */
   @NotNull
   public static List<String> setPlaceholders(final OfflinePlayer player,
-      @NotNull final List<String> text) {
-    return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
+                                             @NotNull final List<String> text) {
+    return getWithPlaceholders(player, text, Closure.PERCENT);
   }
+
 
   /**
    * Translates all placeholders into their corresponding values.
@@ -105,7 +136,7 @@ public final class PlaceholderAPI {
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
-   * @return String containing all translated placeholders
+   * @return List of strings containing all translated placeholders
    */
   @NotNull
   public static List<String> setPlaceholders(final Player player, @NotNull List<@NotNull String> text) {
@@ -122,9 +153,8 @@ public final class PlaceholderAPI {
    */
   @NotNull
   public static String setBracketPlaceholders(final OfflinePlayer player,
-      @NotNull final String text) {
-    return REPLACER_BRACKET.apply(text, player,
-        PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+                                              @NotNull final String text) {
+    return getWithPlaceholders(player, text, Closure.BRACKET);
   }
 
   /**
@@ -133,15 +163,14 @@ public final class PlaceholderAPI {
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
-   * @return String containing all translated placeholders
+   * @return List of strings containing all translated placeholders
    */
   @NotNull
   public static List<@NotNull String> setBracketPlaceholders(final OfflinePlayer player,
-      @NotNull final List<@NotNull String> text) {
-    return text.stream().map(line -> setBracketPlaceholders(player, line))
-        .collect(Collectors.toList());
+                                                             @NotNull final List<@NotNull String> text) {
+    return getWithPlaceholders(player, text, Closure.BRACKET);
   }
-  
+
   /**
    * Translates all placeholders into their corresponding values.
    * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
@@ -154,14 +183,14 @@ public final class PlaceholderAPI {
   public static String setBracketPlaceholders(Player player, @NotNull String text) {
     return setBracketPlaceholders((OfflinePlayer) player, text);
   }
-  
+
   /**
    * Translates all placeholders into their corresponding values.
    * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
    *
    * @param player Player to parse the placeholders against
    * @param text List of Strings to set the placeholder values in
-   * @return String containing all translated placeholders
+   * @return List of strings containing all translated placeholders
    */
   @NotNull
   public static List<String> setBracketPlaceholders(Player player, @NotNull List<String> text) {

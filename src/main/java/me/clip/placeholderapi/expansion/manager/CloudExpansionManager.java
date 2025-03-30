@@ -81,8 +81,9 @@ public final class CloudExpansionManager {
   private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
 
   private final ExecutorService ASYNC_EXECUTOR =
-      Executors.newCachedThreadPool(
-          new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
+          Executors.newSingleThreadExecutor(
+                  new ThreadFactoryBuilder().setNameFormat("placeholderapi-cloud").build()
+          );
 
   public CloudExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
     this.plugin = plugin;
