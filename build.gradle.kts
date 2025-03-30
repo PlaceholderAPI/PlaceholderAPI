@@ -108,9 +108,9 @@ tasks {
         repositories {
             maven {
                 if ("-DEV" in version.toString()) {
-                    url = uri("https://repo.extendedclip.com/content/repositories/dev/")
+                    url = uri("https://repo.extendedclip.com/snapshots")
                 } else {
-                    url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+                    url = uri("https://repo.extendedclip.com/releases")
                 }
 
                 credentials {
