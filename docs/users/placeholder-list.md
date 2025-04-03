@@ -4154,6 +4154,7 @@ Miscellaneous placeholders:
 ```
 %mineresetlite_<mine>_time%
 %mineresetlite_<mine>_time_remaining%
+%mineresetlite_<mine>_time_remaining_seconds%
 %mineresetlite_<mine>_precentage%
 %mineresetlite_<mine>_blocks_mined%
 %mineresetlite_<mine>_percentage_mined%
