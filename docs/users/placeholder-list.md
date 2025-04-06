@@ -366,6 +366,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     
     - **S**
         - **[Sack](#sack)**
+        - **[ScreamingBedWars](#screamingbedwars)**
         - **[Seasons](#seasons)**
         - **[SellAll](#sellall)**
         - **[SignLink](#signlink)**
@@ -5723,7 +5724,119 @@ For a description of the placeholders please read the [PvPManager Wiki](https://
 %sack_total_slots% : the total number of slots for all sacks in your inventory.
 %sack_total_item_count% : the total number of items held in all sacks in your inventory.
 ```
-  
+
+----
+
+### **[ScreamingBedWars](https://hangar.papermc.io/ScreamingSandals/ScreamingBedWars)**
+/// integrated | Built into Plugin
+///
+
+You can find an up-to-date list of placeholders with detailed information and examples in the [ScreamingBedWars Documentation](https://docs.screamingsandals.org/BedWars/latest/placeholderapi/).
+
+```
+# Global placeholders
+%bedwars_all_games_players%
+%bedwars_all_games_maxplayers%
+%bedwars_all_games_anyrunning%
+%bedwars_all_games_anywaiting%
+
+# Placeholders for the current game the player is in
+%bedwars_current_game%
+%bedwars_current_game_players%
+%bedwars_current_game_minplayers%
+%bedwars_current_game_maxplayers%
+%bedwars_current_game_world%
+%bedwars_current_game_state%
+%bedwars_current_game_time%
+%bedwars_current_game_timeformat%
+%bedwars_current_game_elapsedtime%
+%bedwars_current_game_elapsedtimeformat%
+%bedwars_current_game_running%
+%bedwars_current_game_waiting%
+%bedwars_current_available_teams%
+%bedwars_current_connected_teams%
+%bedwars_current_teamchests%
+
+# Placeholders related to the player's team in the current game
+%bedwars_current_team%
+%bedwars_current_team_color%
+%bedwars_current_team_colored%
+%bedwars_current_team_players%
+%bedwars_current_team_maxplayers%
+%bedwars_current_team_bed%
+%bedwars_current_team_teamchests%
+%bedwars_current_team_bedsymbol%
+
+# Placeholders for a specific team within the current game
+%bedwars_current_game_team_<team_name>_colored%
+%bedwars_current_game_team_<team_name>_color%
+%bedwars_current_game_team_<team_name>_ingame%
+%bedwars_current_game_team_<team_name>_players%
+%bedwars_current_game_team_<team_name>_maxplayers%
+%bedwars_current_game_team_<team_name>_bed%
+%bedwars_current_game_team_<team_name>_bedsymbol%
+%bedwars_current_game_team_<team_name>_teamchests%
+
+# Placeholders related to a specific game
+%bedwars_game_<game>_name%
+%bedwars_game_<game>_players%
+%bedwars_game_<game>_minplayers%
+%bedwars_game_<game>_maxplayers%
+%bedwars_game_<game>_world%
+%bedwars_game_<game>_state%
+%bedwars_game_<game>_available_teams%
+%bedwars_game_<game>_connected_teams%
+%bedwars_game_<game>_teamchests%
+%bedwars_game_<game>_time%
+%bedwars_game_<game>_timeformat%
+%bedwars_game_<game>_elapsedtime%
+%bedwars_game_<game>_elapsedtimeformat%
+%bedwars_game_<game>_running%
+%bedwars_game_<game>_waiting%
+
+# Placeholders related to a specific team in a specific game
+%bedwars_game_<game>_team_<team_name>_colored%
+%bedwars_game_<game>_team_<team_name>_color%
+%bedwars_game_<game>_team_<team_name>_ingame%
+%bedwars_game_<game>_team_<team_name>_players%
+%bedwars_game_<game>_team_<team_name>_maxplayers%
+%bedwars_game_<game>_team_<team_name>_bed%
+%bedwars_game_<game>_team_<team_name>_bedsymbol%
+%bedwars_game_<game>_team_<team_name>_teamchests%
+
+# Player statistics
+%bedwars_stats_deaths%
+%bedwars_stats_destroyed_beds%
+%bedwars_stats_kills%
+%bedwars_stats_loses%
+%bedwars_stats_score%
+%bedwars_stats_wins%
+%bedwars_stats_games%
+%bedwars_stats_kd%
+
+# Statistics of a specific player
+%bedwars_otherstats_<player>_deaths%
+%bedwars_otherstats_<player>_destroyed_beds%
+%bedwars_otherstats_<player>_kills%
+%bedwars_otherstats_<player>_loses%
+%bedwars_otherstats_<player>_score%
+%bedwars_otherstats_<player>_wins%
+%bedwars_otherstats_<player>_games%
+%bedwars_otherstats_<player>_kd%
+
+# Leaderboard information (<position> is the desired ranking spot, starting with 1)
+%bedwars_leaderboard_score_<position>_name%
+%bedwars_leaderboard_score_<position>_uuid%
+%bedwars_leaderboard_score_<position>_deaths%
+%bedwars_leaderboard_score_<position>_destroyed_beds%
+%bedwars_leaderboard_score_<position>_kills%
+%bedwars_leaderboard_score_<position>_loses%
+%bedwars_leaderboard_score_<position>_score%
+%bedwars_leaderboard_score_<position>_wins%
+%bedwars_leaderboard_score_<position>_games%
+%bedwars_leaderboard_score_<position>_kd%
+```
+
 ----
 
 ### **[Seasons](https://www.spigotmc.org/resources/39298/)**
