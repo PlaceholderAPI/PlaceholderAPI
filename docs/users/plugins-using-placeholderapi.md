@@ -828,6 +828,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Scoreboard Sidebar API](https://www.spigotmc.org/resources/21042/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
+- **[ScreamingBedWars](https://hangar.papermc.io/ScreamingSandals/ScreamingBedWars)**
+    - [ ] Supports placeholders.
+    - [X] Provides own placeholders. [**[Link](placeholder-list.md#screamingbedwars)**]
 - **[ScrollBoard](https://www.spigotmc.org/resources/24697/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
