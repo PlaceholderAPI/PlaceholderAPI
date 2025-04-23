@@ -1840,8 +1840,11 @@ For more info, visit the [wiki](https://asl.andre601.ch/placeholderapi/#own-plac
 %asl_favicon%
 %asl_motd%
 %asl_playercount_extraplayers%
+%asl_playercount_hideplayers%
+%asl_playercount_hideplayershover%
 %asl_playercount_hover%
 %asl_playercount_maxplayers%
+%asl_playercount_onlineplayers%
 %asl_playercount_text%
 %asl_server_playersmax%
 ```
