@@ -410,6 +410,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[GriefPrevention](https://www.spigotmc.org/resources/1884/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#griefprevention)**]
+- **[GrimAC](https://modrinth.com/plugin/grimac/)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#grimac)**]
 - **[Guilds](https://www.spigotmc.org/resources/48920/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#guilds)**]

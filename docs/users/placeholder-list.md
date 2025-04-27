@@ -232,6 +232,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[GemsEconomy](#gemseconomy)**
         - **[GriefDefender](#griefdefender)**
         - **[GriefPrevention](#griefprevention)**
+        - **[GrimAC](#grimac)**
         - **[Guilds](#guilds)**
         - **[GuiRedeemMCMMO](#guiredeemmcmmo)**
     
@@ -3223,6 +3224,26 @@ These placeholders work with FactionsUUID and MCore all you need is downloading 
 %griefprevention_remainingclaims%
 %griefprevention_remainingclaims_formatted%
 %griefprevention_currentclaim_ownername%
+```
+
+----
+
+### **[GrimAC](https://modrinth.com/plugin/grimac/)**
+/// integrated | Built into Plugin
+///
+
+```
+%grim_player%
+%grim_player_uuid%
+%grim_player_ping%
+%grim_player_brand%
+%grim_player_h_sensitivity%
+%grim_player_v_sensitivity%
+%grim_player_fast_math%
+%grim_player_tps%
+%grim_player_version%
+%grim_prefix%
+%grim_version%
 ```
 
 ----
