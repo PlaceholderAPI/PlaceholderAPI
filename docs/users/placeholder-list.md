@@ -4203,9 +4203,46 @@ Miscellaneous placeholders:
 
 ----
 
-### **[Multiverse-Core](https://www.spigotmc.org/resources/390/)**
-/// command | papi ecloud download multiverse
+### **[Multiverse-Core](https://modrinth.com/plugin/multiverse-core)**
+/// tab | v5+
+//// integrated | Built into Plugin
+////
+
+//// warning | v5 only!
+These placeholders only exist and work with Multiverse Core v5 and newer!  
+See the `pre-v5` Tab for the expansion used with Multiverse core v4 and older.
+////
+
+All placeholders allow a `_<world>` to be added with `<world>` being the name of a Multiverse-loaded World.
+
+```
+%multiverse-core_alias%
+%multiverse-core_animalspawn%
+%multiverse-core_autoheal%
+%multiverse-core_blacklist%
+%multiverse-core_currency%
+%multiverse-core_difficulty%
+%multiverse-core_entryfee%
+%multiverse-core_environment%
+%multiverse-core_flight%
+%multiverse-core_gamemode%
+%multiverse-core_generator%
+%multiverse-core_hunger%
+%multiverse-core_monstersspawn%
+%multiverse-core_name%
+%multiverse-core_playerlimit%
+%multiverse-core_price%
+%multiverse-core_pvp%
+%multiverse-core_seed%
+%multiverse-core_time%
+%multiverse-core_type%
+%multiverse-core_weather%
+```
 ///
+
+/// tab | pre-v5
+//// command | papi ecloud download multiverse
+////
 
 ```
 %multiverse_world_alias%
@@ -4235,6 +4272,7 @@ Miscellaneous placeholders:
 %multiverse_world_style%
 %multiverse_world_type%
 ```
+///
 
 ----
 
