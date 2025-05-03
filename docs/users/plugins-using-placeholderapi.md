@@ -593,6 +593,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 
 ----
 ## N
+- **[NameColor](https://modrinth.com/plugin/namecolor)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](placeholder-list.md#namecolor)**]
 - **[Nameless Plugin](https://www.spigotmc.org/resources/59032/)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#nameless-plugin)**]
