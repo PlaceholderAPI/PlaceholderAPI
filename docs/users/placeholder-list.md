@@ -295,6 +295,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[MyPrefixSystem](#myprefixsystem)**
     
     - **N**
+        - **[NameColor](#namecolor)**
         - **[Nameless Plugin](#nameless-plugin)**
         - **[NameMC-API-ServersMC Plugin](#namemc-api-serversmc)**
         - **[Nicknamer](#nicknamer)**
@@ -4279,6 +4280,16 @@ Miscellaneous placeholders:
 %myprefixsystem_rank_prefix%
 %myprefixsystem_rank_suffix%
 %myprefixsystem_rank_color%
+```
+
+----
+
+### **[NameColor](https://modrinth.com/plugin/namecolor)**
+/// integrated | Built into Plugin
+///
+
+```
+%namecolor_display_name%
 ```
 
 ----
