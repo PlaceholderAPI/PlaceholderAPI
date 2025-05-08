@@ -324,6 +324,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Plan](#plan)**
         - **[PlayerStats](#playerstats)**
         - **[PlayTime](#playtime)**
+        - **[PlayTimeManager](#playtimemanager)**
         - **[PlaytimeRewards](#playtimerewards)**
         - **[PlayerPoints](#playerpoints)**
         - **[PlotSquared](#plotsquared)**
@@ -4709,6 +4710,32 @@ For more information and usage examples, see the [PlayerStatsExpansion GitHub](h
 %playtime_time%
 %playtime_timesjoined%
 %playtime_serveruptime%
+```
+  
+----
+
+### **[PlayTimeManager](https://modrinth.com/plugin/playtimemanager)**
+/// integrated | Built into Plugin
+///
+For a detailed explanation of how to use PlayTimeManager's placeholders, you can take a look at the [PlayTimeManager Wiki](https://github.com/TheGaBr0/PlayTimeManager/wiki/Placeholders).
+
+```
+%PTM_playtime%
+%PTM_playtime_#%
+%PTM_playtime_<nickname>%
+%PTM_playtime_#_<nickname>%
+%PTM_lastseen_<nickname>%
+%PTM_lastseen_elapsed_<nickname>%
+%PTM_lastseen_elapsed_#_<nickname>%
+%PTM_playtime_top_<rank>%
+%PTM_playtime_top_#_<rank>%
+%PTM_nickname_top_<rank>%
+%PTM_lastseen_top_<rank>%
+%PTM_lastseen_elapsed_top_<rank>%
+%PTM_lastseen_elapsed_top_#_<rank>%
+%PTM_lp_prefix_top_<rank>%
+%PTM_joinstreak%
+%PTM_joinstreak_<nickname>%
 ```
   
 ----
