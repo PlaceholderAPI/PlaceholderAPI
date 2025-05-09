@@ -4204,16 +4204,15 @@ Miscellaneous placeholders:
 ----
 
 ### **[Multiverse-Core](https://modrinth.com/plugin/multiverse-core)**
-/// tab | v5+
+/// tab | Multiverse-Core v5
 //// integrated | Built into Plugin
 ////
 
-//// warning | v5 only!
-These placeholders only exist and work with Multiverse Core v5 and newer!  
-See the `pre-v5` Tab for the expansion used with Multiverse core v4 and older.
+//// warning | The below Placeholders are only for Multiverse-Core v5!
 ////
 
-All placeholders allow a `_<world>` to be added with `<world>` being the name of a Multiverse-loaded World.
+All placeholders allow a `_<world>` to be added with `<world>` being the name of a Multiverse-loaded World.  
+Example: `%multiverse-core_alias_myworld%`
 
 ```
 %multiverse-core_alias%
@@ -4240,7 +4239,7 @@ All placeholders allow a `_<world>` to be added with `<world>` being the name of
 ```
 ///
 
-/// tab | pre-v5
+/// tab | Multiverse-Core v4
 //// command | papi ecloud download multiverse
 ////
 
