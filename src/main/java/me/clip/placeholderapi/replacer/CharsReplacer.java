@@ -23,6 +23,7 @@ package me.clip.placeholderapi.replacer;
 import java.util.Locale;
 import java.util.function.Function;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,11 +32,6 @@ public final class CharsReplacer implements Replacer {
 
   @NotNull
   private final Closure closure;
-  
-  // Cache StringBuilder to reduce object creation
-  private final ThreadLocal<StringBuilder> builderCache = ThreadLocal.withInitial(() -> new StringBuilder(256));
-  private final ThreadLocal<StringBuilder> identifierCache = ThreadLocal.withInitial(StringBuilder::new);
-  private final ThreadLocal<StringBuilder> parametersCache = ThreadLocal.withInitial(StringBuilder::new);
 
   public CharsReplacer(@NotNull final Closure closure) {
     this.closure = closure;
@@ -46,110 +42,96 @@ public final class CharsReplacer implements Replacer {
   @Override
   public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
       @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
-    // Fast path: If there's no closure.head or closure.tail, return the text immediately
-    if (text.indexOf(closure.head) == -1 || text.lastIndexOf(closure.tail) == -1 || text.lastIndexOf(closure.tail) < text.indexOf(closure.head)) {
-      return text;
-    }
-    
     final char[] chars = text.toCharArray();
-    final StringBuilder builder = builderCache.get();
-    final StringBuilder identifier = identifierCache.get(); 
-    final StringBuilder parameters = parametersCache.get();
-    
-    try {
-      builder.setLength(0);
-      builder.ensureCapacity(text.length());
+    final StringBuilder builder = new StringBuilder(text.length());
 
-      for (int i = 0; i < chars.length; i++) {
-        final char l = chars[i];
+    final StringBuilder identifier = new StringBuilder();
+    final StringBuilder parameters = new StringBuilder();
 
-        if (l != closure.head || i + 1 >= chars.length) {
-          builder.append(l);
-          continue;
-        }
+    for (int i = 0; i < chars.length; i++) {
+      final char l = chars[i];
 
-        boolean identified = false;
-        boolean invalid = true;
-        boolean hadSpace = false;
-
-        identifier.setLength(0);
-        parameters.setLength(0);
-
-        while (++i < chars.length) {
-          final char p = chars[i];
-
-          if (p == ' ' && !identified) {
-            hadSpace = true;
-            break;
-          }
-          if (p == closure.tail) {
-            invalid = false;
-            break;
-          }
-
-          if (p == '_' && !identified) {
-            identified = true;
-            continue;
-          }
-
-          if (identified) {
-            parameters.append(p);
-          } else {
-            identifier.append(p);
-          }
-        }
-
-        final String identifierString = identifier.toString();
-        final String lowercaseIdentifierString = identifierString.toLowerCase(Locale.ROOT);
-        final String parametersString = parameters.toString();
-
-        if (invalid) {
-          builder.append(closure.head).append(identifierString);
-
-          if (identified) {
-            builder.append('_').append(parametersString);
-          }
-
-          if (hadSpace) {
-            builder.append(' ');
-          }
-          continue;
-        }
-
-        final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
-        if (placeholder == null) {
-          builder.append(closure.head).append(identifierString);
-
-          if (identified) {
-            builder.append('_');
-          }
-
-          builder.append(parametersString).append(closure.tail);
-          continue;
-        }
-
-        final String replacement = placeholder.onRequest(player, parametersString);
-        if (replacement == null) {
-          builder.append(closure.head).append(identifierString);
-
-          if (identified) {
-            builder.append('_');
-          }
-
-          builder.append(parametersString).append(closure.tail);
-          continue;
-        }
-
-        builder.append(replacement);
+      if (l != closure.head || i + 1 >= chars.length) {
+        builder.append(l);
+        continue;
       }
 
-      return builder.toString();
-    } finally {
-      // Reset cached StringBuilder
-      builder.setLength(0);
+      boolean identified = false;
+      boolean invalid = true;
+      boolean hadSpace = false;
+
+      while (++i < chars.length) {
+        final char p = chars[i];
+
+        if (p == ' ' && !identified) {
+          hadSpace = true;
+          break;
+        }
+        if (p == closure.tail) {
+          invalid = false;
+          break;
+        }
+
+        if (p == '_' && !identified) {
+          identified = true;
+          continue;
+        }
+
+        if (identified) {
+          parameters.append(p);
+        } else {
+          identifier.append(p);
+        }
+      }
+
+      final String identifierString = identifier.toString();
+      final String lowercaseIdentifierString = identifierString.toLowerCase(Locale.ROOT);
+      final String parametersString = parameters.toString();
+
       identifier.setLength(0);
       parameters.setLength(0);
+
+      if (invalid) {
+        builder.append(closure.head).append(identifierString);
+
+        if (identified) {
+          builder.append('_').append(parametersString);
+        }
+
+        if (hadSpace) {
+          builder.append(' ');
+        }
+        continue;
+      }
+
+      final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
+      if (placeholder == null) {
+        builder.append(closure.head).append(identifierString);
+
+        if (identified) {
+          builder.append('_');
+        }
+
+        builder.append(parametersString).append(closure.tail);
+        continue;
+      }
+
+      final String replacement = placeholder.onRequest(player, parametersString);
+      if (replacement == null) {
+        builder.append(closure.head).append(identifierString);
+
+        if (identified) {
+          builder.append('_');
+        }
+
+        builder.append(parametersString).append(closure.tail);
+        continue;
+      }
+
+      builder.append(replacement);
     }
+
+    return builder.toString();
   }
 
 }
