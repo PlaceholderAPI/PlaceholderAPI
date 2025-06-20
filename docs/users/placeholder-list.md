@@ -81,6 +81,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[PlayerList](#playerlist)**
         - **[Plugin](#plugin)**
         - **[Progress](#progress)**
+        - **[PronounDB](#pronoundb)**
     
     - **Q**
         - *No Expansions*
@@ -1160,6 +1161,18 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 
 # Example
 %progress_bar_{placeholder}_c:&a■_p:&e■_r:&7■_l:10_m:100_fullbar:&aCompleted!%
+```
+
+----
+
+### **PronounDB**
+/// download | https://github.com/JasperLorelai/Expansion-PronounDB/releases
+///
+
+Shows the pronouns of a Minecraft player with a linked account on https://pronoundb.org/
+
+```
+%pronoundb%
 ```
 
 ----
