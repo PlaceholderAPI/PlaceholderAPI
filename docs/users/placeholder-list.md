@@ -93,6 +93,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[RedisBungee](#redisbungee)**
         - **[RelCon](#relcon)**
         - **[RNG](#rng)**
+        - **[Reparser](#reparser)**
     
     - **S**
         - **[ScoreboardObjectives](#scoreboardobjectives)**
@@ -1263,6 +1264,18 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 %rng_online_player%
 %rng_random%
 %rng_<minimum>,<maximum>%
+```
+
+----
+
+### **Reparser**
+/// command | papi ecloud download reparser
+///
+
+Parses a provided input twice.
+
+```
+%reparser_<text>%
 ```
 
 ----
