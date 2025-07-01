@@ -31,6 +31,8 @@ import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import me.clip.placeholderapi.expansion.manager.LocalExpansionManager;
 import me.clip.placeholderapi.listeners.ServerLoadEventListener;
+import me.clip.placeholderapi.scheduler.UniversalScheduler;
+import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -86,8 +88,11 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final LocalExpansionManager localExpansionManager = new LocalExpansionManager(this);
   @NotNull
   private final CloudExpansionManager cloudExpansionManager = new CloudExpansionManager(this);
+  @NotNull
+  private final TaskScheduler scheduler = UniversalScheduler.getScheduler(this);
 
   private BukkitAudiences adventure;
+
 
   /**
    * Gets the static instance of the main class for PlaceholderAPI. This class is not the actual API
@@ -174,7 +179,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     HandlerList.unregisterAll(this);
 
-    Bukkit.getScheduler().cancelTasks(this);
+    scheduler.cancelTasks(this);
 
     adventure.close();
     adventure = null;
@@ -213,6 +218,11 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     }
 
     return adventure;
+  }
+
+  @NotNull
+  public TaskScheduler getScheduler() {
+    return scheduler;
   }
 
   /**
@@ -262,8 +272,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
       Class.forName("org.bukkit.event.server.ServerLoadEvent");
       new ServerLoadEventListener(this);
     } catch (final ClassNotFoundException ignored) {
-      Bukkit.getScheduler()
-          .runTaskLater(this, () -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
+      scheduler
+          .runTaskLater(() -> getLocalExpansionManager().load(Bukkit.getConsoleSender()), 1);
     }
   }
 

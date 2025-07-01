@@ -1,5 +1,6 @@
 name: PlaceholderAPI
 main: "me.clip.placeholderapi.PlaceholderAPIPlugin"
+folia-supported: true
 
 version: ${version}
 author: HelpChat
