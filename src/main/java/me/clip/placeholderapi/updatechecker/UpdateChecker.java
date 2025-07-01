@@ -26,6 +26,7 @@ import java.net.URL;
 import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -35,15 +36,17 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class UpdateChecker implements Listener {
 
-  private final int RESOURCE_ID = 6245;
+  private static final int RESOURCE_ID = 6245;
   private final PlaceholderAPIPlugin plugin;
+  private final TaskScheduler scheduler;
   private final String pluginVersion;
   private String spigotVersion;
   private boolean updateAvailable;
 
-  public UpdateChecker(PlaceholderAPIPlugin i) {
-    plugin = i;
-    pluginVersion = i.getDescription().getVersion();
+  public UpdateChecker(PlaceholderAPIPlugin plugin) {
+    this.plugin = plugin;
+    scheduler = plugin.getScheduler();
+    pluginVersion = plugin.getDescription().getVersion();
   }
 
   public boolean hasUpdateAvailable() {
@@ -55,7 +58,7 @@ public class UpdateChecker implements Listener {
   }
 
   public void fetch() {
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+    scheduler.runTaskAsynchronously(() -> {
       try {
         HttpsURLConnection con = (HttpsURLConnection) new URL(
             "https://api.spigotmc.org/legacy/update.php?resource=" + RESOURCE_ID).openConnection();
@@ -76,7 +79,7 @@ public class UpdateChecker implements Listener {
         return;
       }
 
-      Bukkit.getScheduler().runTask(plugin, () -> {
+      scheduler.runTask(() -> {
         plugin.getLogger()
             .info("An update for PlaceholderAPI (v" + getSpigotVersion() + ") is available at:");
         plugin.getLogger()
