@@ -45,6 +45,8 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+
+    disableAutoTargetJvm()
 }
 
 license {
