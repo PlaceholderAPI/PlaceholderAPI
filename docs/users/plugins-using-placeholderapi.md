@@ -678,7 +678,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#playtime)**]
 - **[PlayTimeManager](https://modrinth.com/plugin/playtimemanager)**
-    - [ ] Supports placeholders.
+    - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#playtimemanager)**]
 - **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
     - [x] Supports placeholders.

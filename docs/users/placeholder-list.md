@@ -4724,6 +4724,8 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 %PTM_playtime_#%
 %PTM_playtime_<nickname>%
 %PTM_playtime_#_<nickname>%
+%PTM_firstjoin%
+%PTM_firstjoin_<nickname>%	
 %PTM_lastseen_<nickname>%
 %PTM_lastseen_elapsed_<nickname>%
 %PTM_lastseen_elapsed_#_<nickname>%
@@ -4733,6 +4735,8 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 %PTM_lastseen_top_<rank>%
 %PTM_lastseen_elapsed_top_<rank>%
 %PTM_lastseen_elapsed_top_#_<rank>%
+%PTM_rank%
+%PTM_rank_<nickname>%
 %PTM_lp_prefix_top_<rank>%
 %PTM_joinstreak%
 %PTM_joinstreak_<nickname>%
