@@ -110,6 +110,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     
     - **U**
         - **[Unicode](#unicode)**
+        - **[UnixTime](#unixtime)**
     
     - **V**
         - *No Expansions*
@@ -1539,6 +1540,18 @@ Supports placeholders using brackets: `{placeholder}`
 ```
 
 Example: `%unicode_1000%` would show `က`
+
+----
+
+### **UnixTime**
+/// download | https://api.extendedclip.com/expansions/unixtime/
+///
+
+```
+%unixtime_[UNIX]_[DateTimeFormat]%
+```
+
+Example: `%unixtime_1750277249389_dd.MM.yyyy-HH:mm:ss%` would show `18.06.2025 20:07:29`
 
 ----
 
