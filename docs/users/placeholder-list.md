@@ -34,7 +34,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[CooldownBar](#cooldownbar)**
     
     - **D**
-        - *No Expansions*
+        - *[Distance](#distance)*
     
     - **E**
         - **[Enchantment](#enchantment)**
@@ -727,6 +727,27 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 %cooldownbar_percentage_{placeholder}_c:<MainCooldown>%
 %cooldownbar_percentage_{placeholder}_d:<AmountOfDecimal>%
 %cooldownbar_percentage_{essentials_kit_time_until_available_tools}_c:120_d:0%
+```
+
+----
+
+### **Distance**
+/// command | papi ecloud download Distance
+///
+
+This expansion provides placeholders to calculate the distance between two locations.
+
+Supports placeholder inside placeholder, use `{}` instead of `%` for inner placeholders.
+
+More info about this expansion can be found on the [GitHub-Repository](https://github.com/Clexus/DistanceExpansion).
+
+`[]` is optional
+
+```
+%distance_x1,y1,z1[,x2,y2,z2][,decimals]%
+%distance_player1[,player2][,decimals]%
+%distance_player[,x,y,z][,decimals]%
+%distance_UUID1[,UUID2][,decimals]%
 ```
 
 ----
