@@ -6782,8 +6782,8 @@ If you add ```_long``` to the cost related placeholder, it will returne a number
 %tokenenchant_<enchantment>_version%
 %tokenenchant_<enchantment>_fullrefund%
 %tokenenchant_<enchantment>_fullrefund_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
-%tokenenchnat_<enchantment>_refund_Y%
-%tokenenchnat_<enchantment>_refund_Y_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
+%tokenenchant_<enchantment>_refund_Y%
+%tokenenchant_<enchantment>_refund_Y_long% : Deprecated. (For formatting, use NumberFormat placeholder %nf_%.) 
 %tokenenchant_<enchantment>_alias%
 %tokenenchant_tokenmultiplier%
 %tokenenchant_<enchantment>_occurrencemultiplier%
