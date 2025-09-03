@@ -126,337 +126,334 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 ----
 
-- [Plugin-placeholders](#plugin-placeholders)
-    - **A**
-        - **[AAC - AdvancedAntiCheat](#aac)**
-        - **[AbstractMenus](#abstractmenus)**
-        - **[AcidIsland](#acidisland)**
-        - **[AcidIslandRate](#acidislandrate)**
-        - **[Advanced Abilities](#advanced-abilities)**
-        - **[Advanced Achievements](#advanced-achievements)**
-        - **[AdvancedAFK](#advancedafk)**
-        - **[AdvancedCustomMenu+](#advancedcustommenu)**
-        - **[AdvancedLottery](#advancedlottery)**
-        - **[AdvancedModReq](#advancedmodreq)**
-        - **[AdvancedServerList](#advancedserverlist)**
-        - **[ajLeaderboards](#ajleaderboards)**
-        - **[ajParkour](#ajparkour)**
-        - **[AlonsoLevels](#alonsolevels)**
-        - **[AngelChest](#angelchest)**
-        - **[Animated Menu](#animated-menu)**
-        - **[AntiCombatLogging](#anticombatlogging)**
-        - **[AParkour](#aparkour)**
-        - **[ASkyBlock](#askyblock)**
-        - **[AsyncKeepAlive](#asynckeepalive)**
-        - **[AutoPickup](#autopickup)**
-        - **[AutoRank](#autorank)**
-        - **[AutoSell](#autosell)**
-    
-    - **B**
-        - **[BankSystem](#banksystem)**
-        - **[BasicQuests](#basicquests)**
-        - **[BattleLevels](#battlelevels)**
-        - **[BeautyQuests](#beautyquests)**
-        - **[BedWars1058](#bedwars1058)**
-        - **[BentoBox](#bentobox)**
-        - **[BetonQuest](#betonquest)**
-        - **[BetterTeams](#betterteams)**
-        - **[BlockParty](#blockparty)**
-        - **[BlockQuest](#blockquest)**
-        - **[Boxing](#boxing)**
-        - **[BuildBattlePro](#buildbattlepro)**
-        - **[BungeePerms](#bungeeperms)**
-        - **[BuyCraft](#buycraft)**
-    
-    - **C**
-        - **[CarlTheCreeper](#carlthecreeper)**
-        - **[ChatColor+](#chatcolor)**
-        - **[ChatColor+ Premium](#chatcolor-premium)**
-        - **[ChatReaction](#chatreaction)**
-        - **[CheckNameHistory](#checknamehistory)**
-        - **[ClaimChunk](#claimchunk)**
-        - **[Clans](#clans)**
-        - **[Clans](#clans)**
-        - **[Clans-API for Spigot/Clan tag in chat](#clans-api-for-spigotclan-tag-in-chat)**
-        - **[ClanSystem](#clansystem)**
-        - **[CombatLogX](#combatlogx)**
-        - **[Compassance](#compassance)**
-        - **[CoordinateTool](#coordinatetool)**
-        - **[Country on Join](#country-on-join)**
-        - **[CraftConomy](#craftconomy)**
-        - **[CraftingStore.net](#craftingstorenet)**
-        - **[CursedVIP](#cursedvip)**
-        - **[Custom Advancements](#custom-advancements)**
-        - **[Custom Items](#custom-items)**
-    
-    - **D**
-        - **[Daily Rewards](#daily-rewards)**
-        - **[DeliveryMan](#deliveryman)**
-        - **[DeluxeChat](#deluxechat)**
-        - **[DeluxeCombat](#deluxecombat)**
-        - **[DeluxeMenus](#deluxemenus)**
-        - **[DeluxePM](#deluxepm)**
-        - **[DeluxeTags](#deluxetags)**
-        - **[Denizen](#denizen)**
-        - **[DimensionPlaceholders](#dimensionplaceholders)**
-        - **[DiscordSRV](#discordsrv)**
-        - **[Disease](#disease)**
-        - **[Donations Holograms](#donations-holograms)**
-        - **[DragonSlayer](#dragonslayer)**
-        - **[DungeonsXL](#dungeonsxl)**
-    
-    - **E**
-        - **[Economy Bank](#economy-bank)**
-        - **[Enjin & DonationCraft 2.x](#enjin-donationcraft-2x)**
-        - **[EntityClearer](#entityclearer)**
-        - **[EntityControl](#entitycontrol)**
-        - **[Envoys](#envoys)**
-        - **[EpicFriends](#epicfriends)**
-        - **[EpicLevels](#epiclevels)**
-        - **[essCore](#esscore)**
-        - **[Essentials](#essentials)**
-        - **[EventCore](#eventcore)**
-        - **[EZBlocks](#ezblocks)**
-        - **[EZPrestige](#ezprestige)**
-        - **[EZRanksPro](#ezrankspro)**
-    
-    - **F**
-        - **[Factions MCore](#factions-mcore)**
-        - **[FactionsUUID](#factionsuuid)**
-        - **[Factions relation placeholders](#factions-relation-placeholders)**
-        - **[FunnyGuilds](#funnyguilds)**
-    
-    - **G**
-        - **[GAListener](#galistener)**
-        - **[GangsPlus](#gangsplus)**
-        - **[GemsEconomy](#gemseconomy)**
-        - **[GriefDefender](#griefdefender)**
-        - **[GriefPrevention](#griefprevention)**
-        - **[GrimAC](#grimac)**
-        - **[Guilds](#guilds)**
-        - **[GuiRedeemMCMMO](#guiredeemmcmmo)**
-    
-    - **H**
-        - **[Head Database](#head-database)**
-        - **[Heroes](#heroes)**
-        - **[HoloBlock](#holoblock)**
-        - **[HoloMobHealth](#holomobhealth)**
-        - **[Honeypot](#honeypot)**
-        - **[HPWizard](#hpwizard)**
-        - **[Hugs](#hugs)**
-        - **[HyacinthHello](#hyacinthhello)**
-    
-    - **I**
-        - **[ImageFrame](#imageframe)**
-        - **[InteractionVisualizer](#interactionvisualizer)**
-        - **[InteractiveChat](#interactivechat)**
-        - **[Island Border (ASkyblock / BentoBox / uSkyBlock / AcidIsland)](#island-border)**
-        - **[IslandRate (ASkyBlock Addon)](#islandrate)**
-        - **[IslandWorld](#islandworld)**
-    
-    - **J**
-        - **[Jobs Reborn](#jobs-reborn)**
-    
-    - **K**
-        - **[Karma](#karma)**
-        - **[KillStats](#killstats)**
-        - **[KitPvP](#kitpvp)**
-        - **[KingdomsX](#kingdomsx)**
-        - **[KP-PVP](#kp-pvp)**
-    
-    - **L**
-        - **[Lands](#lands)**
-        - **[LastLoginAPI](#lastloginapi)**
-        - **[LeaderHeads](#leaderheads)**
-        - **[LegendQuest](#legendquest)**
-        - **[LemonMobCoins](#lemonmobcoins)**
-        - **[LevelledMobs](#levelledmobs)**
-        - **[LevelUp](#levelup)**
-        - **[LotterySix](#lotterysix)**
-        - **[LuckPerms](#luckperms)**
-        - **[LWC](#lwc)**
-    
-    - **M**
-        - **[Marcely's Bedwars](#marcelys-bedwars)**
-        - **[Marriage](#marriage)**
-        - **[Marriage (Reloaded)](#marriage-reloaded)**
-        - **[MarriageMaster](#marriagemaster)**
-        - **[McInfected](#mcinfected)**
-        - **[McJobs](#mcjobs)**
-        - **[McMMO](#mcmmo)**
-        - **[MineChess](#minechess)**
-        - **[MineCord](#minecord)**
-        - **[MineCrates](#minecrates)**
-        - **[MineResetLite](#mineresetlite)**
-        - **[MobHunting](#mobhunting)**
-        - **[Multiverse-Core](#multiverse-core)**
-        - **[MyCommand](#mycommand)**
-        - **[MyPet](#mypet)**
-        - **[MyPrefixSystem](#myprefixsystem)**
-    
-    - **N**
-        - **[NameColor](#namecolor)**
-        - **[Nameless Plugin](#nameless-plugin)**
-        - **[NameMC-API-ServersMC Plugin](#namemc-api-serversmc)**
-        - **[Nicknamer](#nicknamer)**
-        - **[NickReloaded](#nickreloaded)**
-        - **[Nicky](#nicky)**
-    
-    - **O**
-        - **[OneBlock](#oneblock)**
-        - **[OnePlayerSleep](#oneplayersleep)**
-        - **[OnTime](#ontime)**
-        - **[OpEconomy](#opeconomy)**
-        - **[OreAnnouncer](#oreannouncer)**
-        - **[OreMarket](#oremarket)**
-        - **[Outpost](#outpost)**
-    
-    - **P**
-        - **[P-LifeSteal](#p-lifesteal)**
-        - **[Paintball Battle](#paintball-battle)**
-        - **[Parkour](#parkour)**
-        - **[Parkour Maker](#parkour-maker)**
-        - **[ParkPlusMC](#parkplusmc)**
-        - **[Parties](#parties)**
-        - **[Party and Friends](#party-and-friends)**
-        - **[PermissionTimer](#permissiontimer)**
-        - **[PixelVip](#pixelvip)**
-        - **[Plan](#plan)**
-        - **[PlayerStats](#playerstats)**
-        - **[PlayTime](#playtime)**
-        - **[PlayTimeManager](#playtimemanager)**
-        - **[PlaytimeRewards](#playtimerewards)**
-        - **[PlayerPoints](#playerpoints)**
-        - **[PlotSquared](#plotsquared)**
-        - **[PocketHorses](#pockethorses)**
-        - **[PointsAPI](#pointsapi)**
-        - **[PowerBoard](#powerboard)**
-        - **[PowerRanks](#powerranks)**
-        - **[PrefiX](#prefix)**
-        - **[PremiumReports](#premiumreports)**
-        - **[PremiumVanish](#premiumvanish)**
-        - **[Prison](#prison)**
-        - **[PrisonMines](#prisonmines)**
-        - **[PrisonRanksX](#prisonranksx)**
-        - **[ProCosmetics](#procosmetics)**
-        - **[ProfessionalBans](#professionalbans)**
-        - **[ProQuest](#proquest)**
-        - **[ProtectionStones](#protectionstones)**
-        - **[PVPLevels](#pvplevels)**
-        - **[PvPManager](#pvpmanager)**
-        - **[PVP Stats](#pvp-stats)**
-        - **[PvPStats Plugin](#pvpstats-plugin)**
-    
-    - **Q**
-        - **[QualityArmory](#qualityarmory)**
-        - **[Quests](#quests)**
-        - **[QuestCreator](#questcreator)**
-        - **[QuickSell](#quicksell)**
-      
-    - **R**
-        - **[RabbitsVSPenguins](#rabbitsvspenguins)**
-        - **[RageMode](#ragemode)**
-        - **[Rankup](#rankup)**
-        - **[RealisticWorldGenerator](#realisticworldgenerator)**
-        - **[RedProtect](#redprotect)**
-        - **[ReferralSystem](#referralsystem)**
-        - **[RestrictedDimensions](#restricteddimensions)**
-        - **[RocketPlaceholders](#rocketplaceholders)**
-        - **[RogueParkour](#rogueparkour)**
-        - **[RoyalCommands](#royalcommands)**
-        - **[RPGInventory](#rpginventory)**
-        - **[RTP](#rtp)**
-    
-    - **S**
-        - **[Sack](#sack)**
-        - **[ScreamingBedWars](#screamingbedwars)**
-        - **[Seasons](#seasons)**
-        - **[SellAll](#sellall)**
-        - **[SignLink](#signlink)**
-        - **[SimpleClans](#simpleclans)**
-        - **[SimpleCoins](#simplecoins)**
-        - **[SimpleCoinsAPI](#simplecoinsapi)**
-        - **[SimpleKillTracker](#simplekilltracker)**
-        - **[SimplePrefix](#simpleprefix)**
-        - **[Simple Suffix](#simple-suffix)**
-        - **[SkillAPI](#skillapi)**
-        - **[SkinsRestorer](#skinsrestorer)**
-        - **[Skript](#skript)**
-        - **[Skywars](#skywars)**
-        - **[Skywars X](#skywars-x)**
-        - **[SkywarsReloaded](#skywarsreloaded)**
-        - **[Soul](#soul)**
-        - **[Spark](#spark)**
-        - **[SQLPerms](#sqlperms)**
-        - **[SQLTokens](#sqltokens)**
-        - **[Staff Facilities](#staff-facilities)**
-        - **[Staff++](#staff)**
-        - **[Statz](#statz)**
-        - **[Streaming Drops](#streaming-drops)**
-        - **[StrikePractice 2](#strikepractice-2)**
-        - **[stTitles](#sttitles)**
-        - **[SubServers](#subservers)**
-        - **[SuperbVote](#superbvote)**
-        - **[SuperCredits](#supercredits)**
-        - **[SuperVanish](#supervanish)**
-    
-    - **T**
-        - **[The Time](#the-time)**
-        - **[ThemePark](#themepark)**
-        - **[Thirst](#thirst)**
-        - **[TicketGUI](#ticketgui)**
-        - **[Timed Rewards](#timed-rewards)**
-        - **[TimeManager](#timemanager)**
-        - **[Time Tokens](#time-tokens)**
-        - **[TNTRun_Reloaded](#tntrun_reloaded)**
-        - **[TokenEnchant](#tokenenchant)**
-        - **[TokenManager](#tokenmanager)**
-        - **[Tokens](#tokens)**
-        - **[TokensPlus](#tokensplus)**
-        - **[Towny](#towny)**
-        - **[TownyChat](#townychat)**
-        - **[TransmuteIt](#transmuteit)**
-        - **[Treasures](#treasures)**
-        - **[Trey's Double Jump](#treys-double-jump)**
-        - **[TrickOrTreat](#trickortreat)**
-        - **[Two Factor Authentication](#two-factor-authentication)**
-    
-    - **U**
-        - **[UltimateChat](#ultimatechat)**
-        - **[UltimateClaims](#ultimateclaims)**
-        - **[UltimateServerManager](#ultimateservermanager)**
-        - **[UltimateVotes](#ultimatevotes)**
-        - **[Ultra Economy](#ultra-economy)**
-        - **[Ultra Motd](#ultra-motd)**
-        - **[Ultra Permissions](#ultra-permissions)**
-        - **[Ultra Punishments](#ultra-punishments)**
-        - **[Ultra Regions](#ultra-regions)**
-        - **[UnityGen](#unitygen)**
-        - **[USkyBlock](#uskyblock)**
-    
-    - **V**
-        - **[Vault](#vault)**
-        - **[VenturaCalendar](#venturacalendar)**
-        - **[ViaVersion](#viaversion)**
-        - **[VKBackPack](#vkbackpack)**
-        - **[VoteParty](#voteparty)**
-        - **[VoteRoulette](#voteroulette)**
-        - **[VotingPlugin](#votingplugin)**
-    
-    - **W**
-        - **[Weight-RPG](#weight-rpg)**
-        - **[WickedSkyWars](#wickedskywars)**
-        - **[WorldBorder](#worldborder)**
-        - **[WorldGuard](#worldguard)**
-    
-    - **X**
-        - **[XLTournaments](#xltournaments)**
-    
-    - **Y**
-        - *No Expansions*
-    
-    - **Z**
-        - *No Expansions*
+- [Placeholder List](#placeholder-list)
+  - [Standalone](#standalone)
+    - [**Advancements**](#advancements)
+    - [**Animations**](#animations)
+    - [**Armor**](#armor)
+    - [**ASCII**](#ascii)
+    - [**Attribute**](#attribute)
+    - [**BungeeCord**](#bungeecord)
+    - [**CalculateNumbers**](#calculatenumbers)
+    - [**ChangeOutput**](#changeoutput)
+    - [**CheckItem**](#checkitem)
+    - [**CooldownBar**](#cooldownbar)
+    - [**Enchantment**](#enchantment)
+    - [**Formatter**](#formatter)
+    - [**GraalJS**](#graaljs)
+    - [**Javascript**](#javascript)
+    - [**ListPlayers**](#listplayers)
+    - [**LocalTime**](#localtime)
+    - [**Math**](#math)
+    - [**MVdW Placeholders**](#mvdw-placeholders)
+    - [**MySQL**](#mysql)
+    - [**MySQLTokens**](#mysqltokens)
+    - [**NumberFormatter**](#numberformatter)
+    - [**OtherPlayer**](#otherplayer)
+    - [**ParseNear**](#parsenear)
+    - [**ParseOther**](#parseother)
+    - [**Pinger**](#pinger)
+    - [**Player**](#player)
+    - [PlayerList](#playerlist)
+    - [**Plugin**](#plugin)
+    - [**Progress**](#progress)
+    - [**RainbowColor**](#rainbowcolor)
+    - [**RandomColor**](#randomcolor)
+    - [**RandomNumber**](#randomnumber)
+    - [**RedisBungee**](#redisbungee)
+    - [**RelCon**](#relcon)
+    - [**RNG**](#rng)
+    - [**ScoreboardObjectives**](#scoreboardobjectives)
+    - [**Server**](#server)
+    - [**Shortcut**](#shortcut)
+    - [**Sound**](#sound)
+    - [**SpeedPerSec**](#speedpersec)
+    - [**Statistic**](#statistic)
+    - [**String**](#string)
+    - [**Team**](#team)
+    - [**Teams**](#teams)
+    - [**Unicode**](#unicode)
+    - [**World**](#world)
+  - [Plugin-placeholders](#plugin-placeholders)
+    - [**AAC**](#aac)
+    - [**AbstractMenus**](#abstractmenus)
+    - [**AcidIsland**](#acidisland)
+    - [**AcidIslandRate**](#acidislandrate)
+    - [**Advanced Abilities**](#advanced-abilities)
+    - [**Advanced Achievements**](#advanced-achievements)
+    - [**AdvancedAFK**](#advancedafk)
+    - [**AdvancedCustomMenu+**](#advancedcustommenu)
+    - [**AdvancedLottery**](#advancedlottery)
+    - [**AdvancedModReq**](#advancedmodreq)
+    - [**AdvancedServerList**](#advancedserverlist)
+    - [**ajLeaderboards**](#ajleaderboards)
+    - [**ajParkour**](#ajparkour)
+    - [**AlonsoLevels**](#alonsolevels)
+    - [**AngelChest**](#angelchest)
+    - [**Animated Menu**](#animated-menu)
+    - [**AntiCombatLogging**](#anticombatlogging)
+    - [**AParkour**](#aparkour)
+    - [**ASkyBlock**](#askyblock)
+    - [**AsyncKeepAlive**](#asynckeepalive)
+    - [**Ath**](#ath)
+    - [**AutoPickup**](#autopickup)
+    - [**AutoRank**](#autorank)
+    - [**AutoSell**](#autosell)
+    - [**BankSystem**](#banksystem)
+    - [**BasicQuests**](#basicquests)
+    - [**BattleLevels**](#battlelevels)
+    - [**BeautyQuests**](#beautyquests)
+    - [**BedWars1058**](#bedwars1058)
+    - [**BentoBox**](#bentobox)
+    - [**BetonQuest**](#betonquest)
+    - [**BetterTeams**](#betterteams)
+    - [**BlockParty**](#blockparty)
+    - [**BlockQuest**](#blockquest)
+    - [**Boxing**](#boxing)
+    - [**BuildBattlePro**](#buildbattlepro)
+    - [**BungeePerms**](#bungeeperms)
+    - [**BuyCraft**](#buycraft)
+    - [**CarlTheCreeper**](#carlthecreeper)
+    - [**ChatColor+**](#chatcolor)
+    - [**ChatColor+ Premium**](#chatcolor-premium)
+    - [**ChatReaction**](#chatreaction)
+    - [**CheckNameHistory**](#checknamehistory)
+    - [**ClaimChunk**](#claimchunk)
+    - [**Clans**](#clans)
+    - [**Clans**](#clans-1)
+    - [**Clans-API for Spigot/Clan tag in chat**](#clans-api-for-spigotclan-tag-in-chat)
+    - [**ClanSystem**](#clansystem)
+    - [**CombatLogX**](#combatlogx)
+    - [**Compassance**](#compassance)
+    - [**CoordinateTool**](#coordinatetool)
+    - [**Country on Join**](#country-on-join)
+    - [**CraftConomy**](#craftconomy)
+    - [**CraftingStore.net**](#craftingstorenet)
+    - [**CursedVIP**](#cursedvip)
+    - [**Custom Advancements**](#custom-advancements)
+    - [**Custom Items**](#custom-items)
+    - [**Daily Rewards**](#daily-rewards)
+    - [**DeliveryMan**](#deliveryman)
+    - [**DeluxeChat**](#deluxechat)
+    - [**DeluxeCombat**](#deluxecombat)
+    - [**DeluxeMenus**](#deluxemenus)
+    - [**DeluxePM**](#deluxepm)
+    - [**DeluxeTags**](#deluxetags)
+    - [**Denizen**](#denizen)
+    - [**DimensionPlaceholders**](#dimensionplaceholders)
+    - [**DiscordSRV**](#discordsrv)
+    - [**Disease**](#disease)
+    - [**Donations Holograms**](#donations-holograms)
+    - [**DragonSlayer**](#dragonslayer)
+    - [**DungeonsXL**](#dungeonsxl)
+    - [**Economy Bank**](#economy-bank)
+    - [**Enjin \& DonationCraft 2.x**](#enjin--donationcraft-2x)
+    - [**EntityClearer**](#entityclearer)
+    - [**EntityControl**](#entitycontrol)
+    - [**Envoys**](#envoys)
+    - [**EpicFriends**](#epicfriends)
+    - [**EpicLevels**](#epiclevels)
+    - [**essCore**](#esscore)
+    - [**Essentials**](#essentials)
+    - [**EventCore**](#eventcore)
+    - [**EZBlocks**](#ezblocks)
+    - [**EZPrestige**](#ezprestige)
+    - [**EZRanksPro**](#ezrankspro)
+    - [**Factions MCore**](#factions-mcore)
+    - [**FactionsUUID**](#factionsuuid)
+    - [**Factions relation placeholders**](#factions-relation-placeholders)
+    - [**FunnyGuilds**](#funnyguilds)
+    - [**GAListener**](#galistener)
+    - [**GangsPlus**](#gangsplus)
+    - [**GemsEconomy**](#gemseconomy)
+    - [**GriefDefender**](#griefdefender)
+    - [**GriefPrevention**](#griefprevention)
+    - [**GrimAC**](#grimac)
+    - [**Guilds**](#guilds)
+    - [**GuiRedeemMCMMO**](#guiredeemmcmmo)
+    - [**Head Database**](#head-database)
+    - [**Heroes**](#heroes)
+    - [**HoloBlock**](#holoblock)
+    - [**HoloMobHealth**](#holomobhealth)
+    - [**Honeypot**](#honeypot)
+    - [**HPWizard**](#hpwizard)
+    - [**Hugs**](#hugs)
+    - [**HyacinthHello**](#hyacinthhello)
+    - [**ImageFrame**](#imageframe)
+    - [**InteractionVisualizer**](#interactionvisualizer)
+    - [**InteractiveChat**](#interactivechat)
+    - [**Island Border**](#island-border)
+    - [**IslandRate**](#islandrate)
+    - [**IslandWorld**](#islandworld)
+    - [**Jobs Reborn**](#jobs-reborn)
+    - [**Karma**](#karma)
+    - [**KillStats**](#killstats)
+    - [**KitPvP**](#kitpvp)
+    - [**KingdomsX**](#kingdomsx)
+    - [**KP-PVP**](#kp-pvp)
+    - [**Lands**](#lands)
+    - [**LastLoginAPI**](#lastloginapi)
+    - [**LeaderHeads**](#leaderheads)
+    - [**LegendQuest**](#legendquest)
+    - [**LemonMobCoins**](#lemonmobcoins)
+    - [**LevelledMobs**](#levelledmobs)
+    - [**LevelUp**](#levelup)
+    - [**LotterySix**](#lotterysix)
+    - [**LuckPerms**](#luckperms)
+    - [**LWC**](#lwc)
+    - [**Marcely's Bedwars**](#marcelys-bedwars)
+    - [**Marriage**](#marriage)
+    - [**Marriage (reloaded)**](#marriage-reloaded)
+    - [**MarriageMaster**](#marriagemaster)
+    - [**McInfected**](#mcinfected)
+    - [**McJobs**](#mcjobs)
+    - [**McMMO**](#mcmmo)
+    - [**MineChess**](#minechess)
+    - [**Minecord**](#minecord)
+    - [**MineCrates**](#minecrates)
+    - [**MineResetLite**](#mineresetlite)
+    - [**MobHunting**](#mobhunting)
+    - [**Multiverse-Core**](#multiverse-core)
+    - [**MyCommand**](#mycommand)
+    - [**MyPet**](#mypet)
+    - [**MyPrefixSystem**](#myprefixsystem)
+    - [**NameColor**](#namecolor)
+    - [**Nameless Plugin**](#nameless-plugin)
+    - [**NameMC-API-ServersMC**](#namemc-api-serversmc)
+    - [**Nicknamer**](#nicknamer)
+    - [**NickReloaded**](#nickreloaded)
+    - [**Nicky**](#nicky)
+    - [**OneBlock**](#oneblock)
+    - [**OnePlayerSleep**](#oneplayersleep)
+    - [**OnTime**](#ontime)
+    - [**OpEconomy**](#opeconomy)
+    - [**OreAnnouncer**](#oreannouncer)
+    - [**OreMarket**](#oremarket)
+    - [**Outpost**](#outpost)
+    - [**P-LifeSteal**](#p-lifesteal)
+    - [**Paintball Battle**](#paintball-battle)
+    - [**Parkour**](#parkour)
+    - [**Parkour Maker**](#parkour-maker)
+    - [**ParkPlusMC**](#parkplusmc)
+    - [**Parties**](#parties)
+    - [**Party and Friends**](#party-and-friends)
+    - [**PermissionTimer**](#permissiontimer)
+    - [**PixelVip**](#pixelvip)
+    - [**Plan**](#plan)
+    - [**PlayerStats**](#playerstats)
+    - [**PlayTime**](#playtime)
+    - [**PlayTimeManager**](#playtimemanager)
+    - [**PlaytimeRewards**](#playtimerewards)
+    - [**PlayerPoints**](#playerpoints)
+    - [**PlotSquared**](#plotsquared)
+    - [**PocketHorses**](#pockethorses)
+    - [**PointsAPI**](#pointsapi)
+    - [**PowerBoard**](#powerboard)
+    - [**PowerRanks**](#powerranks)
+    - [**PrefiX**](#prefix)
+    - [**PremiumReports**](#premiumreports)
+    - [**PremiumVanish**](#premiumvanish)
+    - [**Prison**](#prison)
+    - [**PrisonMines**](#prisonmines)
+    - [**PrisonRanksX**](#prisonranksx)
+    - [**ProCosmetics**](#procosmetics)
+    - [**ProfessionalBans**](#professionalbans)
+    - [**ProQuest**](#proquest)
+    - [**ProtectionStones**](#protectionstones)
+    - [**PvPLevels**](#pvplevels)
+    - [**PvPManager**](#pvpmanager)
+    - [**PVP Stats**](#pvp-stats)
+    - [**PvPStats Plugin**](#pvpstats-plugin)
+    - [**QualityArmory**](#qualityarmory)
+    - [**Quests**](#quests)
+    - [**QuestCreator**](#questcreator)
+    - [**QuickSell**](#quicksell)
+    - [**RecentFind (Treasures Add-on)**](#recentfind-treasures-add-on)
+    - [**RabbitsVSPenguins**](#rabbitsvspenguins)
+    - [**RageMode**](#ragemode)
+    - [**Rankup**](#rankup)
+    - [**RealisticWorldGenerator**](#realisticworldgenerator)
+    - [**RedProtect**](#redprotect)
+    - [**ReferralSystem**](#referralsystem)
+    - [**RestrictedDimensions**](#restricteddimensions)
+    - [**RocketPlaceholders**](#rocketplaceholders)
+    - [**RogueParkour**](#rogueparkour)
+    - [**RoyalCommands**](#royalcommands)
+    - [**RPGInventory**](#rpginventory)
+    - [**RTP**](#rtp)
+    - [**Sack**](#sack)
+    - [**ScreamingBedWars**](#screamingbedwars)
+    - [**Seasons**](#seasons)
+    - [**SellAll**](#sellall)
+    - [**SignLink**](#signlink)
+    - [**SimpleClans**](#simpleclans)
+    - [**SimpleCoins**](#simplecoins)
+    - [**SimpleCoinsAPI**](#simplecoinsapi)
+    - [**SimpleKillTracker**](#simplekilltracker)
+    - [**SimplePrefix**](#simpleprefix)
+    - [**Simple Suffix**](#simple-suffix)
+    - [**SkillAPI**](#skillapi)
+    - [**SkinsRestorer**](#skinsrestorer)
+    - [**Skript**](#skript)
+    - [**SkyWars**](#skywars)
+    - [**SkyWars X**](#skywars-x)
+    - [**SkywarsReloaded**](#skywarsreloaded)
+    - [**Soul**](#soul)
+    - [**Spark**](#spark)
+    - [**SQLPerms**](#sqlperms)
+    - [**SQLTokens**](#sqltokens)
+    - [**Staff Facilities**](#staff-facilities)
+    - [**Staff++**](#staff)
+    - [**Statz**](#statz)
+    - [**Streaming Drops**](#streaming-drops)
+    - [**StrikePractice 2**](#strikepractice-2)
+    - [**stTitles**](#sttitles)
+    - [**SubServers**](#subservers)
+    - [**SuperbVote**](#superbvote)
+    - [**SuperCredits**](#supercredits)
+    - [**SuperVanish**](#supervanish)
+    - [**The Time**](#the-time)
+    - [**ThemePark**](#themepark)
+    - [**Thirst**](#thirst)
+    - [**TicketGUI**](#ticketgui)
+    - [**Timed Rewards**](#timed-rewards)
+    - [**TimeManager**](#timemanager)
+    - [**Time Tokens**](#time-tokens)
+    - [**TNTRun\_Reloaded**](#tntrun_reloaded)
+    - [**TokenEnchant**](#tokenenchant)
+    - [**TokenManager**](#tokenmanager)
+    - [**Tokens**](#tokens)
+    - [**TokensPlus**](#tokensplus)
+    - [**Towny**](#towny)
+    - [**TownyChat**](#townychat)
+    - [**TransmuteIt**](#transmuteit)
+    - [**Treasures**](#treasures)
+    - [**Trey's Double Jump**](#treys-double-jump)
+    - [**TrickOrTreat**](#trickortreat)
+    - [**Two Factor Authentication**](#two-factor-authentication)
+    - [**USkyBlock**](#uskyblock)
+    - [**UltimateChat**](#ultimatechat)
+    - [**UltimateClaims**](#ultimateclaims)
+    - [**UltimateServerManager**](#ultimateservermanager)
+    - [**UltimateVotes**](#ultimatevotes)
+    - [**Ultra Economy**](#ultra-economy)
+    - [**Ultra Motd**](#ultra-motd)
+    - [**Ultra Permissions**](#ultra-permissions)
+    - [**Ultra Punishments**](#ultra-punishments)
+    - [**Ultra Regions**](#ultra-regions)
+    - [**UnityGen**](#unitygen)
+    - [**Vault**](#vault)
+    - [**VenturaCalendar**](#venturacalendar)
+    - [**ViaVersion**](#viaversion)
+    - [**VKBackPack/)**](#vkbackpack)
+    - [**VoteParty**](#voteparty)
+    - [**VoteRoulette**](#voteroulette)
+    - [**VotingPlugin**](#votingplugin)
+    - [**Weight-RPG**](#weight-rpg)
+    - [**WickedSkyWars**](#wickedskywars)
+    - [**WorldBorder**](#worldborder)
+    - [**WorldGuard**](#worldguard)
+    - [**XLTournaments**](#xltournaments)
 
 ----
 ## Standalone
@@ -4721,9 +4718,13 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 
 ```
 %PTM_playtime%
+%PTM_afk_playtime%	
 %PTM_playtime_#%
+%PTM_afk_playtime_#%	
 %PTM_playtime_<nickname>%
+%PTM_afk_playtime_<nickname>%	
 %PTM_playtime_#_<nickname>%
+%PTM_afk_playtime_#_<nickname>%	
 %PTM_firstjoin%
 %PTM_firstjoin_<nickname>%	
 %PTM_lastseen_<nickname>%
