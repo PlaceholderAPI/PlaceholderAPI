@@ -4818,9 +4818,13 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 
 ```
 %PTM_playtime%
+%PTM_afk_playtime%
 %PTM_playtime_#%
+%PTM_afk_playtime_#%
 %PTM_playtime_<nickname>%
+%PTM_afk_playtime_<nickname>%
 %PTM_playtime_#_<nickname>%
+%PTM_afk_playtime_#_<nickname>%
 %PTM_firstjoin%
 %PTM_firstjoin_<nickname>%	
 %PTM_lastseen_<nickname>%
