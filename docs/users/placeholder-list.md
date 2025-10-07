@@ -2204,11 +2204,19 @@ Find examples of how the placeholders can be used on [signs](https://github.com/
 /// integrated | Built into Plugin
 ///
 
+Find an up-to-date list on the [SpigotMC page](https://www.spigotmc.org/resources/beautyquests.39255/field?field=documentation).
+
 ```
+%beautyquests_total_amount%
 %beautyquests_player_inprogress_amount%
 %beautyquests_player_finished_amount%
-%beautyquests_total_amount%
-%beautyquests_advancement_ID%
+%beautyquests_player_finished_total_amount%
+%beautyquests_started_ordered%
+%beautyquests_started_ordered_X%
+%beautyquests_advancement_X%
+%beautyquests_advancement_X_raw%
+%beautyquests_player_quest_finished_X%
+%beautyquests_started_id_list%
 ```
 
 ----
