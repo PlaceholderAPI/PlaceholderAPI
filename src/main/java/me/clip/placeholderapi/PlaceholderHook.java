@@ -20,10 +20,13 @@
 
 package me.clip.placeholderapi;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public abstract class PlaceholderHook {
   @Nullable
@@ -35,8 +38,16 @@ public abstract class PlaceholderHook {
     return onPlaceholderRequest(null, params);
   }
 
+  @Deprecated
   @Nullable
   public String onPlaceholderRequest(final Player player, @NotNull final String params) {
     return null;
+  }
+
+  @Nullable
+  public Component onPlaceholderComponentRequest(final Player player, @NotNull final String params) {
+    final String result = onPlaceholderRequest(player, params);
+
+    return result == null ? null : Component.text(result);
   }
 }

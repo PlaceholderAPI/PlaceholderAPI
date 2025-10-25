@@ -35,6 +35,8 @@ import me.clip.placeholderapi.replacer.CharsReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import me.clip.placeholderapi.replacer.Replacer.Closure;
 import me.clip.placeholderapi.util.Msg;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -56,6 +58,12 @@ public final class PlaceholderAPI {
   }
 
   // === Current API ===
+
+  @NotNull
+  public static Component setComponentPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
+    // change charsreplacer to custom that returns component instead of string - this is going to suck mega
+    return component.replaceText(config -> config.match(PLACEHOLDER_PATTERN).replacement((result, builder) -> builder.content(REPLACER_PERCENT.apply(builder.content(), player,  PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+  }
 
   /**
    * Translates all placeholders into their corresponding values.
