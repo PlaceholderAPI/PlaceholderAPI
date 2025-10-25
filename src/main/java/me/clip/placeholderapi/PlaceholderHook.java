@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public abstract class PlaceholderHook {
+  @Deprecated
   @Nullable
   public String onRequest(final OfflinePlayer player, @NotNull final String params) {
     if (player != null && player.isOnline()) {
@@ -45,8 +46,8 @@ public abstract class PlaceholderHook {
   }
 
   @Nullable
-  public Component onPlaceholderComponentRequest(final Player player, @NotNull final String params) {
-    final String result = onPlaceholderRequest(player, params);
+  public Component onPlaceholderComponentRequest(final OfflinePlayer player, @NotNull final String params) {
+    final String result = onRequest(player, params);
 
     return result == null ? null : Component.text(result);
   }

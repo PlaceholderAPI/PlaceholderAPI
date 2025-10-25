@@ -24,13 +24,16 @@
 package me.clip.placeholderapi.replacer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.collect.Lists;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.kyori.adventure.text.*;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -47,6 +50,20 @@ final class ComponentCharsReplacer implements ComponentRenderer<ComponentCharsRe
     //static final TextReplacementRenderer INSTANCE = new TextReplacementRenderer();
     private final OfflinePlayer player;
     private final Function<String, @Nullable PlaceholderExpansion> lookup;
+    private static final Closure CLOSURE = Closure.PERCENT;
+
+    enum Closure {
+        BRACKET('{', '}'),
+        PERCENT('%', '%');
+
+
+        public final char head, tail;
+
+        Closure(final char head, final char tail) {
+            this.head = head;
+            this.tail = tail;
+        }
+    }
 
     public ComponentCharsReplacer(@Nullable final OfflinePlayer player,
                                   @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
@@ -70,6 +87,68 @@ final class ComponentCharsReplacer implements ComponentRenderer<ComponentCharsRe
             TextComponent tc = (TextComponent) component;
             final String content = tc.content();
 
+            final char[] chars = content.toCharArray();
+            final StringBuilder identifier = new StringBuilder();
+            final StringBuilder parameters = new StringBuilder();
+
+            final Map<List<Integer>, Component> replacements = new HashMap<>();
+
+            for (int i = 0; i < chars.length; i++) {
+                final char l = chars[i];
+
+                if (l != CLOSURE.head || i + 1 >= chars.length) {
+                    continue;
+                }
+
+                boolean identified = false;
+                boolean invalid = true;
+                boolean hadSpace = false;
+
+                while (++i < chars.length) {
+                    final char p = chars[i];
+
+                    if (p == ' ' && !identified) {
+                        hadSpace = true;
+                        break;
+                    }
+
+                    if (p == CLOSURE.tail) {
+                        invalid = false;
+                        break;
+                    }
+
+                    if (p == '_' && !identified) {
+                        identified = true;
+                        break;
+                    }
+
+                    if (identified) {
+                        parameters.append(p);
+                    } else {
+                        identifier.append(p);
+                    }
+                }
+
+                final String identifierString = identifier.toString();
+                final String lowerIdentifiedString = identifierString.toLowerCase();
+                final String parametersString = parameters.toString();
+
+                identifier.setLength(0);
+                parameters.setLength(0);
+
+                if (invalid) {
+                    continue;
+                }
+
+                replacements.put(Lists.newArrayList(i, i + identifierString.length() + parametersString.length()), lookup.apply(lowerIdentifiedString).onPlaceholderComponentRequest(player, parametersString));
+
+
+            }
+
+
+            // do something with our replacements
+
+            
 
 
             final Matcher matcher = state.pattern.matcher(content);
