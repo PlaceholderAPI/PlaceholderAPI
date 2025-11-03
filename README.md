@@ -8,7 +8,6 @@
 [discord]: https://helpch.at/discord
 [spigot]: https://www.spigotmc.org/resources/6245/
 [hangar]: https://hangar.papermc.io/HelpChat/PlaceholderAPI
-[bbb]: https://builtbybit.com/resources/placeholderapi.24306
 [modrinth]: https://modrinth.com/plugin/placeholderapi
 [Expansions cloud]: https://api.extendedclip.com/home
 [placeholder list]: https://helpch.at/placeholders
@@ -51,6 +50,5 @@ If you would like to create your own Placeholder Expansion for PlaceholderAPI, t
 - [Placeholder List]
 - [Spigot Page][spigot]
 - [Hangar Page][hangar]
-- [BuiltByBit Page][bbb]
 - [Modrinth Page][modrinth]
 - [Plugin Statistics][statistics]
