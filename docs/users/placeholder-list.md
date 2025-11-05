@@ -3678,7 +3678,7 @@ You can find an up-to-date list of placeholders on the [KingdomsX wiki](https://
 /// integrated | Built into Plugin
 ///
 
-A Description of the placeholders can be found on the [Lands Wiki](https://github.com/Angeschossen/Lands/wiki/PlaceholderAPI-Placeholders#placeholders).
+A Description of the placeholders can be found on the [Lands Wiki](https://wiki.incredibleplugins.com/Lands/configuration/placeholderapi-placeholders).
 
 ```
 # General
