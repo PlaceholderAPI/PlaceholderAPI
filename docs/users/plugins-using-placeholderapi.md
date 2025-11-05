@@ -495,7 +495,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ----
 ## L
 - **[Lands](https://www.spigotmc.org/resources/53313/)**
-    - [ ] Supports placeholders.
+    - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#lands)**]
 - **[LastLoginAPI](https://www.spigotmc.org/resources/66348/)**
     - [ ] Supports placeholders.
