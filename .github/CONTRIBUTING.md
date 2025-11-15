@@ -38,7 +38,7 @@ PlaceholderAPI provides a feature to have expansions (separate jar files) for pl
 In those cases should you report the issue to the issue tracker of the expansion or plugin.
 
 ## Pull requests
-As an open source project are we welcoming all contributions to improve PlaceholderAPI, being it changes to its code, or contributions to its documentation such as the [Wiki] or the Javadocs.
+As an open source project we are welcoming all contributions to improve PlaceholderAPI, being it changes to its code, or contributions to its documentation such as the [Wiki] or the Javadocs.
 
 > [!IMPORTANT]
 > When contributing, make sure to both base of and target the mentioned branch. Pull requests targeting the wrong branch may get closed without a warning.

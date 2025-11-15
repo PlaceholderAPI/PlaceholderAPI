@@ -21,7 +21,7 @@
 ### Description
 <!-- What does your Pull request change? -->
 
-Closes N/A <!-- If your PR is based on an issue, change "N/A" the the issue ID (#id) -->
+Closes N/A <!-- If your PR is based on an issue, change "N/A" to the issue ID (#id) -->
 
 
 <!-- DO NOT ALTER ANYTHING BELOW THIS LINE! -->
