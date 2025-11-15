@@ -93,7 +93,7 @@ public class SomeExpansion extends PlaceholderExpansion {
 4.  Called by PlaceholderAPI to have placeholder values parsed.  
     When not overriden will call `onPlaceholderRequest(Player, String)`, converting the OfflinePlayer to a Player if possible or else providing `null`.
     
-    Using this method is recommended for the usage of the OfflinePlayer, allowing to use data from a player without their precense being required.
+    Using this method is recommended for the usage of the OfflinePlayer, allowing to use data from a player without their presence being required.
     
     **Parameters**:
     
