@@ -26,71 +26,71 @@ import java.util.StringJoiner;
 
 public class TimeUtil {
 
-  public static String getRemaining(final int seconds, final TimeFormat type) {
-    return getRemaining((long) seconds, type);
-  }
-
-  public static String getRemaining(final long seconds, final TimeFormat type) {
-    switch (type) {
-      default:
-        return String.valueOf(seconds);
-
-      case SECONDS:
-        return String.valueOf(seconds % 60);
-
-      case MINUTES:
-        return String.valueOf((seconds / 60) % 60);
-
-      case HOURS:
-        return String.valueOf((seconds / 3600) % 24);
-
-      case DAYS:
-        return String.valueOf(seconds / 86400);
-    }
-  }
-
-  /**
-   * Format the given value with s, m, h and d (seconds, minutes, hours and days)
-   *
-   * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20
-   *                 seconds)
-   * @return formatted time
-   */
-  public static String getTime(final Duration duration) {
-    return getTime(duration.getSeconds());
-  }
-
-  public static String getTime(final int seconds) {
-    return getTime((long) seconds);
-  }
-
-  public static String getTime(long seconds) {
-    final StringJoiner joiner = new StringJoiner(" ");
-
-    long minutes = seconds / 60;
-    long hours = minutes / 60;
-    final long days = hours / 24;
-
-    seconds %= 60;
-    minutes %= 60;
-    hours %= 24;
-
-    if (days > 0) {
-      joiner.add(days + "d");
+    public static String getRemaining(final int seconds, final TimeFormat type) {
+        return getRemaining((long) seconds, type);
     }
 
-    if (hours > 0) {
-      joiner.add(hours + "h");
+    public static String getRemaining(final long seconds, final TimeFormat type) {
+        switch (type) {
+            default:
+                return String.valueOf(seconds);
+
+            case SECONDS:
+                return String.valueOf(seconds % 60);
+
+            case MINUTES:
+                return String.valueOf((seconds / 60) % 60);
+
+            case HOURS:
+                return String.valueOf((seconds / 3600) % 24);
+
+            case DAYS:
+                return String.valueOf(seconds / 86400);
+        }
     }
 
-    if (minutes > 0) {
-      joiner.add(minutes + "m");
+    /**
+     * Format the given value with s, m, h and d (seconds, minutes, hours and days)
+     *
+     * @param duration {@link Duration} (eg, Duration.of(20, {@link ChronoUnit#SECONDS}) for 20
+     *                 seconds)
+     * @return formatted time
+     */
+    public static String getTime(final Duration duration) {
+        return getTime(duration.getSeconds());
     }
 
-    if (seconds > 0) {
-      joiner.add(seconds + "s");
+    public static String getTime(final int seconds) {
+        return getTime((long) seconds);
     }
 
-    return joiner.toString();
-  }
+    public static String getTime(long seconds) {
+        final StringJoiner joiner = new StringJoiner(" ");
+
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        final long days = hours / 24;
+
+        seconds %= 60;
+        minutes %= 60;
+        hours %= 24;
+
+        if (days > 0) {
+            joiner.add(days + "d");
+        }
+
+        if (hours > 0) {
+            joiner.add(hours + "h");
+        }
+
+        if (minutes > 0) {
+            joiner.add(minutes + "m");
+        }
+
+        if (seconds > 0) {
+            joiner.add(seconds + "s");
+        }
+
+        return joiner.toString();
+    }
 }

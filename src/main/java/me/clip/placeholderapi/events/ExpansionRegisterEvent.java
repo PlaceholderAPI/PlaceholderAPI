@@ -29,61 +29,61 @@ import org.jetbrains.annotations.NotNull;
 /**
  * This event indicates that a <b>single</b> {@link PlaceholderExpansion PlaceholderExpansion} has
  * been registered in PlaceholderAPI.
- * 
+ *
  * <p>To know when <b>all</b> Expansions have been registered, use the
  * {@link me.clip.placeholderapi.events.ExpansionsLoadedEvent ExpansionsLoadedEvent} instead.
  */
 public final class ExpansionRegisterEvent extends Event implements Cancellable {
 
-  @NotNull
-  private static final HandlerList HANDLERS = new HandlerList();
-  @NotNull
-  private final PlaceholderExpansion expansion;
-  private boolean cancelled;
+    @NotNull
+    private static final HandlerList HANDLERS = new HandlerList();
+    @NotNull
+    private final PlaceholderExpansion expansion;
+    private boolean cancelled;
 
-  public ExpansionRegisterEvent(@NotNull final PlaceholderExpansion expansion) {
-    this.expansion = expansion;
-  }
+    public ExpansionRegisterEvent(@NotNull final PlaceholderExpansion expansion) {
+        this.expansion = expansion;
+    }
 
-  @NotNull
-  public static HandlerList getHandlerList() {
-    return HANDLERS;
-  }
-  
-  /**
-   * The {@link PlaceholderExpansion PlaceholderExpansion} that was registered in PlaceholderAPI.
-   * <br>The PlaceholderExpansion will be available for use when the event
-   * {@link #isCancelled() was not cancelled}!
-   * 
-   * @return Current instance of the registered {@link PlaceholderExpansion PlaceholderExpansion}
-   */
-  @NotNull
-  public PlaceholderExpansion getExpansion() {
-    return expansion;
-  }
+    @NotNull
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
 
-  /**
-   * Indicates if this event was cancelled or not.
-   * <br>A cancelled Event will result in the {@link #getExpansion() PlaceholderExpansion} NOT
-   * being added to PlaceholderAPI's internal list and will therefore be considered not registered
-   * anymore.
-   * 
-   * @return Whether the event has been cancelled or not.
-   */
-  @Override
-  public boolean isCancelled() {
-    return cancelled;
-  }
+    /**
+     * The {@link PlaceholderExpansion PlaceholderExpansion} that was registered in PlaceholderAPI.
+     * <br>The PlaceholderExpansion will be available for use when the event
+     * {@link #isCancelled() was not cancelled}!
+     *
+     * @return Current instance of the registered {@link PlaceholderExpansion PlaceholderExpansion}
+     */
+    @NotNull
+    public PlaceholderExpansion getExpansion() {
+        return expansion;
+    }
 
-  @Override
-  public void setCancelled(boolean cancelled) {
-    this.cancelled = cancelled;
-  }
+    /**
+     * Indicates if this event was cancelled or not.
+     * <br>A cancelled Event will result in the {@link #getExpansion() PlaceholderExpansion} NOT
+     * being added to PlaceholderAPI's internal list and will therefore be considered not registered
+     * anymore.
+     *
+     * @return Whether the event has been cancelled or not.
+     */
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-  @NotNull
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLERS;
-  }
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    @NotNull
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLERS;
+    }
 
 }

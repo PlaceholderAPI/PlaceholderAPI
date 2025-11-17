@@ -28,6 +28,7 @@ dependencies {
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
     //compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
     compileOnly("dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
@@ -92,7 +93,12 @@ tasks {
         archiveClassifier.set("")
 
         relocate("org.bstats", "me.clip.placeholderapi.metrics")
-        relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+//        relocate("net.kyori", "me.clip.placeholderapi.libs.kyori") {
+//            exclude("me/clip/placeholderapi/PAPIComponents.java")
+//            exclude("me/clip/placeholderapi/commands/TestCommand.java")
+//        }
+
+        destinationDirectory = file("server/1.21/plugins/")
 
         exclude("META-INF/versions/**")
     }
