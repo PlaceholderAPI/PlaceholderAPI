@@ -22,6 +22,7 @@ package me.clip.placeholderapi.replacer;
 
 import java.util.Locale;
 import java.util.function.Function;
+
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -30,108 +31,110 @@ import org.jetbrains.annotations.Nullable;
 
 public final class CharsReplacer implements Replacer {
 
-  @NotNull
-  private final Closure closure;
+    @NotNull
+    private final Closure closure;
 
-  public CharsReplacer(@NotNull final Closure closure) {
-    this.closure = closure;
-  }
-
-
-  @NotNull
-  @Override
-  public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
-      @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
-    final char[] chars = text.toCharArray();
-    final StringBuilder builder = new StringBuilder(text.length());
-
-    final StringBuilder identifier = new StringBuilder();
-    final StringBuilder parameters = new StringBuilder();
-
-    for (int i = 0; i < chars.length; i++) {
-      final char l = chars[i];
-
-      if (l != closure.head || i + 1 >= chars.length) {
-        builder.append(l);
-        continue;
-      }
-
-      boolean identified = false;
-      boolean invalid = true;
-      boolean hadSpace = false;
-
-      while (++i < chars.length) {
-        final char p = chars[i];
-
-        if (p == ' ' && !identified) {
-          hadSpace = true;
-          break;
-        }
-        if (p == closure.tail) {
-          invalid = false;
-          break;
-        }
-
-        if (p == '_' && !identified) {
-          identified = true;
-          continue;
-        }
-
-        if (identified) {
-          parameters.append(p);
-        } else {
-          identifier.append(p);
-        }
-      }
-
-      final String identifierString = identifier.toString();
-      final String lowercaseIdentifierString = identifierString.toLowerCase(Locale.ROOT);
-      final String parametersString = parameters.toString();
-
-      identifier.setLength(0);
-      parameters.setLength(0);
-
-      if (invalid) {
-        builder.append(closure.head).append(identifierString);
-
-        if (identified) {
-          builder.append('_').append(parametersString);
-        }
-
-        if (hadSpace) {
-          builder.append(' ');
-        }
-        continue;
-      }
-
-      final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
-      if (placeholder == null) {
-        builder.append(closure.head).append(identifierString);
-
-        if (identified) {
-          builder.append('_');
-        }
-
-        builder.append(parametersString).append(closure.tail);
-        continue;
-      }
-
-      final String replacement = placeholder.onRequest(player, parametersString);
-      if (replacement == null) {
-        builder.append(closure.head).append(identifierString);
-
-        if (identified) {
-          builder.append('_');
-        }
-
-        builder.append(parametersString).append(closure.tail);
-        continue;
-      }
-
-      builder.append(replacement);
+    public CharsReplacer(@NotNull final Closure closure) {
+        this.closure = closure;
     }
 
-    return builder.toString();
-  }
+
+    @NotNull
+    @Override
+    public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
+                        @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
+        final char[] chars = text.toCharArray();
+        // Woo! Hlello %player_name%
+        // Woo! GHsda PiggyPiglet
+        final StringBuilder builder = new StringBuilder(text.length());
+
+        final StringBuilder identifier = new StringBuilder();
+        final StringBuilder parameters = new StringBuilder();
+
+        for (int i = 0; i < chars.length; i++) {
+            final char l = chars[i];
+
+            if (l != closure.head || i + 1 >= chars.length) {
+                builder.append(l);
+                continue;
+            }
+
+            boolean identified = false;
+            boolean invalid = true;
+            boolean hadSpace = false;
+
+            while (++i < chars.length) {
+                final char p = chars[i];
+
+                if (p == ' ' && !identified) {
+                    hadSpace = true;
+                    break;
+                }
+                if (p == closure.tail) {
+                    invalid = false;
+                    break;
+                }
+
+                if (p == '_' && !identified) {
+                    identified = true;
+                    continue;
+                }
+
+                if (identified) {
+                    parameters.append(p);
+                } else {
+                    identifier.append(p);
+                }
+            }
+
+            final String identifierString = identifier.toString();
+            final String lowercaseIdentifierString = identifierString.toLowerCase(Locale.ROOT);
+            final String parametersString = parameters.toString();
+
+            identifier.setLength(0);
+            parameters.setLength(0);
+
+            if (invalid) {
+                builder.append(closure.head).append(identifierString);
+
+                if (identified) {
+                    builder.append('_').append(parametersString);
+                }
+
+                if (hadSpace) {
+                    builder.append(' ');
+                }
+                continue;
+            }
+
+            final PlaceholderExpansion placeholder = lookup.apply(lowercaseIdentifierString);
+            if (placeholder == null) {
+                builder.append(closure.head).append(identifierString);
+
+                if (identified) {
+                    builder.append('_');
+                }
+
+                builder.append(parametersString).append(closure.tail);
+                continue;
+            }
+
+            final String replacement = placeholder.onRequest(player, parametersString);
+            if (replacement == null) {
+                builder.append(closure.head).append(identifierString);
+
+                if (identified) {
+                    builder.append('_');
+                }
+
+                builder.append(parametersString).append(closure.tail);
+                continue;
+            }
+
+            builder.append(replacement);
+        }
+
+        return builder.toString();
+    }
 
 }

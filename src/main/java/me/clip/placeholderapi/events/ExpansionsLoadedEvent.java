@@ -23,6 +23,7 @@ package me.clip.placeholderapi.events;
 
 import java.util.Collections;
 import java.util.List;
+
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -32,14 +33,14 @@ import org.jetbrains.annotations.NotNull;
  * This event indicated that <b>all</b> {@link PlaceholderExpansion PlaceholderExpansions} have
  * been registered in PlaceholderAPI and can now be used.
  * <br>This even will also be triggered whenever PlaceholderAPI gets reloaded.
- * 
+ *
  * <p>All PlaceholderExpansions, except for those loaded by plugins, are loaded
  * after Spigot triggered its ServerLoadEvent (1.13+), or after PlaceholderAPI has been enabled.
  */
 public class ExpansionsLoadedEvent extends Event {
-    
+
     private final List<PlaceholderExpansion> expansions;
-    
+
     public ExpansionsLoadedEvent(List<PlaceholderExpansion> expansions) {
         this.expansions = Collections.unmodifiableList(expansions);
     }
@@ -47,16 +48,16 @@ public class ExpansionsLoadedEvent extends Event {
     /**
      * Returns a unmodifiable list of {@link PlaceholderExpansion PlaceholderExpansions} that
      * have been registered by PlaceholderAPI.
-     * 
+     *
      * <p><b>This list does not include manually registered PlaceholderExpansions.</b>
-     * 
+     *
      * @return List of {@link PlaceholderExpansion registered PlaceholderExpansions}.
      */
     @NotNull
-    public final List<PlaceholderExpansion> getExpansions(){
+    public final List<PlaceholderExpansion> getExpansions() {
         return expansions;
     }
-    
+
     @NotNull
     private static final HandlerList HANDLERS = new HandlerList();
 

@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * This event indicates that a {@link PlaceholderExpansion PlaceholderExpansion} has been
  * unregistered by PlaceholderAPI.
- * 
+ *
  * <p>Note that this event is triggered <b>before</b> the PlaceholderExpansion is completely
  * removed.
  * <br>This includes removing any Listeners, stopping active tasks and clearing the cache of
@@ -36,35 +36,35 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class ExpansionUnregisterEvent extends Event {
 
-  @NotNull
-  private static final HandlerList HANDLERS = new HandlerList();
-  
-  @NotNull
-  private final PlaceholderExpansion expansion;
+    @NotNull
+    private static final HandlerList HANDLERS = new HandlerList();
 
-  public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion) {
-    this.expansion = expansion;
-  }
+    @NotNull
+    private final PlaceholderExpansion expansion;
 
-  @NotNull
-  public static HandlerList getHandlerList() {
-    return HANDLERS;
-  }
-  
-  /**
-   * The {@link PlaceholderExpansion PlaceholderExpansion} that was unregistered.
-   * 
-   * @return The {@link PlaceholderExpansion PlaceholderExpansion} instance.
-   */
-  @NotNull
-  public PlaceholderExpansion getExpansion() {
-    return expansion;
-  }
+    public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion) {
+        this.expansion = expansion;
+    }
 
-  @NotNull
-  @Override
-  public HandlerList getHandlers() {
-    return HANDLERS;
-  }
+    @NotNull
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
+
+    /**
+     * The {@link PlaceholderExpansion PlaceholderExpansion} that was unregistered.
+     *
+     * @return The {@link PlaceholderExpansion PlaceholderExpansion} instance.
+     */
+    @NotNull
+    public PlaceholderExpansion getExpansion() {
+        return expansion;
+    }
+
+    @NotNull
+    @Override
+    public HandlerList getHandlers() {
+        return HANDLERS;
+    }
 
 }

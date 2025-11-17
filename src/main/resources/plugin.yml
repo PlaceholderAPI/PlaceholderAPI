@@ -12,6 +12,8 @@ commands:
   placeholderapi:
     description: "PlaceholderAPI Command"
     aliases: ["papi"]
+  test:
+    description: "yes"
 
 permissions:
   placeholderapi.*:

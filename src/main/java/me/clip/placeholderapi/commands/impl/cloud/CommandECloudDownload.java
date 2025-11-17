@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -34,43 +35,35 @@ import org.jetbrains.annotations.Unmodifiable;
 
 public final class CommandECloudDownload extends PlaceholderCommand {
 
-  public CommandECloudDownload() {
-    super("download");
-  }
-
-  private boolean isBlockedExpansion(String name) {
-    String env = System.getenv("PAPI_BLOCKED_EXPANSIONS");
-    if (env == null) {
-      return false;
+    public CommandECloudDownload() {
+        super("download");
     }
 
-    return Arrays.stream(env.split(","))
-            .anyMatch(s -> s.equalsIgnoreCase(name));
-  }
+    private boolean isBlockedExpansion(String name) {
+        String env = System.getenv("PAPI_BLOCKED_EXPANSIONS");
+        if (env == null) {
+            return false;
+        }
 
-  @Override
-  public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
-      @NotNull final CommandSender sender, @NotNull final String alias,
-      @NotNull @Unmodifiable final List<String> params) {
-    if (params.isEmpty()) {
-      Msg.msg(sender,
-          "&cYou must supply the name of an expansion.");
-      return;
+        return Arrays.stream(env.split(","))
+                .anyMatch(s -> s.equalsIgnoreCase(name));
     }
 
-    if (isBlockedExpansion(params.get(0))) {
-      Msg.msg(sender,
-          "&cThis expansion can't be downloaded.");
-      return;
-    }
+    @Override
+    public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
+                         @NotNull final CommandSender sender, @NotNull final String alias,
+                         @NotNull @Unmodifiable final List<String> params) {
+        if (params.isEmpty()) {
+            Msg.msg(sender,
+                    "&cYou must supply the name of an expansion.");
+            return;
+        }
 
-    final CloudExpansion expansion = plugin.getCloudExpansionManager()
-        .findCloudExpansionByName(params.get(0)).orElse(null);
-    if (expansion == null) {
-      Msg.msg(sender,
-          "&cFailed to find an expansion named: &f" + params.get(0));
-      return;
-    }
+        if (isBlockedExpansion(params.get(0))) {
+            Msg.msg(sender,
+                    "&cThis expansion can't be downloaded.");
+            return;
+        }
 
     final CloudExpansion.Version version;
     if (params.size() < 2) {
@@ -99,41 +92,72 @@ public final class CommandECloudDownload extends PlaceholderCommand {
         .whenComplete((file, exception) -> {
           if (exception != null) {
             Msg.msg(sender,
-                "&cFailed to download expansion: &f" + exception.getMessage());
+                    "&cFailed to find an expansion named: &f" + params.get(0));
             return;
-          }
+        }
 
-          Msg.msg(sender,
-              "&aSuccessfully downloaded expansion &f" + expansion.getName() + " [" + version
-                  .getVersion() + "] &ato file: &f" + file.getName(),
-              "&aMake sure to type &f/papi reload &ato enable your new expansion!");
+        if (!expansion.isVerified()) {
+            Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
+            return;
+        }
 
-          plugin.getCloudExpansionManager().load();
-        });
-  }
+        final CloudExpansion.Version version;
+        if (params.size() < 2) {
+            version = expansion.getVersion(expansion.getLatestVersion());
+            if (version == null) {
+                Msg.msg(sender,
+                        "&cCould not find latest version for expansion.");
+                return;
+            }
+        } else {
+            version = expansion.getVersion(params.get(1));
+            if (version == null) {
+                Msg.msg(sender,
+                        "&cCould not find specified version: &f" + params.get(1),
+                        "&7Available versions: &f" + expansion.getAvailableVersions());
+                return;
+            }
+        }
 
-  @Override
-  public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-      @NotNull final CommandSender sender, @NotNull final String alias,
-      @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-    if (params.size() > 2) {
-      return;
+        plugin.getCloudExpansionManager().downloadExpansion(expansion, version)
+                .whenComplete((file, exception) -> {
+                    if (exception != null) {
+                        Msg.msg(sender,
+                                "&cFailed to download expansion: &f" + exception.getMessage());
+                        return;
+                    }
+
+                    Msg.msg(sender,
+                            "&aSuccessfully downloaded expansion &f" + expansion.getName() + " [" + version
+                                    .getVersion() + "] &ato file: &f" + file.getName(),
+                            "&aMake sure to type &f/papi reload &ato enable your new expansion!");
+
+                    plugin.getCloudExpansionManager().load();
+                });
     }
 
-    if (params.size() <= 1) {
-      final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values()
-          .stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
-      suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
-      return;
-    }
+    @Override
+    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+                         @NotNull final CommandSender sender, @NotNull final String alias,
+                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+        if (params.size() > 2) {
+            return;
+        }
 
-    final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager()
-        .findCloudExpansionByName(params.get(0));
-    if (!expansion.isPresent()) {
-      return;
-    }
+        if (params.size() <= 1) {
+            final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values()
+                    .stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
+            suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
+            return;
+        }
 
-    suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
-  }
+        final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager()
+                .findCloudExpansionByName(params.get(0));
+        if (!expansion.isPresent()) {
+            return;
+        }
+
+        suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
+    }
 
 }
