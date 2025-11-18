@@ -425,6 +425,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Two Factor Authentication](#two-factor-authentication)**
     
     - **U**
+        - **[UJobs](#ujobs)**
         - **[UltimateChat](#ultimatechat)**
         - **[UltimateClaims](#ultimateclaims)**
         - **[UltimateServerManager](#ultimateservermanager)**
@@ -436,7 +437,6 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Ultra Regions](#ultra-regions)**
         - **[UnityGen](#unitygen)**
         - **[USkyBlock](#uskyblock)**
-        - **[UJobs](#ujobs)**
     
     - **V**
         - **[Vault](#vault)**
@@ -6985,6 +6985,28 @@ You can find an up-to-date list of placeholders in the [Towny wiki](https://gith
 
 ----
 
+### **[UJobs](https://modrinth.com/plugin/ujobs)**
+/// integrated | Built into Plugin
+///
+
+Detailed explanation and example outputs of placeholders are listed on [modrinth](https://modrinth.com/plugin/ujobs).
+
+```
+ujobs_job_name_<job>                      
+ujobs_job_displayname_<job>
+ujobs_job_legacydisplayname_<job>
+
+ujobs_player_level_<job>
+ujobs_player_exp_<job>
+ujobs_player_position_<job>
+ujobs_player_totalmoney_<job>
+
+ujobs_leaderboard_name_<job>_<position>
+ujobs_leaderboard_level_<job>_<position>
+```
+
+----
+
 ### **[USkyBlock](https://www.spigotmc.org/resources/2280/)**
 /// command | papi ecloud download uSkyBlock
 ///
@@ -7105,28 +7127,6 @@ You can find an up-to-date list of placeholders in the [Ultra Regions Wiki](http
 ```
 %unitygen_userlimit%
 %unitygen_usergens%
-```
-
-----
-
-### **[UJobs](https://modrinth.com/plugin/ujobs)**
-/// integrated | Built into Plugin
-///
-
-Detailed explanation and example outputs of placeholders are listed on [modrinth](https://modrinth.com/plugin/ujobs).
-
-```
-ujobs_job_name_<job>                      
-ujobs_job_displayname_<job>
-ujobs_job_legacydisplayname_<job>
-
-ujobs_player_level_<job>
-ujobs_player_exp_<job>
-ujobs_player_position_<job>
-ujobs_player_totalmoney_<job>
-
-ujobs_leaderboard_name_<job>_<position>
-ujobs_leaderboard_level_<job>_<position>
 ```
 
 ----
