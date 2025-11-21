@@ -46,35 +46,35 @@ public final class MaliciousExpansionCheck {
             return false;
         }
 
-        final Set<String> knownMalware;
+        final Set<String> knownMaliciousExpansions;
 
         try {
             final String malware = Resources.toString(new URL("https://check.placeholderapi.com"), StandardCharsets.UTF_8);
-            knownMalware = Arrays.stream(malware.split("\n")).collect(Collectors.toSet());
+            knownMaliciousExpansions = Arrays.stream(malware.split("\n")).collect(Collectors.toSet());
         } catch (Exception e) {
             main.getLogger().log(Level.SEVERE, "Failed to download anti malware hash check list from https://check.placeholderapi.com", e);
             return false;
         }
 
-        final Set<String> malwarePaths = new HashSet<>();
+        final Set<String> maliciousPaths = new HashSet<>();
 
         for (File file : expansionsFolder.listFiles()) {
             try {
                 final String hash = Hashing.sha256().hashBytes(Files.asByteSource(file).read()).toString();
 
-                if (knownMalware.contains(hash)) {
-                    malwarePaths.add(file.getAbsolutePath());
+                if (knownMaliciousExpansions.contains(hash)) {
+                    maliciousPaths.add(file.getAbsolutePath());
                 }
             } catch (Exception e) {
                 main.getLogger().log(Level.SEVERE, "Error occurred while trying to read " + file.getAbsolutePath(), e);
             }
         }
 
-        if (malwarePaths.isEmpty()) {
+        if (maliciousPaths.isEmpty()) {
             return false;
         }
 
-        main.getLogger().severe(String.format(MESSAGE, malwarePaths.stream().map(p -> "HASH OF " + p + " MATCHES KNOWN MALICIOUS EXPANSION DELETE IMMEDIATELY\n").collect(Collectors.joining())));
+        main.getLogger().severe(String.format(MESSAGE, maliciousPaths.stream().map(p -> "HASH OF " + p + " MATCHES KNOWN MALICIOUS EXPANSION DELETE IMMEDIATELY\n").collect(Collectors.joining())));
 
         main.getServer().shutdown();
         return true;

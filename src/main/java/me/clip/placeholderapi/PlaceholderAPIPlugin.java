@@ -92,7 +92,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final TaskScheduler scheduler = UniversalScheduler.getScheduler(this);
 
   private BukkitAudiences adventure;
-  private boolean malwareDetected = false;
+  private boolean maliciousExpansions = false;
 
 
   /**
@@ -153,9 +153,9 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   public void onLoad() {
     saveDefaultConfig();
 
-    malwareDetected = new MaliciousExpansionCheck(this).runChecks();
+    maliciousExpansions = new MaliciousExpansionCheck(this).runChecks();
 
-    if (malwareDetected) {
+    if (maliciousExpansions) {
       return;
     }
 
@@ -164,7 +164,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    if (malwareDetected) {
+    if (maliciousExpansions) {
       return;
     }
 
@@ -185,6 +185,10 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onDisable() {
+    if (maliciousExpansions) {
+      return;
+    }
+
     getCloudExpansionManager().kill();
     getLocalExpansionManager().kill();
 
