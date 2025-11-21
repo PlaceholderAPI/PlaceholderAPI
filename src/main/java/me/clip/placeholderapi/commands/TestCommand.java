@@ -47,5 +47,11 @@ public class TestCommand implements BasicCommand {
         commandSourceStack.getSender().sendMessage(String.valueOf(System.currentTimeMillis() - tmp));
 
 
+        Component.text()
+                .append(Component.text().content("yes ").color(TextColor.color(50,50,50)))
+                .append(Component.text("%player_name%"))
+                .append(Component.text(" omg").color(TextColor.color(200,200,200)));
+
+
     }
 }

@@ -1,7 +1,10 @@
 package me.clip.placeholderapi.replacer;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.kyori.adventure.text.*;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.Style;
 import org.bukkit.OfflinePlayer;
 
@@ -98,17 +101,35 @@ public final class ComponentReplacer {
                             Object hoverValue = modStyle.hoverEvent().value();
 
                             if (hoverValue instanceof Component) {
-                                final Component replacedHoverComponent = replace((Component) hoverValue, player, function);
+                                final Object replacedValue = replace((Component) hoverValue, player, function);
 
-                                if (replacedHoverComponent != hoverValue) {
-                                    modified.style();
+                                if (replacedValue != hoverValue) {
+                                    ((HoverEvent<Object>) modified.style().hoverEvent()).value(replacedValue);
                                 }
                             }
                         }
 
                         if (modStyle.clickEvent() != null) {
-                            String clickValue =
+                            final ClickEvent.Payload payload = modStyle.clickEvent().payload();
+
+                            if (payload instanceof ClickEvent.Payload.Text) {
+                                final ClickEvent.Payload.Text replacedPayload = ClickEvent.Payload.string(PlaceholderAPI.setPlaceholders(player, ((ClickEvent.Payload.Text) payload).value()));
+                                modStyle.clickEvent(ClickEvent.clickEvent(modStyle.clickEvent().action(), replacedPayload));
+                            } else if (payload instanceof ClickEvent.Payload.Dialog) {
+                                final ClickEvent.Payload.Dialog replacedPayload;
+
+//                                ((ClickEvent.Payload.Dialog) payload).dialog()
+                                // apparently adventure doesn't have dialog support yet
+                            }
                         }
+
+                        if (children == null) {
+                            children = new ArrayList<>(oldChildrenSize + modified.children().size());
+                            children.addAll(modified.children());
+                        }
+                    } else {
+                        modified = Component.text("", component.style());
+//                        final ComponentLike child =
                     }
                 }
             }
@@ -142,5 +163,9 @@ public final class ComponentReplacer {
         }
 
         return modified;
+    }
+
+    private static <V> void test(HoverEvent<V> event, V value) {
+        event.value(value);
     }
 }

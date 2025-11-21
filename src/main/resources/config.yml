@@ -8,6 +8,8 @@
 # Discord: https://helpch.at/discord
 # No placeholders are provided with this plugin by default.
 # Download placeholders: /papi ecloud
+#
+# CHANGE use_regex_component_replacer to true if you notice new minecraft text features not getting their placeholders replaced properly -- may cause performance issues
 check_updates: true
 cloud_enabled: true
 cloud_sorting: "name"
@@ -15,5 +17,6 @@ boolean:
   'true': 'yes'
   'false': 'no'
 date_format: MM/dd/yy HH:mm:ss
+use_regex_component_replacer: false
 detect_malicious_expansions: true
 debug: false
