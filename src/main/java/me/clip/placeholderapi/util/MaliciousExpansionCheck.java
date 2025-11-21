@@ -24,7 +24,8 @@ public final class MaliciousExpansionCheck {
             "PlaceholderAPI performs checks at startup and /papi reload for known malicious expansions. If you're seeing this message, there are the following malicious expansions in plugins/PlaceholderAPI/expansions.\n" +
             "%s" +
             "To prevent further infection PlaceholderAPI has stopped the server.\n" +
-            "Best practice is a complete system wipe and reinstall of your server software and plugins to be safe.\n" +
+            "If you're seeing this message after updating PAPI, your server may have been infected for some time, so best practice is a complete system wipe and reinstall of your server software and plugins to be safe.\n" +
+            "If you're seeing this after downloading an expansion however, PAPI hasn't loaded any of the malicious expansions above so you should be safe to simply delete the expansion in question.\n" +
             "###############################################\n" +
             "###############################################";
 
