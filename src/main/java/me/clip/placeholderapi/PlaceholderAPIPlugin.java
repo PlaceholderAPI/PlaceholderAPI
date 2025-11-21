@@ -21,7 +21,6 @@
 package me.clip.placeholderapi;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import me.clip.placeholderapi.commands.PlaceholderCommandRouter;
@@ -34,6 +33,7 @@ import me.clip.placeholderapi.listeners.ServerLoadEventListener;
 import me.clip.placeholderapi.scheduler.UniversalScheduler;
 import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.updatechecker.UpdateChecker;
+import me.clip.placeholderapi.util.MaliciousExpansionCheck;
 import me.clip.placeholderapi.util.Msg;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bstats.bukkit.Metrics;
@@ -92,6 +92,7 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
   private final TaskScheduler scheduler = UniversalScheduler.getScheduler(this);
 
   private BukkitAudiences adventure;
+  private boolean malwareDetected = false;
 
 
   /**
@@ -150,13 +151,23 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
   @Override
   public void onLoad() {
-    instance = this;
-
     saveDefaultConfig();
+
+    malwareDetected = new MaliciousExpansionCheck(this).runChecks();
+
+    if (malwareDetected) {
+      return;
+    }
+
+    instance = this;
   }
 
   @Override
   public void onEnable() {
+    if (malwareDetected) {
+      return;
+    }
+
     setupCommand();
     setupMetrics();
     setupExpansions();

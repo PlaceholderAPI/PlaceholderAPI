@@ -86,4 +86,8 @@ public final class PlaceholderAPIConfig {
     return plugin.getConfig().getString("boolean.false", "false");
   }
 
+  public boolean detectMaliciousExpansions() {
+    return plugin.getConfig().getBoolean("detect_malicious_expansions", true);
+  }
+
 }

@@ -23,6 +23,7 @@ package me.clip.placeholderapi.commands.impl.local;
 import java.util.List;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.PlaceholderCommand;
+import me.clip.placeholderapi.util.MaliciousExpansionCheck;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -37,7 +38,9 @@ public final class CommandReload extends PlaceholderCommand {
   public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
       @NotNull final CommandSender sender, @NotNull final String alias,
       @NotNull @Unmodifiable final List<String> params) {
-    plugin.reloadConf(sender);
+    if (!new MaliciousExpansionCheck(plugin).runChecks()) {
+      plugin.reloadConf(sender);
+    }
   }
 
 }
