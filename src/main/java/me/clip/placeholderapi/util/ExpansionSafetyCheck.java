@@ -4,8 +4,6 @@ import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
-import me.clip.placeholderapi.configuration.PlaceholderAPIConfig;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -17,7 +15,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public final class MaliciousExpansionCheck {
+public final class ExpansionSafetyCheck {
     private static final String MESSAGE =
             "\n###############################################\n" +
             "###############################################\n" +
@@ -31,7 +29,7 @@ public final class MaliciousExpansionCheck {
 
     private final PlaceholderAPIPlugin main;
 
-    public MaliciousExpansionCheck(@NotNull final PlaceholderAPIPlugin main) {
+    public ExpansionSafetyCheck(@NotNull final PlaceholderAPIPlugin main) {
         this.main = main;
     }
 
@@ -49,8 +47,8 @@ public final class MaliciousExpansionCheck {
         final Set<String> knownMaliciousExpansions;
 
         try {
-            final String malware = Resources.toString(new URL("https://check.placeholderapi.com"), StandardCharsets.UTF_8);
-            knownMaliciousExpansions = Arrays.stream(malware.split("\n")).collect(Collectors.toSet());
+            final String hashes = Resources.toString(new URL("https://check.placeholderapi.com"), StandardCharsets.UTF_8);
+            knownMaliciousExpansions = Arrays.stream(hashes.split("\n")).collect(Collectors.toSet());
         } catch (Exception e) {
             main.getLogger().log(Level.SEVERE, "Failed to download anti malware hash check list from https://check.placeholderapi.com", e);
             return false;
