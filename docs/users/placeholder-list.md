@@ -3481,10 +3481,11 @@ You can find an up-to-date list of placeholders in the [HyacinthHello wiki](http
 ///
 
 ```
-%imageframe_"<player>:<imagemap>"_playback_bar_<length>_[character]_[current_section_prefix]_[remaining_section_prefix]%
-%imageframe_"<player>:<imagemap>"_playback_current%
-%imageframe_"<player>:<imagemap>"_playback_total%
-%imageframe_"<player>:<imagemap>"_playback_pause%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_bar_<length>_[character]_[current_section_prefix]_[remaining_section_prefix]%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_current%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_total%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_pause%
+%imageframe_player_preference_<preference>%
 ```
 
 ----
