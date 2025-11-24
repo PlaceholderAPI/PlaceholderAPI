@@ -46,6 +46,7 @@ import me.clip.placeholderapi.expansion.Cacheable;
 import me.clip.placeholderapi.expansion.Cleanable;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion.Type;
 import me.clip.placeholderapi.expansion.Taskable;
 import me.clip.placeholderapi.expansion.VersionSpecific;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
@@ -264,6 +265,9 @@ public final class LocalExpansionManager implements Listener {
 
     if (expansion instanceof VersionSpecific) {
       VersionSpecific nms = (VersionSpecific) expansion;
+      Msg.warn("Nag Author(s) %s of expansion %s about their usage of the deprecated " 
+          + "VersionSpecific interface!", expansion.getAuthor(), expansion.getIdentifier());
+      Msg.warn("They should switch to a new method of determining the Server version.");
       if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
         Msg.warn("Your server version is incompatible with expansion %s %s",
             expansion.getIdentifier(), expansion.getVersion());
@@ -320,6 +324,15 @@ public final class LocalExpansionManager implements Listener {
 
   @ApiStatus.Internal
   public boolean unregister(@NotNull final PlaceholderExpansion expansion) {
+    if (expansion.getExpansionType() == Type.INTERNAL || expansion.persist()) {
+      if (expansion.getExpansionType() == Type.EXTERNAL && expansion.persist()) {
+        Msg.warn("Nag Author(s) %s about their external expansion %s having persist set to true",
+            expansion.getAuthor(), expansion.getIdentifier());
+      }
+
+      return true;
+    }
+
     if (expansions.remove(expansion.getIdentifier().toLowerCase(Locale.ROOT)) == null) {
       return false;
     }
@@ -393,10 +406,6 @@ public final class LocalExpansionManager implements Listener {
 
   private void unregisterAll() {
     for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
-      if (expansion.persist()) {
-        continue;
-      }
-
       expansion.unregister();
     }
   }
