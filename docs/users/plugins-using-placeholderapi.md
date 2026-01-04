@@ -389,9 +389,6 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[FactionsUUID](https://www.spigotmc.org/resources/1035/)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](placeholder-list.md#factionsuuid)**]
-- **[FunnyGuilds](https://github.com/FunnyGuilds/FunnyGuilds)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list.md#funnyguilds)**]
 - **[FriendReferral](https://www.spigotmc.org/resources/21626/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]

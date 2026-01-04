@@ -227,7 +227,6 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Factions MCore](#factions-mcore)**
         - **[FactionsUUID](#factionsuuid)**
         - **[Factions relation placeholders](#factions-relation-placeholders)**
-        - **[FunnyGuilds](#funnyguilds)**
     
     - **G**
         - **[GAListener](#galistener)**
@@ -3167,42 +3166,6 @@ You can find an up-to-date list of placeholders on the [FactionsUUID Wiki](https
 /// note  
 These placeholders work with FactionsUUID and MCore all you need is downloading the expansion of the plugin you're using. if you're using these placeholders in DeluxeChat you need to enable this option "relation_placeholders_enabled: true" you can find that in the config.
 ///
-
-----
-
-### **[FunnyGuilds](https://github.com/FunnyGuilds/FunnyGuilds)**
-/// integrated | Built into Plugin
-///
-
-```
-%funnyguilds_guilds%
-%funnyguilds_users%
-%funnyguilds_deaths%
-%funnyguilds_kdr%
-%funnyguilds_kills%
-%funnyguilds_points-format%
-%funnyguilds_points%
-%funnyguilds_position%
-%funnyguilds_g-allies%
-%funnyguilds_g-deaths%
-%funnyguilds_g-deputies%
-%funnyguilds_g-deputy%
-%funnyguilds_g-kdr%
-%funnyguilds_g-kills%
-%funnyguilds_g-lives%
-%funnyguilds_g-members-all%
-%funnyguilds_g-members-online%
-%funnyguilds_g-name%
-%funnyguilds_g-owner%
-%funnyguilds_g-points-format%
-%funnyguilds_g-points%
-%funnyguilds_g-position%
-%funnyguilds_g-region-size%
-%funnyguilds_g-tag%
-%funnyguilds_g-validity%
-%funnyguilds_gtop-x%
-%funnyguilds_ptop-x%
-```
 
 ----
 
