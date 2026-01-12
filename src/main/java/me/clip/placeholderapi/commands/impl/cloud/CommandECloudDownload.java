@@ -72,11 +72,6 @@ public final class CommandECloudDownload extends PlaceholderCommand {
       return;
     }
 
-    if (!expansion.isVerified()) {
-      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
-      return;
-    }
-
     final CloudExpansion.Version version;
     if (params.size() < 2) {
       version = expansion.getVersion(expansion.getLatestVersion());
@@ -93,6 +88,11 @@ public final class CommandECloudDownload extends PlaceholderCommand {
             "&7Available versions: &f" + expansion.getAvailableVersions());
         return;
       }
+    }
+
+    if (!version.isVerified()) {
+      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
+      return;
     }
 
     plugin.getCloudExpansionManager().downloadExpansion(expansion, version)

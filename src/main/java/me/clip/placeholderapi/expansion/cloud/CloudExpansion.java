@@ -36,8 +36,7 @@ public class CloudExpansion {
       dependency_url;
 
   private boolean hasExpansion,
-      shouldUpdate,
-      verified;
+      shouldUpdate;
 
   private long last_update,
       ratings_count;
@@ -135,10 +134,6 @@ public class CloudExpansion {
     this.shouldUpdate = shouldUpdate;
   }
 
-  public boolean isVerified() {
-    return verified;
-  }
-
   public long getLastUpdate() {
     return last_update;
   }
@@ -174,6 +169,7 @@ public class CloudExpansion {
   public static class Version {
 
     private String url, version, release_notes;
+    private boolean verified;
 
     public String getUrl() {
       return url;
@@ -197,6 +193,14 @@ public class CloudExpansion {
 
     public void setReleaseNotes(String release_notes) {
       this.release_notes = release_notes;
+    }
+
+    public boolean isVerified() {
+      return verified;
+    }
+
+    public void setVerified(boolean verified) {
+      this.verified = verified;
     }
   }
 }

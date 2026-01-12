@@ -63,9 +63,6 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
         .append('\n')
         .append("&bAuthor: &f")
         .append(expansion.getAuthor())
-        .append('\n')
-        .append("&bVerified: ")
-        .append(expansion.isVerified() ? "&a&l✔" : "&c&l❌")
         .append('\n');
 
     if (params.size() < 2) {
@@ -75,6 +72,9 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
           .append("&bReleased: &f")
           .append(expansion.getTimeSinceLastUpdate())
           .append(" ago")
+          .append('\n')
+          .append("&bVerified: ")
+          .append(expansion.getVersion().isVerified() ? "&a&l✔" : "&c&l❌")
           .append('\n')
           .append("&bRelease Notes: &f")
           .append(expansion.getVersion().getReleaseNotes())
@@ -90,6 +90,9 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
 
       builder.append("&bVersion: &f")
           .append(version.getVersion())
+          .append('\n')
+          .append("&bVerified: ")
+          .append(version.isVerified() ? "&a&l✔" : "&c&l❌")
           .append('\n')
           .append("&bRelease Notes: &f")
           .append(version.getReleaseNotes())

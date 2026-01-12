@@ -65,7 +65,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
       expansion -> "&f" + expansion.getAuthor();
   @NotNull
   private static final Function<CloudExpansion, Object> EXPANSION_VERIFIED =
-      expansion -> expansion.isVerified() ? "&aY" : "&cN";
+      expansion -> expansion.getVersion().isVerified() ? "&aY" : "&cN";
   @NotNull
   private static final Function<CloudExpansion, Object> EXPANSION_LATEST_VERSION =
       expansion -> "&f" + expansion.getLatestVersion();
@@ -168,7 +168,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
               .append(newline()).append(newline())
               .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
               .append(newline())
-              .append(text("Verified: ", AQUA)).append(text(expansion.isVerified() ? "✔" : "❌", expansion.isVerified() ? GREEN : RED, TextDecoration.BOLD))
+              .append(text("Verified: ", AQUA)).append(text(expansion.getVersion().isVerified() ? "✔" : "❌", expansion.getVersion().isVerified() ? GREEN : RED, TextDecoration.BOLD))
               .append(newline())
               .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
               .toBuilder();
