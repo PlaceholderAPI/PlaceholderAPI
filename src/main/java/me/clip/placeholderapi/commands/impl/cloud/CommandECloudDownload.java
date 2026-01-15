@@ -91,7 +91,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
     }
 
     if (!version.isVerified()) {
-      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://placeholderapi.com/ecloud");
+      Msg.msg(sender, "&cThe expansion '&f" + params.get(0) + "&c' is not verified and can only be downloaded manually from &fhttps://ecloud.placeholderapi.com");
       return;
     }
 
