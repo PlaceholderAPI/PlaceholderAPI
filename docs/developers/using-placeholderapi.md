@@ -10,11 +10,13 @@ Please note, that the examples in this page are only available for **Placeholder
 
 ## First steps
 
+### Add PlaceholderAPI to your Project
+
 Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
 Use the below code example matching your dependency manager.
 
 /// tab | :simple-apachemaven: Maven
-```{ .xml title="pom.xml" data-md-component="api-version" }
+```{ .xml .annotate title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
@@ -23,11 +25,18 @@ Use the below code example matching your dependency manager.
     </repositories>
     <dependencies>
         <dependency>
-         <groupId>me.clip</groupId>
-          <artifactId>placeholderapi</artifactId>
-          <version>{version}</version>
-         <scope>provided</scope>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>{version}</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!-- Optional: Component support on Paper Servers (Since TBD) -->
+        <dependency>
+          <groupId>me.clip</groupId>
+          <artifactId>placeholderapi-paper</artifactId>
+          <version>{version}</version>
+          <scope>provided</scope>
     </dependencies>
 ```
 ///
@@ -42,6 +51,9 @@ repositories {
 
 dependencies {
     compileOnly 'me.clip:placeholderapi:{version}'
+
+    // Optional: Component support on Paper Servers (Since TBD)
+    compileOnly 'me.clip:placeholderapi-paper:{version}'
 }
 ```
 ///
@@ -156,9 +168,19 @@ A full guide on how to create expansions can be found on the [Creating a Placeho
 ## Setting placeholders in your plugin
 
 PlaceholderAPI offers the ability, to automatically parse placeholders from other plugins within your own plugin, giving the ability for your plugin to support thousands of other placeholders without depending on each plugin individually.  
-To use placeholders from other plugins in our own plugin, we simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
+To use placeholders from other plugins in your own plugin, you simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
+
+/// info | New since TBD
+Starting with version TBD is it now possible to provide Components from the Adventure library to have placeholders parsed in.
+
+In order to use this new feature are the following things required to be true:
+
+- You depend on `placeholderapi-papi` and not just `placeholderapi`
+- Your plugin runs on a Paper-based Server. Spigot-based servers will not work!
+- You use `PAPIComponent` instead of `PlaceholderAPI` to parse Components.
+///
 
 /// details | Example
     type: example
@@ -215,4 +237,8 @@ public class JoinExample extends JavaPlugin implements Listener {
     In our example are we providing a text containing `%player_name%` and `%vault_rank%` to be parsed, which require the Player and Vault expansion respectively.
     
     Example output: `Notch joined the server! They are rank Admin`
+
+    //// info | New since TBD
+    Using `placeholderapi-papi` and `PAPIComponents` instead of `PlaceholderAPI` allows you to parse placeholders inside Adventure Components.
+    ////
 ///
