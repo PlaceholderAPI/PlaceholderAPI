@@ -7,129 +7,99 @@ plugins {
     id("io.github.goooler.shadow") version "8.1.7"
 }
 
-group = "me.clip"
-version = "2.11.8-DEV-${System.getProperty("BUILD_NUMBER")}"
+subprojects {
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
+    apply(plugin = "com.github.hierynomus.license")
+    apply(plugin = "io.github.goooler.shadow")
 
-description = "An awesome placeholder provider!"
+    group = "me.clip"
+    version = "2.11.8-DEV-${System.getProperty("BUILD_NUMBER")}"
 
-repositories {
-    maven("https://oss.sonatype.org/content/repositories/snapshots/")
+    description = "An awesome placeholder provider!"
 
-    mavenCentral()
-    mavenLocal()
+    repositories {
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
 
-    maven("https://repo.codemc.org/repository/maven-public/")
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    maven("https://repo.papermc.io/repository/maven-public/")
-}
+        mavenCentral()
+        mavenLocal()
 
-dependencies {
-    implementation("org.bstats:bstats-bukkit:3.0.1")
-    implementation("net.kyori:adventure-platform-bukkit:4.4.1")
-
-    //compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    compileOnly("dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT")
-    compileOnlyApi("org.jetbrains:annotations:23.0.0")
-
-    testImplementation("org.openjdk.jmh:jmh-core:1.32")
-    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-}
-
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    withJavadocJar()
-    withSourcesJar()
-
-    disableAutoTargetJvm()
-}
-
-license {
-    header = rootProject.file("config/headers/main.txt")
-
-    include("**/*.java")
-    mapping("java", "JAVADOC_STYLE")
-
-    encoding = "UTF-8"
-
-    ext {
-        set("year", 2024)
-    }
-}
-
-val javaComponent: SoftwareComponent = components["java"]
-
-tasks {
-    processResources {
-        eachFile { expand("version" to project.version) }
+        maven("https://repo.codemc.org/repository/maven-public/")
+        maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        maven("https://repo.papermc.io/repository/maven-public/")
     }
 
-    build {
-        dependsOn(named("shadowJar"))
+    dependencies {
+        implementation("org.bstats:bstats-bukkit:3.0.1")
+        implementation("net.kyori:adventure-platform-bukkit:4.4.1")
+
+        compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
+        compileOnlyApi("org.jetbrains:annotations:23.0.0")
+
+        testImplementation("org.openjdk.jmh:jmh-core:1.32")
+        testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
+
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     }
 
-    withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.release = 8
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+
+        withJavadocJar()
+        withSourcesJar()
+
+        disableAutoTargetJvm()
     }
 
-    withType<Javadoc> {
-        isFailOnError = false
+    license {
+        header = rootProject.file("config/headers/main.txt")
 
-        with(options as StandardJavadocDocletOptions) {
-            addStringOption("Xdoclint:none", "-quiet")
-            addStringOption("encoding", "UTF-8")
-            addStringOption("charSet", "UTF-8")
+        include("**/*.java")
+        mapping("java", "JAVADOC_STYLE")
+
+        encoding = "UTF-8"
+
+        ext {
+            set("year", 2024)
         }
     }
 
-    withType<ShadowJar> {
-        archiveClassifier.set("")
+    tasks {
+        processResources {
+            eachFile { expand("version" to project.version) }
+        }
 
-        relocate("org.bstats", "me.clip.placeholderapi.metrics")
-        relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+        build {
+            dependsOn(named("shadowJar"))
+        }
 
-        exclude("META-INF/versions/**")
-    }
+        withType<JavaCompile> {
+            options.encoding = "UTF-8"
+            options.release = 8
+        }
 
-    test {
-        useJUnitPlatform()
-    }
+        withType<Javadoc> {
+            isFailOnError = false
 
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                artifactId = "placeholderapi"
-                from(javaComponent)
+            with(options as StandardJavadocDocletOptions) {
+                addStringOption("Xdoclint:none", "-quiet")
+                addStringOption("encoding", "UTF-8")
+                addStringOption("charSet", "UTF-8")
             }
         }
 
-        repositories {
-            maven {
-                if ("-DEV" in version.toString()) {
-                    url = uri("https://repo.extendedclip.com/snapshots")
-                } else {
-                    url = uri("https://repo.extendedclip.com/releases")
-                }
-
-                credentials {
-                    username = System.getenv("JENKINS_USER")
-                    password = System.getenv("JENKINS_PASS")
-                }
-            }
+        test {
+            useJUnitPlatform()
         }
     }
 
-    publish.get().setDependsOn(listOf(build.get()))
-}
-
-configurations {
-    testImplementation {
-        extendsFrom(compileOnly.get())
+    configurations {
+        testImplementation {
+            extendsFrom(compileOnly.get())
+        }
     }
+
 }
