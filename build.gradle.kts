@@ -3,14 +3,14 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     `java-library`
     `maven-publish`
-    id("com.github.hierynomus.license") version "0.16.1"
+//    id("com.github.hierynomus.license") version "0.16.1"
     id("io.github.goooler.shadow") version "8.1.7"
 }
 
 subprojects {
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
-    apply(plugin = "com.github.hierynomus.license")
+//    apply(plugin = "com.github.hierynomus.license")
     apply(plugin = "io.github.goooler.shadow")
 
     group = "me.clip"
@@ -54,18 +54,20 @@ subprojects {
         disableAutoTargetJvm()
     }
 
-    license {
-        header = rootProject.file("config/headers/main.txt")
-
-        include("**/*.java")
-        mapping("java", "JAVADOC_STYLE")
-
-        encoding = "UTF-8"
-
-        ext {
-            set("year", 2026)
-        }
-    }
+//    license {
+//        header = rootProject.file("config/headers/main.txt")
+//
+//        include("**/*.java")
+//        mapping("java", "JAVADOC_STYLE")
+//
+//        exclude("spigot/src/main/java/me/clip/placeholderapi/scheduler")
+//
+//        encoding = "UTF-8"
+//
+//        ext {
+//            set("year", 2026)
+//        }
+//    }
 
     tasks {
         processResources {

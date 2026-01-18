@@ -6,6 +6,10 @@ dependencies {
 
 val javaComponent: SoftwareComponent = components["java"]
 
+base {
+    archivesName.set("PlaceholderAPI-Paper")
+}
+
 tasks {
     withType<ShadowJar> {
         archiveClassifier.set("")

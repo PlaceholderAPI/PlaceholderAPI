@@ -2,6 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 val javaComponent: SoftwareComponent = components["java"]
 
+base {
+    archivesName.set("PlaceholderAPI-Spigot")
+}
+
 tasks {
     withType<ShadowJar> {
         archiveClassifier.set("")
