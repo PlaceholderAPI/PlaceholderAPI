@@ -110,7 +110,12 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
    * command is used
    *
    * @return if this expansion should persist through placeholder reloads
+   * 
+   * @deprecated PlaceholderExpansions registered through their {@link #register()} and not through
+   *             {@link me.clip.placeholderapi.expansion.manager.LocalExpansionManager#register(Class)}
+   *             will be considered internal now and not be unregistered during Plugin reloads.
    */
+  @Deprecated
   public boolean persist() {
     return false;
   }
