@@ -1,5 +1,16 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
+dependencies {
+    implementation("org.bstats:bstats-bukkit:3.0.1")
+    implementation("net.kyori:adventure-platform-bukkit:4.4.1")
+
+    testImplementation("org.openjdk.jmh:jmh-core:1.32")
+    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+}
+
 val javaComponent: SoftwareComponent = components["java"]
 
 base {

@@ -30,19 +30,9 @@ subprojects {
     }
 
     dependencies {
-        implementation("org.bstats:bstats-bukkit:3.0.1")
-        implementation("net.kyori:adventure-platform-bukkit:4.4.1")
-
         compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
         compileOnlyApi("org.jetbrains:annotations:23.0.0")
-
-        testImplementation("org.openjdk.jmh:jmh-core:1.32")
-        testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
-
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     }
-
 
     java {
         sourceCompatibility = JavaVersion.VERSION_1_8

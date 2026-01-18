@@ -1,7 +1,10 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 dependencies {
-    api(project(":spigot"))
+    implementation(project(":spigot")) {
+        exclude("net.kyori")
+    }
+    compileOnly("net.kyori:adventure-platform-bukkit:4.4.1")
 }
 
 val javaComponent: SoftwareComponent = components["java"]
