@@ -63,7 +63,7 @@ subprojects {
         encoding = "UTF-8"
 
         ext {
-            set("year", 2024)
+            set("year", 2026)
         }
     }
 
