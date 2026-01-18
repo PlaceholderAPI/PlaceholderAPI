@@ -5,8 +5,10 @@ on:
     branches:
     - development
     paths:
-    - "src/**"
-    - "build.gradle"
+    - "../../spigot/**"
+    - "../../paper/**"
+    - "build.gradle.kts"
+    - "settings.gradle.kts"
 
 jobs:
   testBuilds:
