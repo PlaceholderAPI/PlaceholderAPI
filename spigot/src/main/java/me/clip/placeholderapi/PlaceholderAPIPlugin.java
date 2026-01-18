@@ -261,12 +261,6 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
         final PlaceholderCommandRouter router = new PlaceholderCommandRouter(this);
         pluginCommand.setExecutor(router);
         pluginCommand.setTabCompleter(router);
-
-        try {
-            getServer().getPluginManager().registerEvents((Listener) Class.forName("me.clip.placeholderapi.TestListener").newInstance(), this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void setupMetrics() {
