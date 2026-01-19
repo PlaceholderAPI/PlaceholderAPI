@@ -78,6 +78,8 @@ tasks {
     }
 
     val plainJar by registering(Jar::class) {
+        dependsOn("compilePaper")
+
         archiveClassifier.set("plain")
         from(sourceSets.main.get().output)
         from(paper.output)
