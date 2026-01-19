@@ -83,27 +83,34 @@ tasks {
         from(paper.output)
     }
 
-    val sourcesJar by registering(Jar::class) {
+    val combinedSourcesJar by registering(Jar::class) {
         archiveClassifier.set("sources")
         from(sourceSets.main.get().allSource)
         from(paper.allSource)
     }
 
-    withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.release = 8
-    }
-
-    val javadocJar = withType<Javadoc> {
+    val combinedJavadoc by registering(Javadoc::class) {
         isFailOnError = false
 
         source = sourceSets.main.get().allJava + paper.allJava
+        classpath = sourceSets.main.get().compileClasspath + paper.compileClasspath
 
         with(options as StandardJavadocDocletOptions) {
             addStringOption("Xdoclint:none", "-quiet")
             addStringOption("encoding", "UTF-8")
             addStringOption("charSet", "UTF-8")
         }
+    }
+
+    val combinedJavadocJar by registering(Jar::class) {
+        archiveClassifier.set("javadoc")
+        dependsOn(combinedJavadoc)
+        from(combinedJavadoc.get().destinationDir)
+    }
+
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.release = 8
     }
 
     withType<ShadowJar> {
@@ -145,9 +152,12 @@ tasks {
                     builtBy(plainJar)
                 }
 
-                artifacts {
-                    archives(sourcesJar)
-                    archives(javadocJar)
+                artifact(combinedSourcesJar) {
+                    builtBy(combinedSourcesJar)
+                }
+
+                artifact(combinedJavadocJar) {
+                    builtBy(combinedJavadocJar)
                 }
             }
         }
