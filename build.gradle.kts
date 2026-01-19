@@ -87,6 +87,8 @@ tasks {
         archiveClassifier.set("sources")
         from(sourceSets.main.get().allSource)
         from(paper.allSource)
+
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 
     val combinedJavadoc by registering(Javadoc::class) {
