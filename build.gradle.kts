@@ -3,7 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     `java-library`
     `maven-publish`
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "9.3.1"
 }
 
 group = "at.helpch"
@@ -17,7 +17,10 @@ repositories {
 }
 
 dependencies {
-//    compileOnly files("libs/HytaleServer.jar")
+    implementation("org.yaml:snakeyaml:2.5")
+
+    compileOnly(files("libs/HytaleServer.jar"))
+    compileOnlyApi("org.jetbrains:annotations:23.0.0")
 }
 
 java {

@@ -11,9 +11,8 @@
 check_updates: true
 cloud_enabled: true
 cloud_sorting: "name"
-boolean:
-  'true': 'yes'
-  'false': 'no'
+boolean_value:
+  true_value: 'yes'
+  false_value: 'no'
 date_format: MM/dd/yy HH:mm:ss
-detect_malicious_expansions: true
 debug: false
