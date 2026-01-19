@@ -18,13 +18,13 @@ body:
     label: Confirmation
     description: Please make sure to have followed the following checks.
     options:
-      - label: My issue isn't already found on the Issue tracker.
+      - label: "My issue isn't already found on the Issue tracker."
         required: true
-      - label: My issue is about **PlaceholderAPI** and not any expansion or external plugin
+      - label: "My issue is about **PlaceholderAPI** and not any expansion or external plugin."
         required: true
-      - label: The issue isn't already fixed in a Spigot Release or Development Build.
+      - label: "The issue isn't already fixed in a Spigot Release or Development Build."
         required: true
-      - label: The [Common Issues](https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Common-Issues) page doesn't mention this issue.
+      - label: "The [Common Issues](https://wiki.placeholderapi.com/common-issues/) page doesn't mention this issue."
         required: true
 - type: dropdown
   attributes:
@@ -85,6 +85,8 @@ body:
     description: |-
       Get the latest content of your `latest.log` file an upload it to https://paste.helpch.at
       Take the generated URL and paste it into this field.
+
+      **Always provide the full `latest.log` and not just parts of it or just the error (if any)!**
     placeholder: "https://paste.helpch.at/latest.log"
 - type: input
   id: "error"
@@ -99,5 +101,5 @@ body:
     description: |-
       Add any extra info you think is nessesary for this Bug report.
       - If you selected `API Bug` will you need to include code-examples here to reproduce the issue.
-      - If you selected `Plugin/Server Incompatability` should you include extra Server info such as a Timings or Spark-Report or info about the plugin in question.
+      - If you selected `Plugin/Server Incompatability` should you include extra Server info such as Spark-Report or info about the plugin in question.
     placeholder: "Put any extra info you like into this field..."
