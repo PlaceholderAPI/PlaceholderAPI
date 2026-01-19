@@ -20,8 +20,6 @@
 
 package me.clip.placeholderapi;
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Relational;
 import me.clip.placeholderapi.replacer.ExactReplacer;
 import me.clip.placeholderapi.replacer.RelationalExactReplacer;
 import me.clip.placeholderapi.replacer.Replacer;

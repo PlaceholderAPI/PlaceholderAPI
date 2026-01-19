@@ -7,91 +7,172 @@ plugins {
     id("io.github.goooler.shadow") version "8.1.7"
 }
 
-subprojects {
-    apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
-//    apply(plugin = "com.github.hierynomus.license")
-    apply(plugin = "io.github.goooler.shadow")
+group = "me.clip"
+version = "2.11.8-DEV-${System.getProperty("BUILD_NUMBER")}"
 
-    group = "me.clip"
-    version = "2.11.8-DEV-${System.getProperty("BUILD_NUMBER")}"
+description = "An awesome placeholder provider!"
 
-    description = "An awesome placeholder provider!"
+val paper by sourceSets.creating {
+    java.srcDir("src/paper/java")
 
-    repositories {
-        maven("https://oss.sonatype.org/content/repositories/snapshots/")
+    // paper can see main code
+    compileClasspath += sourceSets.main.get().output
+    runtimeClasspath += output + compileClasspath
+}
 
-        mavenCentral()
-        mavenLocal()
+repositories {
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
 
-        maven("https://repo.codemc.org/repository/maven-public/")
-        maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-        maven("https://repo.papermc.io/repository/maven-public/")
+    mavenCentral()
+    mavenLocal()
+
+    maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.papermc.io/repository/maven-public/")
+}
+
+dependencies {
+    implementation("org.bstats:bstats-bukkit:3.0.1")
+    implementation("net.kyori:adventure-platform-bukkit:4.4.1")
+
+    add(paper.compileOnlyConfigurationName, "net.kyori:adventure-platform-bukkit:4.4.1")
+    add(paper.compileOnlyConfigurationName, "dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
+
+    compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnlyApi("org.jetbrains:annotations:23.0.0")
+
+    testImplementation("org.openjdk.jmh:jmh-core:1.32")
+    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    withJavadocJar()
+    withSourcesJar()
+
+    disableAutoTargetJvm()
+}
+
+val javaComponent: SoftwareComponent = components["java"]
+
+tasks {
+    processResources {
+        eachFile { expand("version" to project.version) }
     }
 
-    dependencies {
-        compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
-        compileOnlyApi("org.jetbrains:annotations:23.0.0")
+    build {
+        dependsOn(named("shadowJar"))
     }
 
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-
-        withJavadocJar()
-        withSourcesJar()
-
-        disableAutoTargetJvm()
+    register<JavaCompile>("compilePaper") {
+        source = paper.java
+        classpath = paper.compileClasspath
+        destinationDirectory.set(layout.buildDirectory.dir("classes/java/paper"))
+        options.encoding = "UTF-8"
+        options.release = 8
     }
 
-//    license {
-//        header = rootProject.file("config/headers/main.txt")
-//
-//        include("**/*.java")
-//        mapping("java", "JAVADOC_STYLE")
-//
-//        exclude("spigot/src/main/java/me/clip/placeholderapi/scheduler")
-//
-//        encoding = "UTF-8"
-//
-//        ext {
-//            set("year", 2026)
-//        }
-//    }
+    val plainJar by registering(Jar::class) {
+        archiveClassifier.set("plain")
+        from(sourceSets.main.get().output)
+        from(paper.output)
+    }
 
-    tasks {
-        processResources {
-            eachFile { expand("version" to project.version) }
+    val sourcesJar by registering(Jar::class) {
+        archiveClassifier.set("sources")
+        from(sourceSets.main.get().allSource)
+        from(paper.allSource)
+    }
+
+    withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.release = 8
+    }
+
+    val javadocJar = withType<Javadoc> {
+        isFailOnError = false
+
+        source = sourceSets.main.get().allJava + paper.allJava
+
+        with(options as StandardJavadocDocletOptions) {
+            addStringOption("Xdoclint:none", "-quiet")
+            addStringOption("encoding", "UTF-8")
+            addStringOption("charSet", "UTF-8")
         }
+    }
 
-        build {
-            dependsOn(named("shadowJar"))
+    withType<ShadowJar> {
+        configurations = listOf(project.configurations.runtimeClasspath.get())
+
+        from(sourceSets.main.get().output)
+
+        archiveClassifier.set("")
+
+        relocate("org.bstats", "me.clip.placeholderapi.metrics")
+        relocate("net.kyori", "me.clip.placeholderapi.libs.kyori")
+
+        exclude("META-INF/versions/**")
+
+        dependsOn("compilePaper")
+
+        doLast {
+            val paperDir = layout.buildDirectory.dir("classes/java/paper").get().asFile
+            val jarFile = archiveFile.get().asFile
+
+            ant.invokeMethod("zip", mapOf(
+                "destfile" to jarFile,
+                "update" to "true",
+                "basedir" to paperDir
+            ))
         }
+    }
 
-        withType<JavaCompile> {
-            options.encoding = "UTF-8"
-            options.release = 8
-        }
+    test {
+        useJUnitPlatform()
+    }
 
-        withType<Javadoc> {
-            isFailOnError = false
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                artifactId = "placeholderapi"
 
-            with(options as StandardJavadocDocletOptions) {
-                addStringOption("Xdoclint:none", "-quiet")
-                addStringOption("encoding", "UTF-8")
-                addStringOption("charSet", "UTF-8")
+                artifact(plainJar) {
+                    builtBy(plainJar)
+                }
+
+                artifacts {
+                    archives(sourcesJar)
+                    archives(javadocJar)
+                }
             }
         }
 
-        test {
-            useJUnitPlatform()
+        repositories {
+            maven {
+                if ("-DEV" in version.toString()) {
+                    url = uri("https://repo.extendedclip.com/snapshots")
+                } else {
+                    url = uri("https://repo.extendedclip.com/releases")
+                }
+
+                credentials {
+                    username = System.getenv("JENKINS_USER")
+                    password = System.getenv("JENKINS_PASS")
+                }
+            }
         }
     }
 
-    configurations {
-        testImplementation {
-            extendsFrom(compileOnly.get())
-        }
-    }
+    publish.get().setDependsOn(listOf(build.get()))
+}
 
+configurations {
+    testImplementation {
+        extendsFrom(compileOnly.get())
+    }
 }
