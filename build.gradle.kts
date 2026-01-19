@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.bstats:bstats-bukkit:3.0.1")
+    implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
     add(paper.compileOnlyConfigurationName, "net.kyori:adventure-platform-bukkit:4.4.1")
