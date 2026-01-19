@@ -154,6 +154,7 @@ tasks {
 
                 artifact(plainJar) {
                     builtBy(plainJar)
+                    classifier = ""
                 }
 
                 artifact(combinedSourcesJar) {
