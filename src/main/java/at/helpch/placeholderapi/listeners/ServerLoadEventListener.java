@@ -21,14 +21,11 @@
 package at.helpch.placeholderapi.listeners;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.server.ServerLoadEvent;
+import com.hypixel.hytale.server.core.console.ConsoleSender;
+import com.hypixel.hytale.server.core.event.events.PrepareUniverseEvent;
 import org.jetbrains.annotations.NotNull;
 
-public final class ServerLoadEventListener implements Listener {
+public final class ServerLoadEventListener {
 
     @NotNull
     private final PlaceholderAPIPlugin plugin;
@@ -36,13 +33,12 @@ public final class ServerLoadEventListener implements Listener {
     public ServerLoadEventListener(@NotNull final PlaceholderAPIPlugin plugin) {
         this.plugin = plugin;
 
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        plugin.getEventRegistry().register(PrepareUniverseEvent.class, this::onServerLoad);
+//        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler
-    public void onServerLoad(@NotNull final ServerLoadEvent event) {
-        HandlerList.unregisterAll(this);
-        plugin.getLocalExpansionManager().load(Bukkit.getConsoleSender());
+    public void onServerLoad(@NotNull final PrepareUniverseEvent event) {
+        plugin.localExpansionManager().load(ConsoleSender.INSTANCE);
     }
 
 }

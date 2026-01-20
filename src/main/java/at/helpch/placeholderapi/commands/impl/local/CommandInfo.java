@@ -20,14 +20,14 @@
 
 package at.helpch.placeholderapi.commands.impl.local;
 
+import java.awt.*;
 import java.util.List;
 
-import at.helpch.placeholderapi.PlaceholderAPI;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -42,73 +42,88 @@ public final class CommandInfo extends PlaceholderCommand {
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
-            Msg.msg(sender,
-                    "&cYou must specify the name of the expansion.");
+            sender.sendMessage(Message.raw("You must specify the name of the expansion.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cYou must specify the name of the expansion.");
             return;
         }
 
-        final PlaceholderExpansion expansion = plugin.getLocalExpansionManager()
+        final PlaceholderExpansion expansion = plugin.localExpansionManager()
                 .findExpansionByIdentifier(params.get(0)).orElse(null);
         if (expansion == null) {
-            Msg.msg(sender,
-                    "&cThere is no expansion loaded with the identifier: &f" + params.get(0));
+            sender.sendMessage(Message.raw("There is no expansion loaded with the identifier: ").color(Color.RED).insert(Message.raw(params.getFirst()).color(Color.WHITE)));
+//            Msg.msg(sender,
+//                    "&cThere is no expansion loaded with the identifier: &f" + params.get(0));
             return;
         }
 
-        final StringBuilder builder = new StringBuilder();
-
-        builder.append("&7Placeholder expansion info for: &r")
-                .append(expansion.getName())
-                .append('\n')
-                .append("&7Status: &r")
-                .append(expansion.isRegistered() ? "&aRegistered" : "7cNotRegistered")
-                .append('\n');
+        Message message = Message.empty()
+                .insert(Message.raw("Placeholder expansion info for: &r").color(Color.GRAY))
+                .insert(Message.raw(expansion.getName() + "\n").color(Color.WHITE))
+                .insert(Message.raw("Status: ").color(Color.GRAY))
+                .insert(Message.raw(expansion.isRegistered() ? "Registered" : "Not Registered").color(expansion.isRegistered() ? Color.GRAY : Color.RED))
+                .insert("\n");
 
         final String author = expansion.getAuthor();
         if (author != null) {
-            builder.append("&7Author: &r")
-                    .append(author)
-                    .append('\n');
+            message = message.insert(Message.raw("Author: ").color(Color.GRAY))
+                            .insert(Message.raw(author + "\n").color(Color.WHITE));
+//            builder.append("&7Author: &r")
+//                    .append(author)
+//                    .append('\n');
         }
 
         final String version = expansion.getVersion();
         if (version != null) {
-            builder.append("&7Version: &r")
-                    .append(version)
-                    .append('\n');
+            message = message.insert(Message.raw("Version: ").color(Color.GRAY))
+                    .insert(Message.raw(version + "\n").color(Color.WHITE));
+
+//            builder.append("&7Version: &r")
+//                    .append(version)
+//                    .append('\n');
         }
 
         final String requiredPlugin = expansion.getRequiredPlugin();
         if (requiredPlugin != null) {
-            builder.append("&7Requires plugin: &r")
-                    .append(requiredPlugin)
-                    .append('\n');
+            message = message.insert(Message.raw("Requires plugin: ").color(Color.GRAY))
+                    .insert(Message.raw(requiredPlugin + '\n').color(Color.WHITE));
+
+//            builder.append("&7Requires plugin: &r")
+//                    .append(requiredPlugin)
+//                    .append('\n');
         }
 
         final List<String> placeholders = expansion.getPlaceholders();
         if (placeholders != null && !placeholders.isEmpty()) {
-            builder.append("&8&m-- &7Placeholders &8&m--&r")
-                    .append('\n');
+            message = message.insert(Message.raw("-- ").color(Color.DARK_GRAY))
+                            .insert(Message.raw("Placeholders ").color(Color.GRAY))
+                            .insert(Message.raw("--\n").color(Color.DARK_GRAY));
+//            builder.append("&8&m-- &7Placeholders &8&m--&r")
+//                    .append('\n');
 
             for (final String placeholder : placeholders) {
-                builder.append(placeholder)
-                        .append('\n');
+                message = message.insert(Message.raw(placeholder + "\n").color(Color.WHITE));
+//                builder.append(placeholder)
+//                        .append('\n');
             }
         }
 
-        Msg.msg(sender, builder.toString());
+        sender.sendMessage(message);
+
+
+//        Msg.msg(sender, builder.toString());
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 1) {
-            return;
-        }
-
-        suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions,
-                params.isEmpty() ? null : params.get(0));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 1) {
+//            return;
+//        }
+//
+//        suggestByParameter(PlaceholderAPI.getRegisteredIdentifiers().stream(), suggestions,
+//                params.isEmpty() ? null : params.get(0));
+//    }
 
 }

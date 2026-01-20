@@ -20,28 +20,21 @@
 
 package at.helpch.placeholderapi.expansion.manager;
 
-import at.helpch.placeholderapi.PlaceholderAPIBootstrap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 
+import java.awt.*;
 import java.io.File;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import at.helpch.placeholderapi.PlaceholderAPIPlugin;
+import at.helpch.placeholderapi.configuration.ConfigManager;
+import at.helpch.placeholderapi.configuration.PlaceholderAPIConfig;
 import at.helpch.placeholderapi.events.ExpansionRegisterEvent;
 import at.helpch.placeholderapi.events.ExpansionUnregisterEvent;
 import at.helpch.placeholderapi.events.ExpansionsLoadedEvent;
@@ -53,16 +46,14 @@ import at.helpch.placeholderapi.expansion.Taskable;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
 import at.helpch.placeholderapi.util.FileUtil;
 import at.helpch.placeholderapi.util.Futures;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.server.PluginDisableEvent;
+import com.hypixel.hytale.common.plugin.PluginIdentifier;
+import com.hypixel.hytale.event.IEventDispatcher;
+import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.HytaleServer;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
+import com.hypixel.hytale.server.core.plugin.PluginBase;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -83,18 +74,22 @@ public final class LocalExpansionManager /*implements Listener*/ {
     private final File folder;
     @NotNull
     private final PlaceholderAPIPlugin plugin;
+    private final HytaleLogger logger;
+    private final ConfigManager configManager;
 
     @NotNull
     private final Map<String, PlaceholderExpansion> expansions = new ConcurrentHashMap<>();
     private final ReentrantLock expansionsLock = new ReentrantLock();
 
 
-    public LocalExpansionManager(@NotNull final PlaceholderAPIBootstrap plugin) {
+    public LocalExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
         this.plugin = plugin;
-        this.folder = new File(plugin., EXPANSIONS_FOLDER_NAME);
+        this.folder = new File(plugin.getDataDirectory().toString(), EXPANSIONS_FOLDER_NAME);
+        this.logger = plugin.getLogger();
+        this.configManager = plugin.configManager();
 
         if (!this.folder.exists() && !folder.mkdirs()) {
-            Msg.warn("Failed to create expansions folder!");
+            logger.atWarning().log("Failed to create expansions folder!");
         }
     }
 
@@ -183,8 +178,8 @@ public final class LocalExpansionManager /*implements Listener*/ {
             Objects.requireNonNull(expansion.getVersion(), "The expansion version is null!");
 
             if (expansion.getRequiredPlugin() != null && !expansion.getRequiredPlugin().isEmpty()) {
-                if (!Bukkit.getPluginManager().isPluginEnabled(expansion.getRequiredPlugin())) {
-                    Msg.warn("Cannot load expansion %s due to a missing plugin: %s", expansion.getIdentifier(),
+                if (HytaleServer.get().getPluginManager().getPlugin(PluginIdentifier.fromString(expansion.getRequiredPlugin())) == null) {
+                    logger.atWarning().log("Cannot load expansion %s due to a missing plugin: %s", expansion.getIdentifier(),
                             expansion.getRequiredPlugin());
                     return Optional.empty();
                 }
@@ -193,7 +188,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
             expansion.setExpansionType(PlaceholderExpansion.Type.EXTERNAL);
 
             if (!expansion.register()) {
-                Msg.warn("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
+                logger.atWarning().log("Cannot load expansion %s due to an unknown issue.", expansion.getIdentifier());
                 return Optional.empty();
             }
 
@@ -207,7 +202,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
                 reason = " - One of its properties is null which is not allowed!";
             }
 
-            Msg.severe("Failed to load expansion class %s%s", ex, clazz.getSimpleName(), reason);
+            logger.atSevere().log("Failed to load expansion class %s%s", ex, clazz.getSimpleName(), reason);
         }
 
         return Optional.empty();
@@ -229,50 +224,60 @@ public final class LocalExpansionManager /*implements Listener*/ {
 
         // Avoid loading two external expansions with the same identifier
         if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
-            Msg.warn("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
+            logger.atWarning().log("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
             return false;
         }
 
-        if (expansion instanceof Configurable) {
-            Map<String, Object> defaults = ((Configurable) expansion).getDefaults();
-            String pre = "expansions." + identifier + ".";
-            FileConfiguration cfg = plugin.getConfig();
-            boolean save = false;
+        if (expansion instanceof Configurable<?> configurable) {
+            final PlaceholderAPIConfig config = configManager.config();
 
-            if (defaults != null) {
-                for (Map.Entry<String, Object> entries : defaults.entrySet()) {
-                    if (entries.getKey() == null || entries.getKey().isEmpty()) {
-                        continue;
-                    }
-
-                    if (entries.getValue() == null) {
-                        if (cfg.contains(pre + entries.getKey())) {
-                            save = true;
-                            cfg.set(pre + entries.getKey(), null);
-                        }
-                    } else {
-                        if (!cfg.contains(pre + entries.getKey())) {
-                            save = true;
-                            cfg.set(pre + entries.getKey(), entries.getValue());
-                        }
-                    }
-                }
+            if (!config.expansions().containsKey(expansion.getIdentifier())) {
+                config.expansions().put(expansion.getIdentifier(), configurable.provideDefault());
+                configManager.save();
+            } else {
+                final Object expansionConfig = configManager.convertExpansion((Map<String, Object>) config.expansions().get(expansion.getIdentifier()), configurable.provideConfigType());
+                config.expansions().put(expansion.getIdentifier(), expansionConfig);
             }
-
-            if (save) {
-                plugin.saveConfig();
-                plugin.reloadConfig();
-            }
+//            Map<String, Object> defaults = ((Configurable<?>) expansion).getDefaults();
+//            String pre = "expansions." + identifier + ".";
+//            boolean save = false;
+//
+//            final PlaceholderAPIConfig config = this.config.config();
+//
+//            if (defaults != null) {
+//                for (Map.Entry<String, Object> entries : defaults.entrySet()) {
+//                    if (entries.getKey() == null || entries.getKey().isEmpty()) {
+//                        continue;
+//                    }
+//
+//                    if (entries.getValue() == null) {
+//                        if (cfg.contains(pre + entries.getKey())) {
+//                            save = true;
+//                            cfg.set(pre + entries.getKey(), null);
+//                        }
+//                    } else {
+//                        if (!cfg.contains(pre + entries.getKey())) {
+//                            save = true;
+//                            cfg.set(pre + entries.getKey(), entries.getValue());
+//                        }
+//                    }
+//                }
+//            }
+//
+//            if (save) {
+//                plugin.saveConfig();
+//                plugin.reloadConfig();
+//            }
         }
 
-        if (expansion instanceof VersionSpecific) {
-            VersionSpecific nms = (VersionSpecific) expansion;
-            if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
-                Msg.warn("Your server version is incompatible with expansion %s %s",
-                        expansion.getIdentifier(), expansion.getVersion());
-                return false;
-            }
-        }
+//        if (expansion instanceof VersionSpecific) {
+//            VersionSpecific nms = (VersionSpecific) expansion;
+//            if (!nms.isCompatibleWith(PlaceholderAPIPlugin.getServerVersion())) {
+//                Msg.warn("Your server version is incompatible with expansion %s %s",
+//                        expansion.getIdentifier(), expansion.getVersion());
+//                return false;
+//            }
+//        }
 
         final PlaceholderExpansion removed = getExpansion(identifier);
         if (removed != null && !removed.unregister()) {
@@ -280,7 +285,12 @@ public final class LocalExpansionManager /*implements Listener*/ {
         }
 
         final ExpansionRegisterEvent event = new ExpansionRegisterEvent(expansion);
-        Bukkit.getPluginManager().callEvent(event);
+        final IEventDispatcher<ExpansionRegisterEvent, ExpansionRegisterEvent> eventDispatcher = HytaleServer.get().getEventBus().dispatchFor(ExpansionRegisterEvent.class);
+        if (eventDispatcher.hasListener()) {
+            eventDispatcher.dispatch(event);
+        }
+
+//        Bukkit.getPluginManager().callEvent(event);
 
         if (event.isCancelled()) {
             return false;
@@ -293,11 +303,11 @@ public final class LocalExpansionManager /*implements Listener*/ {
             expansionsLock.unlock();
         }
 
-        if (expansion instanceof Listener) {
-            Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
-        }
+//        if (expansion instanceof Listener) {
+//            Bukkit.getPluginManager().registerEvents(((Listener) expansion), plugin);
+//        }
 
-        Msg.info(
+        logger.at(Level.INFO).log(
                 "Successfully registered %s expansion: %s [%s]",
                 expansion.getExpansionType().name().toLowerCase(),
                 expansion.getIdentifier(),
@@ -309,8 +319,8 @@ public final class LocalExpansionManager /*implements Listener*/ {
         }
 
         // Check eCloud for updates only if the expansion is external
-        if (plugin.getPlaceholderAPIConfig().isCloudEnabled() && expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL) {
-            final Optional<CloudExpansion> cloudExpansionOptional = plugin.getCloudExpansionManager().findCloudExpansionByName(identifier);
+        if (configManager.config().cloudEnabled() && expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL) {
+            final Optional<CloudExpansion> cloudExpansionOptional = plugin.cloudExpansionManager().findCloudExpansionByName(identifier);
             if (cloudExpansionOptional.isPresent()) {
                 CloudExpansion cloudExpansion = cloudExpansionOptional.get();
                 cloudExpansion.setHasExpansion(true);
@@ -327,11 +337,14 @@ public final class LocalExpansionManager /*implements Listener*/ {
             return false;
         }
 
-        Bukkit.getPluginManager().callEvent(new ExpansionUnregisterEvent(expansion));
-
-        if (expansion instanceof Listener) {
-            HandlerList.unregisterAll((Listener) expansion);
+        final IEventDispatcher<ExpansionUnregisterEvent, ExpansionUnregisterEvent> eventDispatcher = HytaleServer.get().getEventBus().dispatchFor(ExpansionUnregisterEvent.class);
+        if (eventDispatcher.hasListener()) {
+            eventDispatcher.dispatch(new ExpansionUnregisterEvent(expansion));
         }
+
+//        if (expansion instanceof Listener) {
+//            HandlerList.unregisterAll((Listener) expansion);
+//        }
 
         if (expansion instanceof Taskable) {
             ((Taskable) expansion).stop();
@@ -341,8 +354,8 @@ public final class LocalExpansionManager /*implements Listener*/ {
             ((Cacheable) expansion).clear();
         }
 
-        if (plugin.getPlaceholderAPIConfig().isCloudEnabled()) {
-            plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName())
+        if (configManager.config().cloudEnabled()) {
+            plugin.cloudExpansionManager().findCloudExpansionByName(expansion.getName())
                     .ifPresent(cloud -> {
                         cloud.setHasExpansion(false);
                         cloud.setShouldUpdate(false);
@@ -353,11 +366,11 @@ public final class LocalExpansionManager /*implements Listener*/ {
     }
 
     private void registerAll(@NotNull final CommandSender sender) {
-        Msg.info("Placeholder expansion registration initializing...");
+        logger.at(Level.INFO).log("Placeholder expansion registration initializing...");
 
         Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
             if (exception != null) {
-                Msg.severe("Failed to load class files of expansion.", exception);
+                logger.atSevere().log("Failed to load class files of expansion.", exception);
                 return;
             }
 
@@ -369,33 +382,31 @@ public final class LocalExpansionManager /*implements Listener*/ {
                     .collect(Collectors.toList());
 
             final long needsUpdate = registered.stream()
-                    .map(expansion -> plugin.getCloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
+                    .map(expansion -> plugin.cloudExpansionManager().findCloudExpansionByName(expansion.getName()).orElse(null))
                     .filter(Objects::nonNull)
                     .filter(CloudExpansion::shouldUpdate)
                     .count();
 
-            StringBuilder message = new StringBuilder(registered.size() == 0 ? "&6" : "&a")
-                    .append(registered.size())
-                    .append(' ')
-                    .append("placeholder hook(s) registered!");
+            Message message = Message.raw(registered.size() + "").color(registered.isEmpty() ? Color.YELLOW : Color.GREEN)
+                    .insert(" placeholder hook(s) registered!");
 
             if (needsUpdate > 0) {
-                message.append(' ')
-                        .append("&6")
-                        .append(needsUpdate)
-                        .append(' ')
-                        .append("placeholder hook(s) have an update available.");
+                message = message.insert(" ")
+                        .insert(Message.raw(needsUpdate + " placeholder hook(s) have an update available.").color(Color.YELLOW));
             }
 
+//            logger.at(Level.INFO).log(message.toString());
+            sender.sendMessage(message);
 
-            Msg.msg(sender, message.toString());
-
-            Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
+            final IEventDispatcher<ExpansionsLoadedEvent, ExpansionsLoadedEvent> eventDispatcher = HytaleServer.get().getEventBus().dispatchFor(ExpansionsLoadedEvent.class);
+            if (eventDispatcher.hasListener()) {
+                eventDispatcher.dispatch(new ExpansionsLoadedEvent(registered));
+            }
         });
     }
 
     private void unregisterAll() {
-        for (final PlaceholderExpansion expansion : Sets.newHashSet(expansions.values())) {
+        for (final PlaceholderExpansion expansion : new HashSet<>(expansions.values())) {
             if (expansion.persist()) {
                 continue;
             }
@@ -424,7 +435,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
                 final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);
 
                 if (expansionClass == null) {
-                    Msg.severe("Failed to load expansion %s, as it does not have a class which"
+                    logger.atSevere().log("Failed to load expansion %s, as it does not have a class which"
                             + " extends PlaceholderExpansion", file.getName());
                     return null;
                 }
@@ -433,17 +444,17 @@ public final class LocalExpansionManager /*implements Listener*/ {
                         .map(method -> new MethodSignature(method.getName(), method.getParameterTypes()))
                         .collect(Collectors.toSet());
                 if (!expansionMethods.containsAll(ABSTRACT_EXPANSION_METHODS)) {
-                    Msg.severe("Failed to load expansion %s, as it does not have the required"
+                    logger.atSevere().log("Failed to load expansion %s, as it does not have the required"
                             + " methods declared for a PlaceholderExpansion.", file.getName());
                     return null;
                 }
 
                 return expansionClass;
             } catch (VerifyError | NoClassDefFoundError e) {
-                Msg.severe("Failed to load expansion %s (is a dependency missing?)", e, file.getName());
+                logger.atSevere().log("Failed to load expansion %s (is a dependency missing?)", e, file.getName());
                 return null;
             } catch (Exception e) {
-                plugin.getLogger().log(Level.SEVERE, "Failed to load expansion file: " + file.getAbsolutePath(), e);
+                logger.atSevere().log("Failed to load expansion file: " + file.getAbsolutePath(), e);
                 return null;
             }
         });
@@ -460,39 +471,38 @@ public final class LocalExpansionManager /*implements Listener*/ {
                 throw ((LinkageError) ex.getCause());
             }
 
-            Msg.warn("There was an issue with loading an expansion.");
+            logger.atWarning().log("There was an issue with loading an expansion.");
             return null;
         }
     }
 
-
-    @EventHandler
-    public void onQuit(@NotNull final PlayerQuitEvent event) {
+    public void onQuit(@NotNull final PlayerDisconnectEvent event) {
         for (final PlaceholderExpansion expansion : getExpansions()) {
             if (!(expansion instanceof Cleanable)) {
                 continue;
             }
 
-            ((Cleanable) expansion).cleanup(event.getPlayer());
+            ((Cleanable) expansion).cleanup(event.getPlayerRef());
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPluginDisable(@NotNull final PluginDisableEvent event) {
-        final String name = event.getPlugin().getName();
-        if (name.equals(plugin.getName())) {
-            return;
-        }
-
-        for (final PlaceholderExpansion expansion : getExpansions()) {
-            if (!name.equalsIgnoreCase(expansion.getRequiredPlugin())) {
-                continue;
-            }
-
-            expansion.unregister();
-            Msg.info("Unregistered placeholder expansion %s", expansion.getIdentifier());
-            Msg.info("Reason: required plugin %s was disabled.", name);
-        }
-    }
+//    @EventHandler(priority = EventPriority.HIGH)
+    //todo: hytale has no plugin disable event as of yet :(
+//    public void onPluginDisable() {
+//        final String name = event.getPlugin().getName();
+//        if (name.equals(plugin.getName())) {
+//            return;
+//        }
+//
+//        for (final PlaceholderExpansion expansion : getExpansions()) {
+//            if (!name.equalsIgnoreCase(expansion.getRequiredPlugin())) {
+//                continue;
+//            }
+//
+//            expansion.unregister();
+//            Msg.info("Unregistered placeholder expansion %s", expansion.getIdentifier());
+//            Msg.info("Reason: required plugin %s was disabled.", name);
+//        }
+//    }
 
 }

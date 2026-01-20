@@ -25,8 +25,8 @@ import java.util.List;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.manager.CloudExpansionManager;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -40,7 +40,7 @@ public final class CommandECloudStatus extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        final CloudExpansionManager manager = plugin.getCloudExpansionManager();
+        final CloudExpansionManager manager = plugin.cloudExpansionManager();
 
         final int updateCount = manager.getCloudUpdateCount();
         final int authorCount = manager.getCloudExpansionAuthorCount();
@@ -59,7 +59,8 @@ public final class CommandECloudStatus extends PlaceholderCommand {
                     .append(updateCount > 1 ? "have an" : "has an").append(" update available.");
         }
 
-        Msg.msg(sender, builder.toString());
+        sender.sendMessage(Message.raw(builder.toString()));
+//        Msg.msg(sender, builder.toString());
     }
 
 }

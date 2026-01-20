@@ -20,17 +20,17 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
-import com.google.common.collect.Lists;
-
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -45,52 +45,57 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
-            Msg.msg(sender,
-                    "&cYou must specify the name of the expansion.");
+            sender.sendMessage(Message.raw("You must specify the name of the expansion.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cYou must specify the name of the expansion.");
             return;
         }
 
-        final CloudExpansion expansion = plugin.getCloudExpansionManager()
+        final CloudExpansion expansion = plugin.cloudExpansionManager()
                 .findCloudExpansionByName(params.get(0)).orElse(null);
         if (expansion == null) {
-            Msg.msg(sender,
-                    "&cThere is no expansion with the name: &f" + params.get(0));
+            sender.sendMessage(Message.raw("There is no expansion with the name: ").color(Color.RED).insert(Message.raw(params.getFirst()).color(Color.WHITE)));
+//            Msg.msg(sender,
+//                    "&cThere is no expansion with the name: &f" + params.get(0));
             return;
         }
 
         final List<String> placeholders = expansion.getPlaceholders();
         if (placeholders == null || placeholders.isEmpty()) {
-            Msg.msg(sender,
-                    "&cThe expansion specified does not have placeholders listed.");
+            sender.sendMessage(Message.raw("The expansion specified does not have placeholders listed.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cThe expansion specified does not have placeholders listed.");
             return;
         }
 
-        final List<List<String>> partitions = Lists
-                .partition(placeholders.stream().sorted().collect(Collectors.toList()), 10);
+//        final List<List<String>> partitions = Lists
+//                .partition(placeholders.stream().sorted().collect(Collectors.toList()), 10);
+        final List<List<String>> partitions = new ArrayList<>(IntStream.range(0, placeholders.size()).boxed().collect(Collectors.groupingBy(i -> i/10, Collectors.mapping(placeholders::get, Collectors.toList()))).values());
 
-        Msg.msg(sender,
-                "&6" + placeholders.size() + "&7 placeholders: &a",
-                partitions.stream().map(partition -> String.join(", ", partition))
-                        .collect(Collectors.joining("\n")));
+        sender.sendMessage(Message.raw("&6 " + placeholders.size() + " &7 placeholders: &a\n" + partitions.stream().map(p -> String.join(", ", p)).collect(Collectors.joining("\n"))));
+//        Msg.msg(sender,
+//                "&6" + placeholders.size() + "&7 placeholders: &a",
+//                partitions.stream().map(partition -> String.join(", ", partition))
+//                        .collect(Collectors.joining("\n")));
 
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 1) {
-            return;
-        }
-
-        final Stream<String> names = plugin.getCloudExpansionManager()
-                .getCloudExpansions()
-                .values()
-                .stream()
-                .map(CloudExpansion::getName)
-                .map(name -> name.replace(' ', '_'));
-
-        suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 1) {
+//            return;
+//        }
+//
+//        final Stream<String> names = plugin.getCloudExpansionManager()
+//                .getCloudExpansions()
+//                .values()
+//                .stream()
+//                .map(CloudExpansion::getName)
+//                .map(name -> name.replace(' ', '_'));
+//
+//        suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
+//    }
 
 }

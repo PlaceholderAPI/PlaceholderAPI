@@ -25,20 +25,10 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.impl.cloud.CommandECloud;
-import at.helpch.placeholderapi.commands.impl.local.CommandDump;
-import at.helpch.placeholderapi.commands.impl.local.CommandExpansionRegister;
-import at.helpch.placeholderapi.commands.impl.local.CommandExpansionUnregister;
-import at.helpch.placeholderapi.commands.impl.local.CommandHelp;
-import at.helpch.placeholderapi.commands.impl.local.CommandInfo;
-import at.helpch.placeholderapi.commands.impl.local.CommandList;
-import at.helpch.placeholderapi.commands.impl.local.CommandParse;
-import at.helpch.placeholderapi.commands.impl.local.CommandReload;
-import at.helpch.placeholderapi.commands.impl.local.CommandVersion;
-import at.helpch.placeholderapi.util.Msg;
+import at.helpch.placeholderapi.commands.impl.local.*;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.*;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
@@ -67,10 +57,14 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
     @Unmodifiable
     private final Map<String, PlaceholderCommand> commands;
 
+    @Override
+    public String getName() {
+        return "papi";
+    }
 
     public PlaceholderCommandRouter(@NotNull final PlaceholderAPIPlugin plugin) {
-        super("papi", "PlaceholderAPI Command");
-        addAliases("placeholderapi");
+        super("papi", "papi");
+//        addAliases("placeholderapi");
         setAllowsExtraArguments(true);
 
         this.plugin = plugin;
@@ -88,7 +82,7 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
     @NotNull
     public CompletableFuture<Void> acceptCall(@NotNull final CommandSender sender, @NotNull final ParserContext parserContext,
                                                         @NotNull final ParseResult parseResult) {
-        final String[] args = parserContext.getInputString().split(" ");
+        final String[] args = parserContext.getInputString().replace("papi ", "").split(" ");
 
         if (args.length == 0) {
             final PlaceholderCommand fallback = commands.get("version");

@@ -24,8 +24,7 @@ import java.util.List;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
-import at.helpch.placeholderapi.util.ExpansionSafetyCheck;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -39,9 +38,7 @@ public final class CommandReload extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        if (!new ExpansionSafetyCheck(plugin).runChecks()) {
-            plugin.reloadConf(sender);
-        }
+        plugin.reloadPlugin(sender);
     }
 
 }

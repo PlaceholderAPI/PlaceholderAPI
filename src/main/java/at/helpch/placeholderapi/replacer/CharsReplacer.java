@@ -24,8 +24,7 @@ import java.util.Locale;
 import java.util.function.Function;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,7 +40,7 @@ public final class CharsReplacer implements Replacer {
 
     @NotNull
     @Override
-    public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
+    public String apply(@NotNull final String text, @Nullable final Player player,
                         @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
         final char[] chars = text.toCharArray();
         final StringBuilder builder = new StringBuilder(text.length());

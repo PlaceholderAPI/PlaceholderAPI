@@ -1,0 +1,14 @@
+{
+  "Group": "HelpChat",
+  "Name": "PlaceholderAPI",
+  "Version": "1.0.0",
+  "Description": "An awesome placeholder provider",
+  "Authors": [{"Name": "Your Mama"}],
+  "Website": "https://placeholderapi.com",
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "at.helpch.placeholderapi.PlaceholderAPIPlugin",
+  "IncludesAssetPack": false
+}

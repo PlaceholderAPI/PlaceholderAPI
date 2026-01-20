@@ -20,7 +20,7 @@
 
 package at.helpch.placeholderapi.expansion;
 
-import org.bukkit.entity.Player;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 
 /**
  * Implementing this interface allows your {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}

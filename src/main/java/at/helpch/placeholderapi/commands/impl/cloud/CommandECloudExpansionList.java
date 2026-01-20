@@ -20,39 +20,25 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.google.common.primitives.Ints;
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
+import at.helpch.placeholderapi.util.Format;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
-import at.helpch.placeholderapi.configuration.ExpansionSort;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
-import at.helpch.placeholderapi.util.Format;
-import at.helpch.placeholderapi.util.Msg;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
-
-import static net.kyori.adventure.text.Component.*;
-import static net.kyori.adventure.text.format.NamedTextColor.*;
 
 public final class CommandECloudExpansionList extends PlaceholderCommand {
 
@@ -73,13 +59,13 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
             expansion -> "&f" + expansion.getLatestVersion();
     @NotNull
     private static final Function<CloudExpansion, Object> EXPANSION_CURRENT_VERSION =
-            expansion -> "&f" + PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()
+            expansion -> "&f" + PlaceholderAPIPlugin.instance().localExpansionManager()
                     .findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion)
                     .orElse("Unknown");
 
 
     @Unmodifiable
-    private static final Set<String> OPTIONS = ImmutableSet.of("all", "installed");
+    private static final Set<String> OPTIONS = Set.of("all", "installed");
 
 
     public CommandECloudExpansionList() {
@@ -91,11 +77,11 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                                                             @NotNull final PlaceholderAPIPlugin plugin) {
         switch (target.toLowerCase(Locale.ROOT)) {
             case "all":
-                return plugin.getCloudExpansionManager().getCloudExpansions().values();
+                return plugin.cloudExpansionManager().getCloudExpansions().values();
             case "installed":
-                return plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values();
+                return plugin.cloudExpansionManager().getCloudExpansionsInstalled().values();
             default:
-                return plugin.getCloudExpansionManager().getCloudExpansionsByAuthor(target).values();
+                return plugin.cloudExpansionManager().getCloudExpansionsByAuthor(target).values();
         }
     }
 
@@ -137,78 +123,78 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                 .append("&r");
     }
 
-    private static Component getMessage(@NotNull final List<CloudExpansion> expansions,
+    private static Message getMessage(@NotNull final List<CloudExpansion> expansions,
                                         final int page, final int limit, @NotNull final String target) {
-        final SimpleDateFormat format = PlaceholderAPIPlugin.getDateFormat();
+        final SimpleDateFormat format = new SimpleDateFormat(PlaceholderAPIPlugin.instance().configManager().config().dateFormat());
 
-        final TextComponent.Builder message = text();
+        Message message = Message.empty();
 
         for (int index = 0; index < expansions.size(); index++) {
             final CloudExpansion expansion = expansions.get(index);
-            final TextComponent.Builder line = text();
+            Message line = Message.empty();
 
             final int expansionNumber = index + ((page - 1) * PAGE_SIZE) + 1;
-            line.append(text(expansionNumber + ". ", DARK_GRAY));
+            line = line.insert(Message.raw(expansionNumber + ". ").color(Color.DARK_GRAY));
 
-            final NamedTextColor expansionColour;
+            final Color expansionColour;
 
             if (expansion.shouldUpdate()) {
-                expansionColour = GOLD;
+                expansionColour = Color.YELLOW;
             } else {
                 if (expansion.hasExpansion()) {
-                    expansionColour = GREEN;
+                    expansionColour = Color.GREEN;
                 } else {
-                    expansionColour = GRAY;
+                    expansionColour = Color.GRAY;
                 }
             }
 
-            line.append(text(expansion.getName(), expansionColour));
+            line = line.insert(Message.raw(expansion.getName()).color(expansionColour));
 
-            line.clickEvent(ClickEvent.suggestCommand("/papi ecloud download " + expansion.getName()));
+//            line = line.click(ClickEvent.suggestCommand("/papi ecloud download " + expansion.getName()));
+//
+//            final TextComponent.Builder hoverText = text("Click to download this expansion!", AQUA)
+//                    .append(newline()).append(newline())
+//                    .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
+//                    .append(newline())
+//                    .append(text("Verified: ", AQUA)).append(text(expansion.getVersion().isVerified() ? "✔" : "❌", expansion.getVersion().isVerified() ? GREEN : RED, TextDecoration.BOLD))
+//                    .append(newline())
+//                    .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
+//                    .toBuilder();
+//
+//            Optional.ofNullable(expansion.getDescription())
+//                    .filter(description -> !description.isEmpty())
+//                    .ifPresent(description -> hoverText.append(newline()).append(newline())
+//                            .append(text(description.replace("\r", "").trim(), WHITE))
+//                    );
 
-            final TextComponent.Builder hoverText = text("Click to download this expansion!", AQUA)
-                    .append(newline()).append(newline())
-                    .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
-                    .append(newline())
-                    .append(text("Verified: ", AQUA)).append(text(expansion.getVersion().isVerified() ? "✔" : "❌", expansion.getVersion().isVerified() ? GREEN : RED, TextDecoration.BOLD))
-                    .append(newline())
-                    .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
-                    .toBuilder();
-
-            Optional.ofNullable(expansion.getDescription())
-                    .filter(description -> !description.isEmpty())
-                    .ifPresent(description -> hoverText.append(newline()).append(newline())
-                            .append(text(description.replace("\r", "").trim(), WHITE))
-                    );
-
-            line.hoverEvent(HoverEvent.showText(hoverText.build()));
+//            line.hoverEvent(HoverEvent.showText(hoverText.build()));
 
             if (index != expansions.size() - 1) {
-                line.append(newline());
+                line.insert(Message.raw("\n"));
             }
 
-            message.append(line.build());
+            message = message.insert(line);
         }
 
         if (limit > 1) {
-            message.append(newline());
+            message = message.insert("\n");
 
-            final TextComponent.Builder left = text("◀", page > 1 ? GRAY : DARK_GRAY).toBuilder();
+//            Message left = Message.raw("◀", page > 1 ? GRAY : DARK_GRAY).toBuilder();
 
-            if (page > 1) {
-                left.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page - 1)));
-            }
+//            if (page > 1) {
+//                left.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page - 1)));
+//            }
+//
+//            final TextComponent.Builder right = text("▶", page < limit ? GRAY : DARK_GRAY).toBuilder();
 
-            final TextComponent.Builder right = text("▶", page < limit ? GRAY : DARK_GRAY).toBuilder();
+//            if (page < limit) {
+//                right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
+//            }
 
-            if (page < limit) {
-                right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
-            }
-
-            message.append(left, text(" " + page + " ", GREEN), right);
+            message = message.insert(Message.raw(" - " + page + " - ").color(Color.GREEN));
         }
 
-        return message.build();
+        return message;
     }
 
     private static void addExpansionTable(@NotNull final List<CloudExpansion> expansions,
@@ -240,7 +226,10 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
             return;
         }
 
-        table.add(1, "&8" + Strings.repeat("-", table.get(0).length() - (rows.get(0).size() * 2)));
+
+
+//        table.add(1, "&8" + Strings.repeat("-", table.get(0).length() - (rows.get(0).size() * 2)));
+        table.add(1, "&8" + "-".repeat(table.get(0).length() - (rows.getFirst().size() * 2)));
 
         message.append(String.join("\n", table));
     }
@@ -250,23 +239,24 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
-            Msg.msg(sender,
-                    "&cYou must specify an option. [all, {author}, installed]");
+            sender.sendMessage(Message.raw("You must specify an option. [all, {author}, installed]").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cYou must specify an option. [all, {author}, installed]");
             return;
         }
 
         final boolean installed = params.get(0).equalsIgnoreCase("installed");
-        final List<CloudExpansion> expansions = Lists
-                .newArrayList(getExpansions(params.get(0), plugin));
+        final List<CloudExpansion> expansions = new ArrayList<>(getExpansions(params.get(0), plugin));
 
         if (expansions.isEmpty()) {
-            Msg.msg(sender,
-                    "&cNo expansions available to list.");
+            sender.sendMessage(Message.raw("No expansions available to list.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cNo expansions available to list.");
             return;
         }
 
         expansions
-                .sort(plugin.getPlaceholderAPIConfig().getExpansionSort().orElse(ExpansionSort.LATEST));
+                .sort(plugin.configManager().config().cloudSorting());
 
         if (!(sender instanceof Player) && params.size() < 2) {
             final StringBuilder builder = new StringBuilder();
@@ -278,7 +268,8 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                     installed ? "&9Version" : "&9Latest Version",
                     installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
 
-            Msg.msg(sender, builder.toString());
+            sender.sendMessage(Message.raw(builder.toString()));
+//            Msg.msg(sender, builder.toString());
             return;
         }
 
@@ -288,18 +279,27 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
             page = 1;
         } else {
             //noinspection UnstableApiUsage
-            final Integer parsed = Ints.tryParse(params.get(1));
+            Integer parsed/* = Ints.tryParse(params.get(1))*/;
+
+            try {
+                parsed = Integer.parseInt(params.get(1));
+            } catch (Exception e) {
+                parsed = null;
+            }
+
             if (parsed == null) {
-                Msg.msg(sender,
-                        "&cPage number must be an integer.");
+                sender.sendMessage(Message.raw("Page number must be an integer.").color(Color.RED));
+//                Msg.msg(sender,
+//                        "&cPage number must be an integer.");
                 return;
             }
 
             final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
             if (parsed < 1 || parsed > limit) {
-                Msg.msg(sender,
-                        "&cPage number must be in the range &8[&a1&7..&a" + limit + "&8]");
+                sender.sendMessage(Message.raw("Page number must be in the range [1.." + limit + "]").color(Color.RED)); //todo: not exact
+//                Msg.msg(sender,
+//                        "&cPage number must be in the range &8[&a1&7..&a" + limit + "&8]");
                 return;
             }
 
@@ -318,37 +318,40 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                     installed ? "&9Version" : "&9Latest Version",
                     installed ? EXPANSION_CURRENT_VERSION : EXPANSION_LATEST_VERSION);
 
-            Msg.msg(sender, builder.toString());
+            sender.sendMessage(Message.raw(builder.toString()));
+//            Msg.msg(sender, builder.toString());
 
             return;
         }
 
-        Msg.msg(sender, builder.toString());
+        sender.sendMessage(Message.raw(builder.toString()));
+//        Msg.msg(sender, builder.toString());
 
         final int limit = (int) Math.ceil((double) expansions.size() / PAGE_SIZE);
 
-        final Component message = getMessage(values, page, limit, params.get(0));
-        plugin.getAdventure().player((Player) sender).sendMessage(message);
+
+//        final Component message = getMessage(values, page, limit, params.get(0));
+//        plugin.getAdventure().player((Player) sender).sendMessage(message);
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 2) {
-            return;
-        }
-
-        if (params.size() <= 1) {
-            suggestByParameter(
-                    Sets.union(OPTIONS, plugin.getCloudExpansionManager().getCloudExpansionAuthors())
-                            .stream(), suggestions, params.isEmpty() ? null : params.get(0));
-            return;
-        }
-
-        suggestByParameter(IntStream.rangeClosed(1,
-                        (int) Math.ceil((double) getExpansions(params.get(0), plugin).size() / PAGE_SIZE))
-                .mapToObj(Objects::toString), suggestions, params.get(1));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 2) {
+//            return;
+//        }
+//
+//        if (params.size() <= 1) {
+//            suggestByParameter(
+//                    Sets.union(OPTIONS, plugin.getCloudExpansionManager().getCloudExpansionAuthors())
+//                            .stream(), suggestions, params.isEmpty() ? null : params.get(0));
+//            return;
+//        }
+//
+//        suggestByParameter(IntStream.rangeClosed(1,
+//                        (int) Math.ceil((double) getExpansions(params.get(0), plugin).size() / PAGE_SIZE))
+//                .mapToObj(Objects::toString), suggestions, params.get(1));
+//    }
 
 }

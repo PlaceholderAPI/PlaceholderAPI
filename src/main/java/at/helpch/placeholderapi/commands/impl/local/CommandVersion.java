@@ -20,13 +20,16 @@
 
 package at.helpch.placeholderapi.commands.impl.local;
 
+import java.awt.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.PluginDescriptionFile;
+import com.hypixel.hytale.common.plugin.AuthorInfo;
+import com.hypixel.hytale.common.plugin.PluginManifest;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -41,13 +44,27 @@ public final class CommandVersion extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        final PluginDescriptionFile description = plugin.getDescription();
+        final PluginManifest description = plugin.getManifest();
 
-        Msg.msg(sender,
-                "&b&lPlaceholderAPI &7(&f" + description.getVersion() + "&7)",
-                "&7Author: &f" + description.getAuthors(),
-                "&7PAPI Commands: &b/papi &fhelp",
-                "&7eCloud Commands&8: &b/papi &fecloud");
+        sender.sendMessage(Message.empty()
+                .insert(Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true))
+                .insert(Message.raw("(").color(Color.GRAY))
+                .insert(Message.raw(description.getVersion().toString()).color(Color.WHITE))
+                .insert(Message.raw(")").color(Color.GRAY))
+                .insert(Message.raw("\nAuthor: ").color(Color.GRAY))
+                .insert(Message.raw(description.getAuthors().stream().map(AuthorInfo::getName).collect(Collectors.joining(", "))).color(Color.WHITE))
+                .insert(Message.raw("\nPAPI Commands: ").color(Color.GRAY))
+                .insert(Message.raw("/papi ").color(Color.CYAN))
+                .insert(Message.raw("help").color(Color.WHITE))
+                .insert(Message.raw("\neCloud Commands: ").color(Color.GRAY))
+                .insert(Message.raw("/papi ").color(Color.CYAN))
+                .insert(Message.raw("ecloud").color(Color.WHITE)));
+
+//        Msg.msg(sender,
+//                "&b&lPlaceholderAPI &7(&f" + description.getVersion() + "&7)",
+//                "&7Author: &f" + description.getAuthors().stream().map(AuthorInfo::getName).collect(Collectors.joining(", ")),
+//                "&7PAPI Commands: &b/papi &fhelp",
+//                "&7eCloud Commands&8: &b/papi &fecloud");
     }
 
 }

@@ -20,12 +20,13 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
+import java.awt.*;
 import java.util.List;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -39,10 +40,11 @@ public final class CommandECloudRefresh extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        plugin.getCloudExpansionManager().load();
+        plugin.cloudExpansionManager().load();
 
-        Msg.msg(sender,
-                "&aThe eCloud manager has been refreshed!");
+        sender.sendMessage(Message.raw("The eCloud manager has been refreshed!").color(Color.GREEN));
+//        Msg.msg(sender,
+//                "&aThe eCloud manager has been refreshed!");
     }
 
 }

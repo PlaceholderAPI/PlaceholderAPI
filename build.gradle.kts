@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.0"
+version = "1.0.0-experifuckingmental"
 
 description = "An awesome placeholder provider!"
 
@@ -24,11 +24,17 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 
     withJavadocJar()
     withSourcesJar()
 
     disableAutoTargetJvm()
+}
+
+tasks {
+    processResources {
+        eachFile { expand("version" to project.version) }
+    }
 }

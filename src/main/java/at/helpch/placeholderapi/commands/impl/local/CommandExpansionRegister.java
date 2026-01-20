@@ -22,18 +22,14 @@ package at.helpch.placeholderapi.commands.impl.local;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Level;
 
-import at.helpch.placeholderapi.PlaceholderAPIBootstrap;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.manager.LocalExpansionManager;
 import at.helpch.placeholderapi.util.Futures;
-import at.helpch.placeholderapi.util.Msg;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +42,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
     }
 
     @Override
-    public void evaluate(@NotNull final PlaceholderAPIBootstrap plugin,
+    public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
@@ -86,34 +82,35 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
 
             final Optional<PlaceholderExpansion> expansion = manager.register(clazz);
             if (!expansion.isPresent()) {
-
+                sender.sendMessage(Message.raw("Failed to register expansion from ").color(Color.RED).insert(Message.raw(params.getFirst()).color(Color.WHITE)));
 //                Msg.msg(sender,
 //                        "&cFailed to register expansion from &f" + params.get(0));
                 return;
             }
 
-            Msg.msg(sender,
-                    "&aSuccessfully registered expansion: &f" + expansion.get().getName());
+            sender.sendMessage(Message.raw("Sucessfully registered expansion: ").color(Color.GREEN).insert(Message.raw(expansion.get().getName()).color(Color.WHITE)));
+//            Msg.msg(sender,
+//                    "&aSuccessfully registered expansion: &f" + expansion.get().getName());
 
         });
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 1) {
-            return;
-        }
-
-        final String[] fileNames = plugin.getLocalExpansionManager().getExpansionsFolder()
-                .list((dir, name) -> name.endsWith(".jar"));
-        if (fileNames == null || fileNames.length == 0) {
-            return;
-        }
-
-        suggestByParameter(Arrays.stream(fileNames), suggestions,
-                params.isEmpty() ? null : params.get(0));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 1) {
+//            return;
+//        }
+//
+//        final String[] fileNames = plugin.getLocalExpansionManager().getExpansionsFolder()
+//                .list((dir, name) -> name.endsWith(".jar"));
+//        if (fileNames == null || fileNames.length == 0) {
+//            return;
+//        }
+//
+//        suggestByParameter(Arrays.stream(fileNames), suggestions,
+//                params.isEmpty() ? null : params.get(0));
+//    }
 
 }

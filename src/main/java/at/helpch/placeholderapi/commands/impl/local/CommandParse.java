@@ -20,21 +20,21 @@
 
 package at.helpch.placeholderapi.commands.impl.local;
 
-import java.util.HashSet;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPI;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.Universe;
+import com.hypixel.hytale.server.core.universe.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -66,39 +66,45 @@ public final class CommandParse extends PlaceholderCommand {
         }
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        switch (alias.toLowerCase(Locale.ROOT)) {
-            case "parserel":
-                completeParseRelation(params, suggestions);
-                break;
-            case "parse":
-            case "bcparse":
-            case "cmdparse":
-                completeParseSingular(sender, params, suggestions);
-                break;
-        }
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIBootstrap plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        switch (alias.toLowerCase(Locale.ROOT)) {
+//            case "parserel":
+//                completeParseRelation(params, suggestions);
+//                break;
+//            case "parse":
+//            case "bcparse":
+//            case "cmdparse":
+//                completeParseSingular(sender, params, suggestions);
+//                break;
+//        }
+//    }
 
 
     private void evaluateParseSingular(@NotNull final CommandSender sender,
                                        @NotNull @Unmodifiable final List<String> params, final boolean broadcast,
                                        final boolean command) {
         if (params.size() < 2) {
-            Msg.msg(sender,
-                    "&cYou must provide a target and message: &b/papi "
-                            + (command ? "cmdparse" : (broadcast ? "bcparse" : "parse"))
-                            + " &7{target} &a{message}");
+            sender.sendMessage(Message.raw("You must provide a target and a message: ").color(Color.RED)
+                    .insert(Message.raw("/papi ").color(Color.CYAN))
+                    .insert(Message.raw(command ? "cmdparse" : (broadcast ? "bcparse" : "parse")).color(Color.CYAN))
+                    .insert(Message.raw(" {target}").color(Color.GRAY))
+                    .insert(Message.raw(" {message}").color(Color.GREEN)));
+//            Msg.msg(sender,
+//                    "&cYou must provide a target and message: &b/papi "
+//                            + (command ? "cmdparse" : (broadcast ? "bcparse" : "parse"))
+//                            + " &7{target} &a{message}");
             return;
         }
 
-        OfflinePlayer player;
+        Player player;
 
         if ("me".equalsIgnoreCase(params.get(0))) {
             if (!(sender instanceof Player)) {
-                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
+                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
+//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
@@ -106,9 +112,10 @@ public final class CommandParse extends PlaceholderCommand {
         } else if ("--null".equalsIgnoreCase(params.get(0))) {
             player = null;
         } else {
-            final OfflinePlayer target = resolvePlayer(params.get(0));
+            final Player target = resolvePlayer(params.get(0), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
             if (target == null) {
-                Msg.msg(sender, "&cFailed to find player: &7" + params.get(0));
+                sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
+//                Msg.msg(sender, "&cFailed to find player: &7" + params.get(0));
                 return;
             }
 
@@ -119,59 +126,71 @@ public final class CommandParse extends PlaceholderCommand {
                 .setPlaceholders(player, String.join(" ", params.subList(1, params.size())));
 
         if (command) {
-            Bukkit.dispatchCommand(sender, message);
+            sender.sendMessage(Message.raw("To be implemented")); // todo: implement
+//            Bukkit.dispatchCommand(sender, message);
             return;
         }
 
         if (broadcast) {
-            Bukkit.broadcastMessage(message);
+            Universe.get().sendMessage(Message.raw(message));
+//            Bukkit.broadcastMessage(message);
         } else {
-            sender.sendMessage(message);
+            sender.sendMessage(Message.raw(message));
         }
     }
 
     private void evaluateParseRelation(@NotNull final CommandSender sender,
                                        @NotNull @Unmodifiable final List<String> params) {
         if (params.size() < 3) {
-            Msg.msg(sender,
-                    "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} "
-                            + "{target two} &a{message}");
+            sender.sendMessage(Message.raw("You must supply two targets, and a message: ").color(Color.RED)
+                    .insert(Message.raw("/papi parserel ").color(Color.CYAN))
+                    .insert(Message.raw("{target one} {target two} ").color(Color.GRAY))
+                    .insert(Message.raw("{message}").color(Color.GREEN)));
+//            Msg.msg(sender,
+//                    "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} "
+//                            + "{target two} &a{message}");
             return;
         }
 
-        OfflinePlayer playerOne;
+        Player playerOne;
 
         if ("me".equalsIgnoreCase(params.get(0))) {
             if (!(sender instanceof Player)) {
-                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
+                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED)
+                        .insert(Message.raw("me").color(Color.GRAY))
+                        .insert(Message.raw(" as a target!").color(Color.RED)));
+//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
             playerOne = ((Player) sender);
         } else {
-            playerOne = resolvePlayer(params.get(0));
+            playerOne = resolvePlayer(params.get(0), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
         }
 
-        if (playerOne == null || !playerOne.isOnline()) {
-            Msg.msg(sender, "&cFailed to find player: &f" + params.get(0));
+        if (playerOne == null/* || !playerOne.isOnline()*/) {
+            sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
+//            Msg.msg(sender, "&cFailed to find player: &f" + params.get(0));
             return;
         }
 
-        OfflinePlayer playerTwo;
+        Player playerTwo;
 
         if ("me".equalsIgnoreCase(params.get(1))) {
             if (!(sender instanceof Player)) {
-                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
+                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
+//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
             playerTwo = ((Player) sender);
         } else {
-            playerTwo = resolvePlayer(params.get(1));
+            playerTwo = resolvePlayer(params.get(1), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
         }
 
-        if (playerTwo == null || !playerTwo.isOnline()) {
-            Msg.msg(sender, "&cFailed to find player: &f" + params.get(1));
+        if (playerTwo == null/* || !playerTwo.isOnline()*/) {
+            sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(1)).color(Color.WHITE)));
+//            Msg.msg(sender, "&cFailed to find player: &f" + params.get(1));
             return;
         }
 
@@ -179,7 +198,7 @@ public final class CommandParse extends PlaceholderCommand {
                 .setRelationalPlaceholders((Player) playerOne, (Player) playerTwo,
                         String.join(" ", params.subList(2, params.size())));
 
-        sender.sendMessage(message);
+        sender.sendMessage(Message.raw(message));
     }
 
 
@@ -195,7 +214,8 @@ public final class CommandParse extends PlaceholderCommand {
                 suggestions.add("--null");
             }
 
-            final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
+            final Stream<String> names = Universe.get().getPlayers().stream().map(PlayerRef::getUsername);
+//            final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
             suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 
             return;
@@ -211,8 +231,8 @@ public final class CommandParse extends PlaceholderCommand {
             return; // no arguments supplied yet
         }
 
-        final PlaceholderExpansion expansion = PlaceholderAPIPlugin.getInstance()
-                .getLocalExpansionManager().findExpansionByIdentifier(name.substring(1, index))
+        final PlaceholderExpansion expansion = PlaceholderAPIPlugin.instance()
+                .localExpansionManager().findExpansionByIdentifier(name.substring(1, index))
                 .orElse(null);
         if (expansion == null) {
             return;
@@ -220,37 +240,39 @@ public final class CommandParse extends PlaceholderCommand {
 
         final Set<String> possible = new HashSet<>(expansion.getPlaceholders());
 
-        PlaceholderAPIPlugin.getInstance()
-                .getCloudExpansionManager()
+        PlaceholderAPIPlugin.instance()
+                .cloudExpansionManager()
                 .findCloudExpansionByName(expansion.getName())
                 .ifPresent(cloud -> possible.addAll(cloud.getPlaceholders()));
 
         suggestByParameter(possible.stream(), suggestions, params.get(params.size() - 1));
     }
 
-    private void completeParseRelation(@NotNull @Unmodifiable final List<String> params,
-                                       @NotNull final List<String> suggestions) {
-        if (params.size() > 2) {
-            return;
-        }
-
-        final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
-        suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(params.size() - 1));
-    }
+//    private void completeParseRelation(@NotNull @Unmodifiable final List<String> params,
+//                                       @NotNull final List<String> suggestions) {
+//        if (params.size() > 2) {
+//            return;
+//        }
+//
+//        final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
+//        suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(params.size() - 1));
+//    }
 
 
     @Nullable
-    private OfflinePlayer resolvePlayer(@NotNull final String name) {
-        OfflinePlayer target = Bukkit.getPlayerExact(name);
+    private Player resolvePlayer(@NotNull final String name, @NotNull final World world) {
+//        Player target = Universe.get().getPlayerByUsername(name, NameMatching.EXACT);
+        final Optional<Player> target = world.getPlayers().stream().filter(player -> player.getDisplayName().equals(name)).findAny();
 
-        if (target == null) {
+        if (target.isEmpty()) {
             // Not the best option, but Spigot doesn't offer a good replacement (as usual)
-            target = Bukkit.getOfflinePlayer(name);
-
-            return target.hasPlayedBefore() ? target : null;
+//            target = Bukkit.getOfflinePlayer(name);
+//
+//            return target.hasPlayedBefore() ? target : null;
+            return null;
         }
 
-        return target;
+        return target.get();
 
     }
 

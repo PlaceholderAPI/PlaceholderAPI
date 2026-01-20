@@ -20,17 +20,15 @@
 
 package at.helpch.placeholderapi.expansion.manager;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.io.Resources;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
@@ -42,27 +40,23 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
-import at.helpch.placeholderapi.util.Msg;
+import com.hypixel.hytale.logger.HytaleLogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 public final class CloudExpansionManager {
 
     @NotNull
-    private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/";
+    private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/?platform=hytale";
 
     @NotNull
     private static final Gson GSON = new Gson();
@@ -76,6 +70,7 @@ public final class CloudExpansionManager {
 
     @NotNull
     private final PlaceholderAPIPlugin plugin;
+    private final HytaleLogger logger;
 
     @NotNull
     private final Map<String, CloudExpansion> cache = new HashMap<>();
@@ -83,11 +78,11 @@ public final class CloudExpansionManager {
     private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
 
     private final ExecutorService ASYNC_EXECUTOR =
-            Executors.newCachedThreadPool(
-                    new ThreadFactoryBuilder().setNameFormat("placeholderapi-io-#%1$d").build());
+            Executors.newCachedThreadPool(new LoggingThreadFactory("placeholderapi-io-#%1$d"));
 
     public CloudExpansionManager(@NotNull final PlaceholderAPIPlugin plugin) {
         this.plugin = plugin;
+        this.logger = plugin.getLogger();
     }
 
     @NotNull
@@ -112,7 +107,7 @@ public final class CloudExpansionManager {
     @NotNull
     @Unmodifiable
     public Map<String, CloudExpansion> getCloudExpansions() {
-        return ImmutableMap.copyOf(cache);
+        return Map.copyOf(cache);
     }
 
     @NotNull
@@ -152,7 +147,7 @@ public final class CloudExpansionManager {
     }
 
     public int getCloudUpdateCount() {
-        return ((int) plugin.getLocalExpansionManager()
+        return ((int) plugin.localExpansionManager()
                 .getExpansions()
                 .stream()
                 .filter(expansion -> findCloudExpansionByName(expansion.getName())
@@ -173,15 +168,24 @@ public final class CloudExpansionManager {
     }
 
     public void fetch() {
-        plugin.getLogger().info("Fetching available expansion information...");
+        logger.at(Level.INFO).log("Fetching available expansion information...");
 
         ASYNC_EXECUTOR.submit(
                 () -> {
                     // a defence tactic! use ConcurrentHashMap instead of normal HashMap
                     Map<String, CloudExpansion> values = new ConcurrentHashMap<>();
                     try {
+                        final URI uri = new URI(API_URL);
+                        final URLConnection connection = uri.toURL().openConnection();
+                        final String json;
+
+                        try (final InputStream input = connection.getInputStream()) {
+                            final BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+                            json = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+                        }
+
                         //noinspection UnstableApiUsage
-                        String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
+//                        String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
                         values.putAll(GSON.fromJson(json, TYPE));
 
                         List<String> toRemove = new ArrayList<>();
@@ -199,13 +203,13 @@ public final class CloudExpansionManager {
                         }
                     } catch (Throwable e) {
                         // ugly swallowing of every throwable, but we have to be defensive
-                        plugin.getLogger().log(Level.WARNING, "Failed to download expansion information", e);
+                        logger.atWarning().log("Failed to download expansion information", e);
                     }
 
                     // loop through what's left on the main thread
                     plugin
-                            .getScheduler()
-                            .runTask(
+                            .getTaskRegistry()
+                            .registerTask(CompletableFuture.runAsync(
                                     () -> {
                                         try {
                                             for (Map.Entry<String, CloudExpansion> entry : values.entrySet()) {
@@ -215,7 +219,7 @@ public final class CloudExpansionManager {
                                                 expansion.setName(name);
 
                                                 Optional<PlaceholderExpansion> localOpt =
-                                                        plugin.getLocalExpansionManager().findExpansionByName(name);
+                                                        plugin.localExpansionManager().findExpansionByName(name);
                                                 if (localOpt.isPresent()) {
                                                     PlaceholderExpansion local = localOpt.get();
                                                     if (local.isRegistered()) {
@@ -229,11 +233,9 @@ public final class CloudExpansionManager {
                                             }
                                         } catch (Throwable e) {
                                             // ugly swallowing of every throwable, but we have to be defensive
-                                            plugin
-                                                    .getLogger()
-                                                    .log(Level.WARNING, "Failed to download expansion information", e);
+                                            logger.atWarning().log("Failed to download expansion information", e);
                                         }
-                                    });
+                                    }));
                 });
     }
 
@@ -249,7 +251,7 @@ public final class CloudExpansionManager {
             return previous;
         }
 
-        final File file = new File(plugin.getLocalExpansionManager().getExpansionsFolder(),
+        final File file = new File(plugin.localExpansionManager().getExpansionsFolder(),
                 "Expansion-" + toIndexName(expansion) + ".jar");
 
         final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
@@ -266,7 +268,7 @@ public final class CloudExpansionManager {
             await.remove(toIndexName(expansion));
 
             if (exception != null) {
-                Msg.severe("Failed to download %s:%s", exception, expansion.getName(), expansion.getVersion());
+                logger.atSevere().log("Failed to download %s:%s %s", expansion.getName(), expansion.getVersion(), exception);
             }
         }, ASYNC_EXECUTOR);
 
@@ -275,4 +277,20 @@ public final class CloudExpansionManager {
         return download;
     }
 
+    private static final class LoggingThreadFactory implements ThreadFactory {
+        private final ThreadFactory backing = Executors.defaultThreadFactory();
+        private final String format;
+        private final AtomicLong count = new AtomicLong(0);
+
+        private LoggingThreadFactory(@NotNull final String format) {
+            this.format = format;
+        }
+
+        @Override
+        public Thread newThread(@NotNull final Runnable r) {
+            final Thread thread = backing.newThread(r);
+            thread.setName(String.format(format, count.getAndIncrement()));
+            return thread;
+        }
+    }
 }

@@ -20,10 +20,10 @@
 
 package at.helpch.placeholderapi.expansion;
 
-import org.bukkit.entity.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 
 /**
- * Classes implementing this interface will have a {@link #cleanup(Player) cleanup void} that is
+ * Classes implementing this interface will have a {@link #cleanup(PlayerRef) cleanup void} that is
  * called by PlaceholderAPI whenever a Player leaves the server.
  *
  * <p>This can be useful for cases where you keep data of the player in a cache or similar
@@ -38,5 +38,5 @@ public interface Cleanable {
      *
      * @param p (@link Player} who left the server
      */
-    void cleanup(Player p);
+    void cleanup(PlayerRef p);
 }

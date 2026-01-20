@@ -26,7 +26,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import at.helpch.placeholderapi.PlaceholderAPIBootstrap;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +45,7 @@ public abstract class PlaceholderCommand {
 
     protected PlaceholderCommand(@NotNull final String label, @NotNull final String... alias) {
         this.label = label;
-        this.alias = Sets.newHashSet(alias);
+        this.alias = Set.of(alias);
 
         setPermission("placeholderapi." + label);
     }
@@ -97,13 +96,13 @@ public abstract class PlaceholderCommand {
         this.permission = permission;
     }
 
-    public void evaluate(@NotNull final PlaceholderAPIBootstrap plugin,
+    public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
 
     }
 
-    public void complete(@NotNull final PlaceholderAPIBootstrap plugin,
+    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
 

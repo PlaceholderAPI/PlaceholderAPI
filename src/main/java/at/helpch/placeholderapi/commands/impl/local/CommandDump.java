@@ -20,19 +20,16 @@
 
 package at.helpch.placeholderapi.commands.impl.local;
 
-import at.helpch.placeholderapi.PlaceholderAPIBootstrap;
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import at.helpch.placeholderapi.util.Msg;
 import com.hypixel.hytale.common.plugin.AuthorInfo;
 import com.hypixel.hytale.common.util.java.ManifestUtil;
 import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
-import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.PluginBase;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -46,13 +43,11 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public final class CommandDump extends PlaceholderCommand {
@@ -75,7 +70,7 @@ public final class CommandDump extends PlaceholderCommand {
     }
 
     @Override
-    public void evaluate(@NotNull final PlaceholderAPIBootstrap plugin,
+    public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         postDump(makeDump(plugin)).whenComplete((key, exception) -> {
@@ -121,7 +116,7 @@ public final class CommandDump extends PlaceholderCommand {
     }
 
     @NotNull
-    private String makeDump(@NotNull final PlaceholderAPIBootstrap plugin) {
+    private String makeDump(@NotNull final PlaceholderAPIPlugin plugin) {
         final StringBuilder builder = new StringBuilder();
 
         builder.append("Generated: ")

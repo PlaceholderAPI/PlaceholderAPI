@@ -20,11 +20,9 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
-import com.google.common.collect.Lists;
-
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -35,8 +33,8 @@ import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
 import at.helpch.placeholderapi.util.Futures;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -53,9 +51,9 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
     private static CompletableFuture<List<@Nullable Class<? extends PlaceholderExpansion>>> downloadAndDiscover(
             @NotNull final List<CloudExpansion> expansions, @NotNull final PlaceholderAPIPlugin plugin) {
         return expansions.stream()
-                .map(expansion -> plugin.getCloudExpansionManager()
+                .map(expansion -> plugin.cloudExpansionManager()
                         .downloadExpansion(expansion, expansion.getVersion()))
-                .map(future -> future.thenCompose(plugin.getLocalExpansionManager()::findExpansionInFile))
+                .map(future -> future.thenCompose(plugin.localExpansionManager()::findExpansionInFile))
                 .collect(Futures.collector());
     }
 
@@ -64,8 +62,9 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
-            Msg.msg(sender,
-                    "&cYou must define 'all' or the name of an expansion to update.");
+            sender.sendMessage(Message.raw("You must define 'all' or the name of an expansion to update.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cYou must define 'all' or the name of an expansion to update.");
             return;
         }
 
@@ -74,9 +73,9 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
 
         // gather target expansions
         if (multiple) {
-            expansions.addAll(plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values());
+            expansions.addAll(plugin.cloudExpansionManager().getCloudExpansionsInstalled().values());
         } else {
-            plugin.getCloudExpansionManager().findCloudExpansionByName(params.get(0))
+            plugin.cloudExpansionManager().findCloudExpansionByName(params.get(0))
                     .ifPresent(expansions::add);
         }
 
@@ -84,60 +83,65 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
         expansions.removeIf(expansion -> !expansion.shouldUpdate());
 
         if (expansions.isEmpty()) {
-            Msg.msg(sender,
-                    "&cNo updates available for " + (!multiple ? "this expansion."
-                            : "your active expansions."));
+            sender.sendMessage(Message.raw("No updates available for " + (!multiple ? "this expansion." : "your active expansions.")).color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cNo updates available for " + (!multiple ? "this expansion."
+//                            : "your active expansions."));
             return;
         }
 
-        Msg.msg(sender,
-                "&aUpdating expansions: " + expansions.stream().map(CloudExpansion::getName)
-                        .collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r")));
+        sender.sendMessage(Message.raw("Updating expansions: " + expansions.stream().map(CloudExpansion::getName).collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r"))).color(Color.GREEN));
+//        Msg.msg(sender,
+//                "&aUpdating expansions: " + expansions.stream().map(CloudExpansion::getName)
+//                        .collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r")));
 
         Futures.onMainThread(plugin, downloadAndDiscover(expansions, plugin), (classes, exception) -> {
             if (exception != null) {
-                Msg.msg(sender,
-                        "&cFailed to update expansions: &e" + exception.getMessage());
+                sender.sendMessage(Message.raw("Failed to update expansions: ").color(Color.RED).insert(Message.raw(exception.getMessage()).color(Color.YELLOW)));
+//                Msg.msg(sender,
+//                        "&cFailed to update expansions: &e" + exception.getMessage());
                 return;
             }
 
-            Msg.msg(sender,
-                    "&aSuccessfully downloaded updates, registering new versions.");
+            sender.sendMessage(Message.raw("Successfully downloaded updates, registering new versions.").color(Color.GREEN));
+//            Msg.msg(sender,
+//                    "&aSuccessfully downloaded updates, registering new versions.");
 
             final String message = classes.stream()
                     .filter(Objects::nonNull)
-                    .map(plugin.getLocalExpansionManager()::register)
+                    .map(plugin.localExpansionManager()::register)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .map(expansion -> "  &a" + expansion.getName() + " &f" + expansion.getVersion())
                     .collect(Collectors.joining("\n"));
 
-            Msg.msg(sender,
-                    "&7Registered expansions:", message);
+            sender.sendMessage(Message.raw("&7Registered expansions: \n" + message));
+//            Msg.msg(sender,
+//                    "&7Registered expansions:", message);
 
         });
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 1) {
-            return;
-        }
-
-        final List<CloudExpansion> installed = Lists
-                .newArrayList(plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values());
-        installed.removeIf(expansion -> !expansion.shouldUpdate());
-
-        if (!installed.isEmpty() && (params.isEmpty() || "all"
-                .startsWith(params.get(0).toLowerCase(Locale.ROOT)))) {
-            suggestions.add("all");
-        }
-
-        suggestByParameter(
-                installed.stream().map(CloudExpansion::getName).map(name -> name.replace(" ", "_")),
-                suggestions, params.isEmpty() ? null : params.get(0));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 1) {
+//            return;
+//        }
+//
+//        final List<CloudExpansion> installed = Lists
+//                .newArrayList(plugin.getCloudExpansionManager().getCloudExpansionsInstalled().values());
+//        installed.removeIf(expansion -> !expansion.shouldUpdate());
+//
+//        if (!installed.isEmpty() && (params.isEmpty() || "all"
+//                .startsWith(params.get(0).toLowerCase(Locale.ROOT)))) {
+//            suggestions.add("all");
+//        }
+//
+//        suggestByParameter(
+//                installed.stream().map(CloudExpansion::getName).map(name -> name.replace(" ", "_")),
+//                suggestions, params.isEmpty() ? null : params.get(0));
+//    }
 
 }

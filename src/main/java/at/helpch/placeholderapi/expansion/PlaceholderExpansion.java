@@ -21,15 +21,16 @@
 package at.helpch.placeholderapi.expansion;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.PlaceholderHook;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
+import com.hypixel.hytale.server.core.HytaleServer;
+import com.hypixel.hytale.server.core.plugin.PluginBase;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -124,7 +125,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      * @return true if the identifier for this expansion is already registered
      */
     public final boolean isRegistered() {
-        return getPlaceholderAPI().getLocalExpansionManager().findExpansionByIdentifier(getIdentifier())
+        return getPlaceholderAPI().localExpansionManager().findExpansionByIdentifier(getIdentifier())
                 .map(it -> it.equals(this)).orElse(false);
     }
 
@@ -137,7 +138,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      */
     public boolean canRegister() {
         return getRequiredPlugin() == null
-                || Bukkit.getPluginManager().getPlugin(getRequiredPlugin()) != null;
+                || HytaleServer.get().getPluginManager().getPlugins().stream().map(PluginBase::getName).anyMatch(getRequiredPlugin()::equals);
     }
 
     /**
@@ -146,7 +147,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      * @return true if this expansion is now registered with PlaceholderAPI
      */
     public boolean register() {
-        return getPlaceholderAPI().getLocalExpansionManager().register(this);
+        return getPlaceholderAPI().localExpansionManager().register(this);
     }
 
     /**
@@ -155,7 +156,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      * @return true if this expansion is now unregistered with PlaceholderAPI
      */
     public final boolean unregister() {
-        return getPlaceholderAPI().getLocalExpansionManager().unregister(this);
+        return getPlaceholderAPI().localExpansionManager().unregister(this);
     }
 
 
@@ -166,7 +167,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      */
     @NotNull
     public final PlaceholderAPIPlugin getPlaceholderAPI() {
-        return PlaceholderAPIPlugin.getInstance();
+        return PlaceholderAPIPlugin.instance();
     }
 
     /**
@@ -200,131 +201,136 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      *
      * @return ConfigurationSection that this expansion has.
      */
-    @Nullable
-    public final ConfigurationSection getConfigSection() {
-        return getPlaceholderAPI().getConfig().getConfigurationSection("expansions." + getIdentifier());
-    }
-
-    /**
-     * Gets the ConfigurationSection relative to the {@link #getConfigSection() default one} set
-     * by the expansion or null when the default ConfigurationSection is null
-     *
-     * @param path The path to get the ConfigurationSection from. This is relative to the default section
-     * @return ConfigurationSection relative to the default section
-     */
-    @Nullable
-    public final ConfigurationSection getConfigSection(@NotNull final String path) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? null : section.getConfigurationSection(path);
-    }
-
-    /**
-     * Gets the Object relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the provided Default Object, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the Object from. This is relative to the default section
-     * @param def  The default Object to return when the ConfigurationSection returns null
-     * @return Object from the provided path or the default one provided
-     */
-    @Nullable
-    @Contract("_, !null -> !null")
-    public final Object get(@NotNull final String path, final Object def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.get(path, def);
-    }
-
-    /**
-     * Gets the int relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the provided Default int, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the int from. This is relative to the default section
-     * @param def  The default int to return when the ConfigurationSection returns null
-     * @return int from the provided path or the default one provided
-     */
-    public final int getInt(@NotNull final String path, final int def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.getInt(path, def);
-    }
-
-    /**
-     * Gets the long relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the provided Default long, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the long from. This is relative to the default section
-     * @param def  The default long to return when the ConfigurationSection returns null
-     * @return long from the provided path or the default one provided
-     */
-    public final long getLong(@NotNull final String path, final long def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.getLong(path, def);
-    }
-
-    /**
-     * Gets the double relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the provided Default double, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the double from. This is relative to the default section
-     * @param def  The default double to return when the ConfigurationSection returns null
-     * @return double from the provided path or the default one provided
-     */
-    public final double getDouble(@NotNull final String path, final double def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.getDouble(path, def);
-    }
-
-    /**
-     * Gets the String relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the provided Default String, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the String from. This is relative to the default section
-     * @param def  The default String to return when the ConfigurationSection returns null. Can be null
-     * @return String from the provided path or the default one provided
-     */
-    @Nullable
-    @Contract("_, !null -> !null")
-    public final String getString(@NotNull final String path, @Nullable final String def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.getString(path, def);
-    }
-
-    /**
-     * Gets a String List relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or an empty List, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the String list from. This is relative to the default section
-     * @return String list from the provided path or an empty list
-     */
     @NotNull
-    public final List<String> getStringList(@NotNull final String path) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? Collections.emptyList() : section.getStringList(path);
+    public final Map<String, Object> getExpansionConfig() {
+        return (Map<String, Object>) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), new HashMap<>());
     }
 
-    /**
-     * Gets the boolean relative to the {@link #getConfigSection() default ConfigurationSection} set
-     * by the expansion or the default boolean, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the boolean from. This is relative to the default section
-     * @param def  The default boolean to return when the ConfigurationSection is null
-     * @return boolean from the provided path or the default one provided
-     */
-    public final boolean getBoolean(@NotNull final String path, final boolean def) {
-        final ConfigurationSection section = getConfigSection();
-        return section == null ? def : section.getBoolean(path, def);
+    @Nullable
+    public final <T> T getExpansionConfig(@NotNull final Class<? extends Configurable<T>> configurableType) {
+        return (T) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), null);
     }
 
-    /**
-     * Whether the {@link #getConfigSection() default ConfigurationSection} contains the provided path
-     * or not. This will return {@code false} when either the default section is null, or doesn't
-     * contain the provided path
-     *
-     * @param path The path to check
-     * @return true when the default ConfigurationSection is not null and contains the path, false otherwise
-     */
-    public final boolean configurationContains(@NotNull final String path) {
-        final ConfigurationSection section = getConfigSection();
-        return section != null && section.contains(path);
-    }
+//    /**
+//     * Gets the ConfigurationSection relative to the {@link #getConfigSection() default one} set
+//     * by the expansion or null when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the ConfigurationSection from. This is relative to the default section
+//     * @return ConfigurationSection relative to the default section
+//     */
+//    @Nullable
+//    public final ConfigurationSection getConfigSection(@NotNull final String path) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? null : section.getConfigurationSection(path);
+//    }
+
+//    /**
+//     * Gets the Object relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the provided Default Object, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the Object from. This is relative to the default section
+//     * @param def  The default Object to return when the ConfigurationSection returns null
+//     * @return Object from the provided path or the default one provided
+//     */
+//    @Nullable
+//    @Contract("_, !null -> !null")
+//    public final Object get(@NotNull final String path, final Object def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.get(path, def);
+//    }
+
+//    /**
+//     * Gets the int relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the provided Default int, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the int from. This is relative to the default section
+//     * @param def  The default int to return when the ConfigurationSection returns null
+//     * @return int from the provided path or the default one provided
+//     */
+//    public final int getInt(@NotNull final String path, final int def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.getInt(path, def);
+//    }
+//
+//    /**
+//     * Gets the long relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the provided Default long, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the long from. This is relative to the default section
+//     * @param def  The default long to return when the ConfigurationSection returns null
+//     * @return long from the provided path or the default one provided
+//     */
+//    public final long getLong(@NotNull final String path, final long def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.getLong(path, def);
+//    }
+//
+//    /**
+//     * Gets the double relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the provided Default double, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the double from. This is relative to the default section
+//     * @param def  The default double to return when the ConfigurationSection returns null
+//     * @return double from the provided path or the default one provided
+//     */
+//    public final double getDouble(@NotNull final String path, final double def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.getDouble(path, def);
+//    }
+//
+//    /**
+//     * Gets the String relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the provided Default String, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the String from. This is relative to the default section
+//     * @param def  The default String to return when the ConfigurationSection returns null. Can be null
+//     * @return String from the provided path or the default one provided
+//     */
+//    @Nullable
+//    @Contract("_, !null -> !null")
+//    public final String getString(@NotNull final String path, @Nullable final String def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.getString(path, def);
+//    }
+//
+//    /**
+//     * Gets a String List relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or an empty List, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the String list from. This is relative to the default section
+//     * @return String list from the provided path or an empty list
+//     */
+//    @NotNull
+//    public final List<String> getStringList(@NotNull final String path) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? Collections.emptyList() : section.getStringList(path);
+//    }
+//
+//    /**
+//     * Gets the boolean relative to the {@link #getConfigSection() default ConfigurationSection} set
+//     * by the expansion or the default boolean, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the boolean from. This is relative to the default section
+//     * @param def  The default boolean to return when the ConfigurationSection is null
+//     * @return boolean from the provided path or the default one provided
+//     */
+//    public final boolean getBoolean(@NotNull final String path, final boolean def) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section == null ? def : section.getBoolean(path, def);
+//    }
+//
+//    /**
+//     * Whether the {@link #getConfigSection() default ConfigurationSection} contains the provided path
+//     * or not. This will return {@code false} when either the default section is null, or doesn't
+//     * contain the provided path
+//     *
+//     * @param path The path to check
+//     * @return true when the default ConfigurationSection is not null and contains the path, false otherwise
+//     */
+//    public final boolean configurationContains(@NotNull final String path) {
+//        final ConfigurationSection section = getConfigSection();
+//        return section != null && section.contains(path);
+//    }
 
     /**
      * Logs the provided message with the provided Level in the console.
@@ -334,7 +340,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      * @param msg   The message to log
      */
     public void log(Level level, String msg) {
-        getPlaceholderAPI().getLogger().log(level, "[" + getName() + "] " + msg);
+        getPlaceholderAPI().getLogger().at(level).log("[" + getName() + "] " + msg);
     }
 
     /**
@@ -346,7 +352,7 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
      * @param throwable The Throwable to log
      */
     public void log(Level level, String msg, Throwable throwable) {
-        getPlaceholderAPI().getLogger().log(level, "[" + getName() + "] " + msg, throwable);
+        getPlaceholderAPI().getLogger().at(level).log("[" + getName() + "] " + msg, throwable);
     }
 
     /**

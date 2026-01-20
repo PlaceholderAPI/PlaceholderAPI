@@ -29,8 +29,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import com.hypixel.hytale.server.core.universe.Universe;
 import org.jetbrains.annotations.NotNull;
 
 public final class Futures {
@@ -42,11 +41,9 @@ public final class Futures {
                                         @NotNull final CompletableFuture<T> future,
                                         @NotNull final BiConsumer<T, Throwable> consumer) {
         future.whenComplete((value, exception) -> {
-            if (Bukkit.isPrimaryThread()) {
-                consumer.accept(value, exception);
-            } else {
-                plugin.getScheduler().runTask(() -> consumer.accept(value, exception));
-            }
+            Universe.get().getDefaultWorld().execute(() -> consumer.accept(value, exception));
+//            plugin.getTaskRegistry().registerTask(() -> consumer.accept(value, exception));
+//            plugin.getScheduler().runTask(() -> consumer.accept(value, exception));
         });
     }
 

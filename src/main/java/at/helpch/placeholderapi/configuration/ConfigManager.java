@@ -1,6 +1,6 @@
 package at.helpch.placeholderapi.configuration;
 
-import at.helpch.placeholderapi.PlaceholderAPIBootstrap;
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,6 +62,11 @@ public final class ConfigManager {
 
     }
 
+    @NotNull
+    public <T> T convertExpansion(@NotNull final Map<String, Object> expansionConfig, @NotNull final Class<T> type) {
+        return GSON.fromJson(GSON.toJsonTree(expansionConfig), type);
+    }
+
     @Nullable
     private Path createFile(@NotNull final String internalPath, @NotNull final String externalPath) {
         final Path file = Paths.get(externalPath);
@@ -94,7 +98,7 @@ public final class ConfigManager {
 
     private boolean exportResource(@NotNull final String internalPath, @NotNull final String externalPath) {
         try {
-            Files.copy(PlaceholderAPIBootstrap.class.getResourceAsStream(internalPath), Paths.get(externalPath),
+            Files.copy(PlaceholderAPIPlugin.class.getResourceAsStream(internalPath), Paths.get(externalPath),
                     StandardCopyOption.REPLACE_EXISTING);
 
             return true;

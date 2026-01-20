@@ -23,14 +23,15 @@ package at.helpch.placeholderapi.replacer;
 import java.util.function.Function;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.OfflinePlayer;
+import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public interface Replacer {
 
     @NotNull
-    String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
+    String apply(@NotNull final String text, @Nullable final Player player,
                  @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup);
 
 

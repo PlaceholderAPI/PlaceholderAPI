@@ -21,8 +21,7 @@
 package at.helpch.placeholderapi.events;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
+import com.hypixel.hytale.event.IEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -34,21 +33,12 @@ import org.jetbrains.annotations.NotNull;
  * <br>This includes removing any Listeners, stopping active tasks and clearing the cache of
  * the PlaceholderExpansion.
  */
-public final class ExpansionUnregisterEvent extends Event {
-
-    @NotNull
-    private static final HandlerList HANDLERS = new HandlerList();
-
+public final class ExpansionUnregisterEvent implements IEvent<ExpansionUnregisterEvent> {
     @NotNull
     private final PlaceholderExpansion expansion;
 
     public ExpansionUnregisterEvent(@NotNull final PlaceholderExpansion expansion) {
         this.expansion = expansion;
-    }
-
-    @NotNull
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
     }
 
     /**
@@ -59,12 +49,6 @@ public final class ExpansionUnregisterEvent extends Event {
     @NotNull
     public PlaceholderExpansion getExpansion() {
         return expansion;
-    }
-
-    @NotNull
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
     }
 
 }

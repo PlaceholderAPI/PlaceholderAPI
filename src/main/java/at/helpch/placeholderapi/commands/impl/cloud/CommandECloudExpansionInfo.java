@@ -20,15 +20,14 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
+import java.awt.*;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -43,16 +42,18 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
         if (params.isEmpty()) {
-            Msg.msg(sender,
-                    "&cYou must specify the name of the expansion.");
+            sender.sendMessage(Message.raw("You must specify the name of the expansion.").color(Color.RED));
+//            Msg.msg(sender,
+//                    "&cYou must specify the name of the expansion.");
             return;
         }
 
-        final CloudExpansion expansion = plugin.getCloudExpansionManager()
+        final CloudExpansion expansion = plugin.cloudExpansionManager()
                 .findCloudExpansionByName(params.get(0)).orElse(null);
         if (expansion == null) {
-            Msg.msg(sender,
-                    "&cThere is no expansion with the name: &f" + params.get(0));
+            sender.sendMessage(Message.raw("There is no expansion with the name: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
+//            Msg.msg(sender,
+//                    "&cThere is no expansion with the name: &f" + params.get(0));
             return;
         }
 
@@ -83,9 +84,13 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
         } else {
             final CloudExpansion.Version version = expansion.getVersion(params.get(1));
             if (version == null) {
-                Msg.msg(sender,
-                        "&cCould not find specified version: &f" + params.get(1),
-                        "&aVersions: &f" + expansion.getAvailableVersions());
+                sender.sendMessage(Message.raw("Could not find specified version: ").color(Color.RED)
+                        .insert(Message.raw(params.get(1)).color(Color.WHITE))
+                        .insert(Message.raw("\nVersions: ").color(Color.GREEN))
+                        .insert(Message.raw(expansion.getAvailableVersions().toString()).color(Color.WHITE)));
+//                Msg.msg(sender,
+//                        "&cCould not find specified version: &f" + params.get(1),
+//                        "&aVersions: &f" + expansion.getAvailableVersions());
                 return;
             }
 
@@ -103,31 +108,31 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
                     .append('\n');
         }
 
-        Msg.msg(sender, builder.toString());
+        sender.sendMessage(Message.raw(builder.toString())); // todo: convert colors
     }
 
-    @Override
-    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
-                         @NotNull final CommandSender sender, @NotNull final String alias,
-                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-        if (params.size() > 2) {
-            return;
-        }
-
-        if (params.size() <= 1) {
-            final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values()
-                    .stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
-            suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
-            return;
-        }
-
-        final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager()
-                .findCloudExpansionByName(params.get(0));
-        if (!expansion.isPresent()) {
-            return;
-        }
-
-        suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
-    }
+//    @Override
+//    public void complete(@NotNull final PlaceholderAPIPlugin plugin,
+//                         @NotNull final CommandSender sender, @NotNull final String alias,
+//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
+//        if (params.size() > 2) {
+//            return;
+//        }
+//
+//        if (params.size() <= 1) {
+//            final Stream<String> names = plugin.getCloudExpansionManager().getCloudExpansions().values()
+//                    .stream().map(CloudExpansion::getName).map(name -> name.replace(' ', '_'));
+//            suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
+//            return;
+//        }
+//
+//        final Optional<CloudExpansion> expansion = plugin.getCloudExpansionManager()
+//                .findCloudExpansionByName(params.get(0));
+//        if (!expansion.isPresent()) {
+//            return;
+//        }
+//
+//        suggestByParameter(expansion.get().getAvailableVersions().stream(), suggestions, params.get(1));
+//    }
 
 }

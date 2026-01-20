@@ -20,6 +20,8 @@
 
 package at.helpch.placeholderapi.expansion;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Map;
 
 /**
@@ -41,17 +43,23 @@ import java.util.Map;
  *
  * @author Ryan McCarthy
  */
-public interface Configurable {
+public interface Configurable<T> {
 
-    /**
-     * The map returned by this method will be used to set config options in PlaceholderAPI's config.yml.
-     *
-     * <p>The key and value pairs are set under a section named after your
-     * {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion} in the
-     * {@code expansions} section of the config.
-     *
-     * @return Map of config path / values which need to be added / removed from the PlaceholderAPI
-     * config.yml file
-     */
-    Map<String, Object> getDefaults();
+    @NotNull
+    Class<T> provideConfigType();
+
+    @NotNull
+    T provideDefault();
+
+//    /**
+//     * The map returned by this method will be used to set config options in PlaceholderAPI's config.yml.
+//     *
+//     * <p>The key and value pairs are set under a section named after your
+//     * {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion} in the
+//     * {@code expansions} section of the config.
+//     *
+//     * @return Map of config path / values which need to be added / removed from the PlaceholderAPI
+//     * config.yml file
+//     */
+//    Map<String, Object> getDefaults();
 }

@@ -21,9 +21,8 @@
 package at.helpch.placeholderapi.events;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
+import com.hypixel.hytale.event.ICancellable;
+import com.hypixel.hytale.event.IEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -33,21 +32,13 @@ import org.jetbrains.annotations.NotNull;
  * <p>To know when <b>all</b> Expansions have been registered, use the
  * {@link at.helpch.placeholderapi.events.ExpansionsLoadedEvent ExpansionsLoadedEvent} instead.
  */
-public final class ExpansionRegisterEvent extends Event implements Cancellable {
-
-    @NotNull
-    private static final HandlerList HANDLERS = new HandlerList();
+public final class ExpansionRegisterEvent implements IEvent<Void>, ICancellable {
     @NotNull
     private final PlaceholderExpansion expansion;
     private boolean cancelled;
 
     public ExpansionRegisterEvent(@NotNull final PlaceholderExpansion expansion) {
         this.expansion = expansion;
-    }
-
-    @NotNull
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
     }
 
     /**
@@ -78,12 +69,6 @@ public final class ExpansionRegisterEvent extends Event implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
-    }
-
-    @NotNull
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
     }
 
 }

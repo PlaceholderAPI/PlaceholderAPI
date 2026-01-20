@@ -22,8 +22,88 @@ package at.helpch.placeholderapi.configuration;
 
 import com.google.gson.annotations.JsonAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public record PlaceholderAPIConfig(boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
-                                   @NotNull BooleanValue booleanValue, @NotNull String dateFormat) {
+import java.util.HashMap;
+import java.util.Map;
 
+public final class PlaceholderAPIConfig {
+    private boolean cloudEnabled;
+    private boolean debugMode;
+    private ExpansionSort cloudSorting;
+    private BooleanValue booleanValue;
+    private String dateFormat;
+    private Map<String, Object> expansions;
+
+    public PlaceholderAPIConfig(boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
+                                @NotNull BooleanValue booleanValue, @NotNull String dateFormat) {
+        this.cloudEnabled = cloudEnabled;
+        this.debugMode = debugMode;
+        this.cloudSorting = cloudSorting;
+        this.booleanValue = booleanValue;
+        this.dateFormat = dateFormat;
+        this.expansions = new HashMap<>();
+    }
+
+    public PlaceholderAPIConfig(boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
+                                @NotNull BooleanValue booleanValue, @NotNull String dateFormat, Map<String, Object> expansions) {
+        this.cloudEnabled = cloudEnabled;
+        this.debugMode = debugMode;
+        this.cloudSorting = cloudSorting;
+        this.booleanValue = booleanValue;
+        this.dateFormat = dateFormat;
+        this.expansions = expansions;
+    }
+
+    public boolean cloudEnabled() {
+        return cloudEnabled;
+    }
+
+    public void cloudEnabled(final boolean value) {
+        cloudEnabled = value;
+    }
+
+    public boolean debugMode() {
+        return debugMode;
+    }
+
+    public void debugMode(final boolean value) {
+        debugMode = value;
+    }
+
+    @NotNull
+    public ExpansionSort cloudSorting() {
+        return cloudSorting;
+    }
+
+    public void cloudSorting(@NotNull final ExpansionSort value) {
+        cloudSorting = value;
+    }
+
+    @NotNull
+    public BooleanValue booleanValue() {
+        return booleanValue;
+    }
+
+    public void booleanValue(@NotNull final BooleanValue value) {
+        booleanValue = value;
+    }
+
+    @NotNull
+    public String dateFormat() {
+        return dateFormat;
+    }
+
+    public void dateFormat(@NotNull final String value) {
+        dateFormat = value;
+    }
+
+    @NotNull
+    public Map<String, Object> expansions() {
+        return expansions;
+    }
+
+    public void expansions(@NotNull final Map<String, Object> value) {
+        expansions = value;
+    }
 }

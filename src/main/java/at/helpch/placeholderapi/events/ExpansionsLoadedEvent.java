@@ -25,8 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
+import com.hypixel.hytale.event.IEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -37,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>All PlaceholderExpansions, except for those loaded by plugins, are loaded
  * after Spigot triggered its ServerLoadEvent (1.13+), or after PlaceholderAPI has been enabled.
  */
-public class ExpansionsLoadedEvent extends Event {
+public class ExpansionsLoadedEvent implements IEvent<ExpansionsLoadedEvent> {
 
     private final List<PlaceholderExpansion> expansions;
 
@@ -56,19 +55,5 @@ public class ExpansionsLoadedEvent extends Event {
     @NotNull
     public final List<PlaceholderExpansion> getExpansions() {
         return expansions;
-    }
-
-    @NotNull
-    private static final HandlerList HANDLERS = new HandlerList();
-
-    @NotNull
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
-    }
-
-    @NotNull
-    public static HandlerList getHandlerList() {
-        return HANDLERS;
     }
 }

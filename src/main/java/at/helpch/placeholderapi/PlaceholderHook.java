@@ -20,19 +20,20 @@
 
 package at.helpch.placeholderapi;
 
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
+import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class PlaceholderHook {
     @Nullable
-    public String onRequest(final OfflinePlayer player, @NotNull final String params) {
-        if (player != null && player.isOnline()) {
-            return onPlaceholderRequest(player.getPlayer(), params);
-        }
+    public String onRequest(final Player player, @NotNull final String params) {
+//        Player player2;
+//        if (player != null && player.isOnline()) {
+//            return onPlaceholderRequest(player.getPlayer(), params);
+//        }
 
-        return onPlaceholderRequest(null, params);
+        return onPlaceholderRequest(player, params);
     }
 
     @Nullable

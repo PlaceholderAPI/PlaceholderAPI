@@ -20,17 +20,17 @@
 
 package at.helpch.placeholderapi.commands.impl.local;
 
-import com.google.common.collect.Lists;
-
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import at.helpch.placeholderapi.PlaceholderAPI;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
-import at.helpch.placeholderapi.util.Msg;
-import org.bukkit.command.CommandSender;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.command.system.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -45,19 +45,44 @@ public final class CommandList extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        final Set<String> identifiers = PlaceholderAPI.getRegisteredIdentifiers();
+        final List<String> identifiers = new ArrayList<>(PlaceholderAPI.getRegisteredIdentifiers());
         if (identifiers.isEmpty()) {
-            Msg.msg(sender, "&cThere are no placeholder hooks active!");
+            sender.sendMessage(Message.raw("There are no placeholder hooks active!").color(Color.RED));
+//            Msg.msg(sender, "&cThere are no placeholder hooks active!");
             return;
         }
 
-        final List<List<String>> partitions = Lists
-                .partition(identifiers.stream().sorted().collect(Collectors.toList()), 10);
 
-        Msg.msg(sender,
-                "&7A total of &f" + identifiers.size() + "&7 placeholder hook(s) are active: &a",
-                partitions.stream().map(partition -> String.join("&7, &a", partition))
-                        .collect(Collectors.joining("\n")));
+        final List<List<String>> partitions = new ArrayList<>(IntStream.range(0, identifiers.size()).boxed().collect(Collectors.groupingBy(i -> i/10, Collectors.mapping(identifiers::get, Collectors.toList()))).values());
+//        final List<List<String>> partitions = Lists
+//                .partition(identifiers.stream().sorted().collect(Collectors.toList()), 10);
+
+        Message message = Message.raw("A total of ").color(Color.GRAY)
+                .insert(Message.raw(identifiers.size() + " ").color(Color.WHITE))
+                .insert(Message.raw("placeholder hook(s) are active: ").color(Color.GRAY));
+
+        for (int i = 0; i < partitions.size(); ++i) {
+            final List<String> partition = partitions.get(i);
+
+            for (int j = 0; j < partition.size(); ++j) {
+                message = message.insert(Message.raw(partition.get(j)).color(Color.GREEN));
+
+                if (j != partition.size() - 1) {
+                    message = message.insert(Message.raw(", ").color(Color.GRAY));
+                }
+            }
+
+            if (i != partitions.size() - 1) {
+                message = message.insert(Message.raw("\n"));
+            }
+        }
+
+        sender.sendMessage(message);
+
+//        Msg.msg(sender,
+//                "&7A total of &f" + identifiers.size() + "&7 placeholder hook(s) are active: &a",
+//                partitions.stream().map(partition -> String.join("&7, &a", partition))
+//                        .collect(Collectors.joining("\n")));
     }
 
 }
