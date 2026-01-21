@@ -87,8 +87,11 @@ public final class PlaceholderAPIConfig {
         return plugin.getConfig().getString("boolean.false", "false");
     }
 
+    public boolean useAdventureProvidedReplacer() {
+        return plugin.getConfig().getBoolean("use_adventure_provided_replacer", false);
+    }
+
     public boolean detectMaliciousExpansions() {
         return plugin.getConfig().getBoolean("detect_malicious_expansions", true);
     }
-
 }

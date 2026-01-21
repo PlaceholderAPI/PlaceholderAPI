@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi;
 
+import me.clip.placeholderapi.replacer.ComponentReplacer;
 import me.clip.placeholderapi.replacer.ExactReplacer;
 import me.clip.placeholderapi.replacer.RelationalExactReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
@@ -49,8 +50,9 @@ public final class PAPIComponents {
     @NotNull
     public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
         // TODO: explore a custom TextReplacementRenderer which doesn't use regex for performance benefits i.e. merge CharsReplacer with kyori TextReplacementRenderer
-        return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) ->
-                builder.content(PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+        return ComponentReplacer.replace(player, component);
+//        return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) ->
+//                builder.content(PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
     }
 
     /**
