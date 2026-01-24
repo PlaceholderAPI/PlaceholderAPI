@@ -29,14 +29,20 @@ import java.util.concurrent.CompletableFuture;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.impl.cloud.CommandECloud;
 import at.helpch.placeholderapi.commands.impl.local.*;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.*;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
 
-public final class PlaceholderCommandRouter extends AbstractCommand {
+public final class PlaceholderCommandRouter extends AbstractPlayerCommand {
 
     @Unmodifiable
     private static final List<PlaceholderCommand> COMMANDS = List.of(new CommandHelp(),
@@ -78,11 +84,49 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
         this.commands = commands;
     }
 
+//    @Override
+//    @NotNull
+//    public CompletableFuture<Void> acceptCall(@NotNull final CommandSender sender, @NotNull final ParserContext parserContext,
+//                                                        @NotNull final ParseResult parseResult) {
+//        final String[] args = parserContext.getInputString().replace("papi ", "").split(" ");
+//
+//        if (args.length == 0) {
+//            final PlaceholderCommand fallback = commands.get("version");
+//            if (fallback != null) {
+//                fallback.evaluate(plugin, sender, "", Collections.emptyList());
+//            }
+//
+//            return CompletableFuture.completedFuture(null);
+//        }
+//
+//        final String search = args[0].toLowerCase(Locale.ROOT);
+//        final PlaceholderCommand target = commands.get(search);
+//
+//        if (target == null) {
+//            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
+//
+////            Msg.msg(sender, "&cUnknown command &7" + search);
+//            return CompletableFuture.completedFuture(null);
+//        }
+//
+//        final String permission = target.getPermission();
+//        if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
+//            sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
+//
+////            Msg.msg(sender, "&cYou do not have permission to do this!");
+//            return CompletableFuture.completedFuture(null);
+//        }
+//
+//        target
+//                .evaluate(plugin, sender, search, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
+//
+//        return CompletableFuture.completedFuture(null);
+//    }
+
     @Override
-    @NotNull
-    public CompletableFuture<Void> acceptCall(@NotNull final CommandSender sender, @NotNull final ParserContext parserContext,
-                                                        @NotNull final ParseResult parseResult) {
-        final String[] args = parserContext.getInputString().replace("papi ", "").split(" ");
+    protected void execute(@NotNull final CommandContext context, @NotNull final Store<EntityStore> var2, @NotNull final Ref<EntityStore> var3, @NotNull final PlayerRef var4, @NotNull final World var5) {
+        final String[] args = context.getInputString().replace("papi ", "").split(" ");
+        final CommandSender sender = context.sender();
 
         if (args.length == 0) {
             final PlaceholderCommand fallback = commands.get("version");
@@ -90,7 +134,7 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
                 fallback.evaluate(plugin, sender, "", Collections.emptyList());
             }
 
-            return CompletableFuture.completedFuture(null);
+            return;
         }
 
         final String search = args[0].toLowerCase(Locale.ROOT);
@@ -100,7 +144,7 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
             sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
 
 //            Msg.msg(sender, "&cUnknown command &7" + search);
-            return CompletableFuture.completedFuture(null);
+            return;
         }
 
         final String permission = target.getPermission();
@@ -108,20 +152,21 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
             sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
 
 //            Msg.msg(sender, "&cYou do not have permission to do this!");
-            return CompletableFuture.completedFuture(null);
+            return;
         }
 
         target
                 .evaluate(plugin, sender, search, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
 
-        return CompletableFuture.completedFuture(null);
+        return;
     }
 
-    @Override
-    @Nullable
-    protected CompletableFuture<Void> execute(@NotNull final CommandContext commandContext) {
-        return null;
-    }
+
+//    @Override
+//    @Nullable
+//    protected CompletableFuture<Void> execute(@NotNull final CommandContext commandContext) {
+//        return null;
+//    }
 
 //    @Override
 //    public List<String> onTabComplete(@NotNull final CommandSender sender,
