@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.0"
+version = "1.0.1-DEV"
 
 description = "An awesome placeholder provider!"
 
