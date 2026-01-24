@@ -25,6 +25,7 @@ import java.util.function.Function;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +41,7 @@ public final class CharsReplacer implements Replacer {
 
     @NotNull
     @Override
-    public String apply(@NotNull final String text, @Nullable final Player player,
+    public String apply(@NotNull final String text, @Nullable final PlayerRef player,
                         @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
         final char[] chars = text.toCharArray();
         final StringBuilder builder = new StringBuilder(text.length());

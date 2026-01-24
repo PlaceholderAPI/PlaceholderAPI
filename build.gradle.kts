@@ -14,12 +14,16 @@ description = "An awesome placeholder provider!"
 repositories {
     mavenCentral()
     mavenLocal()
+
+    maven {
+        url = uri("https://repo.codemc.io/repository/hytale/")
+    }
 }
 
 dependencies {
     implementation("org.yaml:snakeyaml:2.5")
 
-    compileOnly(files("libs/HytaleServer.jar"))
+    compileOnly("com.hypixel.hytale:Server:2026.01.17-4b0f30090")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 }
 

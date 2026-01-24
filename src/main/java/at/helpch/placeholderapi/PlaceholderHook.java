@@ -25,19 +25,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class PlaceholderHook {
+public interface PlaceholderHook {
     @Nullable
-    public String onRequest(final Player player, @NotNull final String params) {
-//        Player player2;
-//        if (player != null && player.isOnline()) {
-//            return onPlaceholderRequest(player.getPlayer(), params);
-//        }
-
-        return onPlaceholderRequest(player, params);
-    }
-
-    @Nullable
-    public String onPlaceholderRequest(final Player player, @NotNull final String params) {
-        return null;
-    }
+    String onPlaceholderRequest(final PlayerRef player, @NotNull final String params);
 }

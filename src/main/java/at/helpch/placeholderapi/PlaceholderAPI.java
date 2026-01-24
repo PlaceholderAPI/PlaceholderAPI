@@ -31,10 +31,12 @@ import java.util.stream.Collectors;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.Relational;
 import at.helpch.placeholderapi.replacer.CharsReplacer;
+import at.helpch.placeholderapi.replacer.MessageReplacer;
 import at.helpch.placeholderapi.replacer.Replacer;
 import at.helpch.placeholderapi.replacer.Replacer.Closure;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.jetbrains.annotations.NotNull;
 
 public final class PlaceholderAPI {
@@ -62,47 +64,25 @@ public final class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     @NotNull
-    public static String setPlaceholders(final Player player,
+    public static String setPlaceholders(final PlayerRef player,
                                          @NotNull final String text) {
         return REPLACER_PERCENT.apply(text, player,
                 PlaceholderAPIPlugin.instance().localExpansionManager()::getExpansion);
     }
 
-    public static Message setPlaceholders(final Player player,
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+     *
+     * @param player   Player to parse the placeholders against
+     * @param original Message to set the placeholder values in
+     * @return Message containing all translated placeholders
+     */
+    @NotNull
+    public static Message setPlaceholders(final PlayerRef player,
                                           @NotNull final Message original) {
-        String replaced = setPlaceholders(player, original.getFormattedMessage().rawText);
-        String link = original.getFormattedMessage().link == null ? null : PlaceholderAPI.setPlaceholders(player, original.getFormattedMessage().link);
-
-        List<Message> newChildren = original.getChildren().stream()
-                .filter(Objects::nonNull)
-                .map(child -> setPlaceholders(player, child))
-                .toList();
-
-        Message message = Message.raw(replaced)
-                .color(original.getColor());
-
-        if (link != null) {
-            message = message.link(link);
-        }
-
-        int bold = original.getFormattedMessage().bold.getValue();
-        if (bold != 0) {
-            message = message.bold(bold != 1);
-        }
-
-        int italic = original.getFormattedMessage().italic.getValue();
-        if (italic != 0) {
-            message = message.italic(italic != 1);
-        }
-
-        return message.insertAll(newChildren);
+        return MessageReplacer.replace(original, str -> setPlaceholders(player, str));
     }
-
-//    @NotNull
-//    public static Message setPlaceholders(final Player player,
-//                                          @NotNull final Message message) {
-//
-//    }
 
     /**
      * Translates all placeholders into their corresponding values.
@@ -113,10 +93,24 @@ public final class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     @NotNull
-    public static List<String> setPlaceholders(final Player player,
+    public static List<String> setPlaceholders(final PlayerRef player,
                                                @NotNull final List<String> text) {
         return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
     }
+
+//    /**
+//     * Translates all placeholders into their corresponding values.
+//     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+//     *
+//     * @param player   Player to parse the placeholders against
+//     * @param original List of Messages to set the placeholder values in
+//     * @return List of Message containing all translated placeholders
+//     */
+//    @NotNull
+//    public static List<Message> setPlaceholders(final Player player,
+//                                               @NotNull final List<Message> original) {
+//        return original.stream().map(msg -> setPlaceholders(player, msg)).collect(Collectors.toList());
+//    }
 
 //    /**
 //     * Translates all placeholders into their corresponding values.
@@ -153,10 +147,16 @@ public final class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     @NotNull
-    public static String setBracketPlaceholders(final Player player,
+    public static String setBracketPlaceholders(final PlayerRef player,
                                                 @NotNull final String text) {
         return REPLACER_BRACKET.apply(text, player,
                 PlaceholderAPIPlugin.instance().localExpansionManager()::getExpansion);
+    }
+
+    @NotNull
+    public static Message setBracketPlaceholders(final PlayerRef player,
+                                                 @NotNull final Message original) {
+        return MessageReplacer.replace(original, str -> setBracketPlaceholders(player, str));
     }
 
     /**
@@ -168,7 +168,7 @@ public final class PlaceholderAPI {
      * @return String containing all translated placeholders
      */
     @NotNull
-    public static List<@NotNull String> setBracketPlaceholders(final Player player,
+    public static List<@NotNull String> setBracketPlaceholders(final PlayerRef player,
                                                                @NotNull final List<@NotNull String> text) {
         return text.stream().map(line -> setBracketPlaceholders(player, line))
                 .collect(Collectors.toList());

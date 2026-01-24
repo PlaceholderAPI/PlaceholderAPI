@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public interface Replacer {
 
     @NotNull
-    String apply(@NotNull final String text, @Nullable final Player player,
+    String apply(@NotNull final String text, @Nullable final PlayerRef player,
                  @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup);
 
 
