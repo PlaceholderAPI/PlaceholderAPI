@@ -26,12 +26,10 @@ import java.util.Map;
 
 /**
  * Implementing this interface allows {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansions}
- * to set a list of default configuration values through the {@link #getDefaults() getDefaults method}
- * that should be added to the config.yml of PlaceholderAPI.
+ * allows you to map an object to a section of yaml in the main config.yml.
  *
  * <p>The entries will be added under {@code expansions} as their own section.
  * <h2>Example:</h2>
- * returning a Map with key {@code foo} and value {@code bar} will result in the following config entry:
  *
  * <pre><code>
  * expansions:
