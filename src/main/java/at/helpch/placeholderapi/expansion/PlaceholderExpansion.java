@@ -230,7 +230,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
 //    }
 
     /**
-     * Gets the Object relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the Object relative to the config section set
      * by the expansion or the provided Default Object, when the default ConfigurationSection is null
      *
      * @param path The path to get the Object from. This is relative to the default section
@@ -258,7 +258,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets the int relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the int relative to the config section set
      * by the expansion or the provided Default int, when the default ConfigurationSection is null
      *
      * @param path The path to get the int from. This is relative to the default section
@@ -276,7 +276,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets the long relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the long relative to the config section set
      * by the expansion or the provided Default long, when the default ConfigurationSection is null
      *
      * @param path The path to get the long from. This is relative to the default section
@@ -294,7 +294,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets the double relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the double relative to the config section set
      * by the expansion or the provided Default double, when the default ConfigurationSection is null
      *
      * @param path The path to get the double from. This is relative to the default section
@@ -312,7 +312,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets the String relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the String relative to the config section set
      * by the expansion or the provided Default String, when the default ConfigurationSection is null
      *
      * @param path The path to get the String from. This is relative to the default section
@@ -332,7 +332,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets a String List relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets a String List relative to the config section set
      * by the expansion or an empty List, when the default ConfigurationSection is null
      *
      * @param path The path to get the String list from. This is relative to the default section
@@ -350,7 +350,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Gets the boolean relative to the {@link #getConfigSection() default ConfigurationSection} set
+     * Gets the boolean relative to the config section set
      * by the expansion or the default boolean, when the default ConfigurationSection is null
      *
      * @param path The path to get the boolean from. This is relative to the default section
@@ -368,7 +368,7 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
     }
 
     /**
-     * Whether the {@link #getConfigSection() default ConfigurationSection} contains the provided path
+     * Whether the config section contains the provided path
      * or not. This will return {@code false} when either the default section is null, or doesn't
      * contain the provided path
      *
