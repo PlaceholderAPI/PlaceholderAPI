@@ -111,9 +111,9 @@ public final class CommandParse extends PlaceholderCommand {
 
             if (sender instanceof Player) {
                 player = ((Player) sender).getPlayerRef();
+            } else {
+                player = (PlayerRef) sender;
             }
-
-            player = (PlayerRef) sender;
         } else if ("--null".equalsIgnoreCase(params.get(0))) {
             player = null;
         } else {
@@ -170,9 +170,9 @@ public final class CommandParse extends PlaceholderCommand {
 
             if (sender instanceof Player) {
                 playerOne = ((Player) sender).getPlayerRef();
+            } else {
+                playerOne = (PlayerRef) sender;
             }
-
-            playerOne = (PlayerRef) sender;
         } else {
             playerOne = resolvePlayer(params.get(0));
         }
@@ -194,9 +194,9 @@ public final class CommandParse extends PlaceholderCommand {
 
             if (sender instanceof Player) {
                 playerTwo = ((Player) sender).getPlayerRef();
+            } else {
+                playerTwo = (PlayerRef) sender;
             }
-
-            playerTwo = (PlayerRef) sender;
         } else {
             playerTwo = resolvePlayer(params.get(1));
         }
