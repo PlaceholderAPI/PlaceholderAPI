@@ -45,7 +45,7 @@ tasks {
     }
 
     withType<ShadowJar> {
-        archiveClassifier.set("")
+        archiveClassifier.set("hytale")
 
         relocate("org.yaml.snakeyaml", "at.helpch.placeholderapi.libs.yaml")
 
