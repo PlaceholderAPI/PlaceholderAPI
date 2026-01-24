@@ -30,6 +30,7 @@ import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.NameMatching;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -99,20 +100,24 @@ public final class CommandParse extends PlaceholderCommand {
             return;
         }
 
-        Player player;
+        PlayerRef player;
 
-        if ("me".equalsIgnoreCase(params.get(0))) {
-            if (!(sender instanceof Player)) {
+        if ("me".equalsIgnoreCase(params.getFirst())) {
+            if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
 //                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
-            player = ((Player) sender);
+            if (sender instanceof Player) {
+                player = ((Player) sender).getPlayerRef();
+            }
+
+            player = (PlayerRef) sender;
         } else if ("--null".equalsIgnoreCase(params.get(0))) {
             player = null;
         } else {
-            final Player target = resolvePlayer(params.get(0), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
+            final PlayerRef target = resolvePlayer(params.get(0));
             if (target == null) {
                 sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
 //                Msg.msg(sender, "&cFailed to find player: &7" + params.get(0));
@@ -152,10 +157,10 @@ public final class CommandParse extends PlaceholderCommand {
             return;
         }
 
-        Player playerOne;
+        PlayerRef playerOne;
 
         if ("me".equalsIgnoreCase(params.get(0))) {
-            if (!(sender instanceof Player)) {
+            if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED)
                         .insert(Message.raw("me").color(Color.GRAY))
                         .insert(Message.raw(" as a target!").color(Color.RED)));
@@ -163,9 +168,13 @@ public final class CommandParse extends PlaceholderCommand {
                 return;
             }
 
-            playerOne = ((Player) sender);
+            if (sender instanceof Player) {
+                playerOne = ((Player) sender).getPlayerRef();
+            }
+
+            playerOne = (PlayerRef) sender;
         } else {
-            playerOne = resolvePlayer(params.get(0), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
+            playerOne = resolvePlayer(params.get(0));
         }
 
         if (playerOne == null/* || !playerOne.isOnline()*/) {
@@ -174,18 +183,22 @@ public final class CommandParse extends PlaceholderCommand {
             return;
         }
 
-        Player playerTwo;
+        PlayerRef playerTwo;
 
         if ("me".equalsIgnoreCase(params.get(1))) {
-            if (!(sender instanceof Player)) {
+            if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
 //                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
-            playerTwo = ((Player) sender);
+            if (sender instanceof Player) {
+                playerTwo = ((Player) sender).getPlayerRef();
+            }
+
+            playerTwo = (PlayerRef) sender;
         } else {
-            playerTwo = resolvePlayer(params.get(1), sender instanceof Player ? ((Player) sender).getWorld() : Universe.get().getDefaultWorld());
+            playerTwo = resolvePlayer(params.get(1));
         }
 
         if (playerTwo == null/* || !playerTwo.isOnline()*/) {
@@ -195,7 +208,7 @@ public final class CommandParse extends PlaceholderCommand {
         }
 
         final String message = PlaceholderAPI
-                .setRelationalPlaceholders((Player) playerOne, (Player) playerTwo,
+                .setRelationalPlaceholders(playerOne, playerTwo,
                         String.join(" ", params.subList(2, params.size())));
 
         sender.sendMessage(Message.raw(message));
@@ -260,20 +273,20 @@ public final class CommandParse extends PlaceholderCommand {
 
 
     @Nullable
-    private Player resolvePlayer(@NotNull final String name, @NotNull final World world) {
+    private PlayerRef resolvePlayer(@NotNull final String name) {
 //        Player target = Universe.get().getPlayerByUsername(name, NameMatching.EXACT);
-        final Optional<Player> target = world.getPlayers().stream().filter(player -> player.getDisplayName().equals(name)).findAny();
-
-        if (target.isEmpty()) {
-            // Not the best option, but Spigot doesn't offer a good replacement (as usual)
-//            target = Bukkit.getOfflinePlayer(name);
+//        final Optional<Player> target = world.getPlayers().stream().filter(player -> player.getDisplayName().equals(name)).findAny();
 //
-//            return target.hasPlayedBefore() ? target : null;
-            return null;
-        }
-
-        return target.get();
-
+//        if (target.isEmpty()) {
+//            // Not the best option, but Spigot doesn't offer a good replacement (as usual)
+////            target = Bukkit.getOfflinePlayer(name);
+////
+////            return target.hasPlayedBefore() ? target : null;
+//            return null;
+//        }
+//
+//        return target.get();
+        return Universe.get().getPlayerByUsername(name, NameMatching.EXACT);
     }
 
 }

@@ -26,8 +26,13 @@ import java.util.regex.Pattern;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.PlaceholderHook;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.HytaleServer;
+import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.plugin.PluginBase;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -526,4 +531,16 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
 
     }
 
+    @Nullable
+    public static Player player(@NotNull final PlayerRef target) {
+        final Ref<EntityStore> ref = target.getReference();
+
+        if (ref == null || !ref.isValid()) {
+            return null;
+        }
+
+        final Store<EntityStore> store = ref.getStore();
+
+        return store.isInThread() ? store.getComponent(ref, Player.getComponentType()) : null;
+    }
 }

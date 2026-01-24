@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.0-experifuckingmental"
+version = "1.0.0"
 
 description = "An awesome placeholder provider!"
 
@@ -37,8 +37,44 @@ java {
     disableAutoTargetJvm()
 }
 
+val javaComponent: SoftwareComponent = components["java"]
+
 tasks {
     processResources {
         eachFile { expand("version" to project.version) }
     }
+
+    withType<ShadowJar> {
+        archiveClassifier.set("")
+
+        relocate("org.yaml.snakeyaml", "at.helpch.placeholderapi.libs.yaml")
+
+        exclude("META-INF/versions/**")
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                artifactId = "placeholderapi-hytale"
+                from(javaComponent)
+            }
+        }
+
+        repositories {
+            maven {
+                if ("-DEV" in version.toString()) {
+                    url = uri("https://repo.extendedclip.com/snapshots")
+                } else {
+                    url = uri("https://repo.extendedclip.com/releases")
+                }
+
+                credentials {
+                    username = System.getenv("JENKINS_USER")
+                    password = System.getenv("JENKINS_PASS")
+                }
+            }
+        }
+    }
+
+    publish.get().setDependsOn(listOf(build.get()))
 }

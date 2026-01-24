@@ -209,7 +209,7 @@ public final class PlaceholderAPI {
      * @param text Text to parse the placeholders in
      * @return The text containing the parsed relational placeholders
      */
-    public static String setRelationalPlaceholders(Player one, Player two, String text) {
+    public static String setRelationalPlaceholders(PlayerRef one, PlayerRef two, String text) {
         final Matcher matcher = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
 
         while (matcher.find()) {
@@ -248,7 +248,7 @@ public final class PlaceholderAPI {
      * @param text text to parse the placeholder values to
      * @return The text containing the parsed relational placeholders
      */
-    public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text) {
+    public static List<String> setRelationalPlaceholders(PlayerRef one, PlayerRef two, List<String> text) {
         return text.stream().map(line -> setRelationalPlaceholders(one, two, line))
                 .collect(Collectors.toList());
     }

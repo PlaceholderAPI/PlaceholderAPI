@@ -21,6 +21,7 @@
 package at.helpch.placeholderapi.expansion;
 
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 
 /**
  * Implementing this interface allows your {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansion}
@@ -39,5 +40,5 @@ public interface Relational {
      * @param identifier The text right after the expansion's name (%expansion_<b>identifier</b>%)
      * @return Parsed String from the expansion.
      */
-    String onPlaceholderRequest(Player one, Player two, String identifier);
+    String onPlaceholderRequest(PlayerRef one, PlayerRef two, String identifier);
 }

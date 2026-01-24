@@ -107,5 +107,4 @@ public abstract class PlaceholderCommand {
                          @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
 
     }
-
 }
