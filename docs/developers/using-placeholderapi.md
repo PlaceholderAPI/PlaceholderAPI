@@ -11,28 +11,29 @@ Please note, that the examples in this page are only available for **Placeholder
 ## First steps
 
 Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
-Use the below code example matching your dependency manager.
+Use the below code example matching your project type and dependency manager.
 
-/// tab | :simple-apachemaven: Maven
+/// tab | Minecraft (Spigot, Paper, ...)
+//// tab | :simple-apachemaven: Maven
 ```{ .xml title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/releases/</url>
+            <url>https://repo.helpch.at/releases/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-         <groupId>me.clip</groupId>
-          <artifactId>placeholderapi</artifactId>
-          <version>{version}</version>
-         <scope>provided</scope>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>{version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 ```
-///
+////
 
-/// tab | :simple-gradle: Gradle
+//// tab | :simple-gradle: Gradle
 ```{ .groovy title="build.gradle" data-md-component="api-version" }
 repositories {
     maven {
@@ -44,6 +45,56 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:{version}'
 }
 ```
+////
+///
+
+/// tab | Hytale
+//// tab | :simple-apachemaven: Maven
+```{ .xml title="pom.xml" data-md-component="api-version" }
+    <repositories>
+        <repository>
+          <id>hytale</id>
+          <url>https://repo.codemc.io/repository/hytale/</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.helpch.at/releases/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <!-- Replace {hytaleVersion} with the version you need -->
+            <groupId>com.hypixel.hytale</groupId>
+            <artifactId>Server</artifactId>
+            <version>{hytaleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>at.helpch</groupId>
+            <artifactId>placeholderapi-hytale</artifactId>
+            <version>{version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+```
+////
+
+//// tab | :simple-gradle: Gradle
+```{ .groovy title="build.gradle" data-md-component="api-version" }
+repositories {
+    maven {
+        url = 'https://repo.codemc.io/repository/hytale/'
+        url = 'https://repo.helpch.at/releases/'
+    }
+}
+
+dependencies {
+    // Replace {hytaleVersion} with the version you need.
+    compileOnly 'com.hypixel.hytale:Server:{hytaleVersion}'
+    compileOnly 'at.helpch:placeholderapi-hytale:{version}'
+}
+```
+////
 ///
 
 /// details | What is `{version}`?
@@ -71,7 +122,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 softdepend: ["PlaceholderAPI"] # (1)
 ```
@@ -89,7 +140,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 depend: ["PlaceholderAPI"] # (1)
 ```
@@ -111,7 +162,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 dependencies:
   server:
@@ -134,7 +185,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 dependencies:
   server:
@@ -145,6 +196,42 @@ dependencies:
 
 1.  Load order is relative to the Dependency.  
     This means that in this example, PlaceholderAPI is loaded **before** your plugin.
+////
+
+///
+
+/// tab | manifest.json (Hytale)
+
+//// tab | Optional dependency
+
+```{ .json .annotate title="manifest.json" }
+{
+    "Group": "com.example",
+    "Name": "ExamplePlugin",
+    "Version": "1.0",
+    "Main": "com.example.plugin.ExamplePlugin",
+    "OptionalDependencies": {
+        "HelpChat:PlaceholderAPI": ">= 2.12.0"
+    }
+}
+```
+
+////
+
+//// tab | Required dependency
+
+```{ .json .annotate title="manifest.json" }
+{
+    "Group": "com.example",
+    "Name": "ExamplePlugin",
+    "Version": "1.0",
+    "Main": "com.example.plugin.ExamplePlugin",
+    "Dependencies": {
+        "HelpChat:PlaceholderAPI": ">= 2.12.0"
+    }
+}
+```
+
 ////
 
 ///
@@ -160,11 +247,9 @@ To use placeholders from other plugins in our own plugin, we simply have to [(so
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
 
-/// details | Example
-    type: example
+/// tab | Spigot, Paper, ...
 
-Let's assume we want to send a custom join message that shows the primary group a player has.  
-To achieve this, we can do the following:
+The following is an example plugin that sends `%player_name% joined the server! They are rank %vault_rank%` as the Join message, having the placeholders be replaced by PlaceholderAPI.
 
 //// note |
 The below example assumes a **soft dependency** on PlaceholderAPI to handle PlaceholderAPI not being present more decently.
@@ -173,7 +258,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 ////
 
 ```{ .java .annotate title="JoinExample.java" }
-package at.helpch.placeholderapi;
+package com.example.plugin;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 
@@ -215,4 +300,45 @@ public class JoinExample extends JavaPlugin implements Listener {
     In our example are we providing a text containing `%player_name%` and `%vault_rank%` to be parsed, which require the Player and Vault expansion respectively.
     
     Example output: `Notch joined the server! They are rank Admin`
+
+///
+
+/// tab | Hytale
+
+The following is an example plugin that sends `%player_name% joined the server! They are rank %vault_rank%` as the Join message, having the placeholders be replaced by PlaceholderAPI.
+
+``` { .java .annotate title="JoinExample.java" }
+packate com.example.plugin;
+
+import at.helpch.placeholderapi.PlaceholderAPI;
+
+import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+
+public class JoinExample extends JavaPlugin {
+
+    public JoinExample(JavaPluginInit init) {
+        super(init)
+    }
+
+    @Override
+    protected void setup() {
+        // (1)
+        getEventRegistry().registerGlobal(PlayerReadyEvent.class, this::onPlayerReady);
+    }
+
+    public void onPlayerReady(PlayerReadyEvent event) {
+        Player player = event.getPlayer();
+        // (2)
+        player.sendMessage(PlaceholderAPI.setPlaceholders(Message.raw("Welcome %player_name%!"), player))
+    }
+}
+```
+
+1.  We tell the server to call `onPlayerReady` whenever a `PlayerReadyEvent` fires.
+2.  PlaceholderAPI offers multiple `setPlaceholders` methods that can either return a `String` or a `Message` object, depending on your needs.  
+    Note that these methods require input of the same type: `setPlaceholders(String, PlayerRef)` for String and `setPlaceholders(Message, PlayerRef)` for Messages.
+
 ///
