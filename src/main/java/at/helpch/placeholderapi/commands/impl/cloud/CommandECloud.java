@@ -76,7 +76,7 @@ public final class CommandECloud extends PlaceholderCommand {
                     .insert(Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true))
                     .insert(Message.raw("- ").color(Color.DARK_GRAY))
                     .insert(Message.raw("eCloud Help Menu ").color(Color.GRAY))
-                    .insert(Message.raw("-\n\n").color(Color.DARK_GRAY));
+                    .insert(Message.raw("-\n").color(Color.DARK_GRAY));
 
             final List<String[]> commands = List.of(
                     new String[]{"ecloud status", "View status of the eCloud"},
@@ -90,7 +90,7 @@ public final class CommandECloud extends PlaceholderCommand {
             );
 
             for (String[] command : commands) {
-                message = message.insert(Message.raw("/papi").color(Color.CYAN))
+                message = message.insert(Message.raw("\n/papi ").color(Color.CYAN))
                         .insert(Message.raw(command[0]).color(Color.WHITE))
                         .insert(Message.raw("\n  " + command[1]).color(Color.GRAY));
             }

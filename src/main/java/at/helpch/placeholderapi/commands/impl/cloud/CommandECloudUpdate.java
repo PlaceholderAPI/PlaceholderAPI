@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
@@ -90,7 +89,17 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
             return;
         }
 
-        sender.sendMessage(Message.raw("Updating expansions: " + expansions.stream().map(CloudExpansion::getName).collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r"))).color(Color.GREEN));
+        Message expansionList = Message.raw("[").color(Color.DARK_GRAY);
+        for (int i = 0; i < expansions.size(); i++) {
+            if (i > 0) {
+                expansionList = expansionList.insert(Message.raw(", ").color(Color.GRAY));
+            }
+            expansionList = expansionList.insert(Message.raw(expansions.get(i).getName()).color(Color.ORANGE));
+        }
+        expansionList = expansionList.insert(Message.raw("]").color(Color.DARK_GRAY));
+
+        sender.sendMessage(Message.raw("Updating expansions: ").color(Color.GREEN)
+                .insert(expansionList));
 //        Msg.msg(sender,
 //                "&aUpdating expansions: " + expansions.stream().map(CloudExpansion::getName)
 //                        .collect(Collectors.joining("&7, &6", "&8[&6", "&8]&r")));
@@ -107,15 +116,28 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
 //            Msg.msg(sender,
 //                    "&aSuccessfully downloaded updates, registering new versions.");
 
-            final String message = classes.stream()
+                final List<PlaceholderExpansion> registered = classes.stream()
                     .filter(Objects::nonNull)
                     .map(plugin.localExpansionManager()::register)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
-                    .map(expansion -> "  &a" + expansion.getName() + " &f" + expansion.getVersion())
-                    .collect(Collectors.joining("\n"));
+                    .toList();
 
-            sender.sendMessage(Message.raw("&7Registered expansions: \n" + message));
+                Message registeredMessage = Message.raw("Registered expansions:\n").color(Color.GRAY);
+                for (int i = 0; i < registered.size(); i++) {
+                final PlaceholderExpansion expansion = registered.get(i);
+                registeredMessage = registeredMessage
+                    .insert(Message.raw("  ").color(Color.GRAY))
+                    .insert(Message.raw(expansion.getName()).color(Color.GREEN))
+                    .insert(Message.raw(" ").color(Color.GRAY))
+                    .insert(Message.raw(expansion.getVersion()).color(Color.WHITE));
+
+                if (i < registered.size() - 1) {
+                    registeredMessage = registeredMessage.insert(Message.raw("\n"));
+                }
+                }
+
+                sender.sendMessage(registeredMessage);
 //            Msg.msg(sender,
 //                    "&7Registered expansions:", message);
 

@@ -48,7 +48,7 @@ public final class CommandHelp extends PlaceholderCommand {
 
         final Message message = Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true)
                 .insert(Message.raw("- ").color(Color.DARK_GRAY).bold(false))
-                .insert(Message.raw("Help Menu ").color(Color.GRAY).bold(false))
+                .insert(Message.raw("Help Menu ").color(Color.WHITE).bold(false))
                 .insert(Message.raw("- ").color(Color.DARK_GRAY).bold(false))
                 .insert(Message.raw("(").color(Color.GRAY).bold(false))
                 .insert(Message.raw(description.getVersion().toString()).color(Color.WHITE).bold(false))
@@ -102,10 +102,10 @@ public final class CommandHelp extends PlaceholderCommand {
                 .insert(Message.raw(command).color(Color.WHITE));
 
         if (arguments != null) {
-            message = message.insert(" " + arguments).color(Color.BLUE);
+            message = message.insert(" " + arguments).color(Color.CYAN);
         }
 
         return message
-                .insert(Message.raw("\n  " + description).color(Color.GRAY).italic(true));
+                .insert(Message.raw("\n  " + description).color(Color.gray).bold(false));
     }
 }

@@ -58,10 +58,10 @@ public final class CommandInfo extends PlaceholderCommand {
         }
 
         Message message = Message.empty()
-                .insert(Message.raw("Placeholder expansion info for: &r").color(Color.GRAY))
+                .insert(Message.raw("Placeholder expansion info for:").color(Color.GRAY))
                 .insert(Message.raw(expansion.getName() + "\n").color(Color.WHITE))
                 .insert(Message.raw("Status: ").color(Color.GRAY))
-                .insert(Message.raw(expansion.isRegistered() ? "Registered" : "Not Registered").color(expansion.isRegistered() ? Color.GRAY : Color.RED))
+                .insert(Message.raw(expansion.isRegistered() ? "Registered" : "Not Registered").color(expansion.isRegistered() ? Color.GREEN : Color.RED))
                 .insert("\n");
 
         final String author = expansion.getAuthor();

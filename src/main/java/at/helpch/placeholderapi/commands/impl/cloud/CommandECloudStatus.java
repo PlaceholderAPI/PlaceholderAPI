@@ -20,6 +20,7 @@
 
 package at.helpch.placeholderapi.commands.impl.cloud;
 
+import java.awt.*;
 import java.util.List;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
@@ -46,20 +47,24 @@ public final class CommandECloudStatus extends PlaceholderCommand {
         final int authorCount = manager.getCloudExpansionAuthorCount();
         final int expansionCount = manager.getCloudExpansions().size();
 
-        final StringBuilder builder = new StringBuilder();
-
-        builder.append("&bThere are &a").append(expansionCount)
-                .append("&b expansions available on the eCloud.").append('\n');
-        builder.append("&7A total of &f").append(authorCount)
-                .append("&7 authors have contributed to the eCloud.").append('\n');
+        Message message = Message.raw("There are ").color(Color.CYAN)
+            .insert(Message.raw(String.valueOf(expansionCount)).color(Color.GREEN))
+            .insert(Message.raw(" expansions available on the eCloud.\n").color(Color.CYAN))
+            .insert(Message.raw("A total of ").color(Color.GRAY))
+            .insert(Message.raw(String.valueOf(authorCount)).color(Color.WHITE))
+            .insert(Message.raw(" authors have contributed Hytale expansions to the eCloud.\n").color(Color.GRAY));
 
         if (updateCount > 0) {
-            builder.append("&eYou have &f").append(updateCount)
-                    .append(updateCount > 1 ? "&e expansions" : "&e expansion").append(" installed that ")
-                    .append(updateCount > 1 ? "have an" : "has an").append(" update available.");
+            message = message
+                .insert(Message.raw("You have ").color(Color.YELLOW))
+                .insert(Message.raw(String.valueOf(updateCount)).color(Color.WHITE))
+                .insert(Message.raw(updateCount > 1 ? " expansions" : " expansion").color(Color.YELLOW))
+                .insert(Message.raw(" installed that ").color(Color.YELLOW))
+                .insert(Message.raw(updateCount > 1 ? "have an" : "has an").color(Color.YELLOW))
+                .insert(Message.raw(" update available.").color(Color.YELLOW));
         }
 
-        sender.sendMessage(Message.raw(builder.toString()));
+        sender.sendMessage(message);
 //        Msg.msg(sender, builder.toString());
     }
 

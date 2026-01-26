@@ -57,36 +57,31 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
             return;
         }
 
-        final StringBuilder builder = new StringBuilder();
-
-        builder.append("&bExpansion: &f")
-                .append(expansion.shouldUpdate() ? "&e" : "&a")
-                .append(expansion.getName())
-                .append('\n')
-                .append("&bAuthor: &f")
-                .append(expansion.getAuthor())
-                .append('\n');
+        Message message = Message.raw("Expansion: ").color(Color.CYAN)
+            .insert(Message.raw(expansion.getName()).color(expansion.shouldUpdate() ? Color.YELLOW : Color.GREEN))
+            .insert(Message.raw("\nAuthor: ").color(Color.CYAN))
+            .insert(Message.raw(expansion.getAuthor()).color(Color.WHITE))
+            .insert(Message.raw("\n"));
 
         if (params.size() < 2) {
-            builder.append("&bLatest Version: &f")
-                    .append(expansion.getLatestVersion())
-                    .append('\n')
-                    .append("&bReleased: &f")
-                    .append(expansion.getTimeSinceLastUpdate())
-                    .append(" ago")
-                    .append('\n')
-                    .append("&bVerified: ")
-                    .append(expansion.getVersion().isVerified() ? "&a&l✔" : "&c&l❌")
-                    .append('\n')
-                    .append("&bRelease Notes: &f")
-                    .append(expansion.getVersion().getReleaseNotes())
-                    .append('\n');
+                message = message
+                    .insert(Message.raw("Latest Version: ").color(Color.CYAN))
+                    .insert(Message.raw(expansion.getLatestVersion()).color(Color.WHITE))
+                    .insert(Message.raw("\nReleased: ").color(Color.CYAN))
+                    .insert(Message.raw(expansion.getTimeSinceLastUpdate() + " ago").color(Color.WHITE))
+                    .insert(Message.raw("\nVerified: ").color(Color.CYAN))
+                    .insert(Message.raw(expansion.getVersion().isVerified() ? "YES" : "NO")
+                        .color(expansion.getVersion().isVerified() ? Color.GREEN : Color.RED)
+                        .bold(true))
+                    .insert(Message.raw("\nRelease Notes: ").color(Color.CYAN))
+                    .insert(Message.raw(expansion.getVersion().getReleaseNotes()).color(Color.WHITE))
+                    .insert(Message.raw("\n"));
         } else {
             final CloudExpansion.Version version = expansion.getVersion(params.get(1));
             if (version == null) {
                 sender.sendMessage(Message.raw("Could not find specified version: ").color(Color.RED)
                         .insert(Message.raw(params.get(1)).color(Color.WHITE))
-                        .insert(Message.raw("\nVersions: ").color(Color.GREEN))
+                    .insert(Message.raw("\nVersions: ").color(Color.GREEN))
                         .insert(Message.raw(expansion.getAvailableVersions().toString()).color(Color.WHITE)));
 //                Msg.msg(sender,
 //                        "&cCould not find specified version: &f" + params.get(1),
@@ -94,21 +89,21 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
                 return;
             }
 
-            builder.append("&bVersion: &f")
-                    .append(version.getVersion())
-                    .append('\n')
-                    .append("&bVerified: ")
-                    .append(version.isVerified() ? "&a&l✔" : "&c&l❌")
-                    .append('\n')
-                    .append("&bRelease Notes: &f")
-                    .append(version.getReleaseNotes())
-                    .append('\n')
-                    .append("&bDownload URL: &f")
-                    .append(version.getUrl())
-                    .append('\n');
+                message = message
+                    .insert(Message.raw("Version: ").color(Color.CYAN))
+                    .insert(Message.raw(version.getVersion()).color(Color.WHITE))
+                    .insert(Message.raw("\nVerified: ").color(Color.CYAN))
+                    .insert(Message.raw(version.isVerified() ? "YES" : "NO")
+                        .color(version.isVerified() ? Color.GREEN : Color.RED)
+                        .bold(true))
+                    .insert(Message.raw("\nRelease Notes: ").color(Color.CYAN))
+                    .insert(Message.raw(version.getReleaseNotes()).color(Color.WHITE))
+                    .insert(Message.raw("\nDownload URL: ").color(Color.CYAN))
+                    .insert(Message.raw(version.getUrl()).color(Color.WHITE))
+                    .insert(Message.raw("\n"));
         }
 
-        sender.sendMessage(Message.raw(builder.toString())); // todo: convert colors
+            sender.sendMessage(message);
     }
 
 //    @Override

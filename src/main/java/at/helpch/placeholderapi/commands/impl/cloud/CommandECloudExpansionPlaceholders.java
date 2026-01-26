@@ -72,7 +72,29 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 //                .partition(placeholders.stream().sorted().collect(Collectors.toList()), 10);
         final List<List<String>> partitions = new ArrayList<>(IntStream.range(0, placeholders.size()).boxed().collect(Collectors.groupingBy(i -> i/10, Collectors.mapping(placeholders::get, Collectors.toList()))).values());
 
-        sender.sendMessage(Message.raw("&6 " + placeholders.size() + " &7 placeholders: &a\n" + partitions.stream().map(p -> String.join(", ", p)).collect(Collectors.joining("\n"))));
+        Message message = Message.raw(" ").color(Color.ORANGE)
+                .insert(Message.raw(String.valueOf(placeholders.size())).color(Color.ORANGE))
+                .insert(Message.raw(" placeholders: ").color(Color.GRAY));
+
+        for (int i = 0; i < partitions.size(); i++) {
+            if (i == 0) {
+                message = message.insert(Message.raw("\n"));
+            }
+
+            final List<String> partition = partitions.get(i);
+            for (int j = 0; j < partition.size(); j++) {
+                message = message.insert(Message.raw(partition.get(j)).color(Color.GREEN));
+                if (j < partition.size() - 1) {
+                    message = message.insert(Message.raw(", ").color(Color.GRAY));
+                }
+            }
+
+            if (i < partitions.size() - 1) {
+                message = message.insert(Message.raw("\n"));
+            }
+        }
+
+        sender.sendMessage(message);
 //        Msg.msg(sender,
 //                "&6" + placeholders.size() + "&7 placeholders: &a",
 //                partitions.stream().map(partition -> String.join(", ", partition))

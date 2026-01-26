@@ -3,7 +3,7 @@
   "Name": "PlaceholderAPI",
   "Version": "1.0.0",
   "Description": "An awesome placeholder provider",
-  "Authors": [{"Name": "Your Mama"}],
+  "Authors": [{"Name": "HelpChat"}],
   "Website": "https://placeholderapi.com",
   "ServerVersion": "*",
   "Dependencies": {},
