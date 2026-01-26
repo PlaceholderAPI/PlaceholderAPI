@@ -71,7 +71,7 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
 
     public PlaceholderCommandRouter(@NotNull final PlaceholderAPIPlugin plugin) {
         super("papi", "papi");
-//        addAliases("placeholderapi");
+        addAliases("placeholderapi");
         setAllowsExtraArguments(true);
 
         this.plugin = plugin;
@@ -132,10 +132,10 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
 
     @Override
     protected @Nullable CompletableFuture<Void> execute(@NotNull final CommandContext context) {
-        final String[] args = context.getInputString().replace("papi ", "").split(" ");
+        final String[] args = context.getInputString().replace("papi", "").replace("placeholderapi", "").trim().split(" ");
         final CommandSender sender = context.sender();
 
-        if (args.length == 0) {
+        if (args.length == 0 || args[0].isBlank()) {
             final PlaceholderCommand fallback = commands.get("version");
             if (fallback != null) {
                 fallback.evaluate(plugin, sender, "", Collections.emptyList());
