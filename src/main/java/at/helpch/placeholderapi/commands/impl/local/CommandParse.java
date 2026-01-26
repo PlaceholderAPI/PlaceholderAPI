@@ -51,19 +51,38 @@ public final class CommandParse extends PlaceholderCommand {
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,
                          @NotNull final CommandSender sender, @NotNull final String alias,
                          @NotNull @Unmodifiable final List<String> params) {
-        switch (alias.toLowerCase(Locale.ROOT)) {
-            case "parserel":
-                evaluateParseRelation(sender, params);
-                break;
-            case "parse":
-                evaluateParseSingular(sender, params, false, false);
-                break;
-            case "bcparse":
-                evaluateParseSingular(sender, params, true, false);
-                break;
-            case "cmdparse":
-                evaluateParseSingular(sender, params, false, true);
-                break;
+        final Runnable logic = () -> {
+            switch (alias.toLowerCase(Locale.ROOT)) {
+                case "parserel":
+                    evaluateParseRelation(sender, params);
+                    break;
+                case "parse":
+                    evaluateParseSingular(sender, params, false, false);
+                    break;
+                case "bcparse":
+                    evaluateParseSingular(sender, params, true, false);
+                    break;
+                case "cmdparse":
+                    evaluateParseSingular(sender, params, false, true);
+                    break;
+            };
+        };
+
+        final World world;
+
+        if (sender instanceof Player) {
+            world = ((Player) sender).getWorld();
+        } else if (sender instanceof PlayerRef) {
+            UUID uuid = ((PlayerRef) sender).getWorldUuid();
+            world = uuid == null ? Universe.get().getDefaultWorld() : Universe.get().getWorld(uuid);
+        } else {
+            world = Universe.get().getDefaultWorld();
+        }
+
+        if (world != null) {
+            world.execute(logic);
+        } else {
+            logic.run();
         }
     }
 
