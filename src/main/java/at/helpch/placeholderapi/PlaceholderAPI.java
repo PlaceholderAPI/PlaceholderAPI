@@ -323,4 +323,8 @@ public final class PlaceholderAPI {
     public static boolean containsBracketPlaceholders(String text) {
         return text != null && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
     }
+
+    public static String booleanValue(final boolean value) {
+        return value ? PlaceholderAPIPlugin.instance().configManager().config().booleanValue().trueValue() : PlaceholderAPIPlugin.instance().configManager().config().booleanValue().falseValue();
+    }
 }
