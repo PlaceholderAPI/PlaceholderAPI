@@ -85,51 +85,6 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
         this.commands = commands;
     }
 
-
-
-//    @Override
-//    @NotNull
-//    public CompletableFuture<Void> acceptCall(@NotNull final CommandSender sender, @NotNull final ParserContext parserContext,
-//                                              @NotNull final ParseResult parseResult) {
-////        if (sender instanceof Player || sender instanceof PlayerRef) {
-////            return CompletableFuture.completedFuture(null);
-////        }
-//
-//        final String[] args = parserContext.getInputString().replace("papi ", "").split(" ");
-//
-//        if (args.length == 0) {
-//            final PlaceholderCommand fallback = commands.get("version");
-//            if (fallback != null) {
-//                fallback.evaluate(plugin, sender, "", Collections.emptyList());
-//            }
-//
-//            return CompletableFuture.completedFuture(null);
-//        }
-//
-//        final String search = args[0].toLowerCase(Locale.ROOT);
-//        final PlaceholderCommand target = commands.get(search);
-//
-//        if (target == null) {
-//            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
-//
-////            Msg.msg(sender, "&cUnknown command &7" + search);
-//            return CompletableFuture.completedFuture(null);
-//        }
-//
-//        final String permission = target.getPermission();
-//        if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
-//            sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
-//
-////            Msg.msg(sender, "&cYou do not have permission to do this!");
-//            return CompletableFuture.completedFuture(null);
-//        }
-//
-//        target
-//                .evaluate(plugin, sender, search, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
-//
-//        return CompletableFuture.completedFuture(null);
-//    }
-
     @Override
     protected @Nullable CompletableFuture<Void> execute(@NotNull final CommandContext context) {
         final String[] args = context.getInputString().replace("papi", "").replace("placeholderapi", "").trim().split(" ");
@@ -150,7 +105,6 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
         if (target == null) {
             sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
 
-//            Msg.msg(sender, "&cUnknown command &7" + search);
             return CompletableFuture.completedFuture(null);
         }
 
@@ -158,7 +112,6 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
         if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
             sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
 
-//            Msg.msg(sender, "&cYou do not have permission to do this!");
             return CompletableFuture.completedFuture(null);
         }
 
@@ -167,74 +120,5 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
 
         return CompletableFuture.completedFuture(null);
     }
-
-//    @Override
-//    protected void execute(@NotNull final CommandContext context, @NotNull final Store<EntityStore> var2, @NotNull final Ref<EntityStore> var3, @NotNull final PlayerRef var4, @NotNull final World var5) {
-//        final String[] args = context.getInputString().replace("papi ", "").split(" ");
-//        final CommandSender sender = context.sender();
-//
-//        if (args.length == 0) {
-//            final PlaceholderCommand fallback = commands.get("version");
-//            if (fallback != null) {
-//                fallback.evaluate(plugin, sender, "", Collections.emptyList());
-//            }
-//
-//            return;
-//        }
-//
-//        final String search = args[0].toLowerCase(Locale.ROOT);
-//        final PlaceholderCommand target = commands.get(search);
-//
-//        if (target == null) {
-//            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
-//
-////            Msg.msg(sender, "&cUnknown command &7" + search);
-//            return;
-//        }
-//
-//        final String permission = target.getPermission();
-//        if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
-//            sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
-//
-////            Msg.msg(sender, "&cYou do not have permission to do this!");
-//            return;
-//        }
-//
-//        target
-//                .evaluate(plugin, sender, search, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
-//
-//        return;
-//    }
-
-
-//    @Override
-//    @Nullable
-//    protected CompletableFuture<Void> execute(@NotNull final CommandContext commandContext) {
-//        return null;
-//    }
-
-//    @Override
-//    public List<String> onTabComplete(@NotNull final CommandSender sender,
-//                                      @NotNull final Command command, @NotNull final String alias, @NotNull final String[] args) {
-//        final List<String> suggestions = new ArrayList<>();
-//
-//        if (args.length > 1) {
-//            final PlaceholderCommand target = this.commands.get(args[0].toLowerCase(Locale.ROOT));
-//
-//            if (target != null) {
-//                target.complete(plugin, sender, args[0].toLowerCase(Locale.ROOT),
-//                        Arrays.asList(Arrays.copyOfRange(args, 1, args.length)), suggestions);
-//            }
-//
-//            return suggestions;
-//        }
-//
-//        final Stream<String> targets = PlaceholderCommand
-//                .filterByPermission(sender, commands.values().stream()).map(PlaceholderCommand::getLabels)
-//                .flatMap(Collection::stream);
-//        PlaceholderCommand.suggestByParameter(targets, suggestions, args.length == 0 ? null : args[0]);
-//
-//        return suggestions;
-//    }
 
 }

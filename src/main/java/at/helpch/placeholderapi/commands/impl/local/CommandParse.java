@@ -86,23 +86,6 @@ public final class CommandParse extends PlaceholderCommand {
         }
     }
 
-//    @Override
-//    public void complete(@NotNull final PlaceholderAPIBootstrap plugin,
-//                         @NotNull final CommandSender sender, @NotNull final String alias,
-//                         @NotNull @Unmodifiable final List<String> params, @NotNull final List<String> suggestions) {
-//        switch (alias.toLowerCase(Locale.ROOT)) {
-//            case "parserel":
-//                completeParseRelation(params, suggestions);
-//                break;
-//            case "parse":
-//            case "bcparse":
-//            case "cmdparse":
-//                completeParseSingular(sender, params, suggestions);
-//                break;
-//        }
-//    }
-
-
     private void evaluateParseSingular(@NotNull final CommandSender sender,
                                        @NotNull @Unmodifiable final List<String> params, final boolean broadcast,
                                        final boolean command) {
@@ -112,10 +95,6 @@ public final class CommandParse extends PlaceholderCommand {
                     .insert(Message.raw(command ? "cmdparse" : (broadcast ? "bcparse" : "parse")).color(Color.CYAN))
                     .insert(Message.raw(" {target}").color(Color.GRAY))
                     .insert(Message.raw(" {message}").color(Color.GREEN)));
-//            Msg.msg(sender,
-//                    "&cYou must provide a target and message: &b/papi "
-//                            + (command ? "cmdparse" : (broadcast ? "bcparse" : "parse"))
-//                            + " &7{target} &a{message}");
             return;
         }
 
@@ -124,7 +103,6 @@ public final class CommandParse extends PlaceholderCommand {
         if ("me".equalsIgnoreCase(params.getFirst())) {
             if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
-//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
@@ -139,7 +117,6 @@ public final class CommandParse extends PlaceholderCommand {
             final PlayerRef target = resolvePlayer(params.get(0));
             if (target == null) {
                 sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
-//                Msg.msg(sender, "&cFailed to find player: &7" + params.get(0));
                 return;
             }
 
@@ -151,13 +128,11 @@ public final class CommandParse extends PlaceholderCommand {
 
         if (command) {
             sender.sendMessage(Message.raw("To be implemented")); // todo: implement
-//            Bukkit.dispatchCommand(sender, message);
             return;
         }
 
         if (broadcast) {
             Universe.get().sendMessage(Message.raw(message));
-//            Bukkit.broadcastMessage(message);
         } else {
             sender.sendMessage(Message.raw(message));
         }
@@ -170,9 +145,6 @@ public final class CommandParse extends PlaceholderCommand {
                     .insert(Message.raw("/papi parserel ").color(Color.CYAN))
                     .insert(Message.raw("{target one} {target two} ").color(Color.GRAY))
                     .insert(Message.raw("{message}").color(Color.GREEN)));
-//            Msg.msg(sender,
-//                    "&cYou must supply two targets, and a message: &b/papi parserel &7{target one} "
-//                            + "{target two} &a{message}");
             return;
         }
 
@@ -183,7 +155,6 @@ public final class CommandParse extends PlaceholderCommand {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED)
                         .insert(Message.raw("me").color(Color.GRAY))
                         .insert(Message.raw(" as a target!").color(Color.RED)));
-//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
@@ -196,9 +167,8 @@ public final class CommandParse extends PlaceholderCommand {
             playerOne = resolvePlayer(params.get(0));
         }
 
-        if (playerOne == null/* || !playerOne.isOnline()*/) {
+        if (playerOne == null) {
             sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(0)).color(Color.WHITE)));
-//            Msg.msg(sender, "&cFailed to find player: &f" + params.get(0));
             return;
         }
 
@@ -207,7 +177,6 @@ public final class CommandParse extends PlaceholderCommand {
         if ("me".equalsIgnoreCase(params.get(1))) {
             if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
-//                Msg.msg(sender, "&cYou must be a player to use &7me&c as a target!");
                 return;
             }
 
@@ -220,9 +189,8 @@ public final class CommandParse extends PlaceholderCommand {
             playerTwo = resolvePlayer(params.get(1));
         }
 
-        if (playerTwo == null/* || !playerTwo.isOnline()*/) {
+        if (playerTwo == null) {
             sender.sendMessage(Message.raw("Failed to find player: ").color(Color.RED).insert(Message.raw(params.get(1)).color(Color.WHITE)));
-//            Msg.msg(sender, "&cFailed to find player: &f" + params.get(1));
             return;
         }
 
@@ -247,7 +215,6 @@ public final class CommandParse extends PlaceholderCommand {
             }
 
             final Stream<String> names = Universe.get().getPlayers().stream().map(PlayerRef::getUsername);
-//            final Stream<String> names = Bukkit.getOnlinePlayers().stream().map(Player::getName);
             suggestByParameter(names, suggestions, params.isEmpty() ? null : params.get(0));
 
             return;
