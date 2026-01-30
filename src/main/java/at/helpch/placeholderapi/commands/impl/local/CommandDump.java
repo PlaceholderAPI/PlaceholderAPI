@@ -83,7 +83,7 @@ public final class CommandDump extends PlaceholderCommand {
                 return;
             }
 
-            sender.sendMessage(Message.raw("Successfully posted dump: " + URL + key).color(Color.GREEN));
+            sender.sendMessage(Message.raw("Successfully posted dump: ").color(Color.GREEN).insert(Message.raw(URL + key).color(Color.WHITE).bold(true).italic(true).link(URL + key)));
 //            Msg.msg(sender,
 //                    "&aSuccessfully posted dump: " + URL + key);
         });
