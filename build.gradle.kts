@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.2"
+version = "1.0.3-DEV-${System.getProperty("BUILD_NUMBER")}"
 
 description = "An awesome placeholder provider!"
 
