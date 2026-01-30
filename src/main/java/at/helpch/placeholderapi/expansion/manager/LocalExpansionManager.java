@@ -386,7 +386,6 @@ public final class LocalExpansionManager /*implements Listener*/ {
                     .filter(Objects::nonNull)
                     .filter(CloudExpansion::shouldUpdate)
                     .count();
-
             Message message = Message.raw(registered.size() + "").color(registered.isEmpty() ? Color.YELLOW : Color.GREEN)
                     .insert(" placeholder hook(s) registered!");
 

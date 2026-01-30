@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
+import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.universe.Universe;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,9 +42,7 @@ public final class Futures {
                                         @NotNull final CompletableFuture<T> future,
                                         @NotNull final BiConsumer<T, Throwable> consumer) {
         future.whenComplete((value, exception) -> {
-            Universe.get().getDefaultWorld().execute(() -> consumer.accept(value, exception));
-//            plugin.getTaskRegistry().registerTask(() -> consumer.accept(value, exception));
-//            plugin.getScheduler().runTask(() -> consumer.accept(value, exception));
+            HytaleServer.SCHEDULED_EXECUTOR.execute(() -> consumer.accept(value, exception));
         });
     }
 

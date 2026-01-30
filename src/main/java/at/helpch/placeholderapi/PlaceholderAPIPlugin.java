@@ -4,8 +4,8 @@ import at.helpch.placeholderapi.commands.PlaceholderCommandRouter;
 import at.helpch.placeholderapi.configuration.ConfigManager;
 import at.helpch.placeholderapi.expansion.manager.CloudExpansionManager;
 import at.helpch.placeholderapi.expansion.manager.LocalExpansionManager;
-import at.helpch.placeholderapi.listeners.ServerLoadEventListener;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.console.ConsoleSender;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
@@ -33,16 +33,16 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         configManager.setup();
         getEventRegistry().register(PlayerDisconnectEvent.class, localExpansionManager::onQuit);
 
-        new ServerLoadEventListener(this);
+        if (configManager.config().cloudEnabled()) {
+            cloudExpansionManager.load();
+        }
     }
 
     @Override
     protected void start() {
         getCommandRegistry().registerCommand(new PlaceholderCommandRouter(this));
 
-        if (configManager.config().cloudEnabled()) {
-            cloudExpansionManager.load();
-        }
+        localExpansionManager().load(ConsoleSender.INSTANCE);
 
         super.start();
     }
