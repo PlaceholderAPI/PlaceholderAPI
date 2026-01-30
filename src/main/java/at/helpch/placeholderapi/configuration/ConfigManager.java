@@ -4,26 +4,36 @@ import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public final class ConfigManager {
-    private static final Yaml YAML = new Yaml();
+    private static final Yaml YAML;
     private static final Gson GSON = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create();
 //            .registerTypeAdapter()
+    private static final Pattern LINE_DELIMITER = Pattern.compile("\n");
+
+    static {
+        final DumperOptions options = new DumperOptions();
+        options.setPrettyFlow(true);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        YAML = new Yaml(options);
+    }
 
     private final JavaPlugin main;
     private final HytaleLogger logger;
@@ -59,7 +69,14 @@ public final class ConfigManager {
     }
 
     public void save() {
-
+        try {
+            final Map<String, Object> map = GSON.fromJson(GSON.toJsonTree(config), new TypeToken<Map<String, Object>>(){}.getType());
+            final String yaml = YAML.dump(map);
+            final Path path = Paths.get(main.getDataDirectory().toString() + "/config.yml");
+            Files.write(path, Arrays.asList(LINE_DELIMITER.split(yaml)), StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (Exception e) {
+            logger.atSevere().log("Something went wrong when saving config.yml: ", e);
+        }
     }
 
     @NotNull
@@ -84,7 +101,7 @@ public final class ConfigManager {
 
             Files.createFile(file);
         } catch (IOException e) {
-            logger.atSevere().log("Something went wrong when trying to craete ", file);
+            logger.atSevere().log("Something went wrong when trying to create ", file);
 
             return null;
         }

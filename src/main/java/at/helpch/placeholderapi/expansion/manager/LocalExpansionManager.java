@@ -231,6 +231,10 @@ public final class LocalExpansionManager /*implements Listener*/ {
         if (expansion instanceof Configurable<?> configurable) {
             final PlaceholderAPIConfig config = configManager.config();
 
+            if (config.expansions() == null) {
+                config.expansions(new HashMap<>());
+            }
+
             if (!config.expansions().containsKey(expansion.getIdentifier())) {
                 config.expansions().put(expansion.getIdentifier(), configurable.provideDefault());
                 configManager.save();

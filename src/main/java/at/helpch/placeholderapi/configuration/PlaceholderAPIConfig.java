@@ -20,9 +20,7 @@
 
 package at.helpch.placeholderapi.configuration;
 
-import com.google.gson.annotations.JsonAdapter;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;

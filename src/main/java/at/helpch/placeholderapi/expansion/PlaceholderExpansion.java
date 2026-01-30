@@ -199,17 +199,17 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
 
     // === Configuration ===
 
-    /**
-     * Gets the ConfigurationSection of the expansion located in the config.yml of PlaceholderAPI or
-     * null when not specified.
-     * <br>You may use the {@link Configurable} interface to define default values set
-     *
-     * @return ConfigurationSection that this expansion has.
-     */
-    @NotNull
-    public final Map<String, Object> getExpansionConfig() {
-        return (Map<String, Object>) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), new HashMap<>());
-    }
+//    /**
+//     * Gets the ConfigurationSection of the expansion located in the config.yml of PlaceholderAPI or
+//     * null when not specified.
+//     * <br>You may use the {@link Configurable} interface to define default values set
+//     *
+//     * @return ConfigurationSection that this expansion has.
+//     */
+//    @NotNull
+//    public final Map<String, Object> getExpansionConfig() {
+//        return (Map<String, Object>) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), new HashMap<>());
+//    }
 
     @Nullable
     public final <T> T getExpansionConfig(@NotNull final Class<? extends Configurable<T>> configurableType) {
@@ -229,157 +229,157 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
 //        return section == null ? null : section.getConfigurationSection(path);
 //    }
 
-    /**
-     * Gets the Object relative to the config section set
-     * by the expansion or the provided Default Object, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the Object from. This is relative to the default section
-     * @param def  The default Object to return when the ConfigurationSection returns null
-     * @return Object from the provided path or the default one provided
-     */
-    @Nullable
-    @Contract("_, !null -> !null")
-    public final Object get(@NotNull final String path, final Object def) {
-        return get(new ArrayDeque<>(Arrays.asList(PATH_DELIMITER.split(path))), def, getExpansionConfig());
-    }
-
-    private Object get(@NotNull final Queue<String> path, final Object def, @NotNull final Map<String, Object> map) {
-        if (path.size() == 1) {
-            return map.getOrDefault(path.poll(), def);
-        }
-
-        Object obj = map.get(path.poll());
-
-        if (!(obj instanceof Map<?, ?>)) {
-            return def;
-        }
-
-        return get(path, def, (Map<String, Object>) obj);
-    }
-
-    /**
-     * Gets the int relative to the config section set
-     * by the expansion or the provided Default int, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the int from. This is relative to the default section
-     * @param def  The default int to return when the ConfigurationSection returns null
-     * @return int from the provided path or the default one provided
-     */
-    public final int getInt(@NotNull final String path, final int def) {
-        final Object obj = get(path, def);
-
-        if (!(obj instanceof Integer)) {
-            return def;
-        }
-
-        return (Integer) obj;
-    }
-
-    /**
-     * Gets the long relative to the config section set
-     * by the expansion or the provided Default long, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the long from. This is relative to the default section
-     * @param def  The default long to return when the ConfigurationSection returns null
-     * @return long from the provided path or the default one provided
-     */
-    public final long getLong(@NotNull final String path, final long def) {
-        final Object obj = get(path, def);
-
-        if (!(obj instanceof Long) ) {
-            return def;
-        }
-
-        return (Long) obj;
-    }
-
-    /**
-     * Gets the double relative to the config section set
-     * by the expansion or the provided Default double, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the double from. This is relative to the default section
-     * @param def  The default double to return when the ConfigurationSection returns null
-     * @return double from the provided path or the default one provided
-     */
-    public final double getDouble(@NotNull final String path, final double def) {
-        final Object obj = get(path, def);
-
-        if (!(obj instanceof Double) ) {
-            return def;
-        }
-
-        return (Double) obj;
-    }
-
-    /**
-     * Gets the String relative to the config section set
-     * by the expansion or the provided Default String, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the String from. This is relative to the default section
-     * @param def  The default String to return when the ConfigurationSection returns null. Can be null
-     * @return String from the provided path or the default one provided
-     */
-    @Nullable
-    @Contract("_, !null -> !null")
-    public final String getString(@NotNull final String path, @Nullable final String def) {
-        final Object obj = get(path, def);
-
-        if (!(obj instanceof String)) {
-            return def;
-        }
-
-        return (String) obj;
-    }
-
-    /**
-     * Gets a String List relative to the config section set
-     * by the expansion or an empty List, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the String list from. This is relative to the default section
-     * @return String list from the provided path or an empty list
-     */
-    @NotNull
-    public final List<String> getStringList(@NotNull final String path) {
-        final Object obj = get(path, new ArrayList<>());
-
-        if (!(obj instanceof List<?>)) {
-            return new ArrayList<>();
-        }
-
-        return (List<String>) obj;
-    }
-
-    /**
-     * Gets the boolean relative to the config section set
-     * by the expansion or the default boolean, when the default ConfigurationSection is null
-     *
-     * @param path The path to get the boolean from. This is relative to the default section
-     * @param def  The default boolean to return when the ConfigurationSection is null
-     * @return boolean from the provided path or the default one provided
-     */
-    public final boolean getBoolean(@NotNull final String path, final boolean def) {
-        final Object obj = get(path, def);
-
-        if (!(obj instanceof Boolean)) {
-            return def;
-        }
-
-        return (Boolean) obj;
-    }
-
-    /**
-     * Whether the config section contains the provided path
-     * or not. This will return {@code false} when either the default section is null, or doesn't
-     * contain the provided path
-     *
-     * @param path The path to check
-     * @return true when the default ConfigurationSection is not null and contains the path, false otherwise
-     */
-    public final boolean configurationContains(@NotNull final String path) {
-        final Object obj = get(path, null);
-
-        return obj == null;
-    }
+//    /**
+//     * Gets the Object relative to the config section set
+//     * by the expansion or the provided Default Object, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the Object from. This is relative to the default section
+//     * @param def  The default Object to return when the ConfigurationSection returns null
+//     * @return Object from the provided path or the default one provided
+//     */
+//    @Nullable
+//    @Contract("_, !null -> !null")
+//    public final Object get(@NotNull final String path, final Object def) {
+//        return get(new ArrayDeque<>(Arrays.asList(PATH_DELIMITER.split(path))), def, getExpansionConfig());
+//    }
+//
+//    private Object get(@NotNull final Queue<String> path, final Object def, @NotNull final Map<String, Object> map) {
+//        if (path.size() == 1) {
+//            return map.getOrDefault(path.poll(), def);
+//        }
+//
+//        Object obj = map.get(path.poll());
+//
+//        if (!(obj instanceof Map<?, ?>)) {
+//            return def;
+//        }
+//
+//        return get(path, def, (Map<String, Object>) obj);
+//    }
+//
+//    /**
+//     * Gets the int relative to the config section set
+//     * by the expansion or the provided Default int, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the int from. This is relative to the default section
+//     * @param def  The default int to return when the ConfigurationSection returns null
+//     * @return int from the provided path or the default one provided
+//     */
+//    public final int getInt(@NotNull final String path, final int def) {
+//        final Object obj = get(path, def);
+//
+//        if (!(obj instanceof Integer)) {
+//            return def;
+//        }
+//
+//        return (Integer) obj;
+//    }
+//
+//    /**
+//     * Gets the long relative to the config section set
+//     * by the expansion or the provided Default long, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the long from. This is relative to the default section
+//     * @param def  The default long to return when the ConfigurationSection returns null
+//     * @return long from the provided path or the default one provided
+//     */
+//    public final long getLong(@NotNull final String path, final long def) {
+//        final Object obj = get(path, def);
+//
+//        if (!(obj instanceof Long) ) {
+//            return def;
+//        }
+//
+//        return (Long) obj;
+//    }
+//
+//    /**
+//     * Gets the double relative to the config section set
+//     * by the expansion or the provided Default double, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the double from. This is relative to the default section
+//     * @param def  The default double to return when the ConfigurationSection returns null
+//     * @return double from the provided path or the default one provided
+//     */
+//    public final double getDouble(@NotNull final String path, final double def) {
+//        final Object obj = get(path, def);
+//
+//        if (!(obj instanceof Double) ) {
+//            return def;
+//        }
+//
+//        return (Double) obj;
+//    }
+//
+//    /**
+//     * Gets the String relative to the config section set
+//     * by the expansion or the provided Default String, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the String from. This is relative to the default section
+//     * @param def  The default String to return when the ConfigurationSection returns null. Can be null
+//     * @return String from the provided path or the default one provided
+//     */
+//    @Nullable
+//    @Contract("_, !null -> !null")
+//    public final String getString(@NotNull final String path, @Nullable final String def) {
+//        final Object obj = get(path, def);
+//
+//        if (!(obj instanceof String)) {
+//            return def;
+//        }
+//
+//        return (String) obj;
+//    }
+//
+//    /**
+//     * Gets a String List relative to the config section set
+//     * by the expansion or an empty List, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the String list from. This is relative to the default section
+//     * @return String list from the provided path or an empty list
+//     */
+//    @NotNull
+//    public final List<String> getStringList(@NotNull final String path) {
+//        final Object obj = get(path, new ArrayList<>());
+//
+//        if (!(obj instanceof List<?>)) {
+//            return new ArrayList<>();
+//        }
+//
+//        return (List<String>) obj;
+//    }
+//
+//    /**
+//     * Gets the boolean relative to the config section set
+//     * by the expansion or the default boolean, when the default ConfigurationSection is null
+//     *
+//     * @param path The path to get the boolean from. This is relative to the default section
+//     * @param def  The default boolean to return when the ConfigurationSection is null
+//     * @return boolean from the provided path or the default one provided
+//     */
+//    public final boolean getBoolean(@NotNull final String path, final boolean def) {
+//        final Object obj = get(path, def);
+//
+//        if (!(obj instanceof Boolean)) {
+//            return def;
+//        }
+//
+//        return (Boolean) obj;
+//    }
+//
+//    /**
+//     * Whether the config section contains the provided path
+//     * or not. This will return {@code false} when either the default section is null, or doesn't
+//     * contain the provided path
+//     *
+//     * @param path The path to check
+//     * @return true when the default ConfigurationSection is not null and contains the path, false otherwise
+//     */
+//    public final boolean configurationContains(@NotNull final String path) {
+//        final Object obj = get(path, null);
+//
+//        return obj == null;
+//    }
 
     /**
      * Logs the provided message with the provided Level in the console.
