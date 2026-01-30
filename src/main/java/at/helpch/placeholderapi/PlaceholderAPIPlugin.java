@@ -33,16 +33,17 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         configManager.setup();
         getEventRegistry().register(PlayerDisconnectEvent.class, localExpansionManager::onQuit);
 
-        if (configManager.config().cloudEnabled()) {
-            cloudExpansionManager.load();
-        }
-
         new ServerLoadEventListener(this);
     }
 
     @Override
     protected void start() {
         getCommandRegistry().registerCommand(new PlaceholderCommandRouter(this));
+
+        if (configManager.config().cloudEnabled()) {
+            cloudExpansionManager.load();
+        }
+
         super.start();
     }
 
