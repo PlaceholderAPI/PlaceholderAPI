@@ -55,9 +55,9 @@ public final class CommandECloudDownload extends PlaceholderCommand {
         final Message message = Message.raw("""
                                             Expansion downloads have been disabled to meet CurseForge's policy requirements.
                                             This limitation is imposed by the platform, not PlaceholderAPI.
-                                            
+        
                                             """).color(Color.RED)
-                .insert(Message.raw("Please download expansions manually from ecloud.placeholderapi.com").link("https://ecloud.placeholderapi.com").bold(true).italic(true).color(Color.WHITE))
+                .insert(Message.raw("Please download expansions manually from ").color(Color.RED).insert(Message.raw("ecloud.placeholderapi.com").link("https://ecloud.placeholderapi.com").bold(true).italic(true).color(Color.WHITE)))
                 .insert(Message.raw(" or install the full version of PlaceholderAPI from ").color(Color.RED))
                 .insert(Message.raw("placeholderapi.com/downloads").link("https://placeholderapi.com/downloads").bold(true).italic(true).color(Color.WHITE));
 
