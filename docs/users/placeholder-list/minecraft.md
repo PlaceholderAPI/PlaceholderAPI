@@ -4,7 +4,7 @@ description: Community-curated list of available PlaceholderExpansions and their
 
 # Minecraft
 
-This is a list of all available placeholders for the Minecraft Version of PlaceholderAPI.  
+This is a list of all available placeholders for the Minecraft version of PlaceholderAPI.  
 For the Hytale version, visit [this page](hytale.md).
 
 A download-command may be found in the infobox located below the title of the Expansion.  
