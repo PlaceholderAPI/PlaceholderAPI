@@ -1,6 +1,6 @@
 # Hytale
 
-This is a list of all available placeholders for the Hytale Version of PlaceholderAPI.  
+This is a list of all available placeholders for the Hytale version of PlaceholderAPI.  
 For the Minecraft version, visit [this page](minecraft.md).
 
 A download-command may be found in the infobox located below the title of the Expansion.  
