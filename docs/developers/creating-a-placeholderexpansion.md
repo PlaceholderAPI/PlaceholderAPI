@@ -5,9 +5,9 @@ description: Comprehensive guide on how to create a PlaceholderExpansion for oth
 # Creating a PlaceholderExpansion
 
 /// warning | Important
-These pages cover the creation of a PlaceholderExpansion for both Spigot/Paper-based servers and Hytale Servers!
+These pages cover the creation of a PlaceholderExpansion for both Spigot/Paper-based and Hytale Servers!
 
-Unless mentioned otherwise will the provided code examples function for both platform types.  
+Unless mentioned otherwise the provided code examples function for both platform types.  
 Please always check code blocks for :material-plus-circle: Icons with additional info!
 ///
 
