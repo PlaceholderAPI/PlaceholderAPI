@@ -4,6 +4,13 @@ description: Comprehensive guide on how to create a PlaceholderExpansion for oth
 
 # Creating a PlaceholderExpansion
 
+/// warning | Important
+These pages cover the creation of a PlaceholderExpansion for both Spigot/Paper-based and Hytale Servers!
+
+Unless mentioned otherwise the provided code examples function for both platform types.  
+Please always check code blocks for :material-plus-circle: Icons with additional info!
+///
+
 This page will cover how you can create your own [`PlaceholderExpansion`][placeholderexpansion] which you can either integrate into your own plugin (Recommended) or [upload to the eCloud](expansion-cloud.md).
 
 It's worth noting that PlaceholderAPI relies on expansions being installed. PlaceholderAPI only acts as the core replacing utility while the expansions allow other plugins to use any installed placeholder in their own messages.  
@@ -74,6 +81,11 @@ public class SomeExpansion extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player player, @NotNull String params) {
         // (5)
     }
+
+    @Override
+    public String onPlaceholderRequest(PlayerRef player, @NotNull String params) {
+        // (6)
+    }
 }
 ```
 
@@ -108,6 +120,16 @@ public class SomeExpansion extends PlaceholderExpansion {
     - `player` - Nullable Player instance to parse placeholders against.
     - `params` - Non-null String representing the part of the placeholder after the first `_` and before the closing `%` (or `}` for bracket placeholders).
 
+6.  **Note:** Only exists for the Hytale Version of PlaceholderAPI!
+    
+    Called by PlaceholderAPI through `onPlaceholderRequest(PlayerRef, String)` to have placeholder values parsed.  
+    When `null` is returned will PlaceholderAPI treat it as invalid placeholder and return it unchanged.
+
+    **Parameters:**
+
+    - `player` - PlayerRef instance to parse placeholders against.
+    - `params` - Non-null String representing the part of the placeholder after the first `_` and before the closing `%` (or `}` for bracket placeholders).
+
 /// note
 Overriding `onRequest(OfflinePlayer, String)` or `onPlaceholderRequest(Player, String)` is not required if you [create relational placeholders](#making-a-relational-expansion).
 ///
@@ -133,16 +155,18 @@ You are also required to override and set `persist()` to `true`. This tells Plac
     attrs: { id: full-example-internal }
     type: example
 
-//// note |
-Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+//// note | Important Notes
+-   Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+-   The below example is for a Spigot/Paper-based setup.  
+    For a Hytale server, replace `me.clip` imports with `at.helpch` and replace `OfflinePlayer` with `PlayerRef` (Including the import).
 
 Tab the :material-plus-circle: icons in the code block below for additional information.
 ////
 
 ```java { .annotate title="SomeExpansion.java" }
-package at.helpch.placeholderapi.example.expansion;
+package com.example.plugin.expansion;
 
-import at.helpch.placeholderapi.example.SomePlugin;
+import com.example.plugin.SomePlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
@@ -206,19 +230,20 @@ public class SomeExpansion extends PlaceholderExpansion {
 6.  Example of accessing data of the plugin's `config.yml` file.
 
 7.  Reaching this means that an invalid params String was given, so we return `null` to tell PlaceholderAPI that the placeholder was invalid.
+
 ///
 
 ### Register your Expansion
 
 Due to the PlaceholderExpansion being internal, PlaceholderAPI does not load it automatically, we'll need to do it manually.  
-This is being done by creating a new instance of your PlaceholderExpansion class and calling the `register()` method of it.
+This is being done by creating a new instance of your PlaceholderExpansion class and calling the `register()` method of it:
 
-Here is a quick example:
+/// tab | Spigot, Paper, ...
 
 ```java { .annotate title="SomePlugin.java" }
-package at.helpch.placeholderapi.example;
+package com.example.plugin;
 
-import at.helpch.placeholderapi.example.expansion.SomeExpansion;
+import com.example.plugin.expansion.SomeExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -237,6 +262,29 @@ public class SomePlugin extends JavaPlugin {
     Also, make sure you [set PlaceholderAPI as depend or softdepend](using-placeholderapi.md#set-placeholderapi-as-softdepend) in your plugin's `plugin.yml` file!
 
 2.  This registers our expansion in PlaceholderAPI. It also gives the Plugin class as dependency injection to the Expansion class, so that we can use it.
+
+///
+
+/// tab | Hytale
+
+```java { .annotate title="SomePlugin.java" }
+package com.example.plugin;
+
+import com.example.plugin.expansion.SomeExpansion;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+
+public class SomePlugin extends JavaPlugin {
+
+    public SomePlugin(JavaPluginInit init) {
+        super(init)
+    }
+
+    // TODO: Example of checking for PAPI and registering expansion
+}
+```
+
+///
 
 ----
 
@@ -257,8 +305,10 @@ Downsides include a more tedious setup in terms of checking for a required plugi
     attrs: { id: full-example-external-no-dependency }
     type: example
 
-//// note |
-Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+//// note | Important Notes
+-   Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+-   The below example is for a Spigot/Paper-based setup.  
+    For a Hytale server, replace `me.clip` imports with `at.helpch` and replace `OfflinePlayer` with `PlayerRef` (Including the import).
 
 Tab the :material-plus-circle: icons in the code block below for additional information.
 ////
@@ -266,7 +316,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 This is an example expansion without any plugin dependency.
 
 ```java { .annotate title="SomeExpansion.java" }
-package at.helpch.placeholderapi.example.expansion;
+package com.example.expansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -314,8 +364,10 @@ public class SomeExpansion extends PlaceholderExpansion {
     attrs: { id: full-example-external-dependency }
     type: example
 
-//// note |
-Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+//// note | Important Notes
+-   Please see the [Basic PlaceholderExpansion Structure](#basic-placeholderexpansion-structure) section for an explanation of all common methods in this example.
+-   The below example is for a Spigot/Paper-based setup.  
+    For a Hytale server, replace `me.clip` imports with `at.helpch` and replace `OfflinePlayer` with `PlayerRef` (Including the import).
 
 Tab the :material-plus-circle: icons in the code block below for additional information.
 ////
@@ -323,9 +375,9 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 This is an example expansion with a plugin dependency.
 
 ```java { .annotate title="SomeExpansion.java" }
-package at.helpch.placeholderapi.example.expansion;
+package com.example.expansion;
 
-import at.helpch.placeholderapi.example.SomePlugin;
+import com.example.plugin.SomePlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -383,7 +435,9 @@ public class SomeExpansion extends PlaceholderExpansion {
 2.  The name of the plugin this expansion depends on.  
     It is recommended to set this, as it would result in PlaceholderAPI reporting any missing plugin for your expansion.
     
-3.  This does two things:
+3.  **Note:** This only works on a Spigot/Paper-based server. A equivalent for Hytale servers is not yet known.
+    
+    This does two things:
     
     1. It sets the `plugin` instance to `SomePlugin` using Bukkit's PluginManager to retrieve a JavaPlugin instance that is cast to `SomePlugin`.
     2. It checks if the retrieved instance is not null. If it is will this result in `canRegister()` returning false, resulting in PlaceholderAPI not loading our expansion.
@@ -399,8 +453,9 @@ public class SomeExpansion extends PlaceholderExpansion {
 
 ## Making a relational Expansion
 
-/// note
-Relational Placeholders always start with `rel_` to properly identify them. This means that if you make a relational placeholder called `friends_is_friend` would the full placeholder be `%rel_friends_is_friend%`.
+/// note | Notes
+- Relational Placeholders always start with `rel_` to properly identify them. This means that if you make a relational placeholder called `friends_is_friend` would the full placeholder be `%rel_friends_is_friend%`.
+- For Hytale, replace any mention of `Player` with `PlayerRef` and update any Imports in the code to `at.helpch` and related Hytale ones.
 ///
 
 Relational PlaceholderExpansions are special in that they take two players as input, allowing you to give outputs based on their relation to each other.
