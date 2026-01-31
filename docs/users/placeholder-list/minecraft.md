@@ -2,9 +2,10 @@
 description: Community-curated list of available PlaceholderExpansions and their placeholders.
 ---
 
-# Placeholder List
+# Minecraft
 
-This is a list of all available placeholders.
+This is a list of all available placeholders for the Minecraft Version of PlaceholderAPI.  
+For the Hytale version, visit [this page](hytale.md).
 
 A download-command may be found in the infobox located below the title of the Expansion.  
 Should `Built into Plugin` be displayed is the Expansion included in the Plugin it depends on. Should a URL be shown does it mean you have to download it manually and add it to the `expansions` folder yourself.

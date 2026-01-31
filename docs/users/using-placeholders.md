@@ -39,7 +39,7 @@ This feature exists since version 2.11.4 of PlaceholderAPI
 The way PlaceholderAPI's system works, allows a Placeholder Expansion and its corresponding placeholders to either be included within a plugin (If placeholder requires said plugin) or to be available as a separate jar file on the eCloud of PlaceholderAPI.  
 Depending on what type you have, will you need to do some extra steps to use the placeholder from the Placeholder Expansion.
 
-One way to find out, if an Expansion is included or separate, is to check the [Placeholder List](placeholder-list.md) page for any entry of it.  
+One way to find out, if an Expansion is included or separate, is to check the [Placeholder List](placeholder-list/index.md) page for any entry of it.  
 If it exists on the page, can you check the infobox right below the title of the Expansion for one of the following cases:
 
 - `papi ecloud download <expansion>`: The expansion is on the ecloud and needs to be downloaded using the [`/papi ecloud download` command](commands.md#papi-ecloud-download).
