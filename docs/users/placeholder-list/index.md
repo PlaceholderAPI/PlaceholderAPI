@@ -1,7 +1,7 @@
 # Placeholder List
 
 PlaceholderAPI is home of countless community-made Placeholder Expansions.  
-To try and help finding the expansion you need are we offering these official placeholder lists, containing Placeholder Expansions and their Placeholders for the Hytale and Minecraft (Spigot, Paper, ...) version of PlaceholderAPI.
+To help you find the expansion you need, we are providing official placeholder lists that include available PlaceholderAPI expansions and their placeholders for both Minecraft (Spigot, Paper, etc.) and Hytale.
 
 <div class="grid cards" markdown>
 
