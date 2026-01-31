@@ -30,7 +30,7 @@ The pages listed under this section are meant for server owners who want to use 
     
     ----
     
-    Community-curated list of available PlaceholderExpansions and their placeholders for the Minecraft and Hytale version of PlaceholderAPI.
+    Community-curated lists of available Placeholder Expansions and their placeholders for the Minecraft and Hytale versions of PlaceholderAPI.
     
     - [:octicons-chevron-right-16: Go to Page](placeholder-list/index.md)
 
