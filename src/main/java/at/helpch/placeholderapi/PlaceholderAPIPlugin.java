@@ -4,8 +4,11 @@ import at.helpch.placeholderapi.commands.PlaceholderCommandRouter;
 import at.helpch.placeholderapi.configuration.ConfigManager;
 import at.helpch.placeholderapi.expansion.manager.CloudExpansionManager;
 import at.helpch.placeholderapi.expansion.manager.LocalExpansionManager;
+import com.hypixel.hytale.event.EventPriority;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import com.hypixel.hytale.server.core.console.ConsoleSender;
+import com.hypixel.hytale.server.core.event.events.BootEvent;
+import com.hypixel.hytale.server.core.event.events.PrepareUniverseEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
@@ -32,6 +35,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     protected void setup() {
         configManager.setup();
         getEventRegistry().register(PlayerDisconnectEvent.class, localExpansionManager::onQuit);
+        getEventRegistry().register(EventPriority.LAST, BootEvent.class, this::onServerLoad);
 
         if (configManager.config().cloudEnabled()) {
             cloudExpansionManager.load();
@@ -42,7 +46,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     protected void start() {
         getCommandRegistry().registerCommand(new PlaceholderCommandRouter(this));
 
-        localExpansionManager().load(ConsoleSender.INSTANCE);
+//        localExpansionManager().load(ConsoleSender.INSTANCE);
 
         super.start();
     }
@@ -76,5 +80,9 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
 
     public CloudExpansionManager cloudExpansionManager() {
         return cloudExpansionManager;
+    }
+
+    private void onServerLoad(BootEvent event) {
+        localExpansionManager.load(ConsoleSender.INSTANCE);
     }
 }
