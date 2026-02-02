@@ -6,9 +6,11 @@ description: Guide on how to use PlaceholderAPI in your own plugin.
 
 This page is about using PlaceholderAPI in your own plugin, to either let other plugins use your plugin, or just use placeholders from other plugins in your own.
 
-Please note, that the examples in this page are only available for **PlaceholderAPI 2.10.0 or higher**!
+Please note, that the examples in this page are only available for **PlaceholderAPI 2.10.0 (1.0.0 for Hytale version) or newer**!
 
 ## First steps
+
+### Add PlaceholderAPI to your Project
 
 Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
 Use the below code example matching your project type and dependency manager.
@@ -26,9 +28,16 @@ Use the below code example matching your project type and dependency manager.
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>{version}</version>
+            <version>{papiVersion}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Optional: Component support on Paper Servers (Since 2.12.0) -->
+        <dependency>
+          <groupId>me.clip</groupId>
+          <artifactId>placeholderapi-paper</artifactId>
+          <version>{papiVersion}</version>
+          <scope>provided</scope>
     </dependencies>
 ```
 ////
@@ -42,7 +51,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'me.clip:placeholderapi:{version}'
+    compileOnly 'me.clip:placeholderapi:{papiVersion}'
+
+    // Optional: Component support on Paper Servers (Since 2.12.0)
+    compileOnly 'me.clip:placeholderapi-paper:{papiVersion}'
 }
 ```
 ////
@@ -72,7 +84,7 @@ dependencies {
         <dependency>
             <groupId>at.helpch</groupId>
             <artifactId>placeholderapi-hytale</artifactId>
-            <version>{version}</version>
+            <version>{papiHytaleVersion}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -91,16 +103,16 @@ repositories {
 dependencies {
     // Replace {hytaleVersion} with the version you need.
     compileOnly 'com.hypixel.hytale:Server:{hytaleVersion}'
-    compileOnly 'at.helpch:placeholderapi-hytale:{version}'
+    compileOnly 'at.helpch:placeholderapi-hytale:{papiHytaleVersion}'
 }
 ```
 ////
 ///
 
-/// details | What is `{version}`?
+/// details | What is `{papiVersion}`/`{papiHytaleVersion}`?
     type: question
 
-Using Javascript, `{version}` is replaced with the latest available API version of PlaceholderAPI.  
+Using Javascript, `{papiVersion}` and `{papiHytaleVersion}` is replaced with the latest available API version of PlaceholderAPI for Minecraft and Hytale respectively.  
 Should you see the placeholder as-is does it mean that you either block Javascript, or that the version couldn't be obtained in time during page load.
 
 You can always find the latest version matching the API version on the [releases tab](https://github.com/PlaceholderAPI/PlaceholderAPI/releases) of the GitHub Repository.
@@ -243,9 +255,19 @@ A full guide on how to create expansions can be found on the [Creating a Placeho
 ## Setting placeholders in your plugin
 
 PlaceholderAPI offers the ability, to automatically parse placeholders from other plugins within your own plugin, giving the ability for your plugin to support thousands of other placeholders without depending on each plugin individually.  
-To use placeholders from other plugins in our own plugin, we simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
+To use placeholders from other plugins in your own plugin, you simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
+
+/// info | New since 2.12.0
+Starting with version 2.12.0 is it now possible to provide Components from the Adventure library to have placeholders parsed in.
+
+In order to use this new feature are the following things required to be true:
+
+- You depend on `placeholderapi-paper` and not just `placeholderapi`
+- Your plugin runs on a Paper-based Server. Spigot-based servers will not work!
+- You use `PAPIComponent` instead of `PlaceholderAPI` to parse Components.
+///
 
 /// tab | Spigot, Paper, ...
 
@@ -301,11 +323,14 @@ public class JoinExample extends JavaPlugin implements Listener {
     
     Example output: `Notch joined the server! They are rank Admin`
 
+    //// info | New since 2.12.0
+    Using `placeholderapi-papi` and `PAPIComponents` instead of `PlaceholderAPI` allows you to parse placeholders inside Adventure Components.
+    ////
 ///
 
 /// tab | Hytale
 
-The following is an example plugin that sends `%player_name% joined the server! They are rank %vault_rank%` as the Join message, having the placeholders be replaced by PlaceholderAPI.
+The following is an example plugin that sends `Welcome %player_name%!` as the Join message, having the placeholders be replaced by PlaceholderAPI.
 
 ``` { .java .annotate title="JoinExample.java" }
 packate com.example.plugin;
@@ -316,6 +341,7 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import com.hypixel.hytale.server.core.universe.Universe;
 
 public class JoinExample extends JavaPlugin {
 
@@ -326,13 +352,14 @@ public class JoinExample extends JavaPlugin {
     @Override
     protected void setup() {
         // (1)
-        getEventRegistry().registerGlobal(PlayerReadyEvent.class, this::onPlayerReady);
+        Universe.get().getWorlds().keySet().forEach(name -> getEventRegistry().register(PlayerReadyEvent.class, name, this::onPlayerReady));
     }
 
     public void onPlayerReady(PlayerReadyEvent event) {
         Player player = event.getPlayer();
         // (2)
         player.sendMessage(PlaceholderAPI.setPlaceholders(Message.raw("Welcome %player_name%!"), player))
+        
     }
 }
 ```
