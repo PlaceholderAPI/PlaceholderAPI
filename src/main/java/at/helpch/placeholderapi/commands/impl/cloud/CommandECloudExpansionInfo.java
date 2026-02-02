@@ -35,6 +35,7 @@ public final class CommandECloudExpansionInfo extends PlaceholderCommand {
 
     public CommandECloudExpansionInfo() {
         super("info");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.info");
     }
 
     @Override

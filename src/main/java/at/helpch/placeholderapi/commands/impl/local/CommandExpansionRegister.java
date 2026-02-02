@@ -39,6 +39,7 @@ public final class CommandExpansionRegister extends PlaceholderCommand {
 
     public CommandExpansionRegister() {
         super("register");
+        setPermissions("placeholderapi.admin", "placeholderapi.register");
     }
 
     @Override

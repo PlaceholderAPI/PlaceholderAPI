@@ -36,6 +36,7 @@ public final class CommandHelp extends PlaceholderCommand {
 
     public CommandHelp() {
         super("help");
+        setPermissions("placeholderapi.admin", "placeholderapi.help");
     }
 
 

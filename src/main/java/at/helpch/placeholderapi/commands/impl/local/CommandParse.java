@@ -44,6 +44,7 @@ public final class CommandParse extends PlaceholderCommand {
 
     public CommandParse() {
         super("parse", "bcparse", "parserel", "cmdparse");
+        setPermissions("placeholderapi.admin", "placeholderapi.parse");
     }
 
 

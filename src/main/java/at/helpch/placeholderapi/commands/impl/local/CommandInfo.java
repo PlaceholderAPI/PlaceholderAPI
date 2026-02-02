@@ -35,6 +35,7 @@ public final class CommandInfo extends PlaceholderCommand {
 
     public CommandInfo() {
         super("info");
+        setPermissions("placeholderapi.admin", "placeholderapi.info");
     }
 
     @Override

@@ -36,6 +36,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
 
     public CommandECloudDownload() {
         super("download");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.download");
     }
 
     private boolean isBlockedExpansion(String name) {

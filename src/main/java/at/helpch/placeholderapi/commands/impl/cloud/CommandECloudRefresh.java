@@ -34,6 +34,7 @@ public final class CommandECloudRefresh extends PlaceholderCommand {
 
     public CommandECloudRefresh() {
         super("refresh");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.refresh");
     }
 
     @Override
