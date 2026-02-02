@@ -1,7 +1,7 @@
 {
   "Group": "HelpChat",
   "Name": "PlaceholderAPI",
-  "Version": "1.0.3",
+  "Version": "${version}",
   "Description": "An awesome placeholder provider",
   "Authors": [{"Name": "HelpChat"}],
   "Website": "https://placeholderapi.com",
