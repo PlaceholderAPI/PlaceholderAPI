@@ -238,12 +238,14 @@ public final class CloudExpansionManager {
                                     }));
                 });
     }
-
+    
+/*
     public boolean isDownloading(@NotNull final CloudExpansion expansion) {
         return await.containsKey(toIndexName(expansion));
     }
 
-    @NotNull
+
+     @NotNull
     public CompletableFuture<File> downloadExpansion(@NotNull final CloudExpansion expansion,
                                                      @NotNull final CloudExpansion.Version version) {
         final CompletableFuture<File> previous = await.get(toIndexName(expansion));
@@ -275,7 +277,7 @@ public final class CloudExpansionManager {
         await.put(toIndexName(expansion), download);
 
         return download;
-    }
+    } */
 
     private static final class LoggingThreadFactory implements ThreadFactory {
         private final ThreadFactory backing = Executors.defaultThreadFactory();
