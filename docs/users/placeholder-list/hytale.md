@@ -45,7 +45,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **O**
         - *No Expansions*
     - **P**
-        - [Player](#player)
+        - **[Player](#player)**
     - **Q**
         - *No Expansions*
     - **R**
