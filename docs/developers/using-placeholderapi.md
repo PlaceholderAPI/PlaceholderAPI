@@ -264,7 +264,7 @@ Starting with version 2.12.0 is it now possible to provide Components from the A
 
 In order to use this new feature are the following things required to be true:
 
-- You depend on `placeholderapi-papi` and not just `placeholderapi`
+- You depend on `placeholderapi-paper` and not just `placeholderapi`
 - Your plugin runs on a Paper-based Server. Spigot-based servers will not work!
 - You use `PAPIComponent` instead of `PlaceholderAPI` to parse Components.
 ///
@@ -341,6 +341,7 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import com.hypixel.hytale.server.core.universe.Universe;
 
 public class JoinExample extends JavaPlugin {
 
@@ -351,13 +352,14 @@ public class JoinExample extends JavaPlugin {
     @Override
     protected void setup() {
         // (1)
-        getEventRegistry().registerGlobal(PlayerReadyEvent.class, this::onPlayerReady);
+        Universe.get().getWorlds().keySet().forEach(name -> getEventRegistry().register(PlayerReadyEvent.class, name, this::onPlayerReady));
     }
 
     public void onPlayerReady(PlayerReadyEvent event) {
         Player player = event.getPlayer();
         // (2)
         player.sendMessage(PlaceholderAPI.setPlaceholders(Message.raw("Welcome %player_name%!"), player))
+        
     }
 }
 ```

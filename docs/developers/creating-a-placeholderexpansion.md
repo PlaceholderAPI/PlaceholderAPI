@@ -273,6 +273,9 @@ package com.example.plugin;
 import com.example.plugin.expansion.SomeExpansion;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import com.hypixel.hytale.common.plugin.PluginIdentifier;
+import com.hypixel.hytale.server.core.HytaleServer;
+
 
 public class SomePlugin extends JavaPlugin {
 
@@ -280,7 +283,12 @@ public class SomePlugin extends JavaPlugin {
         super(init)
     }
 
-    // TODO: Example of checking for PAPI and registering expansion
+    @Override
+    protected void start() {
+        if (HytaleServer.get().getPluginManager().getPlugin(PluginIdentifier.fromString("HelpChat:PlaceholderAPI")) != null) {
+            new SomeExpansion(this).register();
+        }
+    }
 }
 ```
 
