@@ -55,7 +55,7 @@ public final class PlaceholderAPIConfig {
     }
 
     public boolean useAdventureReplacer() {
-        return plugin.getConfig().getBoolean("useAdventureProvidedReplacer", false);
+        return plugin.getConfig().getBoolean("use_adventure_provided_replacer", false);
     }
 
 
