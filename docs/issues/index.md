@@ -8,6 +8,12 @@ This page lists common issues you may encounter with PlaceholderAPI and how you 
 
 If you have more questions, feel free to join the [Discord Server](https://discord.gg/helpchat).
 
+## eCloud download fails / blocked connection
+
+If your host or network blocks outgoing connections to the Expansion Cloud (eCloud), PlaceholderAPI will be unable to download expansions.
+
+See: [eCloud connection blocked](ecloud-block.md)
+
 ## `java.lang.NoClassDefFoundError: com/google/gson/Gson`
 
 If you encounter an issue such as

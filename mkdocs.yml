@@ -85,7 +85,9 @@ nav:
     - developers/using-placeholderapi.md
     - developers/creating-a-placeholderexpansion.md
     - developers/expansion-cloud.md
-  - common-issues.md
+  - Common Issues:
+    - issues/index.md
+    - issues/ecloud-block.md
   - faq.md
   - Discord: https://discord.gg/helpchat
 
