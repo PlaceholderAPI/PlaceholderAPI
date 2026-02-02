@@ -36,6 +36,7 @@ public final class CommandExpansionUnregister extends PlaceholderCommand {
 
     public CommandExpansionUnregister() {
         super("unregister");
+        setPermissions("placeholderapi.admin", "placeholderapi.unregister");
     }
 
     @Override

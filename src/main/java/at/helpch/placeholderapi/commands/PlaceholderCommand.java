@@ -20,10 +20,7 @@
 
 package at.helpch.placeholderapi.commands;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
@@ -39,22 +36,20 @@ public abstract class PlaceholderCommand {
     @NotNull
     private final Set<String> alias;
 
-    @Nullable
-    private String permission;
+    private Set<String> permissions = new HashSet<>();
 
 
     protected PlaceholderCommand(@NotNull final String label, @NotNull final String... alias) {
         this.label = label;
         this.alias = Set.of(alias);
 
-        setPermission("placeholderapi." + label);
+        setPermissions("placeholderapi.*");
     }
 
     @NotNull
     public static Stream<PlaceholderCommand> filterByPermission(@NotNull final CommandSender sender,
                                                                 @NotNull final Stream<PlaceholderCommand> commands) {
-        return commands.filter(
-                target -> target.getPermission() == null || sender.hasPermission(target.getPermission()));
+        return commands.filter(target -> target.getPermissions().stream().anyMatch(sender::hasPermission));
     }
 
     public static void suggestByParameter(@NotNull final Stream<String> possible,
@@ -87,13 +82,13 @@ public abstract class PlaceholderCommand {
         return set;
     }
 
-    @Nullable
-    public final String getPermission() {
-        return permission;
+    @NotNull
+    public final Set<String> getPermissions() {
+        return permissions;
     }
 
-    public void setPermission(@NotNull final String permission) {
-        this.permission = permission;
+    public void setPermissions(@NotNull final String @NotNull ... permissions) {
+        this.permissions.addAll(Arrays.asList(permissions));
     }
 
     public void evaluate(@NotNull final PlaceholderAPIPlugin plugin,

@@ -38,6 +38,7 @@ public final class CommandList extends PlaceholderCommand {
 
     public CommandList() {
         super("list");
+        setPermissions("placeholderapi.admin", "placeholderapi.list");
     }
 
 

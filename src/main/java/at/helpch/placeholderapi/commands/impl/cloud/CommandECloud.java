@@ -30,6 +30,7 @@ import org.jetbrains.annotations.Unmodifiable;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class CommandECloud extends PlaceholderCommand {
 
@@ -46,7 +47,7 @@ public final class CommandECloud extends PlaceholderCommand {
 
     static {
         COMMANDS
-                .forEach(command -> command.setPermission("placeholderapi.ecloud." + command.getLabel()));
+                .forEach(command -> command.setPermissions("placeholderapi.ecloud." + command.getLabel()));
     }
 
     @NotNull
@@ -64,6 +65,9 @@ public final class CommandECloud extends PlaceholderCommand {
         }
 
         this.commands = commands;
+
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud");
+        COMMANDS.stream().map(PlaceholderCommand::getPermissions).flatMap(Set::stream).forEach(this::setPermissions);
     }
 
 
@@ -129,8 +133,8 @@ public final class CommandECloud extends PlaceholderCommand {
             return;
         }
 
-        final String permission = target.getPermission();
-        if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
+        final Set<String> permissions = target.getPermissions();
+        if (permissions.stream().noneMatch(sender::hasPermission)) {
             sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
 //            Msg.msg(sender, "&cYou do not have permission to do this!");
             return;

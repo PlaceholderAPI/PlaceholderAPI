@@ -37,6 +37,7 @@ public final class CommandVersion extends PlaceholderCommand {
 
     public CommandVersion() {
         super("version");
+        setPermissions("placeholderapi.admin", "placeholderapi.version");
     }
 
 

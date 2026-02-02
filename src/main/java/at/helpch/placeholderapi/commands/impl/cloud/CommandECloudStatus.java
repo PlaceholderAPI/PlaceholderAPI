@@ -35,6 +35,7 @@ public final class CommandECloudStatus extends PlaceholderCommand {
 
     public CommandECloudStatus() {
         super("status");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.status");
     }
 
     @Override

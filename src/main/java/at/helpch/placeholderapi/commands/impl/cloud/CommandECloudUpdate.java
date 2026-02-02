@@ -45,6 +45,7 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
 
     public CommandECloudUpdate() {
         super("update");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.update");
     }
 
     private static CompletableFuture<List<@Nullable Class<? extends PlaceholderExpansion>>> downloadAndDiscover(

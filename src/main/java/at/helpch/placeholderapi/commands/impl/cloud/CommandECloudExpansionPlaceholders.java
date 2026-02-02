@@ -38,6 +38,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 
     public CommandECloudExpansionPlaceholders() {
         super("placeholders");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.placeholders");
     }
 
     @Override

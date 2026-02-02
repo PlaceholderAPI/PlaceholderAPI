@@ -55,6 +55,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     public CommandECloudExpansionList() {
         super("list");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.list");
     }
 
     @NotNull

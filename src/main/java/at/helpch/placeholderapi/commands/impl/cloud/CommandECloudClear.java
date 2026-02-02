@@ -34,6 +34,7 @@ public final class CommandECloudClear extends PlaceholderCommand {
 
     public CommandECloudClear() {
         super("clear");
+        setPermissions("placeholderapi.ecloud.*", "placeholderapi.ecloud.clear");
     }
 
     @Override

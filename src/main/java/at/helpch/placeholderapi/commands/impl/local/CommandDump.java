@@ -67,6 +67,7 @@ public final class CommandDump extends PlaceholderCommand {
 
     public CommandDump() {
         super("dump");
+        setPermissions("placeholderapi.admin", "placeholderapi.dump");
     }
 
     @Override

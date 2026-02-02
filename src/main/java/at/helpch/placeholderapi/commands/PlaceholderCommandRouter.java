@@ -29,16 +29,9 @@ import java.util.concurrent.CompletableFuture;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.impl.cloud.CommandECloud;
 import at.helpch.placeholderapi.commands.impl.local.*;
-import com.hypixel.hytale.component.Ref;
-import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.*;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
-import com.hypixel.hytale.server.core.command.system.basecommands.AbstractPlayerCommand;
-import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -86,6 +79,11 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
     }
 
     @Override
+    protected boolean canGeneratePermission() {
+        return false;
+    }
+
+    @Override
     protected @Nullable CompletableFuture<Void> execute(@NotNull final CommandContext context) {
         final String[] args = context.getInputString().replace("papi", "").replace("placeholderapi", "").trim().split(" ");
         final CommandSender sender = context.sender();
@@ -108,8 +106,8 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
             return CompletableFuture.completedFuture(null);
         }
 
-        final String permission = target.getPermission();
-        if (permission != null && !permission.isEmpty() && !sender.hasPermission(permission)) {
+        final Set<String> permissions = target.getPermissions();
+        if (permissions.stream().noneMatch(sender::hasPermission)) {
             sender.sendMessage(Message.raw("You do not have permission to do this!").color(Color.RED));
 
             return CompletableFuture.completedFuture(null);
