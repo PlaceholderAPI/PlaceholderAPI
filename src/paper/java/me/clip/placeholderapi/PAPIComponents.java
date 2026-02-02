@@ -49,10 +49,12 @@ public final class PAPIComponents {
      */
     @NotNull
     public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
-        // TODO: explore a custom TextReplacementRenderer which doesn't use regex for performance benefits i.e. merge CharsReplacer with kyori TextReplacementRenderer
-        return ComponentReplacer.replace(player, component);
-//        return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) ->
-//                builder.content(PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+        if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureProvidedReplacer()) {
+            return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) ->
+                    builder.content(PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+        }
+
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setPlaceholders(player, str));
     }
 
     /**
@@ -104,8 +106,12 @@ public final class PAPIComponents {
      */
     @NotNull
     public static Component setBracketPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
-        return component.replaceText(config -> config.match(PlaceholderAPI.BRACKET_PLACEHOLDER_PATTERN).replacement((result, builder) ->
-                builder.content(BRACKET_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+        if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureReplacer()) {
+            return component.replaceText(config -> config.match(PlaceholderAPI.BRACKET_PLACEHOLDER_PATTERN).replacement((result, builder) ->
+                    builder.content(BRACKET_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
+        }
+
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setBracketPlaceholders(player, str));
     }
 
     /**
@@ -157,6 +163,7 @@ public final class PAPIComponents {
      * @return The Component containing the parsed relational placeholders
      */
     public static Component setRelationalPlaceholders(Player one, Player two, Component component) {
+        //todo: custom replacer
         return component.replaceText(config -> config.match(RELATIONAL_PLACEHOLDER_PATTERN).replacement((result, builder) ->
                 builder.content(RELATIONAL_EXACT_REPLACER.apply(result.group(2), one, two, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
     }
@@ -174,9 +181,4 @@ public final class PAPIComponents {
         return components.stream().map(line -> setRelationalPlaceholders(one, two, line))
                 .collect(Collectors.toList());
     }
-
-    // kyori doesn't seem to have a method that can do a contains with regex, we don't want to do a more expensive replace
-//    public static boolean containsPlaceholders(@Nullable final Component text) {
-//        return text != null && text.replaceText()
-//    }
 }

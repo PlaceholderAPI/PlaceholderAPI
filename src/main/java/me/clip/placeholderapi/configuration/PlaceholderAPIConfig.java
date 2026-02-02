@@ -54,6 +54,10 @@ public final class PlaceholderAPIConfig {
         return plugin.getConfig().getBoolean("debug", false);
     }
 
+    public boolean useAdventureReplacer() {
+        return plugin.getConfig().getBoolean("useAdventureProvidedReplacer", false);
+    }
+
 
     public Optional<ExpansionSort> getExpansionSort() {
         final String option = plugin.getConfig()

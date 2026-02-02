@@ -1,6 +1,5 @@
 package me.clip.placeholderapi.replacer;
 
-import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.nbt.api.BinaryTagHolder;
 import net.kyori.adventure.text.*;
@@ -8,29 +7,27 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.DataComponentValue;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.Style;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class ComponentReplacer {
     @NotNull
-    public static Component replace(@Nullable final OfflinePlayer player, @NotNull final Component component) {
-        return rebuild(player, component);
+    public static Component replace(@NotNull final Component component, @NotNull final Function<String, String> replacer) {
+        return rebuild(component, replacer);
     }
 
     @NotNull
-    private static Component rebuild(@Nullable final OfflinePlayer player, @NotNull final Component component) {
+    private static Component rebuild(@NotNull final Component component, @NotNull final Function<String, String> replacer) {
         Component rebuilt;
 
         if (component instanceof TextComponent) {
             final TextComponent text = (TextComponent) component;
-            final String replaced = PlaceholderAPI.setPlaceholders(player, text.content());
+            final String replaced = replacer.apply(text.content());
 
             rebuilt = Component.text(replaced);
         } else if (component instanceof TranslatableComponent) {
@@ -38,7 +35,7 @@ public class ComponentReplacer {
             final List<Component> arguments = new ArrayList<>();
 
             for (final ComponentLike arg : translatable.arguments()) {
-                arguments.add(rebuild(player, arg.asComponent()));
+                arguments.add(rebuild(arg.asComponent(), replacer));
             }
 
             rebuilt = Component.translatable(translatable.key(), arguments);
@@ -55,12 +52,12 @@ public class ComponentReplacer {
             rebuilt = Component.empty();
         }
 
-        rebuilt = rebuilt.style(rebuildStyle(player, component.style()));
+        rebuilt = rebuilt.style(rebuildStyle(component.style(), replacer));
 
         if (!component.children().isEmpty()) {
             final List<Component> children = new ArrayList<>();
             for (Component child : component.children()) {
-                children.add(rebuild(player, child));
+                children.add(rebuild(child, replacer));
             }
             rebuilt = rebuilt.children(children);
         }
@@ -69,25 +66,25 @@ public class ComponentReplacer {
     }
 
     @NotNull
-    private static Style rebuildStyle(@Nullable final OfflinePlayer player, @NotNull final Style style) {
+    private static Style rebuildStyle(@NotNull final Style style, @NotNull final Function<String, String> replacer) {
         final Style.Builder builder = style.toBuilder();
         final ClickEvent click = style.clickEvent();
 
         if (click != null) {
-            builder.clickEvent(rebuildClickEvent(player, click));
+            builder.clickEvent(rebuildClickEvent(click, replacer));
         }
 
         final HoverEvent<?> hover = style.hoverEvent();
 
         if (hover != null) {
-            builder.hoverEvent(rebuildHoverEvent(player, hover));
+            builder.hoverEvent(rebuildHoverEvent(hover, replacer));
         }
 
         return builder.build();
     }
 
     @NotNull
-    private static ClickEvent rebuildClickEvent(@Nullable final OfflinePlayer player, @NotNull final ClickEvent click) {
+    private static ClickEvent rebuildClickEvent(@NotNull final ClickEvent click, @NotNull final Function<String, String> replacer) {
         final ClickEvent.Payload payload = click.payload();
 
         if (!(payload instanceof ClickEvent.Payload.Text)) {
@@ -95,7 +92,7 @@ public class ComponentReplacer {
         }
 
         final String original = ((ClickEvent.Payload.Text) payload).value();
-        final String replaced = PlaceholderAPI.setPlaceholders(player, original);
+        final String replaced = replacer.apply(original);
 
         final ClickEvent.Action action = click.action();
 
@@ -116,16 +113,16 @@ public class ComponentReplacer {
     }
 
     @NotNull
-    private static HoverEvent<?> rebuildHoverEvent(@Nullable final OfflinePlayer player, @NotNull final HoverEvent<?> hover) {
+    private static HoverEvent<?> rebuildHoverEvent(@NotNull final HoverEvent<?> hover, @NotNull final Function<String, String> replacer) {
         final Object value = hover.value();
 
         if (value instanceof Component) {
-            final Component rebuilt = rebuild(player, (Component) value);
+            final Component rebuilt = rebuild((Component) value, replacer);
             return HoverEvent.showText(rebuilt);
         }
 
         if (value instanceof HoverEvent.ShowItem) {
-            return rebuildShowItem(player, (HoverEvent.ShowItem) value);
+            return rebuildShowItem((HoverEvent.ShowItem) value, replacer);
         }
 
         if (value instanceof HoverEvent.ShowEntity) {
@@ -133,7 +130,7 @@ public class ComponentReplacer {
 
             Component rebuiltName = null;
             if (entity.name() != null) {
-                rebuiltName = rebuild(player, entity.name());
+                rebuiltName = rebuild(entity.name(), replacer);
             }
 
             return HoverEvent.showEntity(entity.type(), entity.id(), rebuiltName);
@@ -143,11 +140,11 @@ public class ComponentReplacer {
     }
 
     @NotNull
-    private static HoverEvent<?> rebuildShowItem(@Nullable final OfflinePlayer player, @NotNull final HoverEvent.ShowItem item) {
+    private static HoverEvent<?> rebuildShowItem(@NotNull final HoverEvent.ShowItem item, @NotNull final Function<String, String> replacer) {
         final BinaryTagHolder nbt = item.nbt();
 
         if (nbt != null && !nbt.string().isEmpty()) {
-            final String replaced = PlaceholderAPI.setPlaceholders(player, nbt.string());
+            final String replaced = replacer.apply(nbt.string());
 
             return HoverEvent.showItem(item.item(), item.count(), BinaryTagHolder.binaryTagHolder(replaced));
         }
@@ -166,7 +163,7 @@ public class ComponentReplacer {
                     continue;
                 }
 
-                rebuilt.put(entry.getKey(), BinaryTagHolder.binaryTagHolder(PlaceholderAPI.setPlaceholders(player, ((BinaryTagHolder) value).string())));
+                rebuilt.put(entry.getKey(), BinaryTagHolder.binaryTagHolder(replacer.apply(((BinaryTagHolder) value).string())));
             }
 
             return HoverEvent.showItem(item.item(), item.count(), rebuilt);
