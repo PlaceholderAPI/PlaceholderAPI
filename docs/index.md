@@ -40,7 +40,8 @@ It also has a community-curated list of all available Placeholder expansions and
     
     Common problems you may face while using PlaceholderAPI, and how to solve them.
     
-    - [:octicons-chevron-right-16: Go to Page](common-issues.md)
+    - [:octicons-chevron-right-16: Common Issues](issues/index.md)
+    - [:octicons-chevron-right-16: eCloud connection blocked](issues/ecloud-block.md)
 
 -   ### :material-chat-question: FAQ
     
