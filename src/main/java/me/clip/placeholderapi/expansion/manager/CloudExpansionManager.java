@@ -63,7 +63,7 @@ import org.jetbrains.annotations.Unmodifiable;
 public final class CloudExpansionManager {
 
     @NotNull
-    private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/";
+    private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/?platform=bukkit";
 
     @NotNull
     private static final Gson GSON = new Gson();

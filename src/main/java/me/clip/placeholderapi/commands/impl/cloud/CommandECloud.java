@@ -119,7 +119,7 @@ public final class CommandECloud extends PlaceholderCommand {
         }
 
         if (!target.getLabel().equalsIgnoreCase("refresh") && plugin.getCloudExpansionManager().isEmpty()) {
-            Msg.msg(sender, "&cThere is no available data from the eCloud. Please try running &f/papi ecloud refresh&c. If this does not resolve the issue, the eCloud may be blocked by your firewall, server host, or service provider.\n\nMore information: &fhttps://placeholderapi.com/ecloud-blocked");
+            Msg.msg(sender, "&cThere is no available data from the eCloud. Please try running &f/papi ecloud refresh&c. If this does not resolve the issue, the eCloud may be blocked by your firewall, server host, or service provider.\n&r\n&cMore information: &fhttps://placeholderapi.com/ecloud-blocked");
             return;
         }
 
