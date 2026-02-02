@@ -31,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
@@ -115,6 +116,10 @@ public final class CloudExpansionManager {
         return ImmutableMap.copyOf(cache);
     }
 
+    public boolean isEmpty() {
+        return cache.isEmpty();
+    }
+
     @NotNull
     @Unmodifiable
     public Map<String, CloudExpansion> getCloudExpansionsInstalled() {
@@ -197,6 +202,8 @@ public final class CloudExpansionManager {
                         for (String name : toRemove) {
                             values.remove(name);
                         }
+                    } catch (UnknownHostException e) {
+                        plugin.getLogger().log(Level.WARNING, "There is no data available from the eCloud. Please try running /papi refresh. If this does not resolve the issue, the eCloud may be blocked by your firewall, server host, or service provider.\n\nMore information: https://placeholderapi.com/ecloud-blocked", e);
                     } catch (Throwable e) {
                         // ugly swallowing of every throwable, but we have to be defensive
                         plugin.getLogger().log(Level.WARNING, "Failed to download expansion information", e);
