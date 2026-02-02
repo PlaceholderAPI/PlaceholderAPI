@@ -55,20 +55,11 @@ If unblocking is not an option, you can download expansions manually:
 
 ## Quick connectivity checks (optional)
 
-If you have access to the machine running the server, these checks can help confirm a block.
-
-### Linux
+If you have access to the machine running the server, these checks from a terminal or command prompt can help confirm a block.
 
 ```bash
 curl -I https://ecloud.placeholderapi.com/api/v3/
 curl -I https://api.extendedclip.com/v2/
-```
-
-### Windows (PowerShell)
-
-```powershell
-Invoke-WebRequest -Method Head https://ecloud.placeholderapi.com/api/v3/
-Invoke-WebRequest -Method Head https://api.extendedclip.com/v2/
 ```
 
 If these commands fail on the server but work on your own PC/network, the server host or datacenter network is most likely blocking outbound connections.
