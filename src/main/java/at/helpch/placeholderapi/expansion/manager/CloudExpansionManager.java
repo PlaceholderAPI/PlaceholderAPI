@@ -29,6 +29,7 @@ import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
@@ -108,6 +109,10 @@ public final class CloudExpansionManager {
     @Unmodifiable
     public Map<String, CloudExpansion> getCloudExpansions() {
         return Map.copyOf(cache);
+    }
+
+    public boolean isEmpty() {
+        return cache.isEmpty();
     }
 
     @NotNull
@@ -201,6 +206,8 @@ public final class CloudExpansionManager {
                         for (String name : toRemove) {
                             values.remove(name);
                         }
+                    } catch (UnknownHostException e) {
+                        logger.atWarning().log("There is no data available from the eCloud. Please try running /papi refresh. If this does not resolve the issue, the eCloud may be blocked by your firewall, server host, or service provider.\n\nMore information: https://placeholderapi.com/ecloud-blocked", e);
                     } catch (Throwable e) {
                         // ugly swallowing of every throwable, but we have to be defensive
                         logger.atWarning().log("Failed to download expansion information", e);
