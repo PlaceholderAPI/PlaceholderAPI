@@ -63,6 +63,8 @@ extra:
       - reject
       - manage
   social:
+    - icon: simple/modrinth
+      link: https://modrinth.com/plugin/placeholderapi
     - icon: fontawesome/regular/paper-plane
       link: https://hangar.papermc.io/HelpChat/PlaceholderAPI
     - icon: simple/spigotmc
@@ -76,10 +78,7 @@ nav:
     - users/index.md
     - users/commands.md
     - users/using-placeholders.md
-    - Placeholder List:
-      - users/placeholder-list/index.md
-      - users/placeholder-list/minecraft.md
-      - users/placeholder-list/hytale.md
+    - users/placeholder-list.md
     - users/plugins-using-placeholderapi.md
   - Dev Guides:
     - developers/index.md
