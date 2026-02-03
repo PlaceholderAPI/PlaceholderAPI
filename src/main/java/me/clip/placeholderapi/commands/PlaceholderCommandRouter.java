@@ -128,7 +128,7 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
             final PlaceholderCommand target = this.commands.get(args[0].toLowerCase(Locale.ROOT));
 
             if (target != null) {
-                if (target.getPermission() != null && target.getPermission().isEmpty() && !sender.hasPermission(target.getPermission())) {
+                if (target.getPermission() != null && !target.getPermission().isEmpty() && !sender.hasPermission(target.getPermission())) {
                     return suggestions;
                 }
 
