@@ -170,6 +170,8 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                     .append(newline()).append(newline())
                     .append(text("Author: ", AQUA)).append(text(expansion.getAuthor(), WHITE))
                     .append(newline())
+                    .append(text("Version: ", AQUA)).append(text(expansion.getVersion().getVersion(), WHITE))
+                    .append(newline())
                     .append(text("Verified: ", AQUA)).append(text(expansion.getVersion().isVerified() ? "✔" : "❌", expansion.getVersion().isVerified() ? GREEN : RED, TextDecoration.BOLD))
                     .append(newline())
                     .append(text("Released: ", AQUA)).append(text(format.format(expansion.getLastUpdate()), WHITE))
