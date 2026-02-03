@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import com.google.common.collect.Lists;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.commands.impl.cloud.CommandECloud;
 import me.clip.placeholderapi.commands.impl.local.CommandDump;
@@ -119,14 +120,18 @@ public final class PlaceholderCommandRouter implements CommandExecutor, TabCompl
     }
 
     @Override
-    public List<String> onTabComplete(@NotNull final CommandSender sender,
-                                      @NotNull final Command command, @NotNull final String alias, @NotNull final String[] args) {
+    public List<String> onTabComplete(@NotNull final CommandSender sender, @NotNull final Command command,
+                                      @NotNull final String alias, @NotNull final String[] args) {
         final List<String> suggestions = new ArrayList<>();
 
         if (args.length > 1) {
             final PlaceholderCommand target = this.commands.get(args[0].toLowerCase(Locale.ROOT));
 
             if (target != null) {
+                if (target.getPermission() != null && target.getPermission().isEmpty() && !sender.hasPermission(target.getPermission())) {
+                    return suggestions;
+                }
+
                 target.complete(plugin, sender, args[0].toLowerCase(Locale.ROOT),
                         Arrays.asList(Arrays.copyOfRange(args, 1, args.length)), suggestions);
             }
