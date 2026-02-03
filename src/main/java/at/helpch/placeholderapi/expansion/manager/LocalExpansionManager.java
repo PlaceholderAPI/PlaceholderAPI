@@ -217,17 +217,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
     @ApiStatus.Internal
     public boolean register(@NotNull final PlaceholderExpansion expansion) {
         final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
-
-        if (!expansion.canRegister()) {
-            return false;
-        }
-
-        // Avoid loading two external expansions with the same identifier
-        if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
-            logger.atWarning().log("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
-            return false;
-        }
-
+        
         if (expansion instanceof Configurable<?> configurable) {
             final PlaceholderAPIConfig config = configManager.config();
 
@@ -242,36 +232,16 @@ public final class LocalExpansionManager /*implements Listener*/ {
                 final Object expansionConfig = configManager.convertExpansion((Map<String, Object>) config.expansions().get(expansion.getIdentifier()), configurable.provideConfigType());
                 config.expansions().put(expansion.getIdentifier(), expansionConfig);
             }
-//            Map<String, Object> defaults = ((Configurable<?>) expansion).getDefaults();
-//            String pre = "expansions." + identifier + ".";
-//            boolean save = false;
-//
-//            final PlaceholderAPIConfig config = this.config.config();
-//
-//            if (defaults != null) {
-//                for (Map.Entry<String, Object> entries : defaults.entrySet()) {
-//                    if (entries.getKey() == null || entries.getKey().isEmpty()) {
-//                        continue;
-//                    }
-//
-//                    if (entries.getValue() == null) {
-//                        if (cfg.contains(pre + entries.getKey())) {
-//                            save = true;
-//                            cfg.set(pre + entries.getKey(), null);
-//                        }
-//                    } else {
-//                        if (!cfg.contains(pre + entries.getKey())) {
-//                            save = true;
-//                            cfg.set(pre + entries.getKey(), entries.getValue());
-//                        }
-//                    }
-//                }
-//            }
-//
-//            if (save) {
-//                plugin.saveConfig();
-//                plugin.reloadConfig();
-//            }
+        }
+
+        if (!expansion.canRegister()) {
+            return false;
+        }
+
+        // Avoid loading two external expansions with the same identifier
+        if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
+            logger.atWarning().log("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
+            return false;
         }
 
 //        if (expansion instanceof VersionSpecific) {
