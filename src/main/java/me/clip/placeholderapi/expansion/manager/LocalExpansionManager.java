@@ -136,12 +136,7 @@ public final class LocalExpansionManager implements Listener {
 
     @Nullable
     public PlaceholderExpansion getExpansion(@NotNull final String identifier) {
-        expansionsLock.lock();
-        try {
-            return expansions.get(identifier.toLowerCase(Locale.ROOT));
-        } finally {
-            expansionsLock.unlock();
-        }
+        return expansions.get(identifier.toLowerCase(Locale.ROOT));
     }
 
     @NotNull
