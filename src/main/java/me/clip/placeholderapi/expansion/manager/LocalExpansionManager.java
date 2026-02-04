@@ -114,7 +114,7 @@ public final class LocalExpansionManager implements Listener {
 
     @NotNull
     @Unmodifiable
-    public Collection<String> getIdentifiers() {
+    public Set<String> getIdentifiers() {
         expansionsLock.lock();
         try {
             return ImmutableSet.copyOf(expansions.keySet());
