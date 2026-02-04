@@ -279,8 +279,15 @@ public final class PlaceholderAPI {
      * @param text String to check
      * @return true if String contains any matches to the normal placeholder pattern, false otherwise
      */
-    public static boolean containsPlaceholders(String text) {
-        return text != null && PLACEHOLDER_PATTERN.matcher(text).find();
+    public static boolean containsPlaceholders(final String text) {
+        if (text == null) {
+            return false;
+        }
+        final int firstPercent = text.indexOf('%');
+        if (firstPercent == -1) {
+            return false;
+        }
+        return text.indexOf('%', firstPercent + 1) != -1;
     }
 
     /**
@@ -290,8 +297,15 @@ public final class PlaceholderAPI {
      * @param text String to check
      * @return true if String contains any matches to the bracket placeholder pattern, false otherwise
      */
-    public static boolean containsBracketPlaceholders(String text) {
-        return text != null && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
+    public static boolean containsBracketPlaceholders(final String text) {
+        if (text == null) {
+            return false;
+        }
+        final int firstPercent = text.indexOf('{');
+        if (firstPercent == -1) {
+            return false;
+        }
+        return text.indexOf('}', firstPercent + 1) != -1;
     }
 
     // === Deprecated API ===
