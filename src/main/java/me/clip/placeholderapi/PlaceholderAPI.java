@@ -308,11 +308,11 @@ public final class PlaceholderAPI {
         if (text == null) {
             return false;
         }
-        final int firstPercent = text.indexOf('{');
-        if (firstPercent == -1) {
+        final int openBracket = text.indexOf('{');
+        if (openBracket == -1) {
             return false;
         }
-        return text.indexOf('}', firstPercent + 1) != -1;
+        return text.indexOf('}', openBracket + 1) != -1;
     }
 
     // === Deprecated API ===
