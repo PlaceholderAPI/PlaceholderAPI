@@ -80,12 +80,11 @@ public final class PlaceholderAPI {
     @NotNull
     public static List<String> setPlaceholders(final OfflinePlayer player,
                                                @NotNull final List<String> text) {
-        final String[] parsed = new String[text.size()];
-        int i = 0;
+        final List<String> result = new ArrayList<>(text.size());
         for (final String line : text) {
-            parsed[i++] = setPlaceholders(player, line);
+            result.add(setPlaceholders(player, line));
         }
-        return Arrays.asList(parsed);
+        return result;
     }
 
     /**
@@ -140,12 +139,11 @@ public final class PlaceholderAPI {
     @NotNull
     public static List<@NotNull String> setBracketPlaceholders(final OfflinePlayer player,
                                                                @NotNull final List<@NotNull String> text) {
-        final String[] parsed = new String[text.size()];
-        int i = 0;
+        final List<String> result = new ArrayList<>(text.size());
         for (final String line : text) {
-            parsed[i++] = setBracketPlaceholders(player, line);
+            result.add(setBracketPlaceholders(player, line));
         }
-        return Arrays.asList(parsed);
+        return result;
     }
 
     /**
@@ -223,12 +221,11 @@ public final class PlaceholderAPI {
      * @return The text containing the parsed relational placeholders
      */
     public static List<String> setRelationalPlaceholders(final Player one, final Player two, final @NotNull List<String> text) {
-        final String[] parsed = new String[text.size()];
-        int i = 0;
+        final List<String> result = new ArrayList<>(text.size());
         for (final String line : text) {
-            parsed[i++] = setRelationalPlaceholders(one, two, line);
+            result.add(setRelationalPlaceholders(one, two, line));
         }
-        return Arrays.asList(parsed);
+        return result;
     }
 
     /**
