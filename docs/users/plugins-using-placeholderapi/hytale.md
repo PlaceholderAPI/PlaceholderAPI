@@ -68,7 +68,7 @@ No Plugins available
 ## E
 - **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](/users/placeholder-list/hytale/#eliteessentials)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#eliteessentials)**]
 
 ----
 ## F
@@ -88,7 +88,7 @@ No Plugins available
 ## H
 - **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](/users/placeholder-list/hytale/#hyfactions)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyfactions)**]
 
 ----
 ## I
@@ -115,7 +115,7 @@ No Plugins available
 ## L
 - **[LuckPerms](https://www.curseforge.com/hytale/mods/luckperms)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](/users/placeholder-list/hytale/#luckperms)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#luckperms)**]
 
 ----
 ## M
