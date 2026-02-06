@@ -17,7 +17,7 @@ Before you can use placeholders should you check a few things first.
 The first and most important thing is, to find out if the plugin you want to use placeholders in is actually supporting PlaceholderAPI.  
 Chat-plugins such as EssentialsXChat do not natively support PlaceholderAPI and instead require separate plugins to "inject" the parsed placeholders into the final chat message.
 
-One way to check, if a Plugin is supporing PlaceholderAPI, is to check the [Plugins using PlaceholderAPI](plugins-using-placeholderapi.md) page.  
+One way to check, if a Plugin is supporing PlaceholderAPI, is to check the [Plugins using PlaceholderAPI](plugins-using-placeholderapi/index.md) page.  
 If the plugin is listed and if the `Supports placeholders` text has a check, does it mean that PlaceholderAPI support is available.
 
 If the plugin isn't listed, can you usually check its plugin page, or any other source of information, such as a wiki, for clues on if PlaceholderAPI is supported.
