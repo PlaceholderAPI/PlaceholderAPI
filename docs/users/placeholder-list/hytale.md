@@ -19,7 +19,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **B**
         - *No Expansions*
     - **C**
-        - *No Expansions*
+        - **[ChangeOutput](#changeoutput)**
     - **D**
         - *No Expansions*
     - **E**
@@ -79,13 +79,13 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **D**
         - *No Expansions*
     - **E**
-        - *No Expansions*
+        - **[EliteEssentials](#eliteessentials)**
     - **F**
         - *No Expansions*
     - **G**
         - *No Expansions*
     - **H**
-        - *No Expansions*
+        - **[HyFactions](#hyfactions)**
     - **I**
         - *No Expansions*
     - **J**
@@ -129,6 +129,38 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 Expansions listed here don't need any plugin/mod or extra library to function properly, unless mentioned otherwise.  
 A majority of these Expansions are maintained by the PlaceholderAPI team and can be considered *official*.
+
+----
+
+### **ChangeOutput**
+/// command | papi ecloud download changeoutput
+///
+
+Allows you to change the output based on what other placeholders return. 
+
+More information can be found on the [GitHub Repository](https://github.com/PlaceholderAPI/Expansion-ChangeOutput/tree/hytale)
+
+```
+%changeoutput_<options>_input:<input>_matcher:<matcher>_ifmatch:<output-if-matched>_else:<output-if-not-matched>%
+```
+
+- `<options>`
+- equals - match the input exactly
+- ignorecase - match the input while ignoring cases
+- ignorecolor - match the input while ignoring colour codes
+- contains - check if the match contains input
+- \>= - check if the input is larger than or equal to the matcher
+- \> - check if the input is larger than the matcher
+- <= - check if the input is less than or equal to the matcher
+- < - check if the input is less than the matcher
+- `<input>` - this is your text that you wish to replace
+- `<match>` - this is the text we will be looking for to meet the conditions
+- `<output-if-matched>` - if the input meets the condition, this text will be displayed
+- `<output-if-not-matched>` - if the input does not meet the condition, this text will be displayed instead
+
+*All arguments can be replaced with other placeholders, wrapped in* `{}`
+
+----
 
 ### **Player**
 /// command | papi ecloud download Player
@@ -252,6 +284,113 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
+/// integrated | Built into Plugin
+///
+
+```
+%eliteessentials_economy_enabled%
+%eliteessentials_using_external_economy%
+%eliteessentials_currency_name%
+%eliteessentials_currency_name_plural%
+%eliteessentials_currency_symbol%
+%eliteessentials_balance%
+%eliteessentials_god%
+%eliteessentials_vanished%
+%eliteessentials_homes_num%
+%eliteessentials_homes_max%
+%eliteessentials_homes_names%
+%eliteessentials_all_kits_num%
+%eliteessentials_all_kits_names%
+%eliteessentials_allowed_kits_num%
+%eliteessentials_allowed_kits_names%
+%eliteessentials_all_warps_num%
+%eliteessentials_all_warps_names%
+%eliteessentials_allowed_warps_num%
+%eliteessentials_allowed_warps_names%
+%eliteessentials_home_<name>_name%
+%eliteessentials_home_<name>_createdat%
+%eliteessentials_home_<name>_coords%
+%eliteessentials_home_<name>_x%
+%eliteessentials_home_<name>_y%
+%eliteessentials_home_<name>_z%
+%eliteessentials_home_<name>_yaw%
+%eliteessentials_home_<name>_pitch%
+%eliteessentials_home_<name>_world%
+%eliteessentials_kit_<id>_name%
+%eliteessentials_kit_<id>_id%
+%eliteessentials_kit_<id>_description%
+%eliteessentials_kit_<id>_icon%
+%eliteessentials_kit_<id>_cooldown%
+%eliteessentials_kit_<id>_remainingcooldown%
+%eliteessentials_kit_<id>_items%
+%eliteessentials_warp_<name>_name%
+%eliteessentials_warp_<name>_description%
+%eliteessentials_warp_<name>_permission%
+%eliteessentials_warp_<name>_createdat%
+%eliteessentials_warp_<name>_createdby%
+%eliteessentials_warp_<name>_coords%
+%eliteessentials_warp_<name>_x%
+%eliteessentials_warp_<name>_y%
+%eliteessentials_warp_<name>_z%
+%eliteessentials_warp_<name>_yaw%
+%eliteessentials_warp_<name>_pitch%
+%eliteessentials_warp_<name>_world%
+```
+
+----
+
+### **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
+/// command | papi ecloud download HyFactions
+///
+
+Relational:
+```
+%rel_factions_relation% - Relation type (ally, enemy, etc)
+%rel_factions_relation_color% - green, white, red
+```
+
+Standard:
+```
+%factions_player_has_faction% - yes/no
+%factions_player_faction% - faction name
+%factions_player_faction_id% - faction uuid
+%factions_player_faction_rank% - rank in faction
+%factions_player_power% - power level of player
+%factions_party_color% - party color (number)
+%factions_party_name% - party name
+%factions_party_id% - party id
+%factions_party_description% - party description
+%factions_party_created% - date of party creation
+%factions_party_max_claims% - max number of claims for party
+%factions_party_claims% - number of claims by party
+%factions_party_members% - number of members in party
+%factions_party_owner_id% - owner uuid
+%factions_party_owner_name% - owner username
+%factions_faction_home_dimension% - dimension name of faction home
+%factions_faction_home_x% - 2 D.P. x coord of faction home
+%factions_faction_home_y% - 2 D.P. y coord of faction home
+%factions_faction_home_z% - 2 D.P. z coord of faction home
+%factions_faction_home_coords% - 2 D.P. x y z coords of faction home
+%factions_faction_home_yaw% - 2 D.P. yaw of faction home
+%factions_faction_home_pitch% - 2 D.P. pitch of faction home
+%factions_faction_color% - number of faction color
+%factions_faction_description% - faction description
+%factions_faction_max_claims% - max claims allowed by faction
+%factions_faction_owner_id% - faction owner uuid
+%factions_faction_owner_name% - faction owner username
+%factions_faction_created% - date of faction creation
+%factions_faction_members% - number of members in faction
+%factions_faction_relations% - number of relations with other factions
+%factions_faction_allies% - number of allies
+%factions_faction_neutrals% - number of neutrals
+%factions_faction_enemies% - number of enemies
+%factions_faction_claims% - number of claims by faction
+%factions_faction_total_power% - total power of faction
+```
+
+----
 
 ### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
 /// command | papi ecloud download LuckPerms
