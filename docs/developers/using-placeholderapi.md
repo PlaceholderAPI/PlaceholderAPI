@@ -31,14 +31,6 @@ Use the below code example matching your project type and dependency manager.
             <version>{papiVersion}</version>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Optional: Component support on Paper Servers (Since 2.12.0) -->
-        <dependency>
-          <groupId>me.clip</groupId>
-          <artifactId>placeholderapi-paper</artifactId>
-          <version>{papiVersion}</version>
-          <scope>provided</scope>
-    </dependencies>
 ```
 ////
 
