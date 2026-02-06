@@ -1,0 +1,53 @@
+name: "Validate Wiki Build"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths-ignore:
+      - "README.md"
+    branches:
+      - wiki
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  RUN_URL: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_number }}"
+
+jobs:
+  buildWiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: "${{ github.event.pull_request.head.sha }}"
+      - name: "Setup Python 3.x"
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.x
+      - name: "Install dependencies"
+        run: "pip install -r requirements.txt"
+      - name: "Build Site"
+        run: "mkdocs build --strict"
+  commentOnFail:
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    steps:
+      - name: "Create Comment"
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          body: |-
+            ## Wiki Build failure
+
+            Something went wrong while creating a test-build of the Wiki for this Pull request.
+            Please check the [Workflow Logs](${{ env.RUN_URL }}) for any errors.
+          issue-number: "${{ github.event.pull_request.number }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          edit-mode: replace
