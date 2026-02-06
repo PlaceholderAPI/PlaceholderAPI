@@ -31,14 +31,6 @@ Use the below code example matching your project type and dependency manager.
             <version>{papiVersion}</version>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Optional: Component support on Paper Servers (Since 2.12.0) -->
-        <dependency>
-          <groupId>me.clip</groupId>
-          <artifactId>placeholderapi-paper</artifactId>
-          <version>{papiVersion}</version>
-          <scope>provided</scope>
-    </dependencies>
 ```
 ////
 
@@ -331,6 +323,7 @@ public class JoinExample extends JavaPlugin implements Listener {
 /// tab | Hytale
 
 The following is an example plugin that sends `Welcome %player_name%!` as the Join message, having the placeholders be replaced by PlaceholderAPI.
+Keeping in mind the [Hytale Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/) needs to be installed to make use of `%player_<identifier>%` placeholders.
 
 ``` { .java .annotate title="JoinExample.java" }
 packate com.example.plugin;
@@ -358,7 +351,7 @@ public class JoinExample extends JavaPlugin {
     public void onPlayerReady(PlayerReadyEvent event) {
         Player player = event.getPlayer();
         // (2)
-        player.sendMessage(PlaceholderAPI.setPlaceholders(Message.raw("Welcome %player_name%!"), player))
+        player.sendMessage(PlaceholderAPI.setPlaceholders(player.getPlayerRef(), Message.raw("Welcome %player_name%!")))
         
     }
 }
@@ -366,6 +359,6 @@ public class JoinExample extends JavaPlugin {
 
 1.  We tell the server to call `onPlayerReady` whenever a `PlayerReadyEvent` fires.
 2.  PlaceholderAPI offers multiple `setPlaceholders` methods that can either return a `String` or a `Message` object, depending on your needs.  
-    Note that these methods require input of the same type: `setPlaceholders(String, PlayerRef)` for String and `setPlaceholders(Message, PlayerRef)` for Messages.
+    Note that these methods require input of the same type: `setPlaceholders(PlayerRef, String)` for String and `setPlaceholders(PlayerRef, Message)` for Messages.
 
 ///
