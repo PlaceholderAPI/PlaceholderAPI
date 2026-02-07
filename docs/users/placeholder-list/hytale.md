@@ -414,7 +414,7 @@ Standard:
 
 ----
 
-### **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
+### **[LuckPerms](https://www.curseforge.com/hytale/mods/luckperms)**
 /// command | papi ecloud download LuckPerms
 ///
 
