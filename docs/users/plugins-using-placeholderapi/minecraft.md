@@ -2,9 +2,9 @@
 description: List of Plugins that support PlaceholderAPI and/or provide their own placeholders to use.
 ---
 
-# Plugins using PlaceholderAPI
+# Minecraft
 
-This here is a list of all plugins supporting PlaceholderAPI by either having their own placeholders added, or just allowing other placeholders to be used.  
+This here is a list of all plugins supporting the Minecraft version of PlaceholderAPI by either having their own placeholders added, or just allowing other placeholders to be used.  
 If your plugin isn't shown here and you want it to be added, [read the Wiki README](https://github.com/PlaceholderAPI/PlaceholderAPI/blob/wiki/README.md) on how you can submit your changes.
 
 ## Plugins
@@ -40,46 +40,46 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## A
 - **AAC - AdvancedAntiCheat**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#aac)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#aac)**]
 - **[AbstractMenus](https://www.spigotmc.org/resources/75107/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#abstractmenus)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#abstractmenus)**]
 - **[AcidIsland](https://www.spigotmc.org/resources/581/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#acidisland)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#acidisland)**]
 - **[Advanced Abilities](https://www.spigotmc.org/resources/21983/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advanced-abilities)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advanced-abilities)**]
 - **[Advanced Achievements](https://www.spigotmc.org/resources/83466/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advanced-achievements)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advanced-achievements)**]
 - **[AdvancedAFK](https://www.spigotmc.org/resources/60761/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advancedafk)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advancedafk)**]
 - **[AdvancedCustomMenu+](https://www.spigotmc.org/resources/47945/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advancedcustommenu)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advancedcustommenu)**]
 - **[AdvancedLottery](https://www.spigotmc.org/resources/43668/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advancedlottery)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advancedlottery)**]
 - **[AdvancedModReq](https://www.spigotmc.org/resources/40528/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advancedmodreq)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advancedmodreq)**]
 - **[AdvancedServerList](https://modrinth.com/plugin/advancedserverlist)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#advancedserverlist)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#advancedserverlist)**]
 - **[Advance Tab](https://www.spigotmc.org/resources/21958/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[ajParkour](https://www.spigotmc.org/resources/60909/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ajparkour)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ajparkour)**]
 - **[AlonsoLevels](https://www.spigotmc.org/resources/83380/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#alonsolevels)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#alonsolevels)**]
 - **[AngelChest](https://www.spigotmc.org/resources/60383/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#angelchest)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#angelchest)**]
 - **[AnimatedBoard](https://www.spigotmc.org/resources/13632/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -88,7 +88,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Animated Menu](https://www.spigotmc.org/resources/4690/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#animated-menu)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#animated-menu)**]
 - **[AnimatedSpecialBar](https://www.spigotmc.org/resources/24654/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -97,64 +97,64 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[AParkour](https://www.spigotmc.org/resources/30923/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#aparkour)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#aparkour)**]
 - **[ASkyBlock](https://www.spigotmc.org/resources/1220/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#askyblock)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#askyblock)**]
 - **[AsyncKeepAlive](https://www.spigotmc.org/resources/64676/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#asynckeepalive)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#asynckeepalive)**]
 - **[Ath](https://www.spigotmc.org/resources/87124/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ath)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ath)**]
 - **[AutoCommandsPlus](https://www.spigotmc.org/resources/11083/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[AutoRank](https://www.spigotmc.org/resources/3239/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#autorank)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#autorank)**]
 - **[AutoSell](https://www.spigotmc.org/resources/2157/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#autosell)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#autosell)**]
 
 ----
 ## B
 - **[BankSystem](https://www.spigotmc.org/resources/61580/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#banksystem)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#banksystem)**]
 - **[BannerBoard](https://www.spigotmc.org/resources/20435/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[BasicQuests](https://www.spigotmc.org/resources/87972/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#basicquests)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#basicquests)**]
 - **[BattleLevels](https://www.spigotmc.org/resources/2218/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#battlelevels)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#battlelevels)**]
 - **[BeautyQuests](https://www.spigotmc.org/resources/39255/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#beautyquests)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#beautyquests)**]
 - **[BedWars1058](https://www.spigotmc.org/resources/50942/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#bedwars1058)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#bedwars1058)**]
 - **[BentoBox](https://github.com/BentoBoxWorld/BentoBox)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#bentobox)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#bentobox)**]
 - **[BetonQuest](https://www.spigotmc.org/resources/2117/)
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#betonquest)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#betonquest)**]
 - **[BetterTeams](https://www.spigotmc.org/resources/17129/)**
     - [ ] Supports placeholders.
-    - [X] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#betterteams)**]  
+    - [X] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#betterteams)**]  
 - **[Big Doors Opener](https://www.spigotmc.org/resources/80805/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[BlockParty](https://www.spigotmc.org/resources/7264/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#blockparty)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#blockparty)**]
 - **[BlockQuests](https://www.spigotmc.org/resources/32729/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#blockquest)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#blockquest)**]
 - **[BookStats](https://www.spigotmc.org/resources/4313/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -166,22 +166,22 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Boxing](https://www.spigotmc.org/resources/83879/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#boxing)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#boxing)**]
 - **[Broadcaster Plugin](https://dev.bukkit.org/projects/broadcaster-plugin)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[BuildBattlePro](https://www.spigotmc.org/resources/49587/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#buildbattlepro)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#buildbattlepro)**]
 - **[BungeePerms](https://www.spigotmc.org/resources/25/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#bungeeperms)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#bungeeperms)**]
 
 ----
 ## C
 - **[CarlTheCreeper](https://www.spigotmc.org/resources/18008/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#carlthecreeper)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#carlthecreeper)**]
 - **[Characters Premium](https://www.spigotmc.org/resources/45142/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -190,10 +190,10 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[ChatColor+](https://www.spigotmc.org/resources/1546/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#chatcolor)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#chatcolor)**]
 - **[ChatColor+ Premium](https://www.spigotmc.org/resources/54093/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#chatcolor-premium)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#chatcolor-premium)**]
 - **[ChatControl Pro](https://www.spigotmc.org/resources/10258/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -205,10 +205,10 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[ChatReaction](https://www.spigotmc.org/resources/3748/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#chatreaction)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#chatreaction)**]
 - **[CheckNameHistory](https://www.spigotmc.org/resources/3768/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#checknamehistory)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#checknamehistory)**]
 - **[ChestCommands](https://dev.bukkit.org/projects/chest-commands)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -217,16 +217,16 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[ClaimChunk](https://www.spigotmc.org/resources/44458/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#claimchunk)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#claimchunk)**]
 - **[Clans-API for Spigot/Clan tag in chat](https://www.spigotmc.org/resources/31547/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#clans-api-for-spigotclan-tag-in-chat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#clans-api-for-spigotclan-tag-in-chat)**]
 - **[Clans](https://www.spigotmc.org/resources/34696/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#clans)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#clans)**]
 - **[Clans](https://www.spigotmc.org/resources/87515/) ([Demo](https://www.spigotmc.org/resources/78415/))**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#clans_1)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#clans_1)**]
 - **[ClicksPerSecond](https://www.spigotmc.org/resources/57214/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -235,28 +235,28 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[CombatLogX](https://www.spigotmc.org/resources/31689/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#combatlogx)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#combatlogx)**]
 - **[CommandConditions](https://www.spigotmc.org/resources/41736/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[Compassance](https://www.spigotmc.org/resources/18327/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#compassance)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#compassance)**]
 - **[Country on Join](https://www.spigotmc.org/resources/34275/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#country-on-join)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#country-on-join)**]
 - **[CraftConomy](https://www.spigotmc.org/resources/2395/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#craftconomy)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#craftconomy)**]
 - **[CraftingStore.net](https://www.spigotmc.org/resources/31331/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#craftingstorenet)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#craftingstorenet)**]
 - **[CTSNC](https://www.spigotmc.org/resources/10714/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[CursedVIP](https://www.spigotmc.org/resources/67068/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#cursedvip)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#cursedvip)**]
 - **[CustomCommands](https://www.spigotmc.org/resources/14363/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -271,7 +271,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Custom Items](https://www.spigotmc.org/resources/63848/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#custom-items)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#custom-items)**]
 - **[CustomSigns](https://www.spigotmc.org/resources/63569/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -280,7 +280,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## D
 - **[Daily Rewards](https://www.spigotmc.org/resources/16708)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#daily-rewards)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#daily-rewards)**]
 - **[DeathMsgEdit](https://www.spigotmc.org/resources/116017/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -289,91 +289,91 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[DeliveryMan](https://www.spigotmc.org/resources/14131/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#deliveryman)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#deliveryman)**]
 - **[DeluxeChat](https://www.spigotmc.org/resources/1277/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#deluxechat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#deluxechat)**]
 - **[DeluxeCombat](https://www.spigotmc.org/resources/63970/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#deluxecombat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#deluxecombat)**]
 - **[DeluxeCommands](https://www.spigotmc.org/resources/8033/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[DeluxeMenus](https://www.spigotmc.org/resources/11734/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#deluxemenus)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#deluxemenus)**]
 - **[DeluxeTags](https://www.spigotmc.org/resources/4390/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#deluxetags)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#deluxetags)**]
 - **[Depinezen](https://github.com/DenizenScript/Depenizen-For-Bukkit/blob/master/README.md) (For [Denizen](https://www.spigotmc.org/resources/21039/))**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#denizen)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#denizen)**]
 - **[DiscordSRV](https://www.spigotmc.org/resources/18494/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#discordsrv)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#discordsrv)**]
 - **[Disease](https://www.spigotmc.org/resources/3911/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#disease)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#disease)**]
 - **[Donations Holograms](https://www.spigotmc.org/resources/1956/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#donations-holograms)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#donations-holograms)**]
 - **[DragonSlayer](https://www.spigotmc.org/resources/36250/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#dragonslayer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#dragonslayer)**]
 - **[DungeonsXL](https://www.spigotmc.org/resources/9488/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#dungeonsxl)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#dungeonsxl)**]
 
 ----
 ## E
 - **[Economy Bank](https://www.spigotmc.org/resources/7674/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#economy-bank)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#economy-bank)**]
 - **[Enjin & DonationCraft 2.x](https://dev.bukkit.org/projects/emp)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#enjin-donationcraft-2x)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#enjin-donationcraft-2x)**]
 - **[Enhanced BalTop](https://www.spigotmc.org/resources/20168/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[EntityClearer](https://www.spigotmc.org/resources/90802/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#entityclearer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#entityclearer)**]
 - **[Envoys](https://www.spigotmc.org/resources/20357/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#envoys)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#envoys)**]
 - **[EpicCraftingsPlus](https://www.spigotmc.org/resources/39967/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[EpicFriends](https://www.spigotmc.org/resources/11294/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#epicfriends)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#epicfriends)**]
 - **[EpicLevels](https://songoda.com/marketplace/product/44)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#epiclevels)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#epiclevels)**]
 - **[Ersatz](https://www.spigotmc.org/resources/49433/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[essCore](https://www.spigotmc.org/resources/37766/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#esscore)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#esscore)**]
 - **[Essentials](https://ci.ender.zone/job/EssentialsX/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#essentials)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#essentials)**]
 - **[EventCore](https://www.spigotmc.org/resources/113142/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#eventcore)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#eventcore)**]
 - **[EZBlocks](https://www.spigotmc.org/resources/1499/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ezblocks)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ezblocks)**]
 - **[EzChat](https://www.spigotmc.org/resources/75048/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[EZPrestige](https://www.spigotmc.org/resources/1794/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ezprestige)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ezprestige)**]
 - **[EZRanksPro](https://www.spigotmc.org/resources/10731/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ezrankspro)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ezrankspro)**]
 
 ----
 ## F
@@ -382,10 +382,10 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Factions MCore](https://www.spigotmc.org/resources/1900/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#factions-mcore)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#factions-mcore)**]
 - **[FactionsUUID](https://www.spigotmc.org/resources/1035/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#factionsuuid)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#factionsuuid)**]
 - **[FriendReferral](https://www.spigotmc.org/resources/21626/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -394,22 +394,22 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## G
 - **[GangsPlus](https://www.spigotmc.org/resources/2604/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#gangsplus)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#gangsplus)**]
 - **[GemsEconomy](https://www.spigotmc.org/resources/19655/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#gemseconomy)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#gemseconomy)**]
 - **[GriefDefender](https://www.spigotmc.org/resources/68900/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#griefdefender)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#griefdefender)**]
 - **[GriefPrevention](https://www.spigotmc.org/resources/1884/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#griefprevention)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#griefprevention)**]
 - **[GrimAC](https://modrinth.com/plugin/grimac/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#grimac)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#grimac)**]
 - **[Guilds](https://www.spigotmc.org/resources/48920/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#guilds)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#guilds)**]
 - **[GUIPlus](https://www.spigotmc.org/resources/38664/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
@@ -421,40 +421,40 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Head Database](https://www.spigotmc.org/resources/14280/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#head-database)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#head-database)**]
 - **[Heroes](https://www.spigotmc.org/resources/305/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#heroes)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#heroes)**]
 - **[HoloBlock](https://www.spigotmc.org/resources/43192/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#holoblock)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#holoblock)**]
 - **[HoloMobHealth](https://www.spigotmc.org/resources/75975/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#holomobhealth)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#holomobhealth)**]
 - **[Honeypot](https://www.spigotmc.org/resources/96665)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#honeypot)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#honeypot)**]
 - **[HPWizard](https://www.spigotmc.org/resources/26821/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#hpwizard)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#hpwizard)**]
 - **[Hugs](https://www.spigotmc.org/resources/hugs.39722/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#hugs)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#hugs)**]
 
 ----
 ## I
 - **[ImageFrame](https://www.spigotmc.org/resources/106031/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#imageframe)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#imageframe)**]
 - **[InteractionVisualizer](https://www.spigotmc.org/resources/77050/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#interactionvisualizer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#interactionvisualizer)**]
 - **[InteractiveChat](https://www.spigotmc.org/resources/75870/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#interactivechat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#interactivechat)**]
 - **[IslandRate](https://www.spigotmc.org/resources/53519/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#islandrate)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#islandrate)**]
 - **[ItemJoin](https://www.spigotmc.org/resources/12661/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -466,7 +466,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## J
 - **[Jobs Reborn](https://www.spigotmc.org/resources/4216/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#jobs-reborn)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#jobs-reborn)**]
 - **[JSONChat](https://www.spigotmc.org/resources/17744/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -475,85 +475,85 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## K
 - **[Karma](https://www.spigotmc.org/resources/71156/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#karma)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#karma)**]
 - **[KillStats](http://dev.bukkit.org/bukkit-plugins/killstats-v1-0/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#killstats)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#killstats)**]
 - **[KitPvP](https://www.spigotmc.org/resources/27107/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#kitpvp)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#kitpvp)**]
 - **[KP-PVP](https://www.spigotmc.org/resources/50969/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#kp-pvp)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#kp-pvp)**]
 
 ----
 ## L
 - **[Lands](https://www.spigotmc.org/resources/53313/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#lands)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#lands)**]
 - **[LastLoginAPI](https://www.spigotmc.org/resources/66348/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#lastloginapi)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#lastloginapi)**]
 - **[LeaderHeads](https://www.spigotmc.org/resources/2079/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#leaderheads)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#leaderheads)**]
 - **[Leak Parkour](https://www.spigotmc.org/resources/12852/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[LegendQuest](https://www.spigotmc.org/resources/2120/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#legendquest)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#legendquest)**]
 - **[LemonMobCoins](https://www.spigotmc.org/resources/59402/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#lemonmobcoins)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#lemonmobcoins)**]
 - **[LevelledMobs](https://www.spigotmc.org/resources/levelledmobs-for-1-14-x-1-17-x.74304/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#levelledmobs)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#levelledmobs)**]
 - **[LotterySix](https://www.spigotmc.org/resources/107573/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#lotterysix)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#lotterysix)**]
 - **[LuckPerms](https://www.spigotmc.org/resources/28140/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#luckperms)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#luckperms)**]
 - **[LWC (Modern LWC)](https://www.spigotmc.org/resources/2162/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#lwc)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#lwc)**]
 
 ----
 ## M
 - **[Marcely's Bedwars](https://www.spigotmc.org/resources/13622/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#marcelys-bedwars)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#marcelys-bedwars)**]
 - **[Marriage](https://www.spigotmc.org/resources/81807/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#marriage)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#marriage)**]
 - **[Marriage (reloaded)](https://www.spigotmc.org/resources/18998/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#marriage-reloaded)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#marriage-reloaded)**]
 - **[MarriageMaster](http://dev.bukkit.org/bukkit-plugins/marriage-master/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#marriagemaster)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#marriagemaster)**]
 - **[MCInfected](https://www.spigotmc.org/resources/2133/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mcinfected)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mcinfected)**]
 - **[McJobs](https://dev.bukkit.org/projects/mcjobs/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mcjobs)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mcjobs)**]
 - **[McMMO](https://www.spigotmc.org/resources/2445/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mcmmo)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mcmmo)**]
 - **[Menu](https://www.spigotmc.org/resources/50658/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[MineChess](https://www.spigotmc.org/resources/74178/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#minechess)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#minechess)**]
 - **[Minecord](https://www.spigotmc.org/resources/44055/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#minecord)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#minecord)**]
 - **[MineCrates](https://www.spigotmc.org/resources/4685/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#minecrates)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#minecrates)**]
 - **[MinetopiaSDB](https://www.spigotmc.org/resources/28830/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -562,7 +562,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[MobHunting](https://www.spigotmc.org/resources/3582/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mobhunting)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mobhunting)**]
 - **[MultiChat](https://www.spigotmc.org/resources/26204/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -571,181 +571,181 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Multiverse-Core](https://www.spigotmc.org/resources/390/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#multiverse-core)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#multiverse-core)**]
 - **[MurderMystery 2](https://www.spigotmc.org/resources/36894/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[MyCommand](http://dev.bukkit.org/bukkit-plugins/mycommand/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mycommand)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mycommand)**]
 - **[MyPet](https://www.spigotmc.org/resources/12725/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#mypet)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#mypet)**]
 - **[MyPrefixSystem](https://www.spigotmc.org/resources/46244/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#myprefixsystem)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#myprefixsystem)**]
 
 ----
 ## N
 - **[NameColor](https://modrinth.com/plugin/namecolor)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#namecolor)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#namecolor)**]
 - **[Nameless Plugin](https://www.spigotmc.org/resources/59032/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#nameless-plugin)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#nameless-plugin)**]
 - **[NameMC-API-ServersMC](https://www.spigotmc.org/resources/88871/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#namemc-api-serversmc)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#namemc-api-serversmc)**]
 - **[Nicknamer](https://www.spigotmc.org/resources/5341/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#nicknamer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#nicknamer)**]
 - **[NickReloaded](https://www.spigotmc.org/resources/46335/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#nickreloaded)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#nickreloaded)**]
 - **[Nicky](https://www.spigotmc.org/resources/590/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#nicky)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#nicky)**]
 
 ----
 ## O
 - **[OneBlock](https://www.spigotmc.org/resources/83215/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#oneblock)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#oneblock)**]
 - **[OnePlayerSleep](https://www.spigotmc.org/resources/76534/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#oneplayersleep)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#oneplayersleep)**]
 - **[OneTimeUse](https://www.spigotmc.org/resources/13907/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[OnTime](http://dev.bukkit.org/bukkit-plugins/ontime/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ontime)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ontime)**]
 - **[OpEconomy](https://www.spigotmc.org/resources/95674)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#opeconomy)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#opeconomy)**]
 - **[OreAnnouncer](https://www.spigotmc.org/resources/33464/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#oreannouncer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#oreannouncer)**]
 - **[OreMarket](https://www.spigotmc.org/resources/91015/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#oremarket)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#oremarket)**]
 - **[Outpost](https://www.spigotmc.org/resources/38657/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#outpost)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#outpost)**]
 
 ----
 ## P
 - **[P-LifeSteal](https://www.spigotmc.org/resources/101967/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#p-lifesteal)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#p-lifesteal)**]
 - **[Paintball Battle](https://www.spigotmc.org/resources/76676/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#paintball-battle)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#paintball-battle)**]
 - **[Parkour](https://www.spigotmc.org/resources/23685/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#parkour)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#parkour)**]
 - **[ParkPlusMC](https://polymart.org/resource/parkplusmc.2317)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#parkplusmc)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#parkplusmc)**]
 - **[Parties](https://www.spigotmc.org/resources/3709/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#parties)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#parties)**]
 - **[Party and Friends](https://www.spigotmc.org/resources/11633/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#party-and-friends)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#party-and-friends)**]
 - **[PingTest](https://www.spigotmc.org/resources/69580/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[PixelVip](https://www.spigotmc.org/resources/30438/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pixelvip)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pixelvip)**]
 - **[Plan](https://www.spigotmc.org/resources/32536/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#plan)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#plan)**]
 - **[PlayerBalancerAddon](https://www.spigotmc.org/resources/51220/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[PlayerStats](https://www.spigotmc.org/resources/102347/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#playerstats)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#playerstats)**]
 - **[PlayTime](https://www.spigotmc.org/resources/26016/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#playtime)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#playtime)**]
 - **[PlayTimeManager](https://modrinth.com/plugin/playtimemanager)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#playtimemanager)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#playtimemanager)**]
 - **[PlaytimeRewards](https://www.spigotmc.org/resources/100231/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#playtimerewards)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#playtimerewards)**]
 - **[PlayerPoints](http://dev.bukkit.org/bukkit-plugins/playerpoints/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#playerpoints)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#playerpoints)**]
 - **[PlotSquared](https://www.spigotmc.org/resources/1177/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#plotsquared)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#plotsquared)**]
 - **[PocketHorses](https://www.spigotmc.org/resources/111158/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pockethorses)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pockethorses)**]
 - **[PointsAPI](https://www.spigotmc.org/resources/13957/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pointsapi)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pointsapi)**]
 - **[Potatoes](https://www.spigotmc.org/resources/12353/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[PowerBoard](https://www.spigotmc.org/resources/73854)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#powerboard)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#powerboard)**]
 - **[PowerRanks](https://www.spigotmc.org/resources/64696/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#powerranks)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#powerranks)**]
 - **[PrefiX](https://www.spigotmc.org/resources/70359/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#prefix)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#prefix)**]
 - **[PremiumReports](https://www.spigotmc.org/resources/111482/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#premiumreports)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#premiumreports)**]
 - **[PremiumVanish](https://www.spigotmc.org/resources/14404/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#premiumvanish)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#premiumvanish)**]
 - **[Prison](https://www.spigotmc.org/resources/1223/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#prison)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#prison)**]
 - **[PrisonMines](https://www.spigotmc.org/resources/4046/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#prisonmines)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#prisonmines)**]
 - **[PrisonRanksX](https://www.spigotmc.org/resources/55899/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#prisonranksx)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#prisonranksx)**]
 - **[ProCosmetics](https://www.spigotmc.org/resources/49106/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#procosmetics)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#procosmetics)**]
 - **[ProdigyGadget](https://www.spigotmc.org/resources/1335/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[ProfessionalBans](https://www.spigotmc.org/resources/63657/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#professionalbans)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#professionalbans)**]
 - **[ProQuest](https://www.spigotmc.org/resources/18249/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#proquest)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#proquest)**]
 - **[ProtectionStones](https://www.spigotmc.org/resources/61797/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#protectionstones)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#protectionstones)**]
 - **[PurpleIRC](https://www.spigotmc.org/resources/2836/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[PvPLevels](https://www.spigotmc.org/resources/20807/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pvplevels)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pvplevels)**]
 - **[PvPManager](https://www.spigotmc.org/resources/845/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pvpmanager)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pvpmanager)**]
 - **[PvP Stats](http://dev.bukkit.org/bukkit-plugins/pvp-stats/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pvp-stats)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pvp-stats)**]
 - **[PvPStats Plugin](https://www.spigotmc.org/resources/69984/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#pvpstats-plugin)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#pvpstats-plugin)**]
 - **[PyrCore](https://www.spigotmc.org/resources/24180/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -754,29 +754,29 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## Q
 - **[QualityArmory](https://www.spigotmc.org/resources/6107/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#qualityarmory)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#qualityarmory)**]
 - **[Quests](https://www.spigotmc.org/resources/3711/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#quests)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#quests)**]
 - **[QuestCreator](https://www.spigotmc.org/resources/38734/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#questcreator)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#questcreator)**]
 - **[QuickBoard](https://www.spigotmc.org/resources/15057/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[QuickSell](https://www.spigotmc.org/resources/6107/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#quicksell)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#quicksell)**]
 
 ----
 
 ## R
 - **[RabbitsVSPenguins](https://www.spigotmc.org/resources/65277/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rabbitsvspenguins)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rabbitsvspenguins)**]
 - **[RageMode](https://www.spigotmc.org/resources/69169/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ragemode)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ragemode)**]
 - **[RankedHelp](https://www.spigotmc.org/resources/61919/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -785,46 +785,46 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Rankup](https://www.spigotmc.org/resources/17933/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rankup)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rankup)**]
 - **[RawMSG](https://www.spigotmc.org/resources/35864/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[RealisticWorldGenerator](https://www.spigotmc.org/resources/15905/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#realisticworldgenerator)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#realisticworldgenerator)**]
 - **[RedProtect](http://spigotmc.org/resources/15841/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#redprotect)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#redprotect)**]
 - **[ReporterGUI](https://www.spigotmc.org/resources/8596/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[RestrictedDimensions](http://spigotmc.org/resources/80574/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#restricteddimensions)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#restricteddimensions)**]
 - **[RocketJoin](https://www.spigotmc.org/resources/82520/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[RocketPlaceholders](https://www.spigotmc.org/resources/82678/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rocketplaceholders)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rocketplaceholders)**]
 - **[RogueParkour](https://www.spigotmc.org/resources/26563/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rogueparkour)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rogueparkour)**]
 - **[RoyalCommands](https://www.spigotmc.org/resources/4113/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#royalcommands)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#royalcommands)**]
 - **[ReferralSystem](https://www.spigotmc.org/resources/29709/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#referralsystem)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#referralsystem)**]
 - **[Residence](https://www.spigotmc.org/resources/11480/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[RPGInventory](https://www.spigotmc.org/resources/12498/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rpginventory)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rpginventory)**]
 - **[RTP](https://www.spigotmc.org/resources/94812/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#rtp)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#rtp)**]
 
 ----
 ## S
@@ -833,7 +833,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[ScreamingBedWars](https://hangar.papermc.io/ScreamingSandals/ScreamingBedWars)**
     - [ ] Supports placeholders.
-    - [X] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#screamingbedwars)**]
+    - [X] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#screamingbedwars)**]
 - **[ScrollBoard](https://www.spigotmc.org/resources/24697/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -842,10 +842,10 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Seasons](https://www.spigotmc.org/resources/39298/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#seasons)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#seasons)**]
 - **[SellAll](https://www.spigotmc.org/resources/1221/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#sellall)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#sellall)**]
 - **[Server List/Staff List](https://www.spigotmc.org/resources/15119/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -854,46 +854,46 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[SignLink](https://www.spigotmc.org/resources/39593/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#signlink)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#signlink)**]
 - **[SimpleBoard](https://www.spigotmc.org/resources/39597/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[SimpleClans](https://www.spigotmc.org/resources/5269/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simpleclans)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simpleclans)**]
 - **[SimpleCoins](https://dev.bukkit.org/projects/simplecoins)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simplecoins)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simplecoins)**]
 - **[SimpleCoinsAPI](https://www.spigotmc.org/resources/1432/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simplecoinsapi)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simplecoinsapi)**]
 - **[SimpleKillTracker](https://www.spigotmc.org/resources/17651/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simplekilltracker)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simplekilltracker)**]
 - **[SimplePrefix](http://dev.bukkit.org/bukkit-plugins/simple-prefix/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simpleprefix)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simpleprefix)**]
 - **[Simple Suffix](http://dev.bukkit.org/bukkit-plugins/simple-suffix/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#simple-suffix)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#simple-suffix)**]
 - **[SkillAPI](https://www.spigotmc.org/resources/4824/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#skillapi)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#skillapi)**]
 - **[SkinsRestorer](https://www.spigotmc.org/resources/2124/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#skinsrestorer)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#skinsrestorer)**]
 - **[Skript](https://github.com/bensku/Skript)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#skript)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#skript)**]
 - **[SkyWars](https://www.spigotmc.org/resources/6525/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[SkyWarsReloaded](https://www.spigotmc.org/resources/3796/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#skywarsreloaded)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#skywarsreloaded)**]
 - **[Spark](https://github.com/lucko/spark)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#spark)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#spark)**]
 - **[SpigotBoard](https://www.spigotmc.org/resources/47497/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -905,46 +905,46 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[SQLPerms](https://www.spigotmc.org/resources/1462/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#sqlperms)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#sqlperms)**]
 - **[SQLTokens](https://www.spigotmc.org/resources/3482/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#sqltokens)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#sqltokens)**]
 - **[sTablist](https://www.spigotmc.org/resources/12234/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[Staff Facilities](https://www.spigotmc.org/resources/13097/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#staff-facilities)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#staff-facilities)**]
 - **[Staff++](https://www.spigotmc.org/resources/staff.83562/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#staff)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#staff)**]
 - **[Statz](https://www.spigotmc.org/resources/25969/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#statz)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#statz)**]
 - **[Streaming Drops](https://www.spigotmc.org/resources/76996/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#streaming-drops)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#streaming-drops)**]
 - **[StrikePractice 2](https://www.spigotmc.org/resources/46906/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#strikepractice-2)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#strikepractice-2)**]
 - **[stTitles](https://www.spigotmc.org/resources/8310/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#sttitles)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#sttitles)**]
 - **[SubServers](https://github.com/ME1312/SubServers-2)**
     - [ ] Supports Placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#subservers)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#subservers)**]
 - **[SuperbVote](https://www.spigotmc.org/resources/11626/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#superbvote)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#superbvote)**]
 - **[SuperCredits](https://www.spigotmc.org/resources/31074/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#supercredits)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#supercredits)**]
 - **[SuperScratch](https://www.spigotmc.org/resources/12250/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[SuperVanish](https://www.spigotmc.org/resources/1331/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#supervanish)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#supervanish)**]
 
 ----
 ## T
@@ -953,64 +953,64 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[The Time](https://www.spigotmc.org/resources/25146/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#the-time)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#the-time)**]
 - **[ThemePark](https://www.spigotmc.org/resources/48648/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#themepark)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#themepark)**]
 - **[Thirst](https://www.spigotmc.org/resources/3316/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#thirst)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#thirst)**]
 - **[TicketGUI](https://www.spigotmc.org/resources/68968/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ticketgui)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ticketgui)**]
 - **[Timed Rewards](https://www.spigotmc.org/resources/34008/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#timed-rewards)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#timed-rewards)**]
 - **[TimeManager](https://www.spigotmc.org/resources/44344/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#timemanager)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#timemanager)**]
 - **[Time Tokens](https://www.spigotmc.org/resources/75441/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#time-tokens)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#time-tokens)**]
 - **[TNTRun_Reloaded](https://www.spigotmc.org/resources/53359/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#tntrun_reloaded)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#tntrun_reloaded)**]
 - **[TokenEnchant](https://www.spigotmc.org/resources/2287/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#tokenenchant)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#tokenenchant)**]
 - **[TokenManager](https://www.spigotmc.org/resources/8610/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#tokenmanager)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#tokenmanager)**]
 - **[Tokens](https://www.spigotmc.org/resources/71941/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#tokens)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#tokens)**]
 - **[TokensPlus](https://www.spigotmc.org/resources/90507/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#tokensplus)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#tokensplus)**]
 - **[Towny](https://github.com/TownyAdvanced/Towny)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#towny)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#towny)**]
 - **[TownyChat](https://github.com/TownyAdvanced/TownyChat)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#townychat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#townychat)**]
 - **[TpLogin](https://www.spigotmc.org/resources/21692/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[TransmuteIt](https://www.spigotmc.org/resources/76287/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#transmuteit)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#transmuteit)**]
 - **[Treasures](https://www.spigotmc.org/resources/14178/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#treasures)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#treasures)**]
 - **[Trey's Double Jump](https://www.spigotmc.org/resources/19630/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#treys-double-jump)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#treys-double-jump)**]
 - **[TrickOrTreat](https://www.spigotmc.org/resources/61370/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#trickortreat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#trickortreat)**]
 - **[Two Factor Authentication](https://www.spigotmc.org/resources/85594/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#two-factor-authentication)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#two-factor-authentication)**]
 
 ----
 ## U
@@ -1025,19 +1025,19 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders.
 - **[UltimateChat](https://www.spigotmc.org/resources/uchat.23767/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultimatechat)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultimatechat)**]
 - **[UltimateClaims](https://songoda.com/marketplace/product/65)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultimateclaims)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultimateclaims)**]
 - **[UltimateServerManager](https://www.spigotmc.org/resources/112006/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultimateservermanager)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultimateservermanager)**]
 - **[UltimateSigns](https://www.spigotmc.org/resources/72462/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[UltimateVotes](https://www.spigotmc.org/resources/516)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultimatevotes)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultimatevotes)**]
 - **[UltraChatFormat](https://www.spigotmc.org/resources/57929/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -1049,19 +1049,19 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Ultra Economy](https://www.spigotmc.org/resources/83374/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultra-economy)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultra-economy)**]
 - **[Ultra Motd](https://www.spigotmc.org/resources/100883/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultra-motd)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultra-motd)**]
 - **[Ultra Permissions](https://www.spigotmc.org/resources/42678/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultra-permissions)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultra-permissions)**]
 - **[Ultra Punishments](https://www.spigotmc.org/resources/63511/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultra-punishments)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultra-punishments)**]
 - **[Ultra Regions](https://www.spigotmc.org/resources/58317/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#ultra-regions)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ultra-regions)**]
 - **[Ultra Scoreboards](https://www.spigotmc.org/resources/93726/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
@@ -1070,10 +1070,10 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[USkyBlock](https://www.spigotmc.org/resources/2280/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#uskyblock)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#uskyblock)**]
 - **[UnityGen](https://www.spigotmc.org/resources/26218/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#unitygen)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#unitygen)**]
 
 ----
 ## V
@@ -1082,37 +1082,37 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
     - [ ] Provides own placeholders. [Link]
 - **[Vault](http://dev.bukkit.org/bukkit-plugins/vault/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#vault)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#vault)**]
 - **[VentureChat](https://www.spigotmc.org/resources/771/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[VenturahCalendar](https://www.spigotmc.org/resources/94096/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#venturacalendar)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#venturacalendar)**]
 - **[ViaVersion](https://www.spigotmc.org/resources/19254/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#viaversion)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#viaversion)**]
 - **[VoteParty](https://www.spigotmc.org/resources/987/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#voteparty)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#voteparty)**]
 - **[VoteRoulette](http://dev.bukkit.org/bukkit-plugins/voteroulette/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#voteroulette)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#voteroulette)**]
 - **[VotingPlugin](https://www.spigotmc.org/resources/15358/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#votingplugin)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#votingplugin)**]
 
 ----
 ## W
 - **[WickedSkyWars](https://www.spigotmc.org/resources/556/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#wickedskywars)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#wickedskywars)**]
 - **[WonderHUD](https://www.spigotmc.org/resources/12220/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
 - **[WorldGuard](https://dev.bukkit.org/bukkit-plugins/worldguard/)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#worldguard)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#worldguard)**]
 - **[WorldJoin](https://www.spigotmc.org/resources/63892/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
@@ -1121,7 +1121,7 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 ## X
 - **[XLTournaments](https://www.spigotmc.org/resources/70630/)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](placeholder-list/minecraft.md#xltournaments)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#xltournaments)**]
 
 ----
 ## Y

@@ -29,7 +29,7 @@ When a plugin or [`/papi parse me %placeholder%`](users/commands.md#papi-parse) 
     It can happen that the plugin you use to display the placeholder in doesn't support PlaceholderAPI. In such a case check, if the parse command returns the actual value of a placeholder.  
     If that is the case while the plugin is still displaying the placeholder, can this be an indicator of the plugin not supporting PlaceholderAPI.
     
-    You can find a list of plugins supporting PlaceholderAPI [here](users/plugins-using-placeholderapi.md).  
+    You can find a list of plugins supporting PlaceholderAPI [here](users/plugins-using-placeholderapi/index.md).  
     Just make sure that "Supports placeholders" has a check mark in front of it.
   
 - ### No typo in the placeholder

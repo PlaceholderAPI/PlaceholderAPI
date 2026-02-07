@@ -20,7 +20,7 @@ It also has a community-curated list of all available Placeholder expansions and
     - [:octicons-chevron-right-16: Commands](users/commands.md)  
     - [:octicons-chevron-right-16: Using Placeholders](users/using-placeholders.md)  
     - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list/index.md)  
-    - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
+    - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi/index.md)
     
 -   ### :material-file-code: Dev Guides
     

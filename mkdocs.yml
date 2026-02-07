@@ -82,7 +82,10 @@ nav:
       - users/placeholder-list/index.md
       - users/placeholder-list/minecraft.md
       - users/placeholder-list/hytale.md
-    - users/plugins-using-placeholderapi.md
+    - Plugins Using PlaceholderAPI:
+      - users/plugins-using-placeholderapi/index.md
+      - users/plugins-using-placeholderapi/minecraft.md
+      - users/plugins-using-placeholderapi/hytale.md
   - Dev Guides:
     - developers/index.md
     - developers/using-placeholderapi.md

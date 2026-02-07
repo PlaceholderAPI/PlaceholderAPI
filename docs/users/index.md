@@ -40,6 +40,6 @@ The pages listed under this section are meant for server owners who want to use 
     
     List of Plugins that support PlaceholderAPI and/or provide their own placeholders to use.
     
-    - [:octicons-chevron-right-16: Go to Page](plugins-using-placeholderapi.md)
+    - [:octicons-chevron-right-16: Go to Page](plugins-using-placeholderapi/index.md)
 
 </div>
