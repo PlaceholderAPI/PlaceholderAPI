@@ -105,7 +105,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **Q**
         - *No Expansions*
     - **R**
-        - *No Expansions*
+        - **[RPGLevelling](#rpglevelling)**
     - **S**
         - *No Expansions*
     - **T**
@@ -115,7 +115,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **V**
         - *No Expansions*
     - **W**
-        - *No Expansions*
+        - **[WiFlowAPI](#wifloapi)**
     - **X**
         - *No Expansions*
     - **Y**
@@ -420,3 +420,29 @@ Standard:
 %luckperms_inherited_expiry_time_<permission>%
 %luckperms_group_expiry_time_<groupname>%
 ```
+
+----
+
+### **[RPGLevelling](https://www.curseforge.com/hytale/mods/rpg-leveling-and-stats)**
+/// command | papi ecloud download RPGLevelling
+///
+
+```
+%rpglevelling_xp%
+%rpglevelling_level%
+%rpglevelling_is_max%
+%rpglevelling_maxlevel%
+%rpglevelling_xpnextlevel%
+```
+
+----
+
+### **[WiFlowAPI](https://www.curseforge.com/hytale/mods/wiflows-placeholderapi)**
+/// command | papi ecloud download WiFlowAPI
+///
+Lets you use placeholders from WiFlow's API
+A list of placeholders can be found [here](https://docs.wiflow.dev/hytale-plugins/wiflow-placeholderapi/expansions).
+```
+%wiflowapi_{placeholder}%
+```
+

@@ -155,10 +155,9 @@ No Plugins available
 ----
 
 ## R
-
-/// info |
-No Plugins available
-///
+- **[RPGLevelling](https://www.curseforge.com/hytale/mods/rpg-leveling-and-stats)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rpglevelling)**]
 
 ----
 ## S
@@ -190,10 +189,9 @@ No Plugins available
 
 ----
 ## W
-
-/// info |
-No Plugins available
-///
+- **[WiFlowAPI](https://www.curseforge.com/hytale/mods/wiflows-placeholderapi)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#wiflowapi)**]
 
 ----
 ## X
