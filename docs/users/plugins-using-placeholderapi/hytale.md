@@ -89,6 +89,9 @@ No Plugins available
 - **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyfactions)**]
+- **[HyVotifier](https://www.curseforge.com/hytale/mods/hytale-votifier)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyvotifier)**]
 
 ----
 ## I

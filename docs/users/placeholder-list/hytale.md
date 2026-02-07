@@ -86,6 +86,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - *No Expansions*
     - **H**
         - **[HyFactions](#hyfactions)**
+        - **[HyVotifier](#hyvotifier)**
     - **I**
         - *No Expansions*
     - **J**
@@ -388,6 +389,27 @@ Standard:
 %factions_faction_enemies% - number of enemies
 %factions_faction_claims% - number of claims by faction
 %factions_faction_total_power% - total power of faction
+```
+
+----
+
+### **[HyVotifier](https://www.curseforge.com/hytale/mods/hytale-votifier)**
+/// command | papi ecloud download HyVotifier
+///
+
+```
+%hyvotifier_offline_votes%
+%hyvotifier_has_offline_votes%
+%hyvotifier_offline_votes_enabled%
+%hyvotifier_offline_votes_maxclaims%
+%hyvotifier_offline_votes_maxlifetimehrs%
+%hyvotifier_milestones_enabled%
+%hyvotifier_milestone_votecount%
+%hyvotifier_next_milestone%
+%hyvotifier_leaderboard_votes%
+%hyvotifier_leaderboard_position%
+%hyvotifier_leaderboard_top_<position>_name% (replace <position> with any positive integer, e.g., 1, 2, 3, ...)
+%hyvotifier_leaderboard_top_<position>_votes% (replace <position> with any positive integer, e.g., 1, 2, 3, ...)
 ```
 
 ----
