@@ -374,6 +374,8 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 
 ### **[EssentialsCore](https://www.curseforge.com/hytale/mods/essentials-core)**
 /// integrated | Built into mod
+///
+
 /// warning | [Subject to PR approval](https://github.com/nhulston/Essentials/pull/14)
 ///
 
