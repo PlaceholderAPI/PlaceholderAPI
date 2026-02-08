@@ -4,6 +4,7 @@ import at.helpch.placeholderapi.commands.PlaceholderCommandRouter;
 import at.helpch.placeholderapi.configuration.ConfigManager;
 import at.helpch.placeholderapi.expansion.manager.CloudExpansionManager;
 import at.helpch.placeholderapi.expansion.manager.LocalExpansionManager;
+import at.helpch.placeholderapi.updatechecker.UpdateChecker;
 import com.hypixel.hytale.event.EventPriority;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import com.hypixel.hytale.server.core.console.ConsoleSender;
@@ -34,6 +35,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     @Override
     protected void setup() {
         configManager.setup();
+
         getEventRegistry().register(PlayerDisconnectEvent.class, localExpansionManager::onQuit);
         getEventRegistry().register(EventPriority.LAST, BootEvent.class, this::onServerLoad);
 
@@ -46,7 +48,9 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
     protected void start() {
         getCommandRegistry().registerCommand(new PlaceholderCommandRouter(this));
 
-//        localExpansionManager().load(ConsoleSender.INSTANCE);
+        if (configManager.config().checkUpdates()) {
+            new UpdateChecker(this).fetch();
+        }
 
         super.start();
     }
