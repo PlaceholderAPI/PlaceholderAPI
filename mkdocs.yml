@@ -90,6 +90,7 @@ nav:
     - developers/index.md
     - developers/using-placeholderapi.md
     - developers/creating-a-placeholderexpansion.md
+    - developers/configuration-api-hytale.md
     - developers/expansion-cloud.md
   - Common Issues:
     - issues/index.md
