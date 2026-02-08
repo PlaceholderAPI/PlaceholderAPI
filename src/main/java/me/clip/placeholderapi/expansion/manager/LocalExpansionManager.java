@@ -114,7 +114,7 @@ public final class LocalExpansionManager implements Listener {
 
     @NotNull
     @Unmodifiable
-    public Collection<String> getIdentifiers() {
+    public Set<String> getIdentifiers() {
         expansionsLock.lock();
         try {
             return ImmutableSet.copyOf(expansions.keySet());
@@ -136,12 +136,7 @@ public final class LocalExpansionManager implements Listener {
 
     @Nullable
     public PlaceholderExpansion getExpansion(@NotNull final String identifier) {
-        expansionsLock.lock();
-        try {
-            return expansions.get(identifier.toLowerCase(Locale.ROOT));
-        } finally {
-            expansionsLock.unlock();
-        }
+        return expansions.get(identifier.toLowerCase(Locale.ROOT));
     }
 
     @NotNull

@@ -20,12 +20,7 @@
 
 package me.clip.placeholderapi;
 
-import com.google.common.collect.ImmutableSet;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -85,7 +80,11 @@ public final class PlaceholderAPI {
     @NotNull
     public static List<String> setPlaceholders(final OfflinePlayer player,
                                                @NotNull final List<String> text) {
-        return text.stream().map(line -> setPlaceholders(player, line)).collect(Collectors.toList());
+        final List<String> result = new ArrayList<>(text.size());
+        for (final String line : text) {
+            result.add(setPlaceholders(player, line));
+        }
+        return result;
     }
 
     /**
@@ -140,8 +139,11 @@ public final class PlaceholderAPI {
     @NotNull
     public static List<@NotNull String> setBracketPlaceholders(final OfflinePlayer player,
                                                                @NotNull final List<@NotNull String> text) {
-        return text.stream().map(line -> setBracketPlaceholders(player, line))
-                .collect(Collectors.toList());
+        final List<String> result = new ArrayList<>(text.size());
+        for (final String line : text) {
+            result.add(setBracketPlaceholders(player, line));
+        }
+        return result;
     }
 
     /**
@@ -179,14 +181,14 @@ public final class PlaceholderAPI {
      * @param text Text to parse the placeholders in
      * @return The text containing the parsed relational placeholders
      */
-    public static String setRelationalPlaceholders(Player one, Player two, String text) {
+    public static String setRelationalPlaceholders(final Player one, final Player two, @NotNull String text) {
         final Matcher matcher = RELATIONAL_PLACEHOLDER_PATTERN.matcher(text);
 
         while (matcher.find()) {
             final String format = matcher.group(2);
-            final int index = format.indexOf("_");
+            final int index = format.indexOf('_');
 
-            if (index <= 0 || index >= format.length()) {
+            if (index <= 0) {
                 continue;
             }
 
@@ -218,9 +220,12 @@ public final class PlaceholderAPI {
      * @param text text to parse the placeholder values to
      * @return The text containing the parsed relational placeholders
      */
-    public static List<String> setRelationalPlaceholders(Player one, Player two, List<String> text) {
-        return text.stream().map(line -> setRelationalPlaceholders(one, two, line))
-                .collect(Collectors.toList());
+    public static List<String> setRelationalPlaceholders(final Player one, final Player two, final @NotNull List<String> text) {
+        final List<String> result = new ArrayList<>(text.size());
+        for (final String line : text) {
+            result.add(setRelationalPlaceholders(one, two, line));
+        }
+        return result;
     }
 
     /**
@@ -241,8 +246,7 @@ public final class PlaceholderAPI {
      */
     @NotNull
     public static Set<String> getRegisteredIdentifiers() {
-        return ImmutableSet
-                .copyOf(PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getIdentifiers());
+        return PlaceholderAPIPlugin.getInstance().getLocalExpansionManager().getIdentifiers();
     }
 
     /**
@@ -279,8 +283,15 @@ public final class PlaceholderAPI {
      * @param text String to check
      * @return true if String contains any matches to the normal placeholder pattern, false otherwise
      */
-    public static boolean containsPlaceholders(String text) {
-        return text != null && PLACEHOLDER_PATTERN.matcher(text).find();
+    public static boolean containsPlaceholders(final String text) {
+        if (text == null) {
+            return false;
+        }
+        final int firstPercent = text.indexOf('%');
+        if (firstPercent == -1) {
+            return false;
+        }
+        return text.indexOf('%', firstPercent + 1) != -1;
     }
 
     /**
@@ -290,8 +301,15 @@ public final class PlaceholderAPI {
      * @param text String to check
      * @return true if String contains any matches to the bracket placeholder pattern, false otherwise
      */
-    public static boolean containsBracketPlaceholders(String text) {
-        return text != null && BRACKET_PLACEHOLDER_PATTERN.matcher(text).find();
+    public static boolean containsBracketPlaceholders(final String text) {
+        if (text == null) {
+            return false;
+        }
+        final int openBracket = text.indexOf('{');
+        if (openBracket == -1) {
+            return false;
+        }
+        return text.indexOf('}', openBracket + 1) != -1;
     }
 
     // === Deprecated API ===

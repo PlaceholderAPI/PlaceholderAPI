@@ -4,7 +4,8 @@ plugins {
     `java-library`
     `maven-publish`
 //    id("com.github.hierynomus.license") version "0.16.1"
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "9.3.1"
+    id("me.champeau.jmh") version "0.7.2"
 }
 
 group = "me.clip"
@@ -41,12 +42,13 @@ dependencies {
     compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 
-    testImplementation("org.openjdk.jmh:jmh-core:1.32")
-    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.32")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-}
+    jmh("org.openjdk.jmh:jmh-core:1.37")
+    jmh("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+    jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
 
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
