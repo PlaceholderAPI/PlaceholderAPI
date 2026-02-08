@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class PlaceholderAPIConfig {
+    private boolean checkUpdates;
     private boolean cloudEnabled;
     private boolean debugMode;
     private ExpansionSort cloudSorting;
@@ -33,8 +34,9 @@ public final class PlaceholderAPIConfig {
     private String dateFormat;
     private Map<String, Object> expansions;
 
-    public PlaceholderAPIConfig(boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
+    public PlaceholderAPIConfig(boolean checkUpdates, boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
                                 @NotNull BooleanValue booleanValue, @NotNull String dateFormat) {
+        this.checkUpdates = checkUpdates;
         this.cloudEnabled = cloudEnabled;
         this.debugMode = debugMode;
         this.cloudSorting = cloudSorting;
@@ -43,14 +45,19 @@ public final class PlaceholderAPIConfig {
         this.expansions = new HashMap<>();
     }
 
-    public PlaceholderAPIConfig(boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
+    public PlaceholderAPIConfig(boolean checkUpdates, boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
                                 @NotNull BooleanValue booleanValue, @NotNull String dateFormat, Map<String, Object> expansions) {
+        this.checkUpdates = checkUpdates;
         this.cloudEnabled = cloudEnabled;
         this.debugMode = debugMode;
         this.cloudSorting = cloudSorting;
         this.booleanValue = booleanValue;
         this.dateFormat = dateFormat;
         this.expansions = expansions;
+    }
+
+    public boolean checkUpdates() {
+        return checkUpdates;
     }
 
     public boolean cloudEnabled() {
