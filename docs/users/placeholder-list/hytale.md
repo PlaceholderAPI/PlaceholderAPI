@@ -81,6 +81,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - *No Expansions*
     - **E**
         - **[EliteEssentials](#eliteessentials)**
+        - **[EssentialsCore](#essentialscore)**
     - **F**
         - *No Expansions*
     - **G**
@@ -89,6 +90,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[HyFactions](#hyfactions)**
         - **[HyVotifier](#hyvotifier)**
         - **[HyperPerms](#hyperperms)**
+        - **[HyperFactions](#hyperfactions)**
     - **I**
         - *No Expansions*
     - **J**
@@ -96,6 +98,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **K**
         - *No Expansions*
     - **L**
+        - **[LevelingCore](#levelingcore)**
         - **[LuckPerms](#luckperms)**
     - **M**
         - *No Expansions*
@@ -110,7 +113,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **R**
         - **[RPGLevelling](#rpglevelling)**
     - **S**
-        - *No Expansions*
+        - **[SimpleClaims](#simpleclaims)**
     - **T**
         - *No Expansions*
     - **U**

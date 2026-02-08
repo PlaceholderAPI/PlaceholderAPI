@@ -69,6 +69,10 @@ No Plugins available
 - **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#eliteessentials)**]
+- **[EssentialsCore](https://www.curseforge.com/hytale/mods/essentials-core)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#essentialscore)**]
+    - [ ] [Subject to PR approval](https://github.com/nhulston/Essentials/pull/14)
 
 ----
 ## F
@@ -92,6 +96,12 @@ No Plugins available
 - **[HyVotifier](https://www.curseforge.com/hytale/mods/hytale-votifier)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyvotifier)**]
+- **[HyperPerms](https://www.curseforge.com/hytale/mods/hyperperms)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyperperms)**]
+- **[HyperFactions](https://www.curseforge.com/hytale/mods/hyperfactions)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyperfactions)**]
 
 ----
 ## I
@@ -116,6 +126,9 @@ No Plugins available
 
 ----
 ## L
+- **[LevelingCore](https://www.curseforge.com/hytale/mods/levelingcore)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#levelingcore)**]
 - **[LuckPerms](https://www.curseforge.com/hytale/mods/luckperms)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#luckperms)**]
@@ -164,10 +177,10 @@ No Plugins available
 
 ----
 ## S
-
-/// info |
-No Plugins available
-///
+- **[SimpleClaims](https://www.curseforge.com/hytale/mods/simple-claims)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#simpleclaims)**]
+    - [ ] [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
 
 ----
 ## T
