@@ -626,6 +626,8 @@ Members and relations:
 
 ### **[SimpleClaims](https://www.curseforge.com/hytale/mods/simple-claims)**
 /// integrated | Built into mod
+///
+
 /// warning | [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
 ///
 
