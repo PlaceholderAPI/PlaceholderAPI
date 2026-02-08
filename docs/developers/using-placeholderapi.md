@@ -88,6 +88,8 @@ dependencies {
 repositories {
     maven {
         url = 'https://repo.codemc.io/repository/hytale/'
+    }
+    maven {
         url = 'https://repo.helpch.at/releases/'
     }
 }
