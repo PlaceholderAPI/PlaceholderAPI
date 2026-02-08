@@ -70,7 +70,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 ----
 
-- [mod-placeholders](#mod-placeholders)
+- [Mod-placeholders](#Mod-placeholders)
     - **A**
         - *No Expansions*
     - **B**
@@ -306,7 +306,7 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 
 ----
 
-## Plugin-placeholders
+## Mod-placeholders
 
 Expansions listed here require the linked resource (plugin/mod) to work properly.
 
