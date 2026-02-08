@@ -32,6 +32,7 @@ It also has a community-curated list of all available Placeholder expansions and
     
     - [:octicons-chevron-right-16: Using PlaceholderAPI](developers/using-placeholderapi.md)  
     - [:octicons-chevron-right-16: Creating a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)  
+    - [:octicons-chevron-right-16: Using the Hytale Configuration API](developers/configuration-api-hytale.md)
     - [:octicons-chevron-right-16: eCloud](developers/expansion-cloud.md)
 
 -   ### :material-alert-circle-outline: Common Issues

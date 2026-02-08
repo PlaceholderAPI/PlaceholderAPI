@@ -26,6 +26,14 @@ The pages listed under this section are meant for developers of plugins who want
     
     - [:octicons-chevron-right-16: Go to Page](creating-a-placeholderexpansion.md)
 
+-   ### Using the Hytale Configuration API
+    
+    ----
+    
+    How to create a configurable expansion for Hytale
+    
+    - [:octicons-chevron-right-16: Go to Page](configuration-api-hytale.md)
+
 -   ### eCloud
     
     ----
