@@ -55,9 +55,18 @@ public final class ExpansionSafetyCheck {
         }
 
         final Set<String> maliciousPaths = new HashSet<>();
+        final File[] files = expansionsFolder.listFiles();
 
-        for (File file : expansionsFolder.listFiles()) {
+        if (files == null) {
+            return false;
+        }
+
+        for (File file : files) {
             try {
+                if (!file.isFile()) {
+                    continue;
+                }
+
                 final String hash = Hashing.sha256().hashBytes(Files.asByteSource(file).read()).toString();
 
                 if (knownMaliciousExpansions.contains(hash)) {
