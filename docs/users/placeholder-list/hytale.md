@@ -4,7 +4,7 @@ This is a list of all available placeholders for the Hytale version of Placehold
 For the Minecraft version, visit [this page](minecraft.md).
 
 A download-command may be found in the infobox located below the title of the Expansion.  
-Should `Built into Plugin` be displayed is the Expansion included in the Plugin it depends on. Should a URL be shown does it mean you have to download it manually and add it to the `expansions` folder yourself.
+Should `Built into mod` be displayed is the Expansion included in the mod it depends on. Should a URL be shown does it mean you have to download it manually and add it to the `expansions` folder yourself.
 
 /// note
 This placeholder list is provided "as-is" without any guarantee of being accurate and/or up-to-date.
@@ -52,6 +52,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - *No Expansions*
     - **S**
         - **[Server](#server)**
+        - **[String](#string)**
     - **T**
         - *No Expansions*
     - **U**
@@ -69,7 +70,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 ----
 
-- [Plugin-placeholders](#plugin-placeholders)
+- [Mod-placeholders](#Mod-placeholders)
     - **A**
         - *No Expansions*
     - **B**
@@ -80,6 +81,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - *No Expansions*
     - **E**
         - **[EliteEssentials](#eliteessentials)**
+        - **[EssentialsCore](#essentialscore)**
     - **F**
         - *No Expansions*
     - **G**
@@ -87,6 +89,8 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **H**
         - **[HyFactions](#hyfactions)**
         - **[HyVotifier](#hyvotifier)**
+        - **[HyperPerms](#hyperperms)**
+        - **[HyperFactions](#hyperfactions)**
     - **I**
         - *No Expansions*
     - **J**
@@ -94,6 +98,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **K**
         - *No Expansions*
     - **L**
+        - **[LevelingCore](#levelingcore)**
         - **[LuckPerms](#luckperms)**
     - **M**
         - *No Expansions*
@@ -108,7 +113,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **R**
         - **[RPGLevelling](#rpglevelling)**
     - **S**
-        - *No Expansions*
+        - **[SimpleClaims](#simpleclaims)**
     - **T**
         - *No Expansions*
     - **U**
@@ -243,6 +248,31 @@ More information can be found on the [GitHub Repository](https://github.com/Plac
 
 ----
 
+### **String**
+/// command | papi ecloud download String
+///
+
+More info about the expansion can be found on the [Github-Repository](https://github.com/BlitzOffline/StringExpansion).
+
+```
+%string_equals_<string>_<match>%
+%string_equalsIgnoreCase_<string>_<match>%
+%string_contains_<string>_<match>%
+%string_containsIgnoreCase_<string>_<match>%
+%string_indexOf_<string>_<match>%
+%string_lastIndexOf_<string>_<match>%
+%string_substring_<startIndex>_<string>%
+%string_substring_<startIndex>,<endIndex>_<string>%
+%string_charAt_<index>_<string>%
+%string_shuffle_<string>%
+%string_uppercase_<string>%
+%string_lowercase_<string>%
+%string_length_<string>%
+%string_random_<string1>,<string2>,<string3>,<etc>%
+```
+
+----
+
 ### **World**
 /// command | papi ecloud download World
 ///
@@ -279,7 +309,7 @@ More information can be found on the [GitHub Repository](https://github.com/Plac
 
 ----
 
-## Plugin-placeholders
+## Mod-placeholders
 
 Expansions listed here require the linked resource (plugin/mod) to work properly.
 
@@ -287,7 +317,7 @@ Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI 
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
 
 ### **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
-/// integrated | Built into Plugin
+/// integrated | Built into mod
 ///
 
 ```
@@ -338,6 +368,43 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 %eliteessentials_warp_<name>_yaw%
 %eliteessentials_warp_<name>_pitch%
 %eliteessentials_warp_<name>_world%
+```
+
+----
+
+### **[EssentialsCore](https://www.curseforge.com/hytale/mods/essentials-core)**
+/// integrated | Built into mod
+///
+
+/// warning | [Subject to PR approval](https://github.com/nhulston/Essentials/pull/14)
+///
+
+```
+%essentials_max_homes%                    Max homes                                               
+%essentials_homes_num%                    Number of homes                                         
+%essentials_homes_names%                  Names of homes (split by ", ")                          
+%essentials_all_kits_num%                 Number of all kits on server                            
+%essentials_all_kits_names%               Names of all kits on server (split by ", ")             
+%essentials_allowed_kits_num%             Number of kits this player can access                   
+%essentials_allowed_kits_names%           Names of kits this player can access (split by ", ")    
+%essentials_all_warps_num%                Number of all warps on server                           
+%essentials_all_warps_names%              Names of all warps on server (split by ", ")            
+%essentials_<warp/home>_<name>_world%   World name of a particular warp/home                    
+%essentials_<warp/home>_<name>_coords%  Coords of a particular warp/home (x y z)                
+%essentials_<warp/home>_<name>_x%       X coord of a warp/home                                  
+%essentials_<warp/home>_<name>_y%       Y coord of a warp/home                                  
+%essentials_<warp/home>_<name>_z%       Z coord of a warp/home                                  
+%essentials_<warp/home>_<name>_yaw%     Yaw of a warp/home                                      
+%essentials_<warp/home>_<name>_pitch%   Pitch of a warp/home                                    
+%essentials_warp_<name>_allowed%         Can this player access this warp                        
+%essentials_home_<name>_createdat%       Timestamp of when a home was created                    
+%essentials_kit_<name>_name%             Display name of a kit                                   
+%essentials_kit_<name>_id%               Id of a kit                                             
+%essentials_kit_<name>_type%             Type of a kit                                           
+%essentials_kit_<name>_cooldown%         Cooldown of a kit                                       
+%essentials_kit_<name>_isreplacemode%    Whether kit has replacemode set to true/false           
+%essentials_kit_<name>_itemsnum%         Number of items in a kit                                
+%essentials_kit_<name>_allowed%          Can this player access the kit  
 ```
 
 ----
@@ -414,6 +481,104 @@ Standard:
 
 ----
 
+### **[HyperPerms](https://www.curseforge.com/hytale/mods/hyperperms)**
+/// integrated | Built into mod
+///
+
+```
+%hyperperms_prefix%
+%hyperperms_suffix%
+%hyperperms_group%
+%hyperperms_group_display%
+%hyperperms_groups%
+%hyperperms_group_count%
+%hyperperms_weight%
+%hyperperms_has_<permission>%
+%hyperperms_in_group_<name>%
+```
+
+----
+
+### **[HyperFactions](https://www.curseforge.com/hytale/mods/hyperfactions)**
+/// integrated | Built into mod
+///
+
+Relational:
+```
+soon:tm:
+```
+
+Standard:
+```
+Player faction:
+   %factions_has_faction% - Whether player has a faction (yes/no)
+   %factions_name% - Faction name
+   %factions_faction_id% - Faction UUID
+   %factions_tag% - Faction tag (short identifier)
+   %factions_display% - Tag or name based on tagDisplay config
+   %factions_color% - Faction color code
+   %factions_role% - Player's role (Leader/Officer/Member)
+   %factions_description% - Faction description
+   %factions_leader% - Faction leader's name
+   %factions_leader_id% - Faction leader's UUID
+   %factions_open% - Whether faction is open (true/false)
+   %factions_created% - Faction creation date (yyyy-MM-dd)
+
+Power:
+   %factions_power% - Player's current power
+   %factions_maxpower% - Player's max power
+   %factions_power_percent% - Player's power percentage
+   %factions_faction_power% - Faction's total power
+   %factions_faction_maxpower% - Faction's max power
+   %factions_faction_power_percent% - Faction's power percentage
+   %factions_raidable% - Whether faction is raidable (true/false)
+
+Territory:
+   %factions_land% - Number of claimed chunks
+   %factions_land_max% - Max claimable chunks
+   %factions_territory% - Faction owning current chunk
+   %factions_territory_type% - Territory type at current location
+
+Faction home:
+   %factions_home_world% - World name of faction home
+   %factions_home_x% - X coordinate of faction home (2 d.p.)
+   %factions_home_y% - Y coordinate of faction home (2 d.p.)
+   %factions_home_z% - Z coordinate of faction home (2 d.p.)
+   %factions_home_coords% - X, Y, Z coordinates of faction home (2 d.p.)
+   %factions_home_yaw% - Yaw of faction home (2 d.p.)
+   %factions_home_pitch% - Pitch of faction home (2 d.p.)
+
+Members and relations:
+   %factions_members% - Total member count
+   %factions_members_online% - Online member count
+   %factions_allies% - Number of allied factions
+   %factions_enemies% - Number of enemy factions
+   %factions_neutrals% - Number of neutral relations
+   %factions_relations% - Total number of relations
+```
+
+----
+
+### **[LevelingCore](https://www.curseforge.com/hytale/mods/levelingcore)**
+/// integrated | Built into mod
+///
+
+```
+%levelingcore_level%
+%levelingcore_xp%
+%levelingcore_xp_to_level%
+%levelingcore_ability_points%
+%levelingcore_available_ability_points%
+%levelingcore_str%
+%levelingcore_agi%
+%levelingcore_per%
+%levelingcore_vit%
+%levelingcore_int%
+%levelingcore_con%
+```
+
+----
+
 ### **[LuckPerms](https://www.curseforge.com/hytale/mods/luckperms)**
 /// command | papi ecloud download LuckPerms
 ///
@@ -455,6 +620,57 @@ Standard:
 %rpglevelling_is_max%
 %rpglevelling_maxlevel%
 %rpglevelling_xpnextlevel%
+```
+
+----
+
+### **[SimpleClaims](https://www.curseforge.com/hytale/mods/simple-claims)**
+/// integrated | Built into mod
+///
+
+/// warning | [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
+///
+
+```
+%simpleclaims_parties_total%
+%simpleclaims_can_place_blocks%
+%simpleclaims_can_interact_blocks%
+%simpleclaims_can_break_blocks%
+%simpleclaims_can_interact_chest%
+%simpleclaims_can_interact_bench%
+%simpleclaims_can_interact_chair%
+%simpleclaims_can_interact_door%
+%simpleclaims_can_interact_portal%
+%simpleclaims_can_enter%
+%simpleclaims_can_friendly_fire%
+%simpleclaims_can_pvp%
+%simpleclaims_party_name%
+%simpleclaims_party_description%
+%simpleclaims_party_id%
+%simpleclaims_party_size%
+%simpleclaims_party_color%
+%simpleclaims_party_created%
+%simpleclaims_party_maxclaims%
+%simpleclaims_party_modified%
+%simpleclaims_party_owner_uuid%
+%simpleclaims_party_owner_name%
+%simpleclaims_party_can_place_blocks%
+%simpleclaims_party_can_interact_blocks%
+%simpleclaims_party_can_break_blocks%
+%simpleclaims_party_can_interact_chest%
+%simpleclaims_party_can_interact_bench%
+%simpleclaims_party_can_interact_chair%
+%simpleclaims_party_can_interact_door%
+%simpleclaims_party_can_interact_portal%
+%simpleclaims_party_can_enter%
+%simpleclaims_party_can_friendly_fire%
+%simpleclaims_party_can_pvp%
+%simpleclaims_party_allies_total%
+%simpleclaims_party_allies_uuids%
+%simpleclaims_party_allies_names%
+%simpleclaims_party_claims%
+%simpleclaims_party_partyallied_<partyId>%
+%simpleclaims_party_playerallied_<playerName>%
 ```
 
 ----
