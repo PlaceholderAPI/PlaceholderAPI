@@ -32,9 +32,9 @@ Your config class needs to represent your config structure exactly. The only dif
 
 ```yaml { .annotate title="HelpChat_PlaceholderAPI/config.yml" }
 expansions:
-	coolexpansion:
-		test: wew
-		date_format: "dd/mm/yyyy"
+    coolexpansion:
+        test: wew
+        date_format: "dd/mm/yyyy"
 ```
 
 ## Using Your Config Class
