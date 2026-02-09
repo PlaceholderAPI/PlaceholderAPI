@@ -46,6 +46,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - *No Expansions*
     - **P**
         - **[Player](#player)**
+        - **[Progress](#progress)**
     - **Q**
         - *No Expansions*
     - **R**
@@ -217,6 +218,27 @@ More information can be found on the [GitHub Repository](https://github.com/Plac
 %player_signature_energy_max%
 %player_signature_energy_min%
 %player_has_permission_<permission>%
+```
+
+----
+
+### **Progress**
+/// command | papi ecloud download progress
+///
+
+More info about this expansion can be found on the [GitHub-Repository](https://github.com/PlaceholderAPI/Progress-Expansion).
+
+```
+%progress_bar_{placeholder}%
+%progress_bar_{placeholder}_c:<completed Symbol>%
+%progress_bar_{placeholder}_p:<progress Symbol>%
+%progress_bar_{placeholder}_r:<remaining Symbol>%
+%progress_bar_{placeholder}_l:<max length>%
+%progress_bar_{placeholder}_m:<max value>%
+%progress_bar_{placeholder}_fullbar:<text>%
+
+# Example
+%progress_bar_{placeholder}_c:X_p:+_r:-_l:10_m:100_fullbar:Completed!%
 ```
 
 ----
