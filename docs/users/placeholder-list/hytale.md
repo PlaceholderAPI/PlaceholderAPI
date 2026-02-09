@@ -39,7 +39,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **L**
         - *No Expansions*
     - **M**
-        - *No Expansions*
+        - **[Math](#math)**
     - **N**
         - *No Expansions*
     - **O**
@@ -166,6 +166,19 @@ More information can be found on the [GitHub Repository](https://github.com/Plac
 - `<output-if-not-matched>` - if the input does not meet the condition, this text will be displayed instead
 
 *All arguments can be replaced with other placeholders, wrapped in* `{}`
+
+----
+
+### **Math**
+/// command | papi ecloud download Math
+///
+
+Allows evaluation of basic and complex mathematical Expressions through EvalEx.
+
+```
+%math_<expression>%
+%math_[decimals]:[rounding-mode]_<expression>%
+```
 
 ----
 
