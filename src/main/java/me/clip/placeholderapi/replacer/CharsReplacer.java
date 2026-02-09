@@ -2,7 +2,7 @@
  * This file is part of PlaceholderAPI
  *
  * PlaceholderAPI
- * Copyright (c) 2015 - 2026 PlaceholderAPI Team
+ * Copyright (c) 2015 - 2024 PlaceholderAPI Team
  *
  * PlaceholderAPI free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,7 @@ package me.clip.placeholderapi.replacer;
 
 import java.util.Locale;
 import java.util.function.Function;
-
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -68,8 +66,12 @@ public final class CharsReplacer implements Replacer {
                     hadSpace = true;
                     break;
                 }
-                if (p == closure.tail) {
+                if (p == closure.tail && identified) {
                     invalid = false;
+                    break;
+                }
+                if (p == closure.tail) {
+                    identifier.append(p);
                     break;
                 }
 
