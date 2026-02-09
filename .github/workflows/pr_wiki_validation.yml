@@ -38,15 +38,12 @@ jobs:
         with:
           python-version: 3.x
       - name: "Install dependencies"
-        run: "pip install -r requirements.txt"
+        run: "python -m pip install mkdocs-material"
       - name: "Build Site"
         run: "mkdocs build --strict"
-  commentOnFail:
-    runs-on: ubuntu-latest
-    if: ${{ failure() }}
-    steps:
       - name: "Create Comment"
         uses: peter-evans/create-or-update-comment@v5
+        if: ${{ failure() }}
         with:
           body: |-
             ## Wiki Build failure
