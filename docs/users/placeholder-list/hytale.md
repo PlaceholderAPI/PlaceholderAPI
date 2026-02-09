@@ -294,6 +294,7 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 %string_equalsIgnoreCase_<string>_<match>%
 %string_contains_<string>_<match>%
 %string_containsIgnoreCase_<string>_<match>%
+%string_charAt_<index>_<string>%
 %string_indexOf_<string>_<match>%
 %string_lastIndexOf_<string>_<match>%
 %string_substring_<startIndex>_<string>%
@@ -302,8 +303,16 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 %string_shuffle_<string>%
 %string_uppercase_<string>%
 %string_lowercase_<string>%
+%string_sentencecase_<string>%
+%string_capitalize_<string>%
 %string_length_<string>%
 %string_random_<string1>,<string2>,<string3>,<etc>%
+%string_replaceCharacters_<configuration>_<string>%
+%string_alternateuppercase_<string>%
+%string_startswith_<string>_<match>%
+%string_endswith_<string>_<match>%
+%string_trim_<string>%
+%string_occurences_count_<string>_<match>%
 ```
 
 ----
