@@ -2780,12 +2780,21 @@ Please check the [wiki](https://github.com/booksaw/PlaceholderAPI) for more info
 
 ```
 %deluxemenus_meta_<key>_<dataType>_<default_value>%
+%deluxemenus_meta_<key>_<dataType>_<defaultValue>%
+%deluxemenus_meta_has_value_<key>_<dataType>%
+%deluxemenus_is_in_menu%
+%deluxemenus_opened_menu%
+%deluxemenus_last_menu%
 ```
 
-- Key: The key of the meta you want to check
-- Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
-  *If the given key has a different data type, an error will occur.*
-- Default Value: The value returned if nothing is found.
+-   Key: The key of the meta you want to check
+-   Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
+    *If the given key has a different data type, an error will occur.*
+-   Default Value: The value returned if nothing is found.
+-   `<key>`: The key of the meta you want to check
+-   `<dataType>`: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
+    *If the given key has a different data type, an error will occur.*
+-   `<defaultValue>`: The value returned if nothing is found.
 
 ----
 
