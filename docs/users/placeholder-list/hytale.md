@@ -122,7 +122,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **V**
         - **[VaultUnlocked](#vaultunlocked)**
     - **W**
-        - **[WiFlowAPI](#wifloapi)**
+        - **[WiFlowAPI](#wiflowapi)**
     - **X**
         - *No Expansions*
     - **Y**
