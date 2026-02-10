@@ -120,7 +120,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **U**
         - *No Expansions*
     - **V**
-        - *No Expansions*
+        - **[VaultUnlocked](#vaultunlocked)**
     - **W**
         - **[WiFlowAPI](#wifloapi)**
     - **X**
@@ -715,6 +715,30 @@ Members and relations:
 %simpleclaims_party_claims%
 %simpleclaims_party_partyallied_<partyId>%
 %simpleclaims_party_playerallied_<playerName>%
+```
+
+----
+
+### **[VaultUnlocked](https://www.curseforge.com/hytale/mods/vaultunlocked)**
+/// command | papi ecloud download vaultunlocked
+///
+
+```
+%vault_eco_balance%
+%vault_eco_balance_<number>dp%
+%vault_eco_balance_fixed%
+%vault_eco_balance_formatted%
+%vault_eco_balance_commas%
+%vault_group%, %vault_group_capital%
+%vault_groups%
+%vault_groups_capital%
+%vault_prefix%
+%vault_suffix%
+%vault_groupprefix%
+%vault_groupprefix_<position>%, %vault_groupsuffix%
+%vault_groupsuffix_<position>%
+%vault_hasgroup_<group>%
+%vault_inprimarygroup_<group>%
 ```
 
 ----
