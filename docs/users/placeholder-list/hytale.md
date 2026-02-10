@@ -81,6 +81,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **D**
         - *No Expansions*
     - **E**
+        - **[EconomyAPI](#economyapi)**
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
     - **F**
@@ -359,6 +360,17 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
+/// integrated | Built into mod
+///
+
+```
+%economyapi_balance%
+%economyapi_formatted_balance%
+```
+
+----
 
 ### **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
 /// integrated | Built into mod
