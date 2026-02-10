@@ -93,6 +93,9 @@ No Plugins available
 
 ----
 ## H
+- **[HyEssentialsX](https://www.curseforge.com/hytale/mods/hyessentialsx)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 - **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyfactions)**]
