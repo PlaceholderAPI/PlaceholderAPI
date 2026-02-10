@@ -198,10 +198,9 @@ No Plugins available
 
 ----
 ## V
-
-/// info |
-No Plugins available
-///
+- **[VaultUnlocked](https://www.curseforge.com/hytale/mods/vaultunlocked)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#vaultunlocked)**]
 
 ----
 ## W
