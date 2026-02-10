@@ -819,7 +819,7 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 
 ### **[Javascript](https://api.extendedclip.com/expansions/javascript/)**
 /// failure | Unverified
-Due to potential security issues is this expansion currently unverified. Use at your own risk.
+Due to potential security issues this expansion is currently unverified. Use at your own risk.
 ///
 
 Gives you a way, to use javascript, to give a different output, depending on conditions.
