@@ -258,7 +258,6 @@ Starting with version 2.12.0 is it now possible to provide Components from the A
 
 In order to use this new feature are the following things required to be true:
 
-- You depend on `placeholderapi-paper` and not just `placeholderapi`
 - Your plugin runs on a Paper-based Server. Spigot-based servers will not work!
 - You use `PAPIComponent` instead of `PlaceholderAPI` to parse Components.
 ///
@@ -347,7 +346,7 @@ public class JoinExample extends JavaPlugin {
     @Override
     protected void setup() {
         // (1)
-        Universe.get().getWorlds().keySet().forEach(name -> getEventRegistry().register(PlayerReadyEvent.class, name, this::onPlayerReady));
+        getEventRegistry().registerGlobal(PlayerReadyEvent.class, this::onPlayerReady));
     }
 
     public void onPlayerReady(PlayerReadyEvent event) {

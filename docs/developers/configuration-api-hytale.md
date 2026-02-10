@@ -2,7 +2,7 @@
 description: How to create configurable expansions in Hytale.
 ---
 
-# The Configurable<T> Interface
+# Hytale's Configurable<T> Interface
 
 Unlike in spigot, in Hytale PAPI does not forward through Hytale's configuration API and instead implements its own. Effectively you'll be required to create a class representing your configuration section in PlaceholderAPI's main config.yml, and PAPI will handle the rest.
 
