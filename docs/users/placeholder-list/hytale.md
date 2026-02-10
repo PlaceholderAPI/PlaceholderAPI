@@ -669,10 +669,10 @@ Members and relations:
 ----
 
 ### **[SimpleClaims](https://www.curseforge.com/hytale/mods/simple-claims)**
-/// integrated | Built into mod
+/// integrated | Built into mod [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
 ///
 
-/// warning | [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
+/// command | papi ecloud download simpleclaims
 ///
 
 ```
