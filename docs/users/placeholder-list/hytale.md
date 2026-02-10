@@ -729,13 +729,15 @@ Members and relations:
 %vault_eco_balance_fixed%
 %vault_eco_balance_formatted%
 %vault_eco_balance_commas%
-%vault_group%, %vault_group_capital%
+%vault_group%
+%vault_group_capital%
 %vault_groups%
 %vault_groups_capital%
 %vault_prefix%
 %vault_suffix%
 %vault_groupprefix%
-%vault_groupprefix_<position>%, %vault_groupsuffix%
+%vault_groupprefix_<position>%
+%vault_groupsuffix%
 %vault_groupsuffix_<position>%
 %vault_hasgroup_<group>%
 %vault_inprimarygroup_<group>%
