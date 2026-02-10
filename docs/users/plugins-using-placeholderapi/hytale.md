@@ -141,10 +141,9 @@ No Plugins available
 
 ----
 ## M
-
-/// info |
-No Plugins available
-///
+- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## N
