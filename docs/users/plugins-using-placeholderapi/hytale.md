@@ -161,10 +161,9 @@ No Plugins available
 
 ----
 ## P
-
-/// info |
-No Plugins available
-///
+- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#prekoytespowerlevels)**]
 
 ----
 ## Q

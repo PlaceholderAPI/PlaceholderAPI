@@ -109,7 +109,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **O**
         - *No Expansions*
     - **P**
-        - *No Expansions*
+        - **[Prekoyte's Powerlevels](#prekoytespowerlevels)**
     - **Q**
         - *No Expansions*
     - **R**
@@ -662,6 +662,20 @@ Members and relations:
 %luckperms_expiry_time_<permission>%
 %luckperms_inherited_expiry_time_<permission>%
 %luckperms_group_expiry_time_<groupname>%
+```
+
+----
+
+### **[PrekoytesPowerlevels](https://www.curseforge.com/hytale/mods/prekoytes-powerlevels)**
+/// integrated | Built into mod
+///
+
+```
+%powerlevel_power% - Integer power.
+%powerlevel_powerdecimal% - Power with one decimal.
+%powerlevel_best% - Personal best.
+%powerlevel_color% - Color code from colors.json.
+%powerlevel_rank% - Rank name from colors.json.
 ```
 
 ----
