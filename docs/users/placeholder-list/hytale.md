@@ -33,7 +33,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **I**
         - *No Expansions*
     - **J**
-        - *No Expansions*
+        - **[Javascript](#javascript)**
     - **K**
         - *No Expansions*
     - **L**
@@ -167,6 +167,19 @@ More information can be found on the [GitHub Repository](https://github.com/Plac
 - `<output-if-not-matched>` - if the input does not meet the condition, this text will be displayed instead
 
 *All arguments can be replaced with other placeholders, wrapped in* `{}`
+
+----
+
+### **[Javascript](https://ecloud.placeholderapi.com/expansions/javascript-1/)**
+/// failure | Unverified
+Due to potential security issues this expansion is currently unverified. Use at your own risk.
+///
+
+Gives you a way, to use javascript, to give a different output, depending on conditions.
+
+```
+%javascript_<your placeholder identifier>%
+```
 
 ----
 
