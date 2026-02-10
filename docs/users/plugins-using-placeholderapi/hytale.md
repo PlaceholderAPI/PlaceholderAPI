@@ -66,6 +66,9 @@ No Plugins available
 
 ----
 ## E
+- **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#economyapi)**]
 - **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#eliteessentials)**]
@@ -90,6 +93,9 @@ No Plugins available
 
 ----
 ## H
+- **[HyEssentialsX](https://www.curseforge.com/hytale/mods/hyessentialsx)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 - **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyfactions)**]
@@ -135,10 +141,9 @@ No Plugins available
 
 ----
 ## M
-
-/// info |
-No Plugins available
-///
+- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## N
@@ -156,10 +161,9 @@ No Plugins available
 
 ----
 ## P
-
-/// info |
-No Plugins available
-///
+- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#prekoytespowerlevels)**]
 
 ----
 ## Q

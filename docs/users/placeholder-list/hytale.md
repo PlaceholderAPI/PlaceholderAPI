@@ -81,6 +81,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **D**
         - *No Expansions*
     - **E**
+        - **[EconomyAPI](#economyapi)**
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
     - **F**
@@ -108,7 +109,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **O**
         - *No Expansions*
     - **P**
-        - *No Expansions*
+        - **[Prekoyte's Powerlevels](#prekoytespowerlevels)**
     - **Q**
         - *No Expansions*
     - **R**
@@ -359,6 +360,17 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
+/// integrated | Built into mod
+///
+
+```
+%economyapi_balance%
+%economyapi_formatted_balance%
+```
+
+----
 
 ### **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
 /// integrated | Built into mod
@@ -650,6 +662,20 @@ Members and relations:
 %luckperms_expiry_time_<permission>%
 %luckperms_inherited_expiry_time_<permission>%
 %luckperms_group_expiry_time_<groupname>%
+```
+
+----
+
+### **[PrekoytesPowerlevels](https://www.curseforge.com/hytale/mods/prekoytes-powerlevels)**
+/// integrated | Built into mod
+///
+
+```
+%powerlevel_power% - Integer power.
+%powerlevel_powerdecimal% - Power with one decimal.
+%powerlevel_best% - Personal best.
+%powerlevel_color% - Color code from colors.json.
+%powerlevel_rank% - Rank name from colors.json.
 ```
 
 ----
