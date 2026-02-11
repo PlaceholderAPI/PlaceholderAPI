@@ -211,6 +211,17 @@ public abstract class PlaceholderExpansion implements PlaceholderHook {
 //        return (Map<String, Object>) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), new HashMap<>());
 //    }
 
+    /**
+     * Get expansion config for this expansion (must implement Configurable&lt;T&gt;).
+     * Returns null if expansion config is not found.
+     * Deprecated, please see {@link Configurable#getConfig()}}.
+     *
+     * @param configurableType Class extending Configurable&lt;T&gt;
+     * @return T
+     * @param <T> Your expansion config type
+     */
+    @SuppressWarnings("unchecked")
+    @Deprecated
     @Nullable
     public final <T> T getExpansionConfig(@NotNull final Class<? extends Configurable<T>> configurableType) {
         return (T) getPlaceholderAPI().configManager().config().expansions().getOrDefault(getIdentifier(), null);

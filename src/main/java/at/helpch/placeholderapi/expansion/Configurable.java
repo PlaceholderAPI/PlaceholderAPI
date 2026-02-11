@@ -20,6 +20,7 @@
 
 package at.helpch.placeholderapi.expansion;
 
+import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -48,6 +49,15 @@ public interface Configurable<T> {
 
     @NotNull
     T provideDefault();
+
+    @NotNull
+    default T getConfig() {
+        if (this instanceof PlaceholderExpansion exp) {
+            return (T) PlaceholderAPIPlugin.instance().configManager().config().expansions().getOrDefault(exp.getIdentifier(), provideDefault());
+        }
+
+        return provideDefault();
+    }
 
 //    /**
 //     * The map returned by this method will be used to set config options in PlaceholderAPI's config.yml.

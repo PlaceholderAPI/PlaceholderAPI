@@ -175,7 +175,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 //                right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
 //            }
 
-            message = message.insert(Message.raw(" - " + page + " - ").color(Color.GREEN));
+            message = message.insert(Message.raw(" - " + page + " of " + limit + " - ").color(Color.GREEN));
         }
 
         return message;
