@@ -76,7 +76,9 @@ No Plugins available
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#essentialscore)**]
     - [ ] [Subject to PR approval](https://github.com/nhulston/Essentials/pull/14)
-
+- **[EssentialsPlus](https://www.curseforge.com/hytale/mods/essentials-plus)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#essentialsplus)**]
 ----
 ## F
 

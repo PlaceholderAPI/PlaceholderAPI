@@ -84,6 +84,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[EconomyAPI](#economyapi)**
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
+        - **[EssentialsPlus](#essentialsplus)**
     - **F**
         - *No Expansions*
     - **G**
@@ -474,6 +475,36 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 %essentials_kit_<name>_isreplacemode%    Whether kit has replacemode set to true/false           
 %essentials_kit_<name>_itemsnum%         Number of items in a kit                                
 %essentials_kit_<name>_allowed%          Can this player access the kit  
+```
+
+----
+
+### **[EssentialsPlus](https://www.curseforge.com/hytale/mods/essentials-plus)**
+/// integrated | Built into mod
+///
+
+```
+%essentialsplus_player_balance%
+%essentialsplus_player_balance_formatted%
+%essentialsplus_player_first_join%
+%essentialsplus_player_last_join%
+%essentialsplus_player_playtime%
+%essentialsplus_player_session_time%
+%essentialsplus_player_homes_count%
+%essentialsplus_player_homes_max%
+%essentialsplus_player_homes_<number>%
+%essentialsplus_player_homes_<number>_world%
+%essentialsplus_player_homes_<number>_x%
+%essentialsplus_player_homes_<number>_y%
+%essentialsplus_player_homes_<number>_z%
+%essentialsplus_player_is_muted%
+%essentialsplus_player_is_frozen%
+%essentialsplus_player_is_vanished%
+%essentialsplus_player_is_flying%
+%essentialsplus_server_homes_total%
+%essentialsplus_server_warps_total%
+%essentialsplus_server_kits_total%
+%essentialsplus_server_players_total%
 ```
 
 ----
