@@ -50,7 +50,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **Q**
         - *No Expansions*
     - **R**
-        - *No Expansions*
+        - **[RNG](#rng)**
     - **S**
         - **[Server](#server)**
         - **[String](#string)**
@@ -79,7 +79,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **C**
         - *No Expansions*
     - **D**
-        - *No Expansions*
+        - **[Declares Advanced Jobs](#declares-advanced-jobs)**
     - **E**
         - **[EconomyAPI](#economyapi)**
         - **[EliteEssentials](#eliteessentials)**
@@ -271,6 +271,23 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 
 ----
 
+### **RNG**
+/// command | papi ecloud download rng
+///
+
+```
+%rng_random%
+%rng_online_player%
+%rng_last_generated%
+%rng_<minimum>,<maximum>%
+%rng_list:<num1>;<weight1>,<num2>;<weight2>%
+
+NOTE: You can use embedded placeholders e.g.:
+%rng_{player_health},{player_exp}%
+```
+
+----
+
 ### **Server**
 /// command | papi ecloud download Server
 ///
@@ -374,6 +391,19 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[Declares-Advanced-Jobs](https://www.curseforge.com/hytale/mods/declares-advanced-jobs)**
+/// integrated | Built into mod
+///
+
+```
+%jobs_current_job%
+%jobs_level_<job>%
+%jobs_xp_<job>%
+%jobs_income_<job>%
+```
+
+----
 
 ### **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
 /// integrated | Built into mod
