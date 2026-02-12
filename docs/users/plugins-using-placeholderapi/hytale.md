@@ -59,10 +59,9 @@ No Plugins available
 
 ----
 ## D
-
-/// info |
-No Plugins available
-///
+- **[Declare's Advanced Jobs](https://www.curseforge.com/hytale/mods/declares-advanced-jobs)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#declares-advanced-jobs)**]
 
 ----
 ## E
@@ -110,6 +109,9 @@ No Plugins available
 - **[HyperFactions](https://www.curseforge.com/hytale/mods/hyperfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyperfactions)**]
+- **[HeroChat](https://www.curseforge.com/hytale/mods/herochat)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## I
