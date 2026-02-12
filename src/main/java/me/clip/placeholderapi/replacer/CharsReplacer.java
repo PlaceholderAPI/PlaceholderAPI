@@ -106,16 +106,18 @@ public final class CharsReplacer implements Replacer {
                 }
             }
 
-            String identifier;
+            if (underscoreIndex == -1) {
+                builder.append(text, startPlaceholder, endPlaceholder + 1);
+                cursor = endPlaceholder + 1;
+                startPlaceholder = text.indexOf(head, cursor);
+                continue;
+            }
+
+            String identifier = text.substring(startPlaceholder + 1, underscoreIndex);
             String parameters = "";
 
-            if (underscoreIndex != -1) {
-                identifier = text.substring(startPlaceholder + 1, underscoreIndex);
-                if (underscoreIndex + 1 < endPlaceholder) {
-                    parameters = text.substring(underscoreIndex + 1, endPlaceholder);
-                }
-            } else {
-                identifier = text.substring(startPlaceholder + 1, endPlaceholder);
+            if (underscoreIndex + 1 < endPlaceholder) {
+                parameters = text.substring(underscoreIndex + 1, endPlaceholder);
             }
 
             final PlaceholderExpansion expansion = lookup.apply(identifier.toLowerCase(Locale.ROOT));
@@ -130,9 +132,7 @@ public final class CharsReplacer implements Replacer {
             } else {
                 // Fallback: Restore original placeholder format
                 builder.append(head).append(identifier);
-                if (underscoreIndex != -1) {
-                    builder.append('_').append(parameters);
-                }
+                builder.append('_').append(parameters);
                 builder.append(tail);
             }
 
