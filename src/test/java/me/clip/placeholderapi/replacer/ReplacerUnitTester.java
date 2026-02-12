@@ -24,6 +24,7 @@ import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYE
 import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_X;
 import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_Y;
 import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_Z;
+import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.EMPTY_ARGUMENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import me.clip.placeholderapi.Values;
@@ -35,6 +36,18 @@ public final class ReplacerUnitTester {
     void testCharsReplacerProducesExpectedSingleValue() {
         assertEquals(PLAYER_NAME,
                 Values.CHARS_REPLACER.apply("%player_name%", null, Values.PLACEHOLDERS::get));
+    }
+
+    @Test
+    void charsReplacersDoesNotParsePlaceholdersWithNoArguments() {
+        assertEquals(Values.NO_ARGUMENTS_PLACEHOLDER,
+                Values.CHARS_REPLACER.apply(Values.NO_ARGUMENTS_PLACEHOLDER, null, Values.PLACEHOLDERS::get));
+    }
+
+    @Test
+    void charsReplacersParsesPlaceholdersWithOneArgumentThatIsEmpty() {
+        assertEquals(EMPTY_ARGUMENT,
+                Values.CHARS_REPLACER.apply(Values.EMPTY_ARGUMENT_PLACEHOLDER, null, Values.PLACEHOLDERS::get));
     }
 
     @Test

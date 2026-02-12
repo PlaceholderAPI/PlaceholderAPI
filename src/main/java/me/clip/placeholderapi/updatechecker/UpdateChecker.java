@@ -26,8 +26,8 @@ import java.net.URL;
 import java.util.Arrays;
 import javax.net.ssl.HttpsURLConnection;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.scheduler.scheduling.schedulers.TaskScheduler;
 import me.clip.placeholderapi.util.Msg;
@@ -66,7 +66,7 @@ public class UpdateChecker implements Listener {
             try {
                 HttpsURLConnection con = (HttpsURLConnection) new URL(MODRINTH_URL).openConnection();
                 con.setRequestMethod("GET");
-                final JsonElement json = JsonParser.parseReader(new BufferedReader(new InputStreamReader(con.getInputStream())));
+                final JsonElement json = new Gson().fromJson(new BufferedReader(new InputStreamReader(con.getInputStream())), JsonElement.class);
                 modrinthVersion = json.getAsJsonArray().get(0).getAsJsonObject().get("version_number").getAsString();
             } catch (Exception ex) {
                 plugin.getLogger().info("Failed to check for updates on modrinth.");
