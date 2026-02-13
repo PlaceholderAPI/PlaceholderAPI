@@ -77,7 +77,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **B**
         - *No Expansions*
     - **C**
-        - *No Expansions*
+        - **[CleanPing](#cleanping)**
     - **D**
         - **[Declares Advanced Jobs](#declares-advanced-jobs)**
     - **E**
@@ -86,7 +86,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[EssentialsCore](#essentialscore)**
         - **[EssentialsPlus](#essentialsplus)**
     - **F**
-        - *No Expansions*
+        - **[FlectonePulse](#flectonepulse)**
     - **G**
         - *No Expansions*
     - **H**
@@ -392,6 +392,21 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
 
+### **[CleanPing](https://www.curseforge.com/hytale/mods/cleanping)**
+/// integrated | Built into mod
+///
+
+```
+%cleanping_ping%
+%cleanping_coloured_ping%
+%cleanping_ping_<username>%
+%cleanping_coloured_ping_<username>%
+%cleanping_difference_<username>% - difference between requesting player and requested player ping
+%cleanping_difference_<username1>_<username2>%
+```
+
+----
+
 ### **[Declares-Advanced-Jobs](https://www.curseforge.com/hytale/mods/declares-advanced-jobs)**
 /// integrated | Built into mod
 ///
@@ -535,6 +550,60 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 %essentialsplus_server_warps_total%
 %essentialsplus_server_kits_total%
 %essentialsplus_server_players_total%
+```
+
+----
+
+### **[FlectonePulse](https://www.curseforge.com/hytale/mods/flectonepulse)**
+/// integrated | Built into mod
+///
+
+```
+%flectonepulse_advancement%                 Returns true if display is enabled, otherwise empty
+%flectonepulse_afk%                         Returns true if display is enabled, otherwise empty
+%flectonepulse_afk_suffix%                  Returns AFK suffix
+%flectonepulse_auto%                        Returns true if display is enabled, otherwise empty
+%flectonepulse_chat_name%                   Returns the selected chat type, default by default
+%flectonepulse_death%                       Returns true if display is enabled, otherwise empty
+%flectonepulse_discord%                     Returns true if display is enabled, otherwise empty
+%flectonepulse_fcolor_number%               Returns the player's custom color
+%flectonepulse_fcolor_out_number%           Returns the player's custom OUT color
+%flectonepulse_fcolor_see_number%           Returns the player's custom SEE color
+%flectonepulse_greeting%                    Returns true if display is enabled, otherwise empty
+%flectonepulse_ip%                          Returns the player's IP address
+%flectonepulse_join%                        Returns true if display is enabled, otherwise empty
+%flectonepulse_locale%                      Returns the player's current locale
+%flectonepulse_online%                      Returns the number of players on the server
+%flectonepulse_ping%                        Returns the player's ping
+%flectonepulse_player%                      Returns the player's regular name
+%flectonepulse_quit%                        Returns true if display is enabled, otherwise empty
+%flectonepulse_stream_prefix%               Returns the player's stream prefix
+%flectonepulse_spy_status                   Returns a string if spy mode is enabled, otherwise empty
+%flectonepulse_telegram%                    Returns true if display is enabled, otherwise empty
+%flectonepulse_tps%                         Returns the server TPS
+%flectonepulse_twitch%                      Returns true if display is enabled, otherwise empty
+%flectonepulse_world_prefix%                Returns the player's world prefix
+%flectonepulse_mute_suffix%                 Returns the player's mute suffix
+%flectonepulse_command_ball%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_ban%                 Returns true if display is enabled, otherwise empty
+%flectonepulse_command_broadcast%           Returns true if display is enabled, otherwise empty
+%flectonepulse_command_coin%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_dice%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_do%                  Returns true if display is enabled, otherwise empty
+%flectonepulse_command_kick%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_mail%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_me%                  Returns true if display is enabled, otherwise empty
+%flectonepulse_command_mute%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_poll%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_reply%               Returns true if display is enabled, otherwise empty
+%flectonepulse_command_rockpaperscissors%   Returns true if display is enabled, otherwise empty
+%flectonepulse_command_spy%                 Returns true if display is enabled, otherwise empty
+%flectonepulse_command_stream%              Returns true if display is enabled, otherwise empty
+%flectonepulse_command_tell%                Returns true if display is enabled, otherwise empty
+%flectonepulse_command_tictactoe%           Returns true if display is enabled, otherwise empty
+%flectonepulse_command_translateto%         Returns true if display is enabled, otherwise empty
+%flectonepulse_command_try%                 Returns true if display is enabled, otherwise empty
+%flectonepulse_command_warn%                Returns true if display is enabled, otherwise empty
 ```
 
 ----
