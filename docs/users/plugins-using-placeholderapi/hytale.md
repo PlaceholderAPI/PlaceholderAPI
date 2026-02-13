@@ -52,10 +52,12 @@ No Plugins available
 
 ----
 ## C
-
-/// info |
-No Plugins available
-///
+- **[Clean Ping](https://www.curseforge.com/hytale/mods/cleanping)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#cleanping)**]
+- **[CleanStaffChat](https://www.curseforge.com/hytale/mods/cleanstaffchat)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## D
@@ -78,12 +80,12 @@ No Plugins available
 - **[EssentialsPlus](https://www.curseforge.com/hytale/mods/essentials-plus)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#essentialsplus)**]
+
 ----
 ## F
-
-/// info |
-No Plugins available
-///
+- **[FlectonePulse](https://www.curseforge.com/hytale/mods/flectonepulse)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#flectonepulse)**]
 
 ----
 ## G
