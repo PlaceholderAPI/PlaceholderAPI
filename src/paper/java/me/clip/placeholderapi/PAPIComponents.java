@@ -25,11 +25,14 @@ import me.clip.placeholderapi.replacer.ExactReplacer;
 import me.clip.placeholderapi.replacer.RelationalExactReplacer;
 import me.clip.placeholderapi.replacer.Replacer;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static me.clip.placeholderapi.PlaceholderAPI.RELATIONAL_PLACEHOLDER_PATTERN;
@@ -43,122 +46,236 @@ public final class PAPIComponents {
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player    Player to parse the placeholders against
      * @param component Component to set the placeholder values in
      * @return Component containing all translated placeholders
      */
     @NotNull
     public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
-        if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureProvidedReplacer()) {
-            return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) ->
-                    builder.content(PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
-        }
-
-        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setPlaceholders(player, str));
+        return setPlaceholders(player, component, null);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
+     * @param component  Component to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return Component containing all translated placeholders
+     */
+    @NotNull
+    public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
+        if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureProvidedReplacer()) {
+            return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) -> {
+                String parsed = PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+                return serializer == null ? builder.content(parsed) : serializer.apply(parsed);
+            }));
+        }
+
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setPlaceholders(player, str), serializer == null ? null : s -> serializer.apply(s).asComponent());
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+     *
+     * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
      * @return List of Components containing all translated placeholders
      */
     @NotNull
     public static List<Component> setPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components) {
-        return components.stream().map(component -> setPlaceholders(player, component)).collect(Collectors.toList());
+        return setPlaceholders(player, components, null);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
+     * @param components List of Components to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return List of Components containing all translated placeholders
+     */
+    @NotNull
+    public static List<Component> setPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
+        return components.stream().map(component -> setPlaceholders(player, component, serializer == null ? null : s -> serializer.apply(s).asComponent())).collect(Collectors.toList());
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+     *
+     * @param player    Player to parse the placeholders against
      * @param component Component to set the placeholder values in
      * @return Component containing all translated placeholders
      */
     @NotNull
     public static Component setPlaceholders(final Player player, @NotNull final Component component) {
-        return setPlaceholders((OfflinePlayer) player, component);
+        return setPlaceholders(player, component, null);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
+     * @param component  Component to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return Component containing all translated placeholders
+     */
+    @NotNull
+    public static Component setPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
+        return setPlaceholders((OfflinePlayer) player, component, serializer);
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+     *
+     * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
      * @return List of components containing all translated placeholders
      */
     @NotNull
     public static List<Component> setPlaceholders(final Player player, @NotNull final List<Component> components) {
-        return setPlaceholders((OfflinePlayer) player, components);
+        return setPlaceholders(player, components, null);
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal %<identifier>_<params>%}.
+     *
+     * @param player     Player to parse the placeholders against
+     * @param components List of Components to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return List of components containing all translated placeholders
+     */
+    @NotNull
+    public static List<Component> setPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
+        return setPlaceholders((OfflinePlayer) player, components, serializer);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player    Player to parse the placeholders against
      * @param component Component to set the placeholder values in
      * @return Component containing all translated placeholders
      */
     @NotNull
     public static Component setBracketPlaceholders(final OfflinePlayer player, @NotNull final Component component) {
+        return setBracketPlaceholders(player, component, null);
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+     *
+     * @param player     Player to parse the placeholders against
+     * @param component  Component to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return Component containing all translated placeholders
+     */
+    @NotNull
+    public static Component setBracketPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
         if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureReplacer()) {
             return component.replaceText(config -> config.match(PlaceholderAPI.BRACKET_PLACEHOLDER_PATTERN).replacement((result, builder) ->
                     builder.content(BRACKET_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
         }
 
-        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setBracketPlaceholders(player, str));
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setBracketPlaceholders(player, str), serializer == null ? null : s -> serializer.apply(s).asComponent());
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
      * @return List of Components containing all translated placeholders
      */
     @NotNull
     public static List<Component> setBracketPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components) {
-        return components.stream().map(component -> setBracketPlaceholders(player, component)).collect(Collectors.toList());
+        return setBracketPlaceholders(player, components, null);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
+     * @param components List of Components to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return List of Components containing all translated placeholders
+     */
+    @NotNull
+    public static List<Component> setBracketPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
+        return components.stream().map(component -> setBracketPlaceholders(player, component, serializer)).collect(Collectors.toList());
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+     *
+     * @param player    Player to parse the placeholders against
      * @param component Component to set the placeholder values in
      * @return Component containing all translated placeholders
      */
     @NotNull
     public static Component setBracketPlaceholders(final Player player, @NotNull final Component component) {
-        return setBracketPlaceholders((OfflinePlayer) player, component);
+        return setBracketPlaceholders(player, component, null);
     }
 
     /**
      * Translates all placeholders into their corresponding values.
      * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
      *
-     * @param player Player to parse the placeholders against
+     * @param player     Player to parse the placeholders against
+     * @param component  Component to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return Component containing all translated placeholders
+     */
+    @NotNull
+    public static Component setBracketPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
+        return setBracketPlaceholders((OfflinePlayer) player, component, serializer);
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+     *
+     * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
      * @return List of Components containing all translated placeholders
      */
     @NotNull
     public static List<Component> setBracketPlaceholders(final Player player, @NotNull final List<Component> components) {
-        return setBracketPlaceholders((OfflinePlayer) player, components);
+        return setBracketPlaceholders(player, components, null);
+    }
+
+    /**
+     * Translates all placeholders into their corresponding values.
+     * <br>The pattern of a valid placeholder is {@literal {<identifier>_<params>}}.
+     *
+     * @param player     Player to parse the placeholders against
+     * @param components List of Components to set the placeholder values in
+     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @return List of Components containing all translated placeholders
+     */
+    @NotNull
+    public static List<Component> setBracketPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
+        return setBracketPlaceholders((OfflinePlayer) player, components, serializer);
     }
 
     /**
      * set relational placeholders in the text specified placeholders are matched with the pattern
      * {@literal %<rel_(identifier)_(params)>%} when set with this method
      *
-     * @param one First player to compare
-     * @param two Second player to compare
+     * @param one       First player to compare
+     * @param two       Second player to compare
      * @param component Component to parse the placeholders in
      * @return The Component containing the parsed relational placeholders
      */
@@ -172,8 +289,8 @@ public final class PAPIComponents {
      * Translate placeholders in the provided List based on the relation of the two provided players.
      * <br>The pattern of a valid placeholder is {@literal %rel_<identifier>_<param>%}.
      *
-     * @param one Player to compare
-     * @param two Player to compare
+     * @param one        Player to compare
+     * @param two        Player to compare
      * @param components List of Components to parse the placeholder values to
      * @return The List of Components containing the parsed relational placeholders
      */
