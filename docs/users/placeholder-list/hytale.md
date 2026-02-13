@@ -88,7 +88,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **F**
         - **[FlectonePulse](#flectonepulse)**
     - **G**
-        - *No Expansions*
+        - **[Guilds](#guilds)**
     - **H**
         - **[HyFactions](#hyfactions)**
         - **[HyVotifier](#hyvotifier)**
@@ -604,6 +604,26 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 %flectonepulse_command_translateto%         Returns true if display is enabled, otherwise empty
 %flectonepulse_command_try%                 Returns true if display is enabled, otherwise empty
 %flectonepulse_command_warn%                Returns true if display is enabled, otherwise empty
+```
+
+----
+
+### **[Guilds](https://www.curseforge.com/hytale/mods/guilds)**
+/// integrated | Built into mod
+///
+
+```
+%guild_name%
+%guild_tag%
+%guild_rank%
+%guild_leader%
+%guild_member_count%
+%guild_online_count%
+%guild_claims%
+%guild_lots%
+%guild_bank_balance%
+%guild_provider%
+%guild_preferred_economy%
 ```
 
 ----
