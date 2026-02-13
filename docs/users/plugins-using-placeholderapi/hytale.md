@@ -89,10 +89,9 @@ No Plugins available
 
 ----
 ## G
-
-/// info |
-No Plugins available
-///
+- **[Guilds](https://www.curseforge.com/hytale/mods/guilds)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#guilds)**]
 
 ----
 ## H
