@@ -61,19 +61,19 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param component  Component to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return Component containing all translated placeholders
      */
     @NotNull
-    public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
+    public static Component setPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> deserializer) {
         if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureProvidedReplacer()) {
             return component.replaceText(config -> config.match(PlaceholderAPI.PLACEHOLDER_PATTERN).replacement((result, builder) -> {
                 String parsed = PERCENT_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
-                return serializer == null ? builder.content(parsed) : serializer.apply(parsed);
+                return deserializer == null ? builder.content(parsed) : deserializer.apply(parsed);
             }));
         }
 
-        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setPlaceholders(player, str), serializer == null ? null : s -> serializer.apply(s).asComponent());
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setPlaceholders(player, str), deserializer == null ? null : s -> deserializer.apply(s).asComponent());
     }
 
     /**
@@ -95,12 +95,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return List of Components containing all translated placeholders
      */
     @NotNull
-    public static List<Component> setPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
-        return components.stream().map(component -> setPlaceholders(player, component, serializer == null ? null : s -> serializer.apply(s).asComponent())).collect(Collectors.toList());
+    public static List<Component> setPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> deserializer) {
+        return components.stream().map(component -> setPlaceholders(player, component, deserializer == null ? null : s -> deserializer.apply(s).asComponent())).collect(Collectors.toList());
     }
 
     /**
@@ -122,12 +122,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param component  Component to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return Component containing all translated placeholders
      */
     @NotNull
-    public static Component setPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
-        return setPlaceholders((OfflinePlayer) player, component, serializer);
+    public static Component setPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> deserializer) {
+        return setPlaceholders((OfflinePlayer) player, component, deserializer);
     }
 
     /**
@@ -149,12 +149,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return List of components containing all translated placeholders
      */
     @NotNull
-    public static List<Component> setPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
-        return setPlaceholders((OfflinePlayer) player, components, serializer);
+    public static List<Component> setPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> deserializer) {
+        return setPlaceholders((OfflinePlayer) player, components, deserializer);
     }
 
     /**
@@ -176,17 +176,17 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param component  Component to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return Component containing all translated placeholders
      */
     @NotNull
-    public static Component setBracketPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
+    public static Component setBracketPlaceholders(final OfflinePlayer player, @NotNull final Component component, @Nullable Function<String, ComponentLike> deserializer) {
         if (PlaceholderAPIPlugin.getInstance().getPlaceholderAPIConfig().useAdventureReplacer()) {
             return component.replaceText(config -> config.match(PlaceholderAPI.BRACKET_PLACEHOLDER_PATTERN).replacement((result, builder) ->
                     builder.content(BRACKET_EXACT_REPLACER.apply(result.group(), player, PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion))));
         }
 
-        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setBracketPlaceholders(player, str), serializer == null ? null : s -> serializer.apply(s).asComponent());
+        return ComponentReplacer.replace(component, str -> PlaceholderAPI.setBracketPlaceholders(player, str), deserializer == null ? null : s -> deserializer.apply(s).asComponent());
     }
 
     /**
@@ -208,12 +208,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return List of Components containing all translated placeholders
      */
     @NotNull
-    public static List<Component> setBracketPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
-        return components.stream().map(component -> setBracketPlaceholders(player, component, serializer)).collect(Collectors.toList());
+    public static List<Component> setBracketPlaceholders(final OfflinePlayer player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> deserializer) {
+        return components.stream().map(component -> setBracketPlaceholders(player, component, deserializer)).collect(Collectors.toList());
     }
 
     /**
@@ -235,12 +235,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param component  Component to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return Component containing all translated placeholders
      */
     @NotNull
-    public static Component setBracketPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> serializer) {
-        return setBracketPlaceholders((OfflinePlayer) player, component, serializer);
+    public static Component setBracketPlaceholders(final Player player, @NotNull final Component component, @Nullable Function<String, ComponentLike> deserializer) {
+        return setBracketPlaceholders((OfflinePlayer) player, component, deserializer);
     }
 
     /**
@@ -262,12 +262,12 @@ public final class PAPIComponents {
      *
      * @param player     Player to parse the placeholders against
      * @param components List of Components to set the placeholder values in
-     * @param serializer Optional function to serialize parsed placeholder values into ComponentLike
+     * @param deserializer Optional function to serialize parsed placeholder values into ComponentLike
      * @return List of Components containing all translated placeholders
      */
     @NotNull
-    public static List<Component> setBracketPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> serializer) {
-        return setBracketPlaceholders((OfflinePlayer) player, components, serializer);
+    public static List<Component> setBracketPlaceholders(final Player player, @NotNull final List<Component> components, @Nullable Function<String, ComponentLike> deserializer) {
+        return setBracketPlaceholders((OfflinePlayer) player, components, deserializer);
     }
 
     /**

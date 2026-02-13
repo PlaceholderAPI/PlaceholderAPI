@@ -18,25 +18,25 @@ import java.util.function.Function;
 
 public class ComponentReplacer {
     @NotNull
-    public static Component replace(@NotNull final Component component, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> serializer) {
-        return rebuild(component, replacer, serializer);
+    public static Component replace(@NotNull final Component component, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> deserializer) {
+        return rebuild(component, replacer, deserializer);
     }
 
     @NotNull
-    private static Component rebuild(@NotNull final Component component, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> serializer) {
+    private static Component rebuild(@NotNull final Component component, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> deserializer) {
         Component rebuilt;
 
         if (component instanceof TextComponent) {
             final TextComponent text = (TextComponent) component;
             final String replaced = replacer.apply(text.content());
 
-            rebuilt = serializer == null ? Component.text(replaced) : serializer.apply(replaced);
+            rebuilt = deserializer == null ? Component.text(replaced) : deserializer.apply(replaced);
         } else if (component instanceof TranslatableComponent) {
             final TranslatableComponent translatable = (TranslatableComponent) component;
             final List<Component> arguments = new ArrayList<>();
 
             for (final ComponentLike arg : translatable.arguments()) {
-                arguments.add(rebuild(arg.asComponent(), replacer, serializer));
+                arguments.add(rebuild(arg.asComponent(), replacer, deserializer));
             }
 
             rebuilt = Component.translatable(translatable.key(), arguments);
@@ -53,12 +53,12 @@ public class ComponentReplacer {
             rebuilt = Component.empty();
         }
 
-        rebuilt = rebuilt.style(rebuildStyle(component.style(), replacer, serializer));
+        rebuilt = rebuilt.style(rebuildStyle(component.style(), replacer, deserializer));
 
         if (!component.children().isEmpty()) {
             final List<Component> children = new ArrayList<>();
             for (Component child : component.children()) {
-                children.add(rebuild(child, replacer, serializer));
+                children.add(rebuild(child, replacer, deserializer));
             }
             rebuilt = rebuilt.children(children);
         }
@@ -67,7 +67,7 @@ public class ComponentReplacer {
     }
 
     @NotNull
-    private static Style rebuildStyle(@NotNull final Style style, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> serializer) {
+    private static Style rebuildStyle(@NotNull final Style style, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> deserializer) {
         final Style.Builder builder = style.toBuilder();
         final ClickEvent click = style.clickEvent();
 
@@ -78,7 +78,7 @@ public class ComponentReplacer {
         final HoverEvent<?> hover = style.hoverEvent();
 
         if (hover != null) {
-            builder.hoverEvent(rebuildHoverEvent(hover, replacer, serializer));
+            builder.hoverEvent(rebuildHoverEvent(hover, replacer, deserializer));
         }
 
         return builder.build();
@@ -114,11 +114,11 @@ public class ComponentReplacer {
     }
 
     @NotNull
-    private static HoverEvent<?> rebuildHoverEvent(@NotNull final HoverEvent<?> hover, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> serializer) {
+    private static HoverEvent<?> rebuildHoverEvent(@NotNull final HoverEvent<?> hover, @NotNull final Function<String, String> replacer, @Nullable final Function<String, Component> deserializer) {
         final Object value = hover.value();
 
         if (value instanceof Component) {
-            final Component rebuilt = rebuild((Component) value, replacer, serializer);
+            final Component rebuilt = rebuild((Component) value, replacer, deserializer);
             return HoverEvent.showText(rebuilt);
         }
 
@@ -131,7 +131,7 @@ public class ComponentReplacer {
 
             Component rebuiltName = null;
             if (entity.name() != null) {
-                rebuiltName = rebuild(entity.name(), replacer, serializer);
+                rebuiltName = rebuild(entity.name(), replacer, deserializer);
             }
 
             return HoverEvent.showEntity(entity.type(), entity.id(), rebuiltName);
