@@ -11,6 +11,7 @@
 check_updates: true
 cloud_enabled: true
 cloud_sorting: "NAME"
+metrics: true
 boolean_value:
   true_value: 'yes'
   false_value: 'no'

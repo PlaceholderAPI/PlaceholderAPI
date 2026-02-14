@@ -21,6 +21,7 @@ import java.nio.file.*;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,15 @@ public final class ConfigManager {
 
         final Map<String, Object> data = YAML.load(content);
         config = GSON.fromJson(GSON.toJsonTree(data), PlaceholderAPIConfig.class);
+
+        if (config.metricsUuid() == null && config.metrics() == null) {
+            config.metricsUuid(UUID.randomUUID());
+            config.metrics(true);
+            save();
+        } else if (config.metricsUuid() == null && config.metrics()) {
+            config.metricsUuid(UUID.randomUUID());
+            save();
+        }
     }
 
     public PlaceholderAPIConfig config() {
