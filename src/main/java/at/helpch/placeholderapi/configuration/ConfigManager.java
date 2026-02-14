@@ -12,13 +12,17 @@ import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public final class ConfigManager {
     private static final Yaml YAML;
@@ -56,7 +60,7 @@ public final class ConfigManager {
                 return;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.atSevere().log("Something went wrong when getting the file content of config.yml", e);
             return;
         }
 
@@ -69,11 +73,22 @@ public final class ConfigManager {
     }
 
     public void save() {
+        String headerString = null;
+
+        try (final InputStream in = PlaceholderAPIPlugin.class.getResourceAsStream("/header.txt")) {
+            if (in != null) {
+                headerString = new BufferedReader(new InputStreamReader(in)).lines()
+                        .collect(Collectors.joining("\n"));
+            }
+        } catch (IOException e) {
+            logger.atWarning().log("Failed to write internal header.txt to config.yml.", e);
+        }
+
         try {
             final Map<String, Object> map = GSON.fromJson(GSON.toJsonTree(config), new TypeToken<Map<String, Object>>(){}.getType());
             final String yaml = YAML.dump(map);
             final Path path = Paths.get(main.getDataDirectory().toString() + "/config.yml");
-            Files.write(path, Arrays.asList(LINE_DELIMITER.split(yaml)), StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
+            Files.write(path, Arrays.asList(LINE_DELIMITER.split((headerString == null ? "" : headerString + '\n') + yaml)), StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (Exception e) {
             logger.atSevere().log("Something went wrong when saving config.yml: ", e);
         }
