@@ -104,7 +104,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[LevelingCore](#levelingcore)**
         - **[LuckPerms](#luckperms)**
     - **M**
-        - *No Expansions*
+        - **[MMOSkillTree](#mmoskilltree)**
     - **N**
         - *No Expansions*
     - **O**
@@ -825,6 +825,25 @@ Members and relations:
 %luckperms_expiry_time_<permission>%
 %luckperms_inherited_expiry_time_<permission>%
 %luckperms_group_expiry_time_<groupname>%
+```
+
+----
+
+### **[MMOSkillTree](https://www.curseforge.com/hytale/mods/mmo-skill-tree)**
+/// command | papi ecloud download mmoskilltree
+///
+
+```
+%mmoskilltree_has_skill_data%
+%mmoskilltree_all_xp%
+%mmoskilltree_all_levels%
+%mmoskilltree_total_xp%
+%mmoskilltree_level_total%
+%mmoskilltree_calculate_level_from_xp_<xp>%
+%mmoskilltree_get_xp_for_level_<level>%
+%mmoskilltree_level_progress_<skill>%
+%mmoskilltree_xp_<skill>%
+%mmoskilltree_level_<skill>%
 ```
 
 ----
