@@ -46,7 +46,7 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
             final MetricsManager metricsManager = new MetricsManager(this);
             final ScheduledFuture<Void> task = (ScheduledFuture<Void>) HytaleServer.SCHEDULED_EXECUTOR.scheduleAtFixedRate(() -> {
                 metricsManager.send();
-            }, 30, 30, TimeUnit.SECONDS);
+            }, 1, 15, TimeUnit.MINUTES);
             getTaskRegistry().registerTask(task);
         }
 
