@@ -1,0 +1,1 @@
+PlaceholderAPI-Bukkit-${version}

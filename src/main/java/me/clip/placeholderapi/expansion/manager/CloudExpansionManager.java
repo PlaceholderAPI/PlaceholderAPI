@@ -58,11 +58,27 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 public final class CloudExpansionManager {
+    @NotNull
+    public static final String USER_AGENT;
+
+    static {
+        String userAgent;
+
+        try (final InputStream in = PlaceholderAPIPlugin.class.getResourceAsStream("/user-agent.txt")) {
+            if (in == null) {
+                userAgent = "PlaceholderAPI-Bukkit-null";
+            } else {
+                userAgent = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8)).readLine();
+            }
+        } catch (IOException e) {
+            userAgent = "PlaceholderAPI-Bukkit-null";
+        }
+
+        USER_AGENT = userAgent;
+    }
 
     @NotNull
     private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/?platform=bukkit";
-    @NotNull
-    public static final String USER_AGENT = "PlaceholderAPI-Bukkit-" + PlaceholderAPIPlugin.getInstance().getPluginMeta().getVersion();
 
     @NotNull
     private static final Gson GSON = new Gson();
