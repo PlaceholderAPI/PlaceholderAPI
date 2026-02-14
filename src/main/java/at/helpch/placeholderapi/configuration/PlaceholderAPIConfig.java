@@ -24,36 +24,21 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public final class PlaceholderAPIConfig {
     private boolean checkUpdates;
     private boolean cloudEnabled;
     private boolean debugMode;
+    private Boolean metrics;
     private ExpansionSort cloudSorting;
     private BooleanValue booleanValue;
     private String dateFormat;
     private Map<String, Object> expansions;
+    private UUID metricsUuid;
 
-    public PlaceholderAPIConfig(boolean checkUpdates, boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
-                                @NotNull BooleanValue booleanValue, @NotNull String dateFormat) {
-        this.checkUpdates = checkUpdates;
-        this.cloudEnabled = cloudEnabled;
-        this.debugMode = debugMode;
-        this.cloudSorting = cloudSorting;
-        this.booleanValue = booleanValue;
-        this.dateFormat = dateFormat;
-        this.expansions = new HashMap<>();
-    }
+    public PlaceholderAPIConfig() {
 
-    public PlaceholderAPIConfig(boolean checkUpdates, boolean cloudEnabled, boolean debugMode, @NotNull ExpansionSort cloudSorting,
-                                @NotNull BooleanValue booleanValue, @NotNull String dateFormat, Map<String, Object> expansions) {
-        this.checkUpdates = checkUpdates;
-        this.cloudEnabled = cloudEnabled;
-        this.debugMode = debugMode;
-        this.cloudSorting = cloudSorting;
-        this.booleanValue = booleanValue;
-        this.dateFormat = dateFormat;
-        this.expansions = expansions;
     }
 
     public boolean checkUpdates() {
@@ -74,6 +59,14 @@ public final class PlaceholderAPIConfig {
 
     public void debugMode(final boolean value) {
         debugMode = value;
+    }
+
+    public Boolean metrics() {
+        return metrics;
+    }
+
+    public void metrics(final boolean value) {
+        metrics = value;
     }
 
     @NotNull
@@ -110,5 +103,13 @@ public final class PlaceholderAPIConfig {
 
     public void expansions(@NotNull final Map<String, Object> value) {
         expansions = value;
+    }
+
+    public UUID metricsUuid() {
+        return metricsUuid;
+    }
+
+    public void metricsUuid(@NotNull final UUID metricsUuid) {
+        this.metricsUuid = metricsUuid;
     }
 }
