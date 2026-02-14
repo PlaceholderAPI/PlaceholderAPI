@@ -1,0 +1,1 @@
+PlaceholderAPI-Hytale-${version}

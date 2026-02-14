@@ -26,10 +26,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
@@ -50,11 +47,31 @@ import java.util.stream.Collectors;
 
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.cloud.CloudExpansion;
+import com.hypixel.hytale.common.plugin.PluginIdentifier;
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.HytaleServer;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
 public final class CloudExpansionManager {
+    public static final String USER_AGENT;
+
+    static {
+        String userAgent;
+
+        try (final InputStream in = PlaceholderAPIPlugin.class.getResourceAsStream("/user-agent.txt")) {
+            if (in == null) {
+                userAgent = "PlaceholderAPI-Bukkit-null";
+            } else {
+                userAgent = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8)).readLine();
+            }
+        } catch (IOException e) {
+            userAgent = "PlaceholderAPI-Bukkit-null";
+        }
+
+        USER_AGENT = userAgent;
+    }
 
     @NotNull
     private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/?platform=hytale";
@@ -182,6 +199,7 @@ public final class CloudExpansionManager {
                     try {
                         final URI uri = new URI(API_URL);
                         final URLConnection connection = uri.toURL().openConnection();
+                        connection.setRequestProperty("User-Agent", USER_AGENT);
                         final String json;
 
                         try (final InputStream input = connection.getInputStream()) {
@@ -262,10 +280,14 @@ public final class CloudExpansionManager {
                 "Expansion-" + toIndexName(expansion) + ".jar");
 
         final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
-            try (final ReadableByteChannel source = Channels.newChannel(new URL(version.getUrl())
-                    .openStream()); final FileOutputStream target = new FileOutputStream(file)) {
-                target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
-            } catch (final IOException ex) {
+            try {
+                final URLConnection connection = new URI(version.getUrl()).toURL().openConnection();
+                connection.setRequestProperty("User-Agent", USER_AGENT);
+
+                try (final ReadableByteChannel source = Channels.newChannel(connection.getInputStream()); final FileOutputStream target = new FileOutputStream(file)) {
+                    target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
+                }
+            } catch (final IOException | URISyntaxException ex) {
                 throw new CompletionException(ex);
             }
             return file;
