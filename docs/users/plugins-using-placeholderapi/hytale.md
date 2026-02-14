@@ -45,10 +45,9 @@ No Plugins available
 
 ----
 ## B
-
-/// info |
-No Plugins available
-///
+- **[Better Scoreboard](https://www.curseforge.com/hytale/mods/better-scoreboard)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## C
