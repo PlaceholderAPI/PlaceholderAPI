@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.6-DEV-${System.getProperty("BUILD_NUMBER")}-CurseForge"
+version = "1.0.7-DEV-${System.getProperty("BUILD_NUMBER")}-CurseForge"
 
 description = "An awesome placeholder provider!"
 
