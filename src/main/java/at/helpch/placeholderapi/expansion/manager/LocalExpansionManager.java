@@ -24,6 +24,8 @@ import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 
 import java.awt.*;
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.List;
@@ -444,7 +446,10 @@ public final class LocalExpansionManager /*implements Listener*/ {
                 throw ((LinkageError) ex.getCause());
             }
 
-            logger.atWarning().log("There was an issue with loading an expansion.");
+            final StringWriter sw = new StringWriter();
+            final PrintWriter pw = new PrintWriter(sw);
+            ex.printStackTrace(pw);
+            logger.atWarning().log("There was an issue with loading an expansion: " + clazz + "\n%s", sw.toString());
             return null;
         }
     }
