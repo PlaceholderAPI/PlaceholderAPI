@@ -26,12 +26,9 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
@@ -64,6 +61,8 @@ public final class CloudExpansionManager {
 
     @NotNull
     private static final String API_URL = "https://ecloud.placeholderapi.com/api/v3/?platform=bukkit";
+    @NotNull
+    public static final String USER_AGENT = "PlaceholderAPI-Bukkit";
 
     @NotNull
     private static final Gson GSON = new Gson();
@@ -185,8 +184,16 @@ public final class CloudExpansionManager {
                     // a defence tactic! use ConcurrentHashMap instead of normal HashMap
                     Map<String, CloudExpansion> values = new ConcurrentHashMap<>();
                     try {
-                        //noinspection UnstableApiUsage
-                        String json = Resources.toString(new URL(API_URL), StandardCharsets.UTF_8);
+                        final URI uri = new URI(API_URL);
+                        final URLConnection connection = uri.toURL().openConnection();
+                        connection.setRequestProperty("User-Agent", USER_AGENT);
+                        final String json;
+
+                        try (final InputStream in = connection.getInputStream()) {
+                            final BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                            json = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+                        }
+
                         values.putAll(GSON.fromJson(json, TYPE));
 
                         List<String> toRemove = new ArrayList<>();
@@ -260,10 +267,14 @@ public final class CloudExpansionManager {
                 "Expansion-" + toIndexName(expansion) + ".jar");
 
         final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
-            try (final ReadableByteChannel source = Channels.newChannel(new URL(version.getUrl())
-                    .openStream()); final FileOutputStream target = new FileOutputStream(file)) {
-                target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
-            } catch (final IOException ex) {
+            try {
+                final URLConnection connection = new URI(version.getUrl()).toURL().openConnection();
+                connection.setRequestProperty("User-Agent", USER_AGENT);
+
+                try (final ReadableByteChannel source = Channels.newChannel(connection.getInputStream()); final FileOutputStream target = new FileOutputStream(file)) {
+                    target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
+                }
+            } catch (final IOException | URISyntaxException ex) {
                 throw new CompletionException(ex);
             }
             return file;

@@ -4,10 +4,15 @@ import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
+import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -47,7 +52,10 @@ public final class ExpansionSafetyCheck {
         final Set<String> knownMaliciousExpansions;
 
         try {
-            final String hashes = Resources.toString(new URL("https://check.placeholderapi.com"), StandardCharsets.UTF_8);
+            final URLConnection connection = new URI("https://check.placeholderapi.com").toURL().openConnection();
+            connection.setRequestProperty("User-Agent", CloudExpansionManager.USER_AGENT);
+            final String hashes = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))
+                    .lines().collect(Collectors.joining(System.lineSeparator()));
             knownMaliciousExpansions = Arrays.stream(hashes.split("\n")).collect(Collectors.toSet());
         } catch (Exception e) {
             main.getLogger().log(Level.SEVERE, "Failed to download anti malware hash check list from https://check.placeholderapi.com", e);
