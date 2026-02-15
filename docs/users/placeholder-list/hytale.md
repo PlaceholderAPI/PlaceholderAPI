@@ -105,6 +105,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[LuckPerms](#luckperms)**
     - **M**
         - **[MMOSkillTree](#mmoskilltree)**
+        - **[MysticNametags](#mysticnametags)**
     - **N**
         - *No Expansions*
     - **O**
@@ -848,6 +849,19 @@ Members and relations:
 %mmoskilltree_level_progress_<skill>%
 %mmoskilltree_xp_<skill>%
 %mmoskilltree_level_<skill>%
+```
+
+----
+
+### **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+/// integrated | Built into mod
+///
+
+```
+%mystictags_tag%
+%mystictags_tag_plain%
+%mystictags_full%
+%mystictags_full_plain%
 ```
 
 ----
