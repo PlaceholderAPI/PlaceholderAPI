@@ -215,6 +215,9 @@ Allows evaluation of basic and complex mathematical Expressions through EvalEx.
 %player_name%
 %player_gamemode%
 %player_world%
+%player_world_displayname%
+%player_world_worldgen_type%
+%player_world_worldgen_name%
 %player_biome%
 %player_item_in_hand%
 %player_item_in_hand_quantity%
@@ -381,6 +384,7 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 %world_playerexist_<world>_<playername>%
 %world_recentjoin_<world>%
 %world_recentquit_<world>%
+%world_displayname_<world>%
 ```
 
 ----
