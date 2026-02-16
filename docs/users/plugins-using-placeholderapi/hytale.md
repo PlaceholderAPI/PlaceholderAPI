@@ -94,24 +94,30 @@ No Plugins available
 
 ----
 ## H
+- **[HeroChat](https://www.curseforge.com/hytale/mods/herochat)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
+- **[HyChatter](https://curseforge.com/hytale/mods/hychatter)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 - **[HyEssentialsX](https://www.curseforge.com/hytale/mods/hyessentialsx)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
 - **[HyFactions](https://www.curseforge.com/hytale/mods/hyfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyfactions)**]
-- **[HyVotifier](https://www.curseforge.com/hytale/mods/hytale-votifier)**
-    - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyvotifier)**]
+- **[Hylograms](https://curseforge.com/hytale/mods/holograms)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 - **[HyperPerms](https://www.curseforge.com/hytale/mods/hyperperms)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyperperms)**]
 - **[HyperFactions](https://www.curseforge.com/hytale/mods/hyperfactions)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyperfactions)**]
-- **[HeroChat](https://www.curseforge.com/hytale/mods/herochat)**
-    - [x] Supports placeholders.
-    - [ ] Provides own placeholders.
+- **[HyVotifier](https://www.curseforge.com/hytale/mods/hytale-votifier)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md/#hyvotifier)**]
 
 ----
 ## I
@@ -191,7 +197,6 @@ No Plugins available
 - **[SimpleClaims](https://www.curseforge.com/hytale/mods/simple-claims)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#simpleclaims)**]
-    - [ ] [Subject to PR approval](https://github.com/Buuz135/SimpleClaims/pull/185)
 
 ----
 ## T
