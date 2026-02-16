@@ -326,6 +326,11 @@ public class JoinExample extends JavaPlugin implements Listener {
 The following is an example plugin that sends `Welcome %player_name%!` as the Join message, having the placeholders be replaced by PlaceholderAPI.
 Keeping in mind the [Hytale Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/) needs to be installed to make use of `%player_<identifier>%` placeholders.
 
+//// info | Thread Safety Warning
+Due to Hytale's api design, certain components can only be accessed by specific threads. For full compatibility with placeholderapi, you need to call setPlaceholders on the world thread the player is in. `player.getWorld().execute(() -> )`
+By default for player events and player commands, you're already going to be on the world thread so it's not so much of an issue, but you do need to consider it if you're trying to do async work and then call PAPI, e.g. async player chat.
+////
+
 ``` { .java .annotate title="JoinExample.java" }
 packate com.example.plugin;
 
