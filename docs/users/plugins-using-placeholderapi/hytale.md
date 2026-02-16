@@ -112,6 +112,12 @@ No Plugins available
 - **[HeroChat](https://www.curseforge.com/hytale/mods/herochat)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
+- **[Hylograms](https://curseforge.com/hytale/mods/holograms)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
+- **[HyChatter](https://curseforge.com/hytale/mods/hychatter)**
+    - [x] Supports placeholders.
+    - [ ] Provides own placeholders.
 
 ----
 ## I
