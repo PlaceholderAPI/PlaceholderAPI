@@ -53,7 +53,7 @@ public interface Configurable<T> {
     @NotNull
     default T getConfig() {
         if (this instanceof PlaceholderExpansion exp) {
-            return (T) PlaceholderAPIPlugin.instance().configManager().config().expansions().getOrDefault(exp.getIdentifier(), provideDefault());
+            return (T) PlaceholderAPIPlugin.instance().configManager().config().expansions().computeIfAbsent(exp.getIdentifier(), s -> provideDefault());
         }
 
         return provideDefault();
