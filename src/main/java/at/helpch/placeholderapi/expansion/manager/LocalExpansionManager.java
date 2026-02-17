@@ -224,7 +224,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
             final PlaceholderAPIConfig config = configManager.config();
 
             if (config.expansions() == null) {
-                config.expansions(new HashMap<>());
+                config.expansions(new ConcurrentHashMap<>());
             }
 
             if (!config.expansions().containsKey(expansion.getIdentifier())) {
