@@ -330,7 +330,7 @@ Due to Hytale's api design, certain components can only be accessed by specific 
 By default for player commands, you're already going to be on the world thread so it's not so much of an issue, but you do need to consider it if you're trying to do async work and then call PAPI, e.g. async player chat.
 ////
 
-``` { .java .annotate title="JoinExample.java" }
+``` { .java .annotate title="ChatExample.java" }
 packate com.example.plugin;
 
 import at.helpch.placeholderapi.PlaceholderAPI;
@@ -345,10 +345,10 @@ import com.hypixel.hytale.server.core.universe.world.World;
 
 import java.util.UUID;
 
-public class JoinExample extends JavaPlugin {
+public class ChatExample extends JavaPlugin {
     private static final String FORMAT = "%rel_factions_relation% [%luckperms_prefix%] %player_name% > "
 
-    public JoinExample(JavaPluginInit init) {
+    public ChatExample(JavaPluginInit init) {
         super(init)
     }
 
