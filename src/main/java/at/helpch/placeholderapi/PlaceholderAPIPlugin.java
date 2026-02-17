@@ -11,11 +11,9 @@ import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
 import com.hypixel.hytale.server.core.console.ConsoleSender;
 import com.hypixel.hytale.server.core.event.events.BootEvent;
-import com.hypixel.hytale.server.core.event.events.PrepareUniverseEvent;
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import com.hypixel.hytale.server.core.task.TaskRegistration;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ScheduledFuture;
