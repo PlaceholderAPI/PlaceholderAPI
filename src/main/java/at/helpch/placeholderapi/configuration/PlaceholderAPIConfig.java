@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class PlaceholderAPIConfig {
     private boolean checkUpdates;
@@ -34,7 +35,7 @@ public final class PlaceholderAPIConfig {
     private ExpansionSort cloudSorting;
     private BooleanValue booleanValue;
     private String dateFormat;
-    private Map<String, Object> expansions;
+    private ConcurrentHashMap<String, Object> expansions;
     private UUID metricsUuid;
 
     public PlaceholderAPIConfig() {
@@ -101,7 +102,7 @@ public final class PlaceholderAPIConfig {
         return expansions;
     }
 
-    public void expansions(@NotNull final Map<String, Object> value) {
+    public void expansions(@NotNull final ConcurrentHashMap<String, Object> value) {
         expansions = value;
     }
 
