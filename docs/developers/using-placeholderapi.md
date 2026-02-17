@@ -323,47 +323,71 @@ public class JoinExample extends JavaPlugin implements Listener {
 
 /// tab | Hytale
 
-The following is an example plugin that sends `Welcome %player_name%!` as the Join message, having the placeholders be replaced by PlaceholderAPI.
-Keeping in mind the [Hytale Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/) needs to be installed to make use of `%player_<identifier>%` placeholders.
+The following is an example plugin that modifies the chat to include a format before player messages. It relies on the [Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/), [Luckperms Expansion](https://ecloud.placeholderapi.com/expansions/luckperms-hytale/), and [HyFaction Expansion](https://ecloud.placeholderapi.com/expansions/hyfaction/).
 
 //// info | Thread Safety Warning
 Due to Hytale's api design, certain components can only be accessed by specific threads. For full compatibility with placeholderapi, you need to call setPlaceholders on the world thread the player is in. `player.getWorld().execute(() -> )`
-By default for player events and player commands, you're already going to be on the world thread so it's not so much of an issue, but you do need to consider it if you're trying to do async work and then call PAPI, e.g. async player chat.
+By default for player commands, you're already going to be on the world thread so it's not so much of an issue, but you do need to consider it if you're trying to do async work and then call PAPI, e.g. async player chat.
 ////
 
-``` { .java .annotate title="JoinExample.java" }
+``` { .java .annotate title="ChatExample.java" }
 packate com.example.plugin;
 
 import at.helpch.placeholderapi.PlaceholderAPI;
 
-import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
+import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
+import com.hypixel.hytale.server.core.universe.world.World;
 
-public class JoinExample extends JavaPlugin {
+import java.util.UUID;
 
-    public JoinExample(JavaPluginInit init) {
+public class ChatExample extends JavaPlugin {
+    private static final String FORMAT = "%rel_factions_relation% [%luckperms_prefix%] %player_name% > "
+
+    public ChatExample(JavaPluginInit init) {
         super(init)
     }
 
     @Override
     protected void setup() {
         // (1)
-        getEventRegistry().registerGlobal(PlayerReadyEvent.class, this::onPlayerReady));
+        getEventRegistry().registerGlobal(PlayerChatEvent.class, this::onPlayerChat));
     }
 
-    public void onPlayerReady(PlayerReadyEvent event) {
-        Player player = event.getPlayer();
+    public void onPlayerChat(PlayerChatEvent event) {
         // (2)
-        player.sendMessage(PlaceholderAPI.setPlaceholders(player.getPlayerRef(), Message.raw("Welcome %player_name%!")))
-        
+        PlayerRef sender = event.getSender();
+        final UUID worldUuid = sender.getWorldUuid();
+
+        if (worldUuid == null) {
+            return;
+        }
+
+        final World world = Universe.get().getWorld(worldUuid);
+
+        if (world == null) {
+            return;
+        } else {
+            event.setCancelled(true); // cancel event and run our own sending logic
+            // call your own chat event perhaps?
+            // HytaleServer.get().getEventBus().dispatchForAsync(CustomChatEvent.class);
+        }
+
+        world.execute(() -> {
+            String replacedFormat = PlaceholderAPI.setPlaceholders(sender, FORMAT);
+            for (PlayerRef recipient : event.getTargets()) {
+                recipient.sendMessage(Message.raw(PlaceholderAPI.setRelationalPlaceholders(sender, recipient, replacedFormat) + event.getContent()));
+            }
+        });
     }
 }
 ```
 
-1.  We tell the server to call `onPlayerReady` whenever a `PlayerReadyEvent` fires.
+1.  We tell the server to call `onPlayerChat` whenever a `PlayerChatEvent` fires.
 2.  PlaceholderAPI offers multiple `setPlaceholders` methods that can either return a `String` or a `Message` object, depending on your needs.  
     Note that these methods require input of the same type: `setPlaceholders(PlayerRef, String)` for String and `setPlaceholders(PlayerRef, Message)` for Messages.
 
