@@ -323,7 +323,7 @@ public class JoinExample extends JavaPlugin implements Listener {
 
 /// tab | Hytale
 
-The following is an example plugin that modifies that chat to include a format before player messages. It relies on the [Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/), [Luckperms Expansion](https://ecloud.placeholderapi.com/expansions/luckperms-hytale/), and [HyFaction Expansion](https://ecloud.placeholderapi.com/expansions/hyfaction/).
+The following is an example plugin that modifies the chat to include a format before player messages. It relies on the [Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/), [Luckperms Expansion](https://ecloud.placeholderapi.com/expansions/luckperms-hytale/), and [HyFaction Expansion](https://ecloud.placeholderapi.com/expansions/hyfaction/).
 
 //// info | Thread Safety Warning
 Due to Hytale's api design, certain components can only be accessed by specific threads. For full compatibility with placeholderapi, you need to call setPlaceholders on the world thread the player is in. `player.getWorld().execute(() -> )`
@@ -367,7 +367,7 @@ public class ChatExample extends JavaPlugin {
             return;
         }
 
-        final World world = Universe.get().getWorld(wordUuid);
+        final World world = Universe.get().getWorld(worldUuid);
 
         if (world == null) {
             return;
