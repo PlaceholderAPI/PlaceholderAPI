@@ -151,12 +151,15 @@ No Plugins available
 
 ----
 ## M
-- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+- **[mini-chat-formatter](https://www.curseforge.com/hytale/mods/mini-chat-formatter)**
     - [x] Supports placeholders.
-    - [x] Provides own placeholders.
+    - [ ] Provides own placeholders.
 - **[MMOSkillTree](https://www.curseforge.com/hytale/mods/mmo-skill-tree)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#mmoskilltree)**]
+- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#mysticnametags)**]
 
 ----
 ## N
@@ -174,7 +177,7 @@ No Plugins available
 
 ----
 ## P
-- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/mysticnametags)**
+- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/prekoytes-powerlevels)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#prekoytespowerlevels)**]
 
@@ -188,6 +191,9 @@ No Plugins available
 ----
 
 ## R
+- **[Rankup System](https://www.curseforge.com/hytale/mods/rankup-system)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rankup-system)**]
 - **[RPGLevelling](https://www.curseforge.com/hytale/mods/rpg-leveling-and-stats)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rpglevelling)**]
@@ -200,10 +206,9 @@ No Plugins available
 
 ----
 ## T
-
-/// info |
-No Plugins available
-///
+- **[Topper](https://www.curseforge.com/hytale/mods/topper)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#topper)**]
 
 ----
 ## U
@@ -220,6 +225,9 @@ No Plugins available
 
 ----
 ## W
+- **[Werchat](https://www.curseforge.com/hytale/mods/werchat)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#werchat)**]
 - **[WiFlowAPI](https://www.curseforge.com/hytale/mods/wiflows-placeholderapi)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#wiflowapi)**]
