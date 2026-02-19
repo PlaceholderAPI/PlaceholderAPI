@@ -115,7 +115,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **Q**
         - *No Expansions*
     - **R**
-        - **[Rankup System](#rankupsystem)**
+        - **[Rankup System](#rankup-system)**
         - **[RPGLevelling](#rpglevelling)**
     - **S**
         - **[SimpleClaims](#simpleclaims)**
@@ -882,7 +882,7 @@ Members and relations:
 
 ----
 
-### **[RankupSystem](https://www.curseforge.com/hytale/mods/rankup-system)**
+### **[Rankup System](https://www.curseforge.com/hytale/mods/rankup-system)**
 /// integrated | Built into mod
 ///
 

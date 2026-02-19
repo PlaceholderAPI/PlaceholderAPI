@@ -177,7 +177,7 @@ No Plugins available
 
 ----
 ## P
-- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/mysticnametags)**
+- **[Prekoyte's Powerlevels](https://www.curseforge.com/hytale/mods/prekoytes-powerlevels)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#prekoytespowerlevels)**]
 
@@ -193,7 +193,7 @@ No Plugins available
 ## R
 - **[Rankup System](https://www.curseforge.com/hytale/mods/rankup-system)**
     - [ ] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rankupsystem)**]
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rankup-system)**]
 - **[RPGLevelling](https://www.curseforge.com/hytale/mods/rpg-leveling-and-stats)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rpglevelling)**]
