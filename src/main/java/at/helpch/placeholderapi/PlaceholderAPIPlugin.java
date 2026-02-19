@@ -2,6 +2,7 @@ package at.helpch.placeholderapi;
 
 import at.helpch.placeholderapi.commands.PlaceholderCommandRouter;
 import at.helpch.placeholderapi.configuration.ConfigManager;
+import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
 import at.helpch.placeholderapi.expansion.manager.CloudExpansionManager;
 import at.helpch.placeholderapi.expansion.manager.LocalExpansionManager;
 import at.helpch.placeholderapi.metrics.MetricsManager;
@@ -78,6 +79,12 @@ public class PlaceholderAPIPlugin extends JavaPlugin {
         configManager.setup();
 
         localExpansionManager.load(sender);
+        for (final PlaceholderExpansion expansion : localExpansionManager.getExpansions()) {
+            if (expansion.getExpansionType() == PlaceholderExpansion.Type.INTERNAL) {
+                // when the config gets reloaded, getConfig for internal expansions will return a map instead of the correct object
+                localExpansionManager.createConfig(expansion);
+            }
+        }
 
         if (configManager.config().cloudEnabled()) {
             cloudExpansionManager.load();

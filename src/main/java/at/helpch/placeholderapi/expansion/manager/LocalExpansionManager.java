@@ -220,21 +220,7 @@ public final class LocalExpansionManager /*implements Listener*/ {
     public boolean register(@NotNull final PlaceholderExpansion expansion) {
         final String identifier = expansion.getIdentifier().toLowerCase(Locale.ROOT);
         
-        if (expansion instanceof Configurable<?> configurable) {
-            final PlaceholderAPIConfig config = configManager.config();
-
-            if (config.expansions() == null) {
-                config.expansions(new ConcurrentHashMap<>());
-            }
-
-            if (!config.expansions().containsKey(expansion.getIdentifier())) {
-                config.expansions().put(expansion.getIdentifier(), configurable.provideDefault());
-                configManager.save();
-            } else {
-                final Object expansionConfig = configManager.convertExpansion((Map<String, Object>) config.expansions().get(expansion.getIdentifier()), configurable.provideConfigType());
-                config.expansions().put(expansion.getIdentifier(), expansionConfig);
-            }
-        }
+        createConfig(expansion);
 
         if (!expansion.canRegister()) {
             return false;
@@ -305,6 +291,33 @@ public final class LocalExpansionManager /*implements Listener*/ {
         }
 
         return true;
+    }
+
+    /**
+     * Creates and initializes the configuration for the provided {@link PlaceholderExpansion}.
+     * If the expansion implements the {@link Configurable} interface, this method ensures that
+     * the expansion's default configuration is registered and saved if it is not already present.
+     * If a configuration already exists, it converts and updates it using the provided configuration type.
+     *
+     * @param expansion the {@link PlaceholderExpansion} for which the configuration is being created
+     */
+    @ApiStatus.Internal
+    public void createConfig(PlaceholderExpansion expansion) {
+        if (expansion instanceof Configurable<?> configurable) {
+            final PlaceholderAPIConfig config = configManager.config();
+
+            if (config.expansions() == null) {
+                config.expansions(new ConcurrentHashMap<>());
+            }
+
+            if (!config.expansions().containsKey(expansion.getIdentifier())) {
+                config.expansions().put(expansion.getIdentifier(), configurable.provideDefault());
+                configManager.save();
+            } else {
+                final Object expansionConfig = configManager.convertExpansion((Map<String, Object>) config.expansions().get(expansion.getIdentifier()), configurable.provideConfigType());
+                config.expansions().put(expansion.getIdentifier(), expansionConfig);
+            }
+        }
     }
 
     @ApiStatus.Internal
