@@ -203,10 +203,9 @@ No Plugins available
 
 ----
 ## T
-
-/// info |
-No Plugins available
-///
+- **[Topper](https://www.curseforge.com/hytale/mods/topper)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#topper)**]
 
 ----
 ## U

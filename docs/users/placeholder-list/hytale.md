@@ -120,7 +120,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **S**
         - **[SimpleClaims](#simpleclaims)**
     - **T**
-        - *No Expansions*
+        - **[Topper](#topper)**
     - **U**
         - *No Expansions*
     - **V**
@@ -951,6 +951,18 @@ Members and relations:
 %simpleclaims_party_claims%
 %simpleclaims_party_partyallied_<partyId>%
 %simpleclaims_party_playerallied_<playerName>%
+```
+
+----
+
+### **[Topper](https://www.curseforge.com/hytale/mods/topper)**
+/// integrated | Built into mod
+///
+
+More info about this expansion can be found on the [Topper Wiki](https://topper-mc.github.io/Wiki/topper/hook/placeholderapi/).
+
+```
+%topper_<query>%
 ```
 
 ----
