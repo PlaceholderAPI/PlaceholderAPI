@@ -225,6 +225,9 @@ No Plugins available
 
 ----
 ## W
+- **[Werchat](https://www.curseforge.com/hytale/mods/werchat)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#werchat)**]
 - **[WiFlowAPI](https://www.curseforge.com/hytale/mods/wiflows-placeholderapi)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#wiflowapi)**]
