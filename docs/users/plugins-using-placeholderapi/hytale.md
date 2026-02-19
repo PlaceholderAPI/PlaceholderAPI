@@ -188,6 +188,9 @@ No Plugins available
 ----
 
 ## R
+- **[Rankup System](https://www.curseforge.com/hytale/mods/rankup-system)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rankupsystem)**]
 - **[RPGLevelling](https://www.curseforge.com/hytale/mods/rpg-leveling-and-stats)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#rpglevelling)**]

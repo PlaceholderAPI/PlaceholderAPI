@@ -115,6 +115,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **Q**
         - *No Expansions*
     - **R**
+        - **[Rankup System](#rankupsystem)**
         - **[RPGLevelling](#rpglevelling)**
     - **S**
         - **[SimpleClaims](#simpleclaims)**
@@ -876,6 +877,18 @@ Members and relations:
 %powerlevel_best% - Personal best.
 %powerlevel_color% - Color code from colors.json.
 %powerlevel_rank% - Rank name from colors.json.
+```
+
+----
+
+### **[RankupSystem](https://www.curseforge.com/hytale/mods/rankup-system)**
+/// integrated | Built into mod
+///
+
+```
+%rankup_rank%
+%rankup_next_rank%
+%rankup_cost%
 ```
 
 ----
