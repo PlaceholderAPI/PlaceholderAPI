@@ -154,12 +154,12 @@ No Plugins available
 - **[mini-chat-formatter](https://www.curseforge.com/hytale/mods/mini-chat-formatter)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders.
-- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
-    - [x] Supports placeholders.
-    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#mysticnametags)**]
 - **[MMOSkillTree](https://www.curseforge.com/hytale/mods/mmo-skill-tree)**
     - [ ] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#mmoskilltree)**]
+- **[MysticNametags](https://www.curseforge.com/hytale/mods/mysticnametags)**
+    - [x] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#mysticnametags)**]
 
 ----
 ## N
