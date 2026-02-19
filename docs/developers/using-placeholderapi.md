@@ -44,9 +44,6 @@ repositories {
 
 dependencies {
     compileOnly 'me.clip:placeholderapi:{papiVersion}'
-
-    // Optional: Component support on Paper Servers (Since 2.12.0)
-    compileOnly 'me.clip:placeholderapi-paper:{papiVersion}'
 }
 ```
 ////
