@@ -998,29 +998,29 @@ More info about this expansion can be found on the [Topper Wiki](https://topper-
 /// integrated | Built into mod
 ///
 
-| Placeholder | Description |
-|-------------|-------------|
-| `%werchat_channels_total%` | Total number of channels |
-| `%werchat_channels%` | Comma-separated channel names |
-| `%werchat_default_channel%` | Default channel name |
-| `%werchat_selected_channel%` | Focused channel name for the player (recommended) |
-| `%werchat_selected_channel_<key>%` | Focused channel field/value by key (preferred keyed form) |
-| `%werchat_channel%` | Focused channel name for the player (legacy alias) |
-| `%werchat_channel_<selector>%` | Specific channel by selector (returns channel name) |
-| `%werchat_channel_<selector>_<key>%` | Specific channel field/value by selector + key (primary keyed form) |
-| `%werchat_channel_<selector>__<key>%` | Edge-case keyed syntax for selectors with underscore ambiguity |
-| `%werchat_ignored_players_total%` | Number of ignored players |
-| `%werchat_ignored_players%` | Comma-separated ignored player names |
-| `%werchat_known_name%` | Real account username |
-| `%werchat_display_colour%` | Player display color |
-| `%werchat_display_color%` | Player display color (US spelling alias) |
-| `%werchat_msg_color%` | Player message color |
-| `%werchat_msg_gradient%` | Player message gradient as `#START,#END` (blank when no gradient) |
-| `%werchat_msg_gradient_end%` | Player message gradient end color |
-| `%werchat_nick_color%` | Player nickname color |
-| `%werchat_nick_gradient_end%` | Player nickname gradient end color |
-| `%werchat_nick%` | Custom nickname only (blank if none set) |
-| `%werchat_display_name%` | Final chat name (nickname if set, else username) |
+```
+%werchat_channels_total%             Total number of channels
+%werchat_channels%                   Comma-separated channel names
+%werchat_default_channel%            Default channel name
+%werchat_selected_channel%           Focused channel name for the player (recommended)
+%werchat_selected_channel_<key>%     Focused channel field/value by key (preferred keyed form)
+%werchat_channel%                    Focused channel name for the player (legacy alias)
+%werchat_channel_<selector>%         Specific channel by selector (returns channel name)
+%werchat_channel_<selector>_<key>%   Specific channel field/value by selector + key (primary keyed form)
+%werchat_channel_<selector>__<key>%  Edge-case keyed syntax for selectors with underscore ambiguity
+%werchat_ignored_players_total%      Number of ignored players
+%werchat_ignored_players%            Comma-separated ignored player names
+%werchat_known_name%                 Real account username
+%werchat_display_colour%             Player display color
+%werchat_display_color%              Player display color (US spelling alias)
+%werchat_msg_color%                  Player message color
+%werchat_msg_gradient%               Player message gradient as `#START,#END` (blank when no gradient)
+%werchat_msg_gradient_end%           Player message gradient end color
+%werchat_nick_color%`                Player nickname color
+%werchat_nick_gradient_end%`         Player nickname gradient end color
+%werchat_nick%`                      Custom nickname only (blank if none set)
+%werchat_display_name%`              Final chat name (nickname if set, else username)
+```
 
 [See here](https://github.com/HyperSystemsDev/Werchat/blob/main/README.md) for more placeholders and info on key/selector (click Channel Format Placeholders in the Configuration section).
 
