@@ -48,12 +48,12 @@ public final class CommandHelp extends PlaceholderCommand {
 //        final PluginDescriptionFile description = plugin.getDescription();
 
         final Message message = Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true)
-                .insert(Message.raw("- ").color(Color.DARK_GRAY).bold(false))
+                .insert(Message.raw("- ").color(Color.GRAY).bold(false))
                 .insert(Message.raw("Help Menu ").color(Color.WHITE).bold(false))
-                .insert(Message.raw("- ").color(Color.DARK_GRAY).bold(false))
-                .insert(Message.raw("(").color(Color.GRAY).bold(false))
+                .insert(Message.raw("- ").color(Color.GRAY).bold(false))
+                .insert(Message.raw("(").color(Color.LIGHT_GRAY).bold(false))
                 .insert(Message.raw(description.getVersion().toString()).color(Color.WHITE).bold(false))
-                .insert(Message.raw(")").color(Color.GRAY).bold(false))
+                .insert(Message.raw(")").color(Color.LIGHT_GRAY).bold(false))
                 .insert(Message.raw("\n"))
                 .insert(genCommandMsg("bcparse", "<me|--null|player name> <message>", "Parse a message with placeholders and broadcast it"))
                 .insert(genCommandMsg("cmdparse", "<me|player> <command with placeholders>", "Parse a message with relational placeholders"))
@@ -107,6 +107,6 @@ public final class CommandHelp extends PlaceholderCommand {
         }
 
         return message
-                .insert(Message.raw("\n  " + description).color(Color.gray).bold(false));
+                .insert(Message.raw("\n  " + description).color(Color.LIGHT_GRAY).bold(false));
     }
 }

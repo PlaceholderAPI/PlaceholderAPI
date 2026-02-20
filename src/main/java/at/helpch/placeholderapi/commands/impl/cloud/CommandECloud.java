@@ -78,9 +78,9 @@ public final class CommandECloud extends PlaceholderCommand {
         if (params.isEmpty()) {
             Message message = Message.empty()
                     .insert(Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true))
-                    .insert(Message.raw("- ").color(Color.DARK_GRAY))
-                    .insert(Message.raw("eCloud Help Menu ").color(Color.GRAY))
-                    .insert(Message.raw("-\n").color(Color.DARK_GRAY));
+                    .insert(Message.raw("- ").color(Color.GRAY))
+                    .insert(Message.raw("eCloud Help Menu ").color(Color.LIGHT_GRAY))
+                    .insert(Message.raw("-\n").color(Color.GRAY));
 
             final List<String[]> commands = List.of(
                     new String[]{"ecloud status", "View status of the eCloud"},
@@ -96,7 +96,7 @@ public final class CommandECloud extends PlaceholderCommand {
             for (String[] command : commands) {
                 message = message.insert(Message.raw("\n/papi ").color(Color.CYAN))
                         .insert(Message.raw(command[0]).color(Color.WHITE))
-                        .insert(Message.raw("\n  " + command[1]).color(Color.GRAY));
+                        .insert(Message.raw("\n  " + command[1]).color(Color.LIGHT_GRAY));
             }
 
             sender.sendMessage(message);
@@ -128,7 +128,7 @@ public final class CommandECloud extends PlaceholderCommand {
         final PlaceholderCommand target = commands.get(search);
 
         if (target == null) {
-            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw("ecloud " + search).color(Color.GRAY)));
+            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw("ecloud " + search).color(Color.LIGHT_GRAY)));
 //            Msg.msg(sender, "&cUnknown command &7ecloud " + search);
             return;
         }

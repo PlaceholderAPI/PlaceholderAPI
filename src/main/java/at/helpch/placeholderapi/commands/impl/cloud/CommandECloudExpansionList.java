@@ -39,15 +39,14 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
     private static final int PAGE_SIZE = 10;
 
-        @NotNull
-        private static final Function<CloudExpansion, String> EXPANSION_LATEST_VERSION =
+    @NotNull
+    private static final Function<CloudExpansion, String> EXPANSION_LATEST_VERSION =
             CloudExpansion::getLatestVersion;
-        @NotNull
-        private static final Function<CloudExpansion, String> EXPANSION_CURRENT_VERSION =
+    @NotNull
+    private static final Function<CloudExpansion, String> EXPANSION_CURRENT_VERSION =
             expansion -> PlaceholderAPIPlugin.instance().localExpansionManager()
-                .findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion)
-                .orElse("Unknown");
-
+                    .findExpansionByName(expansion.getName()).map(PlaceholderExpansion::getVersion)
+                    .orElse("Unknown");
 
     @Unmodifiable
     private static final Set<String> OPTIONS = Set.of("all", "installed");
@@ -105,7 +104,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
         return title
                 .insert(Message.raw(" Page").color(Color.CYAN))
-                .insert(Message.raw(": ").color(Color.GRAY))
+                .insert(Message.raw(": ").color(Color.LIGHT_GRAY))
                 .insert(Message.raw(String.valueOf(page)).color(Color.GREEN));
     }
 
@@ -118,7 +117,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
             Message line = Message.empty();
 
             final int expansionNumber = index + ((page - 1) * PAGE_SIZE) + 1;
-            line = line.insert(Message.raw(expansionNumber + ". ").color(Color.DARK_GRAY));
+            line = line.insert(Message.raw(expansionNumber + ". ").color(Color.GRAY));
 
             final Color expansionColour;
 
@@ -128,7 +127,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
                 if (expansion.hasExpansion()) {
                     expansionColour = Color.GREEN;
                 } else {
-                    expansionColour = Color.GRAY;
+                    expansionColour = Color.LIGHT_GRAY;
                 }
             }
 
@@ -175,7 +174,17 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 //                right.clickEvent(ClickEvent.runCommand("/papi ecloud list " + target + " " + (page + 1)));
 //            }
 
-            message = message.insert(Message.raw(" - " + page + " of " + limit + " - ").color(Color.GREEN));
+            message = message
+                    .insert(Message.raw(" - ").color(Color.LIGHT_GRAY))
+                    .insert(Message.raw(page + " of " + limit).color(Color.GREEN))
+                    .insert(Message.raw(" - ").color(Color.LIGHT_GRAY))
+                    .insert(Message.raw("[").color(Color.GRAY))
+                    .insert(Message.raw("Available").color(Color.LIGHT_GRAY))
+                    .insert(Message.raw(", ").color(Color.GRAY))
+                    .insert(Message.raw("Installed").color(Color.GREEN))
+                    .insert(Message.raw(", ").color(Color.GRAY))
+                    .insert(Message.raw("Update Available").color(Color.YELLOW))
+                    .insert(Message.raw("]").color(Color.GRAY));
         }
 
         return message;
@@ -220,7 +229,7 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
         message = message.insert(Message.raw("\n"));
 
         final int separatorLength = Arrays.stream(widths).sum() + (columnCount * 2);
-        message = message.insert(Message.raw("-".repeat(separatorLength)).color(Color.DARK_GRAY));
+        message = message.insert(Message.raw("-".repeat(separatorLength)).color(Color.GRAY));
 
         if (rows.size() > 1) {
             message = message.insert(Message.raw("\n"));
@@ -232,10 +241,10 @@ public final class CommandECloudExpansionList extends PlaceholderCommand {
 
             final Color nameColor = expansion.shouldUpdate()
                     ? Color.YELLOW
-                    : (expansion.hasExpansion() ? Color.GREEN : Color.GRAY);
+                    : (expansion.hasExpansion() ? Color.GREEN : Color.LIGHT_GRAY);
 
             final List<Color> rowColors = List.of(
-                    Color.DARK_GRAY,
+                    Color.GRAY,
                     nameColor,
                     Color.WHITE,
                     expansion.getVersion().isVerified() ? Color.GREEN : Color.RED,

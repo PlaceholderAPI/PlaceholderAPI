@@ -29,13 +29,17 @@ import at.helpch.placeholderapi.PlaceholderAPI;
 import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import at.helpch.placeholderapi.commands.PlaceholderCommand;
 import at.helpch.placeholderapi.expansion.PlaceholderExpansion;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.NameMatching;
 import com.hypixel.hytale.server.core.command.system.CommandSender;
+import com.hypixel.hytale.server.core.entity.Entity;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.World;
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Unmodifiable;
@@ -94,7 +98,7 @@ public final class CommandParse extends PlaceholderCommand {
             sender.sendMessage(Message.raw("You must provide a target and a message: ").color(Color.RED)
                     .insert(Message.raw("/papi ").color(Color.CYAN))
                     .insert(Message.raw(command ? "cmdparse" : (broadcast ? "bcparse" : "parse")).color(Color.CYAN))
-                    .insert(Message.raw(" {target}").color(Color.GRAY))
+                    .insert(Message.raw(" {target}").color(Color.LIGHT_GRAY))
                     .insert(Message.raw(" {message}").color(Color.GREEN)));
             return;
         }
@@ -103,12 +107,12 @@ public final class CommandParse extends PlaceholderCommand {
 
         if ("me".equalsIgnoreCase(params.getFirst())) {
             if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
-                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
+                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.LIGHT_GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
                 return;
             }
 
             if (sender instanceof Player) {
-                player = ((Player) sender).getPlayerRef();
+                player = getPlayerRef((Player) sender);
             } else {
                 player = (PlayerRef) sender;
             }
@@ -144,7 +148,7 @@ public final class CommandParse extends PlaceholderCommand {
         if (params.size() < 3) {
             sender.sendMessage(Message.raw("You must supply two targets, and a message: ").color(Color.RED)
                     .insert(Message.raw("/papi parserel ").color(Color.CYAN))
-                    .insert(Message.raw("{target one} {target two} ").color(Color.GRAY))
+                    .insert(Message.raw("{target one} {target two} ").color(Color.LIGHT_GRAY))
                     .insert(Message.raw("{message}").color(Color.GREEN)));
             return;
         }
@@ -154,13 +158,13 @@ public final class CommandParse extends PlaceholderCommand {
         if ("me".equalsIgnoreCase(params.get(0))) {
             if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
                 sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED)
-                        .insert(Message.raw("me").color(Color.GRAY))
+                        .insert(Message.raw("me").color(Color.LIGHT_GRAY))
                         .insert(Message.raw(" as a target!").color(Color.RED)));
                 return;
             }
 
             if (sender instanceof Player) {
-                playerOne = ((Player) sender).getPlayerRef();
+                playerOne = getPlayerRef((Player) sender);
             } else {
                 playerOne = (PlayerRef) sender;
             }
@@ -177,12 +181,12 @@ public final class CommandParse extends PlaceholderCommand {
 
         if ("me".equalsIgnoreCase(params.get(1))) {
             if (!(sender instanceof Player) && !(sender instanceof PlayerRef)) {
-                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
+                sender.sendMessage(Message.raw("You must be a player to use ").color(Color.RED).insert(Message.raw("me").color(Color.LIGHT_GRAY)).insert(Message.raw(" as a target!").color(Color.RED)));
                 return;
             }
 
             if (sender instanceof Player) {
-                playerTwo = ((Player) sender).getPlayerRef();
+                playerTwo = getPlayerRef((Player) sender);
             } else {
                 playerTwo = (PlayerRef) sender;
             }
@@ -274,6 +278,18 @@ public final class CommandParse extends PlaceholderCommand {
 //
 //        return target.get();
         return Universe.get().getPlayerByUsername(name, NameMatching.EXACT);
+    }
+
+    @Nullable
+    private static PlayerRef getPlayerRef(@NotNull final Player player) {
+        final Ref<EntityStore> ref = player.getReference();
+
+        if (ref == null || !ref.isValid()) {
+            return null;
+        }
+
+        final Store<EntityStore> store = ref.getStore();
+        return store.getComponent(ref, PlayerRef.getComponentType());
     }
 
 }
