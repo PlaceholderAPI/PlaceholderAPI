@@ -473,6 +473,7 @@ A majority of these Expansions are maintained by the PlaceholderAPI team and can
 
 More info about this expansion can be found on the [GitHub-Repository](https://github.com/matahombres/Advancements).
 
+You have custom category: "vanilla". Is the sum of all vanilla categories
 ```
 %advancements_<advancement>%
 %advancements_player_<player>;<advancement>%
