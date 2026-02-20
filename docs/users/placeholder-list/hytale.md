@@ -845,7 +845,7 @@ Members and relations:
 %mmoskilltree_all_xp%
 %mmoskilltree_all_levels%
 %mmoskilltree_total_xp%
-%mmoskilltree_level_total%
+%mmoskilltree_total_level%
 %mmoskilltree_calculate_level_from_xp_<xp>%
 %mmoskilltree_get_xp_for_level_<level>%
 %mmoskilltree_level_progress_<skill>%
