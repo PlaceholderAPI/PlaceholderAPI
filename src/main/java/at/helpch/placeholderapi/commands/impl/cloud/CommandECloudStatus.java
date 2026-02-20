@@ -51,9 +51,9 @@ public final class CommandECloudStatus extends PlaceholderCommand {
         Message message = Message.raw("There are ").color(Color.CYAN)
             .insert(Message.raw(String.valueOf(expansionCount)).color(Color.GREEN))
             .insert(Message.raw(" expansions available on the eCloud.\n").color(Color.CYAN))
-            .insert(Message.raw("A total of ").color(Color.GRAY))
+            .insert(Message.raw("A total of ").color(Color.LIGHT_GRAY))
             .insert(Message.raw(String.valueOf(authorCount)).color(Color.WHITE))
-            .insert(Message.raw(" authors have contributed Hytale expansions to the eCloud.\n").color(Color.GRAY));
+            .insert(Message.raw(" authors have contributed Hytale expansions to the eCloud.\n").color(Color.LIGHT_GRAY));
 
         if (updateCount > 0) {
             message = message

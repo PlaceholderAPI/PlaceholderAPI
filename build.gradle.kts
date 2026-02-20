@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.7-DEV-${System.getProperty("BUILD_NUMBER")}"
+version = "1.0.7"
 
 description = "An awesome placeholder provider!"
 
@@ -15,15 +15,13 @@ repositories {
     mavenCentral()
     mavenLocal()
 
-    maven {
-        url = uri("https://repo.codemc.io/repository/hytale/")
-    }
+    maven("https://maven.hytale.com/release/")
 }
 
 dependencies {
     implementation("org.yaml:snakeyaml:2.5")
 
-    compileOnly("com.hypixel.hytale:Server:2026.01.17-4b0f30090")
+    compileOnly("com.hypixel.hytale:Server:latest.release")
     compileOnlyApi("org.jetbrains:annotations:23.0.0")
 }
 

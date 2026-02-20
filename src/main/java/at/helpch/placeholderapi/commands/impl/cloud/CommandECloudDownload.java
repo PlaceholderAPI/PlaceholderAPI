@@ -90,7 +90,7 @@ public final class CommandECloudDownload extends PlaceholderCommand {
             if (version == null) {
                 sender.sendMessage(Message.raw("Could not find specified version: ").color(Color.RED)
                         .insert(Message.raw(params.get(0) + "\n").color(Color.WHITE))
-                        .insert(Message.raw("Available versions: ").color(Color.GRAY))
+                        .insert(Message.raw("Available versions: ").color(Color.LIGHT_GRAY))
                         .insert(Message.raw(expansion.getAvailableVersions().toString()).color(Color.WHITE)));
 //                Msg.msg(sender,
 //                        "&cCould not find specified version: &f" + params.get(1),

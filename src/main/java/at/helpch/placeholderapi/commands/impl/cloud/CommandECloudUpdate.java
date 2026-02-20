@@ -90,14 +90,14 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
             return;
         }
 
-        Message expansionList = Message.raw("[").color(Color.DARK_GRAY);
+        Message expansionList = Message.raw("[").color(Color.GRAY);
         for (int i = 0; i < expansions.size(); i++) {
             if (i > 0) {
-                expansionList = expansionList.insert(Message.raw(", ").color(Color.GRAY));
+                expansionList = expansionList.insert(Message.raw(", ").color(Color.LIGHT_GRAY));
             }
             expansionList = expansionList.insert(Message.raw(expansions.get(i).getName()).color(Color.ORANGE));
         }
-        expansionList = expansionList.insert(Message.raw("]").color(Color.DARK_GRAY));
+        expansionList = expansionList.insert(Message.raw("]").color(Color.GRAY));
 
         sender.sendMessage(Message.raw("Updating expansions: ").color(Color.GREEN)
                 .insert(expansionList));
@@ -124,13 +124,13 @@ public final class CommandECloudUpdate extends PlaceholderCommand {
                     .map(Optional::get)
                     .toList();
 
-                Message registeredMessage = Message.raw("Registered expansions:\n").color(Color.GRAY);
+                Message registeredMessage = Message.raw("Registered expansions:\n").color(Color.LIGHT_GRAY);
                 for (int i = 0; i < registered.size(); i++) {
                 final PlaceholderExpansion expansion = registered.get(i);
                 registeredMessage = registeredMessage
-                    .insert(Message.raw("  ").color(Color.GRAY))
+                    .insert(Message.raw("  ").color(Color.LIGHT_GRAY))
                     .insert(Message.raw(expansion.getName()).color(Color.GREEN))
-                    .insert(Message.raw(" ").color(Color.GRAY))
+                    .insert(Message.raw(" ").color(Color.LIGHT_GRAY))
                     .insert(Message.raw(expansion.getVersion()).color(Color.WHITE));
 
                 if (i < registered.size() - 1) {

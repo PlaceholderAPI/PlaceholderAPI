@@ -101,7 +101,7 @@ public final class PlaceholderCommandRouter extends AbstractCommand {
         final PlaceholderCommand target = commands.get(search);
 
         if (target == null) {
-            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.GRAY)));
+            sender.sendMessage(Message.raw("Unknown command ").color(Color.RED).insert(Message.raw(search).color(Color.LIGHT_GRAY)));
 
             return CompletableFuture.completedFuture(null);
         }

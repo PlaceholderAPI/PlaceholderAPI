@@ -59,15 +59,15 @@ public final class CommandInfo extends PlaceholderCommand {
         }
 
         Message message = Message.empty()
-                .insert(Message.raw("Placeholder expansion info for:").color(Color.GRAY))
+                .insert(Message.raw("Placeholder expansion info for:").color(Color.LIGHT_GRAY))
                 .insert(Message.raw(expansion.getName() + "\n").color(Color.WHITE))
-                .insert(Message.raw("Status: ").color(Color.GRAY))
+                .insert(Message.raw("Status: ").color(Color.LIGHT_GRAY))
                 .insert(Message.raw(expansion.isRegistered() ? "Registered" : "Not Registered").color(expansion.isRegistered() ? Color.GREEN : Color.RED))
                 .insert("\n");
 
         final String author = expansion.getAuthor();
         if (author != null) {
-            message = message.insert(Message.raw("Author: ").color(Color.GRAY))
+            message = message.insert(Message.raw("Author: ").color(Color.LIGHT_GRAY))
                             .insert(Message.raw(author + "\n").color(Color.WHITE));
 //            builder.append("&7Author: &r")
 //                    .append(author)
@@ -76,7 +76,7 @@ public final class CommandInfo extends PlaceholderCommand {
 
         final String version = expansion.getVersion();
         if (version != null) {
-            message = message.insert(Message.raw("Version: ").color(Color.GRAY))
+            message = message.insert(Message.raw("Version: ").color(Color.LIGHT_GRAY))
                     .insert(Message.raw(version + "\n").color(Color.WHITE));
 
 //            builder.append("&7Version: &r")
@@ -86,7 +86,7 @@ public final class CommandInfo extends PlaceholderCommand {
 
         final String requiredPlugin = expansion.getRequiredPlugin();
         if (requiredPlugin != null) {
-            message = message.insert(Message.raw("Requires plugin: ").color(Color.GRAY))
+            message = message.insert(Message.raw("Requires plugin: ").color(Color.LIGHT_GRAY))
                     .insert(Message.raw(requiredPlugin + '\n').color(Color.WHITE));
 
 //            builder.append("&7Requires plugin: &r")
@@ -96,9 +96,9 @@ public final class CommandInfo extends PlaceholderCommand {
 
         final List<String> placeholders = expansion.getPlaceholders();
         if (placeholders != null && !placeholders.isEmpty()) {
-            message = message.insert(Message.raw("-- ").color(Color.DARK_GRAY))
-                            .insert(Message.raw("Placeholders ").color(Color.GRAY))
-                            .insert(Message.raw("--\n").color(Color.DARK_GRAY));
+            message = message.insert(Message.raw("-- ").color(Color.GRAY))
+                            .insert(Message.raw("Placeholders ").color(Color.LIGHT_GRAY))
+                            .insert(Message.raw("--\n").color(Color.GRAY));
 //            builder.append("&8&m-- &7Placeholders &8&m--&r")
 //                    .append('\n');
 

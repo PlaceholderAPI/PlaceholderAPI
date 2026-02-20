@@ -49,15 +49,15 @@ public final class CommandVersion extends PlaceholderCommand {
 
         sender.sendMessage(Message.empty()
                 .insert(Message.raw("PlaceholderAPI ").color(Color.CYAN).bold(true))
-                .insert(Message.raw("(").color(Color.GRAY))
+                .insert(Message.raw("(").color(Color.LIGHT_GRAY))
                 .insert(Message.raw(description.getVersion().toString()).color(Color.WHITE))
-                .insert(Message.raw(")").color(Color.GRAY))
-                .insert(Message.raw("\nAuthor: ").color(Color.GRAY))
+                .insert(Message.raw(")").color(Color.LIGHT_GRAY))
+                .insert(Message.raw("\nAuthor: ").color(Color.LIGHT_GRAY))
                 .insert(Message.raw(description.getAuthors().stream().map(AuthorInfo::getName).collect(Collectors.joining(", "))).color(Color.WHITE))
-                .insert(Message.raw("\nPAPI Commands: ").color(Color.GRAY))
+                .insert(Message.raw("\nPAPI Commands: ").color(Color.LIGHT_GRAY))
                 .insert(Message.raw("/papi ").color(Color.CYAN))
                 .insert(Message.raw("help").color(Color.WHITE))
-                .insert(Message.raw("\neCloud Commands: ").color(Color.GRAY))
+                .insert(Message.raw("\neCloud Commands: ").color(Color.LIGHT_GRAY))
                 .insert(Message.raw("/papi ").color(Color.CYAN))
                 .insert(Message.raw("ecloud").color(Color.WHITE)));
 

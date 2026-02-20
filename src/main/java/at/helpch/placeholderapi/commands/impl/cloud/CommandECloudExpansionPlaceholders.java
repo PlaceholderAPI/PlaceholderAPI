@@ -75,7 +75,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
 
         Message message = Message.raw(" ").color(Color.ORANGE)
                 .insert(Message.raw(String.valueOf(placeholders.size())).color(Color.ORANGE))
-                .insert(Message.raw(" placeholders: ").color(Color.GRAY));
+                .insert(Message.raw(" placeholders: ").color(Color.LIGHT_GRAY));
 
         for (int i = 0; i < partitions.size(); i++) {
             if (i == 0) {
@@ -86,7 +86,7 @@ public final class CommandECloudExpansionPlaceholders extends PlaceholderCommand
             for (int j = 0; j < partition.size(); j++) {
                 message = message.insert(Message.raw(partition.get(j)).color(Color.GREEN));
                 if (j < partition.size() - 1) {
-                    message = message.insert(Message.raw(", ").color(Color.GRAY));
+                    message = message.insert(Message.raw(", ").color(Color.LIGHT_GRAY));
                 }
             }
 

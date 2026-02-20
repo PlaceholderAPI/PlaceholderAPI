@@ -58,9 +58,9 @@ public final class CommandList extends PlaceholderCommand {
 //        final List<List<String>> partitions = Lists
 //                .partition(identifiers.stream().sorted().collect(Collectors.toList()), 10);
 
-        Message message = Message.raw("A total of ").color(Color.GRAY)
+        Message message = Message.raw("A total of ").color(Color.LIGHT_GRAY)
                 .insert(Message.raw(identifiers.size() + " ").color(Color.WHITE))
-                .insert(Message.raw("placeholder hook(s) are active: ").color(Color.GRAY));
+                .insert(Message.raw("placeholder hook(s) are active: ").color(Color.LIGHT_GRAY));
 
         for (int i = 0; i < partitions.size(); ++i) {
             final List<String> partition = partitions.get(i);
@@ -69,7 +69,7 @@ public final class CommandList extends PlaceholderCommand {
                 message = message.insert(Message.raw(partition.get(j)).color(Color.GREEN));
 
                 if (j != partition.size() - 1) {
-                    message = message.insert(Message.raw(", ").color(Color.GRAY));
+                    message = message.insert(Message.raw(", ").color(Color.LIGHT_GRAY));
                 }
             }
 
