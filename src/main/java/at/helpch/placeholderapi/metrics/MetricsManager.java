@@ -40,7 +40,7 @@ public class MetricsManager {
     public void send() {
         final String pluginVersion = main.getManifest().getVersion().toString();
         final String serverVersion = ManifestUtil.getImplementationVersion();
-        final boolean usingEcloud = main.configManager().config().cloudEnabled();
+        final boolean usingEcloud = false;
         final List<String> expansionsUsed = main.localExpansionManager().getExpansions().stream()
                 .map(PlaceholderExpansion::getName)
                 .toList();
