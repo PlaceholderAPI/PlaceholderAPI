@@ -87,8 +87,8 @@ public final class CharsReplacer implements Replacer {
             for (int i = startPlaceholder + 1; i < endPlaceholder; i++) {
                 final char current = text.charAt(i);
 
-                if (current == ' ') {
-                    // Invalid placeholder (contains space).
+                if (current == ' ' && underscoreIndex == -1) {
+                    // Invalid placeholder (contains space before _).
                     // Treat the opening symbol as literal text and search for the next one.
                     builder.append(head);
                     cursor = startPlaceholder + 1;
