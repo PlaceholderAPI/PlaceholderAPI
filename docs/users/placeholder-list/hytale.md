@@ -383,8 +383,8 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 %world_entities_<world>%
 %world_players_<world>%
 %world_players_<world>_<group>%
-%world_haspermission_<world>_<permission>%
-%world_playerexist_<world>_<playername>%
+%world_haspermission_<permission>_<world>%
+%world_playerexist_<playername>_<world>%
 %world_recentjoin_<world>%
 %world_recentquit_<world>%
 %world_displayname_<world>%
