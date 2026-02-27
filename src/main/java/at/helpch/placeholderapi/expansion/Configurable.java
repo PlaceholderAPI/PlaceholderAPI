@@ -24,6 +24,7 @@ import at.helpch.placeholderapi.PlaceholderAPIPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Implementing this interface allows {@link at.helpch.placeholderapi.expansion.PlaceholderExpansion PlaceholderExpansions}
@@ -43,20 +44,31 @@ import java.util.Map;
  * @author Ryan McCarthy
  */
 public interface Configurable<T> {
-
     @NotNull
     Class<T> provideConfigType();
 
     @NotNull
     T provideDefault();
 
+    @SuppressWarnings("unchecked")
     @NotNull
     default T getConfig() {
-        if (this instanceof PlaceholderExpansion exp) {
-            return (T) PlaceholderAPIPlugin.instance().configManager().config().expansions().computeIfAbsent(exp.getIdentifier(), s -> provideDefault());
+        if (!(this instanceof PlaceholderExpansion exp)) {
+            return provideDefault();
         }
 
-        return provideDefault();
+        final ConcurrentHashMap<String, Object> expansionConfigs = PlaceholderAPIPlugin.instance().configManager().config().expansions();
+        final String key = exp.getIdentifier();
+
+        final Object existing = expansionConfigs.get(key);
+        if (existing != null) {
+            return (T) existing;
+        }
+
+        final T def = provideDefault();
+        final Object conf = expansionConfigs.putIfAbsent(key, def);
+
+        return (T) (conf != null ? conf : def);
     }
 
 //    /**
