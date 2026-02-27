@@ -73,7 +73,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 - [Mod-placeholders](#Mod-placeholders)
     - **A**
-        - *No Expansions*
+        - **[ArenaPVP](#arenapvp)**
     - **B**
         - *No Expansions*
     - **C**
@@ -399,6 +399,54 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[ArenaPVP](https://www.curseforge.com/hytale/mods/arena-pvp)**
+/// integrated | Built into mod
+///
+[More info on wiki](https://arenapvp.hapore.net/docs/integrations/placeholderapi)
+
+```
+%arenapvp_in_arena%
+%arenapvp_in_queue%
+%arenapvp_in_pending%
+%arenapvp_is_spectator%
+%arenapvp_is_busy%
+%arenapvp_in_group%
+%arenapvp_is_leader%
+%arenapvp_queue_category%
+%arenapvp_arena_name%
+%arenapvp_arena_category%
+%arenapvp_arena_type%
+%arenapvp_kills%
+%arenapvp_deaths%
+%arenapvp_wins%
+%arenapvp_losses%
+%arenapvp_kdr%
+%arenapvp_wlr%
+%arenapvp_rating_{cat}%
+%arenapvp_kills_{cat}%
+%arenapvp_deaths_{cat}%
+%arenapvp_wins_{cat}%
+%arenapvp_losses_{cat}%
+%arenapvp_kdr_{cat}%
+%arenapvp_wlr_{cat}%
+%arenapvp_top_name_{cat}_{pos}%
+%arenapvp_top_rating_{cat}_{pos}%
+%arenapvp_top_kills_{cat}_{pos}%
+%arenapvp_top_wins_{cat}_{pos}%
+%arenapvp_group_size%
+%arenapvp_group_leader%
+%arenapvp_group_type%
+%arenapvp_group_online%
+%arenapvp_active_arenas%
+%arenapvp_players_in_arenas%
+%arenapvp_queue_size%
+%arenapvp_pending_matches%
+%arenapvp_queue_size_{cat}%
+%arenapvp_active_arenas_{cat}%
+```
+
+----
 
 ### **[CleanPing](https://www.curseforge.com/hytale/mods/cleanping)**
 /// integrated | Built into mod

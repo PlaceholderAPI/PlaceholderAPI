@@ -38,10 +38,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 
 ----
 ## A
-
-/// info |
-No Plugins available
-///
+- **[ArenaPVP](https://www.curseforge.com/hytale/mods/arena-pvp)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#arenapvp)**]
 
 ----
 ## B
