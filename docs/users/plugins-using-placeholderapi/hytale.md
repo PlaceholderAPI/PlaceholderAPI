@@ -69,6 +69,9 @@ No Plugins available
 - **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#economyapi)**]
+- **[Ecotale](https://www.curseforge.com/hytale/mods/ecotale)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#ecotale)**]
 - **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#eliteessentials)**]

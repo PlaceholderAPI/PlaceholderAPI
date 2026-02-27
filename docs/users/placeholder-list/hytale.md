@@ -82,6 +82,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Declares Advanced Jobs](#declares-advanced-jobs)**
     - **E**
         - **[EconomyAPI](#economyapi)**
+        - **[Ecotale](#ecotale)**
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
         - **[EssentialsPlus](#essentialsplus)**
@@ -434,6 +435,43 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 ```
 %economyapi_balance%
 %economyapi_formatted_balance%
+```
+
+----
+
+### **[Ecotale](https://www.curseforge.com/hytale/mods/ecotale)**
+/// integrated | Built into mod
+///
+[More info here on the github page](https://github.com/HyperSystemsDev/Ecotale/blob/main/PLACEHOLDERS.md)
+
+```
+%ecotale_balance%
+%ecotale_balance_formatted%
+%ecotale_balance_short%
+%ecotale_balance_commas%
+%ecotale_balance_<n>dp%
+%ecotale_profit%
+%ecotale_profit_ratio%
+%ecotale_session_change%
+%ecotale_last_activity%
+%ecotale_rank%
+%ecotale_rank_suffix%
+%ecotale_rank_percentile%
+%ecotale_gap_to_first%
+%ecotale_gap_to_next%
+%ecotale_ahead_of%
+%ecotale_server_total%
+%ecotale_server_average%
+%ecotale_server_median%
+%ecotale_server_players%
+%ecotale_trend_session%
+%ecotale_trend_session_percent%
+%ecotale_trend_arrow%
+%ecotale_trend_label%
+%ecotale_currency_symbol%
+%ecotale_currency_name%
+%ecotale_top_name_<n>%
+%ecotale_balance_<n>%
 ```
 
 ----
