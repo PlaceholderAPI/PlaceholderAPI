@@ -208,6 +208,9 @@ No Plugins available
 
 ----
 ## T
+- **[TaleFly](https://builtbybit.com/resources/talefly.91201/)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#talefly)**]
 - **[Topper](https://www.curseforge.com/hytale/mods/topper)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#topper)**]

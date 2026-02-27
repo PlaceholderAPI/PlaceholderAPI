@@ -121,6 +121,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **S**
         - **[SimpleClaims](#simpleclaims)**
     - **T**
+        - **[TaleFly](#talefly)**
         - **[Topper](#topper)**
     - **U**
         - *No Expansions*
@@ -1038,6 +1039,22 @@ Members and relations:
 %simpleclaims_party_claims%
 %simpleclaims_party_partyallied_<partyId>%
 %simpleclaims_party_playerallied_<playerName>%
+```
+
+----
+
+### **[TaleFly](https://builtbybit.com/resources/talefly.91201/)**
+/// integrated | Built into mod
+///
+
+```
+%talefly_time%
+%talefly_time_formatted%
+%talefly_status%
+%talefly_status_formatted%
+%talefly_balance%
+%talefly_cost%
+%talefly_speed%
 ```
 
 ----
