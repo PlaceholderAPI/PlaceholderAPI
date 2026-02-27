@@ -38,10 +38,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 
 ----
 ## A
-
-/// info |
-No Plugins available
-///
+- **[ArenaPVP](https://www.curseforge.com/hytale/mods/arena-pvp)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#arenapvp)**]
 
 ----
 ## B
@@ -69,6 +68,9 @@ No Plugins available
 - **[EconomyAPI](https://www.curseforge.com/hytale/mods/economyapi)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#economyapi)**]
+- **[Ecotale](https://www.curseforge.com/hytale/mods/ecotale)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#ecotale)**]
 - **[EliteEssentials](https://www.curseforge.com/hytale/mods/eliteessentials)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#eliteessentials)**]
@@ -206,6 +208,9 @@ No Plugins available
 
 ----
 ## T
+- **[TaleFly](https://builtbybit.com/resources/talefly.91201/)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#talefly)**]
 - **[Topper](https://www.curseforge.com/hytale/mods/topper)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#topper)**]

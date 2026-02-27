@@ -73,7 +73,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 - [Mod-placeholders](#Mod-placeholders)
     - **A**
-        - *No Expansions*
+        - **[ArenaPVP](#arenapvp)**
     - **B**
         - *No Expansions*
     - **C**
@@ -82,6 +82,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Declares Advanced Jobs](#declares-advanced-jobs)**
     - **E**
         - **[EconomyAPI](#economyapi)**
+        - **[Ecotale](#ecotale)**
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
         - **[EssentialsPlus](#essentialsplus)**
@@ -120,6 +121,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **S**
         - **[SimpleClaims](#simpleclaims)**
     - **T**
+        - **[TaleFly](#talefly)**
         - **[Topper](#topper)**
     - **U**
         - *No Expansions*
@@ -383,8 +385,8 @@ More info about the expansion can be found on the [Github-Repository](https://gi
 %world_entities_<world>%
 %world_players_<world>%
 %world_players_<world>_<group>%
-%world_haspermission_<world>_<permission>%
-%world_playerexist_<world>_<playername>%
+%world_haspermission_<permission>_<world>%
+%world_playerexist_<playername>_<world>%
 %world_recentjoin_<world>%
 %world_recentquit_<world>%
 %world_displayname_<world>%
@@ -398,6 +400,54 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[ArenaPVP](https://www.curseforge.com/hytale/mods/arena-pvp)**
+/// integrated | Built into mod
+///
+[More info on wiki](https://arenapvp.hapore.net/docs/integrations/placeholderapi)
+
+```
+%arenapvp_in_arena%
+%arenapvp_in_queue%
+%arenapvp_in_pending%
+%arenapvp_is_spectator%
+%arenapvp_is_busy%
+%arenapvp_in_group%
+%arenapvp_is_leader%
+%arenapvp_queue_category%
+%arenapvp_arena_name%
+%arenapvp_arena_category%
+%arenapvp_arena_type%
+%arenapvp_kills%
+%arenapvp_deaths%
+%arenapvp_wins%
+%arenapvp_losses%
+%arenapvp_kdr%
+%arenapvp_wlr%
+%arenapvp_rating_{cat}%
+%arenapvp_kills_{cat}%
+%arenapvp_deaths_{cat}%
+%arenapvp_wins_{cat}%
+%arenapvp_losses_{cat}%
+%arenapvp_kdr_{cat}%
+%arenapvp_wlr_{cat}%
+%arenapvp_top_name_{cat}_{pos}%
+%arenapvp_top_rating_{cat}_{pos}%
+%arenapvp_top_kills_{cat}_{pos}%
+%arenapvp_top_wins_{cat}_{pos}%
+%arenapvp_group_size%
+%arenapvp_group_leader%
+%arenapvp_group_type%
+%arenapvp_group_online%
+%arenapvp_active_arenas%
+%arenapvp_players_in_arenas%
+%arenapvp_queue_size%
+%arenapvp_pending_matches%
+%arenapvp_queue_size_{cat}%
+%arenapvp_active_arenas_{cat}%
+```
+
+----
 
 ### **[CleanPing](https://www.curseforge.com/hytale/mods/cleanping)**
 /// integrated | Built into mod
@@ -434,6 +484,43 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 ```
 %economyapi_balance%
 %economyapi_formatted_balance%
+```
+
+----
+
+### **[Ecotale](https://www.curseforge.com/hytale/mods/ecotale)**
+/// integrated | Built into mod
+///
+[More info here on the github page](https://github.com/HyperSystemsDev/Ecotale/blob/main/PLACEHOLDERS.md)
+
+```
+%ecotale_balance%
+%ecotale_balance_formatted%
+%ecotale_balance_short%
+%ecotale_balance_commas%
+%ecotale_balance_<n>dp%
+%ecotale_profit%
+%ecotale_profit_ratio%
+%ecotale_session_change%
+%ecotale_last_activity%
+%ecotale_rank%
+%ecotale_rank_suffix%
+%ecotale_rank_percentile%
+%ecotale_gap_to_first%
+%ecotale_gap_to_next%
+%ecotale_ahead_of%
+%ecotale_server_total%
+%ecotale_server_average%
+%ecotale_server_median%
+%ecotale_server_players%
+%ecotale_trend_session%
+%ecotale_trend_session_percent%
+%ecotale_trend_arrow%
+%ecotale_trend_label%
+%ecotale_currency_symbol%
+%ecotale_currency_name%
+%ecotale_top_name_<n>%
+%ecotale_balance_<n>%
 ```
 
 ----
@@ -952,6 +1039,22 @@ Members and relations:
 %simpleclaims_party_claims%
 %simpleclaims_party_partyallied_<partyId>%
 %simpleclaims_party_playerallied_<playerName>%
+```
+
+----
+
+### **[TaleFly](https://builtbybit.com/resources/talefly.91201/)**
+/// integrated | Built into mod
+///
+
+```
+%talefly_time%
+%talefly_time_formatted%
+%talefly_status%
+%talefly_status_formatted%
+%talefly_balance%
+%talefly_cost%
+%talefly_speed%
 ```
 
 ----
