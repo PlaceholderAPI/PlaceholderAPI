@@ -484,6 +484,21 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 ```
 %economyapi_balance%
 %economyapi_formatted_balance%
+%economyapi_formatted_balance_short%
+%economyapi_prefix%
+%economyapi_starting_balance%
+%economyapi_provider%
+%economyapi_cache_username%
+%economyapi_server_total%
+%economyapi_server_average%
+%economyapi_server_highest%
+%economyapi_server_accounts%
+%economyapi_bridge_mode%
+%economyapi_storage_type%
+%economyapi_config_mobkill_min%
+%economyapi_config_mobkill_max%
+%economyapi_config_playerkill_min%
+%economyapi_config_playerkill_max%
 ```
 
 ----
