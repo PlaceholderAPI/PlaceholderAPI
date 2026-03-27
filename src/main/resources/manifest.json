@@ -5,7 +5,7 @@
   "Description": "An awesome placeholder provider",
   "Authors": [{"Name": "HelpChat"}],
   "Website": "https://placeholderapi.com",
-  "ServerVersion": "*",
+  "ServerVersion": "2026.03.26-89796e57b",
   "Dependencies": {},
   "OptionalDependencies": {},
   "DisabledByDefault": false,
