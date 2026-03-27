@@ -42,6 +42,10 @@ tasks {
         eachFile { expand("version" to project.version) }
     }
 
+    withType<Javadoc>.configureEach {
+        isFailOnError = false
+    }
+
     withType<ShadowJar> {
         archiveClassifier.set("hytale")
 
