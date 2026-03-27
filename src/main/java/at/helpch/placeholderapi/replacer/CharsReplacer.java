@@ -46,7 +46,7 @@ public final class CharsReplacer implements Replacer {
      * corresponding {@link PlaceholderExpansion}.</p>
      *
      * @param text   The raw text containing potential placeholders to be replaced.
-     * @param player The {@link OfflinePlayer} to contextually parse the placeholders against.
+     * @param player The {@link PlayerRef} to contextually parse the placeholders against.
      * May be {@code null} if no player context is available.
      * @param lookup A function that maps a lowercase identifier string to a registered
      * {@link PlaceholderExpansion}.
