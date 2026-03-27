@@ -42,7 +42,7 @@ tasks {
         eachFile { expand("version" to project.version) }
     }
 
-    withType<Javadoc>.configureEach {
+    withType<Javadoc> {
         isFailOnError = false
     }
 
