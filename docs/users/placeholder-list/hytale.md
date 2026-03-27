@@ -98,7 +98,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
     - **I**
         - *No Expansions*
     - **J**
-        - *No Expansions*
+        - **[JHS-Votifier](#jhs-votifier)**
     - **K**
         - *No Expansions*
     - **L**
@@ -884,6 +884,23 @@ Members and relations:
    %factions_neutrals% - Number of neutral relations
    %factions_relations% - Total number of relations
 ```
+
+### **[JHS-Votifier](https://www.curseforge.com/hytale/mods/jhs-votifier)**
+/// integrated | Built into mod
+///
+
+```
+%votifier_party_current%
+%votifier_party_required%
+%votifier_party_remaining%
+%votifier_party_total%
+%votifier_player_votes%
+%votifier_player_streak%
+%votifier_player_longest_streak%
+%votifier_player_rank%
+```
+
+----
 
 ----
 
