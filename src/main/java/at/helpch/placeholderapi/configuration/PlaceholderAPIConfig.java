@@ -98,7 +98,7 @@ public final class PlaceholderAPIConfig {
     }
 
     @NotNull
-    public Map<String, Object> expansions() {
+    public ConcurrentHashMap<String, Object> expansions() {
         return expansions;
     }
 

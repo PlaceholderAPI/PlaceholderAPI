@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "at.helpch"
-version = "1.0.7-CurseForge"
+version = "1.0.8-CurseForge"
 
 description = "An awesome placeholder provider!"
 
@@ -40,6 +40,10 @@ val javaComponent: SoftwareComponent = components["java"]
 tasks {
     processResources {
         eachFile { expand("version" to project.version) }
+    }
+
+    withType<Javadoc> {
+        isFailOnError = false
     }
 
     withType<ShadowJar> {
