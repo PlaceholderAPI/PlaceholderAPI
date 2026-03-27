@@ -130,10 +130,9 @@ No Plugins available
 
 ----
 ## J
-
-/// info |
-No Plugins available
-///
+- **[JHS-Votifier](https://www.curseforge.com/hytale/mods/jhs-votifier)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#jhs-votifier)**]
 
 ----
 ## K
