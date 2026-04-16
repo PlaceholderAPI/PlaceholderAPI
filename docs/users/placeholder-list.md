@@ -4841,6 +4841,16 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 %PTM_lp_prefix_top_<rank>%
 %PTM_joinstreak%
 %PTM_joinstreak_<nickname>%
+%PTM_relative_joinstreak%
+%PTM_relative_joinstreak_<nickname>%
+%PTM_streak_reward_<id>_<property>%
+%PTM_streak_reward_<id>_<property>_<nickname>%
+%PTM_streak_reward_<id>.<requiredJoins>_<property>%
+%PTM_streak_reward_<id>.<requiredJoins>_<property>_<nickname>%
+%PTM_goal_count%
+%PTM_goal_count_<nickname>%
+%PTM_goal_completed_<goalName>%
+%PTM_goal_completed_<goalName>_<nickname>%
 ```
   
 ----
