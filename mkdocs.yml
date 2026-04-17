@@ -63,6 +63,8 @@ extra:
       - reject
       - manage
   social:
+    - icon: simple/modrinth
+      link: https://modrinth.com/plugin/placeholderapi
     - icon: fontawesome/regular/paper-plane
       link: https://hangar.papermc.io/HelpChat/PlaceholderAPI
     - icon: simple/spigotmc
@@ -76,14 +78,23 @@ nav:
     - users/index.md
     - users/commands.md
     - users/using-placeholders.md
-    - users/placeholder-list.md
-    - users/plugins-using-placeholderapi.md
+    - Placeholder List:
+      - users/placeholder-list/index.md
+      - users/placeholder-list/minecraft.md
+      - users/placeholder-list/hytale.md
+    - Plugins Using PlaceholderAPI:
+      - users/plugins-using-placeholderapi/index.md
+      - users/plugins-using-placeholderapi/minecraft.md
+      - users/plugins-using-placeholderapi/hytale.md
   - Dev Guides:
     - developers/index.md
     - developers/using-placeholderapi.md
     - developers/creating-a-placeholderexpansion.md
+    - developers/configuration-api-hytale.md
     - developers/expansion-cloud.md
-  - common-issues.md
+  - Common Issues:
+    - issues/index.md
+    - issues/ecloud-block.md
   - faq.md
   - Discord: https://discord.gg/helpchat
 

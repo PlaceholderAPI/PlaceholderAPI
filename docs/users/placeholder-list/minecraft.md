@@ -2,9 +2,10 @@
 description: Community-curated list of available PlaceholderExpansions and their placeholders.
 ---
 
-# Placeholder List
+# Minecraft
 
-This is a list of all available placeholders.
+This is a list of all available placeholders for the Minecraft version of PlaceholderAPI.  
+For the Hytale version, visit [this page](hytale.md).
 
 A download-command may be found in the infobox located below the title of the Expansion.  
 Should `Built into Plugin` be displayed is the Expansion included in the Plugin it depends on. Should a URL be shown does it mean you have to download it manually and add it to the `expansions` folder yourself.
@@ -227,7 +228,6 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Factions MCore](#factions-mcore)**
         - **[FactionsUUID](#factionsuuid)**
         - **[Factions relation placeholders](#factions-relation-placeholders)**
-        - **[FunnyGuilds](#funnyguilds)**
     
     - **G**
         - **[GAListener](#galistener)**
@@ -425,6 +425,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Two Factor Authentication](#two-factor-authentication)**
     
     - **U**
+        - **[UJobs](#ujobs)**
         - **[UltimateChat](#ultimatechat)**
         - **[UltimateClaims](#ultimateclaims)**
         - **[UltimateServerManager](#ultimateservermanager)**
@@ -818,7 +819,7 @@ More info about this expansion can be found on the [GitHub-Repository](https://g
 
 ### **[Javascript](https://api.extendedclip.com/expansions/javascript/)**
 /// failure | Unverified
-Due to potential security issues is this expansion currently unverified. Use at your own risk.
+Due to potential security issues this expansion is currently unverified. Use at your own risk.
 ///
 
 Gives you a way, to use javascript, to give a different output, depending on conditions.
@@ -1512,6 +1513,7 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 %string_equalsIgnoreCase_<string>_<match>%
 %string_contains_<string>_<match>%
 %string_containsIgnoreCase_<string>_<match>%
+%string_charAt_<index>_<string>%
 %string_indexOf_<string>_<match>%
 %string_lastIndexOf_<string>_<match>%
 %string_substring_<startIndex>_<string>%
@@ -1520,8 +1522,16 @@ More info about the expansion can be found on the [GitHub-Repository](https://gi
 %string_shuffle_<string>%
 %string_uppercase_<string>%
 %string_lowercase_<string>%
+%string_sentencecase_<string>%
+%string_capitalize_<string>%
 %string_length_<string>%
 %string_random_<string1>,<string2>,<string3>,<etc>%
+%string_replaceCharacters_<configuration>_<string>%
+%string_alternateuppercase_<string>%
+%string_startswith_<string>_<match>%
+%string_endswith_<string>_<match>%
+%string_trim_<string>%
+%string_occurences_count_<string>_<match>%
 ```
 
 Supports placeholders using brackets: `{placeholder}`
@@ -2204,11 +2214,19 @@ Find examples of how the placeholders can be used on [signs](https://github.com/
 /// integrated | Built into Plugin
 ///
 
+Find an up-to-date list on the [SpigotMC page](https://www.spigotmc.org/resources/beautyquests.39255/field?field=documentation).
+
 ```
+%beautyquests_total_amount%
 %beautyquests_player_inprogress_amount%
 %beautyquests_player_finished_amount%
-%beautyquests_total_amount%
-%beautyquests_advancement_ID%
+%beautyquests_player_finished_total_amount%
+%beautyquests_started_ordered%
+%beautyquests_started_ordered_X%
+%beautyquests_advancement_X%
+%beautyquests_advancement_X_raw%
+%beautyquests_player_quest_finished_X%
+%beautyquests_started_id_list%
 ```
 
 ----
@@ -2762,12 +2780,21 @@ Please check the [wiki](https://github.com/booksaw/PlaceholderAPI) for more info
 
 ```
 %deluxemenus_meta_<key>_<dataType>_<default_value>%
+%deluxemenus_meta_<key>_<dataType>_<defaultValue>%
+%deluxemenus_meta_has_value_<key>_<dataType>%
+%deluxemenus_is_in_menu%
+%deluxemenus_opened_menu%
+%deluxemenus_last_menu%
 ```
 
-- Key: The key of the meta you want to check
-- Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
-  *If the given key has a different data type, an error will occur.*
-- Default Value: The value returned if nothing is found.
+-   Key: The key of the meta you want to check
+-   Data Type: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
+    *If the given key has a different data type, an error will occur.*
+-   Default Value: The value returned if nothing is found.
+-   `<key>`: The key of the meta you want to check
+-   `<dataType>`: Can be `STRING`, `BOOLEAN`, `DOUBLE`, `LONG`, or `INTEGER`.  
+    *If the given key has a different data type, an error will occur.*
+-   `<defaultValue>`: The value returned if nothing is found.
 
 ----
 
@@ -3161,42 +3188,6 @@ These placeholders work with FactionsUUID and MCore all you need is downloading 
 
 ----
 
-### **[FunnyGuilds](https://github.com/FunnyGuilds/FunnyGuilds)**
-/// integrated | Built into Plugin
-///
-
-```
-%funnyguilds_guilds%
-%funnyguilds_users%
-%funnyguilds_deaths%
-%funnyguilds_kdr%
-%funnyguilds_kills%
-%funnyguilds_points-format%
-%funnyguilds_points%
-%funnyguilds_position%
-%funnyguilds_g-allies%
-%funnyguilds_g-deaths%
-%funnyguilds_g-deputies%
-%funnyguilds_g-deputy%
-%funnyguilds_g-kdr%
-%funnyguilds_g-kills%
-%funnyguilds_g-lives%
-%funnyguilds_g-members-all%
-%funnyguilds_g-members-online%
-%funnyguilds_g-name%
-%funnyguilds_g-owner%
-%funnyguilds_g-points-format%
-%funnyguilds_g-points%
-%funnyguilds_g-position%
-%funnyguilds_g-region-size%
-%funnyguilds_g-tag%
-%funnyguilds_g-validity%
-%funnyguilds_gtop-x%
-%funnyguilds_ptop-x%
-```
-
-----
-
 ### **GAListener**
 /// integrated | Built into Plugin
 ///
@@ -3472,10 +3463,11 @@ You can find an up-to-date list of placeholders in the [HyacinthHello wiki](http
 ///
 
 ```
-%imageframe_"<player>:<imagemap>"_playback_bar_<length>_[character]_[current_section_prefix]_[remaining_section_prefix]%
-%imageframe_"<player>:<imagemap>"_playback_current%
-%imageframe_"<player>:<imagemap>"_playback_total%
-%imageframe_"<player>:<imagemap>"_playback_pause%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_bar_<length>_[character]_[current_section_prefix]_[remaining_section_prefix]%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_current%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_total%
+%imageframe_imagemap_"<player>:<imagemap>"_playback_pause%
+%imageframe_player_preference_<preference>%
 ```
 
 ----
@@ -3670,7 +3662,7 @@ You can find an up-to-date list of placeholders on the [KingdomsX wiki](https://
 /// integrated | Built into Plugin
 ///
 
-A Description of the placeholders can be found on the [Lands Wiki](https://github.com/Angeschossen/Lands/wiki/PlaceholderAPI-Placeholders#placeholders).
+A Description of the placeholders can be found on the [Lands Wiki](https://wiki.incredibleplugins.com/Lands/configuration/placeholderapi-placeholders).
 
 ```
 # General
@@ -6982,6 +6974,28 @@ You can find an up-to-date list of placeholders in the [Towny wiki](https://gith
 %2fa_time_since_enabled%
 %2fa_key%
 %2fa_is_required%
+```
+
+----
+
+### **[UJobs](https://modrinth.com/plugin/ujobs)**
+/// integrated | Built into Plugin
+///
+
+Detailed explanation and example outputs of placeholders are listed on [modrinth](https://modrinth.com/plugin/ujobs).
+
+```
+ujobs_job_name_<job>                      
+ujobs_job_displayname_<job>
+ujobs_job_legacydisplayname_<job>
+
+ujobs_player_level_<job>
+ujobs_player_exp_<job>
+ujobs_player_position_<job>
+ujobs_player_totalmoney_<job>
+
+ujobs_leaderboard_name_<job>_<position>
+ujobs_leaderboard_level_<job>_<position>
 ```
 
 ----

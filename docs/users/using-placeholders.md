@@ -17,7 +17,7 @@ Before you can use placeholders should you check a few things first.
 The first and most important thing is, to find out if the plugin you want to use placeholders in is actually supporting PlaceholderAPI.  
 Chat-plugins such as EssentialsXChat do not natively support PlaceholderAPI and instead require separate plugins to "inject" the parsed placeholders into the final chat message.
 
-One way to check, if a Plugin is supporing PlaceholderAPI, is to check the [Plugins using PlaceholderAPI](plugins-using-placeholderapi.md) page.  
+One way to check, if a Plugin is supporing PlaceholderAPI, is to check the [Plugins using PlaceholderAPI](plugins-using-placeholderapi/index.md) page.  
 If the plugin is listed and if the `Supports placeholders` text has a check, does it mean that PlaceholderAPI support is available.
 
 If the plugin isn't listed, can you usually check its plugin page, or any other source of information, such as a wiki, for clues on if PlaceholderAPI is supported.
@@ -39,7 +39,7 @@ This feature exists since version 2.11.4 of PlaceholderAPI
 The way PlaceholderAPI's system works, allows a Placeholder Expansion and its corresponding placeholders to either be included within a plugin (If placeholder requires said plugin) or to be available as a separate jar file on the eCloud of PlaceholderAPI.  
 Depending on what type you have, will you need to do some extra steps to use the placeholder from the Placeholder Expansion.
 
-One way to find out, if an Expansion is included or separate, is to check the [Placeholder List](placeholder-list.md) page for any entry of it.  
+One way to find out, if an Expansion is included or separate, is to check the [Placeholder List](placeholder-list/index.md) page for any entry of it.  
 If it exists on the page, can you check the infobox right below the title of the Expansion for one of the following cases:
 
 - `papi ecloud download <expansion>`: The expansion is on the ecloud and needs to be downloaded using the [`/papi ecloud download` command](commands.md#papi-ecloud-download).

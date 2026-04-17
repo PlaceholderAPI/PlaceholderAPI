@@ -19,8 +19,8 @@ It also has a community-curated list of all available Placeholder expansions and
     
     - [:octicons-chevron-right-16: Commands](users/commands.md)  
     - [:octicons-chevron-right-16: Using Placeholders](users/using-placeholders.md)  
-    - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list.md)  
-    - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi.md)
+    - [:octicons-chevron-right-16: Placeholder List](users/placeholder-list/index.md)  
+    - [:octicons-chevron-right-16: Plugins using PlaceholderAPI](users/plugins-using-placeholderapi/index.md)
     
 -   ### :material-file-code: Dev Guides
     
@@ -32,6 +32,7 @@ It also has a community-curated list of all available Placeholder expansions and
     
     - [:octicons-chevron-right-16: Using PlaceholderAPI](developers/using-placeholderapi.md)  
     - [:octicons-chevron-right-16: Creating a PlaceholderExpansion](developers/creating-a-placeholderexpansion.md)  
+    - [:octicons-chevron-right-16: Using the Hytale Configuration API](developers/configuration-api-hytale.md)
     - [:octicons-chevron-right-16: eCloud](developers/expansion-cloud.md)
 
 -   ### :material-alert-circle-outline: Common Issues
@@ -40,7 +41,8 @@ It also has a community-curated list of all available Placeholder expansions and
     
     Common problems you may face while using PlaceholderAPI, and how to solve them.
     
-    - [:octicons-chevron-right-16: Go to Page](common-issues.md)
+    - [:octicons-chevron-right-16: Common Issues](issues/index.md)
+    - [:octicons-chevron-right-16: eCloud connection blocked](issues/ecloud-block.md)
 
 -   ### :material-chat-question: FAQ
     

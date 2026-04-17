@@ -6,33 +6,35 @@ description: Guide on how to use PlaceholderAPI in your own plugin.
 
 This page is about using PlaceholderAPI in your own plugin, to either let other plugins use your plugin, or just use placeholders from other plugins in your own.
 
-Please note, that the examples in this page are only available for **PlaceholderAPI 2.10.0 or higher**!
+Please note, that the examples in this page are only available for **PlaceholderAPI 2.10.0 (1.0.0 for Hytale version) or newer**!
 
 ## First steps
 
-Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
-Use the below code example matching your dependency manager.
+### Add PlaceholderAPI to your Project
 
-/// tab | :simple-apachemaven: Maven
+Before you can actually make use of PlaceholderAPI, you first have to import it into your project.  
+Use the below code example matching your project type and dependency manager.
+
+/// tab | Minecraft (Spigot, Paper, ...)
+//// tab | :simple-apachemaven: Maven
 ```{ .xml title="pom.xml" data-md-component="api-version" }
     <repositories>
         <repository>
             <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/releases/</url>
+            <url>https://repo.helpch.at/releases/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-         <groupId>me.clip</groupId>
-          <artifactId>placeholderapi</artifactId>
-          <version>{version}</version>
-         <scope>provided</scope>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>{papiVersion}</version>
+            <scope>provided</scope>
         </dependency>
-    </dependencies>
 ```
-///
+////
 
-/// tab | :simple-gradle: Gradle
+//// tab | :simple-gradle: Gradle
 ```{ .groovy title="build.gradle" data-md-component="api-version" }
 repositories {
     maven {
@@ -41,15 +43,67 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'me.clip:placeholderapi:{version}'
+    compileOnly 'me.clip:placeholderapi:{papiVersion}'
 }
 ```
+////
 ///
 
-/// details | What is `{version}`?
+/// tab | Hytale
+//// tab | :simple-apachemaven: Maven
+```{ .xml title="pom.xml" data-md-component="api-version" }
+    <repositories>
+        <repository>
+          <id>hytale</id>
+          <url>https://repo.codemc.io/repository/hytale/</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.helpch.at/releases/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <!-- Replace {hytaleVersion} with the version you need -->
+            <groupId>com.hypixel.hytale</groupId>
+            <artifactId>Server</artifactId>
+            <version>{hytaleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>at.helpch</groupId>
+            <artifactId>placeholderapi-hytale</artifactId>
+            <version>{papiHytaleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+```
+////
+
+//// tab | :simple-gradle: Gradle
+```{ .groovy title="build.gradle" data-md-component="api-version" }
+repositories {
+    maven {
+        url = 'https://repo.codemc.io/repository/hytale/'
+    }
+    maven {
+        url = 'https://repo.helpch.at/releases/'
+    }
+}
+
+dependencies {
+    // Replace {hytaleVersion} with the version you need.
+    compileOnly 'com.hypixel.hytale:Server:{hytaleVersion}'
+    compileOnly 'at.helpch:placeholderapi-hytale:{papiHytaleVersion}'
+}
+```
+////
+///
+
+/// details | What is `{papiVersion}`/`{papiHytaleVersion}`?
     type: question
 
-Using Javascript, `{version}` is replaced with the latest available API version of PlaceholderAPI.  
+Using Javascript, `{papiVersion}` and `{papiHytaleVersion}` is replaced with the latest available API version of PlaceholderAPI for Minecraft and Hytale respectively.  
 Should you see the placeholder as-is does it mean that you either block Javascript, or that the version couldn't be obtained in time during page load.
 
 You can always find the latest version matching the API version on the [releases tab](https://github.com/PlaceholderAPI/PlaceholderAPI/releases) of the GitHub Repository.
@@ -71,7 +125,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 softdepend: ["PlaceholderAPI"] # (1)
 ```
@@ -89,7 +143,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 depend: ["PlaceholderAPI"] # (1)
 ```
@@ -111,7 +165,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 dependencies:
   server:
@@ -134,7 +188,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 name: ExamplePlugin
 version: 1.0
 author: author
-main: your.main.path.Here
+main: com.example.plugin.ExamplePlugin
 
 dependencies:
   server:
@@ -149,6 +203,42 @@ dependencies:
 
 ///
 
+/// tab | manifest.json (Hytale)
+
+//// tab | Optional dependency
+
+```{ .json .annotate title="manifest.json" }
+{
+    "Group": "com.example",
+    "Name": "ExamplePlugin",
+    "Version": "1.0",
+    "Main": "com.example.plugin.ExamplePlugin",
+    "OptionalDependencies": {
+        "HelpChat:PlaceholderAPI": ">= 1.0.2"
+    }
+}
+```
+
+////
+
+//// tab | Required dependency
+
+```{ .json .annotate title="manifest.json" }
+{
+    "Group": "com.example",
+    "Name": "ExamplePlugin",
+    "Version": "1.0",
+    "Main": "com.example.plugin.ExamplePlugin",
+    "Dependencies": {
+        "HelpChat:PlaceholderAPI": ">= 1.0.2"
+    }
+}
+```
+
+////
+
+///
+
 ## Adding placeholders to PlaceholderAPI
 
 A full guide on how to create expansions can be found on the [Creating a PlaceholderExpansion](creating-a-placeholderexpansion.md) page.
@@ -156,15 +246,22 @@ A full guide on how to create expansions can be found on the [Creating a Placeho
 ## Setting placeholders in your plugin
 
 PlaceholderAPI offers the ability, to automatically parse placeholders from other plugins within your own plugin, giving the ability for your plugin to support thousands of other placeholders without depending on each plugin individually.  
-To use placeholders from other plugins in our own plugin, we simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
+To use placeholders from other plugins in your own plugin, you simply have to [(soft)depend on PlaceholderAPI](#set-placeholderapi-as-softdepend) and use the `setPlaceholders` method.
 
 It is also important to point out, that any required plugin/dependency for an expansion has to be on the server and enabled, or the `setPlaceholders` method will just return the placeholder itself (do nothing).
 
-/// details | Example
-    type: example
+/// info | New since 2.12.0
+Starting with version 2.12.0 is it now possible to provide Components from the Adventure library to have placeholders parsed in.
 
-Let's assume we want to send a custom join message that shows the primary group a player has.  
-To achieve this, we can do the following:
+In order to use this new feature are the following things required to be true:
+
+- Your plugin runs on a Paper-based Server. Spigot-based servers will not work!
+- You use `PAPIComponent` instead of `PlaceholderAPI` to parse Components.
+///
+
+/// tab | Spigot, Paper, ...
+
+The following is an example plugin that sends `%player_name% joined the server! They are rank %vault_rank%` as the Join message, having the placeholders be replaced by PlaceholderAPI.
 
 //// note |
 The below example assumes a **soft dependency** on PlaceholderAPI to handle PlaceholderAPI not being present more decently.
@@ -173,7 +270,7 @@ Tab the :material-plus-circle: icons in the code block below for additional info
 ////
 
 ```{ .java .annotate title="JoinExample.java" }
-package at.helpch.placeholderapi;
+package com.example.plugin;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 
@@ -215,4 +312,80 @@ public class JoinExample extends JavaPlugin implements Listener {
     In our example are we providing a text containing `%player_name%` and `%vault_rank%` to be parsed, which require the Player and Vault expansion respectively.
     
     Example output: `Notch joined the server! They are rank Admin`
+
+    //// info | New since 2.12.0
+    Using `placeholderapi-papi` and `PAPIComponents` instead of `PlaceholderAPI` allows you to parse placeholders inside Adventure Components.
+    ////
+///
+
+/// tab | Hytale
+
+The following is an example plugin that modifies the chat to include a format before player messages. It relies on the [Player Expansion](https://ecloud.placeholderapi.com/expansions/player-hytale/), [Luckperms Expansion](https://ecloud.placeholderapi.com/expansions/luckperms-hytale/), and [HyFaction Expansion](https://ecloud.placeholderapi.com/expansions/hyfaction/).
+
+//// info | Thread Safety Warning
+Due to Hytale's api design, certain components can only be accessed by specific threads. For full compatibility with placeholderapi, you need to call setPlaceholders on the world thread the player is in. `player.getWorld().execute(() -> )`
+By default for player commands, you're already going to be on the world thread so it's not so much of an issue, but you do need to consider it if you're trying to do async work and then call PAPI, e.g. async player chat.
+////
+
+``` { .java .annotate title="ChatExample.java" }
+packate com.example.plugin;
+
+import at.helpch.placeholderapi.PlaceholderAPI;
+
+import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.Universe;
+import com.hypixel.hytale.server.core.universe.world.World;
+
+import java.util.UUID;
+
+public class ChatExample extends JavaPlugin {
+    private static final String FORMAT = "%rel_factions_relation% [%luckperms_prefix%] %player_name% > "
+
+    public ChatExample(JavaPluginInit init) {
+        super(init)
+    }
+
+    @Override
+    protected void setup() {
+        // (1)
+        getEventRegistry().registerGlobal(PlayerChatEvent.class, this::onPlayerChat));
+    }
+
+    public void onPlayerChat(PlayerChatEvent event) {
+        // (2)
+        PlayerRef sender = event.getSender();
+        final UUID worldUuid = sender.getWorldUuid();
+
+        if (worldUuid == null) {
+            return;
+        }
+
+        final World world = Universe.get().getWorld(worldUuid);
+
+        if (world == null) {
+            return;
+        } else {
+            event.setCancelled(true); // cancel event and run our own sending logic
+            // call your own chat event perhaps?
+            // HytaleServer.get().getEventBus().dispatchForAsync(CustomChatEvent.class);
+        }
+
+        world.execute(() -> {
+            String replacedFormat = PlaceholderAPI.setPlaceholders(sender, FORMAT);
+            for (PlayerRef recipient : event.getTargets()) {
+                recipient.sendMessage(Message.raw(PlaceholderAPI.setRelationalPlaceholders(sender, recipient, replacedFormat) + event.getContent()));
+            }
+        });
+    }
+}
+```
+
+1.  We tell the server to call `onPlayerChat` whenever a `PlayerChatEvent` fires.
+2.  PlaceholderAPI offers multiple `setPlaceholders` methods that can either return a `String` or a `Message` object, depending on your needs.  
+    Note that these methods require input of the same type: `setPlaceholders(PlayerRef, String)` for String and `setPlaceholders(PlayerRef, Message)` for Messages.
+
 ///

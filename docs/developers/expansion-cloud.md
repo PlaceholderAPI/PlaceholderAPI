@@ -8,7 +8,7 @@ description: Information about PlaceholderAPI's expansion cloud, including how t
 
 PlaceholderAPI uses an expansion-cloud (A website that has all kinds of expansions stored), to download jar files, that contain the placeholders for it to use.
 
-The expansion-cloud can be seen under https://api.extendedclip.com/home
+The expansion-cloud can be seen under https://ecloud.placeholderapi.com
 
 ## How it works
 
@@ -28,7 +28,7 @@ In order to do that, you have to follow those steps:
 
 1. Make sure you have created a seperate jar file as described in the [Creating a PlaceholderExpansion](creating-a-placeholderexpansion.md) page.
 2. Create an account on the site, or log in, if you already have one.
-3. Click on `Expansions` and then on [`Upload New`](https://api.extendedclip.com/manage/add/).
+3. Click on `Expansions` and then on [`Upload New`](https://ecloud.placeholderapi.com/expansions/new/).
 4. Fill out the required information. `Source URL` and `Dependency URL` are optional and would link to the source code and any dependency (plugin) of your expansion respectively.
 5. Click on the button that says `Choose an file...` and select the jar of your expansion.
     
@@ -54,7 +54,7 @@ This feature exists since version 2.11.4 of PlaceholderAPI.
 Before you update, please note the following:  
 Updating your expansion will automatically make it unverified, requiring a site moderator to verify it again. This was made to combat malware from being uploaded and distributed.
 
-To update your expansion, you first have to go to the list of [your expansions](https://api.extendedclip.com/manage/).  
+To update your expansion, you first have to go to the list of [your expansions](https://ecloud.placeholderapi.com/expansions/manage/).  
 For that click on `Expansions` and select `Your Expansions`.  
 After that, follow those steps:
 

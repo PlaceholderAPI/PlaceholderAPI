@@ -8,6 +8,12 @@ This page lists common issues you may encounter with PlaceholderAPI and how you 
 
 If you have more questions, feel free to join the [Discord Server](https://discord.gg/helpchat).
 
+## eCloud download fails / blocked connection
+
+If your host or network blocks outgoing connections to the Expansion Cloud (eCloud), PlaceholderAPI will be unable to download expansions.
+
+See: [eCloud connection blocked](ecloud-block.md)
+
 ## `java.lang.NoClassDefFoundError: com/google/gson/Gson`
 
 If you encounter an issue such as
@@ -39,3 +45,16 @@ In such a case, contact the developer of the expansion and inform them about thi
 This error is given whenever the expansion cannot be loaded, which often happens due to a missing dependency (required plugin) or because creating an expansion instance failed.
 
 The only thing you can do is to provide the full error so that we can check if the issue is caused by PlaceholderAPI (More unlikely) or by the expansion.
+
+## Some player placeholders aren't working on Hytale
+
+Due to Hytale's concurrency setup and PlaceholderAPI design choices, certain player placeholders require a particular parsing implementation on the dev side. If you're a plugin user and placeholders like %player_health% aren't working, but work fine when using `/papi parse me %player_health%`, chances are the plugin you're using has incorrectly implemented PlaceholderAPI support.
+
+To access certain player data, placeholders need to be parsed in the world thread of the player.
+
+```java
+final World world = player.getWorld();
+world.execute(() -> {
+	PlaceholderAPI.setPlaceholders(/* set placeholders here */);
+})
+```
