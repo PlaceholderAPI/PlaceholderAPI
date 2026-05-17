@@ -2,7 +2,6 @@ package me.clip.placeholderapi.util;
 
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
-import com.google.common.io.Resources;
 import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.manager.CloudExpansionManager;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -63,7 +61,7 @@ public final class ExpansionSafetyCheck {
         }
 
         final Set<String> maliciousPaths = new HashSet<>();
-        final File[] files = expansionsFolder.listFiles();
+        final File[] files = expansionsFolder.listFiles((dir, name) -> name.endsWith(".jar"));
 
         if (files == null) {
             return false;
