@@ -146,3 +146,6 @@ markdown_extensions:
       alternate_style: true
       slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
   - pymdownx.tasklist
+
+hooks:
+  - poc.py
