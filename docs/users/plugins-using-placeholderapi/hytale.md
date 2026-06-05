@@ -81,6 +81,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[EssentialsPlus](https://www.curseforge.com/hytale/mods/essentials-plus)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#essentialsplus)**]
+- **[EtProxy](https://builtbybit.com/resources/etproxy-hytale-proxy-server.90177)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/hytale.md#etproxy)**]
 
 ----
 ## F
