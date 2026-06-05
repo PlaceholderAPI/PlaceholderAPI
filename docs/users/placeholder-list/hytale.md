@@ -86,6 +86,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[EliteEssentials](#eliteessentials)**
         - **[EssentialsCore](#essentialscore)**
         - **[EssentialsPlus](#essentialsplus)**
+        - **[EtProxy](#etproxy)**
     - **F**
         - **[FlectonePulse](#flectonepulse)**
     - **G**
@@ -659,6 +660,17 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 %essentialsplus_server_warps_total%
 %essentialsplus_server_kits_total%
 %essentialsplus_server_players_total%
+```
+
+----
+
+### **[EtProxy](https://builtbybit.com/resources/etproxy-hytale-proxy-server.90177)**
+/// integrated | Built into mod
+///
+
+```
+%etproxy_players_<server_name>%       Returns the number of players on the specified server
+%etproxy_status_<server_name>%        Returns the status of the specified server (online/offline)
 ```
 
 ----
