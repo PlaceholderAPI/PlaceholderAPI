@@ -143,6 +143,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[AdvancedLottery](#advancedlottery)**
         - **[AdvancedModReq](#advancedmodreq)**
         - **[AdvancedServerList](#advancedserverlist)**
+        - **[AevorinReports](#aevorinreports)**
         - **[ajLeaderboards](#ajleaderboards)**
         - **[ajParkour](#ajparkour)**
         - **[AlonsoLevels](#alonsolevels)**
@@ -1921,6 +1922,62 @@ For more info, visit the [wiki](https://asl.andre601.ch/placeholderapi/#own-plac
 %asl_playercount_text%
 %asl_server_playersmax%
 ```
+
+----
+
+### **AevorinReports**
+/// integrated | Built into Plugin
+///
+
+All placeholders use the `reports` identifier.
+
+Current-viewer placeholders use the player the placeholder is being parsed for. These are useful for holograms, scoreboards, tab lists, and other per-player displays.
+
+| Placeholder                         | Description                                                                     |
+|-------------------------------------|---------------------------------------------------------------------------------|
+| `%reports_submitted%`               | Total reports submitted by the viewing player.                                  |
+| `%reports_pending_submitted%`       | Pending reports submitted by the viewing player.                                |
+| `%reports_resolved_submitted%`      | Resolved reports submitted by the viewing player.                               |
+| `%reports_valid_submitted%`         | Valid reports submitted by the viewing player. Currently counts resolved reports. |
+| `%reports_rejected_submitted%`      | Rejected reports submitted by the viewing player.                               |
+| `%reports_against%`                 | Total reports made against the viewing player.                                  |
+| `%reports_pending_against%`         | Pending reports made against the viewing player.                                |
+| `%reports_resolved_against%`        | Resolved reports made against the viewing player.                               |
+| `%reports_rejected_against%`        | Rejected reports made against the viewing player.                               |
+
+Specific-player placeholders query a named player instead of the viewing player. Replace `<player>` with a player name. Offline players must already be cached by the server.
+
+| Placeholder                                     | Description                                                                       |
+|-------------------------------------------------|-----------------------------------------------------------------------------------|
+| `%reports_submitted_by_<player>%`               | Total reports submitted by the specified player.                                  |
+| `%reports_pending_submitted_by_<player>%`       | Pending reports submitted by the specified player.                                |
+| `%reports_resolved_submitted_by_<player>%`      | Resolved reports submitted by the specified player.                               |
+| `%reports_valid_submitted_by_<player>%`         | Valid reports submitted by the specified player. Currently counts resolved reports. |
+| `%reports_rejected_submitted_by_<player>%`      | Rejected reports submitted by the specified player.                               |
+| `%reports_against_<player>%`                    | Total reports made against the specified player.                                  |
+| `%reports_pending_against_<player>%`            | Pending reports made against the specified player.                                |
+| `%reports_resolved_against_<player>%`           | Resolved reports made against the specified player.                               |
+| `%reports_rejected_against_<player>%`           | Rejected reports made against the specified player.                               |
+
+Network-wide placeholders count reports across the reports database.
+
+| Placeholder                 | Description                            |
+|-----------------------------|----------------------------------------|
+| `%reports_total%`           | Total number of reports in the system. |
+| `%reports_total_pending%`   | Total pending reports.                 |
+| `%reports_total_resolved%`  | Total resolved reports.                |
+| `%reports_total_rejected%`  | Total rejected reports.                |
+
+Specific-server placeholders count reports for one configured server name. Replace `<server>` with the server name stored in AevorinReports' `server-name` config option.
+
+These placeholders only return server-specific counts when AevorinReports is using MySQL and multiple servers are connected to the same database.
+
+| Placeholder                              | Description                                     |
+|------------------------------------------|-------------------------------------------------|
+| `%reports_total_on_<server>%`            | Total reports created on the specified server.  |
+| `%reports_total_pending_on_<server>%`    | Total pending reports on the specified server.  |
+| `%reports_total_resolved_on_<server>%`   | Total resolved reports on the specified server. |
+| `%reports_total_rejected_on_<server>%`   | Total rejected reports on the specified server. |
 
 ----
 
