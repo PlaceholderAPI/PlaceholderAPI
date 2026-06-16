@@ -60,28 +60,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     private static PlaceholderAPIPlugin instance;
 
     static {
-        String version = normalizeBukkitVersion(Bukkit.getServer().getBukkitVersion());
-
-        String suffix;
-        if (version.chars()
-                .filter(c -> c == '.')
-                .count() == 1) {
-            suffix = "R1";
-            version = 'v' + version.replace('.', '_') + '_' + suffix;
-        } else {
-            final String[] versionParts = version.split("\\.");
-
-            int minor = 1;
-            if (versionParts.length > 2 && !versionParts[2].isEmpty()) {
-                try {
-                    minor = Integer.parseInt(versionParts[2].charAt(0) + "");
-                } catch (final NumberFormatException ignored) {
-                    minor = 1;
-                }
-            }
-
-            version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
-        }
+        final String version = ServerVersionResolver.resolve(
+                Bukkit.getServer().getBukkitVersion()).getLegacyVersion();
 
         boolean isSpigot;
         try {
@@ -305,15 +285,4 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
         }
     }
 
-    @NotNull
-    private static String normalizeBukkitVersion(@NotNull final String bukkitVersion) {
-        String version = bukkitVersion.split("-", 2)[0];
-
-        final int paperBuildMetadataIndex = version.indexOf(".build.");
-        if (paperBuildMetadataIndex != -1) {
-            version = version.substring(0, paperBuildMetadataIndex);
-        }
-
-        return version;
-    }
 }
