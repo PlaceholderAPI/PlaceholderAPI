@@ -61,16 +61,29 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
 
     static {
         String version = Bukkit.getServer().getBukkitVersion().split("-")[0];
-        String suffix;
-        if (version.chars()
-                .filter(c -> c == '.')
-                .count() == 1) {
-            suffix = "R1";
-            version = 'v' + version.replace('.', '_') + '_' + suffix;
-        } else {
-            int minor = Integer.parseInt(version.split("\\.")[2].charAt(0) + "");
-            version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
+        String[] parts = version.split("\\.");
+        String major = parts.length > 0 ? parts[0] : "0";
+        String minor = parts.length > 1 ? parts[1] : "0";
+        String patch = null;
+        if (parts.length > 2) {
+            patch = parts[2];
         }
+        
+        String suffix;
+        // Case: 26.2  → only 2 numbers
+        if (patch == null) {
+            suffix = "R1";
+        }
+        // Case: 26.1.2 → 3 numbers
+        else {
+            try {
+                int patchNum = Integer.parseInt(patch.replaceAll("\\D", ""));
+                suffix = "R" + Math.max(1, patchNum);
+            } catch (Exception e) {
+                suffix = "R1";
+            }
+        }
+        version = "v" + major + "_" + minor + "_" + suffix;
 
         boolean isSpigot;
         try {
