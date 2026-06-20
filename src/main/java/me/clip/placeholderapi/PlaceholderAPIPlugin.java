@@ -60,17 +60,8 @@ public final class PlaceholderAPIPlugin extends JavaPlugin {
     private static PlaceholderAPIPlugin instance;
 
     static {
-        String version = Bukkit.getServer().getBukkitVersion().split("-")[0];
-        String suffix;
-        if (version.chars()
-                .filter(c -> c == '.')
-                .count() == 1) {
-            suffix = "R1";
-            version = 'v' + version.replace('.', '_') + '_' + suffix;
-        } else {
-            int minor = Integer.parseInt(version.split("\\.")[2].charAt(0) + "");
-            version = 'v' + version.replace('.', '_').replace("_" + minor, "") + '_' + "R" + (minor - 1);
-        }
+        final String version = ServerVersionResolver.resolve(
+                Bukkit.getServer().getBukkitVersion()).getLegacyVersion();
 
         boolean isSpigot;
         try {
