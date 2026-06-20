@@ -71,6 +71,9 @@ If your plugin isn't shown here and you want it to be added, [read the Wiki READ
 - **[Advance Tab](https://www.spigotmc.org/resources/21958/)**
     - [x] Supports placeholders.
     - [ ] Provides own placeholders. [Link]
+- **[AevorinReports](https://modrinth.com/plugin/aevorinreports)**
+    - [ ] Supports placeholders.
+    - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#aevorinreports)**]
 - **[ajParkour](https://www.spigotmc.org/resources/60909/)**
     - [x] Supports placeholders.
     - [x] Provides own placeholders. [**[Link](../placeholder-list/minecraft.md#ajparkour)**]

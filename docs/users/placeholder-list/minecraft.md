@@ -143,6 +143,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[AdvancedLottery](#advancedlottery)**
         - **[AdvancedModReq](#advancedmodreq)**
         - **[AdvancedServerList](#advancedserverlist)**
+        - **[AevorinReports](#aevorinreports)**
         - **[ajLeaderboards](#ajleaderboards)**
         - **[ajParkour](#ajparkour)**
         - **[AlonsoLevels](#alonsolevels)**
@@ -1924,6 +1925,62 @@ For more info, visit the [wiki](https://asl.andre601.ch/placeholderapi/#own-plac
 
 ----
 
+### **AevorinReports**
+/// integrated | Built into Plugin
+///
+
+All placeholders use the `reports` identifier.
+
+Current-viewer placeholders use the player the placeholder is being parsed for. These are useful for holograms, scoreboards, tab lists, and other per-player displays.
+
+| Placeholder                         | Description                                                                     |
+|-------------------------------------|---------------------------------------------------------------------------------|
+| `%reports_submitted%`               | Total reports submitted by the viewing player.                                  |
+| `%reports_pending_submitted%`       | Pending reports submitted by the viewing player.                                |
+| `%reports_resolved_submitted%`      | Resolved reports submitted by the viewing player.                               |
+| `%reports_valid_submitted%`         | Valid reports submitted by the viewing player. Currently counts resolved reports. |
+| `%reports_rejected_submitted%`      | Rejected reports submitted by the viewing player.                               |
+| `%reports_against%`                 | Total reports made against the viewing player.                                  |
+| `%reports_pending_against%`         | Pending reports made against the viewing player.                                |
+| `%reports_resolved_against%`        | Resolved reports made against the viewing player.                               |
+| `%reports_rejected_against%`        | Rejected reports made against the viewing player.                               |
+
+Specific-player placeholders query a named player instead of the viewing player. Replace `<player>` with a player name. Offline players must already be cached by the server.
+
+| Placeholder                                     | Description                                                                       |
+|-------------------------------------------------|-----------------------------------------------------------------------------------|
+| `%reports_submitted_by_<player>%`               | Total reports submitted by the specified player.                                  |
+| `%reports_pending_submitted_by_<player>%`       | Pending reports submitted by the specified player.                                |
+| `%reports_resolved_submitted_by_<player>%`      | Resolved reports submitted by the specified player.                               |
+| `%reports_valid_submitted_by_<player>%`         | Valid reports submitted by the specified player. Currently counts resolved reports. |
+| `%reports_rejected_submitted_by_<player>%`      | Rejected reports submitted by the specified player.                               |
+| `%reports_against_<player>%`                    | Total reports made against the specified player.                                  |
+| `%reports_pending_against_<player>%`            | Pending reports made against the specified player.                                |
+| `%reports_resolved_against_<player>%`           | Resolved reports made against the specified player.                               |
+| `%reports_rejected_against_<player>%`           | Rejected reports made against the specified player.                               |
+
+Network-wide placeholders count reports across the reports database.
+
+| Placeholder                 | Description                            |
+|-----------------------------|----------------------------------------|
+| `%reports_total%`           | Total number of reports in the system. |
+| `%reports_total_pending%`   | Total pending reports.                 |
+| `%reports_total_resolved%`  | Total resolved reports.                |
+| `%reports_total_rejected%`  | Total rejected reports.                |
+
+Specific-server placeholders count reports for one configured server name. Replace `<server>` with the server name stored in AevorinReports' `server-name` config option.
+
+These placeholders only return server-specific counts when AevorinReports is using MySQL and multiple servers are connected to the same database.
+
+| Placeholder                              | Description                                     |
+|------------------------------------------|-------------------------------------------------|
+| `%reports_total_on_<server>%`            | Total reports created on the specified server.  |
+| `%reports_total_pending_on_<server>%`    | Total pending reports on the specified server.  |
+| `%reports_total_resolved_on_<server>%`   | Total resolved reports on the specified server. |
+| `%reports_total_rejected_on_<server>%`   | Total rejected reports on the specified server. |
+
+----
+
 ### **[ajLeaderboards](https://www.spigotmc.org/resources/85548/)**
 /// integrated | Built into Plugin
 ///
@@ -3035,45 +3092,56 @@ This expansion works with both Essentials and [EssentialsX](https://essentialsx.
 
 ```
 %essentials_afk%
+%essentials_afk_player_count%
 %essentials_afk_reason%
+%essentials_baltop_balance_<rank>%
+%essentials_baltop_balance_commas_<rank>%
+%essentials_baltop_balance_fixed_<rank>%
+%essentials_baltop_balance_formatted_<rank>%
+%essentials_baltop_player_<rank>%
+%essentials_baltop_player_stripped_<rank>%
+%essentials_baltop_rank%
+%essentials_baltop_player_stripped_<num>%
 %essentials_fly%
 %essentials_geolocation%
 %essentials_godmode%
-%essentials_has_kit_<kitname>%
-%essentials_home_<number>
-%essentials_home_<number>_<w|x|y|z>%
-%essentials_homes_set%
+%essentials_home_has_<name>%
+%essentials_home_max%
+%essentials_home_name_<index>%
+%essentials_home_total%
+%essentials_home_world_<name|index>%
+%essentials_home_x_<name|index>%
+%essentials_home_y_<name|index>%
+%essentials_home_z_<name|index>%
 %essentials_homes_max%
+%essentials_homes_set%
+%essentials_is_clearinventory_confirm%
 %essentials_is_muted%
 %essentials_is_pay_confirm%
 %essentials_is_pay_enabled%
 %essentials_is_teleport_enabled%
 %essentials_jailed%
 %essentials_jailed_time_remaining%
+%essentials_kit_has_<kitname>%
 %essentials_kit_is_available_<kitname>%
 %essentials_kit_last_use_<kitname>%
 %essentials_kit_time_until_available_<kitname>%
 %essentials_kit_time_until_available_raw_<kitname>%
 %essentials_msg_ignore%
+%essentials_muted%
 %essentials_muted_time_remaining%
 %essentials_nickname%
 %essentials_nickname_stripped%
 %essentials_pm_recipient%
 %essentials_safe_online%
+%essentials_tp_cooldown%
 %essentials_unique%
 %essentials_vanished%
 %essentials_world_date%
 %essentials_world_time%
 %essentials_world_time_24%
 %essentials_worth%
-%essentials_worth:<item>%
-%essentials_baltop_balance_fixed_<rank>%
-%essentials_baltop_balance_formatted_<rank>%
-%essentials_baltop_balance_commas_<rank>%
-%essentials_baltop_balance_<rank>%
-%essentials_baltop_player_<rank>%
-%essentials_baltop_rank%
-%essentials_baltop_player_stripped_<num>%
+%essentials_worth:<material>%
 ```
 
 ----
