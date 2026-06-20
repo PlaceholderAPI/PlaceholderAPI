@@ -664,13 +664,14 @@ Please see ?510 for a list of all expansions officially maintained by the Placeh
 
 ----
 
-### **[EtProxy](https://builtbybit.com/resources/etproxy-hytale-proxy-server.90177)**
+### **[EtProxy](https://eliteplugins.hexye.xyz/product/etproxy)**
 /// integrated | Built into mod
 ///
 
 ```
 %etproxy_players_<server_name>%       Returns the number of players on the specified server
 %etproxy_status_<server_name>%        Returns the status of the specified server (online/offline)
+%etproxy_network_players%             Returns the total number of players on the whole network
 ```
 
 ----
