@@ -214,7 +214,7 @@ dependencies:
     "Version": "1.0",
     "Main": "com.example.plugin.ExamplePlugin",
     "OptionalDependencies": {
-        "HelpChat:PlaceholderAPI": ">= 1.0.2"
+        "HelpChat:PlaceholderAPI": ">=1.0.8"
     }
 }
 ```
@@ -230,7 +230,7 @@ dependencies:
     "Version": "1.0",
     "Main": "com.example.plugin.ExamplePlugin",
     "Dependencies": {
-        "HelpChat:PlaceholderAPI": ">= 1.0.2"
+        "HelpChat:PlaceholderAPI": ">=1.0.8"
     }
 }
 ```
