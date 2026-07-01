@@ -49,13 +49,15 @@ public final class CharsReplacer implements Replacer {
      * May be {@code null} if no player context is available.
      * @param lookup A function that maps a lowercase identifier string to a registered
      * {@link PlaceholderExpansion}.
+     * @param resolver Resolves a registered {@link PlaceholderExpansion} to its replacement value.
      * @return A string with all valid placeholders replaced by their respective values.
      * Returns the original text if no placeholders are found.
      */
     @NotNull
     @Override
     public String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
-                        @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
+                        @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup,
+                        @NotNull final PlaceholderResolver resolver) {
         final char head = closure.head;
         int startPlaceholder = text.indexOf(head);
 
@@ -124,7 +126,7 @@ public final class CharsReplacer implements Replacer {
             String replacement = null;
 
             if (expansion != null) {
-                replacement = expansion.onRequest(player, parameters);
+                replacement = resolver.resolve(expansion, player, parameters);
             }
 
             if (replacement != null) {

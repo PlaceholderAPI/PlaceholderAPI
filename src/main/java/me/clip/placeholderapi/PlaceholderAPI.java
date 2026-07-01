@@ -65,8 +65,8 @@ public final class PlaceholderAPI {
     @NotNull
     public static String setPlaceholders(final OfflinePlayer player,
                                          @NotNull final String text) {
-        return REPLACER_PERCENT.apply(text, player,
-                PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+        final LocalExpansionManager manager = PlaceholderAPIPlugin.getInstance().getLocalExpansionManager();
+        return REPLACER_PERCENT.apply(text, player, manager::getExpansion, manager::resolvePlaceholderValue);
     }
 
     /**
@@ -124,8 +124,8 @@ public final class PlaceholderAPI {
     @NotNull
     public static String setBracketPlaceholders(final OfflinePlayer player,
                                                 @NotNull final String text) {
-        return REPLACER_BRACKET.apply(text, player,
-                PlaceholderAPIPlugin.getInstance().getLocalExpansionManager()::getExpansion);
+        final LocalExpansionManager manager = PlaceholderAPIPlugin.getInstance().getLocalExpansionManager();
+        return REPLACER_BRACKET.apply(text, player, manager::getExpansion, manager::resolvePlaceholderValue);
     }
 
     /**
