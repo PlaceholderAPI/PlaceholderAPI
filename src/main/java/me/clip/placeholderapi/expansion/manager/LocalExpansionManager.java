@@ -94,7 +94,7 @@ public final class LocalExpansionManager implements Listener {
         this.folder = new File(plugin.getDataFolder(), EXPANSIONS_FOLDER_NAME);
 
         if (!this.folder.exists() && !folder.mkdirs()) {
-            Msg.warn("Failed to create expansions folder!");
+            plugin.getLogger().warning("Failed to create expansions folder!");
         }
     }
 
