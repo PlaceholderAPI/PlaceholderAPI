@@ -12,11 +12,10 @@ on:
     #
     branches:
       - 'wiki'
-    #
-    # Ignore changes to the README.md file
-    #
-    paths-ignore:
-      - 'README.md'
+    paths:
+      - ".theme/**"
+      - "docs/**"
+      - "mkdocs.yml"
     #
     # Releases cause this action to also fire.
     # Using this prevents this problem.
