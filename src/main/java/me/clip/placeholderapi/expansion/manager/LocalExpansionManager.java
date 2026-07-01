@@ -455,7 +455,7 @@ public final class LocalExpansionManager implements Listener {
                 throw ((LinkageError) ex.getCause());
             }
 
-            Msg.warn("There was an issue with loading an expansion.");
+            Msg.severe("Failed to create expansion instance for class %s.", ex, clazz.getName());
             return null;
         }
     }
