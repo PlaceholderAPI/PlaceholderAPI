@@ -1,0 +1,34 @@
+#
+# A separate Workflow to comment on Pull requests
+# for failed Wiki validation runs.
+#
+# This is to avoid code execution injected by
+# extensions, plugins or hooks in MkDocs, that could
+# abuse write permissions.
+#
+name: "Comment on failed Validation"
+
+on:
+  workflow_run:
+    workflows:
+      - "Validate Wiki Build"
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+
+jobs:
+  comment:
+    if: github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on Pull request
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          body: |
+            ## Build validation failed
+
+            Something went wrong while running a test-build with this Pull request's changes.  
+            Please check the [Workflow Run Logs](${{ github.event.workflow_run.html_url }}) for any details.
