@@ -20,6 +20,7 @@
 
 package me.clip.placeholderapi.expansion;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
@@ -138,6 +139,10 @@ public abstract class PlaceholderExpansion extends PlaceholderHook {
     public boolean canRegister() {
         return getRequiredPlugin() == null
                 || Bukkit.getPluginManager().getPlugin(getRequiredPlugin()) != null;
+    }
+
+    public Collection<TypeHandler<?>> provideTypeHandlers() {
+        return Collections.emptyList();
     }
 
     /**

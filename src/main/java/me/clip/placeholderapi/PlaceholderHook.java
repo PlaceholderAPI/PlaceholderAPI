@@ -35,8 +35,40 @@ public abstract class PlaceholderHook {
         return onPlaceholderRequest(null, params);
     }
 
+    /**
+     * Override this method when a placeholder should return a non-string value for type handling.
+     * <br>The default delegates to {@link #onPlaceholderTypeHandledRequest(Player, String)} with an online
+     * {@link Player}, matching the behavior of {@link #onRequest(OfflinePlayer, String)}.
+     *
+     * @param player Player to parse the placeholder against
+     * @param params Placeholder parameters
+     * @return Object to resolve through type handlers, or null to leave the placeholder unchanged
+     */
+    @Nullable
+    public Object onTypeHandledRequest(final OfflinePlayer player, @NotNull final String params) {
+        if (player != null && player.isOnline()) {
+            return onPlaceholderTypeHandledRequest(player.getPlayer(), params);
+        }
+
+        return onPlaceholderTypeHandledRequest(null, params);
+    }
+
     @Nullable
     public String onPlaceholderRequest(final Player player, @NotNull final String params) {
+        return null;
+    }
+
+    /**
+     * Override this method when a player placeholder should return a non-string value for type handling.
+     * <br>The default returns null so legacy string placeholders are only resolved through
+     * {@link #onRequest(OfflinePlayer, String)}.
+     *
+     * @param player Online player to parse the placeholder against
+     * @param params Placeholder parameters
+     * @return Object to resolve through type handlers, or null to leave the placeholder unchanged
+     */
+    @Nullable
+    public Object onPlaceholderTypeHandledRequest(final Player player, @NotNull final String params) {
         return null;
     }
 }
