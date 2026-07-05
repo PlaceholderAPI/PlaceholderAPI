@@ -409,9 +409,10 @@ public final class LocalExpansionManager implements Listener {
 
     @NotNull
     public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
+        System.out.println(folder);
+
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
 
-        System.out.println(folder);
         System.out.println("FIND FILES - " + Arrays.toString(files));
 
         if (files == null) {
