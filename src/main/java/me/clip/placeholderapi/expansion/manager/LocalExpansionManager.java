@@ -351,13 +351,19 @@ public final class LocalExpansionManager implements Listener {
         Msg.info("Placeholder expansion registration initializing...");
 
         Futures.onMainThread(plugin, findExpansionsOnDisk(), (classes, exception) -> {
+            System.out.println("LOAD1");
+
             if (exception != null) {
                 Msg.severe("Failed to load class files of expansion.", exception);
+                exception.printStackTrace();
                 return;
             }
 
+            System.out.println("LOAD2 - size: " + classes.size());
+
             final List<PlaceholderExpansion> registered = classes.stream()
                     .filter(Objects::nonNull)
+                    .peek(clazz -> System.out.println("Attempting register of - " + clazz))
                     .map(this::register)
                     .filter(Optional::isPresent)
                     .map(Optional::get)
@@ -386,6 +392,8 @@ public final class LocalExpansionManager implements Listener {
             Msg.msg(sender, message.toString());
 
             Bukkit.getPluginManager().callEvent(new ExpansionsLoadedEvent(registered));
+
+            System.out.println("LOAD3");
         });
     }
 
@@ -402,6 +410,10 @@ public final class LocalExpansionManager implements Listener {
     @NotNull
     public CompletableFuture<@NotNull List<@Nullable Class<? extends PlaceholderExpansion>>> findExpansionsOnDisk() {
         File[] files = folder.listFiles((dir, name) -> name.endsWith(".jar"));
+
+        System.out.println(folder);
+        System.out.println("FIND FILES - " + Arrays.toString(files));
+
         if (files == null) {
             return CompletableFuture.completedFuture(Collections.emptyList());
         }
@@ -414,6 +426,8 @@ public final class LocalExpansionManager implements Listener {
     @NotNull
     public CompletableFuture<@Nullable Class<? extends PlaceholderExpansion>> findExpansionInFile(
             @NotNull final File file) {
+        System.out.println("FOUND FILE - " + file);
+
         return CompletableFuture.supplyAsync(() -> {
             try {
                 final Class<? extends PlaceholderExpansion> expansionClass = FileUtil.findClass(file, PlaceholderExpansion.class);

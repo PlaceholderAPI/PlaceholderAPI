@@ -91,6 +91,8 @@ public final class CommandDump extends PlaceholderCommand {
 
     @NotNull
     private CompletableFuture<String> postDump(@NotNull final String dump) {
+        System.out.println("DUMP CREATE SUCCESS");
+
         return CompletableFuture.supplyAsync(() -> {
             try {
                 final HttpURLConnection connection = ((HttpURLConnection) new URL(URL + "documents")
@@ -110,6 +112,7 @@ public final class CommandDump extends PlaceholderCommand {
                     return gson.fromJson(json, JsonObject.class).get("key").getAsString();
                 }
             } catch (final IOException ex) {
+                ex.printStackTrace();
                 throw new CompletionException(ex);
             }
         });
@@ -123,12 +126,16 @@ public final class CommandDump extends PlaceholderCommand {
                 .append(DATE_FORMAT.format(Instant.now()))
                 .append("\n\n");
 
+        System.out.println("DUMP1");
+
         builder.append("PlaceholderAPI: ")
                 .append(plugin.getDescription().getVersion())
                 .append("\n\n");
 
         builder.append("Expansions Registered:")
                 .append('\n');
+
+        System.out.println("DUMP2");
 
         final List<PlaceholderExpansion> expansions = plugin.getLocalExpansionManager()
                 .getExpansions()
@@ -138,6 +145,8 @@ public final class CommandDump extends PlaceholderCommand {
                                 .thenComparing(PlaceholderExpansion::getAuthor)
                 )
                 .collect(Collectors.toList());
+
+        System.out.println("DUMP3");
 
         int size = expansions.stream().map(e -> e.getIdentifier().length())
                 .max(Integer::compareTo)
@@ -163,6 +172,7 @@ public final class CommandDump extends PlaceholderCommand {
                 .getExpansionsFolder()
                 .list((dir, name) -> name.toLowerCase(Locale.ROOT).endsWith(".jar"));
 
+        System.out.println("DUMP4");
 
         if (jars == null) {
             builder.append("  ¨[Warning]: Could not load jar files from expansions folder.");
@@ -182,9 +192,13 @@ public final class CommandDump extends PlaceholderCommand {
                 .append(plugin.getServer().getVersion())
                 .append("\n");
 
+        System.out.println("DUMP5");
+
         builder.append("Java Version: ")
                 .append(System.getProperty("java.version"))
                 .append("\n\n");
+
+        System.out.println("DUMP6");
 
         builder.append("Plugin Info:")
                 .append('\n');
@@ -192,6 +206,8 @@ public final class CommandDump extends PlaceholderCommand {
         List<Plugin> plugins = Arrays.stream(plugin.getServer().getPluginManager().getPlugins())
                 .sorted(Comparator.comparing(Plugin::getName))
                 .collect(Collectors.toList());
+
+        System.out.println("DUMP7");
 
         size = plugins.stream().map(pl -> pl.getName().length())
                 .max(Integer::compareTo)
@@ -207,6 +223,8 @@ public final class CommandDump extends PlaceholderCommand {
                     .append("]")
                     .append("\n");
         }
+
+        System.out.println("DUMP8");
 
         return builder.toString();
     }
