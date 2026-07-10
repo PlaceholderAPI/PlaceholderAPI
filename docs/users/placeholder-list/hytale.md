@@ -73,6 +73,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
 
 - [Mod-placeholders](#Mod-placeholders)
     - **A**
+        - **[AeroWars](#aerowars)**
         - **[ArenaPVP](#arenapvp)**
     - **B**
         - *No Expansions*
@@ -401,6 +402,52 @@ Expansions listed here require the linked resource (plugin/mod) to work properly
 
 Most of the listed Expansions are NOT made and maintained by the PlaceholderAPI team.  
 Please see ?510 for a list of all expansions officially maintained by the PlaceholderAPI team.
+
+### **[AeroWars](https://www.curseforge.com/hytale/mods/aerowars)**
+/// integrated | Built into mod
+///
+[More info](https://stoshelabs.github.io/aerowars/guide/reference/placeholders)
+
+```
+%aerowars_arenas%
+%aerowars_arenas_total%
+%aerowars_matches%
+%aerowars_matches_solo%
+%aerowars_matches_teams%
+%aerowars_players%
+%aerowars_queue%
+%aerowars_queue_solo%
+%aerowars_queue_teams%
+%aerowars_player_arena%
+%aerowars_player_status%
+%aerowars_player_mode%
+%aerowars_player_kills%
+%aerowars_player_alive%
+%aerowars_in_arena%
+%aerowars_in_queue%
+%aerowars_is_spectator%
+%aerowars_is_busy%
+%aerowars_in_group%
+%aerowars_is_leader%
+%aerowars_group_size%
+%aerowars_group_online%
+%aerowars_group_leader%
+%aerowars_kills%
+%aerowars_deaths%
+%aerowars_wins%
+%aerowars_losses%
+%aerowars_games%
+%aerowars_kdr%
+%aerowars_wlr%
+%aerowars_top_{metric}_name_{pos}%
+%aerowars_top_{metric}_value_{pos}%
+%aerowars_arena_{name}_players%
+%aerowars_arena_{name}_max%
+%aerowars_arena_{name}_mode%
+%aerowars_arena_{name}_state%
+```
+
+----
 
 ### **[ArenaPVP](https://www.curseforge.com/hytale/mods/arena-pvp)**
 /// integrated | Built into mod
