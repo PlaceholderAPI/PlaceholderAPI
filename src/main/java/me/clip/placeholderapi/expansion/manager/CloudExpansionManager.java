@@ -34,7 +34,6 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -94,7 +93,7 @@ public final class CloudExpansionManager {
     private final PlaceholderAPIPlugin plugin;
 
     @NotNull
-    private final Map<String, CloudExpansion> cache = new HashMap<>();
+    private final Map<String, CloudExpansion> cache = new ConcurrentHashMap<>();
     @NotNull
     private final Map<String, CompletableFuture<File>> await = new ConcurrentHashMap<>();
 
