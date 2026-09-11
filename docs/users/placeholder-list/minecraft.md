@@ -4874,6 +4874,7 @@ For more information and usage examples, see the [PlayerStatsExpansion GitHub](h
 ### **[PlayTimeManager](https://modrinth.com/plugin/playtimemanager)**
 /// integrated | Built into Plugin
 ///
+
 For a detailed explanation of how to use PlayTimeManager's placeholders, you can take a look at the [PlayTimeManager Wiki](https://github.com/TheGaBr0/PlayTimeManager/wiki/Placeholders).
 
 ```
@@ -5058,6 +5059,8 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 /// integrated | Built into Plugin
 ///
 
+For more information, or the updated list you can take a look at the [PrefiX wiki](https://gitlab.com/martijnpu/prefix/-/wikis/Placeholders).
+
 ```
 %prefix_prefix%
 %prefix_startcolor%
@@ -5066,6 +5069,7 @@ For a detailed explanation of how to use PlayTimeManager's placeholders, you can
 %prefix_tag%
 %prefix_endchar%
 %prefix_namecolor%
+%prefix_template_<name>%
 
 %suffix_suffix%
 %suffix_startcolor%
