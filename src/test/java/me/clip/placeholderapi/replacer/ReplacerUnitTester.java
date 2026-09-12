@@ -26,9 +26,15 @@ import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYE
 import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.PLAYER_Z;
 import static me.clip.placeholderapi.Values.MockPlayerPlaceholderExpansion.EMPTY_ARGUMENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import me.clip.placeholderapi.Values;
+import java.util.concurrent.atomic.AtomicReference;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.OfflinePlayer;
 import org.junit.jupiter.api.Test;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public final class ReplacerUnitTester {
 
@@ -71,6 +77,45 @@ public final class ReplacerUnitTester {
         final String text = "10% and %hello world 15%";
 
         assertEquals(text, Values.CHARS_REPLACER.apply(text, null, Values.PLACEHOLDERS::get));
+    }
+
+    @Test
+    void testCharsReplacerKeepsPlaceholderWhenExpansionThrows() {
+        final AtomicReference<Throwable> logged = new AtomicReference<>();
+        final PlaceholderExpansion expansion = new PlaceholderExpansion() {
+            @NotNull
+            @Override
+            public String getIdentifier() {
+                return "broken";
+            }
+
+            @NotNull
+            @Override
+            public String getAuthor() {
+                return "test";
+            }
+
+            @NotNull
+            @Override
+            public String getVersion() {
+                return "1.0";
+            }
+
+            @Override
+            public String onRequest(@Nullable final OfflinePlayer player, @NotNull final String params) {
+                throw new IllegalStateException("broken expansion");
+            }
+
+            @Override
+            public void severe(final String message, final Throwable throwable) {
+                logged.set(throwable);
+            }
+        };
+
+        assertEquals("%broken_value% and Sxtanna",
+                Values.CHARS_REPLACER.apply("%broken_value% and %player_name%", null,
+                        identifier -> "broken".equals(identifier) ? expansion : Values.PLACEHOLDERS.get(identifier)));
+        assertSame(IllegalStateException.class, logged.get().getClass());
     }
 
 }
