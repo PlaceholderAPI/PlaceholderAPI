@@ -44,19 +44,16 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.events.ExpansionRegisterEvent;
 import me.clip.placeholderapi.events.ExpansionUnregisterEvent;
 import me.clip.placeholderapi.events.ExpansionsLoadedEvent;
-import me.clip.placeholderapi.expansion.Cacheable;
-import me.clip.placeholderapi.expansion.Cleanable;
-import me.clip.placeholderapi.expansion.Configurable;
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Taskable;
-import me.clip.placeholderapi.expansion.VersionSpecific;
+import me.clip.placeholderapi.expansion.*;
 import me.clip.placeholderapi.expansion.cloud.CloudExpansion;
 import me.clip.placeholderapi.util.FileUtil;
 import me.clip.placeholderapi.util.Futures;
 import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
@@ -86,6 +83,7 @@ public final class LocalExpansionManager implements Listener {
 
     @NotNull
     private final Map<String, PlaceholderExpansion> expansions = new ConcurrentHashMap<>();
+    private final Map<Class<?>, TypeHandler> typeHandlers = new ConcurrentHashMap<>();
     private final ReentrantLock expansionsLock = new ReentrantLock();
 
 
@@ -208,6 +206,64 @@ public final class LocalExpansionManager implements Listener {
         return Optional.empty();
     }
 
+    @Nullable
+    public String resolvePlaceholderValue(@NotNull final PlaceholderExpansion expansion, @Nullable final OfflinePlayer player,
+                                          @NotNull final String args) {
+        Object value = expansion.onRequest(player, args);
+
+        if (value != null) {
+            return (String) value;
+        }
+
+        value = expansion.onTypeHandledRequest(player, args);
+
+        if (value instanceof String) {
+            return (String) value;
+        }
+
+        if (value != null) {
+            return resolveTypeHandler(value, player, args);
+        }
+
+        return null;
+    }
+
+    @Nullable
+    public String resolveTypeHandler(@NotNull final Object value, @Nullable final OfflinePlayer player,
+                                     @NotNull final String args) {
+        TypeHandler handler = null;
+
+        for (final TypeHandler<?> typeHandler : typeHandlers.values()) {
+            if (typeHandler.typeClass() == value.getClass()) {
+                handler = typeHandler;
+            }
+        }
+
+        if (handler == null) {
+            for (final TypeHandler<?> typeHandler : typeHandlers.values()) {
+                if (typeHandler.includeDerivatives() && typeHandler.typeClass().isAssignableFrom(value.getClass())) {
+                    handler = typeHandler;
+                }
+            }
+        }
+
+        if (handler == null) {
+            Msg.warn("Failed to resolve type handler for placeholder %s and type %s", args, value.getClass().getSimpleName());
+            return null;
+        }
+
+        return handler.onRequest(new PlaceholderContext<>(player(player), value, args));
+    }
+
+    @Nullable
+    private Player player(@Nullable final OfflinePlayer player) {
+        if (player == null || !player.isOnline()) {
+            return null;
+        }
+
+        return player.getPlayer();
+    }
+
     /**
      * Attempt to register a {@link PlaceholderExpansion}
      *
@@ -226,6 +282,16 @@ public final class LocalExpansionManager implements Listener {
         if (expansion.getExpansionType() == PlaceholderExpansion.Type.EXTERNAL && expansions.containsKey(identifier)) {
             Msg.warn("Failed to load external expansion %s. Identifier is already in use.", expansion.getIdentifier());
             return false;
+        }
+
+        for (final TypeHandler<?> typeHandler : expansion.provideTypeHandlers()) {
+            if (typeHandler.typeClass().isAssignableFrom(String.class)) {
+                Msg.warn("Failed to load type handler %s from expansion %s as there is already a type handler for this type.",
+                        expansion.getIdentifier(), typeHandler.typeClass().getSimpleName());
+                continue;
+            }
+
+            typeHandlers.putIfAbsent(typeHandler.typeClass(), typeHandler);
         }
 
         if (expansion instanceof Configurable) {

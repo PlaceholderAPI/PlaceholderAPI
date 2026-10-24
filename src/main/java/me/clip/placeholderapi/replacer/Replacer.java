@@ -30,9 +30,25 @@ import org.jetbrains.annotations.Nullable;
 public interface Replacer {
 
     @NotNull
-    String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
-                 @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup);
+    default String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
+                         @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup) {
+        return apply(text, player, lookup, PlaceholderExpansion::onRequest);
+    }
 
+    @NotNull
+    String apply(@NotNull final String text, @Nullable final OfflinePlayer player,
+                 @NotNull final Function<String, @Nullable PlaceholderExpansion> lookup,
+                 @NotNull final PlaceholderResolver resolver);
+
+    @FunctionalInterface
+    interface PlaceholderResolver {
+
+        @Nullable
+        String resolve(@NotNull final PlaceholderExpansion expansion,
+                       @Nullable final OfflinePlayer player,
+                       @NotNull final String params);
+
+    }
 
     enum Closure {
         BRACKET('{', '}'),
