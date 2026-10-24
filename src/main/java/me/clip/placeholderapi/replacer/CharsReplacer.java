@@ -124,7 +124,11 @@ public final class CharsReplacer implements Replacer {
             String replacement = null;
 
             if (expansion != null) {
-                replacement = expansion.onRequest(player, parameters);
+                try {
+                    replacement = expansion.onRequest(player, parameters);
+                } catch (final Exception exception) {
+                    expansion.severe("Failed to parse placeholder " + identifier, exception);
+                }
             }
 
             if (replacement != null) {
