@@ -33,6 +33,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -274,6 +275,16 @@ public final class CloudExpansionManager {
     @NotNull
     public CompletableFuture<File> downloadExpansion(@NotNull final CloudExpansion expansion,
                                                      @NotNull final CloudExpansion.Version version) {
+        final String blockedExpansions = System.getenv("PAPI_BLOCKED_EXPANSIONS");
+        if (blockedExpansions != null && Arrays.stream(blockedExpansions.split(","))
+                .anyMatch(name -> name.equalsIgnoreCase(expansion.getName()))) {
+            return failedDownload("This expansion can't be downloaded.");
+        }
+
+        if (!version.isVerified()) {
+            return failedDownload("The expansion is not verified and can only be downloaded manually from https://ecloud.placeholderapi.com");
+        }
+
         final CompletableFuture<File> previous = await.get(toIndexName(expansion));
         if (previous != null) {
             return previous;
@@ -307,6 +318,12 @@ public final class CloudExpansionManager {
         await.put(toIndexName(expansion), download);
 
         return download;
+    }
+
+    private CompletableFuture<File> failedDownload(String message) {
+        final CompletableFuture<File> failed = new CompletableFuture<>();
+        failed.completeExceptionally(new IllegalArgumentException(message));
+        return failed;
     }
 
 }
