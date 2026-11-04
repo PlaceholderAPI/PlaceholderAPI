@@ -285,39 +285,36 @@ public final class CloudExpansionManager {
             return failedDownload("The expansion is not verified and can only be downloaded manually from https://ecloud.placeholderapi.com");
         }
 
-        final CompletableFuture<File> previous = await.get(toIndexName(expansion));
-        if (previous != null) {
-            return previous;
-        }
+        final String key = toIndexName(expansion);
+        return await.computeIfAbsent(key, ignored -> {
+            final File file = new File(plugin.getLocalExpansionManager().getExpansionsFolder(),
+                    "Expansion-" + key + ".jar");
 
-        final File file = new File(plugin.getLocalExpansionManager().getExpansionsFolder(),
-                "Expansion-" + toIndexName(expansion) + ".jar");
+            final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
+                try {
+                    final URLConnection connection = new URI(version.getUrl()).toURL().openConnection();
+                    connection.setRequestProperty("User-Agent", USER_AGENT);
 
-        final CompletableFuture<File> download = CompletableFuture.supplyAsync(() -> {
-            try {
-                final URLConnection connection = new URI(version.getUrl()).toURL().openConnection();
-                connection.setRequestProperty("User-Agent", USER_AGENT);
-
-                try (final ReadableByteChannel source = Channels.newChannel(connection.getInputStream()); final FileOutputStream target = new FileOutputStream(file)) {
-                    target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
+                    try (final ReadableByteChannel source = Channels.newChannel(connection.getInputStream());
+                         final FileOutputStream target = new FileOutputStream(file)) {
+                        target.getChannel().transferFrom(source, 0, Long.MAX_VALUE);
+                    }
+                } catch (final IOException | URISyntaxException ex) {
+                    throw new CompletionException(ex);
                 }
-            } catch (final IOException | URISyntaxException ex) {
-                throw new CompletionException(ex);
-            }
-            return file;
-        }, ASYNC_EXECUTOR);
+                return file;
+            }, ASYNC_EXECUTOR);
 
-        download.whenCompleteAsync((value, exception) -> {
-            await.remove(toIndexName(expansion));
+            download.whenCompleteAsync((value, exception) -> {
+                await.remove(key, download);
 
-            if (exception != null) {
-                Msg.severe("Failed to download %s:%s", exception, expansion.getName(), expansion.getVersion());
-            }
-        }, ASYNC_EXECUTOR);
+                if (exception != null) {
+                    Msg.severe("Failed to download %s:%s", exception, expansion.getName(), expansion.getVersion());
+                }
+            }, ASYNC_EXECUTOR);
 
-        await.put(toIndexName(expansion), download);
-
-        return download;
+            return download;
+        });
     }
 
     private CompletableFuture<File> failedDownload(String message) {
