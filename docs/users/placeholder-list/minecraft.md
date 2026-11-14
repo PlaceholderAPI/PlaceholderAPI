@@ -1944,6 +1944,8 @@ Current-viewer placeholders use the player the placeholder is being parsed for. 
 | `%reports_pending_against%`         | Pending reports made against the viewing player.                                |
 | `%reports_resolved_against%`        | Resolved reports made against the viewing player.                               |
 | `%reports_rejected_against%`        | Rejected reports made against the viewing player.                               |
+| `%reports_last_submitted_date%`     | Date/time of the last report submitted by the viewing player (format: `yyyy-MM-dd HH:mm:ss`). Returns `N/A` if none. |
+| `%reports_last_against_date%`       | Date/time of the last report filed against the viewing player (format: `yyyy-MM-dd HH:mm:ss`). Returns `N/A` if none. |
 
 Specific-player placeholders query a named player instead of the viewing player. Replace `<player>` with a player name. Offline players must already be cached by the server.
 
