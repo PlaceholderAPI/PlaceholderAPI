@@ -437,7 +437,7 @@ Further details on how to contribute to this list or the wiki as a whole can be 
         - **[Ultra Punishments](#ultra-punishments)**
         - **[Ultra Regions](#ultra-regions)**
         - **[UnityGen](#unitygen)**
-        - **[USkyBlock](#uskyblock)**
+        - **[uSkyBlock](#uskyblock)**
     
     - **V**
         - **[Vault](#vault)**
@@ -7072,17 +7072,6 @@ ujobs_leaderboard_level_<job>_<position>
 
 ----
 
-### **[USkyBlock](https://www.spigotmc.org/resources/2280/)**
-/// command | papi ecloud download uSkyBlock
-///
-
-```
-%uskyblock_island_rank%
-%uskyblock_island_level%
-```
-
-----
-
 ### **[UltimateChat](https://www.spigotmc.org/resources/23767/)**
 /// integrated | Built into Plugin
 ///
@@ -7192,6 +7181,44 @@ You can find an up-to-date list of placeholders in the [Ultra Regions Wiki](http
 ```
 %unitygen_userlimit%
 %unitygen_usergens%
+```
+
+----
+
+### **[uSkyBlock](https://uskyblock.org)**
+/// integrated | Built into Plugin
+///
+
+All placeholders show the island of the player viewing them. For details, see the
+[uSkyBlock placeholder reference](https://uskyblock.org/admins/reference/placeholders/).
+
+```
+%uskyblock_version%
+%uskyblock_island_level%
+%uskyblock_island_level_int%
+%uskyblock_island_rank%
+%uskyblock_island_leader%
+%uskyblock_island_biome%
+%uskyblock_island_schematic%
+%uskyblock_island_partysize%
+%uskyblock_island_partysize_max%
+%uskyblock_island_members%
+%uskyblock_island_trustees%
+%uskyblock_island_bans%
+%uskyblock_island_location%
+%uskyblock_island_location_x%
+%uskyblock_island_location_y%
+%uskyblock_island_location_z%
+%uskyblock_island_animals%
+%uskyblock_island_animals_max%
+%uskyblock_island_monsters%
+%uskyblock_island_monsters_max%
+%uskyblock_island_villagers%
+%uskyblock_island_villagers_max%
+%uskyblock_island_golems%
+%uskyblock_island_golems_max%
+%uskyblock_island_copper_golems%
+%uskyblock_island_copper_golems_max%
 ```
 
 ----
